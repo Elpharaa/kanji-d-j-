@@ -3939,6 +3939,8 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
 .mkt { display: flex; flex-direction: column; flex: 1 1 140px; min-width: 0; } .mkt small { color: #6b6483; }
 .mkp { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; } .mkp input { width: 84px; padding: 6px 8px; border-radius: 10px; border: 2px solid #372a56; font: 700 .9rem var(--font-body); } .mkp small { font-size: 11px; color: #6b6483; }
 .mkfilt { display: flex; gap: 8px; margin: 6px 0 8px; } .mkfilt select { flex: 1; }
+
+.scwrap { text-align: center; } .scimg { width: 100%; max-width: 360px; border-radius: 18px; box-shadow: 0 8px 24px rgba(44,36,82,.35); } .scbtns { display: flex; gap: 10px; justify-content: center; margin: 12px 0 6px; } .scbtns .btn { text-decoration: none; }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -4090,6 +4092,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
       <button type="button" class="pfbtn" data-pf="pass" aria-pressed="false"><i aria-hidden="true">道</i><span>Voie du Dōjō</span></button>
       <button type="button" class="pfbtn" data-pf="badges" aria-pressed="false"><i aria-hidden="true">章</i><span>Badges</span></button>
       <button type="button" class="pfbtn" data-stats="1"><i aria-hidden="true">統</i><span>Mes stats</span></button>
+      <button type="button" class="pfbtn" data-sharecard="1"><i aria-hidden="true">写</i><span>Partager ma carte</span></button>
       <button type="button" class="pfbtn" data-go="settings"><i aria-hidden="true">設</i><span>Réglages</span></button>
     </div>
     <div class="panel custpanel" id="custPanel">
@@ -15924,6 +15927,72 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   document.addEventListener('change', function (e) {
     var t = e.target; if (!t || !t.closest || !t.closest('.mkmodal')) return;
     if (t.id === 'mkF') { mk.f = t.value; mkRefresh(); } else if (t.id === 'mkS') { mk.sort = t.value; mkRefresh(); }
+  });
+
+  /* ---- Carte de membre partageable (image PNG dessinée en canvas) ---- */
+  var scBlob = null, scUrl = '';
+  function scRound(c, x, y, w, h, r) { c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
+  function scFit(c, txt, max, size, font) { while (size > 30) { c.font = font.replace('#', size); if (c.measureText(txt).width <= max) break; size -= 4; } return size; }
+  function scBuild() {
+    return new Promise(function (resolve) {
+      var W = 1080, H = 1350, cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+      var c = cv.getContext('2d'), ff = (getComputedStyle(document.body).fontFamily || 'sans-serif');
+      var lv = level(), lo = xpTotal(lv), hi = xpTotal(lv + 1), pc = Math.max(0, Math.min(1, (S.xp - lo) / Math.max(1, hi - lo)));
+      var earned = BADGES.filter(function (b) { return S.badges && S.badges[b.id]; }).sort(function (a, b) { return S.badges[b.id] - S.badges[a.id]; });
+      var ttl = ''; try { ttl = titleName(cosmOf(S).title) || ''; } catch (e) {}
+      var g = c.createLinearGradient(0, 0, W, H); g.addColorStop(0, '#2c2452'); g.addColorStop(.6, '#4b3d84'); g.addColorStop(1, '#8c3a79');
+      c.fillStyle = g; c.fillRect(0, 0, W, H);
+      c.fillStyle = 'rgba(255,255,255,.05)'; c.font = '700 760px ' + ff; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('会', W / 2, 760);
+      for (var i = 0; i < 26; i++) { c.fillStyle = 'rgba(249,185,207,' + (.25 + (i % 4) * .1) + ')'; c.beginPath(); c.ellipse((i * 211) % W, (i * 137) % H, 9, 6, i, 0, 7); c.fill(); }
+      c.strokeStyle = '#f0b97a'; c.lineWidth = 6; scRound(c, 36, 36, W - 72, H - 72, 44); c.stroke();
+      c.strokeStyle = 'rgba(240,185,122,.4)'; c.lineWidth = 2; scRound(c, 52, 52, W - 104, H - 104, 34); c.stroke();
+      c.fillStyle = '#f0b97a'; c.font = '700 34px ' + ff; c.fillText('会員証 · CARTE DE MEMBRE', W / 2, 118);
+      var img = new Image();
+      function draw(ok) {
+        var cx = W / 2, cy = 330, r = 150;
+        c.save(); c.beginPath(); c.arc(cx, cy, r + 14, 0, 7); c.fillStyle = '#f0b97a'; c.fill(); c.restore();
+        c.save(); c.beginPath(); c.arc(cx, cy, r, 0, 7); c.clip();
+        if (ok) c.drawImage(img, cx - r, cy - r, r * 2, r * 2); else { c.fillStyle = '#d0587f'; c.fillRect(cx - r, cy - r, r * 2, r * 2); }
+        c.restore();
+        c.fillStyle = '#fffaf0'; c.textAlign = 'center'; var nm = String(user.name || '');
+        var sz = scFit(c, nm, 860, 92, '700 #px ' + ff); c.font = '700 ' + sz + 'px ' + ff; c.fillText(nm, cx, 570);
+        if (ttl) { c.fillStyle = '#e9a5b6'; c.font = '600 38px ' + ff; c.fillText(ttl, cx, 628); }
+        c.fillStyle = '#f0b97a'; c.font = '700 150px ' + ff; c.fillText('Niv. ' + lv, cx, 760);
+        scRound(c, 140, 840, W - 280, 34, 17); c.fillStyle = 'rgba(255,255,255,.18)'; c.fill();
+        scRound(c, 140, 840, Math.max(34, (W - 280) * pc), 34, 17); c.fillStyle = '#d0587f'; c.fill();
+        c.fillStyle = '#fffaf0'; c.font = '600 30px ' + ff; c.fillText(S.xp + ' XP', cx, 912);
+        var st = [['章', earned.length + '/' + BADGES.length, 'badges'], ['語', String(masteredCount()), 'mots maîtrisés'], ['札', String(cardCount()), 'cartes']];
+        st.forEach(function (t, k) {
+          var x = 100 + k * 290; scRound(c, x, 960, 260, 150, 24); c.fillStyle = 'rgba(255,250,240,.12)'; c.fill();
+          c.fillStyle = '#f0b97a'; c.font = '700 34px ' + ff; c.textAlign = 'left'; c.fillText(t[0], x + 22, 1000);
+          c.fillStyle = '#fffaf0'; c.textAlign = 'center'; c.font = '700 60px ' + ff; c.fillText(t[1], x + 130, 1050);
+          c.font = '500 26px ' + ff; c.fillStyle = '#e9d9c8'; c.fillText(t[2], x + 130, 1094);
+        });
+        earned.slice(0, 6).forEach(function (b, k, a) {
+          var x = W / 2 + (k - (a.length - 1) / 2) * 140; c.beginPath(); c.arc(x, 1190, 52, 0, 7); c.fillStyle = '#fffaf0'; c.fill();
+          c.lineWidth = 5; c.strokeStyle = '#f0b97a'; c.stroke(); c.fillStyle = '#2c2452'; c.textAlign = 'center'; c.font = '700 54px ' + ff; c.fillText(b.g, x, 1194);
+        });
+        c.fillStyle = '#e9d9c8'; c.font = '600 28px ' + ff; c.textAlign = 'center'; c.fillText('Kanji Dōjō · Elphara sensei', W / 2, 1272);
+        cv.toBlob(function (bl) { resolve(bl); }, 'image/png');
+      }
+      img.onload = function () { draw(true); }; img.onerror = function () { draw(false); };
+      img.src = avatarOf(user.name, user.avatar);
+    });
+  }
+  function scOpen() {
+    openModal('Ma carte de membre', '<p class="note">Création de ta carte…</p>', 'shopmodal');
+    scBuild().then(function (bl) {
+      scBlob = bl; if (scUrl) { try { URL.revokeObjectURL(scUrl); } catch (e) {} } scUrl = URL.createObjectURL(bl);
+      if ($('appModal').hidden) return;
+      setModalBody('<div class="scwrap"><img class="scimg" src="' + scUrl + '" alt="Ma carte de membre"><div class="scbtns"><button type="button" class="btn primary" data-sc="share">Partager</button><a class="btn" data-sc="dl" download="carte-kanji-dojo.png" href="' + scUrl + '">Télécharger</a></div><p class="small muted">Poste-la sur Discord ou Instagram ! Elle se met à jour à chaque fois que tu l’ouvres.</p></div>');
+    });
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('[data-sharecard]') && user && S) { scOpen(); return; }
+    var t = e.target.closest ? e.target.closest('[data-sc="share"]') : null; if (!t || !scBlob) return;
+    var f = null; try { f = new File([scBlob], 'carte-kanji-dojo.png', { type: 'image/png' }); } catch (er) {}
+    if (f && navigator.canShare && navigator.canShare({ files: [f] })) navigator.share({ files: [f], title: 'Ma carte Kanji Dōjō' }).catch(function () {});
+    else { var a = document.createElement('a'); a.href = scUrl; a.download = 'carte-kanji-dojo.png'; document.body.appendChild(a); a.click(); a.remove(); toast('Carte téléchargée'); }
   });
   function openShop() { if (!unlOn('bazar')) { toast("🔒 La Boutique se débloque au niveau " + UNL.bazar[0]); return; } if (!netOn()) { netBlock("La Boutique"); return; } vxTry = {}; openModal('La Boutique du Dōjō', shopHTML(), 'shopmodal'); }
   function refreshShop() { if (!$('appModal').hidden && $('appModal').querySelector('.shopmodal')) setModalBody(shopHTML()); }
