@@ -3617,6 +3617,36 @@ section:not([hidden]){animation:pgfade .2s ease-out both!important}
 .dpt{animation-duration:5s}
 html.lite .fspt,html.lite .dpt{animation:none}
 @media (prefers-reduced-motion:reduce){.fspt,.dpt,.cdoffer{animation:none!important}}
+
+/* ===== v161 ===== */
+.nfmist,.nfrp{transform-box:fill-box;transform-origin:center}
+.nfpt.d{animation-delay:-5.5s}
+.qvhero{grid-column:1/-1;width:100%;min-height:128px;padding:16px 18px!important;display:grid!important;grid-template-columns:auto 1fr;grid-template-rows:auto auto auto auto;column-gap:16px;align-items:center;text-align:left;border-width:2px!important;box-shadow:0 5px 0 rgba(120,70,120,.28),0 12px 22px rgba(90,50,110,.2)!important;margin-bottom:6px}
+.qvhero .qvk{grid-row:1/5;font-size:3.6rem!important;line-height:1}
+.qvhero b{font-size:1.35rem!important}
+.qvhero small{font-size:.82rem!important}
+.qvhero .qvhtag{justify-self:start;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:linear-gradient(#d0587f,#a02c5a);padding:2px 10px;border-radius:99px}
+.qvhero .qvbar{grid-column:2;margin-top:6px}
+.qvsubh{margin:12px 2px 6px;font-family:var(--font-brush);font-weight:400;font-size:1rem;color:#3a2a63}
+.cdbuybig{width:100%;min-height:56px;font-size:1.08rem;border-radius:16px!important;background:linear-gradient(180deg,#ffe58a,#f2a62c 60%,#e48a1c)!important;color:#3a1c00!important;border:2px solid #7a4a10!important;box-shadow:0 5px 0 #8a4f10,0 10px 18px rgba(160,90,20,.35),inset 0 2px 0 rgba(255,255,255,.7)!important;animation:cdpulse 2.2s ease-in-out infinite!important}
+.cdbuybig:active{transform:translateY(3px)}
+/* transition sakura du Classeur / Boutique */
+#appModal .mbox.shopmodal{animation:sakuin .55s cubic-bezier(.2,.85,.25,1) both!important}
+@keyframes sakuin{0%{opacity:0;transform:translateY(26px) scale(.9) rotate(-1.2deg);filter:blur(4px)}60%{opacity:1;filter:blur(0)}100%{opacity:1;transform:none;filter:none}}
+.sakub{position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden}
+.sakub i{position:absolute;left:50%;top:70%;width:16px;height:11px;border-radius:80% 0 80% 0;background:linear-gradient(135deg,#ffd2e2,#f48fb1);opacity:0;transform:scale(var(--s));animation:sakufly 1.2s cubic-bezier(.2,.7,.3,1) var(--d) both}
+@keyframes sakufly{0%{opacity:0;transform:translate(0,0) rotate(0) scale(var(--s))}15%{opacity:1}100%{opacity:0;transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(var(--s))}}
+@media (prefers-reduced-motion:reduce){.sakub{display:none}#appModal .mbox.shopmodal{animation:none!important}.cdbuybig{animation:none!important}}
+/* carte de membre centrée sur PC */
+@media (min-width:768px){
+  .player{display:flex!important;flex-direction:column;align-items:center;text-align:center;padding-top:22px}
+  .player #pAvatar{position:relative;display:block}
+  .player .xpwrap{width:100%;display:flex;flex-direction:column;align-items:center}
+  .player .xptext{width:100%;justify-content:center;gap:22px}
+  .player .track{width:100%}
+  .player .hrow{justify-content:center}
+  .player .katline{justify-content:center;text-align:center}
+}
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -3663,21 +3693,32 @@ html.lite .fspt,html.lite .dpt{animation:none}
     <button class="tab" type="button" data-tab="base" aria-label="Base"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20 12 5l9 15z"/><path d="M9.5 20 12 14.5l2.5 5.5"/></svg><span class="nl">Base</span></button>
     <button class="tab" type="button" data-tab="profil" aria-label="Profil"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c.6-4 3.6-6.5 7.5-6.5s6.9 2.5 7.5 6.5"/></svg><span class="nl">Profil</span></button>
   <div class="navfall" aria-hidden="true"><svg viewBox="0 0 200 440" preserveAspectRatio="xMidYMax slice"><defs>
-<linearGradient id="nfSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2150" stop-opacity="0"/><stop offset=".25" stop-color="#4b3d84"/><stop offset=".7" stop-color="#b66fa3"/><stop offset="1" stop-color="#f0a9b4"/></linearGradient>
-<linearGradient id="nfWt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9f7ff"/><stop offset=".6" stop-color="#bfe3fb"/><stop offset="1" stop-color="#a9b9ee"/></linearGradient>
-<linearGradient id="nfCl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1f1a3e"/><stop offset="1" stop-color="#3a2f6c"/></linearGradient></defs>
+<linearGradient id="nfSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2150" stop-opacity="0"/><stop offset=".22" stop-color="#3f3478"/><stop offset=".62" stop-color="#9a69a8"/><stop offset="1" stop-color="#f0a9b4"/></linearGradient>
+<linearGradient id="nfRk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6b5aa0"/><stop offset=".55" stop-color="#43386f"/><stop offset="1" stop-color="#2a2150"/></linearGradient>
+<linearGradient id="nfWt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2fbff"/><stop offset=".6" stop-color="#cfe8fb"/><stop offset="1" stop-color="#b7c2f2"/></linearGradient>
+<linearGradient id="nfPool" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fb4ee"/><stop offset="1" stop-color="#3a3a86"/></linearGradient></defs>
 <rect width="200" height="440" fill="url(#nfSky)"/>
-<circle cx="150" cy="86" r="22" fill="#fff4cf" opacity=".9"/><g fill="#fff"><circle class="nftw" cx="30" cy="70" r="1.2"/><circle class="nftw" cx="70" cy="40" r="1"/><circle class="nftw" cx="110" cy="30" r="1.1"/><circle class="nftw" cx="176" cy="40" r="1"/></g>
-<path d="M0 150 L46 120 L88 160 L130 118 L200 150 V300 H0Z" fill="#6c5aa6" opacity=".6"/>
-<path d="M0 60 H72 L86 70 L70 150 L92 240 L72 330 L100 440 H0Z" fill="url(#nfCl)"/><path d="M200 40 H126 L112 60 L132 150 L110 250 L130 340 L100 440 H200Z" fill="url(#nfCl)"/>
-<path d="M72 60 L86 70 L70 150 L92 240 L72 330" fill="none" stroke="#a79bd6" stroke-width="1.4" opacity=".6"/><path d="M126 40 L112 60 L132 150 L110 250 L130 340" fill="none" stroke="#a79bd6" stroke-width="1.4" opacity=".6"/>
-<path d="M86 64 H114 L112 340 H90Z" fill="url(#nfWt)" opacity=".95"/>
-<g fill="none" stroke="#fff" stroke-linecap="round"><path class="nfst" d="M92 70 V336" stroke-width="2.2" opacity=".9"/><path class="nfst b" d="M99 66 V336" stroke-width="3" opacity=".85"/><path class="nfst c" d="M106 70 V336" stroke-width="2.2" opacity=".9"/><path class="nfst d" d="M111 74 V336" stroke-width="1.6" opacity=".8"/></g>
-<ellipse class="nfmist" cx="100" cy="344" rx="42" ry="14" fill="#fff" opacity=".6"/><ellipse class="nfmist b" cx="100" cy="338" rx="28" ry="10" fill="#fff" opacity=".7"/>
-<path d="M0 360 Q100 340 200 360 V440 H0Z" fill="#6f7fd0" opacity=".85"/><path d="M0 380 Q100 366 200 380 V440 H0Z" fill="#2f2a6a"/>
-<g fill="none" stroke="#fff" opacity=".6"><ellipse class="nfrp" cx="100" cy="364" rx="20" ry="4"/><ellipse class="nfrp b" cx="100" cy="364" rx="20" ry="4"/></g>
-<g><path d="M-4 40 C20 44 40 36 58 20" stroke="#4a3560" stroke-width="3.4" fill="none" stroke-linecap="round"/><g fill="#f6aec6"><circle cx="16" cy="40" r="7"/><circle cx="32" cy="36" r="8"/><circle cx="48" cy="26" r="7"/><circle cx="58" cy="18" r="6"/><circle cx="24" cy="48" r="5"/></g><g fill="#ffd0de" opacity=".9"><circle cx="30" cy="34" r="4"/><circle cx="14" cy="38" r="3"/><circle cx="50" cy="24" r="3"/></g></g>
-<g fill="#f7b6ca"><ellipse class="nfpt" cx="40" cy="60" rx="3" ry="1.6"/><ellipse class="nfpt b" cx="150" cy="80" rx="3" ry="1.6"/><ellipse class="nfpt c" cx="80" cy="30" rx="3" ry="1.6"/></g>
+<circle cx="52" cy="96" r="20" fill="#fff4cf" opacity=".92"/><circle cx="52" cy="96" r="30" fill="#fff4cf" opacity=".14"/>
+<g fill="#fff"><circle class="nftw" cx="22" cy="60" r="1.2"/><circle class="nftw" cx="96" cy="46" r="1"/><circle class="nftw" cx="140" cy="70" r="1.1"/><circle class="nftw" cx="180" cy="40" r="1"/><circle class="nftw" cx="120" cy="24" r="1"/></g>
+<path d="M0 190 L34 150 L70 186 L112 138 L160 188 L200 160 V330 H0Z" fill="#7a68ab" opacity=".55"/>
+<g opacity=".8"><rect x="22" y="196" width="2.6" height="26" fill="#2a2150"/><rect x="40" y="196" width="2.6" height="26" fill="#2a2150"/><path d="M17 197 Q31 192 46 197 L46 200 Q31 196 17 200Z" fill="#2a2150"/><rect x="20" y="203" width="24" height="2.4" fill="#2a2150"/></g>
+<path d="M200 70 L168 74 Q146 80 142 104 Q138 130 150 150 Q158 172 146 196 Q134 220 140 244 L122 262 Q108 300 126 332 L200 332Z" fill="url(#nfRk)"/>
+<path d="M200 70 L168 74 Q146 80 142 104 Q138 130 150 150 Q158 172 146 196 Q134 220 140 244" fill="none" stroke="#b5a8e0" stroke-width="1.4" opacity=".55"/>
+<g fill="#2a2150" opacity=".35"><path d="M160 120 l10 -6 l6 10z"/><path d="M150 200 l12 -4 l4 12z"/><path d="M146 280 l12 -6 l8 14z"/></g>
+<path d="M146 96 Q138 100 138 112 Q136 142 142 170 L162 170 Q158 140 160 112 Q162 100 150 96Z" fill="url(#nfWt)"/>
+<path d="M142 170 Q134 176 134 184 H168 Q168 176 160 170Z" fill="#e6f4ff" opacity=".9"/>
+<path d="M126 196 Q122 232 124 286 L124 332 L170 332 Q168 290 166 252 Q164 220 160 196Z" fill="url(#nfWt)" opacity=".96"/>
+<g fill="none" stroke="#fff" stroke-linecap="round"><path class="nfst" d="M144 100 V168" stroke-width="2" opacity=".9"/><path class="nfst b" d="M152 98 V168" stroke-width="2.6" opacity=".85"/><path class="nfst c" d="M158 104 V168" stroke-width="1.8" opacity=".85"/>
+<path class="nfst d" d="M132 200 V330" stroke-width="2.2" opacity=".85"/><path class="nfst b" d="M142 198 V330" stroke-width="3" opacity=".8"/><path class="nfst" d="M152 200 V330" stroke-width="2.4" opacity=".85"/><path class="nfst c" d="M161 204 V330" stroke-width="1.8" opacity=".8"/></g>
+<ellipse class="nfmist" cx="150" cy="176" rx="22" ry="6" fill="#fff" opacity=".6"/><ellipse class="nfmist b" cx="146" cy="332" rx="34" ry="9" fill="#fff" opacity=".65"/>
+<path d="M0 330 Q60 318 120 332 T200 326 V440 H0Z" fill="url(#nfPool)"/><path d="M0 352 Q70 340 130 354 T200 350 V440 H0Z" fill="#2f2a6a" opacity=".85"/>
+<g fill="none" stroke="#fff" opacity=".65"><ellipse class="nfrp" cx="146" cy="340" rx="24" ry="5"/><ellipse class="nfrp b" cx="146" cy="340" rx="24" ry="5"/></g>
+<g><ellipse cx="70" cy="372" rx="11" ry="3.4" fill="#6fae8a"/><circle cx="70" cy="369" r="3.4" fill="#ffb6d0"/><ellipse cx="102" cy="388" rx="9" ry="3" fill="#6fae8a"/><circle cx="103" cy="386" r="2.8" fill="#ffd0e0"/></g>
+<g><rect x="168" y="318" width="4" height="22" fill="#8f949b"/><rect x="163" y="308" width="14" height="10" fill="#f6e2a0" stroke="#555a61" stroke-width="1.2"/><path d="M160 308 L170 299 L180 308Z" fill="#6f747b"/><ellipse cx="170" cy="313" rx="16" ry="14" fill="#ffd27a" opacity=".22"/></g>
+<g><path d="M-6 392 C4 360 0 322 14 276" stroke="#3b2c52" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M8 330 C26 318 38 306 52 286" stroke="#3b2c52" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M10 300 C-2 290 -8 280 -10 268" stroke="#3b2c52" stroke-width="4" fill="none" stroke-linecap="round"/>
+<g fill="#f6aec6"><circle cx="16" cy="262" r="28"/><circle cx="-6" cy="284" r="20"/><circle cx="48" cy="276" r="22"/><circle cx="34" cy="248" r="18"/><circle cx="58" cy="296" r="13"/></g><g fill="#ffd0de" opacity=".88"><circle cx="10" cy="254" r="14"/><circle cx="42" cy="268" r="10"/><circle cx="30" cy="242" r="8"/></g></g>
+<g><path d="M-4 24 C24 30 52 22 80 4" stroke="#3b2c52" stroke-width="4" fill="none" stroke-linecap="round"/><g fill="#f6aec6"><circle cx="14" cy="28" r="9"/><circle cx="36" cy="26" r="10"/><circle cx="58" cy="18" r="9"/><circle cx="76" cy="6" r="8"/></g><g fill="#ffd0de" opacity=".9"><circle cx="28" cy="24" r="5"/><circle cx="52" cy="16" r="4"/></g></g>
+<g fill="#f7b6ca"><ellipse class="nfpt" cx="60" cy="60" rx="3" ry="1.6"/><ellipse class="nfpt b" cx="110" cy="90" rx="3" ry="1.6"/><ellipse class="nfpt c" cx="30" cy="110" rx="3" ry="1.6"/><ellipse class="nfpt d" cx="90" cy="40" rx="3" ry="1.6"/></g>
 </svg></div>
 </nav>
 
@@ -9872,8 +9913,8 @@ html.lite .fspt,html.lite .dpt{animation:none}
   Object.keys(DISP_S2).forEach(function (c) { DISP[c] = DISP_S2[c]; });
   // Niveaux : semaines 1 à 5 = L2 (S3) ; semaines 101 et + = L1 (S1), Semaine n = 100 + n
   var CURSUS = {
-    L0: { id: 'L0', short: 'L1 déb.', tag: 'L1 déb. S1', name: 'L1 débutant', sem: 'Semestre 1', seal: '初', blurb: 'Les premiers kanjis : 76 caractères du fascicule L1 débutant, semestre 1' },
-    L0S2: { id: 'L0S2', short: 'L1 déb.', tag: 'L1 déb. S2', name: 'L1 débutant', sem: 'Semestre 2', seal: '進', blurb: 'La suite : 108 caractères du fascicule L1 débutant, semestre 2' },
+    L0: { id: 'L0', short: 'L1 déb.', tag: 'L0 S1', name: 'L1 débutant', sem: 'Semestre 1', seal: '初', blurb: 'Les premiers kanjis : 76 caractères du fascicule L1 débutant, semestre 1' },
+    L0S2: { id: 'L0S2', short: 'L1 déb.', tag: 'L0 S2', name: 'L1 débutant', sem: 'Semestre 2', seal: '進', blurb: 'La suite : 108 caractères du fascicule L1 débutant, semestre 2' },
     L1: { id: 'L1', short: 'L1', tag: 'L1 S1', name: 'Licence 1', sem: 'Semestre 1', seal: '壱', blurb: 'Les bases du lexique et des idéogrammes' },
     L1S2: { id: 'L1S2', short: 'L1', tag: 'L1 S2', name: 'Licence 1', sem: 'Semestre 2', seal: '続', blurb: 'La suite : 12 semaines de lexique et d\'idéogrammes' },
     L2: { id: 'L2', short: 'L2', tag: 'L2 S3', name: 'Licence 2', sem: 'Semestre 3', seal: '弐', blurb: 'Semaines 1 à 5, puis 7 à 11 : parchemin, temple, yōkai, légendes, tonnerre, enquêtes, ressources…' }
@@ -11753,7 +11794,7 @@ html.lite .fspt,html.lite .dpt{animation:none}
   }
   function renderSecHead(view, sec) {
     var h = $('secHead'); if (!h) return;
-    if (view === 'vHub' || view === 'vSession' || view === 'vAuth') { h.hidden = true; return; }
+    h.hidden = true; h.innerHTML = ''; return;
     var i = VIEWINFO[view] || SECINFO[sec];
     h.innerHTML = '<span class="shseal" aria-hidden="true">' + i[0] + '</span><div class="shtx"><b>' + esc(i[1]) + '</b><small>' + esc(i[2]) + '</small></div>';
     h.hidden = false;
@@ -15022,6 +15063,15 @@ html.lite .fspt,html.lite .dpt{animation:none}
     $('appModal').querySelector('.mbox').className = 'mbox appbox' + (cls ? ' ' + cls : '');
     $('appModal').hidden = false; document.body.classList.add('noscroll');
     fitIcons($('appModalBody'));
+    if (cls && /shopmodal/.test(cls)) sakuBurst();
+  }
+  function sakuBurst() {
+    try {
+      var m = $('appModal'), old = m.querySelector('.sakub'); if (old) old.remove();
+      var d = document.createElement('div'); d.className = 'sakub'; d.setAttribute('aria-hidden', 'true'); var h = '';
+      for (var i = 0; i < 22; i++) h += '<i style="--x:' + (Math.round(Math.random() * 100 - 50)) + 'vw;--y:' + (Math.round(Math.random() * -70 - 10)) + 'vh;--r:' + Math.round(Math.random() * 540 - 270) + 'deg;--d:' + (Math.random() * .25).toFixed(2) + 's;--s:' + (0.7 + Math.random() * .9).toFixed(2) + '"></i>';
+      d.innerHTML = h; m.appendChild(d); setTimeout(function () { if (d.parentNode) d.remove(); }, 1500);
+    } catch (e) {}
   }
   // Cadre chaque icône de boutique autour de son dessin pour qu'elle remplisse son médaillon
   function fitIcons(root) {
@@ -16654,9 +16704,7 @@ html.lite .fspt,html.lite .dpt{animation:none}
     var b = typeof bestText === 'function' ? bestText(id) : '';
     var art = (typeof GAME_ART !== 'undefined' && GAME_ART[id]) || '';
     openModal(c.name, '<div class="gi2">' + (art ? '<div class="gi2ban">' + art + '</div>' : '') +
-      '<div class="gi2say"><div class="gi2m">' + mascotHTML() + '</div><div class="gi2b"><b>Archibald</b><p>' + esc(d.say[0]) + '</p></div></div>' +
-      '<div id="gsHost">' + scopeBlockHTML() + '</div>' + '<ol class="gi2steps">' + d.say.slice(1).map(function (t, i) { return '<li><span class="gi2n">' + (i + 1) + '</span><p>' + esc(t) + '</p></li>'; }).join('') + '</ol>' +
-      '<div class="gi2tip"><span aria-hidden="true">💡</span><p>' + esc(d.tip) + '</p></div>' + (b ? '<p class="gi2best">' + esc(b) + '</p>' : '') + '</div>' +
+      '<div id="gsHost">' + scopeBlockHTML() + '</div>' + (b ? '<p class="gi2best">' + esc(b) + '</p>' : '') + '</div>' +
       '<div class="row" style="margin-top:12px;flex-wrap:wrap"><button type="button" class="btn primary" data-gi="' + id + '">' + (id === 'write' && wrDueCount() ? 'Série mixte' : 'C\'est parti !') + '</button>' + (id === 'write' && wrDueCount() ? '<button type="button" class="btn primary gold" data-gi="writesrs">Réviser (' + wrDueCount() + ' à revoir)</button>' : '') + '<button type="button" class="btn" data-gi="no">Plus tard</button></div>', 'gimodal');
   }
   document.addEventListener('click', function (e) {
@@ -17369,7 +17417,7 @@ html.lite .fspt,html.lite .dpt{animation:none}
     var X = cardS(), kinds = ['all', 'prof', 'fac', 'jp', 'hist', 'obj', 'cuis', 'trad', 'art', 'sport', 'lieu', 'nat', 'kami', 'folk'], names = { all: 'Toutes les catégories', prof: 'Professeurs', fac: 'Vie de la fac', jp: 'Japon', hist: 'Histoire', obj: 'Objets', cuis: 'Cuisine', trad: 'Traditions', art: 'Arts', sport: 'Budō et sport', lieu: 'Lieux', nat: 'Nature et fêtes', kami: 'Kami (dieux)', folk: 'Folklore' };
     var list = CARDS.filter(function (c) { return cardFilter === 'all' || c[1] === cardFilter; });
     var own = list.filter(function (c) { return X.owned[c[0]]; }).length;
-    var h = '<div class="lootpanel cdpanel"><button type="button" class="btn lsm" data-card="main">‹ Boosters</button><h3 class="lootttlh" style="margin-top:8px">Mon classeur · ' + cardCount() + '/' + CARDS.length + '</h3>' +
+    var h = '<div class="lootpanel cdpanel"><button type="button" class="btn primary cdbuybig" data-card="main">🛒 Acheter des boosters</button><h3 class="lootttlh" style="margin-top:8px">Mon classeur · ' + cardCount() + '/' + CARDS.length + '</h3>' +
       '<select id="cdFilter" class="cdsel" aria-label="Filtrer par catégorie">' + kinds.map(function (k) { return '<option value="' + k + '"' + (k === cardFilter ? ' selected' : '') + '>' + names[k] + '</option>'; }).join('') + '</select>' +
       '<p class="small muted" style="margin:6px 0">' + own + ' / ' + list.length + ' dans cette sélection · classé par rareté</p>';
     CARD_ORD.split('').reverse().forEach(function (k) {
@@ -18366,7 +18414,7 @@ html.lite .fspt,html.lite .dpt{animation:none}
     { c: 1, go: 'hub', t: 'Bienvenue au Dōjō !', say: 'Moi c\'est Archibald ! Je vais te montrer du doigt chaque endroit important. Ça prend une minute, promis.' },
     { go: 'hub', sel: '#userbox .slv', t: 'Ton niveau et ton XP', say: 'Ici : ton niveau et ta barre d\'XP. Chaque bonne réponse la remplit. En montant de niveau, tu débloques des récompenses, comme la bannière de profil.' },
     { go: 'hub', sel: '#hdrCoins', t: 'Tes pièces', say: 'Ce sont tes pièces. Tu en gagnes en jouant et avec les cadeaux du jour. Touche-les pour ouvrir la Boutique.' },
-    { go: 'hub', sel: '#hubGrid .hubcard:nth-child(1)', t: 'L\'aventure', say: 'Une histoire en chapitres, avec des boss. Tu choisis ton histoire (L1 déb. S1, L1 déb. S2, L1 S1, L1 S2 ou L2 S3) en haut de la page.' },
+    { go: 'hub', sel: '#hubGrid .hubcard:nth-child(1)', t: 'L\'aventure', say: 'Une histoire en chapitres, avec des boss. Tu choisis ton histoire (L0 S1, L0 S2, L1 S1, L1 S2 ou L2 S3) en haut de la page.' },
     { go: 'hub', sel: '#hubGrid .hubcard:nth-child(2)', t: 'Réviser : le cœur de l\'appli', say: 'C\'est ici que tu révises : flashcards, mini-jeux, examen blanc. La pastille « à revoir » compte les mots qui t\'attendent aujourd\'hui. Un mot est maîtrisé après 3 bonnes réponses d\'affilée.' },
     { go: 'hub', sel: '#hubGrid .hubcard:nth-child(3)', t: 'Les salons', say: 'Défie tes camarades en duel et vois qui est en ligne. Il faut être connecté à internet.' },
     { go: 'hub', sel: '#hubGrid .hubcard:nth-child(4)', t: 'Le classeur de cartes', say: 'Un booster gratuit chaque jour ! Les cartes de culture japonaise se rangent par rareté, avec une petite fiche pour apprendre.' },
@@ -18463,7 +18511,7 @@ html.lite .fspt,html.lite .dpt{animation:none}
     var items = [
       ['Réviser', 'Le cœur de l\'appli. Flashcards, mini-jeux et examen blanc. Chaque réponse est mémorisée : un mot raté revient vite, un mot réussi revient de plus en plus tard. La pastille « à revoir » compte les mots dus aujourd\'hui.', gdArt('study'), 'wide'],
       ['Mot maîtrisé', '3 bonnes réponses de suite, et le mot est maîtrisé. Une erreur remet le compteur à zéro. Tes mots maîtrisés par semaine sont dans « Stats ».', gdMaster()],
-      ['L\'aventure', 'Une histoire en chapitres, avec un boss à la fin. Tu choisis ton histoire en haut de la page : L1 déb. S1, L1 déb. S2, L1 S1, L1 S2 ou L2 S3.', gdArt('quest'), 'wide'],
+      ['L\'aventure', 'Une histoire en chapitres, avec un boss à la fin. Tu choisis ton histoire en haut de la page : L0 S1, L0 S2, L1 S1, L1 S2 ou L2 S3.', gdArt('quest'), 'wide'],
       ['Les mini-jeux', 'Sprint, pêche au kana, lecture, traduction, écriture, paires, examen blanc : chaque jeu a une courte présentation et te donne de 1 à 3 étoiles.', gdGames()],
       ['XP et niveaux', 'Chaque bonne réponse rapporte de l\'XP. En montant de niveau, tu débloques des récompenses : bannière de profil, paliers de la Voie du Dōjō.', gdXp()],
       ['Pièces', 'Gagnées en jouant et avec les cadeaux du jour. Dépensées à la Boutique et pour les boosters de cartes.', gdCoins()],
@@ -18739,7 +18787,7 @@ html.lite .fspt,html.lite .dpt{animation:none}
   function archStoryHTML() {
     var chs = lvChapters(), open = arOpen(), nxt = chs.length ? arNextCh() : null, nm = esc(user.name), L = CURSUS[curLv()], msg, btns = '';
     if (!chs.length) msg = 'Cette aventure arrive bientôt ! Choisis-en une autre juste en dessous.';
-    else if (open) msg = 'Salut ' + nm + ' ! Aujourd\'hui, quelle aventure veux-tu poursuivre ? Touche celle de ton choix.' + (arDoneAll() === 0 ? ' Si tu débutes, je te conseille <b>L1 déb. S1</b>.' : '');
+    else if (open) msg = 'Salut ' + nm + ' ! Aujourd\'hui, quelle aventure veux-tu poursuivre ? Touche celle de ton choix.' + (arDoneAll() === 0 ? ' Si tu débutes, je te conseille <b>L0 S1</b>.' : '');
     else if (nxt) { msg = 'Re-salut ' + nm + ' ! Tu en es à l\'aventure <b>' + esc(L.tag) + '</b>, ' + weekLabel(nxt.wk).toLowerCase() + ', chapitre « ' + esc(nxt.title) + ' ». On continue ?'; btns = '<button type="button" class="btn primary" data-arch="go">On continue !</button><button type="button" class="btn" data-arch="pick">Changer d\'aventure</button>'; }
     else { msg = 'Bravo ' + nm + ', tu as terminé toute l\'aventure <b>' + esc(L.tag) + '</b> ! Rejoue un boss ou choisis-en une autre.'; btns = '<button type="button" class="btn primary" data-arch="pick">Choisir une autre aventure</button>'; }
     return '<div class="archg"><div class="archm">' + mascotHTML() + '</div><div class="archb"><b>Archibald</b><p>' + msg + '</p>' + (btns ? '<div class="archbtns">' + btns + '</div>' : '') + '</div></div>';
@@ -18970,7 +19018,7 @@ html.lite .fspt,html.lite .dpt{animation:none}
     if (!talk) panel = '<p class="cstcap">Un chevalier se repose au pied d\'un rocher. Réveille-le pour partir à l\'aventure.</p><button type="button" class="btn primary cmpbtn" data-castle="talk">⚔️ Partir à l\'aventure</button>';
     else {
       var cur = curLv();
-      panel = '<div class="archg cstp"><div class="archb"><b>Hina, la petite guide</b><p>' + (done ? 'Te revoilà, ' + nm + ' ! Où veux-tu aller aujourd\'hui ?' : 'Bonjour ' + nm + ' ! Où veux-tu aller ? Choisis ton chemin. Si tu débutes, prends <b>L1 déb. S1</b>.') + '</p>' +
+      panel = '<div class="archg cstp"><div class="archb"><b>Hina, la petite guide</b><p>' + (done ? 'Te revoilà, ' + nm + ' ! Où veux-tu aller aujourd\'hui ?' : 'Bonjour ' + nm + ' ! Où veux-tu aller ? Choisis ton chemin. Si tu débutes, prends <b>L0 S1</b>.') + '</p>' +
         '<div class="cstopts">' + (done ? '<button type="button" class="cstopt cont" data-castle="go" data-sem="' + cur + '"><span class="cos" aria-hidden="true">▶</span><span class="cot"><b>Reprendre là où j\'en étais</b><small>' + esc(CURSUS[cur].tag) + '</small></span></button>' : '') +
         ['L0', 'L0S2', 'L1', 'L1S2', 'L2'].map(function (id) {
           var c = CURSUS[id], p = cstProg({ sems: [id] }), pct = p[1] ? Math.round(p[0] / p[1] * 100) : 0;
@@ -20089,10 +20137,14 @@ html.lite .fspt,html.lite .dpt{animation:none}
     var jl = djSub === 'jlpt', lvv = jl ? (qv.lv === 'n4' ? 'n4' : 'n5') : 'q', tot = qvTotals(djSub || 'daily');
     var list = QV.filter(function (t) { return t.lv === lvv; });
     var sel = jl ? '<div class="seg qvlvseg" role="tablist" aria-label="Niveau JLPT">' + [['n5', 'N5 · débutant'], ['n4', 'N4 · élémentaire']].map(function (o) { return '<button type="button" role="tab" data-qvlv="' + o[0] + '" aria-selected="' + (lvv === o[0]) + '">' + o[1] + '</button>'; }).join('') + '</div>' : '';
-    return '<p class="qvtop"><b>' + tot[0] + '</b> / ' + tot[1] + ' mots acquis · ' + list.filter(function (t) { return !t.virt; }).length + ' thèmes</p>' + sel + '<div class="qvgrid">' + list.map(function (t) {
-      var m = qvMasteredN(t), pct = Math.round(m / Math.max(1, t.w.length) * 100);
-      return '<button type="button" class="qvt' + (t.virt ? ' qvall' : '') + '" data-qvth="' + t.id + '"><span class="qvk" aria-hidden="true">' + t.k + '</span><b>' + esc(t.name) + '</b><small>' + t.w.length + ' mots · ' + m + ' acquis</small><i class="qvbar"><u style="width:' + pct + '%"></u></i></button>';
-    }).join('') + '</div>';
+    return '<p class="qvtop"><b>' + tot[0] + '</b> / ' + tot[1] + ' mots acquis · ' + list.filter(function (t) { return !t.virt; }).length + ' thèmes</p>' + sel + qvTiles(list.filter(function (t) { return t.virt; }), true) +
+      (list.some(function (t) { return t.virt; }) ? '<h4 class="qvsubh">Ou par thème</h4>' : '') + '<div class="qvgrid">' + qvTiles(list.filter(function (t) { return !t.virt; }), false) + '</div>';
+    function qvTiles(arr, hero) {
+      return arr.map(function (t) {
+        var m = qvMasteredN(t), pct = Math.round(m / Math.max(1, t.w.length) * 100);
+        return '<button type="button" class="qvt' + (t.virt ? ' qvall' : '') + (hero ? ' qvhero' : '') + '" data-qvth="' + t.id + '"><span class="qvk" aria-hidden="true">' + t.k + '</span>' + (hero ? '<span class="qvhtag">Quiz complet</span>' : '') + '<b>' + esc(t.name) + '</b><small>' + t.w.length + ' mots · ' + m + ' acquis' + (hero ? ' · tous les thèmes mélangés' : '') + '</small><i class="qvbar"><u style="width:' + pct + '%"></u></i></button>';
+      }).join('');
+    }
   }
   function qvModes() {
     return '<div class="seg qvseg" role="tablist" aria-label="Mode">' + [['learn', 'Apprendre'], ['cards', 'Cartes'], ['qcm', 'QCM'], ['write', 'Écrire']].map(function (m) {
