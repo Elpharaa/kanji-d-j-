@@ -2091,7 +2091,7 @@ body.railopen .railback { display: block; position: fixed; inset: 0; z-index: 65
 .lq { font-size: 1.8rem; font-weight: 800; color: #8873b3; }
 .lootseal { display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #d85183, #a32453); color: #ffe9a8; font-size: 1.5rem; font-family: var(--serif, serif); box-shadow: 0 0 0 2px #7c183d, 0 2px 6px rgba(0,0,0,.3); }
 
-/* ===== L'Échoppe du Dōjō : accueil en rayons, barre de navigation ===== */
+/* ===== La Boutique du Dōjō : accueil en rayons, barre de navigation ===== */
 .shopfront { position: relative; margin: 0 0 12px; border-radius: 16px; overflow: hidden; background: linear-gradient(180deg, #392c5a, #261d3b); border: 2px solid #1c162c; box-shadow: 0 3px 10px rgba(0,0,0,.25); }
 .noren { display: flex; height: 22px; }
 .noren i { flex: 1; background: #b2285b; border-right: 2px solid #7c183d; border-radius: 0 0 6px 6px; position: relative; }
@@ -2969,7 +2969,7 @@ body.coaching{overflow:hidden}
 .fcard.fct-fs_yozakura .fcpanel *:not(.fcl):not(.hint){color:#fff6dc}
 .fcard.fct-fs_vagues .fcpanel *:not(.fcl):not(.hint){color:#fff6dc}
 
-/* v123 : refonte de la carte Révision du jour, des tuiles de l'accueil et de l'Échoppe */
+/* v123 : refonte de la carte Révision du jour, des tuiles de l'accueil et de la Boutique */
 .dailycard{display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:12px 12px 12px 14px;color:#1f1830;border:2px solid #372a56;border-left:8px solid #b2285b;border-radius:14px;background:linear-gradient(#fffaf0,#f4e7c9);box-shadow:0 4px 0 rgba(35,26,54,.3);animation:none}
 .dailycard::after,.dyray,.dailycard .gbsp{display:none}
 .dailycard:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(35,26,54,.3)}
@@ -2993,7 +2993,7 @@ body.coaching{overflow:hidden}
   .hubcard:not(.wide) .htx b{font-size:.9rem}
   .hubcard:not(.wide) .htx small{font-size:.64rem;line-height:1.25;margin-top:2px}
 }
-/* Échoppe */
+/* Boutique */
 .stile{border:2px solid #372a56;box-shadow:0 3px 0 rgba(35,26,54,.35);background:linear-gradient(#fffaf0,#f1e3c3)}
 .stile.feat{display:flex;gap:12px;padding:12px 14px;border-color:#c8962a;background:linear-gradient(135deg,#261d3b,#392c5a);color:#fff3d6;box-shadow:0 4px 0 #161122,inset 0 0 0 1px rgba(232,196,106,.5)}
 .stile.feat .stseal{width:54px;height:54px;border-radius:14px;box-shadow:0 0 0 2px #fff3d6,0 0 14px rgba(232,196,106,.7)}
@@ -3422,7 +3422,7 @@ html.lite #animebg .petal,html.lite #animebg .twk{display:none}
   transition:transform .22s cubic-bezier(.2,.9,.3,1.2),box-shadow .22s,border-color .22s}
 .hubcard::before,#games .djt::before,.qvt::before{content:"";position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(180deg,#bf3668,#7c183d);transition:width .25s ease;z-index:0}
 .hubcard::after,#games .djt::after,.qvt::after{content:"";position:absolute;right:-30%;top:-60%;width:90%;height:220%;background:radial-gradient(closest-side,rgba(191,54,104,.18),transparent);transform:scale(.2);opacity:0;transition:transform .45s ease,opacity .35s;pointer-events:none}
-@media (hover:hover){
+@media (hover:hover) and (pointer:fine){
  .hubcard:hover,#games .djt:hover,.qvt:hover,.hubmore:hover{transform:translateY(-4px);border-color:#bf3668!important;box-shadow:0 7px 0 rgba(51,40,81,.3),0 16px 24px rgba(35,26,54,.22),inset 0 0 0 3px rgba(255,255,255,.55),inset 0 0 0 4px rgba(214,170,70,.8)!important}
  .hubcard:hover::before,#games .djt:hover::before,.qvt:hover::before{width:6px}
  .hubcard:hover::after,#games .djt:hover::after,.qvt:hover::after{transform:scale(1);opacity:1}
@@ -3481,7 +3481,7 @@ body{background:transparent!important}
 .hubcard::before,#games .djt::before,.qvt::before,.hubmore::before,.pfbtn::before{content:"";position:absolute;inset:0;left:0;top:0;bottom:0;width:auto!important;background:var(--branch) no-repeat right -6px top -6px/104px auto!important;opacity:.95;transform-origin:100% 0;transition:transform .45s cubic-bezier(.2,.9,.3,1.1);z-index:0;pointer-events:none}
 .hubcard::after,#games .djt::after,.qvt::after,.hubmore::after,.pfbtn::after{content:"";position:absolute;inset:0;right:0;top:0;width:auto;height:auto;background:var(--petals) no-repeat center/100% 100%;opacity:0;transform:none;pointer-events:none;z-index:0}
 @keyframes petalrise{0%{opacity:0;transform:translateY(16px)}25%{opacity:.95}100%{opacity:0;transform:translateY(-22px)}}
-@media (hover:hover){
+@media (hover:hover) and (pointer:fine){
  .hubcard:hover,#games .djt:hover,.qvt:hover,.hubmore:hover,.pfbtn:hover{transform:translateY(-3px)!important;border-color:#d0587f!important;box-shadow:0 6px 0 rgba(120,70,120,.26),0 14px 22px rgba(90,50,110,.22),inset 0 0 0 3px rgba(255,255,255,.7),inset 0 0 0 4px rgba(244,160,190,.85)!important}
  .hubcard:hover::before,#games .djt:hover::before,.qvt:hover::before,.hubmore:hover::before,.pfbtn:hover::before{transform:scale(1.08) rotate(-2deg);width:auto!important}
  .hubcard:hover::after,#games .djt:hover::after,.qvt:hover::after,.hubmore:hover::after,.pfbtn:hover::after{animation:petalrise 1s ease-out;transform:none;opacity:0}
@@ -3541,6 +3541,63 @@ body .nav .tab:active .niw{transform:scale(.92)!important}
 .cplan{transform-origin:358px 190px;animation:cpsw 2.2s ease-in-out infinite alternate}@keyframes cpsw{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
 @media (prefers-reduced-motion:reduce){.cpflame,.cpglow,.cpzzz text,.cmphint,.cplan{animation:none!important}.cpzzz text{opacity:1}}
 html.lite .cpstars circle{animation:none}
+
+/* ===== v159 ===== */
+/* tuiles : branches plus discrètes, texte toujours lisible, pas de clignotement */
+.hubcard,#games .djt,.qvt,.hubmore,.pfbtn{--bw:78px;animation:none!important;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.hubcard.sm3,.hubcard.sm4,.pfbtn{--bw:54px}
+.hubcard::before,#games .djt::before,.qvt::before,.hubmore::before,.pfbtn::before{background-size:var(--bw) auto!important;opacity:.8;-webkit-mask-image:linear-gradient(225deg,#000 55%,transparent 100%);mask-image:linear-gradient(225deg,#000 55%,transparent 100%)}
+.hubmore>*:not(.inkfx),.pfbtn>*:not(.inkfx){position:relative;z-index:1}
+.hubcard .htx b,#games .djt .gtx b,.qvt b,.hubmore b{text-shadow:0 0 4px rgba(255,250,247,.95),0 0 8px rgba(255,250,247,.8)}
+.hubcard .htx small,#games .djt .gtx small,.qvt small{text-shadow:0 0 4px rgba(255,250,247,.95)}
+.hubcard.sm4{grid-column:span 3}
+@media (min-width:768px){.hubcard.sm4{grid-column:auto}}
+/* amis en ligne : même DA */
+#onlineBar{background:linear-gradient(135deg,#2c2452,#4a3b82)!important;border:1.5px solid #f0b97a!important;color:#fbeaf3!important;box-shadow:0 3px 10px rgba(40,25,70,.35)!important}
+#onlineBar .tklab,.tklab{color:#ffb6cf!important;border-right-color:rgba(255,255,255,.3)!important}
+#onlineBar .tki b,.tki b{color:#fff!important}
+.rail{background:linear-gradient(180deg,#2c2452 0%,#4c3d86 36%,#9a69a8 76%,#e9a5b6 100%)!important;border-left:3px solid #f0b97a!important}
+.railhead{background:linear-gradient(#1d1838,#2c2452)!important;color:#ffe3ee!important;border-bottom:2px solid #f0b97a!important}
+.rail #railList>p,.rail #railFeed>p,.rail #railList .muted,.rail #railFeed>.muted,.rail .railscroll>.muted{color:#f6e9fb!important}
+.rail .orow,.rail .fr{background:rgba(253,248,234,.95);border:1.5px solid rgba(190,92,140,.5);border-radius:14px;padding:8px 10px;color:#2a1c14}
+.railtab{background:linear-gradient(#2c2452,#1d1838)!important;border-color:#f0b97a!important;color:#ffe3ee!important}
+/* cascade dans la marge gauche (PC / tablette) */
+.navfall{display:none}
+@media (min-width:768px){
+  .navfall{display:block;position:relative;flex:1 1 auto;min-height:140px;margin:10px -8px -16px;overflow:hidden;border-radius:14px 14px 0 0;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 18%);mask-image:linear-gradient(180deg,transparent 0,#000 18%)}
+  .navfall svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+}
+@media (min-width:1024px){.navfall{margin:12px -14px -16px}}
+.nfst{stroke-dasharray:16 26;animation:nfdrop 1.2s linear infinite}.nfst.b{animation-duration:.9s;animation-delay:-.3s}.nfst.c{animation-duration:1.4s;animation-delay:-.6s}.nfst.d{animation-duration:1.05s;animation-delay:-.2s}
+@keyframes nfdrop{from{stroke-dashoffset:42}to{stroke-dashoffset:0}}
+.nfmist{animation:nfmi 3s ease-in-out infinite alternate;transform-origin:100px 344px}.nfmist.b{animation-delay:-1.4s}
+@keyframes nfmi{from{opacity:.45;transform:scale(.92)}to{opacity:.85;transform:scale(1.08)}}
+.nfrp{transform-origin:100px 364px;animation:nfrip 2.6s ease-out infinite}.nfrp.b{animation-delay:-1.3s}
+@keyframes nfrip{from{opacity:.8;transform:scale(.5)}to{opacity:0;transform:scale(1.6)}}
+.nfpt{animation:nfpf 7s linear infinite}.nfpt.b{animation-delay:-2.5s}.nfpt.c{animation-delay:-4.5s}
+@keyframes nfpf{from{transform:translate(0,-10px)}to{transform:translate(-30px,300px)}}
+.nftw{animation:twk 3s ease-in-out infinite alternate}
+html.lite .nfst,html.lite .nfmist,html.lite .nfrp,html.lite .nfpt,html.lite .nftw{animation:none}
+@media (prefers-reduced-motion:reduce){.nfst,.nfmist,.nfrp,.nfpt,.nftw{animation:none!important}}
+
+/* ===== v159 village : DA crépuscule sakura, tracé moins linéaire ===== */
+.village{border:3px solid #f0b97a;box-shadow:0 0 0 2px #2c2452,0 6px 18px rgba(44,36,82,.35)}
+.village[data-tone="day"]{--g1:#b9d98a;--g2:#9cc77c}
+.village[data-tone="dusk"]{--g1:#a9b87c;--g2:#8aa56e}
+.vsign{background:linear-gradient(#4b3d84,#2c2452)!important;border-color:#1d1838!important;color:#ffe3ee!important}
+.vstreet h3,.vstreet h3 small{color:#3a2a63!important}
+.vrow{padding:4px 6px 30px}
+.vrow::after{left:-10px;right:-10px;bottom:6px;height:16px;border-radius:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 16' preserveAspectRatio='none'%3E%3Cpath d='M0 8 Q15 0 30 8 T60 8 T90 8 T120 8' fill='none' stroke='%23e8d3a6' stroke-width='9' stroke-linecap='round'/%3E%3Cpath d='M0 8 Q15 0 30 8 T60 8 T90 8 T120 8' fill='none' stroke='%23fff3d6' stroke-width='3' stroke-dasharray='2 9' stroke-linecap='round' opacity='.8'/%3E%3C/svg%3E") repeat-x 0 0/120px 16px;box-shadow:none}
+.vrow:nth-of-type(even)::after{transform:scaleY(-1)}
+.vrow:nth-of-type(odd){padding-left:22px}.vrow:nth-of-type(even){padding-right:22px;padding-left:4px}
+.vrow>.vh:nth-of-type(3n+2),.vrow>.vfam:nth-of-type(3n+2){margin-bottom:16px}
+.vrow>.vh:nth-of-type(3n+3),.vrow>.vfam:nth-of-type(3n+3){margin-bottom:5px}
+.vrow>.vh:nth-of-type(4n+4){margin-bottom:22px}
+.vrow>.vh:nth-of-type(2n){margin-left:-6px}
+.vrow::before{background:radial-gradient(circle at 6px 4px,#ffc2d8 2px,transparent 2.4px) 0 0/30px 8px,radial-gradient(circle at 20px 5px,#fff 1.6px,transparent 2px) 0 0/44px 8px}
+.vhint{color:#3a2a63}
+.vplaza{padding:0 12px}.vplaza .vb:first-child{transform:translateY(-6px)}.vplaza .vb:last-child{transform:translateY(4px)}
+.vwater svg.vwv path:first-child{fill:#9fc4ee;stroke:#6a7fc4}
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -3586,7 +3643,24 @@ html.lite .cpstars circle{animation:none}
     <button class="tab" type="button" data-tab="home" aria-label="Dojo"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4l11 11M20 4 9 15"/><path d="M13 17l3 3M11 17l-3 3M16 20l1.5-1.5M8 20l-1.5-1.5"/></svg><span class="nl">Dojo</span></button>
     <button class="tab" type="button" data-tab="base" aria-label="Base"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20 12 5l9 15z"/><path d="M9.5 20 12 14.5l2.5 5.5"/></svg><span class="nl">Base</span></button>
     <button class="tab" type="button" data-tab="profil" aria-label="Profil"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c.6-4 3.6-6.5 7.5-6.5s6.9 2.5 7.5 6.5"/></svg><span class="nl">Profil</span></button>
-  </nav>
+  <div class="navfall" aria-hidden="true"><svg viewBox="0 0 200 440" preserveAspectRatio="xMidYMax slice"><defs>
+<linearGradient id="nfSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2150" stop-opacity="0"/><stop offset=".25" stop-color="#4b3d84"/><stop offset=".7" stop-color="#b66fa3"/><stop offset="1" stop-color="#f0a9b4"/></linearGradient>
+<linearGradient id="nfWt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9f7ff"/><stop offset=".6" stop-color="#bfe3fb"/><stop offset="1" stop-color="#a9b9ee"/></linearGradient>
+<linearGradient id="nfCl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1f1a3e"/><stop offset="1" stop-color="#3a2f6c"/></linearGradient></defs>
+<rect width="200" height="440" fill="url(#nfSky)"/>
+<circle cx="150" cy="86" r="22" fill="#fff4cf" opacity=".9"/><g fill="#fff"><circle class="nftw" cx="30" cy="70" r="1.2"/><circle class="nftw" cx="70" cy="40" r="1"/><circle class="nftw" cx="110" cy="30" r="1.1"/><circle class="nftw" cx="176" cy="40" r="1"/></g>
+<path d="M0 150 L46 120 L88 160 L130 118 L200 150 V300 H0Z" fill="#6c5aa6" opacity=".6"/>
+<path d="M0 60 H72 L86 70 L70 150 L92 240 L72 330 L100 440 H0Z" fill="url(#nfCl)"/><path d="M200 40 H126 L112 60 L132 150 L110 250 L130 340 L100 440 H200Z" fill="url(#nfCl)"/>
+<path d="M72 60 L86 70 L70 150 L92 240 L72 330" fill="none" stroke="#a79bd6" stroke-width="1.4" opacity=".6"/><path d="M126 40 L112 60 L132 150 L110 250 L130 340" fill="none" stroke="#a79bd6" stroke-width="1.4" opacity=".6"/>
+<path d="M86 64 H114 L112 340 H90Z" fill="url(#nfWt)" opacity=".95"/>
+<g fill="none" stroke="#fff" stroke-linecap="round"><path class="nfst" d="M92 70 V336" stroke-width="2.2" opacity=".9"/><path class="nfst b" d="M99 66 V336" stroke-width="3" opacity=".85"/><path class="nfst c" d="M106 70 V336" stroke-width="2.2" opacity=".9"/><path class="nfst d" d="M111 74 V336" stroke-width="1.6" opacity=".8"/></g>
+<ellipse class="nfmist" cx="100" cy="344" rx="42" ry="14" fill="#fff" opacity=".6"/><ellipse class="nfmist b" cx="100" cy="338" rx="28" ry="10" fill="#fff" opacity=".7"/>
+<path d="M0 360 Q100 340 200 360 V440 H0Z" fill="#6f7fd0" opacity=".85"/><path d="M0 380 Q100 366 200 380 V440 H0Z" fill="#2f2a6a"/>
+<g fill="none" stroke="#fff" opacity=".6"><ellipse class="nfrp" cx="100" cy="364" rx="20" ry="4"/><ellipse class="nfrp b" cx="100" cy="364" rx="20" ry="4"/></g>
+<g><path d="M-4 40 C20 44 40 36 58 20" stroke="#4a3560" stroke-width="3.4" fill="none" stroke-linecap="round"/><g fill="#f6aec6"><circle cx="16" cy="40" r="7"/><circle cx="32" cy="36" r="8"/><circle cx="48" cy="26" r="7"/><circle cx="58" cy="18" r="6"/><circle cx="24" cy="48" r="5"/></g><g fill="#ffd0de" opacity=".9"><circle cx="30" cy="34" r="4"/><circle cx="14" cy="38" r="3"/><circle cx="50" cy="24" r="3"/></g></g>
+<g fill="#f7b6ca"><ellipse class="nfpt" cx="40" cy="60" rx="3" ry="1.6"/><ellipse class="nfpt b" cx="150" cy="80" rx="3" ry="1.6"/><ellipse class="nfpt c" cx="80" cy="30" rx="3" ry="1.6"/></g>
+</svg></div>
+</nav>
 
   <div class="invitebar" id="inviteBar" hidden role="alert"></div>
   <button class="online" id="onlineBar" type="button" hidden aria-label="Joueurs en ligne"></button>
@@ -3682,7 +3756,7 @@ html.lite .cpstars circle{animation:none}
       </div>
       <div id="bnOpen">
       <p id="bnNew" class="bnnew" hidden>🎉 Nouveau ! Tu peux enfin personnaliser ta bannière.</p>
-      <p class="small muted">Le décor en haut de ta fiche, visible par les autres élèves. Les bannières s'achètent à l'Échoppe.</p>
+      <p class="small muted">Le décor en haut de ta fiche, visible par les autres élèves. Les bannières s'achètent à la Boutique.</p>
       <div id="bnPrev"></div>
       <select class="wksel" id="bnSel" aria-label="Bannière"></select>
       <div id="bnCustom" hidden class="bncustom">
@@ -3796,7 +3870,7 @@ html.lite .cpstars circle{animation:none}
     <details class="acc setacc" id="adminAcc" hidden><summary><span class="aico" aria-hidden="true">絵</span>Atelier d'images (admin)</summary><div class="accbody" id="adminBody"></div></details>
     <details class="acc setacc"><summary><span class="aico" aria-hidden="true">音</span>Contenu et sons</summary><div class="accbody">
       <p id="contentInfo"></p>
-      <p class="small muted">Vocabulaire fixé sur le polycopié du cours (L2 S3, Lexique et idéogrammes, Junko CHABOT BABA, 2023-2024) ; niveau L0 : fascicules « Lexique et idéogrammes » L1D débutants, 2024-2025. Toute la promotion révise la même liste.</p>
+      <p class="small muted">Vocabulaire fixé sur le polycopié du cours (L2 S3, Lexique et idéogrammes, Junko CHABOT BABA, 2023-2024) ; niveau L1 débutant : fascicules « Lexique et idéogrammes » L1D débutants, 2024-2025. Toute la promotion révise la même liste.</p>
       <p>Bruitages 8 bits : <b id="sfxState">activés</b></p>
       <button class="btn" id="btnSfx" type="button">Couper les sons</button>
       <div id="aidPrefs"></div>
@@ -9779,8 +9853,8 @@ html.lite .cpstars circle{animation:none}
   Object.keys(DISP_S2).forEach(function (c) { DISP[c] = DISP_S2[c]; });
   // Niveaux : semaines 1 à 5 = L2 (S3) ; semaines 101 et + = L1 (S1), Semaine n = 100 + n
   var CURSUS = {
-    L0: { id: 'L0', short: 'L0', tag: 'L0 S1', name: 'Niveau 0', sem: 'Semestre 1', seal: '初', blurb: 'Les premiers kanjis : 76 caractères du fascicule L1 débutant, semestre 1' },
-    L0S2: { id: 'L0S2', short: 'L0', tag: 'L0 S2', name: 'Niveau 0', sem: 'Semestre 2', seal: '進', blurb: 'La suite : 108 caractères du fascicule L1 débutant, semestre 2' },
+    L0: { id: 'L0', short: 'L1 déb.', tag: 'L1 déb. S1', name: 'L1 débutant', sem: 'Semestre 1', seal: '初', blurb: 'Les premiers kanjis : 76 caractères du fascicule L1 débutant, semestre 1' },
+    L0S2: { id: 'L0S2', short: 'L1 déb.', tag: 'L1 déb. S2', name: 'L1 débutant', sem: 'Semestre 2', seal: '進', blurb: 'La suite : 108 caractères du fascicule L1 débutant, semestre 2' },
     L1: { id: 'L1', short: 'L1', tag: 'L1 S1', name: 'Licence 1', sem: 'Semestre 1', seal: '壱', blurb: 'Les bases du lexique et des idéogrammes' },
     L1S2: { id: 'L1S2', short: 'L1', tag: 'L1 S2', name: 'Licence 1', sem: 'Semestre 2', seal: '続', blurb: 'La suite : 12 semaines de lexique et d\'idéogrammes' },
     L2: { id: 'L2', short: 'L2', tag: 'L2 S3', name: 'Licence 2', sem: 'Semestre 3', seal: '弐', blurb: 'Semaines 1 à 5, puis 7 à 11 : parchemin, temple, yōkai, légendes, tonnerre, enquêtes, ressources…' }
@@ -12735,7 +12809,7 @@ html.lite .cpstars circle{animation:none}
   }
   function renderHome() {
     regen(); renderBars(); renderWeekPick(); renderSrsBox();
-    var dbn = $('dojoBan'); if (dbn && !dbn.firstChild) dbn.innerHTML = dojoBanHTML();
+    var dbn = $('dojoBan'); if (dbn) dbn.innerHTML = '';
     function card(id) {
       var c = GAMES[id], art = assetArt('g_' + id, GAME_ART[id] || '');
       return '<button class="mode gamecard" type="button" data-game="' + id + '" aria-label="' + esc(c.name) + '">' + art + '<span class="g" aria-hidden="true">' + c.g + '</span><span class="gtx"><b>' + esc(c.name) + '</b>' + (id === 'write' && wrDueCount() ? '<small class="duebadge">' + wrDueCount() + ' à revoir</small>' : '') + '</span></button>';
@@ -13896,7 +13970,7 @@ html.lite .cpstars circle{animation:none}
       '<div class="vsky" aria-hidden="true">' + skySVG(tone) + '</div><div class="vtones" role="group" aria-label="Moment de la journée">' + tones + '</div>' +
       '<div class="vplaza"><button type="button" class="vb" data-vgo="dojo" aria-label="Aller au dojo">' + dojoSVG() + '<span class="vbl">Le Dōjō<small>Exercices &amp; salons</small></span></button>' +
       '<div class="vmid" aria-hidden="true">' + vilToriiSVG() + '</div>' +
-      '<button type="button" class="vb" data-vgo="shop" aria-label="L\'Échoppe du Dōjō">' + shopSVG() + '<span class="vbl">L\'Échoppe<small>Tous les achats</small></span></button></div>' +
+      '<button type="button" class="vb" data-vgo="shop" aria-label="La Boutique du Dōjō">' + shopSVG() + '<span class="vbl">La Boutique<small>Tous les achats</small></span></button></div>' +
       '<div class="vwater" aria-hidden="true">' + waterSVG() + bridgeSVG() + '</div>' +
       '<div class="vstreet"><h3><span class="vsign">Le village du dōjō</span> <small>' + list.length + ' maison' + (list.length > 1 ? 's' : '') + '</small><button type="button" class="famnav" data-fam="open">🏠 Ma famille<i class="famdot"' + (famReqs.length ? '' : ' hidden') + '>' + famReqs.length + '</i></button></h3>' + sel + rows + '</div>' +
       '<div class="vfx" aria-hidden="true">' + fxHTML(tone) + '</div><div class="vtint" aria-hidden="true"></div></div>' +
@@ -14156,7 +14230,7 @@ html.lite .cpstars circle{animation:none}
       ? '<p class="small muted" style="margin:0 0 8px">Choisis un objet, le feu de camp ou ta photo dans la liste, puis touche le terrain ou fais-le glisser pour le placer. Les flèches ‹ › de la scène changent de terrain (T1 à T4).</p><div class="echips">' + items.map(function (d) {
         return '<button type="button" class="echip" data-esel="' + d.id + '" aria-pressed="' + (baseSel === d.id) + '" title="' + esc(d.name) + '">' + (d.hero ? '<span class="sicon heroic" aria-hidden="true">👤</span>' : d.fire ? fireIcon() : d.pet ? petIcon(d) : decoIcon(d)) + '<span>' + esc(d.name) + '</span><em>T' + (((shopS().pos && shopS().pos[d.id] && shopS().pos[d.id][2]) || 0) + 1) + '</em></button>';
       }).join('') + '</div><div class="ebtns"><button type="button" class="btn" id="eFire">' + (shopS().fireOff ? '🔥 Remettre le feu de camp' : '🔥 Ranger le feu de camp') + '</button><button type="button" class="btn" id="eAuto">Ranger automatiquement</button><button type="button" class="btn" id="eReset">Positions d\'origine</button><button type="button" class="btn primary" id="eDone">Terminer</button></div>'
-      : '<p class="small muted">Le feu de camp est rangé. Tu peux le remettre, ou acheter des objets et des animaux à l\'Échoppe du Dōjō.</p><div class="ebtns"><button type="button" class="btn" id="eFire">🔥 Remettre le feu de camp</button><button type="button" class="btn primary" id="eDone">Terminer</button></div>') + '</div>';
+      : '<p class="small muted">Le feu de camp est rangé. Tu peux le remettre, ou acheter des objets et des animaux à la Boutique du Dōjō.</p><div class="ebtns"><button type="button" class="btn" id="eFire">🔥 Remettre le feu de camp</button><button type="button" class="btn primary" id="eDone">Terminer</button></div>') + '</div>';
     fitIcons(bar);
   }
   function redrawScene() { var sc = $('baseScene'); if (sc) { sc.outerHTML = ownSceneHTML(); } }
@@ -14224,12 +14298,12 @@ html.lite .cpstars circle{animation:none}
     mini.outerHTML = baseHTML(visCtx.vis, visCtx.av, 'mini', visCtx.pos, null, visCtx.plot);
   });
   function shedHTML() {
-    return '<button type="button" class="shed" id="openShed" aria-label="Entrer dans l\'échoppe : boutique du campement">' +
+    return '<button type="button" class="shed" id="openShed" aria-label="Entrer dans la boutique : boutique du campement">' +
       '<svg viewBox="0 -8 90 88" aria-hidden="true"><ellipse cx="45" cy="76" rx="40" ry="4" fill="#000" opacity=".3"/><g filter="url(#kdBevS)">' +
       '<rect x="12" y="34" width="66" height="40" fill="#9a6a3a" stroke="#3a2412" stroke-width="2"/><path d="M12 44H78M12 54H78M12 64H78" stroke="rgba(0,0,0,.22)"/>' +
       '<path d="M4 38L12 14H78L86 38Z" fill="#fff" stroke="#3a2412" stroke-width="2"/><path d="M12 14L16 38M30 14L32 38M48 14L48 38M66 14L64 38M78 14L74 38" stroke="#c8372b" stroke-width="7" fill="none"/>' +
       '<rect x="18" y="46" width="54" height="9" fill="#7a4a24" stroke="#3a2412" stroke-width="1.5"/><circle cx="30" cy="43" r="4.5" fill="#e8c46a" stroke="#7a5a1a"/><circle cx="46" cy="43" r="4.5" fill="#cfe8a0" stroke="#4a7a30"/><circle cx="62" cy="43" r="4.5" fill="#f4a6bd" stroke="#8a3a5a"/>' +
-      '<rect x="36" y="58" width="18" height="16" fill="#3a2412"/></g><rect x="15" y="-6" width="60" height="14" rx="2" fill="#241710" stroke="#e8c46a" stroke-width="1.5"/><text x="45" y="4" text-anchor="middle" font-size="8.5" fill="#e8c46a" font-family="serif">店 Échoppe</text></svg></button>';
+      '<rect x="36" y="58" width="18" height="16" fill="#3a2412"/></g><rect x="15" y="-6" width="60" height="14" rx="2" fill="#241710" stroke="#e8c46a" stroke-width="1.5"/><text x="45" y="4" text-anchor="middle" font-size="8.5" fill="#e8c46a" font-family="serif">店 Boutique</text></svg></button>';
   }
   function renderBase() {
     if (baseMode === 'village') { renderVillage(); return; }
@@ -14238,7 +14312,7 @@ html.lite .cpstars circle{animation:none}
     var nOwned = DECO.filter(function (d) { return owns(d.id); }).length, nPets = PETS.filter(function (d) { return owns(d.id); }).length;
     host.innerHTML = '<button type="button" class="btn vback" id="vilBack">‹ Retour au village</button>' + storyNav() +
       ownSceneHTML() + '<div id="baseEditBar"></div>' +
-      '<div class="panel"><div class="hrow"><h3 class="sgh" data-k="家"><span>Ma Base</span></h3>' + coinHTML(coinsOf()) + '</div><button type="button" class="btn" id="baseEdit">✥ Aménager ma base</button><p>Ton campement, au bord du feu. Chaque monstre vaincu te rapporte des pièces d\'or : dépense-les à <b>l\'Échoppe du Dōjō</b> (depuis l\'accueil ou la boutique du village) pour décorer ta base (' + nOwned + ' / ' + DECO.length + ' objets) ou pour adopter un animal de compagnie (' + nPets + ' / ' + PETS.length + '). Tu peux aussi déplacer ou ranger le feu de camp.</p></div>' +
+      '<div class="panel"><div class="hrow"><h3 class="sgh" data-k="家"><span>Ma Base</span></h3>' + coinHTML(coinsOf()) + '</div><button type="button" class="btn" id="baseEdit">✥ Aménager ma base</button><p>Ton campement, au bord du feu. Chaque monstre vaincu te rapporte des pièces d\'or : dépense-les à <b>la Boutique du Dōjō</b> (depuis l\'accueil ou la boutique du village) pour décorer ta base (' + nOwned + ' / ' + DECO.length + ' objets) ou pour adopter un animal de compagnie (' + nPets + ' / ' + PETS.length + '). Tu peux aussi déplacer ou ranger le feu de camp.</p></div>' +
       pavTeaser();
     bindStoryNav(host);
     host.onclick = function (e) {
@@ -14852,7 +14926,7 @@ html.lite .cpstars circle{animation:none}
   }
 
   /* ---- Déblocage progressif des sections selon le niveau ---- */
-  var UNL = { story: [2, "L'Aventure"], cards: [3, 'Le Classeur de cartes'], bazar: [4, "L'Échoppe"], base: [5, 'La Base'] };
+  var UNL = { story: [2, "L'Aventure"], cards: [3, 'Le Classeur de cartes'], bazar: [4, "La Boutique"], base: [5, 'La Base'] };
   function unlOn(k) { return true; /* déblocage par niveau désactivé : tout est accessible */ var d = UNL[k]; if (!d || !S) return true; return level() >= d[0] || !!(S.unl && S.unl[k]); }
   function unlSync() {
     if (!S) return;
@@ -14894,8 +14968,9 @@ html.lite .cpstars circle{animation:none}
       ['home', '学', 'study', 'Dojo · Réviser', words ? mastered + '/' + words + ' mots maîtrisés' + (dueWords().length ? ' · ' + dueWords().length + ' à revoir' : '') : 'Flashcards, jeux et examen blanc'],
       ['story', '旅', 'quest', 'Aventure', L.tag + ' · ' + (chs.length ? done + '/' + chs.length + ' chapitres' : '')],
       ['cards', '札', 'cards', 'Classeur de cartes', cardCount() + '/' + CARDS.length + ' cartes' + (cardFreeReady() ? ' · 🎁 booster gratuit !' : ' · ouvre des boosters')],
-      ['bazar', '店', 'shop', 'L\'Échoppe', ((freeReady() || cardFreeReady()) ? '🎁 Cadeau du jour à ouvrir !' : coinsOf() + ' pièces · tous les achats')]
-    ].filter(function (c) { return c[0] === 'home' || unlOn(c[0]); });
+      ['bazar', '店', 'shop', 'La Boutique', ((freeReady() || cardFreeReady()) ? '🎁 Cadeau du jour à ouvrir !' : coinsOf() + ' pièces · tous les achats')],
+      ['kanji', '漢', 'kanji', 'Fiches kanji', Object.keys(S.seen || {}).length + ' / ' + KANJI_DATA.length + ' vues']
+    ].filter(function (c) { return c[0] === 'home' || c[0] === 'kanji' || unlOn(c[0]); });
     var nSm = cards.length - 1;
     $('hubGrid').innerHTML = cards.map(function (c) {
       return '<button type="button" class="hubcard' + (c[0] === 'home' ? ' wide big' : ' sm' + nSm) + '" ' + (c[0] === 'bazar' ? 'data-bazar="1"' : c[0] === 'cards' ? 'data-cdalbum="1"' : 'data-go="' + c[0] + '"') + '>' + hubArtFor(c) + adminBtns('hub_' + c[0]) + (c[0] === 'home' && dueWords().length ? '<span class="hchip">🔔 ' + dueWords().length + ' à revoir</span>' : '') + '<span class="hseal" aria-hidden="true">' + c[1] + '</span><span class="htx"><b>' + c[3] + '</b><small>' + esc(c[4]) + '</small></span></button>';
@@ -14964,7 +15039,7 @@ html.lite .cpstars circle{animation:none}
   }
 
   /* ---- Boutique en fenêtre ---- */
-  var shopTab = '';   // '' = accueil de l'Échoppe, sinon le rayon ouvert
+  var shopTab = '';   // '' = accueil de la Boutique, sinon le rayon ouvert
   // [id, sceau, nom, description]
   var SHOPCATS = [['loot', '宝', 'Coffres du dōjō', 'Un objet de profil au hasard'], ['card', '札', 'Cartes', 'Boosters de 3 cartes : profs, fac, Japon'], ['kat', '刀', 'Katanas', 'Armes et bonus de pièces'], ['pet', '獣', 'Animaux', 'Compagnons de ta base'], ['deco', '飾', 'Décors', 'Objets de ta base'],
     ['bn', '旗', 'Bannières', 'Le décor de ton profil'], ['pav', '殿', 'Pavillon', 'Agrandis ton dōjō'], ['house', '家', 'Ma maison', 'Construis dans le village'], ['ft', '紋', 'Thèmes de cartes', 'Décore tes flashcards']];
@@ -14981,7 +15056,7 @@ html.lite .cpstars circle{animation:none}
   }
   // Rayons liés à la Base : cachés tant que la Base n'est pas débloquée (niveau 5)
   var SHOP_BASE = { pet: 1, deco: 1, pav: 1, house: 1 };
-  function shopCats() { var ok = unlOn('base'); return SHOPCATS.filter(function (c) { return ok || !SHOP_BASE[c[0]]; }); }
+  function shopCats() { var ok = unlOn('base'); return SHOPCATS.filter(function (c) { return c[0] !== 'card' && (ok || !SHOP_BASE[c[0]]); }); }
   function shopHome() {
     var tile = function (c, cls) {
       return '<button type="button" class="stile ' + (cls || '') + ' k-' + c[0] + '" data-shoptab="' + c[0] + '"><span class="stseal" aria-hidden="true">' + c[1] + '</span><span class="sttx"><b>' + esc(c[2]) + '</b><small>' + esc(c[0] === 'loot' && freeReady() ? '🎁 Coffre gratuit disponible !' : c[0] === 'card' && cardFreeReady() ? '🎁 Booster gratuit disponible !' : c[3]) + '</small></span><span class="stct">' + esc(shopCount(c[0])) + '</span></button>';
@@ -14991,7 +15066,7 @@ html.lite .cpstars circle{animation:none}
   }
   function shopBar(k) {
     var c = SHOPCATS.filter(function (x) { return x[0] === k; })[0] || SHOPCATS[3];
-    return '<div class="shopbar"><button type="button" class="shopback" data-shoptab="">‹ Échoppe</button><span class="shopcat"><span class="stseal sm" aria-hidden="true">' + c[1] + '</span><b>' + esc(c[2]) + '</b></span>' + coinHTML(coinsOf()) + '</div>';
+    return '<div class="shopbar">' + (k === 'card' ? '<button type="button" class="shopback" data-shopclose="1">‹ Fermer</button>' : '<button type="button" class="shopback" data-shoptab="">‹ Boutique</button>') + '<span class="shopcat"><span class="stseal sm" aria-hidden="true">' + c[1] + '</span><b>' + esc(c[2]) + '</b></span>' + coinHTML(coinsOf()) + '</div>';
   }
   function shopHTML() {
     if (SHOP_BASE[shopTab] && !unlOn('base')) shopTab = '';
@@ -15007,7 +15082,7 @@ html.lite .cpstars circle{animation:none}
     if (shopTab === 'pet') return head + shopPanel('pet', 'Animaux', PETS, petIcon, true, '');
     return head + shopPanel('deco', 'Décorations', DECO.filter(function (d) { return !d.trophy; }), decoIcon, true, '');
   }
-  function openShop() { if (!unlOn('bazar')) { toast("🔒 L'Échoppe se débloque au niveau " + UNL.bazar[0]); return; } if (!netOn()) { netBlock("L'Échoppe"); return; } vxTry = {}; openModal('L\'Échoppe du Dōjō', shopHTML(), 'shopmodal'); }
+  function openShop() { if (!unlOn('bazar')) { toast("🔒 La Boutique se débloque au niveau " + UNL.bazar[0]); return; } if (!netOn()) { netBlock("La Boutique"); return; } vxTry = {}; openModal('La Boutique du Dōjō', shopHTML(), 'shopmodal'); }
   function refreshShop() { if (!$('appModal').hidden && $('appModal').querySelector('.shopmodal')) setModalBody(shopHTML()); }
 
   /* ---- Clics : navigation, fenêtres, boutique ---- */
@@ -16647,7 +16722,7 @@ html.lite .cpstars circle{animation:none}
     var ti = PASS_TITLES.filter(function (f) { return cl[f[2]]; }).map(function (f) { return [f[0], f[1]]; }).concat(LOOT.filter(function (x) { return x[1] === 'title' && lootOwned(x[0]); }).map(function (x) { return [x[0], x[2]]; }));
     var fx = LOOT.filter(function (x) { return x[1] === 'fx' && lootOwned(x[0]); }).map(function (x) { return [x[0], x[2]]; }), c = cosmOf(S);
     var opts = function (list, cur, none) { return '<option value="">' + none + '</option>' + list.map(function (f) { return '<option value="' + f[0] + '"' + (cur === f[0] ? ' selected' : '') + '>' + esc(f[1]) + '</option>'; }).join(''); };
-    if (!fr.length && !ti.length && !fx.length) h += '<p class="small muted" style="margin:0">Récupère tes premiers cadres et titres, ou ouvre des coffres à l\'Échoppe, pour les équiper ici.</p>';
+    if (!fr.length && !ti.length && !fx.length) h += '<p class="small muted" style="margin:0">Récupère tes premiers cadres et titres, ou ouvre des coffres à la Boutique, pour les équiper ici.</p>';
     else h += '<div class="cosmrow"><label class="mplabel" for="cosmFrame">Cadre d\'avatar</label><select class="mpselect" id="cosmFrame">' + opts(fr, c.frame, 'Aucun cadre') + '</select>' +
       '<label class="mplabel" for="cosmTitle">Titre</label><select class="mpselect" id="cosmTitle">' + opts(ti, c.title, 'Aucun titre') + '</select>' +
       (fx.length ? '<label class="mplabel" for="cosmFx">Effet de pseudo</label><select class="mpselect" id="cosmFx">' + opts(fx, c.fx, 'Aucun effet') + '</select>' : '') + '</div>';
@@ -16692,7 +16767,7 @@ html.lite .cpstars circle{animation:none}
     else if (f.id === 'cosmFx') { passS(); S.cosm.fx = f.value; persist(); renderPass(); }
   });
   /* =====================================================================
-     COFFRES DU DŌJŌ : loot boxes aléatoires (L'Échoppe, rayon « Coffres »).
+     COFFRES DU DŌJŌ : loot boxes aléatoires (La Boutique, rayon « Coffres »).
      Objets de profil exclusifs, distincts de la Voie du Dōjō : cadres d'avatar, titres, effets de pseudo.
      S.loot = { owned: {id: 1}, n: coffres ouverts, pe: coffres sans Épique, pl: coffres sans Légendaire } ; équipement dans S.cosm = { frame, title, fx }
      ===================================================================== */
@@ -16870,8 +16945,8 @@ html.lite .cpstars circle{animation:none}
   }
   /* =====================================================================
      THÈMES DE FLASHCARDS : décor de la carte pendant les révisions.
-     5 thèmes se gagnent dans les coffres (LOOT, type « ftheme »), 5 s'achètent à l'Échoppe (rayon « Thèmes »).
-     S.fct = thème actif ('' = classique). Le choix se fait dans Profil > Personnaliser > Cartes, dans l'Échoppe ou dans la collection des coffres.
+     5 thèmes se gagnent dans les coffres (LOOT, type « ftheme »), 5 s'achètent à la Boutique (rayon « Thèmes »).
+     S.fct = thème actif ('' = classique). Le choix se fait dans Profil > Personnaliser > Cartes, dans la Boutique ou dans la collection des coffres.
      ===================================================================== */
   var FCT_SHOP = [['fs_vagues', 'Vagues Seigaiha', 250, '青海波'], ['fs_bambou', 'Forêt de bambou', 250, '竹'], ['fs_torii', 'Torii vermillon', 300, '鳥居'], ['fs_yozakura', 'Cerisiers de nuit', 350, '夜桜'], ['fs_or', 'Feuille d\'or', 400, '金箔']];
   var FCT_NAME = { ft_sakura: 'Sakura', ft_fuji: 'Mont Fuji', ft_sumi: 'Encre sumi-e', ft_erable: 'Érables rouges', ft_etoiles: 'Nuit étoilée' };
@@ -16894,11 +16969,11 @@ html.lite .cpstars circle{animation:none}
   function fctPanel() {
     var h = $('fctHost'); if (!h) return;
     var cur = fctCur(), own = fctOwnedList(), chest = own.filter(function (i) { return i.indexOf('ft_') === 0; }), shop = own.filter(function (i) { return i.indexOf('fs_') === 0; });
-    h.innerHTML = '<p class="small muted">Le décor de tes flashcards pendant les révisions. 5 thèmes se gagnent dans les coffres, 5 autres s\'achètent à l\'Échoppe.</p>' +
+    h.innerHTML = '<p class="small muted">Le décor de tes flashcards pendant les révisions. 5 thèmes se gagnent dans les coffres, 5 autres s\'achètent à la Boutique.</p>' +
       '<div class="fctprev">' + (cur ? fctThumb(cur) : '<span class="fctthumb"><b>札</b><small>Classique</small></span>') + '</div>' +
       '<select class="wksel" id="fctSel" aria-label="Thème des flashcards"><option value="">Classique</option>' +
       (chest.length ? '<optgroup label="Coffres">' + chest.map(function (i) { return '<option value="' + i + '"' + (i === cur ? ' selected' : '') + '>' + esc(FCT_NAME[i]) + '</option>'; }).join('') + '</optgroup>' : '') +
-      (shop.length ? '<optgroup label="Échoppe">' + shop.map(function (i) { return '<option value="' + i + '"' + (i === cur ? ' selected' : '') + '>' + esc(FCT_NAME[i]) + '</option>'; }).join('') + '</optgroup>' : '') + '</select>' +
+      (shop.length ? '<optgroup label="Boutique">' + shop.map(function (i) { return '<option value="' + i + '"' + (i === cur ? ' selected' : '') + '>' + esc(FCT_NAME[i]) + '</option>'; }).join('') + '</optgroup>' : '') + '</select>' +
       '<p class="small muted" style="margin-top:8px">' + own.length + '/' + Object.keys(FCT_NAME).length + ' thèmes débloqués.</p>';
     var sel = $('fctSel'); if (sel) sel.value = cur;
   }
@@ -16963,7 +17038,7 @@ html.lite .cpstars circle{animation:none}
     });
   })();
   /* =====================================================================
-     CARTES À COLLECTIONNER : boosters de 3 cartes (L'Échoppe, rayon « Cartes »).
+     CARTES À COLLECTIONNER : boosters de 3 cartes (La Boutique, rayon « Cartes »).
      Profs de la fac, lieux et objets du quotidien, figures du Japon. Quatre raretés.
      S.cards = { owned: {id: nombre d'exemplaires}, n: boosters ouverts, pe: boosters sans Épique, pl: boosters sans Légendaire }
      ===================================================================== */
@@ -17386,7 +17461,16 @@ html.lite .cpstars circle{animation:none}
     c.style.setProperty('--fx', (50 + x * 80) + '%');
   });
   document.addEventListener('pointerleave', function (e) { var c = e.target.closest ? e.target.closest('.cdbigwrap .cdcard') : null; if (c) c.style.transform = ''; }, true);
-  document.addEventListener('click', function (e) { if (user && e.target.closest && e.target.closest('[data-cdalbum]')) { shopTab = 'card'; cardView = 'col'; cardRev = null; openShop(); } });
+  document.addEventListener('click', function (e) {
+    if (!user || !e.target.closest) return;
+    if (e.target.closest('[data-shopclose]')) { closeModal(); return; }
+    if (e.target.closest('[data-cdalbum]')) {
+      shopTab = 'card'; cardView = 'col'; cardRev = null;
+      if (!unlOn('cards') && !unlOn('bazar')) { toast('🔒 Le Classeur se débloque bientôt'); return; }
+      if (!netOn()) { netBlock('Le Classeur de cartes'); return; }
+      openModal('Classeur de cartes', shopHTML(), 'shopmodal');
+    }
+  });
   /* =====================================================================
      CARTES « CULTURE JAPONAISE » : 55 cartes supplémentaires (cuisine, traditions, arts, budō, lieux, nature et fêtes).
      Chaque carte a son mot japonais et une courte explication pour apprendre en jouant.
@@ -18028,7 +18112,7 @@ html.lite .cpstars circle{animation:none}
   function netOn() { return navigator.onLine !== false; }
   var NET_LOCKS = [
     ['[data-go="board"]', 'Le classement'],
-    ['[data-bazar], #openBazar, #hdrCoins', "L'Échoppe"],
+    ['[data-bazar], #openBazar, #hdrCoins', "La Boutique"],
     ['#vilBack', 'Le village']
   ];
   var NET_LOCK_SVG = '<svg class="nlkico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11V8a5 5 0 0 1 10 0v3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><rect x="4.5" y="11" width="15" height="10" rx="2.5" fill="currentColor"/><circle cx="12" cy="16" r="1.6" fill="#fff"/></svg>';
@@ -18065,7 +18149,7 @@ html.lite .cpstars circle{animation:none}
     if (!user) return;
     if (!$('vBoard').hidden) { go('hub'); netBlock('Cette partie'); }
     else if (!$('vMulti').hidden && typeof mp !== 'undefined' && mp && mp.v && mp.v.players.some(function (p) { return !p.bot && p.id !== user.id; })) { toast('Connexion perdue : les autres joueurs ne sont plus joignables'); }
-    else if (!$('appModal').hidden && $('appModal').querySelector('.shopmodal')) { closeModal(); netBlock("L'Échoppe"); }
+    else if (!$('appModal').hidden && $('appModal').querySelector('.shopmodal')) { closeModal(); netBlock("La Boutique"); }
     else if (!$('vStory').hidden && storyTab === 'base' && baseMode === 'village') { baseMode = 'camp'; renderStory(); netBlock('Le village'); }
   });
   window.addEventListener('online', function () { netMark(); if (user) toast('De retour en ligne : tout est de nouveau accessible'); });
@@ -18251,13 +18335,13 @@ html.lite .cpstars circle{animation:none}
   var COACH = [
     { c: 1, go: 'hub', t: 'Bienvenue au Dōjō !', say: 'Moi c\'est Archibald ! Je vais te montrer du doigt chaque endroit important. Ça prend une minute, promis.' },
     { go: 'hub', sel: '#userbox .slv', t: 'Ton niveau et ton XP', say: 'Ici : ton niveau et ta barre d\'XP. Chaque bonne réponse la remplit. En montant de niveau, tu débloques des récompenses, comme la bannière de profil.' },
-    { go: 'hub', sel: '#hdrCoins', t: 'Tes pièces', say: 'Ce sont tes pièces. Tu en gagnes en jouant et avec les cadeaux du jour. Touche-les pour ouvrir l\'Échoppe.' },
-    { go: 'hub', sel: '#hubGrid .hubcard:nth-child(1)', t: 'L\'aventure', say: 'Une histoire en chapitres, avec des boss. Tu choisis ton histoire (L0 S1, L0 S2, L1 S1, L1 S2 ou L2 S3) en haut de la page.' },
+    { go: 'hub', sel: '#hdrCoins', t: 'Tes pièces', say: 'Ce sont tes pièces. Tu en gagnes en jouant et avec les cadeaux du jour. Touche-les pour ouvrir la Boutique.' },
+    { go: 'hub', sel: '#hubGrid .hubcard:nth-child(1)', t: 'L\'aventure', say: 'Une histoire en chapitres, avec des boss. Tu choisis ton histoire (L1 déb. S1, L1 déb. S2, L1 S1, L1 S2 ou L2 S3) en haut de la page.' },
     { go: 'hub', sel: '#hubGrid .hubcard:nth-child(2)', t: 'Réviser : le cœur de l\'appli', say: 'C\'est ici que tu révises : flashcards, mini-jeux, examen blanc. La pastille « à revoir » compte les mots qui t\'attendent aujourd\'hui. Un mot est maîtrisé après 3 bonnes réponses d\'affilée.' },
     { go: 'hub', sel: '#hubGrid .hubcard:nth-child(3)', t: 'Les salons', say: 'Défie tes camarades en duel et vois qui est en ligne. Il faut être connecté à internet.' },
     { go: 'hub', sel: '#hubGrid .hubcard:nth-child(4)', t: 'Le classeur de cartes', say: 'Un booster gratuit chaque jour ! Les cartes de culture japonaise se rangent par rareté, avec une petite fiche pour apprendre.' },
-    { go: 'hub', sel: '#hubGrid .hubcard:nth-child(5)', t: 'L\'Échoppe', say: 'Dépense tes pièces : animaux, katanas, décors, cadres de profil… Un cadeau t\'attend chaque jour.' },
-    { go: 'hub', sel: '#hubTiles', t: 'Le menu « Plus »', say: 'Les fiches de tous les kanji, le classement, tes statistiques et le guide sont rangés ici.' },
+    { go: 'hub', sel: '#hubGrid .hubcard:nth-child(5)', t: 'La Boutique', say: 'Dépense tes pièces : animaux, katanas, décors, cadres de profil… Un cadeau t\'attend chaque jour.' },
+    { go: 'hub', sel: '#hubTiles', t: 'Le menu « Plus »', say: 'Le classement, tes statistiques et le guide sont rangés ici.' },
     { go: 'hub', sel: '#nav', t: 'Le menu du bas', say: 'Accueil, Aventure, Dojo (révisions), Base et Profil : tu y accèdes à tout moment.' },
     { go: 'profil', sel: '#custPanel', t: 'Personnalise ton profil', say: 'Photo, bannière, cadre et titre se règlent ici. Les autres élèves les voient sur ta fiche.' },
     { go: 'profil', sel: '#cdVit', t: 'Ta vitrine de cartes', say: 'Choisis 3 cartes à exposer sur ton profil, pour montrer ta collection.' },
@@ -18349,12 +18433,12 @@ html.lite .cpstars circle{animation:none}
     var items = [
       ['Réviser', 'Le cœur de l\'appli. Flashcards, mini-jeux et examen blanc. Chaque réponse est mémorisée : un mot raté revient vite, un mot réussi revient de plus en plus tard. La pastille « à revoir » compte les mots dus aujourd\'hui.', gdArt('study'), 'wide'],
       ['Mot maîtrisé', '3 bonnes réponses de suite, et le mot est maîtrisé. Une erreur remet le compteur à zéro. Tes mots maîtrisés par semaine sont dans « Stats ».', gdMaster()],
-      ['L\'aventure', 'Une histoire en chapitres, avec un boss à la fin. Tu choisis ton histoire en haut de la page : L0 S1, L0 S2, L1 S1, L1 S2 ou L2 S3.', gdArt('quest'), 'wide'],
+      ['L\'aventure', 'Une histoire en chapitres, avec un boss à la fin. Tu choisis ton histoire en haut de la page : L1 déb. S1, L1 déb. S2, L1 S1, L1 S2 ou L2 S3.', gdArt('quest'), 'wide'],
       ['Les mini-jeux', 'Sprint, pêche au kana, lecture, traduction, écriture, paires, examen blanc : chaque jeu a une courte présentation et te donne de 1 à 3 étoiles.', gdGames()],
       ['XP et niveaux', 'Chaque bonne réponse rapporte de l\'XP. En montant de niveau, tu débloques des récompenses : bannière de profil, paliers de la Voie du Dōjō.', gdXp()],
-      ['Pièces', 'Gagnées en jouant et avec les cadeaux du jour. Dépensées à l\'Échoppe et pour les boosters de cartes.', gdCoins()],
+      ['Pièces', 'Gagnées en jouant et avec les cadeaux du jour. Dépensées à la Boutique et pour les boosters de cartes.', gdCoins()],
       ['Cartes et boosters', 'Un booster coûte 30 pièces (offres à partir de 5), et un booster gratuit t\'attend chaque jour à 8 h (heure de Paris). 6 raretés, des doublons qui te rendent des pièces, et une petite fiche par carte pour apprendre.', gdCards()],
-      ['L\'Échoppe', 'Animaux, katanas, décors, cadres et bannières : tout s\'achète avec tes pièces. Un cadeau t\'attend chaque jour.', gdArt('shop'), 'wide'],
+      ['La Boutique', 'Animaux, katanas, décors, cadres et bannières : tout s\'achète avec tes pièces. Un cadeau t\'attend chaque jour.', gdArt('shop'), 'wide'],
       ['Profil et vitrine', 'Personnalise ton profil et expose tes 3 cartes préférées. Les autres élèves voient tout ça sur ta fiche.', gdAvatar()],
       ['Encourager un ami', 'Un ami est en ligne et révise ? Touche son profil (ou le bouton 📣 dans la liste des amis) puis « Encourager » : de petits supporters apparaissent sur son écran avec un « がんばれ ! ». Il faut que vous soyez tous les deux en ligne.', '<div class="gdwid"><span class="gdchip">📣 Encourager</span><span class="gdarrow">→</span>' + cheerKid(0) + cheerKid(2) + cheerKid(4) + '</div>'],
       ['Salons et classement', 'Défie tes camarades en duel et compare-toi au classement. Il faut être connecté.', gdArt('multi')]
@@ -18400,13 +18484,12 @@ html.lite .cpstars circle{animation:none}
   function renderHubTiles() {
     var host = $('hubTiles'), gh = $('hubGuide'); if (!host || !S) return;
     var seen = Object.keys(S.seen || {}).length;
-    host.innerHTML = '<button type="button" class="hubmore" data-more="1"><span class="hmseals" aria-hidden="true"><i>漢</i><i>順</i><i>統</i><i>問</i></span><span class="hmtx"><b>Plus</b><small>Fiches kanji, classement, statistiques, guide</small></span><span class="hmgo" aria-hidden="true">›</span></button>';
+    host.innerHTML = '<button type="button" class="hubmore" data-more="1"><span class="hmseals" aria-hidden="true"><i>漢</i><i>順</i><i>統</i><i>問</i></span><span class="hmtx"><b>Plus</b><small>Classement, statistiques, guide</small></span><span class="hmgo" aria-hidden="true">›</span></button>';
     if (gh) gh.innerHTML = '';
   }
   function moreHTML() {
     var seen = Object.keys(S.seen || {}).length;
     var rows = [
-      ['data-go="kanji"', '漢', 'Fiches kanji', seen + ' / ' + KANJI_DATA.length + ' vues · sens, lectures, ordre des traits'],
       ['data-go="board"', '順', 'Classement', 'Le top du dojo, entre camarades'],
       ['data-stats="1"', '統', 'Statistiques', masteredCount() + ' mots maîtrisés · activité · mots ratés'],
       ['data-guide="1"', '問', 'Guide du Dōjō', 'Tout comprendre en images, relancer la visite']
@@ -18626,7 +18709,7 @@ html.lite .cpstars circle{animation:none}
   function archStoryHTML() {
     var chs = lvChapters(), open = arOpen(), nxt = chs.length ? arNextCh() : null, nm = esc(user.name), L = CURSUS[curLv()], msg, btns = '';
     if (!chs.length) msg = 'Cette aventure arrive bientôt ! Choisis-en une autre juste en dessous.';
-    else if (open) msg = 'Salut ' + nm + ' ! Aujourd\'hui, quelle aventure veux-tu poursuivre ? Touche celle de ton choix.' + (arDoneAll() === 0 ? ' Si tu débutes, je te conseille <b>L0 S1</b>.' : '');
+    else if (open) msg = 'Salut ' + nm + ' ! Aujourd\'hui, quelle aventure veux-tu poursuivre ? Touche celle de ton choix.' + (arDoneAll() === 0 ? ' Si tu débutes, je te conseille <b>L1 déb. S1</b>.' : '');
     else if (nxt) { msg = 'Re-salut ' + nm + ' ! Tu en es à l\'aventure <b>' + esc(L.tag) + '</b>, ' + weekLabel(nxt.wk).toLowerCase() + ', chapitre « ' + esc(nxt.title) + ' ». On continue ?'; btns = '<button type="button" class="btn primary" data-arch="go">On continue !</button><button type="button" class="btn" data-arch="pick">Changer d\'aventure</button>'; }
     else { msg = 'Bravo ' + nm + ', tu as terminé toute l\'aventure <b>' + esc(L.tag) + '</b> ! Rejoue un boss ou choisis-en une autre.'; btns = '<button type="button" class="btn primary" data-arch="pick">Choisir une autre aventure</button>'; }
     return '<div class="archg"><div class="archm">' + mascotHTML() + '</div><div class="archb"><b>Archibald</b><p>' + msg + '</p>' + (btns ? '<div class="archbtns">' + btns + '</div>' : '') + '</div></div>';
@@ -18743,7 +18826,7 @@ html.lite .cpstars circle{animation:none}
      ===================================================================== */
   var arStage = 'castle', cstTalk = false, cstBusy = false;
   var CST_GROUPS = [
-    { id: 'L0', name: 'Niveau 0', short: 'L0', sub: 'Les premiers kanjis, pour bien démarrer', seal: '初', sems: ['L0', 'L0S2'] },
+    { id: 'L0', name: 'L1 débutant', short: 'L1 déb.', sub: 'Les premiers kanjis, pour bien démarrer', seal: '初', sems: ['L0', 'L0S2'] },
     { id: 'L1', name: 'Licence 1', short: 'L1', sub: 'Lexique et idéogrammes de L1', seal: '壱', sems: ['L1', 'L1S2'] },
     { id: 'L2', name: 'Licence 2', short: 'L2', sub: 'Parchemin, temple, yōkai et légendes', seal: '弐', sems: ['L2'] }
   ];
@@ -18851,7 +18934,7 @@ html.lite .cpstars circle{animation:none}
     if (!talk) panel = '<p class="cstcap">Un chevalier se repose au pied d\'un rocher. Réveille-le pour partir à l\'aventure.</p><button type="button" class="btn primary cmpbtn" data-castle="talk">⚔️ Partir à l\'aventure</button>';
     else {
       var cur = curLv();
-      panel = '<div class="archg cstp"><div class="archb"><b>Hina, la petite guide</b><p>' + (done ? 'Te revoilà, ' + nm + ' ! Où veux-tu aller aujourd\'hui ?' : 'Bonjour ' + nm + ' ! Où veux-tu aller ? Choisis ton chemin. Si tu débutes, prends <b>L0 S1</b>.') + '</p>' +
+      panel = '<div class="archg cstp"><div class="archb"><b>Hina, la petite guide</b><p>' + (done ? 'Te revoilà, ' + nm + ' ! Où veux-tu aller aujourd\'hui ?' : 'Bonjour ' + nm + ' ! Où veux-tu aller ? Choisis ton chemin. Si tu débutes, prends <b>L1 déb. S1</b>.') + '</p>' +
         '<div class="cstopts">' + (done ? '<button type="button" class="cstopt cont" data-castle="go" data-sem="' + cur + '"><span class="cos" aria-hidden="true">▶</span><span class="cot"><b>Reprendre là où j\'en étais</b><small>' + esc(CURSUS[cur].tag) + '</small></span></button>' : '') +
         ['L0', 'L0S2', 'L1', 'L1S2', 'L2'].map(function (id) {
           var c = CURSUS[id], p = cstProg({ sems: [id] }), pct = p[1] ? Math.round(p[0] / p[1] * 100) : 0;
@@ -20115,7 +20198,7 @@ html.lite .cpstars circle{animation:none}
   }
   function assetArt(id, svg) { var a = ASSETS[id]; return a ? '<img class="gart hartimg" src="' + esc(a) + '" alt="" decoding="async">' : svg; }
   function adminSlots() {
-    var out = [['Cartes de l\'accueil', [['hub_story', 'Aventure'], ['hub_home', 'Dojo · Réviser'], ['hub_cards', 'Classeur de cartes'], ['hub_bazar', 'Échoppe']]]];
+    var out = [['Cartes de l\'accueil', [['hub_story', 'Aventure'], ['hub_home', 'Dojo · Réviser'], ['hub_cards', 'Classeur de cartes'], ['hub_bazar', 'Boutique']]]];
     out.push(['Dojo : grandes tuiles', ['flash', 'kanji', 'mini', 'daily', 'err'].map(function (k) { return ['dj_' + k, DJ_INFO[k].t]; })]);
     out.push(['Flashcards', FLASH_ORDER.map(function (k) { return ['g_' + k, GAMES[k].name]; })]);
     out.push(['Kanjis', ['kread', 'ksens', 'kstudy'].map(function (k) { return ['g_' + k, GAMES[k].name]; })]);
@@ -20143,6 +20226,7 @@ html.lite .cpstars circle{animation:none}
   function hubArtFor(c) {
     var a = ASSETS['hub_' + c[0]];
     if (a) return '<img class="hart hartimg" src="' + esc(a) + '" alt="" decoding="async">';
+    if (!HUBART[c[2]]) return '';
     return HUBART[c[2]].replace('class="hart"', 'class="hart" preserveAspectRatio="xMidYMid slice"');
   }
   function adminBtns(id) {
