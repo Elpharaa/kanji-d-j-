@@ -3506,6 +3506,41 @@ body .nav .tab[aria-current="page"] .niw{background:linear-gradient(135deg,#f9b4
 body .nav .tab[aria-current="page"] .niw .ni{color:#fff;transform:translateY(-1px)}
 body .nav .tab:active .niw{transform:scale(.92)!important}
 @media (hover:hover){body .nav .tab:hover{color:#fff!important;transform:none!important}body .nav .tab:not([aria-current="page"]):hover .niw{background:rgba(255,255,255,.12)}}
+
+/* ===== v158 : campement du chevalier (entrée de l'Aventure) ===== */
+.cmpwrap{width:min(100%,540px);margin:0 auto;display:grid;gap:12px;grid-column:1/-1;justify-self:center;min-width:0}
+.cmpwrap .cstcap{background:rgba(253,248,234,.93);padding:9px 14px;border-radius:12px;text-align:center;color:#3a2d57;margin:0;box-shadow:0 2px 8px rgba(40,25,70,.18)}
+#storyBody>.cmpwrap{grid-column:1/-1;grid-row:auto;justify-self:center}
+.cmp{position:relative;width:100%;aspect-ratio:4/3;border-radius:18px;overflow:hidden;border:2px solid rgba(190,92,140,.55);box-shadow:0 8px 22px rgba(40,25,70,.35),inset 0 0 0 2px rgba(255,255,255,.25);background:#6f60a8}
+.cmpsvg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cmpgo{position:absolute;left:34%;top:34%;width:34%;height:58%;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cmphint{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);padding:5px 12px;border-radius:999px;background:rgba(253,248,234,.92);color:#3a2d57;font-weight:700;font-size:.8rem;white-space:nowrap;box-shadow:0 2px 8px rgba(40,25,70,.3);animation:cmpbob 1.6s ease-in-out infinite}
+@keyframes cmpbob{50%{transform:translate(-50%,-4px)}}
+.cmpbtn{width:100%;justify-content:center}
+.cpwalk,.cpbang,.cpnpc{display:none}
+.cphead{transform-origin:216px 192px;transform:rotate(26deg);transition:transform .55s ease}
+.cpzzz text{animation:cpz 2.6s ease-in-out infinite;opacity:0}.cpzzz text:nth-child(2){animation-delay:.5s}.cpzzz text:nth-child(3){animation-delay:1s}
+@keyframes cpz{0%{opacity:0;transform:translateY(8px)}30%{opacity:1}100%{opacity:0;transform:translateY(-12px)}}
+.cpflame{transform-origin:116px 256px;animation:cpfl .7s ease-in-out infinite alternate}.cpflame.b{animation-duration:.5s}
+@keyframes cpfl{from{transform:scale(1,.88) rotate(-3deg)}to{transform:scale(1.08,1.12) rotate(3deg)}}
+.cpglow{animation:cpgl 1.4s ease-in-out infinite alternate}@keyframes cpgl{from{opacity:.65}to{opacity:1}}
+.cpstars circle{animation:twk 3s ease-in-out infinite alternate}
+.cmp.waking .cphead{transform:rotate(0)}
+.cmp.waking .cpzzz{display:none}
+.cmp.waking .cpbang{display:block;transform-origin:236px 160px;animation:cpb .5s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes cpb{from{transform:scale(0)}to{transform:scale(1)}}
+.cmp.walk .cpsit{display:none}
+.cmp.walk .cpwalk{display:block;animation:cpgo 2.1s cubic-bezier(.45,0,.9,.7) both}
+@keyframes cpgo{0%{transform:translate(0,0)}12%{transform:translate(0,-9px)}22%{transform:translate(0,0)}100%{transform:translate(250px,0)}}
+.cplegA{transform-origin:210px 214px;animation:cplg .32s ease-in-out infinite alternate}.cplegB{transform-origin:212px 214px;animation:cplg .32s ease-in-out infinite alternate-reverse}
+@keyframes cplg{from{transform:rotate(-24deg)}to{transform:rotate(24deg)}}
+.cparm{transform-origin:214px 186px;animation:cplg .32s ease-in-out infinite alternate-reverse}
+.cmp.npc .cpsit,.cmp.npc .cpwalk{display:none}
+.cmp.npc .cpnpc{display:block;animation:cpnp .9s cubic-bezier(.2,.9,.3,1) both}
+@keyframes cpnp{from{transform:translateX(120px);opacity:0}to{transform:none;opacity:1}}
+.cplan{transform-origin:358px 190px;animation:cpsw 2.2s ease-in-out infinite alternate}@keyframes cpsw{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
+@media (prefers-reduced-motion:reduce){.cpflame,.cpglow,.cpzzz text,.cmphint,.cplan{animation:none!important}.cpzzz text{opacity:1}}
+html.lite .cpstars circle{animation:none}
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -18759,47 +18794,99 @@ body .nav .tab:active .niw{transform:scale(.92)!important}
     '<g stroke="#4a2c14" stroke-width="1.1" opacity=".5"><path d="M180 170L-210 300M180 170L-80 300M180 170L50 300M180 170L180 300M180 170L310 300M180 170L440 300M180 170L570 300M0 188H360M0 210H360M0 238H360M0 272H360"/></g>' +
     '<path d="M162 170H198L302 300H58z" fill="#9c1f14" stroke="#e0b94a" stroke-width="2"/><path d="M168 170L77 300M192 170L283 300" stroke="#e0b94a" stroke-width="1.2" opacity=".7"/>' +
     '</svg>';
+  var CMP_SCENE = '<svg viewBox="0 0 400 300" class="cmpsvg" aria-hidden="true"><defs>' +
+    '<linearGradient id="cpSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6f60a8"/><stop offset=".45" stop-color="#d98fb4"/><stop offset=".78" stop-color="#ffc9a6"/><stop offset="1" stop-color="#ffe6bd"/></linearGradient>' +
+    '<radialGradient id="cpSun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff6d6"/><stop offset=".4" stop-color="#ffd9a0" stop-opacity=".7"/><stop offset="1" stop-color="#ffc08a" stop-opacity="0"/></radialGradient>' +
+    '<linearGradient id="cpGr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5d4c8e"/><stop offset="1" stop-color="#2a2150"/></linearGradient>' +
+    '<linearGradient id="cpRk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9a8fbe"/><stop offset=".6" stop-color="#6c6290"/><stop offset="1" stop-color="#4b4272"/></linearGradient>' +
+    '<radialGradient id="cpFire" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd27a" stop-opacity=".9"/><stop offset="1" stop-color="#ff9a5a" stop-opacity="0"/></radialGradient></defs>' +
+    '<rect width="400" height="300" fill="url(#cpSky)"/>' +
+    '<g fill="#fff" class="cpstars"><circle cx="40" cy="30" r="1.3"/><circle cx="120" cy="18" r="1"/><circle cx="210" cy="40" r="1.2"/><circle cx="330" cy="24" r="1.2"/><circle cx="372" cy="70" r="1"/><circle cx="76" cy="72" r="1"/></g>' +
+    '<circle cx="290" cy="178" r="95" fill="url(#cpSun)"/><circle cx="290" cy="178" r="30" fill="#fff4cf"/>' +
+    '<g fill="#fff" opacity=".55"><ellipse cx="90" cy="110" rx="52" ry="7"/><ellipse cx="130" cy="122" rx="38" ry="5"/><ellipse cx="320" cy="96" rx="46" ry="6"/></g>' +
+    '<path d="M0 196 L48 152 L96 186 L152 140 L214 192 L270 164 L330 194 L400 150 V222 H0Z" fill="#9d8bc4" opacity=".9"/>' +
+    '<path d="M0 212 L62 176 L124 206 L194 170 L262 210 L330 182 L400 208 V236 H0Z" fill="#7a68ab"/>' +
+    '<path d="M0 222 Q100 206 200 220 T400 212 V300 H0Z" fill="url(#cpGr)"/>' +
+    '<path d="M150 300 Q226 256 318 240 Q368 232 400 232 L400 250 Q362 250 326 258 Q256 274 222 300Z" fill="#9b85b4" opacity=".55"/>' +
+    '<g><path d="M34 238 C36 205 30 172 40 140" stroke="#3b2c52" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M38 170 C54 160 66 150 78 138" stroke="#3b2c52" stroke-width="5" fill="none" stroke-linecap="round"/>' +
+    '<g fill="#f6aec6"><circle cx="40" cy="128" r="30"/><circle cx="12" cy="146" r="22"/><circle cx="72" cy="132" r="22"/><circle cx="52" cy="104" r="20"/></g><g fill="#ffd0de" opacity=".85"><circle cx="34" cy="120" r="16"/><circle cx="64" cy="124" r="11"/><circle cx="48" cy="100" r="10"/></g></g>' +
+    '<g fill="#f6aec6" opacity=".9"><ellipse cx="60" cy="246" rx="3" ry="1.6"/><ellipse cx="84" cy="258" rx="3" ry="1.6"/><ellipse cx="22" cy="262" rx="3" ry="1.6"/><ellipse cx="120" cy="272" rx="3" ry="1.6"/></g>' +
+    '<path d="M66 240 C62 206 82 172 114 162 C142 154 170 172 178 200 C186 218 188 232 192 242 Z" fill="url(#cpRk)" stroke="#3a2d57" stroke-width="2"/>' +
+    '<path d="M82 196 C90 178 108 168 126 168" stroke="#c6bde0" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/><path d="M120 242 C122 220 140 206 160 210" stroke="#3a2d57" stroke-width="2" fill="none" opacity=".4"/>' +
+    '<g fill="#4f7a58" opacity=".8"><ellipse cx="96" cy="176" rx="14" ry="4"/><ellipse cx="150" cy="170" rx="10" ry="3.2"/></g>' +
+    '<g class="cpfire"><circle cx="116" cy="256" r="26" fill="url(#cpFire)" class="cpglow"/><path d="M102 262 L130 256 M104 256 L130 262" stroke="#4a3220" stroke-width="5" stroke-linecap="round"/><path class="cpflame" d="M116 256 C108 248 114 240 116 232 C120 240 126 246 116 256Z" fill="#ff9b4a"/><path class="cpflame b" d="M116 256 C112 250 115 245 116 240 C119 246 121 251 116 256Z" fill="#ffe08a"/></g>' +
+    '<g id="cpKnSit" class="cpsit">' +
+    '<path d="M186 242 C182 206 196 190 214 190 C236 192 244 218 242 242Z" fill="#3a2d57"/><path d="M190 242 C188 212 200 198 214 198" fill="none" stroke="#c2406a" stroke-width="3" opacity=".9"/>' +
+    '<path d="M196 234 H244 Q256 234 256 241 Q256 248 244 248 H196Z" fill="#5d667c"/><path d="M244 233 Q258 233 258 241 Q258 249 244 249Z" fill="#2d2a45"/>' +
+    '<rect x="194" y="196" width="36" height="44" rx="11" fill="#8a93a8"/><path d="M196 214 H228" stroke="#5d667c" stroke-width="2"/><circle cx="212" cy="198" r="11" fill="#a3aac0"/>' +
+    '<path d="M200 214 Q214 224 234 210" fill="none" stroke="#5d667c" stroke-width="8" stroke-linecap="round"/>' +
+    '<g class="cphead"><rect x="212" y="190" width="9" height="8" rx="3" fill="#e9bf9a"/><circle cx="218" cy="182" r="11" fill="#f1c9a5"/><path d="M207 180 C207 168 229 166 229 180 C226 174 214 172 207 180Z" fill="#2b2540"/><path d="M212 184 q3 2 6 0" stroke="#3a2d57" stroke-width="1.6" fill="none" stroke-linecap="round"/></g>' +
+    '<g class="cpsword"><path d="M184 246 L174 178" stroke="#dfe5f2" stroke-width="6" stroke-linecap="round"/><path d="M182 244 L173 180" stroke="#fff" stroke-width="1.6" opacity=".8"/><path d="M164 176 L186 172" stroke="#e0b94a" stroke-width="5" stroke-linecap="round"/><path d="M174 176 L172 160" stroke="#5a3a2a" stroke-width="5" stroke-linecap="round"/><circle cx="172" cy="156" r="4.5" fill="#e0b94a"/></g>' +
+    '<g class="cpzzz" fill="#fff" font-family="serif" font-weight="700"><text x="234" y="170" font-size="13">z</text><text x="246" y="156" font-size="17">z</text><text x="262" y="138" font-size="22">Z</text></g>' +
+    '<g class="cpbang"><circle cx="236" cy="160" r="12" fill="#fff4cf" stroke="#c2406a" stroke-width="2"/><text x="236" y="166" text-anchor="middle" font-size="17" font-weight="900" fill="#c2406a" font-family="sans-serif">!</text></g>' +
+    '</g>' +
+    '<g id="cpKnWalk" class="cpwalk">' +
+    '<path d="M204 176 C190 188 182 206 178 230 C192 222 204 216 214 212Z" fill="#3a2d57"/><path d="M204 180 C192 192 186 210 182 228" fill="none" stroke="#c2406a" stroke-width="2.5" opacity=".9"/>' +
+    '<g class="cplegA"><rect x="206" y="212" width="9" height="26" rx="4" fill="#5d667c"/><path d="M204 236 H222 Q226 236 226 241 H204Z" fill="#2d2a45"/></g>' +
+    '<g class="cplegB"><rect x="208" y="212" width="9" height="26" rx="4" fill="#7a839a"/><path d="M206 236 H224 Q228 236 228 241 H206Z" fill="#3a3658"/></g>' +
+    '<rect x="200" y="172" width="24" height="44" rx="9" fill="#8a93a8"/><path d="M202 192 H222" stroke="#5d667c" stroke-width="2"/><circle cx="212" cy="176" r="9" fill="#a3aac0"/>' +
+    '<path d="M214 186 q10 8 4 20" fill="none" stroke="#5d667c" stroke-width="7" stroke-linecap="round" class="cparm"/>' +
+    '<rect x="209" y="160" width="8" height="8" rx="3" fill="#e9bf9a"/><circle cx="214" cy="154" r="10" fill="#f1c9a5"/><path d="M204 152 C204 141 224 140 224 152 C221 147 211 146 204 152Z" fill="#2b2540"/><circle cx="219" cy="155" r="1.3" fill="#3a2d57"/>' +
+    '<g><path d="M196 206 L228 150" stroke="#dfe5f2" stroke-width="5" stroke-linecap="round"/><path d="M226 154 L232 144" stroke="#5a3a2a" stroke-width="5" stroke-linecap="round"/><path d="M222 150 L236 154" stroke="#e0b94a" stroke-width="4" stroke-linecap="round"/><circle cx="233" cy="141" r="3.5" fill="#e0b94a"/></g>' +
+    '</g>' +
+    '<g id="cpNpc" class="cpnpc">' +
+    '<ellipse cx="338" cy="248" rx="20" ry="4" fill="#1d1640" opacity=".35"/>' +
+    '<rect x="326" y="206" width="24" height="38" rx="10" fill="#d9658f"/><path d="M326 222 H350" stroke="#f9d0a0" stroke-width="4"/><path d="M330 244 v6 M346 244 v6" stroke="#3a2d57" stroke-width="5" stroke-linecap="round"/>' +
+    '<circle cx="338" cy="196" r="12" fill="#f4cfae"/><circle cx="342" cy="197" r="1.4" fill="#3a2d57"/><circle cx="335" cy="197" r="1.4" fill="#3a2d57"/><path d="M336 202 q2 1.6 4 0" stroke="#c2406a" stroke-width="1.2" fill="none"/>' +
+    '<path d="M318 190 Q338 168 358 190 Q338 184 318 190Z" fill="#e0b46a" stroke="#a87a3a" stroke-width="1.4"/><path d="M326 186 L338 178 L350 186" fill="none" stroke="#a87a3a" stroke-width="1"/>' +
+    '<g class="cplan"><path d="M352 212 L360 190" stroke="#5a3a2a" stroke-width="3" stroke-linecap="round"/><circle cx="361" cy="224" r="22" fill="url(#cpFire)"/><rect x="354" y="212" width="14" height="16" rx="5" fill="#e8553a" stroke="#6b1d12" stroke-width="1.4"/><path d="M356 218h10" stroke="#ffd98a" stroke-width="1.3"/></g>' +
+    '<path d="M350 214 L358 212" stroke="#f4cfae" stroke-width="5" stroke-linecap="round"/>' +
+    '</g>' +
+    '</svg>';
   function castleHTML() {
     var talk = cstTalk, nm = esc(user.name), done = arDoneAll();
-    var scene = '<div class="cstscene' + (talk ? ' talk' : '') + '" id="cstScene">' + CST_SCENE +
-      '<span class="cstav" aria-hidden="true">' + avatarHTML(avatarOf(user.name, user.avatar), 'md') + '</span>' +
-      '<button type="button" class="cstarch" data-castle="talk" aria-label="Parler à Archibald pour partir à l\'aventure">' + mascotHTML() + '<i class="cstbang" aria-hidden="true">!</i></button>' +
-      (talk ? '' : '<span class="csthint">👆 Touche-moi pour partir !</span>') + '<i class="cstflash" aria-hidden="true"></i></div>';
+    var scene = '<div class="cmp' + (talk ? ' npc' : '') + '" id="cmpScene" role="img" aria-label="Un chevalier dort près d\'un rocher au crépuscule">' + CMP_SCENE +
+      (talk ? '' : '<button type="button" class="cmpgo" data-castle="talk" aria-label="Réveiller le chevalier et partir à l\'aventure"></button><span class="cmphint">👆 Touche le chevalier</span>') + '</div>';
     var panel;
-    if (!talk) panel = '<p class="cstcap">Le hall du château. Archibald est prêt à partir à l\'aventure avec toi.</p>';
+    if (!talk) panel = '<p class="cstcap">Un chevalier se repose au pied d\'un rocher. Réveille-le pour partir à l\'aventure.</p><button type="button" class="btn primary cmpbtn" data-castle="talk">⚔️ Partir à l\'aventure</button>';
     else {
-      var cg = cstGroupOf(curLv());
-      panel = '<div class="archg cstp"><div class="archb"><b>Archibald</b><p>' + (done ? 'Re-salut ' + nm + ' ! Qu\'est-ce que tu veux faire aujourd\'hui ?' : 'Salut ' + nm + ' ! Qu\'est-ce que tu veux faire ? Choisis ton aventure. Si tu débutes, prends <b>L0</b>.') + '</p>' +
-        '<div class="cstopts">' + (done ? '<button type="button" class="cstopt cont" data-castle="go" data-g="' + cg.id + '"><span class="cos" aria-hidden="true">▶</span><span class="cot"><b>Reprendre là où j\'en étais</b><small>' + esc(CURSUS[curLv()].tag) + '</small></span></button>' : '') +
-        CST_GROUPS.map(function (g) {
-          var p = cstProg(g), pct = p[1] ? Math.round(p[0] / p[1] * 100) : 0;
-          return '<button type="button" class="cstopt" data-castle="go" data-g="' + g.id + '"><span class="cos" aria-hidden="true">' + g.seal + '</span><span class="cot"><b>' + g.short + ' · ' + g.name + '</b><small>' + g.sub + ' · ' + p[0] + '/' + p[1] + ' chapitres</small><i class="cstbar"><u style="width:' + pct + '%"></u></i></span></button>';
+      var cur = curLv();
+      panel = '<div class="archg cstp"><div class="archb"><b>Hina, la petite guide</b><p>' + (done ? 'Te revoilà, ' + nm + ' ! Où veux-tu aller aujourd\'hui ?' : 'Bonjour ' + nm + ' ! Où veux-tu aller ? Choisis ton chemin. Si tu débutes, prends <b>L0 S1</b>.') + '</p>' +
+        '<div class="cstopts">' + (done ? '<button type="button" class="cstopt cont" data-castle="go" data-sem="' + cur + '"><span class="cos" aria-hidden="true">▶</span><span class="cot"><b>Reprendre là où j\'en étais</b><small>' + esc(CURSUS[cur].tag) + '</small></span></button>' : '') +
+        ['L0', 'L0S2', 'L1', 'L1S2', 'L2'].map(function (id) {
+          var c = CURSUS[id], p = cstProg({ sems: [id] }), pct = p[1] ? Math.round(p[0] / p[1] * 100) : 0;
+          return '<button type="button" class="cstopt" data-castle="go" data-sem="' + id + '"><span class="cos" aria-hidden="true">' + c.seal + '</span><span class="cot"><b>' + c.tag + ' · ' + c.name + '</b><small>' + c.sem + ' · ' + p[0] + '/' + p[1] + ' chapitres</small><i class="cstbar"><u style="width:' + pct + '%"></u></i></span></button>';
         }).join('') + '</div></div></div>';
     }
-    return scene + panel;
+    return '<div class="cmpwrap">' + scene + panel + '</div>';
   }
   function worldHeadHTML() {
     var g = cstGroupOf(curLv()), cur = curLv();
     return '<div class="wldhead"><div class="wldart">' + STORYART[cur] + '<span class="wldtt"><small>Monde</small><b>' + g.short + ' · ' + g.name + '</b></span></div>' +
-      '<div class="wldrow"><button type="button" class="btn wldback" data-castle="back">‹ Château</button>' +
+      '<div class="wldrow"><button type="button" class="btn wldback" data-castle="back">‹ Campement</button>' +
       (g.sems.length > 1 ? '<div class="seg wldsem" role="tablist" aria-label="Semestre">' + g.sems.map(function (id) { var p = cstProg({ sems: [id] }); return '<button type="button" role="tab" data-cursus="' + id + '" aria-selected="' + (id === cur) + '">' + CURSUS[id].sem + '<small>' + p[0] + '/' + p[1] + '</small></button>'; }).join('') + '</div>' : '<span class="wldone">' + CURSUS[cur].sem + '</span>') + '</div></div>';
   }
-  function cstEnter(gid) {
+  function cstEnter(sem) {
     if (cstBusy) return; cstBusy = true;
-    var g = CST_GROUPS.filter(function (x) { return x.id === gid; })[0] || CST_GROUPS[0], sc = $('cstScene');
-    if (sc) sc.classList.add('opening');
     try { sfx('win', true); } catch (e) {}
-    setTimeout(function () {
-      setCursus(cstPickSem(g)); arStage = 'world'; cstTalk = false; cstBusy = false;
-      renderStory(); var h = $('storyBody'); if (h) { h.classList.remove('arrive'); void h.offsetWidth; h.classList.add('arrive'); } window.scrollTo(0, 0);
-    }, sc ? 2100 : 0);
+    setCursus(CURSUS[sem] ? sem : 'L0'); arStage = 'world'; cstTalk = false; cstBusy = false;
+    renderStory(); var h = $('storyBody'); if (h) { h.classList.remove('arrive'); void h.offsetWidth; h.classList.add('arrive'); } window.scrollTo(0, 0);
   }
   document.addEventListener('click', function (e) {
     var b = e.target.closest ? e.target.closest('[data-castle]') : null; if (!b || !user) return;
     var a = b.getAttribute('data-castle');
-    if (a === 'talk') { if (!cstTalk && !cstBusy) { cstTalk = true; renderStory(); var p = document.querySelector('.cstopts'); if (p) setTimeout(function () { p.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 80); } }
-    else if (a === 'go') cstEnter(b.getAttribute('data-g'));
-    else if (a === 'back') { arStage = 'castle'; cstTalk = false; renderStory(); window.scrollTo(0, 0); }
+    if (a === 'talk') {
+      if (cstTalk || cstBusy) return; cstBusy = true;
+      var sc = $('cmpScene'), fast = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (sc) { sc.classList.add('waking'); try { sfx('coin', true); } catch (x) {} }
+      setTimeout(function () { var c = $('cmpScene'); if (c) c.classList.add('walk'); }, fast ? 100 : 1100);
+      setTimeout(function () {
+        cstTalk = true; cstBusy = false; renderStory();
+        var p = document.querySelector('.cstopts'); if (p) setTimeout(function () { p.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 120);
+      }, fast ? 300 : 3300);
+    }
+    else if (a === 'go') cstEnter(b.getAttribute('data-sem'));
+    else if (a === 'back') { arStage = 'castle'; cstTalk = false; cstBusy = false; renderStory(); window.scrollTo(0, 0); }
   });
   /* =====================================================================
      DOJO SIMPLIFIÉ : 4 gros choix (Flashcards, Kanjis, Mini-jeux, Carnet d'erreurs)
