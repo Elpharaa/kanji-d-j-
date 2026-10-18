@@ -3965,6 +3965,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
 .mjh { grid-column: 1 / -1; margin: 10px 2px 2px; font-size: 1rem; color: #fffaf0; text-shadow: 0 1px 3px rgba(44,36,82,.7); }
 .flsrc { grid-column: 1 / -1; background: rgba(255,250,240,.92); border-radius: 14px; padding: 8px 12px; }
 .flsrc select { width: 100%; margin-top: 4px; }
+.radgo { border: 0; background: transparent; padding: 0; cursor: pointer; border-bottom: 2px dotted #d0587f; } .lvsel { width: 100%; margin-bottom: 8px; } .nbmode { margin-top: 8px; } .nbset select { width: 100%; margin-top: 4px; }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -12819,10 +12820,20 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   }
   document.addEventListener('pointerdown', function () { if (sess && sess.kind === 'flash') flTouch(); }, true);
   var JLFW = {};
+  var JLA = {};
+  function jlAdapt(w) {
+    return JLA[w.key] || (JLA[w.key] = { key: w.key, mot: w.jp, lecture: w.kana, disp: w.kana, sens: w.fr, type: '', alt: '', owner: '', wk: 0, kanjis: Array.from(w.jp).filter(isKanji), jl: w.key.split(':')[0] });
+  }
   function jlFlashWords(lv) {
     if (JLFW[lv]) return JLFW[lv]; var o = [];
-    QV.forEach(function (t) { if (t.virt || t.lv !== lv) return; t.w.forEach(function (w) { o.push({ key: w.key, mot: w.jp, lecture: w.kana, disp: w.kana, sens: w.fr, type: '', alt: '', owner: '', wk: 0, kanjis: Array.from(w.jp).filter(isKanji), jl: lv }); }); });
+    QV.forEach(function (t) { if (t.virt || t.lv !== lv) return; t.w.forEach(function (w) { o.push(jlAdapt(w)); }); });
     return (JLFW[lv] = o);
+  }
+  // Mots JLPT / vie quotidienne déjà travaillés (pour « à revoir » et le carnet d'erreurs)
+  function jlTouched() {
+    var seen = {}, out = [];
+    [S.srs, S.stats, S.qv, S.err].forEach(function (m) { Object.keys(m || {}).forEach(function (k) { if (!seen[k] && QVW[k]) { seen[k] = 1; out.push(jlAdapt(QVW[k])); } }); });
+    return out;
   }
   function flDeck(newMax) {
     var now = Date.now(), pool = playPool(); S.srs = S.srs || {};
@@ -13306,7 +13317,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
       var bt = bestText(id);
       return '<button class="mode gamecard djt" type="button" data-game="' + id + '" aria-label="' + esc(c.name) + '"><span class="tk" aria-hidden="true">' + c.g + '</span><span class="gtx"><b>' + esc(c.name) + '</b>' + (bt ? '<small>' + esc(bt) + '</small>' : '') + '</span></button>';
     }
-    $('games').innerHTML = djGamesHTML(FLASH_ORDER.map(card).join(''), card('kread') + card('ksens') + card('kstudy'), '<h4 class="mjh"><span aria-hidden="true">✍️</span> Écrit</h4>' + GAME_ORDER.map(card).join('') + '<h4 class="mjh"><span aria-hidden="true">🎤</span> Oral</h4>' + listenTiles() + djTile('lire') + djTile('cuis'));
+    $('games').innerHTML = djGamesHTML(FLASH_ORDER.map(card).join(''), card('kread') + card('ksens') + card('kstudy'), '<h4 class="mjh"><span aria-hidden="true">✍️</span> Écrit</h4>' + GAME_ORDER.map(card).join('') + djTile('nb') + '<h4 class="mjh"><span aria-hidden="true">🎤</span> Oral</h4>' + listenTiles() + djTile('lire') + djTile('cuis'));
     $('badges').innerHTML = BADGES.map(badgeCardHTML).join('');
     var empty = false;
     $('homeNote').hidden = !empty;
@@ -15012,7 +15023,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
       '<div class="krow"><span class="kl">Semaine</span><span>' + CURSUS[wkLevel(k.wk)].tag + ' · Semaine ' + wkNum(k.wk) + '</span></div>' +
       '<div class="krow"><span class="kl">On\'yomi 音読み</span>' + readingsHTML(k) + '</div>' +
       '<div class="krow"><span class="kl">Kun\'yomi 訓読み</span>' + kunHTML(k) + '</div>' +
-      '<div class="krow"><span class="kl">Clé 部首</span><span><b class="rg">' + esc(ro.form) + '</b> <b>' + esc(ro.kana) + '</b> <span class="muted">(' + esc(ro.romaji) + ')</span> — ' + esc(ro.sens) + '<br><small>' +
+      '<div class="krow"><span class="kl">Clé 部首</span><span><button type="button" class="radgo" data-radgo="' + esc(ro.form + '|' + ro.kangxi) + '" title="Voir les kanjis avec cette clé"><b class="rg">' + esc(ro.form) + '</b></button> <b>' + esc(ro.kana) + '</b> <span class="muted">(' + esc(ro.romaji) + ')</span> — ' + esc(ro.sens) + '<br><small>' +
         (ro.kangxi && ro.kangxi !== ro.form ? 'Forme du kanji ' + esc(ro.form) + ' · clé de ' + esc(ro.kangxi) + ' · ' : 'Clé ' + esc(ro.kangxi) + ' · ') + 'n°' + esc(ro.n) + ' des 214 clés officielles · position : ' + esc(ro.pos) + '</small></span></div>' +
       '<div class="krow"><span class="kl">Composition</span><span>' + esc(k.parts) + '</span></div>' +
       '<div class="krow"><span class="kl">Astuce</span><span class="tip">' + esc(k.tip) + '</span></div>' +
@@ -19132,8 +19143,10 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   }
   function dueWords(bySel) {                 // bySel : se limite à la semaine choisie (sinon tout le niveau)
     var now = Date.now(); S.srs = S.srs || {};
-    return (bySel ? playPool() : weekWords('all')).filter(function (w) {
-      var st = S.stats[w.key], e = S.srs[w.key];
+    var base = (bySel ? playPool() : weekWords('all')), have = {}; base.forEach(function (w) { have[w.key] = 1; });
+    base = base.concat(jlTouched().filter(function (w) { return !have[w.key]; }));
+    return base.filter(function (w) {
+      var st = S.stats[w.key] || (S.qv && S.qv[w.key]), e = S.srs[w.key];
       if (e) return e.due <= now;
       if (!st || (!st.ok && !st.ko)) return false;
       return st.ko > 0 || st.run < MASTER_RUN;
@@ -19954,6 +19967,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     mini: { k: '遊', t: 'Mini-jeux', art: 'sprint', d: 'Écrit et oral : sprint, écoute, karaoké, cuisine…', tip: 'Des jeux courts pour réviser en s\'amusant. Les jeux « Écrit » se jouent au clavier ou en QCM, les jeux « Oral » avec ton oreille et ta voix. Essaie l\'examen blanc avant un contrôle !' },
     daily: { k: '日', t: 'Vie quotidienne', art: '', d: 'Maison, famille, amis, ville… du vocabulaire hors cours', tip: 'Ici, du vocabulaire de tous les jours, sans rapport avec ton cours : la maison, la famille, les amis, la ville… Choisis un thème, apprends la liste, puis teste-toi.' },
     jlpt: { k: '試', t: 'JLPT', art: '', d: 'Vocabulaire N5, N4 et N3, quiz par niveau', tip: 'Les listes JLPT : choisis N5, N4 ou N3, un thème ou le quiz complet du niveau, apprends la liste, puis teste-toi. Un mot est acquis après 3 bonnes réponses d\'affilée.' },
+    nb: { k: '数', t: 'Nombres & dates', art: '', d: 'Compteurs, mois, jours, heures, prix', tip: 'Les nombres japonais changent selon ce qu\'on compte, et les dates ont des lectures spéciales. Lis le mot, ou écoute-le et retrouve-le : 10 questions par partie.' },
     rad: { k: '部', t: 'Radicaux', art: '', d: 'Les clés des kanjis, et devine le sens d\'un kanji', tip: 'Les kanjis sont construits avec des briques : les clés (radicaux). Apprends-les, puis devine le sens d\'un kanji grâce à elles !' },
     cuis: { k: '料', t: 'Cuisine japonaise', art: '', d: 'Recettes à lire et à écouter, avec le vocabulaire', tip: 'Choisis une recette : écoute chaque étape, apprends les ingrédients et les verbes de cuisine.' },
     lire: { k: '読', t: 'Karaoké de lecture', art: '', d: 'Un texte se lit à voix haute, mot par mot', tip: 'Lance le texte : chaque mot s\'illumine au moment où il est lu. Touche un mot pour l\'entendre seul, et lis en même temps pour travailler ta prononciation.' },
@@ -19981,7 +19995,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     }
     return '<button class="mode gamecard djt" type="button" data-djsub="' + sub + '">' + chip + '<span class="tk" aria-hidden="true">' + i.k + '</span><span class="gtx"><b>' + i.t + '</b><small>' + esc(d) + '</small></span></button>';
   }
-  function djBackHTML(sub) { var oral = sub === 'lire' || sub === 'cuis'; return '<div class="grp djbar"><button type="button" class="btn djback" data-djsub="' + (oral ? 'mini' : '') + '">‹ ' + (oral ? 'Mini-jeux' : 'Dojo') + '</button><h3 class="sgh" data-k="' + DJ_INFO[sub].k + '"><span>' + DJ_INFO[sub].t + '</span></h3></div>'; }
+  function djBackHTML(sub) { var oral = sub === 'lire' || sub === 'cuis' || sub === 'nb'; return '<div class="grp djbar"><button type="button" class="btn djback" data-djsub="' + (oral ? 'mini' : '') + '">‹ ' + (oral ? 'Mini-jeux' : 'Dojo') + '</button><h3 class="sgh" data-k="' + DJ_INFO[sub].k + '"><span>' + DJ_INFO[sub].t + '</span></h3></div>'; }
   var LISTEN_GAMES = [['ecoute', '聴', 'Écoute', 'Entends le mot, retrouve-le parmi 4'], ['dictee', '写', 'Dictée', 'Écris ce que tu entends'], ['petales', '花', 'Pétales', 'Touche le bon pétale avant la rivière']];
   function listenTiles() {
     return LISTEN_GAMES.map(function (g) {
@@ -20011,8 +20025,8 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   /* =====================================================================
      RADICAUX · CUISINE JAPONAISE · KARAOKÉ DE LECTURE (sections du Dojo)
      ===================================================================== */
-  var lrn = { rad: { tab: 'list', q: null }, cuis: { r: -1, kana: true, fr: true }, kar: { t: -1, kana: true, fr: false, rate: 0.8, cur: -1, on: false } };
-  function lrnInner() { return djSub === 'rad' ? radInner() : djSub === 'cuis' ? cuisInner() : karInner(); }
+  var lrn = { rad: { tab: 'list', q: null }, nb: { cat: 'all', mode: 'lire', q: null }, cuis: { r: -1, kana: true, fr: true, lv: '' }, kar: { lv: '', t: -1, kana: true, fr: false, rate: 0.8, cur: -1, on: false } };
+  function lrnInner() { return djSub === 'rad' ? radInner() : djSub === 'cuis' ? cuisInner() : djSub === 'nb' ? nbInner() : karInner(); }
   function lrnRefresh() { var h = $('lrnHost'); if (h) h.innerHTML = lrnInner(); }
   function lrnSpeak(t, r) { aidSpeak(t, r); }
   // ---- Radicaux ----
@@ -20064,37 +20078,147 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     return h + '<div class="radq1"><div class="small muted">Question ' + (q.i + 1) + '/' + q.items.length + ' · ' + q.score + ' pt</div><div class="radbig jp" aria-label="Kanji">' + esc(k.k) + '</div><p style="margin:0 0 6px"><b>' + ask + '</b></p>' + hint +
       '<div class="radopts">' + it.opts.map(function (t, i) { var c = q.ans === null ? '' : i === it.good ? ' ok' : i === q.ans ? ' ko' : ''; return '<button type="button" class="btn radopt' + c + '" data-rad="ans:' + i + '"' + (q.ans !== null ? ' disabled' : '') + '>' + esc(t) + '</button>'; }).join('') + '</div></div>' + fb;
   }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-radgo]') : null; if (!b || !user || !S) return;
+    var key = b.getAttribute('data-radgo'), r = radList().filter(function (x) { return x.form + '|' + x.kangxi === key; })[0]; if (!r) return;
+    e.preventDefault(); e.stopPropagation();
+    openModal('Clé ' + r.form + ' · ' + r.sens, '<div class="radb"><p class="small"><b class="jp">' + esc(r.form) + '</b> ' + esc(r.kana) + ' (' + esc(r.romaji) + ') · clé n°' + r.n + ' · position : ' + esc(r.pos) + '<br>' + r.ks.length + ' kanji' + (r.ks.length > 1 ? 's' : '') + ' de tes cours partagent cette clé. Touche-en un pour sa fiche.</p><div class="radks">' + r.ks.map(function (k) { return '<button type="button" class="radk" data-rad="k:' + esc(k.k) + '"><b class="jp">' + esc(k.k) + '</b><small>' + esc(String(k.sens).split(/[,;]/)[0]) + '</small></button>'; }).join('') + '</div></div>', 'kmodal');
+  }, true);
+
+  // ---- Nombres, dates et heures ----
+  var NB_NUM = ['いち', 'に', 'さん', 'よん', 'ご', 'ろく', 'なな', 'はち', 'きゅう', 'じゅう'], NB_KJ = '一二三四五六七八九十';
+  var NB_DATA = null;
+  function nbBuild() {
+    if (NB_DATA) return NB_DATA; var d = [];
+    function add(cat, grp, jp, ka, fr) { d.push({ cat: cat, g: grp, jp: jp, ka: ka, fr: fr }); }
+    var CT = [
+      ['人', 'personnes', 'にん', ['ひとり', 'ふたり', 'さんにん', 'よにん', 'ごにん', 'ろくにん', 'ななにん', 'はちにん', 'きゅうにん', 'じゅうにん']],
+      ['本', 'objets longs', 'ほん', ['いっぽん', 'にほん', 'さんぼん', 'よんほん', 'ごほん', 'ろっぽん', 'ななほん', 'はっぽん', 'きゅうほん', 'じゅっぽん']],
+      ['枚', 'objets plats', 'まい', ['いちまい', 'にまい', 'さんまい', 'よんまい', 'ごまい', 'ろくまい', 'ななまい', 'はちまい', 'きゅうまい', 'じゅうまい']],
+      ['冊', 'livres', 'さつ', ['いっさつ', 'にさつ', 'さんさつ', 'よんさつ', 'ごさつ', 'ろくさつ', 'ななさつ', 'はっさつ', 'きゅうさつ', 'じゅっさつ']],
+      ['匹', 'petits animaux', 'ひき', ['いっぴき', 'にひき', 'さんびき', 'よんひき', 'ごひき', 'ろっぴき', 'ななひき', 'はっぴき', 'きゅうひき', 'じゅっぴき']],
+      ['杯', 'verres, bols', 'はい', ['いっぱい', 'にはい', 'さんばい', 'よんはい', 'ごはい', 'ろっぱい', 'ななはい', 'はっぱい', 'きゅうはい', 'じゅっぱい']],
+      ['個', 'petits objets', 'こ', ['いっこ', 'にこ', 'さんこ', 'よんこ', 'ごこ', 'ろっこ', 'ななこ', 'はっこ', 'きゅうこ', 'じゅっこ']],
+      ['歳', 'ans (âge)', 'さい', ['いっさい', 'にさい', 'さんさい', 'よんさい', 'ごさい', 'ろくさい', 'ななさい', 'はっさい', 'きゅうさい', 'じゅっさい']]
+    ];
+    CT.forEach(function (c) { for (var n = 1; n <= 10; n++) { add('cpt', 'c' + c[0], NB_KJ[n - 1] + c[0], c[3][n - 1], n + ' ' + c[1]); d[d.length - 1].reg = NB_NUM[n - 1] + c[2]; } });
+    var TS = ['ひとつ', 'ふたつ', 'みっつ', 'よっつ', 'いつつ', 'むっつ', 'ななつ', 'やっつ', 'ここのつ'];
+    TS.forEach(function (r, i) { add('cpt', 'ctsu', NB_KJ[i] + 'つ', r, (i + 1) + ' (objets)'); });
+    ['いちがつ', 'にがつ', 'さんがつ', 'しがつ', 'ごがつ', 'ろくがつ', 'しちがつ', 'はちがつ', 'くがつ', 'じゅうがつ', 'じゅういちがつ', 'じゅうにがつ'].forEach(function (r, i) { var j = i + 1; add('dat', 'mois', (j <= 10 ? NB_KJ[j - 1] : j === 11 ? '十一' : '十二') + '月', r, 'mois n°' + j); });
+    var DY = [['一日', 'ついたち', 'le 1er'], ['二日', 'ふつか', 'le 2'], ['三日', 'みっか', 'le 3'], ['四日', 'よっか', 'le 4'], ['五日', 'いつか', 'le 5'], ['六日', 'むいか', 'le 6'], ['七日', 'なのか', 'le 7'], ['八日', 'ようか', 'le 8'], ['九日', 'ここのか', 'le 9'], ['十日', 'とおか', 'le 10'], ['十四日', 'じゅうよっか', 'le 14'], ['二十日', 'はつか', 'le 20'], ['二十四日', 'にじゅうよっか', 'le 24'], ['十五日', 'じゅうごにち', 'le 15'], ['三十日', 'さんじゅうにち', 'le 30']];
+    DY.forEach(function (x) { add('dat', 'jour', x[0], x[1], 'jour du mois : ' + x[2]); });
+    [['月曜日', 'げつようび', 'lundi'], ['火曜日', 'かようび', 'mardi'], ['水曜日', 'すいようび', 'mercredi'], ['木曜日', 'もくようび', 'jeudi'], ['金曜日', 'きんようび', 'vendredi'], ['土曜日', 'どようび', 'samedi'], ['日曜日', 'にちようび', 'dimanche']].forEach(function (x) { add('dat', 'sem', x[0], x[1], x[2]); });
+    var HR = ['いちじ', 'にじ', 'さんじ', 'よじ', 'ごじ', 'ろくじ', 'しちじ', 'はちじ', 'くじ', 'じゅうじ', 'じゅういちじ', 'じゅうにじ'];
+    HR.forEach(function (r, i) { var j = i + 1; add('hr', 'heure', (j <= 10 ? NB_KJ[j - 1] : j === 11 ? '十一' : '十二') + '時', r, j + ' heure' + (j > 1 ? 's' : '')); });
+    var MN = [[5, 'ごふん'], [10, 'じゅっぷん'], [15, 'じゅうごふん'], [20, 'にじゅっぷん'], [45, 'よんじゅうごふん']], KJN = { 5: '五', 10: '十', 15: '十五', 20: '二十', 45: '四十五' };
+    [1, 3, 4, 7, 9, 12].forEach(function (h) { MN.forEach(function (m) { add('hr', 'hm', (h <= 10 ? NB_KJ[h - 1] : h === 11 ? '十一' : '十二') + '時' + KJN[m[0]] + '分', HR[h - 1] + m[1], h + ' h ' + m[0]); }); });
+    [3, 6, 8, 10].forEach(function (h) { add('hr', 'hm', NB_KJ[h - 1] + '時半', HR[h - 1] + 'はん', h + ' h 30'); });
+    [['四円', 'よえん', '4 yens'], ['五円', 'ごえん', '5 yens'], ['十円', 'じゅうえん', '10 yens'], ['百円', 'ひゃくえん', '100 yens'], ['三百円', 'さんびゃくえん', '300 yens'], ['六百円', 'ろっぴゃくえん', '600 yens'], ['八百円', 'はっぴゃくえん', '800 yens'], ['千円', 'せんえん', '1 000 yens'], ['三千円', 'さんぜんえん', '3 000 yens'], ['八千円', 'はっせんえん', '8 000 yens'], ['一万円', 'いちまんえん', '10 000 yens'], ['五千円', 'ごせんえん', '5 000 yens'], ['千五百円', 'せんごひゃくえん', '1 500 yens']].forEach(function (x) { add('px', 'prix', x[0], x[1], x[2]); });
+    return (NB_DATA = d);
+  }
+  var NB_CATS = [['all', 'Tout mélangé'], ['cpt', 'Compteurs (人, 本, 枚…)'], ['dat', 'Mois, jours et semaine'], ['hr', 'Heures et minutes'], ['px', 'Prix en yens']];
+  function nbQBuild(cat, mode) {
+    var all = nbBuild(), pool = shuffle(all.filter(function (x) { return cat === 'all' || x.cat === cat; })).slice(0, 10);
+    return { cat: cat, mode: mode, i: 0, score: 0, ans: null, done: false, items: pool.map(function (x) {
+      var same = shuffle(all.filter(function (y) { return y.g === x.g && y.jp !== x.jp; })), field = mode === 'lire' ? 'ka' : 'jp', opts = [x[field]], seen = {};
+      seen[x[field]] = 1;
+      if (mode === 'lire' && x.reg && x.reg !== x.ka) { opts.push(x.reg); seen[x.reg] = 1; }
+      same.concat(shuffle(all.filter(function (y) { return y.cat === x.cat && y.g !== x.g; }))).forEach(function (y) { if (opts.length < 4 && !seen[y[field]]) { seen[y[field]] = 1; opts.push(y[field]); } });
+      opts = shuffle(opts); return { x: x, opts: opts, good: opts.indexOf(x[field]) };
+    }) };
+  }
+  function nbInner() {
+    var N = lrn.nb, h = '';
+    if (!N.q) {
+      return '<div class="panel nbset"><label class="small muted" for="nbCat">Quoi réviser ?</label><select class="wksel" id="nbCat">' + NB_CATS.map(function (c) { return '<option value="' + c[0] + '"' + (N.cat === c[0] ? ' selected' : '') + '>' + c[1] + '</option>'; }).join('') + '</select>' +
+        '<div class="seg nbmode" role="tablist"><button type="button" role="tab" data-nb="mode:lire" aria-selected="' + (N.mode === 'lire') + '">Lire → lecture</button><button type="button" role="tab" data-nb="mode:ecoute" aria-selected="' + (N.mode === 'ecoute') + '">Écouter → écriture</button></div>' +
+        '<button type="button" class="btn primary" data-nb="go" style="width:100%;margin-top:10px">Jouer (10 questions)</button></div><p class="small muted">Exemple : 三本 se lit <b class="jp">さんぼん</b>, pas « さんほん ». Les pièges sont dans les sons qui changent !</p>';
+    }
+    var q = N.q;
+    if (q.done) return '<div class="panel radend"><h3 style="margin:0 0 6px">' + q.score + ' / ' + q.items.length + '</h3><p class="small">' + (q.score >= 9 ? 'Les nombres n’ont plus de secret pour toi !' : q.score >= 6 ? 'Bien joué, encore un peu d’entraînement.' : 'C’est normal : ces lectures s’apprennent par cœur, refais une partie.') + (q.gain ? ' <b>+' + q.gain + ' pièces</b>' : '') + '</p><button type="button" class="btn primary" data-nb="again">Rejouer</button> <button type="button" class="btn" data-nb="menu">Changer de thème</button></div>';
+    var it = q.items[q.i], x = it.x, listen = q.mode === 'ecoute';
+    var fb = '';
+    if (q.ans !== null) fb = '<div class="panel radfb ' + (q.ans === it.good ? 'ok' : 'ko') + '"><b>' + (q.ans === it.good ? 'Exact !' : 'Pas tout à fait.') + '</b><br><span class="jp"><b>' + esc(x.jp) + '</b> = ' + esc(x.ka) + '</span> · ' + esc(x.fr) + '<br><button type="button" class="btn primary" data-nb="next">' + (q.i + 1 >= q.items.length ? 'Résultat' : 'Suivant') + '</button></div>';
+    return '<div class="radq1"><div class="small muted">Question ' + (q.i + 1) + '/' + q.items.length + ' · ' + q.score + ' pt</div>' +
+      (listen ? '<div class="radbig" style="font-size:64px">🔊</div><p style="margin:0 0 6px;text-align:center"><b>Quel mot entends-tu ?</b> <small class="muted">(' + esc(x.fr) + ')</small></p><p style="text-align:center"><button type="button" class="btn" data-nb="say">Réécouter</button></p>' : '<div class="radbig jp" style="font-size:72px">' + esc(x.jp) + '</div><p style="margin:0 0 6px;text-align:center"><b>Comment ça se lit ?</b> <small class="muted">(' + esc(x.fr) + ')</small></p>') +
+      '<div class="radopts">' + it.opts.map(function (t, i) { var c = q.ans === null ? '' : i === it.good ? ' ok' : i === q.ans ? ' ko' : ''; return '<button type="button" class="btn radopt jp' + c + '" data-nb="ans:' + i + '"' + (q.ans !== null ? ' disabled' : '') + '>' + esc(t) + '</button>'; }).join('') + '</div></div>' + fb;
+  }
+  document.addEventListener('change', function (e) { if (e.target && e.target.id === 'nbCat') lrn.nb.cat = e.target.value; });
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target.closest('[data-nb]') : null; if (!t || !user || !S) return;
+    var a = t.getAttribute('data-nb'), N = lrn.nb;
+    if (a.indexOf('mode:') === 0) { N.mode = a.slice(5); lrnRefresh(); }
+    else if (a === 'go' || a === 'again') { N.q = nbQBuild(N.cat, N.mode); lrnRefresh(); if (N.mode === 'ecoute') setTimeout(function () { aidSpeak(N.q.items[0].x.ka, 0.8); }, 200); }
+    else if (a === 'menu') { N.q = null; lrnRefresh(); }
+    else if (a === 'say') aidSpeak(N.q.items[N.q.i].x.ka, 0.8);
+    else if (a.indexOf('ans:') === 0) { var q = N.q; if (q.ans !== null) return; q.ans = +a.slice(4); if (q.ans === q.items[q.i].good) { q.score++; sfx('ok', true); } lrnRefresh(); }
+    else if (a === 'next') { var q2 = N.q; q2.ans = null; q2.i++; if (q2.i >= q2.items.length) { q2.done = true; q2.gain = q2.score; if (q2.gain) { S.coins = coinsOf() + q2.gain; S.coinsTotal = (S.coinsTotal || 0) + q2.gain; renderBars(); } persist(); } lrnRefresh(); if (!q2.done && N.mode === 'ecoute') setTimeout(function () { aidSpeak(q2.items[q2.i].x.ka, 0.8); }, 200); }
+  });
   function radKBody(k) {
     var o = radOfficial(k);
     return '<div class="krow"><span class="kl">Sens</span><span><b>' + esc(k.sens) + '</b></span></div><div class="krow"><span class="kl">On\'yomi</span><span class="jp">' + esc(k.on.join('・') || '—') + '</span></div><div class="krow"><span class="kl">Kun\'yomi</span><span class="jp">' + esc(k.kun.join('・') || '—') + '</span></div>' +
-      (o ? '<div class="krow"><span class="kl">Clé 部首</span><span><b class="rg">' + esc(o.form) + '</b> ' + esc(o.kana) + ' — ' + esc(o.sens) + '</span></div>' : '') + '<div class="krow"><span class="kl">Composition</span><span>' + esc(k.parts) + '</span></div><div class="krow"><span class="kl">Astuce</span><span class="tip">' + esc(k.tip) + '</span></div>';
+      (o ? '<div class="krow"><span class="kl">Clé 部首</span><span><button type="button" class="radgo" data-radgo="' + esc(o.form + '|' + o.kangxi) + '"><b class="rg">' + esc(o.form) + '</b></button> ' + esc(o.kana) + ' — ' + esc(o.sens) + '</span></div>' : '') + '<div class="krow"><span class="kl">Composition</span><span>' + esc(k.parts) + '</span></div><div class="krow"><span class="kl">Astuce</span><span class="tip">' + esc(k.tip) + '</span></div>';
   }
   // ---- Cuisine ----
   var RECIPES = [
-    { jp: '味噌汁', ka: 'みそしる', fr: 'Soupe miso', ic: '🍲', who: '2 personnes · 10 min',
+    { jp: '味噌汁', ka: 'みそしる', fr: 'Soupe miso', ic: '🍲', who: '2 personnes · 10 min', lv: 'N5',
       ing: [['水', 'みず', 'eau'], ['だし', 'だし', 'bouillon dashi'], ['豆腐', 'とうふ', 'tofu'], ['わかめ', 'わかめ', 'algue wakame'], ['味噌', 'みそ', 'pâte miso'], ['ねぎ', 'ねぎ', 'ciboule']],
       st: [['水をなべに入れて、火をつけます。', 'みずをなべにいれて、ひをつけます。', 'Mets l’eau dans la casserole et allume le feu.'], ['お湯がわいたら、だしを入れます。', 'おゆがわいたら、だしをいれます。', 'Quand l’eau bout, ajoute le dashi.'], ['豆腐とわかめを切って、入れます。', 'とうふとわかめをきって、いれます。', 'Coupe le tofu et le wakame, puis ajoute-les.'], ['火を止めて、味噌をとかします。', 'ひをとめて、みそをとかします。', 'Éteins le feu et dilue le miso.'], ['ねぎをのせて、できあがり。', 'ねぎをのせて、できあがり。', 'Ajoute la ciboule : c’est prêt.']],
       vb: [['入れる', 'いれる', 'mettre dedans'], ['切る', 'きる', 'couper'], ['止める', 'とめる', 'arrêter, éteindre'], ['とかす', 'とかす', 'dissoudre'], ['のせる', 'のせる', 'poser dessus']] },
-    { jp: 'おにぎり', ka: 'おにぎり', fr: 'Boule de riz', ic: '🍙', who: '1 personne · 5 min',
+    { jp: 'おにぎり', ka: 'おにぎり', fr: 'Boule de riz', ic: '🍙', who: '1 personne · 5 min', lv: 'N5',
       ing: [['ごはん', 'ごはん', 'riz cuit'], ['塩', 'しお', 'sel'], ['のり', 'のり', 'algue nori'], ['梅干し', 'うめぼし', 'prune salée'], ['鮭', 'さけ', 'saumon']],
       st: [['手をぬらして、塩をつけます。', 'てをぬらして、しおをつけます。', 'Mouille tes mains et mets du sel.'], ['ごはんを手にのせます。', 'ごはんをてにのせます。', 'Pose le riz dans ta main.'], ['真ん中に梅干しを入れます。', 'まんなかにうめぼしをいれます。', 'Mets l’umeboshi au centre.'], ['三角にぎゅっとにぎります。', 'さんかくにぎゅっとにぎります。', 'Serre fermement en forme de triangle.'], ['のりをまいて、食べます。', 'のりをまいて、たべます。', 'Enroule le nori et mange.']],
       vb: [['つける', 'つける', 'mettre, appliquer'], ['にぎる', 'にぎる', 'serrer, presser'], ['まく', 'まく', 'enrouler'], ['食べる', 'たべる', 'manger']] },
-    { jp: '卵焼き', ka: 'たまごやき', fr: 'Omelette roulée', ic: '🍳', who: '2 personnes · 15 min',
+    { jp: '卵焼き', ka: 'たまごやき', fr: 'Omelette roulée', ic: '🍳', who: '2 personnes · 15 min', lv: 'N5',
       ing: [['卵', 'たまご', 'œuf (3)'], ['砂糖', 'さとう', 'sucre'], ['しょうゆ', 'しょうゆ', 'sauce soja'], ['油', 'あぶら', 'huile'], ['フライパン', 'フライパン', 'poêle']],
       st: [['ボウルに卵を割ります。', 'ボウルにたまごをわります。', 'Casse les œufs dans un bol.'], ['砂糖としょうゆを入れて、よくまぜます。', 'さとうとしょうゆをいれて、よくまぜます。', 'Ajoute le sucre et la sauce soja, mélange bien.'], ['フライパンに油をひいて、熱くします。', 'フライパンにあぶらをひいて、あつくします。', 'Huile la poêle et fais-la chauffer.'], ['卵を少し入れて、まきます。', 'たまごをすこしいれて、まきます。', 'Verse un peu d’œuf et enroule.'], ['同じことを三回して、切ります。', 'おなじことをさんかいして、きります。', 'Répète trois fois, puis coupe.']],
       vb: [['割る', 'わる', 'casser'], ['まぜる', 'まぜる', 'mélanger'], ['熱くする', 'あつくする', 'faire chauffer'], ['巻く', 'まく', 'enrouler']] },
-    { jp: 'カレーライス', ka: 'カレーライス', fr: 'Riz au curry', ic: '🍛', who: '4 personnes · 40 min',
+    { jp: 'カレーライス', ka: 'カレーライス', fr: 'Riz au curry', ic: '🍛', who: '4 personnes · 40 min', lv: 'N4',
       ing: [['玉ねぎ', 'たまねぎ', 'oignon'], ['にんじん', 'にんじん', 'carotte'], ['じゃがいも', 'じゃがいも', 'pomme de terre'], ['肉', 'にく', 'viande'], ['カレールー', 'カレールー', 'roux de curry'], ['ごはん', 'ごはん', 'riz cuit']],
       st: [['野菜と肉を小さく切ります。', 'やさいとにくをちいさくきります。', 'Coupe les légumes et la viande en petits morceaux.'], ['なべで肉と野菜をいためます。', 'なべでにくとやさいをいためます。', 'Fais revenir la viande et les légumes dans la casserole.'], ['水を入れて、二十分煮ます。', 'みずをいれて、にじゅっぷんにます。', 'Ajoute de l’eau et laisse mijoter vingt minutes.'], ['火を止めて、ルーを入れます。', 'ひをとめて、ルーをいれます。', 'Éteins le feu et ajoute le roux.'], ['ごはんにかけて、いただきます！', 'ごはんにかけて、いただきます！', 'Verse sur le riz et bon appétit !']],
       vb: [['切る', 'きる', 'couper'], ['いためる', 'いためる', 'faire revenir'], ['煮る', 'にる', 'mijoter'], ['かける', 'かける', 'verser sur']] },
-    { jp: 'お茶', ka: 'おちゃ', fr: 'Thé vert', ic: '🍵', who: '1 personne · 5 min',
+    { jp: 'お茶', ka: 'おちゃ', fr: 'Thé vert', ic: '🍵', who: '1 personne · 5 min', lv: 'N5',
       ing: [['お茶の葉', 'おちゃのは', 'feuilles de thé'], ['お湯', 'おゆ', 'eau chaude'], ['急須', 'きゅうす', 'théière'], ['湯のみ', 'ゆのみ', 'tasse à thé']],
       st: [['急須にお茶の葉を入れます。', 'きゅうすにおちゃのはをいれます。', 'Mets les feuilles de thé dans la théière.'], ['お湯をそそぎます。', 'おゆをそそぎます。', 'Verse l’eau chaude.'], ['一分待ちます。', 'いっぷんまちます。', 'Attends une minute.'], ['湯のみにゆっくり入れます。', 'ゆのみにゆっくりいれます。', 'Verse doucement dans la tasse.']],
-      vb: [['そそぐ', 'そそぐ', 'verser'], ['待つ', 'まつ', 'attendre'], ['入れる', 'いれる', 'mettre, verser']] }
+      vb: [['そそぐ', 'そそぐ', 'verser'], ['待つ', 'まつ', 'attendre'], ['入れる', 'いれる', 'mettre, verser']] },
+    { jp: '親子丼', ka: 'おやこどん', fr: 'Poulet et œuf sur riz', ic: '🍚', who: '2 personnes · 20 min', lv: 'N4',
+      ing: [['鶏肉', 'とりにく', 'poulet'], ['卵', 'たまご', 'œuf'], ['玉ねぎ', 'たまねぎ', 'oignon'], ['だし', 'だし', 'bouillon dashi'], ['しょうゆ', 'しょうゆ', 'sauce soja'], ['砂糖', 'さとう', 'sucre'], ['ごはん', 'ごはん', 'riz cuit']],
+      st: [['玉ねぎをうすく切ります。', 'たまねぎをうすくきります。', 'Coupe l’oignon en fines tranches.'], ['なべにだしとしょうゆと砂糖を入れます。', 'なべにだしとしょうゆとさとうをいれます。', 'Mets le dashi, la sauce soja et le sucre dans la casserole.'], ['鶏肉と玉ねぎを入れて、五分煮ます。', 'とりにくとたまねぎをいれて、ごふんにます。', 'Ajoute poulet et oignon, laisse mijoter cinq minutes.'], ['とき卵を回しかけます。', 'ときたまごをまわしかけます。', 'Verse l’œuf battu en cercle.'], ['ふたをして、一分待ちます。', 'ふたをして、いっぷんまちます。', 'Couvre et attends une minute.'], ['ごはんの上にのせます。', 'ごはんのうえにのせます。', 'Pose le tout sur le riz.']],
+      vb: [['煮る', 'にる', 'mijoter'], ['回しかける', 'まわしかける', 'verser en cercle'], ['ふたをする', 'ふたをする', 'couvrir'], ['待つ', 'まつ', 'attendre'], ['のせる', 'のせる', 'poser dessus']] },
+    { jp: '焼きそば', ka: 'やきそば', fr: 'Nouilles sautées', ic: '🍜', who: '2 personnes · 15 min', lv: 'N5',
+      ing: [['めん', 'めん', 'nouilles'], ['キャベツ', 'キャベツ', 'chou'], ['豚肉', 'ぶたにく', 'porc'], ['ソース', 'ソース', 'sauce'], ['油', 'あぶら', 'huile']],
+      st: [['野菜と肉を切ります。', 'やさいとにくをきります。', 'Coupe les légumes et la viande.'], ['フライパンに油を入れて、肉をいためます。', 'フライパンにあぶらをいれて、にくをいためます。', 'Mets l’huile dans la poêle et fais revenir la viande.'], ['野菜を入れて、いためます。', 'やさいをいれて、いためます。', 'Ajoute les légumes et fais sauter.'], ['めんを入れて、ほぐします。', 'めんをいれて、ほぐします。', 'Ajoute les nouilles et sépare-les.'], ['ソースをかけて、まぜます。', 'ソースをかけて、まぜます。', 'Verse la sauce et mélange.']],
+      vb: [['切る', 'きる', 'couper'], ['いためる', 'いためる', 'faire revenir'], ['ほぐす', 'ほぐす', 'défaire, séparer'], ['まぜる', 'まぜる', 'mélanger'], ['かける', 'かける', 'verser sur']] },
+    { jp: 'きゅうりのサラダ', ka: 'きゅうりのサラダ', fr: 'Salade de concombre', ic: '🥒', who: '2 personnes · 10 min', lv: 'N5',
+      ing: [['きゅうり', 'きゅうり', 'concombre'], ['塩', 'しお', 'sel'], ['酢', 'す', 'vinaigre'], ['ごま油', 'ごまあぶら', 'huile de sésame']],
+      st: [['きゅうりを洗います。', 'きゅうりをあらいます。', 'Lave le concombre.'], ['うすく切ります。', 'うすくきります。', 'Coupe-le en fines rondelles.'], ['塩をふって、五分おきます。', 'しおをふって、ごふんおきます。', 'Saupoudre de sel et laisse reposer cinq minutes.'], ['水をしぼります。', 'みずをしぼります。', 'Presse pour retirer l’eau.'], ['酢とごま油をかけて、まぜます。', 'すとごまあぶらをかけて、まぜます。', 'Assaisonne de vinaigre et d’huile de sésame, puis mélange.']],
+      vb: [['洗う', 'あらう', 'laver'], ['ふる', 'ふる', 'saupoudrer'], ['おく', 'おく', 'poser, laisser'], ['しぼる', 'しぼる', 'presser, essorer']] },
+    { jp: '納豆ごはん', ka: 'なっとうごはん', fr: 'Riz au natto', ic: '🫘', who: '1 personne · 5 min', lv: 'N5',
+      ing: [['納豆', 'なっとう', 'natto'], ['ごはん', 'ごはん', 'riz cuit'], ['しょうゆ', 'しょうゆ', 'sauce soja'], ['からし', 'からし', 'moutarde'], ['ねぎ', 'ねぎ', 'ciboule']],
+      st: [['納豆をかきまぜます。', 'なっとうをかきまぜます。', 'Remue bien le natto.'], ['しょうゆとからしを入れます。', 'しょうゆとからしをいれます。', 'Ajoute la sauce soja et la moutarde.'], ['もう一度まぜます。', 'もういちどまぜます。', 'Mélange encore une fois.'], ['ごはんにのせます。', 'ごはんにのせます。', 'Pose-le sur le riz.'], ['ねぎをかけて、食べます。', 'ねぎをかけて、たべます。', 'Parsème de ciboule et mange.']],
+      vb: [['かきまぜる', 'かきまぜる', 'remuer, brasser'], ['入れる', 'いれる', 'ajouter'], ['のせる', 'のせる', 'poser dessus'], ['食べる', 'たべる', 'manger']] },
+    { jp: '天ぷら', ka: 'てんぷら', fr: 'Tempura', ic: '🍤', who: '2 personnes · 30 min', lv: 'N4',
+      ing: [['えび', 'えび', 'crevette'], ['さつまいも', 'さつまいも', 'patate douce'], ['小麦粉', 'こむぎこ', 'farine'], ['冷たい水', 'つめたいみず', 'eau froide'], ['油', 'あぶら', 'huile']],
+      st: [['小麦粉と冷たい水をまぜます。', 'こむぎことつめたいみずをまぜます。', 'Mélange la farine et l’eau froide.'], ['えびとさつまいもを切ります。', 'えびとさつまいもをきります。', 'Coupe les crevettes et la patate douce.'], ['油を百八十度に熱します。', 'あぶらをひゃくはちじゅうどにねっします。', 'Chauffe l’huile à 180 degrés.'], ['材料に衣をつけます。', 'ざいりょうにころもをつけます。', 'Enrobe les ingrédients de pâte.'], ['油で二、三分あげます。', 'あぶらでに、さんぷんあげます。', 'Fais frire deux à trois minutes.']],
+      vb: [['熱する', 'ねっする', 'chauffer'], ['つける', 'つける', 'enrober, appliquer'], ['揚げる', 'あげる', 'frire']] },
+    { jp: '餃子', ka: 'ぎょうざ', fr: 'Gyoza', ic: '🥟', who: '3 personnes · 40 min', lv: 'N4',
+      ing: [['ひき肉', 'ひきにく', 'viande hachée'], ['キャベツ', 'キャベツ', 'chou'], ['ねぎ', 'ねぎ', 'ciboule'], ['餃子の皮', 'ぎょうざのかわ', 'pâte à gyoza'], ['水', 'みず', 'eau']],
+      st: [['キャベツとねぎをこまかく切ります。', 'キャベツとねぎをこまかくきります。', 'Hache finement le chou et la ciboule.'], ['ひき肉とまぜて、味をつけます。', 'ひきにくとまぜて、あじをつけます。', 'Mélange avec la viande hachée et assaisonne.'], ['皮にのせて、包みます。', 'かわにのせて、つつみます。', 'Dépose sur la pâte et replie.'], ['フライパンで焼きます。', 'フライパンでやきます。', 'Fais dorer à la poêle.'], ['水を入れて、ふたをします。', 'みずをいれて、ふたをします。', 'Ajoute de l’eau et couvre.'], ['焼けたら、お皿に出します。', 'やけたら、おさらにだします。', 'Quand c’est cuit, sers dans l’assiette.']],
+      vb: [['包む', 'つつむ', 'envelopper, replier'], ['焼く', 'やく', 'griller, dorer'], ['出す', 'だす', 'sortir, servir'], ['味をつける', 'あじをつける', 'assaisonner']] },
+    { jp: 'お好み焼き', ka: 'おこのみやき', fr: 'Okonomiyaki', ic: '🥞', who: '2 personnes · 25 min', lv: 'N4',
+      ing: [['キャベツ', 'キャベツ', 'chou'], ['小麦粉', 'こむぎこ', 'farine'], ['卵', 'たまご', 'œuf'], ['豚肉', 'ぶたにく', 'porc'], ['ソース', 'ソース', 'sauce'], ['マヨネーズ', 'マヨネーズ', 'mayonnaise']],
+      st: [['キャベツを小さく切ります。', 'キャベツをちいさくきります。', 'Coupe le chou en petits morceaux.'], ['ボウルに小麦粉と卵と水を入れて、まぜます。', 'ボウルにこむぎことたまごとみずをいれて、まぜます。', 'Dans un bol, mélange farine, œuf et eau.'], ['キャベツを入れて、ざっくりまぜます。', 'キャベツをいれて、ざっくりまぜます。', 'Ajoute le chou et mélange sans trop remuer.'], ['フライパンに生地を丸く広げます。', 'フライパンにきじをまるくひろげます。', 'Étale la pâte en rond dans la poêle.'], ['豚肉をのせて、両面を焼きます。', 'ぶたにくをのせて、りょうめんをやきます。', 'Pose le porc dessus et fais cuire des deux côtés.'], ['ソースとマヨネーズをかけます。', 'ソースとマヨネーズをかけます。', 'Nappe de sauce et de mayonnaise.']],
+      vb: [['広げる', 'ひろげる', 'étaler'], ['焼く', 'やく', 'faire cuire, griller'], ['のせる', 'のせる', 'poser dessus'], ['かける', 'かける', 'verser sur']] },
+    { jp: 'サンドイッチ', ka: 'サンドイッチ', fr: 'Sandwich', ic: '🥪', who: '1 personne · 5 min', lv: 'N5',
+      ing: [['パン', 'パン', 'pain'], ['バター', 'バター', 'beurre'], ['ハム', 'ハム', 'jambon'], ['チーズ', 'チーズ', 'fromage'], ['レタス', 'レタス', 'laitue']],
+      st: [['パンにバターをぬります。', 'パンにバターをぬります。', 'Tartine le pain de beurre.'], ['レタスとハムをのせます。', 'レタスとハムをのせます。', 'Pose la laitue et le jambon.'], ['チーズをのせます。', 'チーズをのせます。', 'Ajoute le fromage.'], ['もう一枚のパンをのせます。', 'もういちまいのパンをのせます。', 'Pose une autre tranche de pain.'], ['半分に切って、できあがり。', 'はんぶんにきって、できあがり。', 'Coupe en deux : c’est prêt.']],
+      vb: [['ぬる', 'ぬる', 'tartiner, étaler'], ['のせる', 'のせる', 'poser dessus'], ['切る', 'きる', 'couper']] }
   ];
+  function lvSel(k, cur) { return '<select class="wksel lvsel" data-lvsel="' + k + '" aria-label="Niveau"><option value="">Tous les niveaux</option><option value="N5"' + (cur === 'N5' ? ' selected' : '') + '>N5 · débutant</option><option value="N4"' + (cur === 'N4' ? ' selected' : '') + '>N4 · élémentaire</option></select>'; }
+  document.addEventListener('change', function (e) { var t = e.target; if (!t || !t.getAttribute || !t.getAttribute('data-lvsel')) return; if (t.getAttribute('data-lvsel') === 'cuis') lrn.cuis.lv = t.value; else lrn.kar.lv = t.value; lrnRefresh(); });
   function cuisInner() {
     var C = lrn.cuis;
-    if (C.r < 0) return '<div class="cuisgrid">' + RECIPES.map(function (r, i) { return '<button type="button" class="mode gamecard djt cuist" data-cuis="open:' + i + '"><span class="tk" aria-hidden="true">' + r.ic + '</span><span class="gtx"><b class="jp">' + esc(r.jp) + '</b><small>' + esc(r.fr) + ' · ' + esc(r.who) + '</small></span></button>'; }).join('') + '</div>';
+    if (C.r < 0) return lvSel('cuis', C.lv) + '<div class="cuisgrid">' + RECIPES.map(function (r, i) { return !C.lv || r.lv === C.lv ? '<button type="button" class="mode gamecard djt cuist" data-cuis="open:' + i + '"><span class="tk" aria-hidden="true">' + r.ic + '</span><span class="gtx"><b class="jp">' + esc(r.jp) + '</b><small>' + esc(r.lv) + ' · ' + esc(r.fr) + ' · ' + esc(r.who) + '</small></span></button>' : ''; }).join('') + '</div>';
     var r = RECIPES[C.r];
     return '<div class="cuisd"><div class="cuish"><button type="button" class="btn" data-cuis="back">‹ Recettes</button><span class="cuisti"><b class="jp">' + r.ic + ' ' + esc(r.jp) + '</b><small>' + esc(r.fr) + ' · ' + esc(r.who) + '</small></span></div>' +
       '<div class="cuisopt"><label><input type="checkbox" data-cuis="kana"' + (C.kana ? ' checked' : '') + '> Lecture</label><label><input type="checkbox" data-cuis="fr"' + (C.fr ? ' checked' : '') + '> Traduction</label><button type="button" class="btn primary" data-cuis="all">▶ Écouter la recette</button></div>' +
@@ -20114,7 +20238,30 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
       s: 'わたし|の|町/まち|は|小/ちい|さい|です|が|、|静/しず|か|で|いい|ところ|です|。|駅/えき|の|近/ちか|く|に|大/おお|きい|図書館/としょかん|が|あります|。|毎週/まいしゅう|土曜日/どようび|に|そこ|で|本/ほん|を|読/よ|みます|。' },
     { t: 'Les quatre saisons', fr: 'Le Japon a quatre saisons. Au printemps, les cerisiers ; en été, les fêtes ; en automne, les feuilles rouges ; en hiver, la neige. Ma saison préférée, c’est l’automne.',
       s: '日本/にほん|には|四/よっ|つの|季節/きせつ|が|あります|。|春/はる|は|桜/さくら|、|夏/なつ|は|祭/まつり|、|秋/あき|は|紅葉/もみじ|、|冬/ふゆ|は|雪/ゆき|です|。|わたし|は|秋/あき|が|いちばん|好/す|きです|。' }
+    ,{ t: 'Ma famille', lv: 'N5', fr: 'Ma famille compte quatre personnes. Mon père est employé de bureau, ma mère est professeure. Ma petite sœur est lycéenne. Moi, je suis étudiant.',
+      s: 'わたし|の|家族/かぞく|は|四人/よにん|です|。|父/ちち|は|会社員/かいしゃいん|で|、|母/はは|は|先生/せんせい|です|。|妹/いもうと|は|高校生/こうこうせい|です|。|わたし|は|大学生/だいがくせい|です|。' },
+    { t: 'Mon passe-temps', lv: 'N5', fr: 'Mon passe-temps, c’est écouter de la musique. Chaque jour, je l’écoute dans le train. Le week-end, je vais au karaoké avec des amis.',
+      s: 'わたし|の|趣味/しゅみ|は|音楽/おんがく|を|聞/き|く|こと|です|。|毎日/まいにち|電車/でんしゃ|の|中/なか|で|聞/き|きます|。|週末/しゅうまつ|は|友達/ともだち|と|カラオケ|に|行/い|きます|。' },
+    { t: 'Il pleut', lv: 'N5', fr: 'Aujourd’hui, il pleut. Je prends mon parapluie et je vais à l’école. À l’école, j’ai retrouvé un ami. Nous avons déjeuné ensemble.',
+      s: '今日/きょう|は|雨/あめ|です|。|かさ|を|持/も|って|、|学校/がっこう|へ|行/い|きます|。|学校/がっこう|で|友達/ともだち|に|会/あ|いました|。|いっしょ|に|昼/ひる|ごはん|を|食/た|べました|。' },
+    { t: 'Au restaurant', lv: 'N5', fr: 'Au restaurant, j’ai commandé des ramen. C’était très bon. Mon ami a mangé du curry. L’addition était de deux mille yens.',
+      s: 'レストラン|で|ラーメン|を|注文/ちゅうもん|しました|。|とても|おいしかった|です|。|友達/ともだち|は|カレー|を|食/た|べました|。|お会計/おかいけい|は|二千円/にせんえん|でした|。' },
+    { t: 'Ma chambre', lv: 'N5', fr: 'Ma chambre est à l’étage. Dans la pièce, il y a un lit et un bureau. Sur le bureau, il y a cinq livres.',
+      s: 'わたし|の|部屋/へや|は|二階/にかい|に|あります|。|部屋/へや|の|中/なか|に|ベッド|と|机/つくえ|が|あります|。|机/つくえ|の|上/うえ|に|本/ほん|が|五冊/ごさつ|あります|。' },
+    { t: 'Voyage à Kyoto', lv: 'N4', fr: 'Le mois dernier, je suis allé en voyage à Kyoto. J’ai vu beaucoup de temples et de sanctuaires. Marcher dans la vieille ville était agréable. Je voudrais y retourner.',
+      s: '先月/せんげつ|、|京都/きょうと|へ|旅行/りょこう|に|行/い|きました|。|お寺/おてら|や|神社/じんじゃ|を|たくさん|見/み|ました|。|古/ふる|い|町/まち|を|歩/ある|くのは|楽/たの|しかった|です|。|また|行/い|きたい|です|。' },
+    { t: 'Le petit boulot', lv: 'N4', fr: 'Je travaille trois fois par semaine dans un café. Le travail est chargé, mais tout le monde est gentil. J’économise de l’argent pour aller au Japon cet été.',
+      s: 'わたし|は|週/しゅう|に|三回/さんかい|、|カフェ|で|アルバイト|を|して|います|。|仕事/しごと|は|忙/いそが|しい|です|が|、|店/みせ|の|人/ひと|は|みんな|親切/しんせつ|です|。|お金/おかね|を|ためて|、|夏/なつ|に|日本/にほん|へ|行/い|くつもり|です|。' },
+    { t: 'Chez le médecin', lv: 'N4', fr: 'J’ai mal à la tête depuis hier, alors je suis allé à l’hôpital. Le médecin m’a dit « Reposez-vous bien ». J’ai reçu des médicaments et je me suis couché tôt.',
+      s: '昨日/きのう|から|頭/あたま|が|痛/いた|い|ので|、|病院/びょういん|へ|行/い|きました|。|医者/いしゃ|は|「ゆっくり|休/やす|んで|ください」|と|言/い|いました|。|薬/くすり|を|もらって|、|早/はや|く|寝/ね|ました|。' },
+    { t: 'Le sac oublié', lv: 'N4', fr: 'J’ai oublié mon sac dans le train. Quand j’ai demandé au personnel de la gare, on m’a dit qu’il avait déjà été retrouvé. Je suis allé le récupérer : quelle chance !',
+      s: '電車/でんしゃ|の|中/なか|に|かばん|を|忘/わす|れて|しまいました|。|駅/えき|の|人/ひと|に|聞/き|くと|、|もう|見/み|つかった|そうです|。|取/と|りに|行/い|って|、|本当/ほんとう|に|よかった|です|。' },
+    { t: 'Matin d’hiver', lv: 'N4', fr: 'Au réveil, il neigeait dehors. Comme il faisait froid, j’ai bu du thé chaud avant de sortir. La route étant glissante, j’ai marché lentement.',
+      s: '朝/あさ|起/お|きると|、|外/そと|は|雪/ゆき|でした|。|寒/さむ|かった|ので|、|温/あたた|かい|お茶/おちゃ|を|飲/の|んでから|、|家/いえ|を|出/で|ました|。|道/みち|が|すべりやすい|ので|、|ゆっくり|歩/ある|きました|。' },
+    { t: 'La fête d’été', lv: 'N4', fr: 'À la fête d’été, j’ai mis un yukata avec des amis. J’ai acheté des takoyaki à un stand et j’ai regardé le feu d’artifice. Il y avait beaucoup de monde et j’étais un peu fatigué, mais c’est devenu un beau souvenir.',
+      s: '夏祭/なつまつ|りで|、|友達/ともだち|と|浴衣/ゆかた|を|着/き|ました|。|屋台/やたい|で|たこ焼/たこや|きを|買/か|って|、|花火/はなび|を|見/み|ました|。|人/ひと|が|多/おお|くて|、|少/すこ|し|疲/つか|れました|が|、|楽/たの|しい|思/おも|い出/で|に|なりました|。' }
   ];
+  KARTX.forEach(function (x) { x.lv = x.lv || 'N5'; });
   KARTX.forEach(function (x) { x.tok = x.s.split('|').map(function (p) { var a = p.split('/'); return { j: a[0], r: a[1] || '' }; }); x.txt = x.tok.map(function (t) { return t.j; }).join(''); });
   var karTimers = [], karU = null;
   function karStop() {
@@ -20158,7 +20305,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   }
   function karInner() {
     var K = lrn.kar;
-    if (K.t < 0) return '<div class="cuisgrid">' + KARTX.map(function (x, i) { return '<button type="button" class="mode gamecard djt cuist" data-kar="open:' + i + '"><span class="tk" aria-hidden="true">読</span><span class="gtx"><b>' + esc(x.t) + '</b><small>' + x.tok.filter(function (t) { return /[぀-ヿ一-鿿]/.test(t.j); }).length + ' mots · niveau N5</small></span></button>'; }).join('') + '</div>';
+    if (K.t < 0) return lvSel('kar', K.lv) + '<div class="cuisgrid">' + KARTX.map(function (x, i) { return !K.lv || x.lv === K.lv ? '<button type="button" class="mode gamecard djt cuist" data-kar="open:' + i + '"><span class="tk" aria-hidden="true">読</span><span class="gtx"><b>' + esc(x.t) + '</b><small>' + x.tok.filter(function (t) { return /[぀-ヿ一-鿿]/.test(t.j); }).length + ' mots · ' + x.lv + '</small></span></button>' : ''; }).join('') + '</div>';
     var x = KARTX[K.t];
     return '<div class="cuisd"><div class="cuish"><button type="button" class="btn" data-kar="back">‹ Textes</button><span class="cuisti"><b>' + esc(x.t) + '</b></span></div>' +
       '<div class="cuisopt"><label><input type="checkbox" data-kar="kana"' + (K.kana ? ' checked' : '') + '> Lecture</label><label><input type="checkbox" data-kar="fr"' + (K.fr ? ' checked' : '') + '> Traduction</label><select data-kar="rate" aria-label="Vitesse"><option value="0.6"' + (K.rate === 0.6 ? ' selected' : '') + '>Lent</option><option value="0.8"' + (K.rate === 0.8 ? ' selected' : '') + '>Normal</option><option value="1"' + (K.rate === 1 ? ' selected' : '') + '>Rapide</option></select></div>' +
@@ -20203,7 +20350,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     if (!djSub) return tipHTML('dojo', 'Voici ton Dojo ! Touche une carte pour t\'entraîner : <b>Flashcards</b> pour revoir tes mots, <b>Kanjis</b>, <b>Mini-jeux</b>, ton <b>Carnet d\'erreurs</b>, ou du <b>vocabulaire du quotidien</b> ou le <b>JLPT</b>.') +
       '<div class="djgrid">' + ['flash', 'kanji', 'mini', 'err', 'daily', 'jlpt', 'rad'].map(djTile).join('') + '</div>';
     if (djSub === 'err') return '';
-    if (djSub === 'rad' || djSub === 'cuis' || djSub === 'lire') return djBackHTML(djSub) + tipHTML('dj_' + djSub, DJ_INFO[djSub].tip) + '<div id="lrnHost">' + lrnInner() + '</div>';
+    if (djSub === 'rad' || djSub === 'cuis' || djSub === 'lire' || djSub === 'nb') return djBackHTML(djSub) + tipHTML('dj_' + djSub, DJ_INFO[djSub].tip) + '<div id="lrnHost">' + lrnInner() + '</div>';
     if (djSub === 'daily' || djSub === 'jlpt') return qvHTML();
     return djBackHTML(djSub) + tipHTML('dj_' + djSub, DJ_INFO[djSub].tip) + (djSub === 'flash' ? fl : djSub === 'kanji' ? kj : mj + gameAchHTML());
   }
@@ -20430,7 +20577,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
       var k = KANJI_DATA.filter(function (x) { return x.k === key.slice(3); })[0];
       return k ? { kind: 'kanji', key: key, big: k.k, read: [(k.on || []).join('、'), (k.kun || []).join('、')].filter(Boolean).join(' · '), sens: k.sens } : null;
     }
-    var w = ERR_WMAP[key];
+    var w = ERR_WMAP[key] || (QVW[key] ? jlAdapt(QVW[key]) : null);
     return w ? { kind: 'mot', key: key, big: w.mot, read: w.lecture, sens: w.sens, w: w } : null;
   }
   function errList() {
@@ -20439,7 +20586,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     var out = [];
     Object.keys(S.err).forEach(function (k) {
       var info = errInfo(k); if (!info) return;
-      var st = S.stats[k] || {}, e = S.err[k];
+      var st = S.stats[k] || (S.qv && S.qv[k]) || {}, e = S.err[k];
       out.push({ key: k, info: info, n: e.n, t: e.t, s: e.s, done: (st.run || 0) >= MASTER_RUN });
     });
     return out;
@@ -21240,7 +21387,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   function qvTotals(sc) { var m = 0, n = 0; QV.forEach(function (t) { if (t.virt) return; if (sc === 'jlpt' ? t.lv === 'q' : sc === 'daily' ? t.lv !== 'q' : false) return; m += qvMasteredN(t); n += t.w.length; }); return [m, n]; }
   function qvMark(w, ok) {
     S.qv = S.qv || {}; var s = S.qv[w.key] || (S.qv[w.key] = { ok: 0, ko: 0, run: 0 });
-    if (ok) { s.ok++; s.run++; } else { s.ko++; s.run = 0; }
+    if (ok) { s.ok++; s.run++; } else { s.ko++; s.run = 0; errLog(w.key, 'Vocabulaire JLPT / quotidien'); }
     persist();
   }
   function qvTheme(id) { return QV.filter(function (t) { return t.id === id; })[0] || null; }
