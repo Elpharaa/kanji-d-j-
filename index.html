@@ -3518,7 +3518,7 @@ body .nav .tab:active .niw{transform:scale(.92)!important}
 @keyframes cmpbob{50%{transform:translate(-50%,-4px)}}
 .cmpbtn{width:100%;justify-content:center}
 .cpwalk,.cpbang,.cpnpc{display:none}
-.cphead{transform-origin:216px 192px;transform:rotate(26deg);transition:transform .55s ease}
+.cphead{transform-origin:214px 194px;transform:rotate(22deg);transition:transform .55s ease}
 .cpzzz text{animation:cpz 2.6s ease-in-out infinite;opacity:0}.cpzzz text:nth-child(2){animation-delay:.5s}.cpzzz text:nth-child(3){animation-delay:1s}
 @keyframes cpz{0%{opacity:0;transform:translateY(8px)}30%{opacity:1}100%{opacity:0;transform:translateY(-12px)}}
 .cpflame{transform-origin:116px 256px;animation:cpfl .7s ease-in-out infinite alternate}.cpflame.b{animation-duration:.5s}
@@ -3598,6 +3598,25 @@ html.lite .nfst,html.lite .nfmist,html.lite .nfrp,html.lite .nfpt,html.lite .nft
 .vhint{color:#3a2a63}
 .vplaza{padding:0 12px}.vplaza .vb:first-child{transform:translateY(-6px)}.vplaza .vb:last-child{transform:translateY(4px)}
 .vwater svg.vwv path:first-child{fill:#9fc4ee;stroke:#6a7fc4}
+
+/* ===== v160 ===== */
+section:not([hidden]){animation:pgfade .2s ease-out both!important}
+@keyframes pgfade{from{opacity:0}to{opacity:1}}
+.hubcard,.wcard,.mode,.hubgrid>*,.wgrid>*,.modes>*{animation:none!important}
+#games .djt .tk{font-size:2rem}
+#games .mode.gamecard.djt{min-height:104px!important}
+.cdoffer{min-height:64px;border-radius:16px!important;background:linear-gradient(180deg,#ffe58a,#f2a62c 60%,#e48a1c)!important;color:#3a1c00!important;border:2px solid #7a4a10!important;box-shadow:0 5px 0 #8a4f10,0 10px 18px rgba(160,90,20,.35),inset 0 2px 0 rgba(255,255,255,.7)!important;font-size:1.02rem;animation:cdpulse 2.2s ease-in-out infinite!important}
+.cdoffer small{color:#5a2e00!important;font-weight:700}
+.cdoffer .cdon{font-size:1.05rem;letter-spacing:.01em}
+.cdoffer:active{transform:translateY(3px);box-shadow:0 2px 0 #8a4f10!important}
+.cdoffer:disabled{filter:grayscale(.7) brightness(.95);animation:none!important;opacity:.7}
+.cdoffer .cdsave{background:#c0245a;color:#fff;border-radius:99px;padding:1px 8px;font-style:normal;font-weight:800;position:absolute;top:-8px;right:8px;font-size:.72rem}
+@keyframes cdpulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.1) saturate(1.1)}}
+.fspt,.dpt{animation:fspf 6s linear infinite}.fspt.b,.dpt.b{animation-delay:-1.5s}.fspt.c,.dpt.c{animation-delay:-3s}.fspt.d,.dpt.d{animation-delay:-4.5s}
+@keyframes fspf{from{transform:translate(0,-6px) rotate(0)}to{transform:translate(-26px,90px) rotate(160deg)}}
+.dpt{animation-duration:5s}
+html.lite .fspt,html.lite .dpt{animation:none}
+@media (prefers-reduced-motion:reduce){.fspt,.dpt,.cdoffer{animation:none!important}}
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -11654,13 +11673,14 @@ html.lite .nfst,html.lite .nfmist,html.lite .nfrp,html.lite .nfpt,html.lite .nft
       '<circle cx="96" cy="46" r="29" fill="#fff6e4"' + GART_K + '/><circle cx="96" cy="46" r="23" fill="none" stroke="#e8c46a" stroke-width="2"/><rect x="90" y="10" width="12" height="7" rx="2" fill="#6a4a2a"' + GART_K + '/><path d="M96 46L111 31" stroke="#c0392b" stroke-width="3.4" stroke-linecap="round"/><circle cx="96" cy="46" r="3.6" fill="#2a1c14"/>' +
       '<g stroke="#2a1c14" stroke-width="1.6" stroke-linecap="round"><path d="M96 25V29M96 63V67M75 46H79M113 46H117"/></g><text x="96" y="62" text-anchor="middle" font-size="9" fill="#2a1c14" font-weight="800" font-family="sans-serif">70 s</text>' +
       '<g fill="#ffe27a"><path d="M132 14l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/><path d="M26 70l2 4 4 2-4 2-2 4-2-4-4-2 4-2z"/></g>'),
-    fish: gaSvg('fi', '#7f78b8', '#fcdca8',
-      '<circle cx="124" cy="30" r="18" fill="#fff4c4" opacity=".85"/><path d="M70 52L104 18L116 28L128 20L158 52z" fill="#5a5a8e"/><path d="M104 18L98 28L106 25L112 30L116 28z" fill="#fff"/>' +
-      '<rect y="50" width="160" height="34" fill="#3f93ad"/><g stroke="#bfe6f2" stroke-width="1.4" fill="none" opacity=".7" stroke-linecap="round"><path d="M8 62Q16 58 24 62T40 62M96 70Q104 66 112 70T128 70M60 76Q68 72 76 76T92 76"/></g>' +
+    fish: gaSvg('fi', '#3a2f70', '#f0a9b4',
+      '<circle cx="124" cy="30" r="18" fill="#fff4c4" opacity=".85"/><path d="M70 52L104 18L116 28L128 20L158 52z" fill="#5a4a96"/><path d="M104 18L98 28L106 25L112 30L116 28z" fill="#fff"/>' +
+      '<rect y="50" width="160" height="34" fill="#4a5ab0"/><g stroke="#bfe6f2" stroke-width="1.4" fill="none" opacity=".7" stroke-linecap="round"><path d="M8 62Q16 58 24 62T40 62M96 70Q104 66 112 70T128 70M60 76Q68 72 76 76T92 76"/></g>' +
       '<path d="M30 60L58 30" stroke="#6a3a1a" stroke-width="2.6" stroke-linecap="round"/><path d="M58 30Q92 34 100 44" stroke="#fff" stroke-width="1.1" fill="none"/>' +
       '<g transform="translate(100 46) rotate(-30)"><path d="M18 0L30 -9L26 0L30 9z" fill="#e8742a"' + GART_K + '/><path d="M-20 0Q-6 -13 12 -7Q20 -3 18 0Q20 3 12 7Q-6 13 -20 0z" fill="#ffb066"' + GART_K + '/><circle cx="-12" cy="-2" r="2.4" fill="#fff"' + GART_K + '/><circle cx="-12.4" cy="-2" r="1.1" fill="#2a1c14"/></g>' +
       '<g fill="#e8f8ff" opacity=".9"><circle cx="88" cy="56" r="2.6"/><circle cx="112" cy="58" r="2"/><circle cx="96" cy="64" r="1.6"/></g>' +
-      '<g' + GART_K + '><rect x="0" y="52" width="40" height="6" fill="#a8722e"/></g><g><path d="M14 52Q10 38 22 34Q32 34 34 44L34 52z" fill="#3a5a9a"' + GART_K + '/><circle cx="22" cy="28" r="6" fill="#f1c9a5"' + GART_K + '/><path d="M12 28Q22 12 34 28Q22 24 12 28z" fill="#d9b070"' + GART_K + '/></g>'),
+      '<g' + GART_K + '><rect x="0" y="52" width="40" height="6" fill="#a8722e"/></g><g><path d="M14 52Q10 38 22 34Q32 34 34 44L34 52z" fill="#3a5a9a"' + GART_K + '/><circle cx="22" cy="28" r="6" fill="#f1c9a5"' + GART_K + '/><path d="M12 28Q22 12 34 28Q22 24 12 28z" fill="#d9b070"' + GART_K + '/></g>' +
+      '<path d="M-2 4 C20 8 40 2 62 -6" stroke="#3b2c52" stroke-width="3" fill="none"/><g fill="#f6aec6"><circle cx="10" cy="8" r="7"/><circle cx="26" cy="9" r="8"/><circle cx="44" cy="4" r="7"/><circle cx="58" cy="-3" r="6"/></g><g fill="#ffd2e2"><circle cx="20" cy="7" r="4"/><circle cx="40" cy="3" r="3.5"/></g><g fill="#ffc2d8"><ellipse cx="70" cy="20" rx="2" ry="1"/><ellipse cx="130" cy="14" rx="2" ry="1"/><ellipse cx="52" cy="42" rx="2" ry="1"/></g>'),
     lecture: gaSvg('le', '#6fbf8a', '#2f7a5a',
       '<path d="M80 30L40 24V68L80 74z" fill="#fbf4e3"' + GART_K + '/><path d="M80 30L120 24V68L80 74z" fill="#f2e6c8"' + GART_K + '/><path d="M80 30V74" stroke="#2a1c14" stroke-width="1.6"/>' +
       '<text x="58" y="52" text-anchor="middle" font-size="22" fill="#c0392b" font-family="serif" font-weight="700">あ</text><text x="102" y="52" text-anchor="middle" font-size="22" fill="#2a4a8a" font-family="serif" font-weight="700">カ</text>' +
@@ -12812,7 +12832,8 @@ html.lite .nfst,html.lite .nfmist,html.lite .nfrp,html.lite .nfpt,html.lite .nft
     var dbn = $('dojoBan'); if (dbn) dbn.innerHTML = '';
     function card(id) {
       var c = GAMES[id], art = assetArt('g_' + id, GAME_ART[id] || '');
-      return '<button class="mode gamecard" type="button" data-game="' + id + '" aria-label="' + esc(c.name) + '">' + art + '<span class="g" aria-hidden="true">' + c.g + '</span><span class="gtx"><b>' + esc(c.name) + '</b>' + (id === 'write' && wrDueCount() ? '<small class="duebadge">' + wrDueCount() + ' à revoir</small>' : '') + '</span></button>';
+      var bt = bestText(id);
+      return '<button class="mode gamecard djt" type="button" data-game="' + id + '" aria-label="' + esc(c.name) + '"><span class="tk" aria-hidden="true">' + c.g + '</span><span class="gtx"><b>' + esc(c.name) + '</b>' + (bt ? '<small>' + esc(bt) + '</small>' : '') + '</span></button>';
     }
     $('games').innerHTML = djGamesHTML(FLASH_ORDER.map(card).join(''), card('kread') + card('ksens') + card('kstudy'), GAME_ORDER.map(card).join(''));
     $('badges').innerHTML = BADGES.map(function (b) {
@@ -13841,7 +13862,9 @@ html.lite .nfst,html.lite .nfmist,html.lite .nfrp,html.lite .nfpt,html.lite .nft
 
   /* ---- Décor du village ---- */
   function dojoSVG() {
-    return '<svg class="vbs" viewBox="0 0 160 110" aria-hidden="true"><ellipse cx="80" cy="104" rx="70" ry="5" fill="#000" opacity=".22"/><g filter="url(#kdBevM)">' +
+    return '<svg class="vbs" viewBox="-18 -8 196 118" aria-hidden="true"><ellipse cx="80" cy="104" rx="70" ry="5" fill="#000" opacity=".22"/>' +
+      '<g transform="translate(-2 0) scale(1 1)"><path d="M0 104 C2 84 -4 66 4 46" stroke="#4a3560" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M2 70 C12 62 18 56 22 48" stroke="#4a3560" stroke-width="3.4" fill="none" stroke-linecap="round"/><g fill="#f4a6c4"><circle cx="4" cy="40" r="17"/><circle cx="-10" cy="52" r="12"/><circle cx="20" cy="46" r="13"/><circle cx="10" cy="28" r="11"/></g><g fill="#ffd2e2" opacity=".9"><circle cx="0" cy="36" r="9"/><circle cx="16" cy="42" r="6"/><circle cx="8" cy="24" r="5"/></g></g><g transform="translate(162 0) scale(-1 1)"><path d="M0 104 C2 84 -4 66 4 46" stroke="#4a3560" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M2 70 C12 62 18 56 22 48" stroke="#4a3560" stroke-width="3.4" fill="none" stroke-linecap="round"/><g fill="#f4a6c4"><circle cx="4" cy="40" r="17"/><circle cx="-10" cy="52" r="12"/><circle cx="20" cy="46" r="13"/><circle cx="10" cy="28" r="11"/></g><g fill="#ffd2e2" opacity=".9"><circle cx="0" cy="36" r="9"/><circle cx="16" cy="42" r="6"/><circle cx="8" cy="24" r="5"/></g></g>' +
+      '<g filter="url(#kdBevM)">' +
       '<rect x="17.2" y="40" width="1.6" height="62" fill="#5a3a1a"/><path class="hxsw" style="transform-origin:18px 40px" d="M18 41H4V64H18Z" fill="#c8372b" stroke="rgba(0,0,0,.3)" stroke-width=".8"/><circle cx="11" cy="52" r="3" fill="#fff"/>' +
       '<rect x="141.2" y="40" width="1.6" height="62" fill="#5a3a1a"/><path class="hxsw" style="transform-origin:142px 40px;animation-delay:-1.4s" d="M142 41H156V64H142Z" fill="#2f4a8f" stroke="rgba(0,0,0,.3)" stroke-width=".8"/><circle cx="149" cy="52" r="3" fill="#fff"/>' +
       '<rect x="26" y="62" width="108" height="40" fill="#f1e3c0" stroke="#7a5a34" stroke-width="2"/>' +
@@ -13854,7 +13877,11 @@ html.lite .nfst,html.lite .nfmist,html.lite .nfrp,html.lite .nfpt,html.lite .nft
       '<rect class="hxw" x="34" y="76" width="18" height="16" fill="#9fd0e8" stroke="#5a3a1a"/><rect class="hxw" x="108" y="76" width="18" height="16" fill="#9fd0e8" stroke="#5a3a1a"/>' +
       '<path d="M43 76V92M34 84H52M117 76V92M108 84H126" stroke="#5a3a1a"/>' +
       '<g class="hxsw" style="transform-origin:58px 72px"><path d="M58 70V73" stroke="#3a2412"/><ellipse cx="58" cy="78" rx="3.4" ry="4.4" fill="#d8352a" stroke="#7a1a12"/></g><g class="hxsw" style="transform-origin:102px 72px;animation-delay:-1s"><path d="M102 70V73" stroke="#3a2412"/><ellipse cx="102" cy="78" rx="3.4" ry="4.4" fill="#d8352a" stroke="#7a1a12"/></g>' +
-      '<rect x="54" y="100" width="52" height="4" fill="#cfc8b4" stroke="#8a8472" stroke-width=".8"/></g></svg>';
+      '<rect x="54" y="100" width="52" height="4" fill="#cfc8b4" stroke="#8a8472" stroke-width=".8"/></g>' +
+      '<g fill="#f4a6c4"><circle cx="30" cy="40" r="6"/><circle cx="38" cy="36" r="5"/><circle cx="128" cy="40" r="6"/><circle cx="122" cy="35" r="5"/><circle cx="10" cy="68" r="5"/><circle cx="150" cy="68" r="5"/></g><g fill="#ffd2e2"><circle cx="34" cy="38" r="3"/><circle cx="126" cy="38" r="3"/></g>' +
+      '<rect x="40" y="96" width="80" height="3" fill="#d9ccb0"/><rect x="48" y="99" width="64" height="3" fill="#cfc2a4"/>' +
+      '<g><rect x="2" y="88" width="3" height="14" fill="#8f949b"/><rect x="-1" y="82" width="9" height="6" fill="#f6e2a0" stroke="#555a61" stroke-width=".8"/><path d="M-2 82L3.5 77L9 82Z" fill="#6f747b"/></g><g><rect x="155" y="88" width="3" height="14" fill="#8f949b"/><rect x="152" y="82" width="9" height="6" fill="#f6e2a0" stroke="#555a61" stroke-width=".8"/><path d="M151 82L156.5 77L162 82Z" fill="#6f747b"/></g>' +
+      '<g fill="#ffc2d8"><ellipse class="dpt" cx="46" cy="30" rx="2.6" ry="1.4"/><ellipse class="dpt b" cx="100" cy="24" rx="2.6" ry="1.4"/><ellipse class="dpt c" cx="140" cy="34" rx="2.6" ry="1.4"/><ellipse class="dpt d" cx="12" cy="30" rx="2.6" ry="1.4"/></g></svg>';
   }
   function shopSVG() {
     return '<svg class="vbs" viewBox="0 0 160 110" aria-hidden="true"><ellipse cx="80" cy="104" rx="64" ry="5" fill="#000" opacity=".22"/><g filter="url(#kdBevM)">' +
@@ -14968,7 +14995,7 @@ html.lite .nfst,html.lite .nfmist,html.lite .nfrp,html.lite .nfpt,html.lite .nft
       ['home', '学', 'study', 'Dojo · Réviser', words ? mastered + '/' + words + ' mots maîtrisés' + (dueWords().length ? ' · ' + dueWords().length + ' à revoir' : '') : 'Flashcards, jeux et examen blanc'],
       ['story', '旅', 'quest', 'Aventure', L.tag + ' · ' + (chs.length ? done + '/' + chs.length + ' chapitres' : '')],
       ['cards', '札', 'cards', 'Classeur de cartes', cardCount() + '/' + CARDS.length + ' cartes' + (cardFreeReady() ? ' · 🎁 booster gratuit !' : ' · ouvre des boosters')],
-      ['bazar', '店', 'shop', 'La Boutique', ((freeReady() || cardFreeReady()) ? '🎁 Cadeau du jour à ouvrir !' : coinsOf() + ' pièces · tous les achats')],
+      ['bazar', '店', 'shop', 'Boutique', ((freeReady() || cardFreeReady()) ? '🎁 Cadeau du jour à ouvrir !' : coinsOf() + ' pièces · tous les achats')],
       ['kanji', '漢', 'kanji', 'Fiches kanji', Object.keys(S.seen || {}).length + ' / ' + KANJI_DATA.length + ' vues']
     ].filter(function (c) { return c[0] === 'home' || c[0] === 'kanji' || unlOn(c[0]); });
     var nSm = cards.length - 1;
@@ -17292,7 +17319,7 @@ html.lite .nfst,html.lite .nfmist,html.lite .nfrp,html.lite .nfpt,html.lite .nft
     var rates = ['c', 'u', 'r', 'e', 'l', 'm'].map(function (k) { return '<li style="--rc:' + CARD_RAR[k].col + '"><b>' + CARD_RAR[k].n + '</b> ' + CARD_RAR[k].w + ' %</li>'; }).join('');
     var offers = CARD_BUNDLES.map(function (b) {
       var n = b[0], pr = b[1], save = Math.round((1 - pr / (n * CARD_ONE)) * 100), can = coinsOf() >= pr;
-      return '<button type="button" class="btn cdoffer' + (n === 1 ? ' primary' : n >= 10 ? ' primary gold' : ' primary') + '" data-card="buy' + n + '"' + (can ? '' : ' disabled') + '><span class="cdon">' + n + ' booster' + (n > 1 ? 's' : '') + '</span><small>' + pr + ' pièces · ' + (n * 3) + ' cartes</small>' + (save ? '<i class="cdsave">−' + save + ' %</i>' : '') + '</button>';
+      return '<button type="button" class="btn cdoffer' + (n === 1 ? ' primary' : n >= 10 ? ' primary gold' : ' primary') + '" data-card="buy' + n + '"' + (can ? '' : ' disabled') + '><span class="cdon">🛒 Acheter · ' + n + ' booster' + (n > 1 ? 's' : '') + '</span><small>' + pr + ' pièces · ' + (n * 3) + ' cartes</small>' + (save ? '<i class="cdsave">−' + save + ' %</i>' : '') + '</button>';
     }).join('');
     var free = cardFreeReady() ? '<button type="button" class="btn primary gold freechest" data-card="free">🎁 Booster du jour offert<br><small>Gratuit · à ouvrir maintenant</small></button>' :
       '<div class="freewait">🎁 Booster du jour : prochain dans <b>' + freeWaitTxt() + '</b><br><small>Un booster gratuit chaque jour à 8 h, heure de Paris</small></div>';
@@ -17798,13 +17825,16 @@ html.lite .nfst,html.lite .nfmist,html.lite .nfrp,html.lite .nfpt,html.lite .nft
   var FISH_HAND = [84, 86], FISH_TARGET = [236, 104];
   function fishSceneHTML() {
     return '<svg viewBox="0 0 320 170" class="fishsvg" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs>' +
-      '<linearGradient id="fsSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7f78b8"/><stop offset=".55" stop-color="#f4a58a"/><stop offset="1" stop-color="#fcdca8"/></linearGradient>' +
-      '<linearGradient id="fsWat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4f9fb5"/><stop offset="1" stop-color="#1f5a7a"/></linearGradient>' +
+      '<linearGradient id="fsSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c2452"/><stop offset=".45" stop-color="#9a69a8"/><stop offset=".8" stop-color="#f0a9b4"/><stop offset="1" stop-color="#ffd9b8"/></linearGradient>' +
+      '<linearGradient id="fsWat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7f8fe0"/><stop offset="1" stop-color="#2a2a6a"/></linearGradient>' +
       '<radialGradient id="fsSun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff6cf"/><stop offset=".4" stop-color="#ffd98a" stop-opacity=".9"/><stop offset="1" stop-color="#ffb86b" stop-opacity="0"/></radialGradient></defs>' +
       '<rect width="320" height="170" fill="url(#fsSky)"/><circle cx="250" cy="66" r="52" fill="url(#fsSun)"/><circle cx="250" cy="70" r="15" fill="#fff4c4"/>' +
-      '<path d="M120 100L178 36L196 52L214 40L270 100z" fill="#5a5a8e"/><path d="M178 36L168 50L178 46L186 52L196 52z" fill="#fff" opacity=".95"/><path d="M0 100L40 78L84 100z" fill="#6a6aa0" opacity=".8"/>' +
+      '<path d="M120 100L178 36L196 52L214 40L270 100z" fill="#5a4a96"/><path d="M178 36L168 50L178 46L186 52L196 52z" fill="#fff" opacity=".95"/><path d="M0 100L40 78L84 100z" fill="#6a6aa0" opacity=".8"/>' +
       '<g fill="#fff" opacity=".7"><ellipse cx="60" cy="30" rx="26" ry="6"/><ellipse cx="86" cy="26" rx="18" ry="5"/><ellipse cx="270" cy="22" rx="24" ry="5.4"/></g>' +
       '<rect y="100" width="320" height="70" fill="url(#fsWat)"/><g class="fswaves" stroke="#bfe6f2" stroke-width="1.4" fill="none" opacity=".6" stroke-linecap="round"><path d="M10 114Q20 110 30 114T50 114M120 122Q130 118 140 122T160 122M240 112Q250 108 260 112T280 112M180 136Q190 132 200 136T220 136M30 144Q40 140 50 144T70 144"/></g>' +
+      '<g class="fsbranch"><path d="M-4 6 C30 14 62 8 96 -6" stroke="#3b2c52" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M40 12 C52 22 58 28 62 38" stroke="#3b2c52" stroke-width="3" fill="none" stroke-linecap="round"/><g fill="#f6aec6"><circle cx="12" cy="12" r="11"/><circle cx="34" cy="14" r="12"/><circle cx="58" cy="10" r="11"/><circle cx="80" cy="0" r="10"/><circle cx="62" cy="34" r="7"/><circle cx="50" cy="22" r="8"/></g><g fill="#ffd2e2" opacity=".9"><circle cx="26" cy="10" r="6"/><circle cx="50" cy="8" r="6"/><circle cx="70" cy="-2" r="5"/></g></g>' +
+      '<g fill="#ffc2d8"><ellipse class="fspt" cx="40" cy="30" rx="2.6" ry="1.4"/><ellipse class="fspt b" cx="120" cy="10" rx="2.6" ry="1.4"/><ellipse class="fspt c" cx="200" cy="20" rx="2.6" ry="1.4"/><ellipse class="fspt d" cx="270" cy="6" rx="2.6" ry="1.4"/></g>' +
+      '<g transform="translate(150 98)"><rect x="-1" y="-30" width="1.6" height="30" fill="#5a3b26" opacity=".0"/></g><g><rect x="2" y="70" width="2.4" height="28" fill="#5a3b26"/><ellipse cx="3.2" cy="72" rx="6" ry="7.5" fill="#e8553a" stroke="#6b1d12" stroke-width="1"/><ellipse cx="3.2" cy="72" rx="13" ry="14" fill="#ffd27a" opacity=".25"/></g>' +
       '<ellipse id="fsShadow" cx="236" cy="124" rx="16" ry="5" fill="#0d2a40" opacity="0"/>' +
       '<g id="fsRipple" fill="none" stroke="#e8f8ff" stroke-width="1.4" opacity="0"><ellipse cx="236" cy="105" rx="8" ry="2.6"/><ellipse cx="236" cy="105" rx="15" ry="4.6"/></g>' +
       // ponton
@@ -18340,7 +18370,7 @@ html.lite .nfst,html.lite .nfmist,html.lite .nfrp,html.lite .nfpt,html.lite .nft
     { go: 'hub', sel: '#hubGrid .hubcard:nth-child(2)', t: 'Réviser : le cœur de l\'appli', say: 'C\'est ici que tu révises : flashcards, mini-jeux, examen blanc. La pastille « à revoir » compte les mots qui t\'attendent aujourd\'hui. Un mot est maîtrisé après 3 bonnes réponses d\'affilée.' },
     { go: 'hub', sel: '#hubGrid .hubcard:nth-child(3)', t: 'Les salons', say: 'Défie tes camarades en duel et vois qui est en ligne. Il faut être connecté à internet.' },
     { go: 'hub', sel: '#hubGrid .hubcard:nth-child(4)', t: 'Le classeur de cartes', say: 'Un booster gratuit chaque jour ! Les cartes de culture japonaise se rangent par rareté, avec une petite fiche pour apprendre.' },
-    { go: 'hub', sel: '#hubGrid .hubcard:nth-child(5)', t: 'La Boutique', say: 'Dépense tes pièces : animaux, katanas, décors, cadres de profil… Un cadeau t\'attend chaque jour.' },
+    { go: 'hub', sel: '#hubGrid .hubcard:nth-child(5)', t: 'Boutique', say: 'Dépense tes pièces : animaux, katanas, décors, cadres de profil… Un cadeau t\'attend chaque jour.' },
     { go: 'hub', sel: '#hubTiles', t: 'Le menu « Plus »', say: 'Le classement, tes statistiques et le guide sont rangés ici.' },
     { go: 'hub', sel: '#nav', t: 'Le menu du bas', say: 'Accueil, Aventure, Dojo (révisions), Base et Profil : tu y accèdes à tout moment.' },
     { go: 'profil', sel: '#custPanel', t: 'Personnalise ton profil', say: 'Photo, bannière, cadre et titre se règlent ici. Les autres élèves les voient sur ta fiche.' },
@@ -18899,23 +18929,29 @@ html.lite .nfst,html.lite .nfmist,html.lite .nfrp,html.lite .nfpt,html.lite .nft
     '<g fill="#4f7a58" opacity=".8"><ellipse cx="96" cy="176" rx="14" ry="4"/><ellipse cx="150" cy="170" rx="10" ry="3.2"/></g>' +
     '<g class="cpfire"><circle cx="116" cy="256" r="26" fill="url(#cpFire)" class="cpglow"/><path d="M102 262 L130 256 M104 256 L130 262" stroke="#4a3220" stroke-width="5" stroke-linecap="round"/><path class="cpflame" d="M116 256 C108 248 114 240 116 232 C120 240 126 246 116 256Z" fill="#ff9b4a"/><path class="cpflame b" d="M116 256 C112 250 115 245 116 240 C119 246 121 251 116 256Z" fill="#ffe08a"/></g>' +
     '<g id="cpKnSit" class="cpsit">' +
-    '<path d="M186 242 C182 206 196 190 214 190 C236 192 244 218 242 242Z" fill="#3a2d57"/><path d="M190 242 C188 212 200 198 214 198" fill="none" stroke="#c2406a" stroke-width="3" opacity=".9"/>' +
-    '<path d="M196 234 H244 Q256 234 256 241 Q256 248 244 248 H196Z" fill="#5d667c"/><path d="M244 233 Q258 233 258 241 Q258 249 244 249Z" fill="#2d2a45"/>' +
-    '<rect x="194" y="196" width="36" height="44" rx="11" fill="#8a93a8"/><path d="M196 214 H228" stroke="#5d667c" stroke-width="2"/><circle cx="212" cy="198" r="11" fill="#a3aac0"/>' +
-    '<path d="M200 214 Q214 224 234 210" fill="none" stroke="#5d667c" stroke-width="8" stroke-linecap="round"/>' +
-    '<g class="cphead"><rect x="212" y="190" width="9" height="8" rx="3" fill="#e9bf9a"/><circle cx="218" cy="182" r="11" fill="#f1c9a5"/><path d="M207 180 C207 168 229 166 229 180 C226 174 214 172 207 180Z" fill="#2b2540"/><path d="M212 184 q3 2 6 0" stroke="#3a2d57" stroke-width="1.6" fill="none" stroke-linecap="round"/></g>' +
-    '<g class="cpsword"><path d="M184 246 L174 178" stroke="#dfe5f2" stroke-width="6" stroke-linecap="round"/><path d="M182 244 L173 180" stroke="#fff" stroke-width="1.6" opacity=".8"/><path d="M164 176 L186 172" stroke="#e0b94a" stroke-width="5" stroke-linecap="round"/><path d="M174 176 L172 160" stroke="#5a3a2a" stroke-width="5" stroke-linecap="round"/><circle cx="172" cy="156" r="4.5" fill="#e0b94a"/></g>' +
-    '<g class="cpzzz" fill="#fff" font-family="serif" font-weight="700"><text x="234" y="170" font-size="13">z</text><text x="246" y="156" font-size="17">z</text><text x="262" y="138" font-size="22">Z</text></g>' +
-    '<g class="cpbang"><circle cx="236" cy="160" r="12" fill="#fff4cf" stroke="#c2406a" stroke-width="2"/><text x="236" y="166" text-anchor="middle" font-size="17" font-weight="900" fill="#c2406a" font-family="sans-serif">!</text></g>' +
+    '<path d="M196 196 C186 214 182 232 184 244 L226 244 C224 222 222 206 214 196Z" fill="#6a2f5a"/>' +
+    '<path d="M222 240 L262 244 Q270 245 270 249 L222 250Z" fill="#6b748a"/><path d="M258 242 Q274 243 274 249 Q274 254 260 253Z" fill="#2d2a45"/>' +
+    '<path d="M204 238 L228 214 L242 238" fill="none" stroke="#6b748a" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><path d="M238 238 H252 Q256 238 256 244 H238Z" fill="#2d2a45"/><circle cx="228" cy="214" r="6.5" fill="#a3aac0"/>' +
+    '<path d="M198 198 Q196 218 200 242 L226 242 Q226 220 224 198 Q212 192 198 198Z" fill="#8a93a8"/><path d="M200 226 H226" stroke="#4b4272" stroke-width="3.5"/><circle cx="213" cy="226" r="2.4" fill="#e0b94a"/><path d="M202 206 Q212 212 222 206" stroke="#5d667c" stroke-width="2" fill="none"/>' +
+    '<circle cx="200" cy="200" r="7" fill="#a3aac0"/><circle cx="222" cy="199" r="7" fill="#a3aac0"/>' +
+    '<path d="M222 202 Q236 206 232 214" stroke="#7a839a" stroke-width="7.5" fill="none" stroke-linecap="round"/><circle cx="231" cy="215" r="4.4" fill="#4b4272"/>' +
+    '<g class="cphead"><rect x="208" y="188" width="10" height="9" rx="3" fill="#8a93a8"/>' +
+    '<path d="M202 186 A12 12 0 0 1 226 186 V190 Q226 194 222 194 H206 Q202 194 202 190Z" fill="#a3aac0" stroke="#5d667c" stroke-width="1.6"/>' +
+    '<path d="M204 187 H224" stroke="#2b2540" stroke-width="3.2" stroke-linecap="round"/><path d="M214 176 V192" stroke="#8791aa" stroke-width="2.2"/>' +
+    '<path d="M214 174 Q212 164 224 164 Q232 166 228 178 Q224 170 218 174Z" fill="#c2406a"/></g>' +
+    '<g class="cpsword"><path d="M180 248 L172 176" stroke="#dfe5f2" stroke-width="6" stroke-linecap="round"/><path d="M178 246 L171 178" stroke="#fff" stroke-width="1.6" opacity=".8"/><path d="M162 174 L184 170" stroke="#e0b94a" stroke-width="5" stroke-linecap="round"/><path d="M172 174 L170 158" stroke="#5a3a2a" stroke-width="5" stroke-linecap="round"/><circle cx="170" cy="154" r="4.5" fill="#e0b94a"/></g>' +
+    '<g class="cpzzz" fill="#fff" font-family="serif" font-weight="700"><text x="234" y="176" font-size="13">z</text><text x="246" y="160" font-size="17">z</text><text x="262" y="142" font-size="22">Z</text></g>' +
+    '<g class="cpbang"><circle cx="236" cy="164" r="12" fill="#fff4cf" stroke="#c2406a" stroke-width="2"/><text x="236" y="170" text-anchor="middle" font-size="17" font-weight="900" fill="#c2406a" font-family="sans-serif">!</text></g>' +
     '</g>' +
     '<g id="cpKnWalk" class="cpwalk">' +
-    '<path d="M204 176 C190 188 182 206 178 230 C192 222 204 216 214 212Z" fill="#3a2d57"/><path d="M204 180 C192 192 186 210 182 228" fill="none" stroke="#c2406a" stroke-width="2.5" opacity=".9"/>' +
+    '<path d="M204 178 C190 190 184 210 180 232 C194 224 206 218 216 214Z" fill="#6a2f5a"/>' +
     '<g class="cplegA"><rect x="206" y="212" width="9" height="26" rx="4" fill="#5d667c"/><path d="M204 236 H222 Q226 236 226 241 H204Z" fill="#2d2a45"/></g>' +
     '<g class="cplegB"><rect x="208" y="212" width="9" height="26" rx="4" fill="#7a839a"/><path d="M206 236 H224 Q228 236 228 241 H206Z" fill="#3a3658"/></g>' +
-    '<rect x="200" y="172" width="24" height="44" rx="9" fill="#8a93a8"/><path d="M202 192 H222" stroke="#5d667c" stroke-width="2"/><circle cx="212" cy="176" r="9" fill="#a3aac0"/>' +
-    '<path d="M214 186 q10 8 4 20" fill="none" stroke="#5d667c" stroke-width="7" stroke-linecap="round" class="cparm"/>' +
-    '<rect x="209" y="160" width="8" height="8" rx="3" fill="#e9bf9a"/><circle cx="214" cy="154" r="10" fill="#f1c9a5"/><path d="M204 152 C204 141 224 140 224 152 C221 147 211 146 204 152Z" fill="#2b2540"/><circle cx="219" cy="155" r="1.3" fill="#3a2d57"/>' +
-    '<g><path d="M196 206 L228 150" stroke="#dfe5f2" stroke-width="5" stroke-linecap="round"/><path d="M226 154 L232 144" stroke="#5a3a2a" stroke-width="5" stroke-linecap="round"/><path d="M222 150 L236 154" stroke="#e0b94a" stroke-width="4" stroke-linecap="round"/><circle cx="233" cy="141" r="3.5" fill="#e0b94a"/></g>' +
+    '<path d="M202 178 Q212 172 224 178 L222 214 H204Z" fill="#8a93a8"/><path d="M204 204 H222" stroke="#4b4272" stroke-width="3"/><circle cx="213" cy="204" r="2" fill="#e0b94a"/><circle cx="203" cy="180" r="6" fill="#a3aac0"/><circle cx="223" cy="180" r="6" fill="#a3aac0"/>' +
+    '<path d="M222 184 q10 8 4 18" fill="none" stroke="#7a839a" stroke-width="6.5" stroke-linecap="round" class="cparm"/>' +
+    '<rect x="208" y="166" width="9" height="8" rx="3" fill="#8a93a8"/>' +
+    '<path d="M203 164 A11 11 0 0 1 225 164 V168 Q225 172 221 172 H207 Q203 172 203 168Z" fill="#a3aac0" stroke="#5d667c" stroke-width="1.5"/><path d="M205 165 H224" stroke="#2b2540" stroke-width="3" stroke-linecap="round"/><path d="M214 154 V170" stroke="#8791aa" stroke-width="2"/><path d="M214 153 Q212 143 224 143 Q232 145 228 157 Q224 149 218 153Z" fill="#c2406a"/>' +
+    '<g><path d="M196 208 L230 152" stroke="#dfe5f2" stroke-width="5" stroke-linecap="round"/><path d="M228 156 L234 146" stroke="#5a3a2a" stroke-width="5" stroke-linecap="round"/><path d="M224 152 L238 156" stroke="#e0b94a" stroke-width="4" stroke-linecap="round"/><circle cx="235" cy="143" r="3.5" fill="#e0b94a"/></g>' +
     '</g>' +
     '<g id="cpNpc" class="cpnpc">' +
     '<ellipse cx="338" cy="248" rx="20" ry="4" fill="#1d1640" opacity=".35"/>' +
