@@ -3141,7 +3141,7 @@ body.coaching{overflow:hidden}
 .lvstar circle{animation:qtw 2.4s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.lvlup *,.lvbox{animation:none!important}.lvold{display:none}.lvnew{opacity:1}.lvnum i{display:none}}
 
-/* ===== v127 : Archibald ===== */
+/* ===== v127 : Asahi ===== */
 @keyframes arwv{0%,100%{transform:rotate(0)}50%{transform:rotate(-16deg)}}
 @keyframes arbl{0%,92%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
 .mascot .arwave{transform-origin:76px 86px;animation:arwv 1.4s ease-in-out infinite}
@@ -3153,7 +3153,7 @@ body.coaching{overflow:hidden}
 .badge .bprog u{display:block;height:100%;background:linear-gradient(90deg,#bf3668,#e8a03a);border-radius:6px}
 .badge .bpn{display:block;font-style:normal;font-size:11.5px;color:#5b448a;margin-top:2px;font-weight:700}
 
-/* ===== v129 : Archibald guide l'Aventure ===== */
+/* ===== v129 : Asahi guide l'Aventure ===== */
 .archg{display:flex;align-items:flex-end;gap:8px;margin:6px 0 12px}
 .archm{flex:none;width:72px;height:72px;filter:drop-shadow(0 3px 2px rgba(0,0,0,.3))}
 .archm .mascot{width:72px;height:72px}
@@ -3240,7 +3240,7 @@ body.coaching{overflow:hidden}
 .dojoban .dbtitle small{display:block;margin-top:2px;font-size:.78rem;color:#f0dcae;letter-spacing:.06em;text-shadow:0 1px 4px rgba(0,0,0,.85)}
 .dojoban .dbtitle b{font-size:1.5rem}.dojoban::after{background:linear-gradient(to top,rgba(14,11,22,.9) 0%,rgba(14,11,22,.6) 42%,rgba(14,11,22,0) 75%)}
 
-/* v132 : Dojo en 4 choix, bulles d'Archibald, profil allégé */
+/* v132 : Dojo en 4 choix, bulles d'Asahi, profil allégé */
 .djgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
 .djt{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:150px;padding:0;overflow:hidden;text-align:left}
 .djt .gart{position:absolute;inset:0;width:100%;height:100%}
@@ -3830,6 +3830,39 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
 @keyframes fcin{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
 @keyframes fcflip{0%{opacity:.2;transform:perspective(900px) rotateY(-80deg)}100%{opacity:1;transform:perspective(900px) rotateY(0)}}
 @media (prefers-reduced-motion:reduce){.fcard:not([class*="fct-"]){animation:none!important}}
+
+/* ===== v165 : pied de page Discord, ordre des traits, guide ===== */
+.sitefoot{display:flex;justify-content:center;padding:18px 16px calc(26px + env(safe-area-inset-bottom,0px));position:relative;z-index:2}
+.dclink{display:inline-flex;align-items:center;gap:11px;padding:9px 18px 9px 11px;border-radius:999px;text-decoration:none;color:#fffaf0;background:linear-gradient(135deg,#4b3d84,#2c2452);border:2px solid #f0b97a;box-shadow:0 4px 0 rgba(20,14,44,.55),0 10px 22px rgba(20,14,44,.3);transition:transform .15s,box-shadow .15s}
+.dclink:hover{transform:translateY(-2px);box-shadow:0 6px 0 rgba(20,14,44,.55),0 14px 26px rgba(20,14,44,.35)}
+.dclink:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(20,14,44,.55)}
+.dcico{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#e9a5b6,#d0587f);color:#fffaf0;flex:none}
+.dcico svg{width:23px;height:23px}
+.dctx{display:flex;flex-direction:column;line-height:1.2;text-align:left}.dctx b{font-size:.92rem}.dctx small{font-size:.74rem;opacity:.8}
+.stk{margin:0 0 12px;padding:10px;border-radius:16px;background:linear-gradient(#fffaf0,#f3e9ff);border:2px solid #4b3d84;box-shadow:0 3px 0 rgba(44,36,82,.35);display:flex;flex-direction:column;align-items:center;gap:6px}
+.stk svg{width:min(190px,60vw);height:auto;aspect-ratio:1;background:repeating-linear-gradient(90deg,transparent 0 53px,rgba(75,61,132,.14) 53px 54.5px) ,repeating-linear-gradient(0deg,transparent 0 53px,rgba(75,61,132,.14) 53px 54.5px);border-radius:10px;border:1.5px dashed #b6a8e0}
+.stk .g{fill:none;stroke:#d9d0ee;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.stk .a{fill:none;stroke:#2c2452;stroke-width:4.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;opacity:0}
+.stk .a:last-child{stroke:#d0587f}
+.stk.play .a{animation:stkd .5s ease-in-out forwards;animation-delay:calc(var(--i)*.6s)}
+@keyframes stkd{0%{opacity:1;stroke-dashoffset:1}100%{opacity:1;stroke-dashoffset:0}}
+.stk .stkb{display:flex;align-items:center;gap:10px;width:100%;justify-content:center}
+.stk .stkr{border:2px solid #2c2452;border-radius:999px;padding:5px 14px;background:linear-gradient(#f0b97a,#e29a52);color:#2c2452;font:700 .82rem inherit;font-family:inherit;cursor:pointer;box-shadow:0 2px 0 #2c2452}
+.stk .stkr:active{transform:translateY(2px);box-shadow:none}
+.stk small{font-size:.66rem;color:#6f629a;text-align:center}.stk small a{color:inherit}
+@media (prefers-reduced-motion:reduce){.stk .a{stroke-dashoffset:0;opacity:1;animation:none!important}}
+.guidemodal .gdgrid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:760px){.guidemodal .gdgrid{grid-template-columns:1fr 1fr}}
+.gdh{margin:14px 2px 2px;font:700 .8rem inherit;font-family:inherit;letter-spacing:.12em;text-transform:uppercase;color:#d0587f;grid-column:1/-1;display:flex;align-items:center;gap:8px}
+.gdh::after{content:"";flex:1;height:2px;background:linear-gradient(90deg,#e9a5b6,transparent)}
+.gdh:first-child{margin-top:0}
+.gdrow{display:flex;gap:12px;align-items:flex-start;padding:11px 12px;border-radius:16px;background:linear-gradient(#fffaf0,#f6edff);border:2px solid #4b3d84;box-shadow:0 3px 0 rgba(44,36,82,.4);position:relative;overflow:hidden}
+.gdrow::after{content:"";position:absolute;right:-14px;bottom:-14px;width:54px;height:54px;border-radius:50%;background:radial-gradient(circle,rgba(233,165,182,.45),transparent 70%)}
+.gdsl{flex:none;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font:700 1.55rem "Yuji Syuku",serif;color:#fffaf0;background:linear-gradient(145deg,#d0587f,#7c2f68);border:2px solid #f0b97a;box-shadow:0 2px 0 rgba(0,0,0,.35);transform:rotate(-4deg)}
+.gdrow h4{margin:1px 0 3px;font-size:1rem;color:#2c2452}
+.gdrow p{margin:0;font-size:.84rem;line-height:1.42;color:#3b3160}
+.gdrow .gdc{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}.gdrow .gdc span{font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:999px;background:#2c2452;color:#fff2d4}
+.gdfoot{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:6px}
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -4083,6 +4116,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     
   </section>
 
+  <footer class="sitefoot"><a class="dclink" href="https://discord.gg/MVJNfRSQR2" target="_blank" rel="noopener noreferrer"><span class="dcico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 8Q6 5 9 5H23Q26 5 26 8V19Q26 22 23 22H15L9 27V22Q6 22 6 19z" fill="currentColor"/><circle cx="12.5" cy="13.5" r="1.9" fill="#2c2452"/><circle cx="19.5" cy="13.5" r="1.9" fill="#2c2452"/></svg></span><span class="dctx"><b>Rejoins le serveur Discord</b><small>Apprendre le japonais ensemble</small></span></a></footer>
   <!-- ===== PROFIL D'UN JOUEUR ===== -->
   <div class="modal" id="profModal" hidden>
     <div class="mback" data-close></div>
@@ -14794,10 +14828,30 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     annTimer = setTimeout(function () { annText = ''; lastStatus = ''; pushStatus(); }, 25000);
     lastStatus = ''; pushStatus();
   }
+  var feedFor = '';
+  function feedKey() { return 'kd.feed.' + (user ? user.id : ''); }
+  function feedLoad() {
+    if (!user || feedFor === user.id) return;
+    feedFor = user.id;
+    try {
+      var a = JSON.parse(localStorage.getItem(feedKey()) || '[]'), lim = Date.now() - 7 * 864e5;
+      feed = a.filter(function (f) { return f && f.at > lim && f.t; }).concat(feed.filter(function (f) { return !f.i || f.at > lim; }));
+      feed.sort(function (x, y) { return y.at - x.at; });
+      var seen = {}; feed = feed.filter(function (f) { var k = f.n + '|' + f.t; if (f.i && seen[k]) return false; seen[k] = 1; return true; });
+      if (feed.length > 30) feed.length = 30;
+    } catch (e) {}
+  }
+  function feedSave() { try { if (user) localStorage.setItem(feedKey(), JSON.stringify(feed.filter(function (f) { return f.i; }).slice(0, 20))); } catch (e) {} }
+  function feedSeed(n, t, at, ico) {
+    if (feed.some(function (f) { return f.n === n && f.t === t && f.i; })) return;
+    feed.push({ n: n, t: t, me: false, at: at, i: ico });
+    feed.sort(function (x, y) { return y.at - x.at; }); if (feed.length > 30) feed.length = 30;
+  }
   function feedAdd(name, text, me, ico) {
+    feedLoad();
     feed.unshift({ n: name, t: text, me: !!me, at: Date.now(), i: ico || '' });
-    if (feed.length > 12) feed.length = 12;
-    renderFeed();
+    if (feed.length > 30) feed.length = 30;
+    feedSave(); renderFeed();
   }
   function feedFromPresence(arr) {
     var now = {};
@@ -14814,7 +14868,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     }
     prevPres = now;
   }
-  function ago(t) { var m = Math.floor((Date.now() - t) / 60000); return m < 1 ? "à l'instant" : 'il y a ' + m + ' min'; }
+  function ago(t) { var m = Math.floor((Date.now() - t) / 60000); if (m < 1) return "à l'instant"; if (m < 60) return 'il y a ' + m + ' min'; var h = Math.floor(m / 60); if (h < 24) return 'il y a ' + h + ' h'; var d = Math.floor(h / 24); return 'il y a ' + d + (d > 1 ? ' jours' : ' jour'); }
   /* ---- Annonces du dōjō : à modifier ici, puis republier index.html (la plus récente en premier) ---- */
   var ANNOUNCES = [
     { id: 'a1', date: '2026-10-12', icon: '💬', title: 'Un retour, une idée, un bug ?', text: 'Tu as des remarques sur l\'appli ? Écris-moi sur Discord, je lis tout.', copy: 'elphara.', copyLabel: 'Discord : elphara.' }
@@ -14837,9 +14891,10 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     try { navigator.clipboard.writeText(v).then(done, done); } catch (x) { done(); }
   });
   function feedHTML() {
+    feedLoad(); if (user) loadExploits();
     var an = anncHTML();
     if (!feed.length) return an + '<p class="small muted" style="margin:0">Rien de neuf pour l\'instant : les exploits de tes amis apparaîtront ici.</p>';
-    return an + '<ul class="feedl">' + feed.slice(0, 6).map(function (f) {
+    return an + '<ul class="feedl">' + feed.slice(0, 7).map(function (f) {
       return '<li><span class="fic">' + (f.i || '🟢') + '</span><span><b>' + esc(f.me ? 'Toi' : f.n) + '</b> ' + esc(f.t) + '<small>' + ago(f.at) + '</small></span></li>';
     }).join('') + '</ul>';
   }
@@ -14886,8 +14941,17 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     exploits.busy = true;
     backend.fetchBoard(user).then(function (res) {
       var rows = res.rows.filter(function (r) { return r.id !== user.id; }).slice(0, 6);
-      return Promise.all(rows.map(function (r) { return backend.fetchProfile(r.id).then(function (d) { return d && d.stats ? exploitText(d.name || r.name, d.stats) : null; }, function () { return null; }); }));
-    }).then(function (arr) { exploits.items = arr.filter(Boolean); exploits.at = Date.now(); exploits.busy = false; renderTicker(); }, function () { exploits.busy = false; exploits.at = Date.now(); });
+      return Promise.all(rows.map(function (r) { return backend.fetchProfile(r.id).then(function (d) {
+        if (!d || !d.stats) return null;
+        var x = exploitText(d.name || r.name, d.stats);
+        if (x && d.stats.lx && d.stats.lx.t && d.stats.lx.at && Date.now() - d.stats.lx.at < 7 * 864e5) x.at = d.stats.lx.at;
+        return x;
+      }, function () { return null; }); }));
+    }).then(function (arr) {
+      exploits.items = arr.filter(Boolean); exploits.at = Date.now(); exploits.busy = false;
+      var add = false; exploits.items.forEach(function (x) { if (x.at) { feedSeed(x.n, x.t, x.at, x.i); add = true; } });
+      if (add) { feedSave(); renderFeed(); }
+      renderTicker(); }, function () { exploits.busy = false; exploits.at = Date.now(); });
   }
   function renderTicker(others) {
     var bar = $('onlineBar'); if (!bar || !user) return;
@@ -15341,13 +15405,23 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     });
     return out;
   }
+  function strokeBlock(k) {
+    var a = typeof STROKES === 'object' && STROKES[k]; if (!a) return '';
+    var g = a.map(function (d) { return '<path class="g" d="' + d + '"/>'; }).join('');
+    var p = a.map(function (d, n) { return '<path class="a" pathLength="1" style="--i:' + n + '" d="' + d + '"/>'; }).join('');
+    return '<div class="stk play"><svg viewBox="0 0 109 109" role="img" aria-label="Ordre des traits de ' + esc(k) + '">' + g + p + '</svg><div class="stkb"><span class="small muted"><b>' + a.length + '</b> trait' + (a.length > 1 ? 's' : '') + ' · ordre d\'écriture</span><button type="button" class="stkr" data-stk="1">▶ Rejouer</button></div></div>';
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-stk]') : null; if (!b) return;
+    var box = b.closest('.stk'); box.classList.remove('play'); void box.offsetWidth; box.classList.add('play');
+  });
   function openKCard(i) {
     var c = kcards[i]; if (!c) return;
     if (c.k && !S.seen[c.k]) {
       S.seen[c.k] = 1; checkBadges(); persist();
       var si = $('seenInfo'); if (si) si.textContent = 'Fiches ouvertes : ' + Object.keys(S.seen).length + '/' + KANJI_DATA.length + '.';
     }
-    openModal(c.title, '<div class="kbody inmodal">' + c.body + '</div>', 'kmodal');
+    openModal(c.title, '<div class="kbody inmodal">' + (c.k ? strokeBlock(c.k) : '') + c.body + '</div>', 'kmodal');
   }
 
   /* ---- Boutique en fenêtre ---- */
@@ -16914,7 +16988,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     else if (/^d\d$/.test(a)) { var it = sess.items[sess.i]; if (sess.answered && it) { wsrsSet(it.key, WR_DELAYS[+a.charAt(1)][0], sess.grade); persist(); wrNext(); } }
   });
   /* =====================================================================
-     EXPLICATION DES JEUX : la mascotte (Archibald, le petit maître du dojo) présente chaque jeu avant de lancer la séance
+     EXPLICATION DES JEUX : la mascotte (Asahi, le petit maître du dojo) présente chaque jeu avant de lancer la séance
      ===================================================================== */
   var INTRO = {
     sprint: { say: ['Sprint éclair : tu as 70 secondes pour répondre à un maximum de questions.', 'Chaque question est un QCM à 4 choix : le sens d\'un mot, sa lecture ou sa bonne écriture. Touche la bonne réponse et la suivante arrive aussitôt.', 'Une erreur te retire 5 secondes. Ton score est le nombre de bonnes réponses : 3 étoiles dès 18, 2 dès 12, 1 dès 6.'], tip: 'Un doute ? Élimine les choix impossibles puis tente ta chance : une erreur ne coûte que 5 secondes.' },
@@ -16932,7 +17006,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     flashrd: { say: ['Flashcards : pas de chrono. Tu vois une carte, tu essaies de répondre dans ta tête, puis tu la retournes.', 'Ici, tu vois la lecture. Essaie de retrouver le kanji et le sens, puis touche la carte pour vérifier.', 'Note-toi honnêtement : À revoir (2 min), Difficile (8 min), Moyen (30 min), Facile (1 jour) ou Validé (1 semaine). Le délai avant de la revoir est écrit sur chaque bouton.', 'Bonus : chaque minute de révision te rapporte 1 pièce d\'or (10 minutes, 10 pièces).'], tip: 'Imagine les kanjis avant de retourner la carte.' }
   };
   var __mq = 0;
-  function mascotHTML() { var q = ++__mq; return ('<span class="mascot" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><linearGradient id="arh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffc9db"/><stop offset="1" stop-color="#f7a0bc"/></linearGradient><linearGradient id="arf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd980"/><stop offset="1" stop-color="#fdb55e"/></linearGradient><linearGradient id="arr" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff3a22"/><stop offset=".5" stop-color="#ff2a18"/><stop offset="1" stop-color="#e81e10"/></linearGradient></defs><g stroke-linejoin="round" stroke-linecap="round"><ellipse cx="50" cy="98" rx="24" ry="2.6" fill="#000" opacity=".16"/><path d="M36 90H64V101H36z" fill="#5c5c5e"/><path d="M50 92V101" stroke="#3a3a3c" stroke-width="1.4"/><path d="M33 72Q50 66 67 72L68 93H32z" fill="url(#arr)"/><path d="M33 74Q28 86 25 96" stroke="url(#arr)" stroke-width="8.5" fill="none"/><circle cx="25" cy="97" r="4.6" fill="#ff2a18"/><g class="arwave"><path d="M67 74Q80 76 82 58" stroke="url(#arr)" stroke-width="8.5" fill="none"/><circle cx="82" cy="54" r="4.8" fill="#ff2a18"/></g><path d="M44 62H56V72Q50 76 44 72z" fill="#fdb55e"/><path d="M22 58Q11 40 20 24Q22 18 30 18L34 9L42 18L50 7L58 18L66 9L70 18Q78 18 80 24Q89 40 78 58L75 67L70 59L66 63H34L30 59L25 67z" fill="url(#arh)" stroke="#e58aa9" stroke-width="1.2"/><ellipse cx="50" cy="46" rx="21" ry="23" fill="url(#arf)"/><path d="M28 44Q27 22 44 20L50 27L58 19Q74 24 72 44Q70 31 60 31Q50 25 40 31Q30 33 28 44z" fill="url(#arh)" stroke="#e58aa9" stroke-width="1"/><path d="M28 36Q22 48 25 64L32 54L30 66L36 56Q30 50 31 38z" fill="url(#arh)" stroke="#e58aa9" stroke-width="1"/><path d="M72 36Q78 48 75 64L68 54L70 66L64 56Q70 50 69 38z" fill="url(#arh)" stroke="#e58aa9" stroke-width="1"/><path d="M31 36L45 40.5L45 43.5L30.5 39z" fill="#7fd3ff"/><path d="M69 36L55 40.5L55 43.5L69.5 39z" fill="#7fd3ff"/><g class="arblink"><path d="M33 45L41 42.5L46 45L44.5 49L35 49z" fill="#fff" stroke="#111" stroke-width="2"/><path d="M67 45L59 42.5L54 45L55.5 49L65 49z" fill="#fff" stroke="#111" stroke-width="2"/><circle cx="40" cy="45.4" r="3" fill="#e2160c"/><circle cx="60" cy="45.4" r="3" fill="#e2160c"/><circle cx="40" cy="45.4" r="1.3" fill="#220"/><circle cx="60" cy="45.4" r="1.3" fill="#220"/></g><path d="M48 48Q46 54 50 55Q54 54 52 48" fill="#fdc27a" stroke="#111" stroke-width="1.3"/><path d="M40 60Q50 54.5 60 60Q50 58.4 40 61z" fill="#b8d800" stroke="#9ab800" stroke-width="1"/><ellipse cx="50" cy="64" rx="5" ry="3.2" fill="#111"/><path d="M45.6 62.8Q50 61.4 54.4 62.8Q50 64.4 45.6 62.8z" fill="#fff"/></g></svg></span>').replace(/id="(arh|arf|arr)"/g, 'id="$1' + q + '"').replace(/url\(#(arh|arf|arr)\)/g, 'url(#$1' + q + ')'); }
+  function mascotHTML() { var q = ++__mq; return ('<span class="mascot" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><linearGradient id="arh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6f4fc"/><stop offset="1" stop-color="#cdc8e2"/></linearGradient><linearGradient id="arf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbdcbc"/><stop offset="1" stop-color="#eebf94"/></linearGradient><linearGradient id="arr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4b3d84"/><stop offset="1" stop-color="#2a2150"/></linearGradient></defs><g stroke-linejoin="round" stroke-linecap="round"><ellipse cx="50" cy="98" rx="26" ry="2.6" fill="#000" opacity=".18"/><path d="M18 94L34 72" stroke="#1f1830" stroke-width="3.6"/><circle cx="35" cy="71" r="2.6" fill="#e8c46a" stroke="#1f1830" stroke-width="1"/><path d="M58 15Q84 8 87 36Q89 52 80 62Q82 42 72 30Q66 22 58 24z" fill="url(#arh)" stroke="#a79fc8" stroke-width="1"/><path d="M25 100Q25 76 40 68L50 76L60 68Q75 76 75 100z" fill="url(#arr)" stroke="#1f1830" stroke-width="1.4"/><path d="M43 66L50 86L57 66z" fill="#fff4dc" stroke="#d0587f" stroke-width="1.2"/><path d="M27 87Q50 94 73 87L73 92Q50 99 27 92z" fill="#d0587f" stroke="#1f1830" stroke-width="1"/><g fill="#f4b6c8"><circle cx="34" cy="79" r="1.7"/><circle cx="66" cy="78" r="1.7"/><circle cx="31" cy="97" r="1.5"/><circle cx="69" cy="96" r="1.5"/><circle cx="38" cy="73" r="1.2"/></g><path d="M31 77Q25 86 25 94" stroke="url(#arr)" stroke-width="9" fill="none"/><circle cx="25" cy="96" r="4.4" fill="#f3c9a2" stroke="#1f1830" stroke-width="1"/><g class="arwave"><path d="M70 77Q85 79 87 60" stroke="url(#arr)" stroke-width="9" fill="none"/><path d="M83 62L91 62" stroke="#fff4dc" stroke-width="3"/><circle cx="87" cy="55" r="4.6" fill="#f3c9a2" stroke="#1f1830" stroke-width="1"/></g><path d="M44 58H56V69Q50 73 44 69z" fill="#e6b88c"/><ellipse cx="50" cy="45" rx="19.5" ry="22" fill="url(#arf)" stroke="#1f1830" stroke-width="1.2"/><circle cx="30.5" cy="49" r="2.6" fill="#f3c9a2" stroke="#1f1830" stroke-width="1"/><circle cx="30.5" cy="52.5" r="1.4" fill="#e8c46a"/><path d="M30 44Q26 20 48 17Q72 15 71 41Q65 27 52 28Q40 30 37 41Q34 46 30 44z" fill="url(#arh)" stroke="#a79fc8" stroke-width="1"/><path d="M30 40Q25 52 30 62Q31 51 35 44z" fill="url(#arh)" stroke="#a79fc8" stroke-width="1"/><ellipse cx="57" cy="14" rx="6" ry="4.6" fill="url(#arh)" stroke="#a79fc8" stroke-width="1"/><path d="M53 17L61 17" stroke="#d0587f" stroke-width="2.4"/><g class="arblink"><ellipse cx="41" cy="46.5" rx="4.4" ry="2.7" fill="#fff" stroke="#1f1830" stroke-width=".8"/><ellipse cx="59" cy="46.5" rx="4.4" ry="2.7" fill="#fff" stroke="#1f1830" stroke-width=".8"/><circle cx="41.4" cy="46.6" r="2.3" fill="#2d7a94"/><circle cx="59.4" cy="46.6" r="2.3" fill="#2d7a94"/><circle cx="41.4" cy="46.6" r="1" fill="#10121c"/><circle cx="59.4" cy="46.6" r="1" fill="#10121c"/><circle cx="42.2" cy="45.9" r=".7" fill="#fff"/><circle cx="60.2" cy="45.9" r=".7" fill="#fff"/><path d="M36 45.4Q41 42 46 45.2" stroke="#1f1830" stroke-width="2.2" fill="none"/><path d="M54 45.2Q59 42 64 45.4" stroke="#1f1830" stroke-width="2.2" fill="none"/></g><path d="M35 40L46 41.6" stroke="#6d6a86" stroke-width="2"/><path d="M54 40.4L65 38" stroke="#6d6a86" stroke-width="2"/><path d="M50 48Q48.4 52.5 50.8 53.4" stroke="#b5835d" stroke-width="1.2" fill="none"/><path d="M63 49L66 58" stroke="#d98a80" stroke-width="1.3" fill="none"/><path d="M38 59Q50 72 62 59Q58 66 50 68Q42 66 38 59z" fill="#bdb6d4" opacity=".4"/><g fill="#8f88ab" opacity=".75"><circle cx="43" cy="63" r=".6"/><circle cx="46" cy="65" r=".6"/><circle cx="50" cy="66" r=".6"/><circle cx="54" cy="65" r=".6"/><circle cx="57" cy="63" r=".6"/><circle cx="48" cy="63" r=".6"/><circle cx="52" cy="63.4" r=".6"/></g><path d="M44.5 58.6Q50.5 61.6 57 56.8" stroke="#8b4a3a" stroke-width="1.5" fill="none"/><path d="M10 28q3-4 6-1q-2 4-6 1z" fill="#f4b6c8"/><path d="M90 74q3-4 6-1q-2 4-6 1z" fill="#f4b6c8"/></g></svg></span>').replace(/id="(arh|arf|arr)"/g, 'id="$1' + q + '"').replace(/url\(#(arh|arf|arr)\)/g, 'url(#$1' + q + ')'); }
   function gameIntro(id) {
     var c = GAMES[id], d = INTRO[id]; gsKMode = id === 'kstudy' || id === 'kread' || id === 'ksens'; gsStep = 1; gsKOpen = false;
     if (!c || !d) { startGame(id); return; }
@@ -18643,10 +18717,10 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     else if (w === 'stats') openModal('Mes statistiques', statsHTML(), 'wide');
   });
   /* =====================================================================
-     VISITE GUIDÉE INTERACTIVE (projecteur + flèche + Archibald) et GUIDE illustré
+     VISITE GUIDÉE INTERACTIVE (projecteur + flèche + Asahi) et GUIDE illustré
      ===================================================================== */
   var COACH = [
-    { c: 1, go: 'hub', t: 'Bienvenue au Dōjō !', say: 'Moi c\'est Archibald ! Je vais te montrer du doigt chaque endroit important. Ça prend une minute, promis.' },
+    { c: 1, go: 'hub', t: 'Bienvenue au Dōjō !', say: 'Moi c\'est Asahi ! Je vais te montrer du doigt chaque endroit important. Ça prend une minute, promis.' },
     { go: 'hub', sel: '#userbox .slv', t: 'Ton niveau et ton XP', say: 'Ici : ton niveau et ta barre d\'XP. Chaque bonne réponse la remplit. En montant de niveau, tu débloques des récompenses, comme la bannière de profil.' },
     { go: 'hub', sel: '#hdrCoins', t: 'Tes pièces', say: 'Ce sont tes pièces. Tu en gagnes en jouant et avec les cadeaux du jour. Touche-les pour ouvrir la Boutique.' },
     { go: 'hub', sel: '#hubGrid .hubcard:nth-child(1)', t: 'L\'aventure', say: 'Une histoire en chapitres, avec des boss. Tu choisis ton histoire (L0 S1, L0 S2, L1 S1, L1 S2 ou L2 S3) en haut de la page.' },
@@ -18743,22 +18817,35 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   function gdGames() { return '<div class="gdgames">' + ['sprint', 'fish', 'pairs', 'write'].map(function (g) { return '<span>' + (GAME_ART[g] || '') + '</span>'; }).join('') + '</div>'; }
   function gdAvatar() { return '<div class="gdwid"><span class="gdchip">📷 Photo</span><span class="gdchip">🖼️ Bannière</span><span class="gdchip">🏷️ Titre</span><span class="gdchip">🃏 3 cartes</span></div>'; }
   function guideHTML() {
-    var items = [
-      ['Réviser', 'Le cœur de l\'appli. Flashcards, mini-jeux et examen blanc. Chaque réponse est mémorisée : un mot raté revient vite, un mot réussi revient de plus en plus tard. La pastille « à revoir » compte les mots dus aujourd\'hui.', gdArt('study'), 'wide'],
-      ['Mot maîtrisé', '3 bonnes réponses de suite, et le mot est maîtrisé. Une erreur remet le compteur à zéro. Tes mots maîtrisés par semaine sont dans « Stats ».', gdMaster()],
-      ['L\'aventure', 'Une histoire en chapitres, avec un boss à la fin. Tu choisis ton histoire en haut de la page : L0 S1, L0 S2, L1 S1, L1 S2 ou L2 S3.', gdArt('quest'), 'wide'],
-      ['Les mini-jeux', 'Sprint, pêche au kana, lecture, traduction, écriture, paires, examen blanc : chaque jeu a une courte présentation et te donne de 1 à 3 étoiles.', gdGames()],
-      ['XP et niveaux', 'Chaque bonne réponse rapporte de l\'XP. En montant de niveau, tu débloques des récompenses : bannière de profil, paliers de la Voie du Dōjō.', gdXp()],
-      ['Pièces', 'Gagnées en jouant et avec les cadeaux du jour. Dépensées à la Boutique et pour les boosters de cartes.', gdCoins()],
-      ['Cartes et boosters', 'Un booster coûte 30 pièces (offres à partir de 5), et un booster gratuit t\'attend chaque jour à 8 h (heure de Paris). 6 raretés, des doublons qui te rendent des pièces, et une petite fiche par carte pour apprendre.', gdCards()],
-      ['La Boutique', 'Animaux, katanas, décors, cadres et bannières : tout s\'achète avec tes pièces. Un cadeau t\'attend chaque jour.', gdArt('shop'), 'wide'],
-      ['Profil et vitrine', 'Personnalise ton profil et expose tes 3 cartes préférées. Les autres élèves voient tout ça sur ta fiche.', gdAvatar()],
-      ['Encourager un ami', 'Un ami est en ligne et révise ? Touche son profil (ou le bouton 📣 dans la liste des amis) puis « Encourager » : de petits supporters apparaissent sur son écran avec un « がんばれ ! ». Il faut que vous soyez tous les deux en ligne.', '<div class="gdwid"><span class="gdchip">📣 Encourager</span><span class="gdarrow">→</span>' + cheerKid(0) + cheerKid(2) + cheerKid(4) + '</div>'],
-      ['Salons et classement', 'Défie tes camarades en duel et compare-toi au classement. Il faut être connecté.', gdArt('multi')]
+    var G = [
+      ['Apprendre'],
+      ['習', 'Réviser', 'Flashcards, mini-jeux et examen blanc. Chaque réponse est mémorisée : un mot raté revient vite, un mot réussi revient de plus en plus tard. La pastille « à revoir » compte les mots dus aujourd\'hui.', ['répétition espacée']],
+      ['星', 'Mot maîtrisé', '3 bonnes réponses de suite et le mot est maîtrisé. Une erreur remet le compteur à zéro. Tes mots maîtrisés par semaine sont dans « Stats ».'],
+      ['筆', 'Fiches kanji', 'Touche un kanji : lectures, clé, astuce pour le retenir et ordre des traits animé (bouton « Rejouer » pour le revoir).', ['traits animés']],
+      ['級', 'JLPT et vocabulaire', 'Quiz de vocabulaire N5, N4 et N3 complets, ou par thème (verbes, maison, voyage…). Même liste en flashcards pour réviser.', ['N5', 'N4', 'N3']],
+      ['Jouer'],
+      ['冒', 'L\'aventure', 'Une histoire en chapitres avec un boss à la fin. Choisis ton histoire en haut de la page : L0 S1, L0 S2, L1 S1, L1 S2 ou L2 S3.'],
+      ['遊', 'Les mini-jeux', 'Sprint, pêche au kana, lecture, traduction, écriture, paires, examen blanc : chaque partie te donne de 1 à 3 étoiles.'],
+      ['塔', 'La Tour infinie', 'Un étage après l\'autre, des ennemis de plus en plus coriaces. Bats ton record et vois celui de tes amis.'],
+      ['戦', 'Salons et classement', 'Défie tes camarades en duel et compare-toi au classement. Il faut être connecté.'],
+      ['Progresser'],
+      ['経', 'XP et niveaux', 'Chaque bonne réponse rapporte de l\'XP. En montant de niveau tu débloques de nouveaux lieux, des récompenses et des paliers de la Voie du Dōjō.'],
+      ['道', 'La Voie du Dōjō', 'Un parcours de récompenses : cadres, titres, effets et objets à gagner au fil de tes niveaux.'],
+      ['金', 'Pièces', 'Gagnées en jouant et avec le cadeau du jour. Dépensées à la Boutique et pour les boosters de cartes.'],
+      ['Collectionner'],
+      ['札', 'Cartes et classeur', 'Un booster coûte 30 pièces (offres dès 5) et un booster gratuit t\'attend chaque jour à 8 h (heure de Paris). 6 raretés, des doublons qui te rendent des pièces, et une fiche à lire par carte. Ton classeur garde toute la collection.', ['6 raretés', 'gratuit chaque jour']],
+      ['店', 'La Boutique', 'Katanas, animaux, décors, cadres, bannières, thèmes de cartes, coffres du dōjō : tout s\'achète avec tes pièces.'],
+      ['村', 'Ta Base et le village', 'Ton camp, ton pavillon, tes animaux et tes décors. Fais construire ta maison au village et croise les amis en ligne.'],
+      ['像', 'Profil et vitrine', 'Photo, cadre, bannière, titre et 3 cartes préférées exposées : les autres élèves voient tout ça sur ta fiche.'],
+      ['Entre amis'],
+      ['援', 'Encourager un ami', 'Un ami est en ligne ? Touche son profil (ou le bouton 📣 dans la liste) puis « Encourager » : ta photo apparaît sur son écran et lance des pétales de sakura avec un « がんばれ ! ». Il faut être tous les deux en ligne.'],
+      ['友', 'Actualités du dōjō', 'Les derniers exploits de la classe (niveaux, boss, badges) restent affichés, même après ta déconnexion.'],
+      ['話', 'Serveur Discord', 'Un coup de main, une idée, envie de pratiquer le japonais ? Le lien Discord est en bas de chaque page.']
     ];
-    return '<div class="gdgrid">' + items.map(function (it) {
-      return '<section class="gdcard"><div class="gdvis' + (it[3] ? ' ' + it[3] : '') + '">' + it[2] + '</div><h4>' + esc(it[0]) + '</h4><p>' + esc(it[1]) + '</p></section>';
-    }).join('') + '</div><div class="row" style="margin-top:12px"><button type="button" class="btn primary" data-tour="replay">▶ Lancer la visite guidée</button></div>';
+    return '<div class="gdgrid">' + G.map(function (it) {
+      if (it.length === 1) return '<div class="gdh">' + esc(it[0]) + '</div>';
+      return '<section class="gdrow"><span class="gdsl" aria-hidden="true">' + it[0] + '</span><div><h4>' + esc(it[1]) + '</h4><p>' + esc(it[2]) + '</p>' + (it[3] ? '<div class="gdc">' + it[3].map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('') + '</div>' : '') + '</div></section>';
+    }).join('') + '<div class="gdfoot"><button type="button" class="btn primary" data-tour="replay">▶ Lancer la visite guidée</button><a class="btn" href="https://discord.gg/MVJNfRSQR2" target="_blank" rel="noopener noreferrer">💬 Serveur Discord</a></div></div>';
   }
   function guideOpen() { openModal('Comment ça marche ?', guideHTML(), 'wide guidemodal'); }
   document.addEventListener('click', function (e) {
@@ -18850,7 +18937,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     if (mode === 'due') info = '<b>' + d.due + ' mot' + (d.due > 1 ? 's' : '') + ' à revoir</b> · tu auras ' + Math.min(10, d.due) + ' questions.';
     else if (mode === 'fresh') info = '<b>Rien à revoir ici.</b> Tu découvriras ' + Math.min(d.fresh, FL_NEW) + ' nouveaux mots en flashcards.';
     else info = '<b>Tout est à jour ici.</b> Tu lanceras un Sprint pour t\'entraîner.';
-    return '<p class="muted small" style="margin:0 0 10px">Réponds à Archibald, une question à la fois.</p>' + askHTML('dy', false) + seenOptHTML('dy') +
+    return '<p class="muted small" style="margin:0 0 10px">Réponds à Asahi, une question à la fois.</p>' + askHTML('dy', false) + seenOptHTML('dy') +
       (gsStep === 0 ? '<p class="dyinfo">' + info + '</p><div class="row" style="margin-top:12px"><button type="button" class="btn primary" data-dylaunch="1">▶ Lancer la révision</button><button type="button" class="btn" data-dyclose="1">Annuler</button></div>' : '<div class="row" style="margin-top:12px"><button type="button" class="btn" data-dyclose="1">Annuler</button></div>');
   }
   function dailyMenu() { gsStep = 1; openModal('Révision du jour', dailyMenuHTML(), 'gimodal dymodal'); }
@@ -18918,10 +19005,10 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     e.stopPropagation(); cheerSend(b.getAttribute('data-cheer'));
   }, true);
 
-  /* ---- Choix du niveau et de la semaine dans la fenêtre d\'Archibald (tous les jeux et flashcards) ---- */
+  /* ---- Choix du niveau et de la semaine dans la fenêtre d\'Asahi (tous les jeux et flashcards) ---- */
   var gsKOpen = false;
   var gsKMode = false;
-  /* Archibald pose une question à la fois (niveau, semaine, kanjis) avec un menu déroulant ; 0 = résumé */
+  /* Asahi pose une question à la fois (niveau, semaine, kanjis) avec un menu déroulant ; 0 = résumé */
   var gsStep = 1;
   function askSel(id, label, opts, cur) {
     return '<select class="wksel asksel" id="' + id + '" aria-label="' + esc(label) + '">' + opts.map(function (o) { return '<option value="' + esc(o[0]) + '"' + (String(o[0]) === String(cur) ? ' selected' : '') + '>' + esc(o[1]) + '</option>'; }).join('') + '</select>';
@@ -19011,7 +19098,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   STORYART.L0 = '<svg viewBox="0 0 160 70" class="spart" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="spd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe3c8"/><stop offset="1" stop-color="#f4efc8"/></linearGradient></defs><rect width="160" height="70" fill="url(#spd)"/><circle cx="116" cy="26" r="13" fill="#fff6c8"/><path d="M0 70V56q40-8 80 0t80-6v20z" fill="#6f9a5a"/><g fill="#4f8a4a"><rect x="22" y="14" width="5" height="56" rx="2"/><rect x="40" y="22" width="4" height="48" rx="2"/><rect x="56" y="10" width="5" height="60" rx="2"/></g><g fill="#2f6a3a"><path d="M27 24l14-6-9 10zM44 32l13-5-8 9zM61 20l14-6-9 10z"/></g><g stroke="#2f6a3a" stroke-width="1.5"><path d="M22 30h5M22 46h5M40 38h4M56 28h5M56 46h5"/></g></svg>';
   STORYART.L0S2 = '<svg viewBox="0 0 160 70" class="spart" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="spe" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fd0ea"/><stop offset="1" stop-color="#e8f3df"/></linearGradient></defs><rect width="160" height="70" fill="url(#spe)"/><path d="M0 44l30-18 20 12 30-24 34 26 46-14v46H0z" fill="#8fb0c8"/><path d="M0 70V54h160v16z" fill="#4a86b0"/><path d="M0 60q20-4 40 0t40 0t40 0t40 0" fill="none" stroke="#fff" stroke-width="1.5" opacity=".6"/><path d="M40 52q40-24 80 0" fill="none" stroke="#a8443a" stroke-width="4"/><rect x="38" y="50" width="84" height="4" fill="#a8443a"/><circle cx="130" cy="18" r="9" fill="#fff8d0"/></svg>';
 
-  /* ---- Archibald t'accueille dans l'Aventure et te guide pas à pas ---- */
+  /* ---- Asahi t'accueille dans l'Aventure et te guide pas à pas ---- */
   var arPick = null;   // null = automatique (ouvert tant qu'aucune aventure n'est commencée), true/false = choix du joueur
   function arDoneAll() { var n = 0; ['L0', 'L0S2', 'L1', 'L1S2', 'L2'].forEach(function (id) { n += lvChapters(id).filter(function (x) { return chState(x).boss; }).length; }); return n; }
   function arOpen() { if (!lvChapters().length) return true; return arPick === null ? arDoneAll() === 0 : arPick; }
@@ -19026,7 +19113,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     else if (open) msg = 'Salut ' + nm + ' ! Aujourd\'hui, quelle aventure veux-tu poursuivre ? Touche celle de ton choix.' + (arDoneAll() === 0 ? ' Si tu débutes, je te conseille <b>L0 S1</b>.' : '');
     else if (nxt) { msg = 'Re-salut ' + nm + ' ! Tu en es à l\'aventure <b>' + esc(L.tag) + '</b>, ' + weekLabel(nxt.wk).toLowerCase() + ', chapitre « ' + esc(nxt.title) + ' ». On continue ?'; btns = '<button type="button" class="btn primary" data-arch="go">On continue !</button><button type="button" class="btn" data-arch="pick">Changer d\'aventure</button>'; }
     else { msg = 'Bravo ' + nm + ', tu as terminé toute l\'aventure <b>' + esc(L.tag) + '</b> ! Rejoue un boss ou choisis-en une autre.'; btns = '<button type="button" class="btn primary" data-arch="pick">Choisir une autre aventure</button>'; }
-    return '<div class="archg"><div class="archm">' + mascotHTML() + '</div><div class="archb"><b>Archibald</b><p>' + msg + '</p>' + (btns ? '<div class="archbtns">' + btns + '</div>' : '') + '</div></div>';
+    return '<div class="archg"><div class="archm">' + mascotHTML() + '</div><div class="archb"><b>Asahi</b><p>' + msg + '</p>' + (btns ? '<div class="archbtns">' + btns + '</div>' : '') + '</div></div>';
   }
   document.addEventListener('click', function (e) {
     var b = e.target.closest ? e.target.closest('[data-arch]') : null; if (!b || !user) return;
@@ -19135,7 +19222,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     setTimeout(function () { var b = d.querySelector('.lvgo'); if (b) b.focus(); }, 2100);
   }
   /* =====================================================================
-     HALL DU CHÂTEAU : point d'entrée de l'Aventure. Archibald attend, on le touche,
+     HALL DU CHÂTEAU : point d'entrée de l'Aventure. Asahi attend, on le touche,
      il demande quelle aventure (L0 / L1 / L2), la porte s'ouvre et on part ensemble.
      ===================================================================== */
   var arStage = 'castle', cstTalk = false, cstBusy = false;
@@ -19292,7 +19379,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   });
   /* =====================================================================
      DOJO SIMPLIFIÉ : 4 gros choix (Flashcards, Kanjis, Mini-jeux, Carnet d'erreurs)
-     + bulles de conseil d'Archibald sur les écrans (masquables avec « Compris »)
+     + bulles de conseil d'Asahi sur les écrans (masquables avec « Compris »)
      ===================================================================== */
   var djSub = '';   // '', 'flash', 'kanji', 'mini', 'err'
   document.addEventListener('click', function (e) {
@@ -19313,7 +19400,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   function tipSeen(key) { return !!(S && S.tips && S.tips[key]); }
   function tipHTML(key, text) {
     if (!S || tipSeen(key)) return '';
-    return '<div class="archtip" data-tip="' + key + '"><span class="atm">' + mascotHTML() + '</span><div class="atb"><b>Archibald</b><p>' + text + '</p><button type="button" class="btn" data-tipx="' + key + '">Compris</button></div></div>';
+    return '<div class="archtip" data-tip="' + key + '"><span class="atm">' + mascotHTML() + '</span><div class="atb"><b>Asahi</b><p>' + text + '</p><button type="button" class="btn" data-tipx="' + key + '">Compris</button></div></div>';
   }
   function renderTipHost(id, key, text) { var h = $(id); if (h) h.innerHTML = tipHTML(key, text); }
   document.addEventListener('click', function (e) {
@@ -19983,7 +20070,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     else if (w === 'dungeon') {
       djCatchup();
       var a2 = arcS(), bst = a2.best || (S.dj && S.dj.best) || 0;
-      openModal('La Tour infinie', '<div class="gintro"><div class="gimasc">' + mascotHTML() + '<b>Archibald</b></div><div class="gibub"><p>Voici la Tour infinie : un étage après l\'autre, avec tes mots à revoir et ceux que tu as ratés.</p><p>Tu as ' + HERO_PV + ' PV et tu en récupères à chaque étage (+3 après un monstre, +6 après un gardien). Un gardien t\'attend tous les 5 étages, avec une récompense à la clé :</p>' + djPalierHTML() + '<p class="gitip">💡 Plus tu montes, plus c\'est dur : à chaque palier de 5 étages, le chrono raccourcit, les erreurs coûtent plus cher, les soins baissent et les saisies au clavier se multiplient.</p><p class="small muted gibest">' + (S.dj.best ? 'Record : étage ' + S.dj.best + ' · ' + (S.dj.runs || 0) + ' descente' + ((S.dj.runs || 0) > 1 ? 's' : '') + ' tentée' + ((S.dj.runs || 0) > 1 ? 's' : '') : 'Aucun étage franchi pour l\'instant.') + '</p></div></div><div class="row" style="margin-top:12px"><button type="button" class="btn primary" data-arc="djgo">Monter !</button><button type="button" class="btn" data-mclose>Plus tard</button></div>', 'gimodal');
+      openModal('La Tour infinie', '<div class="gintro"><div class="gimasc">' + mascotHTML() + '<b>Asahi</b></div><div class="gibub"><p>Voici la Tour infinie : un étage après l\'autre, avec tes mots à revoir et ceux que tu as ratés.</p><p>Tu as ' + HERO_PV + ' PV et tu en récupères à chaque étage (+3 après un monstre, +6 après un gardien). Un gardien t\'attend tous les 5 étages, avec une récompense à la clé :</p>' + djPalierHTML() + '<p class="gitip">💡 Plus tu montes, plus c\'est dur : à chaque palier de 5 étages, le chrono raccourcit, les erreurs coûtent plus cher, les soins baissent et les saisies au clavier se multiplient.</p><p class="small muted gibest">' + (S.dj.best ? 'Record : étage ' + S.dj.best + ' · ' + (S.dj.runs || 0) + ' descente' + ((S.dj.runs || 0) > 1 ? 's' : '') + ' tentée' + ((S.dj.runs || 0) > 1 ? 's' : '') : 'Aucun étage franchi pour l\'instant.') + '</p></div></div><div class="row" style="margin-top:12px"><button type="button" class="btn primary" data-arc="djgo">Monter !</button><button type="button" class="btn" data-mclose>Plus tard</button></div>', 'gimodal');
     }
     else if (w === 'djgo') { closeModal(); djStart(1); }
     else if (w === 'secret') { closeModal(); var c = secretCh(+t.getAttribute('data-wk')); startFight(c, 3, STAGE_N - 1); }
