@@ -3890,6 +3890,31 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
 .qvrv .qvjp{font-size:1.3rem;min-width:56px;text-align:center}
 .qvmine{display:block;color:#b2285b;font-weight:600;margin-top:2px}
 .qvexintro{text-align:center}
+
+/* ===== v169 : succès, dictée, pétales ===== */
+.gach{margin-top:18px;padding:14px;border-radius:18px;background:linear-gradient(#fffaf0,#f3e9ff);border:2px solid #4b3d84;box-shadow:0 4px 0 rgba(44,36,82,.4)}
+.gachh{display:flex;justify-content:space-between;align-items:baseline;font-size:1.05rem;color:#2c2452}.gachh span{font-weight:700;color:#d0587f}
+.gachbar{display:block;height:8px;border-radius:99px;background:#e2d8f5;overflow:hidden;margin:6px 0 4px}.gachbar u{display:block;height:100%;background:linear-gradient(90deg,#f0b97a,#d0587f);border-radius:99px}
+.gachg{margin:14px 0 6px;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:#d0587f}
+.qvhear.sm{width:52px;height:52px;padding:0;font-size:1.4rem;margin:0;animation:none;box-shadow:0 3px 0 rgba(20,14,44,.55)}
+.qvpethd{display:flex;justify-content:space-between;align-items:center;margin:4px 2px}
+.qvhp i{font-style:normal;font-size:1.5rem;color:#c9bfe0;margin-right:3px}.qvhp i.on{color:#d0587f;text-shadow:0 0 8px rgba(208,88,127,.5)}
+.qvpet{position:relative;height:340px;border-radius:18px;overflow:hidden;border:2px solid #4b3d84;background:linear-gradient(#2c2452 0%,#6a58b0 55%,#e9a5b6 100%);box-shadow:inset 0 0 30px rgba(0,0,0,.25)}
+.qvpet.missed{box-shadow:inset 0 0 30px rgba(208,88,127,.7)}
+.qvriver{position:absolute;left:0;right:0;bottom:0;height:46px;background:repeating-linear-gradient(100deg,#5aa6c8 0 14px,#7cc1dc 14px 30px);opacity:.9;border-top:3px solid #bfe6f2}
+.qvpt{position:absolute;top:-70px;width:23%;min-height:58px;padding:10px 4px;border:0;border-radius:60% 40% 60% 40%/50% 60% 40% 50%;background:radial-gradient(circle at 35% 30%,#fff0f5,#f4b6c8 70%,#e98aa8);color:#4a1230;font:700 1rem inherit;font-family:inherit;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.35);animation-name:qvpfall;animation-timing-function:linear;animation-fill-mode:forwards;display:grid;place-items:center;text-align:center;word-break:keep-all}
+.qvpt span{display:block;line-height:1.1}
+@keyframes qvpfall{0%{top:-70px;transform:rotate(-8deg) translateX(0)}25%{transform:rotate(8deg) translateX(8px)}50%{transform:rotate(-6deg) translateX(-8px)}75%{transform:rotate(7deg) translateX(6px)}100%{top:calc(100% - 78px);transform:rotate(-4deg) translateX(0)}}
+.qvpt.caught{animation:qvpcatch .6s ease-out forwards!important;background:radial-gradient(circle at 35% 30%,#f4ffe8,#9fdc8a)}
+@keyframes qvpcatch{to{transform:scale(1.5);opacity:0}}
+.qvpt.gone{animation:qvpgone .7s ease-in forwards!important;filter:grayscale(.6)}
+@keyframes qvpgone{to{transform:translateY(60px) scale(.4) rotate(40deg);opacity:0}}
+@media (prefers-reduced-motion:reduce){.qvpt{animation-duration:14s!important}}
+
+.qvseg{display:flex!important;flex-wrap:wrap;gap:4px;overflow:visible!important}.qvseg button{flex:1 1 22%;min-width:0}
+
+.gach{grid-column:1/-1;width:100%;box-sizing:border-box}
+#games>.gach{grid-column:1/-1}
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -11873,6 +11898,49 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     { id: 'deco10', g: '飾', name: 'Maître décorateur', desc: 'Posséder 10 objets de décor', test: function () { return DECO.filter(function (d) { return owns(d.id); }).length >= 10; } },
     { id: 'zoo3', g: '園', name: 'Petit zoo', desc: 'Adopter 3 animaux de compagnie', test: function () { return PETS.filter(function (p) { return owns(p.id); }).length >= 3; } },
   ];
+  /* ---- Succès des mini-jeux ---- */
+  function qx(k) { return (S.qvx && S.qvx[k]) || { p: 0, b: 0, perfect: 0 }; }
+  function gStars(id) { return (S.games && S.games[id] && S.games[id].stars) || 0; }
+  function gPlaysAll() { var n = 0; Object.keys(S.games || {}).forEach(function (k) { n += S.games[k].plays || 0; }); ['ecoute', 'dictee', 'petales'].forEach(function (k) { n += qx(k).p; }); return n; }
+  function gTower() { return (S.dj && S.dj.best) || 0; }
+  function jxBest(lv) { return (S.qvEx && S.qvEx[lv] && S.qvEx[lv].best) || 0; }
+  var GAME_ALL = ['sprint', 'fish', 'lecture', 'trad', 'pairs', 'exam'];
+  var GAME_BADGES = [
+    { id: 'sprint25', g: '雷', name: 'Foudre', desc: 'Marquer 25 points au Sprint éclair', game: 'Sprint éclair', test: function () { return gameStat('sprint').best >= 25; }, prog: function () { return [gameStat('sprint').best, 25]; } },
+    { id: 'fishp', g: '釣', name: 'Pêcheur du mont Fuji', desc: '10 prises sur 10 à la Pêche au kana', game: 'Pêche au kana', test: function () { return !!gameStat('fish').perfect; } },
+    { id: 'pairs30', g: '忍', name: 'Mains de ninja', desc: 'Finir les Paires chrono en moins de 30 s', game: 'Paires chrono', test: function () { var b = gameStat('pairs').best; return b > 0 && b <= 30; } },
+    { id: 'write5', g: '筆', name: 'Calligraphe', desc: 'Jouer 5 fois à l\'Écriture libre', game: 'Écriture libre', test: function () { return gameStat('write').plays >= 5; }, prog: function () { return [gameStat('write').plays, 5]; } },
+    { id: 'exam18', g: '試', name: 'Major de promo', desc: '18/20 ou plus à l\'Examen blanc', game: 'Examen blanc', test: function () { return gameStat('exam').best >= 18; }, prog: function () { return [gameStat('exam').best, 18]; } },
+    { id: 'exam20', g: '優', name: 'Examen parfait', desc: '20/20 à l\'Examen blanc', game: 'Examen blanc', test: function () { return gameStat('exam').best >= 20; }, prog: function () { return [gameStat('exam').best, 20]; } },
+    { id: 'star3', g: '星', name: 'Trois étoiles', desc: 'Décrocher 3 étoiles dans un mini-jeu', game: 'Mini-jeux', test: function () { return GAME_ALL.some(function (k) { return gStars(k) >= 3; }); } },
+    { id: 'starall', g: '冠', name: 'Maître des mini-jeux', desc: '3 étoiles dans les 6 mini-jeux chronométrés', game: 'Mini-jeux', test: function () { return GAME_ALL.every(function (k) { return gStars(k) >= 3; }); }, prog: function () { return [GAME_ALL.filter(function (k) { return gStars(k) >= 3; }).length, 6]; } },
+    { id: 'plays25', g: '遊', name: 'Joueur assidu', desc: 'Jouer 25 parties de mini-jeux', game: 'Mini-jeux', test: function () { return gPlaysAll() >= 25; }, prog: function () { return [gPlaysAll(), 25]; } },
+    { id: 'plays100', g: '娯', name: 'Infatigable', desc: 'Jouer 100 parties de mini-jeux', game: 'Mini-jeux', test: function () { return gPlaysAll() >= 100; }, prog: function () { return [gPlaysAll(), 100]; } },
+    { id: 'tower10', g: '塔', name: 'Étage 10', desc: 'Atteindre l\'étage 10 de la Tour infinie', game: 'Tour infinie', test: function () { return gTower() >= 10; }, prog: function () { return [gTower(), 10]; } },
+    { id: 'tower25', g: '登', name: 'Étage 25', desc: 'Atteindre l\'étage 25 de la Tour infinie', game: 'Tour infinie', test: function () { return gTower() >= 25; }, prog: function () { return [gTower(), 25]; } },
+    { id: 'tower50', g: '天', name: 'Sommet de la Tour', desc: 'Atteindre l\'étage 50 de la Tour infinie', game: 'Tour infinie', test: function () { return gTower() >= 50; }, prog: function () { return [gTower(), 50]; } },
+    { id: 'ecoute1', g: '聴', name: 'Bonne oreille', desc: 'Finir une séance d\'Écoute', game: 'Écoute', test: function () { return qx('ecoute').p >= 1; } },
+    { id: 'ecoutep', g: '耳', name: 'Oreille de lynx', desc: '10/10 en Écoute', game: 'Écoute', test: function () { return !!qx('ecoute').perfect; } },
+    { id: 'dictee1', g: '写', name: 'Dictée japonaise', desc: 'Finir une séance de Dictée', game: 'Dictée', test: function () { return qx('dictee').p >= 1; } },
+    { id: 'dicteep', g: '録', name: 'Dictée parfaite', desc: '10/10 en Dictée', game: 'Dictée', test: function () { return !!qx('dictee').perfect; } },
+    { id: 'petales1', g: '花', name: 'Pétales d\'écoute', desc: 'Finir une partie de Pétales', game: 'Pétales', test: function () { return qx('petales').p >= 1; } },
+    { id: 'petalesp', g: '桜', name: 'Pluie parfaite', desc: 'Attraper les 10 pétales sans perdre de vie', game: 'Pétales', test: function () { return !!qx('petales').perfect; } },
+    { id: 'jx5', g: '伍', name: 'Examen N5 réussi', desc: '18/30 ou plus à l\'Examen blanc N5', game: 'Examen JLPT', test: function () { return jxBest('n5') >= 18; }, prog: function () { return [jxBest('n5'), 18]; } },
+    { id: 'jx4', g: '肆', name: 'Examen N4 réussi', desc: '18/30 ou plus à l\'Examen blanc N4', game: 'Examen JLPT', test: function () { return jxBest('n4') >= 18; }, prog: function () { return [jxBest('n4'), 18]; } },
+    { id: 'jx3', g: '参', name: 'Examen N3 réussi', desc: '18/30 ou plus à l\'Examen blanc N3', game: 'Examen JLPT', test: function () { return jxBest('n3') >= 18; }, prog: function () { return [jxBest('n3'), 18]; } },
+    { id: 'jx27', g: '秀', name: 'Examen d\'excellence', desc: '27/30 ou plus à un Examen blanc JLPT', game: 'Examen JLPT', test: function () { return Math.max(jxBest('n5'), jxBest('n4'), jxBest('n3')) >= 27; }, prog: function () { return [Math.max(jxBest('n5'), jxBest('n4'), jxBest('n3')), 27]; } }
+  ];
+  GAME_BADGES.forEach(function (b) { b.cat = 'game'; BADGES.push(b); });
+  function badgeCardHTML(b) {
+    var p = S.badges[b.id] ? null : badgeProg(b.id);
+    return '<div class="badge' + (S.badges[b.id] ? ' on' : '') + '"><span class="g" aria-hidden="true">' + b.g + '</span><span><b>' + esc(b.name) + '</b><span>' + esc(b.desc) + '</span>' + (p ? '<i class="bprog" aria-hidden="true"><u style="width:' + Math.round(p[0] / p[1] * 100) + '%"></u></i><em class="bpn">' + p[0].toLocaleString('fr-FR') + ' / ' + p[1].toLocaleString('fr-FR') + '</em>' : '') + '</span></div>';
+  }
+  function gameAchHTML() {
+    var done = GAME_BADGES.filter(function (b) { return S.badges[b.id]; }).length, groups = [], by = {};
+    GAME_BADGES.forEach(function (b) { if (!by[b.game]) { by[b.game] = []; groups.push(b.game); } by[b.game].push(b); });
+    return '<div class="gach"><div class="gachh"><b>Succès des mini-jeux</b><span>' + done + ' / ' + GAME_BADGES.length + '</span></div><i class="gachbar"><u style="width:' + Math.round(done / GAME_BADGES.length * 100) + '%"></u></i>' +
+      groups.map(function (g) { return '<h5 class="gachg">' + esc(g) + '</h5><div class="badges">' + by[g].map(badgeCardHTML).join('') + '</div>'; }).join('') + '</div>';
+  }
   // Progression vers chaque badge à seuil : id -> [valeur actuelle, objectif]
   function badgeProg(id) {
     var P = {
@@ -11891,6 +11959,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
       deco10: [DECO.filter(function (d) { return owns(d.id); }).length, 10],
       zoo3: [PETS.filter(function (p) { return owns(p.id); }).length, 3]
     }, r = P[id];
+    if (!r) { var gb = GAME_BADGES.filter(function (b) { return b.id === id; })[0]; r = gb && gb.prog ? gb.prog() : null; }
     if (!r) return null;
     return [Math.min(Math.max(0, +r[0] || 0), r[1]), r[1]];
   }
@@ -13175,9 +13244,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
       return '<button class="mode gamecard djt" type="button" data-game="' + id + '" aria-label="' + esc(c.name) + '"><span class="tk" aria-hidden="true">' + c.g + '</span><span class="gtx"><b>' + esc(c.name) + '</b>' + (bt ? '<small>' + esc(bt) + '</small>' : '') + '</span></button>';
     }
     $('games').innerHTML = djGamesHTML(FLASH_ORDER.map(card).join(''), card('kread') + card('ksens') + card('kstudy'), GAME_ORDER.map(card).join(''));
-    $('badges').innerHTML = BADGES.map(function (b) {
-      return '<div class="badge' + (S.badges[b.id] ? ' on' : '') + '"><span class="g" aria-hidden="true">' + b.g + '</span><span><b>' + esc(b.name) + '</b><span>' + esc(b.desc) + '</span>' + (function () { if (S.badges[b.id]) return ''; var p = badgeProg(b.id); return p ? '<i class="bprog" aria-hidden="true"><u style="width:' + Math.round(p[0] / p[1] * 100) + '%"></u></i><em class="bpn">' + p[0].toLocaleString('fr-FR') + ' / ' + p[1].toLocaleString('fr-FR') + '</em>' : ''; })() + '</span></div>';
-    }).join('');
+    $('badges').innerHTML = BADGES.map(badgeCardHTML).join('');
     var empty = false;
     $('homeNote').hidden = !empty;
     if (empty) $('homeNote').textContent = 'Plus de cœurs. Lecture exacte et Du français au japonais reviennent dans ' + mmss(nextHeartIn()) + '. Les autres jeux restent ouverts.';
@@ -18981,10 +19048,10 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
       ['習', 'Réviser', 'Flashcards, mini-jeux et examen blanc. Chaque réponse est mémorisée : un mot raté revient vite, un mot réussi revient de plus en plus tard. La pastille « à revoir » compte les mots dus aujourd\'hui.', ['répétition espacée']],
       ['星', 'Mot maîtrisé', '3 bonnes réponses de suite et le mot est maîtrisé. Une erreur remet le compteur à zéro. Tes mots maîtrisés par semaine sont dans « Stats ».'],
       ['筆', 'Fiches kanji', 'Choisis ta liste (semestre et semaine du cours, ou JLPT N5, N4, N3) puis touche un kanji ou un mot : lectures, sens, mots, astuce et ordre des traits animé (bouton « Rejouer »). Tous les kanjis du site ont leur fiche.', ['cours', 'JLPT', 'traits animés']],
-      ['級', 'JLPT et vocabulaire', 'Quiz de vocabulaire N5, N4 et N3 complets, ou par thème (verbes, maison, voyage…). Modes : apprendre, cartes, QCM, écrire et écoute (tu entends le mot, tu retrouves lequel). Chaque niveau a aussi son examen blanc de 30 questions chronométré, avec note et correction.', ['N5', 'N4', 'N3', 'écoute', 'examen blanc']],
+      ['級', 'JLPT et vocabulaire', 'Quiz de vocabulaire N5, N4 et N3 complets, ou par thème (verbes, maison, voyage…). Modes : apprendre, cartes, QCM, écrire, écoute (tu entends le mot, tu retrouves lequel), dictée (tu écris ce que tu entends) et pétales (touche le bon pétale avant qu\'il tombe dans l\'eau). Chaque niveau a aussi son examen blanc de 30 questions chronométré, avec note et correction.', ['N5', 'N4', 'N3', 'écoute', 'examen blanc']],
       ['Jouer'],
       ['冒', 'L\'aventure', 'Une histoire en chapitres avec un boss à la fin. Choisis ton histoire en haut de la page : L0 S1, L0 S2, L1 S1, L1 S2 ou L2 S3.'],
-      ['遊', 'Les mini-jeux', 'Sprint, pêche au kana, lecture, traduction, écriture, paires, examen blanc : chaque partie te donne de 1 à 3 étoiles.'],
+      ['遊', 'Les mini-jeux', 'Sprint, pêche au kana, lecture, traduction, écriture, paires, examen blanc : chaque partie te donne de 1 à 3 étoiles. Sous les jeux, 23 succès à débloquer (étoiles, records, Tour infinie, écoute, examens JLPT).'],
       ['塔', 'La Tour infinie', 'Un étage après l\'autre, des ennemis de plus en plus coriaces. Bats ton record et vois celui de tes amis.'],
       ['戦', 'Salons et classement', 'Défie tes camarades en duel et compare-toi au classement. Il faut être connecté.'],
       ['Progresser'],
@@ -19585,7 +19652,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
       '<div class="djgrid">' + ['flash', 'kanji', 'mini', 'err', 'daily', 'jlpt'].map(djTile).join('') + '</div>';
     if (djSub === 'err') return '';
     if (djSub === 'daily' || djSub === 'jlpt') return qvHTML();
-    return djBackHTML(djSub) + tipHTML('dj_' + djSub, DJ_INFO[djSub].tip) + (djSub === 'flash' ? fl : djSub === 'kanji' ? kj : mj);
+    return djBackHTML(djSub) + tipHTML('dj_' + djSub, DJ_INFO[djSub].tip) + (djSub === 'flash' ? fl : djSub === 'kanji' ? kj : mj + gameAchHTML());
   }
   document.addEventListener('click', function (e) {
     var b = e.target.closest ? e.target.closest('[data-djsub]') : null; if (!b || !user) return;
@@ -19872,12 +19939,12 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     return null;
   }
   var aidVoice = null;
-  function aidSpeak(text) {
+  function aidSpeak(text, rate) {
     if (!text) return;
     if (!('speechSynthesis' in window) || typeof SpeechSynthesisUtterance === 'undefined') { toast('L\'audio n\'est pas disponible sur cet appareil'); return; }
     try {
       var syn = window.speechSynthesis; syn.cancel();
-      var u = new SpeechSynthesisUtterance(text); u.lang = 'ja-JP'; u.rate = 0.85;
+      var u = new SpeechSynthesisUtterance(text); u.lang = 'ja-JP'; u.rate = rate || 0.85;
       var vs = syn.getVoices() || [];
       if (!aidVoice) aidVoice = vs.filter(function (v) { return /^ja/i.test(v.lang); })[0] || null;
       if (aidVoice) u.voice = aidVoice;
@@ -20638,7 +20705,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     }
   }
   function qvModes() {
-    return '<div class="seg qvseg" role="tablist" aria-label="Mode">' + [['learn', 'Apprendre'], ['cards', 'Cartes'], ['qcm', 'QCM'], ['write', 'Écrire'], ['ecoute', 'Écoute']].map(function (m) {
+    return '<div class="seg qvseg" role="tablist" aria-label="Mode">' + [['learn', 'Apprendre'], ['cards', 'Cartes'], ['qcm', 'QCM'], ['write', 'Écrire'], ['ecoute', 'Écoute'], ['dictee', 'Dictée'], ['petales', 'Pétales']].map(function (m) {
       return '<button type="button" role="tab" data-qvmode="' + m[0] + '" aria-selected="' + (qv.mode === m[0]) + '">' + m[1] + '</button>';
     }).join('') + '</div>';
   }
@@ -20650,13 +20717,14 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   function qvStart(t) {
     var base = t.w.slice().sort(function () { return Math.random() - 0.5; });
     base.sort(function (a, b) { return (qvStatus(a) === 'ok') - (qvStatus(b) === 'ok'); });
-    qv.q = { kind: qv.mode, items: base.slice(0, qv.mode === 'cards' ? 20 : 10), i: 0, score: 0, flipped: false, ans: null, opts: null, qd: 'jp', done: false, xp: 0 };
+    qvPetStop();
+    qv.q = { kind: qv.mode, items: base.slice(0, qv.mode === 'cards' ? 20 : 10), i: 0, lives: 3, score: 0, flipped: false, ans: null, opts: null, qd: 'jp', done: false, xp: 0 };
     qvPrep();
   }
   function qvPrep() {
     var q = qv.q; if (!q || q.done) return;
     q.ans = null; q.flipped = false;
-    if (q.kind === 'ecoute') {
+    if (q.kind === 'ecoute' || q.kind === 'petales') {
       var we = q.items[q.i], te = qvTheme(qv.th);
       q.opts = qvSimilar(we, te.w, 'jp', 3);
     }
@@ -20678,7 +20746,49 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     c.forEach(function (o) { if (out.length < n && !seen[o.x[field]]) { seen[o.x[field]] = 1; out.push(o.x); } });
     return shuffle([w].concat(out));
   }
-  function qvSayCur() { var q = qv.q; if (q && q.kind === 'ecoute' && !q.done && q.ans === null) aidSpeak(q.items[q.i].kana); }
+  function qvSayCur() { var q = qv.q; if (q && !q.done && q.ans === null && (q.kind === 'ecoute' || q.kind === 'dictee' || q.kind === 'petales')) aidSpeak(q.items[q.i].kana, q.kind === 'dictee' ? 0.75 : 0.85); }
+  /* Pétales d'écoute : le mot est prononcé, 4 pétales tombent, touche celle qui porte le bon mot avant qu'elle ne touche l'eau */
+  var qvPetT = null;
+  function qvPetStop() { clearTimeout(qvPetT); qvPetT = null; }
+  function qvPetalDur(q) { return Math.max(5.2, 9.5 - q.i * 0.45); }
+  function qvPetales(t) {
+    var q = qv.q; if (!q || q.kind !== 'petales') return '';
+    if (q.done) return qvEndHTML(q);
+    var w = q.items[q.i], dur = qvPetalDur(q), slots = shuffle([0, 1, 2, 3]);
+    var hearts = '<span class="qvhp">' + [0, 1, 2].map(function (i) { return '<i class="' + (i < q.lives ? 'on' : '') + '">♥</i>'; }).join('') + '</span>';
+    var h = qvProg(q) + '<div class="qvpethd">' + hearts + '<button type="button" class="qvhear sm" data-qvhear="1" aria-label="Réécouter le mot">🔊</button></div><div class="qvpet" id="qvPet">';
+    q.opts.forEach(function (o, i) {
+      h += '<button type="button" class="qvpt" data-qvpet="' + i + '" style="left:' + (slots[i] * 25 + 1.5) + '%;animation-duration:' + (dur + i * 0.35).toFixed(2) + 's"><span>' + esc(o.jp) + '</span></button>';
+    });
+    h += '<div class="qvriver"></div></div><p class="small muted center">Écoute le mot, puis touche le bon pétale avant qu\'il ne tombe dans l\'eau.</p>';
+    return h;
+  }
+  function qvPetArm(fresh) {
+    qvPetStop(); var q = qv.q; if (!q || q.kind !== 'petales' || q.done || !$('qvPet')) return;
+    if (fresh) { var w = q.items[q.i], idx = q.opts.findIndex(function (o) { return o.key === w.key; }); q.petEnd = Date.now() + (qvPetalDur(q) + idx * 0.35) * 1000; }
+    qvPetT = setTimeout(function () { if (qv.q === q && $('qvPet') && q.ans === null) qvPetMiss(); }, Math.max(50, q.petEnd - Date.now()));
+  }
+  function qvPetNext() {
+    var q = qv.q; if (!q) return; qvPetStop();
+    q.i++; q.ans = null; if (q.i >= q.items.length || q.lives <= 0) q.done = true; else qvPrep();
+    qvRefresh(false); if (!q.done) { qvSayCur(); qvPetArm(true); }
+  }
+  function qvPetMiss() {
+    var q = qv.q; if (!q || q.ans !== null) return; q.ans = -1; q.lives--; qvMark(q.items[q.i], false);
+    try { sfx('bad'); } catch (x) { /* son */ }
+    var p = document.querySelector('.qvpt[data-qvpet="' + q.opts.findIndex(function (o) { return o.key === q.items[q.i].key; }) + '"]'); if (p) p.classList.add('gone');
+    var el = $('qvPet'); if (el) el.classList.add('missed');
+    qvPetT = setTimeout(qvPetNext, 1100);
+  }
+  function qvDictee(t) {
+    var q = qv.q; if (!q || q.kind !== 'dictee') return '';
+    if (q.done) return qvEndHTML(q);
+    var w = q.items[q.i];
+    var h = qvProg(q) + '<div class="qvq"><small>Écoute et écris ce que tu entends (kana ou romaji)</small><button type="button" class="qvhear" data-qvhear="1" aria-label="Réécouter le mot">🔊<span>Réécouter</span></button><button type="button" class="linkbtn" data-qvslow="1">🐢 Plus lentement</button></div>';
+    if (q.ans === null) h += '<form class="qvform" data-qvform="1"><input type="text" id="qvIn" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="ex. nihon" aria-label="Ta réponse"><button type="submit" class="btn primary">Valider</button></form>';
+    else h += '<div class="qvfb ' + (q.ok ? 'good' : 'bad') + '"><b>' + (q.ok ? 'Bien entendu !' : 'Raté.') + '</b> ' + esc(w.jp) + ' · ' + esc(qvRd(w)) + ' = ' + esc(w.fr) + '</div><button type="button" class="btn primary" data-qvnext="1">' + (q.i + 1 >= q.items.length ? 'Voir le résultat' : 'Suivant') + '</button>';
+    return h;
+  }
   function qvProg(q) { return '<div class="qvprog"><i style="width:' + Math.round(q.i / q.items.length * 100) + '%"></i><span>' + Math.min(q.i + 1, q.items.length) + ' / ' + q.items.length + '</span></div>'; }
   // Pièces du vocabulaire quotidien : 1 pièce pour 2 XP, plafonnées à 25 par jour
   function qvCoins(xp) {
@@ -20687,8 +20797,9 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     c.n += n; n = katGain(n); S.coins = coinsOf() + n; S.coinsTotal = (S.coinsTotal || 0) + n; persist(); renderBars(); return n;
   }
   function qvEndHTML(q) {
-    var t = qvTheme(qv.th), per = q.kind === 'cards' ? 1 : (q.kind === 'qcm' || q.kind === 'ecoute' ? 2 : 3);
-    if (!q.paid) { q.paid = 1; q.xp = Math.min(30, q.score * per); q.coins = 0; if (q.xp > 0) { addXp(q.xp); q.coins = qvCoins(q.xp); } }
+    var t = qvTheme(qv.th), per = q.kind === 'cards' ? 1 : (q.kind === 'qcm' || q.kind === 'ecoute' || q.kind === 'petales' ? 2 : 3);
+    if (!q.paid) { q.paid = 1; if (q.kind === 'ecoute' || q.kind === 'dictee' || q.kind === 'petales') { S.qvx = S.qvx || {}; var xs = S.qvx[q.kind] || (S.qvx[q.kind] = { p: 0, b: 0, perfect: 0 }); xs.p++; if (q.score > xs.b) xs.b = q.score; if (q.score === q.items.length && (q.kind !== 'petales' || q.lives === 3)) xs.perfect = 1; }
+      q.xp = Math.min(30, q.score * per); q.coins = 0; if (q.xp > 0) { addXp(q.xp); q.coins = qvCoins(q.xp); } else { checkBadges(); persist(); } }
     var n = q.items.length, msg = q.score === n ? 'Parfait !' : q.score >= n * 0.7 ? 'Très bien !' : q.score >= n * 0.4 ? 'Pas mal, on continue !' : 'Courage, ça viendra !';
     return '<div class="panel qvend"><h3>' + msg + '</h3><p class="qvscore"><b>' + q.score + '</b> / ' + n + '</p><p class="muted small">+' + q.xp + ' XP' + (q.coins ? ' · +' + q.coins + ' pièce' + (q.coins > 1 ? 's' : '') : '') + ' · ' + qvMasteredN(t) + ' / ' + t.w.length + ' mots acquis dans ce thème</p><div class="row"><button type="button" class="btn primary" data-qvagain="1">Rejouer</button><button type="button" class="btn" data-qvmode="learn">Revoir la liste</button></div></div>';
   }
@@ -20815,7 +20926,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     if (!qv.th) return djBackHTML(djSub) + tipHTML('dj_' + djSub, DJ_INFO[djSub].tip) + qvGrid();
     var t = qvTheme(qv.th); if (!t) { qv.th = ''; return qvHTML(); }
     if (t.exam) return '<div class="grp djbar"><button type="button" class="btn djback" data-qvback="1">‹ Thèmes</button><h3 class="sgh" data-k="試"><span>' + esc(t.name) + '</span></h3></div><div class="qvbody">' + qvExHTML(t) + '</div>';
-    var body = qv.mode === 'learn' ? qvLearn(t) : qv.mode === 'cards' ? qvCards(t) : qv.mode === 'qcm' ? qvQcm(t) : qv.mode === 'ecoute' ? qvEcoute(t) : qvWrite(t);
+    var body = qv.mode === 'learn' ? qvLearn(t) : qv.mode === 'cards' ? qvCards(t) : qv.mode === 'qcm' ? qvQcm(t) : qv.mode === 'ecoute' ? qvEcoute(t) : qv.mode === 'dictee' ? qvDictee(t) : qv.mode === 'petales' ? qvPetales(t) : qvWrite(t);
     return '<div class="grp djbar"><button type="button" class="btn djback" data-qvback="1">‹ Thèmes</button><h3 class="sgh" data-k="' + t.k + '"><span>' + esc(t.name) + '</span></h3></div>' + (t.note && qv.mode === 'learn' ? '<p class="qvnote">' + esc(t.note) + '</p>' : '') + qvModes() + '<div class="qvbody">' + body + '</div>';
   }
   function qvRefresh(top) { renderHome(); if (top) window.scrollTo(0, 0); var i = $('qvIn'); if (i) i.focus(); if (qv.ex && qv.ex.phase === 'run') { if (!qvExTimer) qvExTimer = setInterval(qvExTick, 500); qvExTick(); } }
@@ -20829,10 +20940,18 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   document.addEventListener('click', function (e) {
     if (!user || !e.target.closest) return;
     var b;
-    if ((b = e.target.closest('[data-qvth]'))) { qvExStop(); qv.ex = null; qv.th = b.getAttribute('data-qvth'); qv.mode = 'learn'; qv.q = null; qvRefresh(true); return; }
-    if (e.target.closest('[data-qvback]')) { qvExStop(); qv.ex = null; qv.th = ''; qv.q = null; qvRefresh(true); return; }
-    if ((b = e.target.closest('[data-qvmode]'))) { qv.mode = b.getAttribute('data-qvmode'); qv.q = null; var t = qvTheme(qv.th); if (t && qv.mode !== 'learn') qvStart(t); qvRefresh(false); qvSayCur(); return; }
-    if (e.target.closest('[data-qvhear]')) { var qh = qv.q; if (qh && qh.kind === 'ecoute') aidSpeak(qh.items[qh.i].kana); return; }
+    if ((b = e.target.closest('[data-qvth]'))) { qvPetStop(); qvExStop(); qv.ex = null; qv.th = b.getAttribute('data-qvth'); qv.mode = 'learn'; qv.q = null; qvRefresh(true); return; }
+    if (e.target.closest('[data-qvback]')) { qvPetStop(); qvExStop(); qv.ex = null; qv.th = ''; qv.q = null; qvRefresh(true); return; }
+    if ((b = e.target.closest('[data-qvmode]'))) { qv.mode = b.getAttribute('data-qvmode'); qv.q = null; var t = qvTheme(qv.th); qvPetStop(); if (t && qv.mode !== 'learn') qvStart(t); qvRefresh(false); qvSayCur(); if (qv.mode === 'petales') qvPetArm(true); return; }
+    if (e.target.closest('[data-qvhear]')) { var qh = qv.q; if (qh && qh.items && !qh.done) aidSpeak(qh.items[qh.i].kana, qh.kind === 'dictee' ? 0.75 : 0.85); return; }
+    if (e.target.closest('[data-qvslow]')) { var qs = qv.q; if (qs && qs.items) aidSpeak(qs.items[qs.i].kana, 0.5); return; }
+    if ((b = e.target.closest('[data-qvpet]')) && qv.q && qv.q.kind === 'petales' && qv.q.ans === null) {
+      var qp = qv.q, ip = +b.getAttribute('data-qvpet'), wp = qp.items[qp.i], okp = qp.opts[ip].key === wp.key;
+      qvPetStop();
+      if (okp) { qp.ans = ip; qp.score++; qvMark(wp, true); try { sfx('ok'); } catch (x) { /* son */ } b.classList.add('caught'); qvPetT = setTimeout(qvPetNext, 650); }
+      else { qp.lives--; qvMark(wp, false); try { sfx('bad'); } catch (x) { /* son */ } b.classList.add('gone'); b.disabled = true; var hp = document.querySelector('.qvhp'); if (hp) hp.innerHTML = [0, 1, 2].map(function (i) { return '<i class="' + (i < qp.lives ? 'on' : '') + '">♥</i>'; }).join(''); if (qp.lives <= 0) { qp.ans = ip; qvPetT = setTimeout(qvPetNext, 700); } else qvPetArm(); }
+      return;
+    }
     if (e.target.closest('[data-qvexgo]')) { var tx = qvTheme(qv.th); if (tx) { qvExStart(tx); qvRefresh(true); qvExSay(); } return; }
     if (e.target.closest('[data-qvexhear]')) { qvExSay(); return; }
     if ((b = e.target.closest('[data-qvexopt]')) && qv.ex && qv.ex.phase === 'run') { qv.ex.items[qv.ex.i].pick = +b.getAttribute('data-qvexopt'); qvRefresh(false); return; }
@@ -20842,7 +20961,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     }
     if ((b = e.target.closest('[data-qvsay]'))) { var w = QVW[b.getAttribute('data-qvsay')]; if (w) aidSpeak(w.kana); return; }
     if (e.target.closest('[data-qvdir]')) { qv.dir = qv.dir === 'jp' ? 'fr' : 'jp'; qvRefresh(false); return; }
-    if (e.target.closest('[data-qvagain]')) { var t2 = qvTheme(qv.th); if (t2) qvStart(t2); qvRefresh(false); qvSayCur(); return; }
+    if (e.target.closest('[data-qvagain]')) { var t2 = qvTheme(qv.th); if (t2) qvStart(t2); qvRefresh(false); qvSayCur(); if (qv.mode === 'petales') qvPetArm(true); return; }
     var q = qv.q;
     if (e.target.closest('[data-qvflip]') && q && q.kind === 'cards' && !q.flipped) { q.flipped = true; qvRefresh(false); return; }
     if ((b = e.target.closest('[data-qvrate]')) && q && q.kind === 'cards') {
@@ -20861,7 +20980,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   document.addEventListener('submit', function (e) {
     var f = e.target.closest ? e.target.closest('[data-qvform]') : null; if (!f || !user) return;
     e.preventDefault();
-    var q = qv.q; if (!q || q.kind !== 'write' || q.ans !== null) return;
+    var q = qv.q; if (!q || (q.kind !== 'write' && q.kind !== 'dictee') || q.ans !== null) return;
     var v = ($('qvIn') || {}).value, w = q.items[q.i]; if (!String(v || '').trim()) return;
     q.ok = qvCheck(v, w); q.ans = v; qvMark(w, q.ok); if (q.ok) q.score++;
     try { sfx(q.ok ? 'ok' : 'bad'); } catch (x) { /* son */ } qvRefresh(false);
