@@ -3962,6 +3962,9 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
 #lrnHost { grid-column: 1 / -1; min-width: 0; width: 100%; }
 .cuish .btn { white-space: nowrap; }
 .karg { white-space: nowrap; }
+.mjh { grid-column: 1 / -1; margin: 10px 2px 2px; font-size: 1rem; color: #fffaf0; text-shadow: 0 1px 3px rgba(44,36,82,.7); }
+.flsrc { grid-column: 1 / -1; background: rgba(255,250,240,.92); border-radius: 14px; padding: 8px 12px; }
+.flsrc select { width: 100%; margin-top: 4px; }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -12334,6 +12337,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   function weekSel() { return lvWeeks().map(String).indexOf(String(S.weekSel)) >= 0 ? String(S.weekSel) : 'all'; }
   function kSelList() { var s = weekSel(), cur = {}; weekKanjis(s === 'all' ? 'all' : +s).forEach(function (k) { cur[k.k] = 1; }); return (S && S.kSel || []).filter(function (c) { return cur[c]; }); }
   function playPool() {
+    if (S && S.flJl) return jlFlashWords(S.flJl);
     var s = weekSel(), p = s === 'all' ? weekWords('all') : weekWords(+s), ks = kSelList();
     if (S && S.seenOnly) { var q = p.filter(wordSeen); if (q.length) p = q; }
     return ks.length ? p.filter(function (w) { return w.kanjis.some(function (c) { return ks.indexOf(c) >= 0; }); }) : p;
@@ -12814,6 +12818,12 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     var t = $('fcTime'); if (t) t.textContent = '⏱ ' + Math.floor(sess.sec / 60) + ':' + ('0' + (sess.sec % 60)).slice(-2) + ' · +' + (sess.gold || 0) + ' pièce' + ((sess.gold || 0) > 1 ? 's' : '') + (sess.xpg ? ' · +' + sess.xpg + ' XP' : '');
   }
   document.addEventListener('pointerdown', function () { if (sess && sess.kind === 'flash') flTouch(); }, true);
+  var JLFW = {};
+  function jlFlashWords(lv) {
+    if (JLFW[lv]) return JLFW[lv]; var o = [];
+    QV.forEach(function (t) { if (t.virt || t.lv !== lv) return; t.w.forEach(function (w) { o.push({ key: w.key, mot: w.jp, lecture: w.kana, disp: w.kana, sens: w.fr, type: '', alt: '', owner: '', wk: 0, kanjis: Array.from(w.jp).filter(isKanji), jl: lv }); }); });
+    return (JLFW[lv] = o);
+  }
   function flDeck(newMax) {
     var now = Date.now(), pool = playPool(); S.srs = S.srs || {};
     var due = pool.filter(function (w) { var e = S.srs[w.key]; return e && e.due <= now; }).sort(function (a, b) { return S.srs[a.key].due - S.srs[b.key].due; });
@@ -13286,6 +13296,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     $('wpickGrid').innerHTML = '<select class="wksel" id="wkSelect" aria-label="Semaines à réviser"><option value="all"' + (sel === 'all' ? ' selected' : '') + '>' + esc('Toutes les semaines ' + L.tag + ' · ' + weekWords('all').length + ' mots') + '</option>' +
       wks.map(function (wk) { var t = wk < 100 ? MP_WKNAME[wk] : (L1_TITLES[wk] || {}).title; return '<option value="' + wk + '"' + (sel === String(wk) ? ' selected' : '') + '>' + esc('Semaine ' + wkNum(wk) + (t ? ' · ' + t : '') + ' · ' + weekWords(wk).length + ' mots') + '</option>'; }).join('') + '</select>';
     $('weekInfo').textContent = L.short + ' · ' + L.sem + ' : ' + (sel === 'all' ? 'toutes les semaines mélangées' : weekLabel(+sel) + ' uniquement') + ' : ' + pool.length + ' mots pour les mini-jeux. L\'Histoire a ses propres chapitres par semaine.';
+    if (S.flJl) $('weekInfo').textContent = 'Vocabulaire actuel : ' + (S.flJl === 'q' ? 'vie quotidienne' : 'JLPT ' + S.flJl.toUpperCase()) + ' (' + pool.length + ' mots). Tu peux le changer au lancement d\'un jeu.';
   }
   function renderHome() {
     regen(); renderBars(); renderWeekPick(); renderSrsBox();
@@ -13295,7 +13306,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
       var bt = bestText(id);
       return '<button class="mode gamecard djt" type="button" data-game="' + id + '" aria-label="' + esc(c.name) + '"><span class="tk" aria-hidden="true">' + c.g + '</span><span class="gtx"><b>' + esc(c.name) + '</b>' + (bt ? '<small>' + esc(bt) + '</small>' : '') + '</span></button>';
     }
-    $('games').innerHTML = djGamesHTML(FLASH_ORDER.map(card).join(''), card('kread') + card('ksens') + card('kstudy'), GAME_ORDER.map(card).join('') + listenTiles());
+    $('games').innerHTML = djGamesHTML(FLASH_ORDER.map(card).join(''), card('kread') + card('ksens') + card('kstudy'), '<h4 class="mjh"><span aria-hidden="true">✍️</span> Écrit</h4>' + GAME_ORDER.map(card).join('') + '<h4 class="mjh"><span aria-hidden="true">🎤</span> Oral</h4>' + listenTiles() + djTile('lire') + djTile('cuis'));
     $('badges').innerHTML = BADGES.map(badgeCardHTML).join('');
     var empty = false;
     $('homeNote').hidden = !empty;
@@ -15624,7 +15635,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   };
   function setCursus(lv) {
     if (!CURSUS[lv]) return;
-    if (S.cursus !== lv) { S.cursus = lv; S.weekSel = 'all'; S.kSel = []; storyIdx = null; kv.week = 'all'; kv.list = ''; persist(); toast('Niveau : ' + CURSUS[lv].name + ' · ' + CURSUS[lv].sem); }
+    if (S.cursus !== lv) { S.flJl = ''; S.cursus = lv; S.weekSel = 'all'; S.kSel = []; storyIdx = null; kv.week = 'all'; kv.list = ''; persist(); toast('Niveau : ' + CURSUS[lv].name + ' · ' + CURSUS[lv].sem); }
   }
 
   /* ---- Déblocage progressif des sections selon le niveau ---- */
@@ -19561,9 +19572,9 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     return '<select class="wksel asksel" id="' + id + '" aria-label="' + esc(label) + '">' + opts.map(function (o) { return '<option value="' + esc(o[0]) + '"' + (String(o[0]) === String(cur) ? ' selected' : '') + '>' + esc(o[1]) + '</option>'; }).join('') + '</select>';
   }
   function askHTML(px, withK) {
-    var sel = weekSel(), lv = curLv(), wks = lvWeeks(), ks = kSelList(), last = withK ? 3 : 2, st = gsStep;
+    var sel = weekSel(), lv = curLv(), wks = lvWeeks(), ks = kSelList(), jl = px === 'gs' && S.flJl ? S.flJl : '', last = jl ? 1 : (withK ? 3 : 2), st = gsStep;
     if (st > last) st = 0;
-    var lvName = CURSUS[lv].tag + ' · ' + CURSUS[lv].sem;
+    var lvName = jl ? (jl === 'q' ? 'Vie quotidienne' : 'JLPT ' + jl.toUpperCase()) : CURSUS[lv].tag + ' · ' + CURSUS[lv].sem;
     var wkName = sel === 'all' ? 'toutes les semaines' : 'Semaine ' + wkNum(+sel) + ((L1_TITLES[+sel] || {}).title ? ' · ' + L1_TITLES[+sel].title : (+sel < 100 && MP_WKNAME[+sel] ? ' · ' + MP_WKNAME[+sel] : ''));
     var kName = ks.length ? ks.length + ' kanji' + (ks.length > 1 ? 's' : '') + ' choisi' + (ks.length > 1 ? 's' : '') : 'tous les kanjis';
     function nav(back, next, nextLabel) {
@@ -19572,12 +19583,12 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
         (st > 0 ? '<button type="button" class="asklink" data-gsstep="0" data-gspx="' + px + '">Garder mes choix actuels</button>' : '');
     }
     if (st === 0) {
-      return '<div class="asksum"><span><i>Niveau</i><b>' + esc(lvName) + '</b></span><span><i>Semaine</i><b>' + esc(wkName) + '</b></span>' + (withK ? '<span><i>Kanjis</i><b>' + esc(kName) + '</b></span>' : '') +
+      return '<div class="asksum"><span><i>Niveau</i><b>' + esc(lvName) + '</b></span>' + (jl ? '<span><i>Mots</i><b>' + jlFlashWords(jl).length + '</b></span>' : '<span><i>Semaine</i><b>' + esc(wkName) + '</b></span>') + (withK && !jl ? '<span><i>Kanjis</i><b>' + esc(kName) + '</b></span>' : '') +
         '<button type="button" class="gsksm" data-gsstep="1" data-gspx="' + px + '">Modifier</button></div>';
     }
     var q = '<div class="askq"><span class="askn">' + st + '/' + last + '</span>', body = '';
     if (st === 1) {
-      body = q + 'Quel niveau veux-tu travailler ?</div>' + askSel(px + 'Lv', 'Année et semestre', ['L0', 'L0S2', 'L1', 'L1S2', 'L2'].map(function (id) { return [id, CURSUS[id].tag + ' · ' + CURSUS[id].sem]; }), lv) + nav(0, 2, 'Suivant ›');
+      body = q + 'Quel niveau veux-tu travailler ?</div>' + askSel(px + 'Lv', 'Année et semestre', ['L0', 'L0S2', 'L1', 'L1S2', 'L2'].map(function (id) { return [id, CURSUS[id].tag + ' · ' + CURSUS[id].sem]; }).concat(px === 'gs' ? JL_LV.map(function (l) { return ['J:' + l[0], l[0] === 'q' ? 'Vie quotidienne (hors cours)' : 'JLPT ' + l[1]]; }) : []), jl ? 'J:' + jl : lv) + (jl ? nav(0, 0, 'Terminé ✓') : nav(0, 2, 'Suivant ›'));
     } else if (st === 2) {
       body = q + 'Quelle semaine ?</div>' + askSel(px + 'Wk', 'Semaine à réviser', [['all', 'Toutes les semaines']].concat(wks.map(function (wk) {
         var t = wk < 100 ? MP_WKNAME[wk] : (L1_TITLES[wk] || {}).title; return [String(wk), 'Semaine ' + wkNum(wk) + (t ? ' · ' + t : '')];
@@ -19593,6 +19604,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     return '<div class="askbox">' + body + '</div>';
   }
   function seenOptHTML(px) {
+    if (S && S.flJl) return '';
     var n = seenHiddenN(), on = !!(S && S.seenOnly);
     return '<label class="seenopt"><input type="checkbox" data-seenonly data-gspx="' + px + '"' + (on ? ' checked' : '') + '><span>Seulement les mots dont les kanjis sont <b>déjà étudiés</b> <small>' + (n ? n + ' mot' + (n > 1 ? 's' : '') + ' avec un kanji pas encore vu ' + (on ? 'masqué' + (n > 1 ? 's' : '') : 'à retirer') : 'Aucun mot concerné ici') + '</small></span></label>';
   }
@@ -19630,7 +19642,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   });
   document.addEventListener('change', function (e) {
     var t = e.target; if (!t || !user || (t.id !== 'gsLv' && t.id !== 'gsWk')) return;
-    if (t.id === 'gsLv') setCursus(t.value); else { S.weekSel = t.value; persist(); }
+    if (t.id === 'gsLv') { if (t.value.indexOf('J:') === 0) { S.flJl = t.value.slice(2); } else { S.flJl = ''; setCursus(t.value); } } else { S.weekSel = t.value; persist(); }
     S.kSel = []; persist();
     var host = document.getElementById('gsHost'); if (host) host.innerHTML = scopeBlockHTML();
     if (!$('vHome').hidden) renderHome(); else if (!$('vHub').hidden) renderHub();
@@ -19939,7 +19951,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   var DJ_INFO = {
     flash: { k: '札', t: 'Flashcards', art: 'flashfr', d: 'Revois tes mots, les plus urgents d\'abord', tip: 'Les flashcards te montrent d\'abord les mots à revoir. Note-toi honnêtement : c\'est comme ça que tu progresses vite !' },
     kanji: { k: '漢', t: 'Kanjis', art: 'kread', d: 'Lectures, sens et fiches à étudier', tip: 'Entraîne-toi sur les lectures et le sens des kanjis, ou ouvre « Étudier » pour apprendre une fiche.' },
-    mini: { k: '遊', t: 'Mini-jeux', art: 'sprint', d: 'Sprint, pêche, paires, examen blanc…', tip: 'Des jeux courts pour réviser en s\'amusant. Essaie l\'examen blanc avant un contrôle !' },
+    mini: { k: '遊', t: 'Mini-jeux', art: 'sprint', d: 'Écrit et oral : sprint, écoute, karaoké, cuisine…', tip: 'Des jeux courts pour réviser en s\'amusant. Les jeux « Écrit » se jouent au clavier ou en QCM, les jeux « Oral » avec ton oreille et ta voix. Essaie l\'examen blanc avant un contrôle !' },
     daily: { k: '日', t: 'Vie quotidienne', art: '', d: 'Maison, famille, amis, ville… du vocabulaire hors cours', tip: 'Ici, du vocabulaire de tous les jours, sans rapport avec ton cours : la maison, la famille, les amis, la ville… Choisis un thème, apprends la liste, puis teste-toi.' },
     jlpt: { k: '試', t: 'JLPT', art: '', d: 'Vocabulaire N5, N4 et N3, quiz par niveau', tip: 'Les listes JLPT : choisis N5, N4 ou N3, un thème ou le quiz complet du niveau, apprends la liste, puis teste-toi. Un mot est acquis après 3 bonnes réponses d\'affilée.' },
     rad: { k: '部', t: 'Radicaux', art: '', d: 'Les clés des kanjis, et devine le sens d\'un kanji', tip: 'Les kanjis sont construits avec des briques : les clés (radicaux). Apprends-les, puis devine le sens d\'un kanji grâce à elles !' },
@@ -19969,7 +19981,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     }
     return '<button class="mode gamecard djt" type="button" data-djsub="' + sub + '">' + chip + '<span class="tk" aria-hidden="true">' + i.k + '</span><span class="gtx"><b>' + i.t + '</b><small>' + esc(d) + '</small></span></button>';
   }
-  function djBackHTML(sub) { return '<div class="grp djbar"><button type="button" class="btn djback" data-djsub="">‹ Dojo</button><h3 class="sgh" data-k="' + DJ_INFO[sub].k + '"><span>' + DJ_INFO[sub].t + '</span></h3></div>'; }
+  function djBackHTML(sub) { var oral = sub === 'lire' || sub === 'cuis'; return '<div class="grp djbar"><button type="button" class="btn djback" data-djsub="' + (oral ? 'mini' : '') + '">‹ ' + (oral ? 'Mini-jeux' : 'Dojo') + '</button><h3 class="sgh" data-k="' + DJ_INFO[sub].k + '"><span>' + DJ_INFO[sub].t + '</span></h3></div>'; }
   var LISTEN_GAMES = [['ecoute', '聴', 'Écoute', 'Entends le mot, retrouve-le parmi 4'], ['dictee', '写', 'Dictée', 'Écris ce que tu entends'], ['petales', '花', 'Pétales', 'Touche le bon pétale avant la rivière']];
   function listenTiles() {
     return LISTEN_GAMES.map(function (g) {
@@ -20189,7 +20201,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   function djGamesHTML(fl, kj, mj) {
     document.body.classList.toggle('qvon', djSub === 'daily' || djSub === 'jlpt');
     if (!djSub) return tipHTML('dojo', 'Voici ton Dojo ! Touche une carte pour t\'entraîner : <b>Flashcards</b> pour revoir tes mots, <b>Kanjis</b>, <b>Mini-jeux</b>, ton <b>Carnet d\'erreurs</b>, ou du <b>vocabulaire du quotidien</b> ou le <b>JLPT</b>.') +
-      '<div class="djgrid">' + ['flash', 'kanji', 'mini', 'err', 'daily', 'jlpt', 'rad', 'cuis', 'lire'].map(djTile).join('') + '</div>';
+      '<div class="djgrid">' + ['flash', 'kanji', 'mini', 'err', 'daily', 'jlpt', 'rad'].map(djTile).join('') + '</div>';
     if (djSub === 'err') return '';
     if (djSub === 'rad' || djSub === 'cuis' || djSub === 'lire') return djBackHTML(djSub) + tipHTML('dj_' + djSub, DJ_INFO[djSub].tip) + '<div id="lrnHost">' + lrnInner() + '</div>';
     if (djSub === 'daily' || djSub === 'jlpt') return qvHTML();
