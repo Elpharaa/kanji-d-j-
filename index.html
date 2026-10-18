@@ -3915,6 +3915,30 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
 
 .gach{grid-column:1/-1;width:100%;box-sizing:border-box}
 #games>.gach{grid-column:1/-1}
+
+/* Saisons */
+.seabar { display: flex; align-items: center; gap: 12px; padding: 10px 14px; margin: 0 0 10px; border-radius: 16px; background: linear-gradient(135deg, #4b3d84, #2c2452); color: #fffaf0; box-shadow: 0 6px 18px rgba(44,36,82,.25); }
+.seabar .seaic { font-size: 28px; line-height: 1; }
+.seabar .seat { display: flex; flex-direction: column; font-size: 14px; }
+.seabar .seat small { color: #e9d9c8; font-size: 12px; margin-top: 2px; }
+.seabar.sak { background: linear-gradient(135deg, #d0587f, #8c3a79); } .seabar.mom { background: linear-gradient(135deg, #b5502b, #6e2f3c); }
+.seabar.yuk { background: linear-gradient(135deg, #5a7fb8, #2c2452); } .seabar.mat { background: linear-gradient(135deg, #2c2452, #4b3d84 60%, #d0587f); }
+.seabar.koi { background: linear-gradient(135deg, #3a8fb0, #4b3d84); } .seabar.ume { background: linear-gradient(135deg, #e9a5b6, #8c5a9a); }
+.vfp.ev.mom { width: 11px; height: 11px; background: #d9622b; border-radius: 10% 80% 10% 80%; }
+.vfp.ev.yuk { width: 7px; height: 7px; background: #fff; border-radius: 50%; box-shadow: 0 0 4px rgba(255,255,255,.9); }
+.vfp.ev.ume { background: #fff1f4; }
+.vfw { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: #ffe9a8; box-shadow: 0 0 9px 4px rgba(255,220,130,.8); animation: vflit 3.4s ease-in-out infinite alternate; }
+.vcols { position: absolute; inset: 0; z-index: 8; pointer-events: none; }
+.vcol { position: absolute; pointer-events: auto; width: 44px; height: 44px; border: 0; border-radius: 50%; background: radial-gradient(circle, rgba(255,250,240,.85), rgba(240,185,122,.35)); font-size: 24px; line-height: 44px; padding: 0; cursor: pointer; box-shadow: 0 0 14px 4px rgba(240,185,122,.7); animation: vcolb 2.6s ease-in-out infinite alternate; }
+@keyframes vcolb { from { transform: translateY(0) scale(1); } to { transform: translateY(-9px) scale(1.08); } }
+@media (prefers-reduced-motion: reduce) { .vcol, .vfw { animation: none; } }
+
+.mknav { margin-left: auto; margin-right: 6px; } .mknav + .famnav { margin-left: 0; }
+.mktabs { margin: 8px 0; } .mkclaim { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.mkrow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; } .mkic { width: 44px; height: 44px; flex: none; display: flex; align-items: center; justify-content: center; } .mkic .sicon { width: 44px; height: 44px; } .mkem { font-size: 28px; }
+.mkt { display: flex; flex-direction: column; flex: 1 1 140px; min-width: 0; } .mkt small { color: #6b6483; }
+.mkp { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; } .mkp input { width: 84px; padding: 6px 8px; border-radius: 10px; border: 2px solid #372a56; font: 700 .9rem var(--font-body); } .mkp small { font-size: 11px; color: #6b6483; }
+.mkfilt { display: flex; gap: 8px; margin: 6px 0 8px; } .mkfilt select { flex: 1; }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -10784,6 +10808,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
         return { track: function (s) { cur = s; ch.track({ id: u.id, name: u.name, status: s }); }, stop: function () { sb.removeChannel(ch); } };
       },
       channel: function (n, k) { return sbChannel(sb, n, k); },
+      rpc: function (n, a) { return sb.rpc(n, a || {}).then(function (r) { if (r.error) throw r.error; return r.data; }); },
       fams: function () {
         return sb.from('profiles').select('id,fm:stats->>fm').not('stats->>fm', 'is', null).limit(500).then(function (r) { var m = {}; (r.data || []).forEach(function (x) { if (x.fm) m[x.id] = x.fm; }); return m; });
       },
@@ -11863,6 +11888,8 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     { id: 'legend', g: '伝', name: 'Légende', desc: "Terminer tous les chapitres de l'Histoire L2 (Semaines 1 à 5 et 7 à 11)", test: function () { return storyBadgeDone(); } },
     { id: 'architect', g: '建', name: 'Architecte', desc: 'Acheter son premier objet pour la base', test: function () { return DECO.some(function (d) { return owns(d.id); }); } },
     { id: 'beasts', g: '獣', name: 'Ami des bêtes', desc: 'Adopter un animal de compagnie', test: function () { return PETS.some(function (p) { return owns(p.id); }); } },
+    { id: 'sea10', g: '季', name: 'Cueilleur de saison', desc: 'Récolter 10 trésors de saison dans le village', test: function () { return seaTotal() >= 10; } },
+    { id: 'sea4', g: '暦', name: 'Gardien des saisons', desc: 'Récolter des trésors pendant 4 saisons différentes', test: function () { return seaKinds() >= 4; } },
     { id: 'banker', g: '金', name: 'Banquier', desc: 'Accumuler 500 pièces d\'or au total', test: function () { return (S.coinsTotal || 0) >= 500; } },
     { id: 'tycoon', g: '富', name: 'Grand banquier', desc: 'Accumuler 2 000 pièces d\'or au total', test: function () { return (S.coinsTotal || 0) >= 2000; } },
     { id: 'hunter10', g: '狩', name: 'Chasseur de mobs', desc: 'Vaincre 10 ennemis', test: function () { return (S.kills || 0) >= 10; } },
@@ -11948,6 +11975,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
       ten: [masteredCount(), 10], thirty: [masteredCount(), 30], fifty: [masteredCount(), 50], hundredw: [masteredCount(), 100], twohundredw: [masteredCount(), 200],
       lv5: [level(), 5], lv10: [level(), 10], lv20: [level(), 20], hundred: [S.correct, 100], correct500: [S.correct, 500], correct1000: [S.correct, 1000],
       sprint: [gameStat('sprint').best, 15], firstboss: [S.bossWins, 1], boss5: [S.bossWins, 5], boss20: [S.bossWins, 20],
+      sea10: [seaTotal(), 10], sea4: [seaKinds(), 4],
       banker: [S.coinsTotal, 500], tycoon: [S.coinsTotal, 2000], coins5k: [S.coinsTotal, 5000],
       hunter10: [S.kills, 10], hunter50: [S.kills, 50], kills100: [S.kills, 100],
       rev100: [histTotal(), 100], rev500: [histTotal(), 500], rev1000: [histTotal(), 1000],
@@ -14357,10 +14385,64 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     return '<svg class="vbr" viewBox="0 0 110 54" aria-hidden="true"><g filter="url(#kdBevS)"><path d="M4 40Q55 -2 106 40V46H4Z" fill="#c8372b" stroke="#7a1a12" stroke-width="2"/><path d="M4 40Q55 -2 106 40" fill="none" stroke="#e8c46a" stroke-width="1.4" stroke-dasharray="3 3"/>' +
       '<path d="M10 33Q55 -8 100 33M10 25Q55 -16 100 25" fill="none" stroke="#a82a20" stroke-width="2"/><path d="M22 36V22M38 28V14M55 24V10M72 28V14M88 36V22" stroke="#a82a20" stroke-width="2.4"/><rect x="2" y="43" width="106" height="5" rx="2" fill="#8a5a2b" stroke="#3a2412" stroke-width="1.2"/></g></svg>';
   }
+  /* Événements de saison (dates de Paris) */
+  var SEASONS = [
+    { id: 'ume', n: 'Prunier en fleurs', ic: '🌼', from: [2, 15], to: [3, 14], cls: 'ume', t: 'Les pruniers (ume) fleurissent avant les cerisiers.' },
+    { id: 'hanami', n: 'Hanami', ic: '🌸', from: [3, 15], to: [4, 30], cls: 'sak', t: 'Les cerisiers sont en fleurs : pique-nique sous les pétales !' },
+    { id: 'koi', n: 'Fête des carpes', ic: '🎏', from: [5, 1], to: [6, 20], cls: 'koi', t: 'Les koinobori flottent dans le vent de mai.' },
+    { id: 'matsuri', n: 'Matsuri d’été', ic: '🎆', from: [6, 21], to: [8, 31], cls: 'mat', t: 'Lucioles, lanternes et festival sous les étoiles.' },
+    { id: 'momiji', n: 'Momiji', ic: '🍁', from: [9, 1], to: [11, 30], cls: 'mom', t: 'Les érables rougissent : la saison des feuilles d’automne.' },
+    { id: 'yuki', n: 'Hiver & Shōgatsu', ic: '❄️', from: [12, 1], to: [2, 14], cls: 'yuk', t: 'La neige tombe sur le village, le Nouvel An approche.' }
+  ];
+  function parisParts() {
+    try {
+      var p = new Intl.DateTimeFormat('fr-FR', { timeZone: 'Europe/Paris', year: 'numeric', month: 'numeric', day: 'numeric' }).formatToParts(new Date()), o = {};
+      p.forEach(function (x) { o[x.type] = +x.value; }); return o;
+    } catch (e) { var d = new Date(); return { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() }; }
+  }
+  function seasonNow() {
+    var P = parisParts(), md = P.month * 100 + P.day, r = null;
+    SEASONS.forEach(function (e) {
+      var a = e.from[0] * 100 + e.from[1], b = e.to[0] * 100 + e.to[1];
+      if (a <= b ? (md >= a && md <= b) : (md >= a || md <= b)) r = e;
+    });
+    if (!r) r = SEASONS[0];
+    var yr = P.year; if (r.id === 'yuki' && P.month <= 2) yr--;
+    var MN = ['', 'janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+    return { e: r, key: r.id + yr, day: yr + '-' + P.month + '-' + P.day + (r.id === 'yuki' ? '' : ''), end: r.to[1] + (r.to[1] === 1 ? 'er ' : ' ') + MN[r.to[0]], today: P.year + '-' + P.month + '-' + P.day };
+  }
+  function seaS() { if (!S.season || typeof S.season !== 'object') S.season = {}; if (!S.season.ev) S.season.ev = {}; return S.season; }
+  function seaTotal() { var n = 0, ev = (S.season && S.season.ev) || {}; Object.keys(ev).forEach(function (k) { n += ev[k] | 0; }); return n; }
+  function seaKinds() { var ev = (S.season && S.season.ev) || {}, ids = {}; Object.keys(ev).forEach(function (k) { if (ev[k] > 0) ids[k.replace(/\d+$/, '')] = 1; }); return Object.keys(ids).length; }
+  var SEA_N = 3, SEA_COINS = 4;
+  function seaGot(sn) { var q = seaS(); if (q.day !== sn.today) { q.day = sn.today; q.got = []; } return q.got || (q.got = []); }
+  function seaBanner(sn) {
+    var got = seaGot(sn).length;
+    return '<div class="seabar ' + sn.e.cls + '"><span class="seaic" aria-hidden="true">' + sn.e.ic + '</span><span class="seat"><b>' + sn.e.n + '</b> · jusqu’au ' + sn.end + '<small>' + sn.e.t + ' Trésors du jour : ' + got + '/' + SEA_N + '</small></span></div>';
+  }
+  function seaCols(sn) {
+    var got = seaGot(sn), seed = 0, i, h = '', t = sn.today;
+    for (i = 0; i < t.length; i++) seed = (seed * 31 + t.charCodeAt(i)) % 9973;
+    for (i = 0; i < SEA_N; i++) {
+      if (got.indexOf(i) >= 0) continue;
+      h += '<button type="button" class="vcol" data-vcol="' + i + '" aria-label="Ramasser un trésor de saison : ' + sn.e.n + '" style="left:' + (8 + ((seed * (i + 3) * 7) % 80)) + '%;top:' + (150 + ((seed * (i + 5) * 13) % 380)) + 'px;animation-delay:-' + (i * 1.3) + 's">' + sn.e.ic + '</button>';
+    }
+    return '<div class="vcols">' + h + '</div>';
+  }
+  function seaCollect(i) {
+    var sn = seasonNow(), got = seaGot(sn); if (got.indexOf(i) >= 0) return;
+    got.push(i); var q = seaS(); q.ev[sn.key] = (q.ev[sn.key] | 0) + 1;
+    var n = SEA_COINS; S.coins = coinsOf() + n; S.coinsTotal = (S.coinsTotal || 0) + n;
+    sfx('coin', true); toast(sn.e.ic + ' +' + n + ' pièces' + (got.length >= SEA_N ? ' · tous les trésors du jour récoltés !' : ''));
+    checkBadges(); persist(); renderBars(); renderVillage();
+  }
   function fxHTML(tone) {
     var s = '', i;
+    var sn = seasonNow();
+    if (sn.e.cls === 'yuk' || sn.e.cls === 'mom' || sn.e.cls === 'ume') { for (i = 0; i < 16; i++) s += '<i class="vfp ev ' + sn.e.cls + '" style="left:' + ((i * 13 + 4) % 94) + '%;--dx:' + (i % 2 ? 50 : -40) + 'px;animation-duration:' + (11 + (i % 5) * 2) + 's;animation-delay:-' + (i * 1.7).toFixed(1) + 's"></i>'; return s; }
+    if (sn.e.cls === 'mat' && tone !== 'day') for (i = 0; i < 6; i++) s += '<i class="vfw" style="left:' + ((i * 17 + 10) % 86) + '%;top:' + (60 + (i * 53) % 160) + 'px;animation-delay:-' + (i * 1.1).toFixed(1) + 's"></i>';
     if (tone === 'night') for (i = 0; i < 12; i++) s += '<i class="vff" style="left:' + ((i * 37 + 7) % 96) + '%;top:' + (170 + (i * 71) % 420) + 'px;animation-duration:' + (3.6 + (i % 4)) + 's;animation-delay:-' + (i * .9).toFixed(1) + 's"></i>';
-    else for (i = 0; i < 8; i++) s += '<i class="vfp" style="left:' + ((i * 13 + 4) % 94) + '%;--dx:' + (i % 2 ? 60 : -50) + 'px;animation-duration:' + (15 + (i % 4) * 2) + 's;animation-delay:-' + (i * 2.1).toFixed(1) + 's"></i>';
+    else if (sn.e.cls === 'sak') for (i = 0; i < 8; i++) s += '<i class="vfp" style="left:' + ((i * 13 + 4) % 94) + '%;--dx:' + (i % 2 ? 60 : -50) + 'px;animation-duration:' + (15 + (i % 4) * 2) + 's;animation-delay:-' + (i * 2.1).toFixed(1) + 's"></i>';
     return s;
   }
   function vilCols() { var w = window.innerWidth; return w >= 1200 ? 5 : w >= 768 ? 4 : 3; }
@@ -14409,14 +14491,15 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     var tones = [['auto', '⏱', 'Moment de la journée automatique'], ['day', '☀️', 'Plein jour'], ['dusk', '🌅', 'Crépuscule'], ['night', '🌙', 'Nuit']].map(function (t) {
       return '<button type="button" class="vtn" data-vtone="' + t[0] + '" aria-label="' + t[2] + '" aria-pressed="' + (vilTone === t[0]) + '">' + t[1] + '</button>';
     }).join('');
-    host.innerHTML = '<div class="vilwrap"><div class="village" data-tone="' + tone + '">' +
+    var sea = seasonNow();
+    host.innerHTML = '<div class="vilwrap">' + seaBanner(sea) + '<div class="village ev-' + sea.e.cls + '" data-tone="' + tone + '">' +
       '<div class="vsky" aria-hidden="true">' + skySVG(tone) + '</div><div class="vtones" role="group" aria-label="Moment de la journée">' + tones + '</div>' +
       '<div class="vplaza"><button type="button" class="vb" data-vgo="dojo" aria-label="Aller au dojo">' + dojoSVG() + '<span class="vbl">Le Dōjō<small>Exercices &amp; salons</small></span></button>' +
       '<div class="vmid" aria-hidden="true">' + vilToriiSVG() + '</div>' +
       '<button type="button" class="vb" data-vgo="shop" aria-label="La Boutique du Dōjō">' + shopSVG() + '<span class="vbl">La Boutique<small>Tous les achats</small></span></button></div>' +
       '<div class="vwater" aria-hidden="true">' + waterSVG() + bridgeSVG() + '<i class="vrp"></i><i class="vrp b"></i><i class="vrp c"></i><i class="vrp d"></i></div>' +
-      '<div class="vstreet"><h3><span class="vsign">Le village du dōjō</span> <small>' + list.length + ' maison' + (list.length > 1 ? 's' : '') + '</small><button type="button" class="famnav" data-fam="open">🏠 Ma famille<i class="famdot"' + (famReqs.length ? '' : ' hidden') + '>' + famReqs.length + '</i></button></h3>' + sel + rows + '</div>' +
-      '<div class="vfx" aria-hidden="true">' + fxHTML(tone) + '</div><div class="vtint" aria-hidden="true"></div></div>' +
+      '<div class="vstreet"><h3><span class="vsign">Le village du dōjō</span> <small>' + list.length + ' maison' + (list.length > 1 ? 's' : '') + '</small><button type="button" class="famnav mknav" data-mk="open">🏮 Marché</button><button type="button" class="famnav" data-fam="open">🏠 Ma famille<i class="famdot"' + (famReqs.length ? '' : ' hidden') + '>' + famReqs.length + '</i></button></h3>' + sel + rows + '</div>' +
+      '<div class="vfx" aria-hidden="true">' + fxHTML(tone) + '</div>' + seaCols(sea) + '<div class="vtint" aria-hidden="true"></div></div>' +
       '<p class="small muted vhint">Touche ta maison pour rejoindre ton camp, ou la maison d’un ami pour voir son profil et sa base. Construis ton château ou ton temple dans la boutique du village !</p></div>';
     markVillageOnline();
     slice.forEach(function (r) {
@@ -14434,7 +14517,9 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     Array.prototype.forEach.call(document.querySelectorAll('#storyBody .vh'), function (b) { b.classList.toggle('on', !!on[b.getAttribute('data-vh')] || b.classList.contains('own')); });
   }
   function vilClick(e) {
-    var t = e.target.closest ? e.target.closest('[data-vgo],[data-camp],[data-vtone]') : null; if (!t) return;
+    var t = e.target.closest ? e.target.closest('[data-vgo],[data-camp],[data-vtone],[data-vcol],[data-mk]') : null; if (!t) return;
+    if (t.hasAttribute('data-mk')) { mkOpen(); return; }
+    if (t.hasAttribute('data-vcol')) { seaCollect(+t.getAttribute('data-vcol')); return; }
     if (t.hasAttribute('data-vtone')) { vilTone = t.getAttribute('data-vtone'); try { localStorage.setItem('kanji-dojo.vtone', vilTone); } catch (er) {} renderVillage(); return; }
     if (t.hasAttribute('data-camp')) { baseMode = 'camp'; baseEdit = false; baseSel = null; renderBase(); window.scrollTo(0, 0); return; }
     var g = t.getAttribute('data-vgo');
@@ -15694,6 +15779,152 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     if (shopTab === 'pet') return head + shopPanel('pet', 'Animaux', PETS, petIcon, true, '');
     return head + shopPanel('deco', 'Décorations', DECO.filter(function (d) { return !d.trophy; }), decoIcon, true, '');
   }
+
+  /* =====================================================================
+     MARCHÉ DU VILLAGE : vente entre joueurs (tout passe par le serveur)
+     ===================================================================== */
+  var mk = { tab: 'buy', rows: [], pending: 0, busy: false, f: 'all', sort: 'new', loaded: false, err: '' };
+  var MK_FEE = 5;
+  function mkKind(ref, kind) {
+    if (kind === 'card') {
+      var c = CARD_BY[ref]; if (!c) return null;
+      var R = CARD_RAR[c[3]] || CARD_RAR.c, mx = Math.min(1500, Math.max(R.dup * 3, 40));
+      return { t: 'Carte', ic: '🃏', name: c[2], min: Math.max(5, Math.round(R.dup / 2)), max: mx, base: R.dup * 2, rar: R.n, col: R.col };
+    }
+    var d = DECO.filter(function (x) { return x.id === ref; })[0];
+    if (d) return { t: 'Déco', ic: decoIcon(d), name: d.name, min: Math.max(10, Math.round(d.price / 2)), max: Math.min(3000, d.price * 3), base: d.price, multi: !!MULTI[d.id] };
+    var pt = PETS.filter(function (x) { return x.id === ref; })[0];
+    if (pt) return { t: 'Animal', ic: petIcon(pt), name: pt.name, min: Math.max(10, Math.round(pt.price / 2)), max: Math.min(3000, pt.price * 3), base: pt.price };
+    var kt = KATANAS.filter(function (x) { return x.id === ref && x.id !== 'kt_base'; })[0];
+    if (kt) return { t: 'Katana', ic: '<span class="mkem">⚔️</span>', name: kt.name, min: Math.max(10, Math.round(kt.price / 2)), max: Math.min(3000, kt.price * 3), base: kt.price };
+    if (ref.indexOf('bn_') === 0) { var b = BANNERS.filter(function (x) { return 'bn_' + x.id === ref; })[0]; if (b) { var pr = BN_PRICE[b.id] || 300; return { t: 'Bannière', ic: '<span class="mkem">🖼️</span>', name: b.name, min: Math.max(10, Math.round(pr / 2)), max: Math.min(3000, pr * 3), base: pr }; } }
+    return null;
+  }
+  function mkSellable() {
+    var out = [], seen = {}, o = shopS().owned || {};
+    Object.keys(o).forEach(function (k) {
+      if (!o[k]) return; var b = baseOf(k); if (seen[b]) return; seen[b] = 1;
+      var inf = mkKind(b, 'item'); if (!inf) return;
+      var n = 0; for (var i = 1; i <= MAXCOPY; i++) if (o[i === 1 ? b : b + '#' + i]) n++;
+      out.push({ kind: 'item', ref: b, n: n, inf: inf });
+    });
+    var co = (S.cards && S.cards.owned) || {};
+    Object.keys(co).forEach(function (id) { if (co[id] >= 2) { var inf = mkKind(id, 'card'); if (inf) out.push({ kind: 'card', ref: id, n: co[id] - 1, inf: inf }); } });
+    return out;
+  }
+  function mkOpen() {
+    if (!backend || !backend.rpc) { toast('Le marché demande la connexion en ligne'); return; }
+    if (!netOn()) { netBlock('Le marché'); return; }
+    mk.tab = 'buy'; mk.loaded = false; mk.err = '';
+    openModal('Le marché du village', mkHTML(), 'shopmodal mkmodal');
+    mkLoad();
+  }
+  function mkRefresh() { if (!$('appModal').hidden && $('appModal').querySelector('.mkmodal')) setModalBody(mkHTML()); }
+  function mkLoad() {
+    flush().then(function () { return backend.rpc('market_browse'); }).then(function (r) {
+      if (!r || r.err) { mk.err = 'Le marché est indisponible pour le moment.'; } else { mk.rows = r.rows || []; mk.pending = r.pending | 0; mk.err = ''; }
+      mk.loaded = true; mkRefresh();
+    }, function () { mk.err = 'Le marché est indisponible pour le moment.'; mk.loaded = true; mkRefresh(); });
+  }
+  function mkItemHTML(inf, extra) {
+    return '<span class="mkic">' + inf.ic + '</span><span class="mkt"><b>' + esc(inf.name) + '</b><small>' + inf.t + (inf.rar ? ' · ' + inf.rar : '') + (extra || '') + '</small></span>';
+  }
+  function mkHTML() {
+    var tabs = [['buy', 'Acheter'], ['sell', 'Vendre'], ['mine', 'Mes annonces']].map(function (t) { return '<button type="button" role="tab" data-mk="tab:' + t[0] + '" aria-selected="' + (mk.tab === t[0]) + '">' + t[1] + '</button>'; }).join('');
+    var h = '<div class="shopbar"><button type="button" class="shopback" data-mclose="1">‹ Fermer</button><span class="shopcat"><b>🏮 Marché</b></span>' + coinHTML(coinsOf()) + '</div>' +
+      '<div class="seg mktabs" role="tablist">' + tabs + '</div>';
+    if (mk.pending > 0) h += '<div class="panel mkclaim"><span>💰 Tu as vendu des objets : <b>' + mk.pending + '</b> pièces t’attendent.</span><button type="button" class="btn primary" data-mk="claim">Encaisser</button></div>';
+    if (!mk.loaded) return h + '<p class="note">Chargement du marché…</p>';
+    if (mk.err) return h + '<p class="note">' + esc(mk.err) + '</p><button type="button" class="btn" data-mk="reload">Réessayer</button>';
+    if (mk.tab === 'sell') {
+      var L = mkSellable();
+      h += '<p class="small muted">Tu fixes ton prix entre un minimum et un maximum (pour garder un marché équitable). Le village garde ' + MK_FEE + ' % de commission. L’objet quitte ton inventaire pendant la vente et revient si tu annules.</p>';
+      if (!L.length) return h + '<div class="panel"><p class="small" style="margin:0">Tu n’as rien à vendre pour l’instant : seuls les objets de la boutique, les bannières, les katanas et les <b>cartes en double</b> peuvent être vendus.</p></div>';
+      return h + '<div class="shoplist">' + L.map(function (x) {
+        var id = x.kind + ':' + x.ref, def = Math.min(x.inf.max, Math.max(x.inf.min, Math.round(x.inf.base)));
+        return '<div class="shoprow mkrow">' + mkItemHTML(x.inf, ' · ×' + x.n) + '<span class="mkp"><input type="number" inputmode="numeric" min="' + x.inf.min + '" max="' + x.inf.max + '" value="' + def + '" data-mkp="' + esc(id) + '" aria-label="Prix de vente de ' + esc(x.inf.name) + '"><small>' + x.inf.min + ' à ' + x.inf.max + '</small></span><button type="button" class="btn primary" data-mk="sell:' + esc(id) + '">Vendre</button></div>';
+      }).join('') + '</div>';
+    }
+    if (mk.tab === 'mine') {
+      var M = mk.rows.filter(function (r) { return r.mine; });
+      if (!M.length) return h + '<div class="panel"><p class="small" style="margin:0">Tu n’as aucune annonce en cours.</p></div>';
+      return h + '<div class="shoplist">' + M.map(function (r) {
+        var inf = mkKind(r.ref, r.kind) || { t: r.kind, ic: '📦', name: (r.meta && r.meta.name) || r.ref };
+        return '<div class="shoprow mkrow">' + mkItemHTML(inf) + '<span class="mkp"><b>' + r.price + '</b> 金</span><button type="button" class="btn" data-mk="cancel:' + r.id + '">Retirer</button></div>';
+      }).join('') + '</div>';
+    }
+    var f = mk.f, rows = mk.rows.filter(function (r) { return !r.mine && (f === 'all' || (f === 'card' ? r.kind === 'card' : f === 'item' ? r.kind === 'item' : true)); });
+    rows.sort(function (a, b) { return mk.sort === 'low' ? a.price - b.price : mk.sort === 'high' ? b.price - a.price : 0; });
+    h += '<div class="mkfilt"><select id="mkF" aria-label="Type d’objet"><option value="all"' + (f === 'all' ? ' selected' : '') + '>Tout</option><option value="item"' + (f === 'item' ? ' selected' : '') + '>Objets</option><option value="card"' + (f === 'card' ? ' selected' : '') + '>Cartes</option></select>' +
+      '<select id="mkS" aria-label="Tri"><option value="new"' + (mk.sort === 'new' ? ' selected' : '') + '>Plus récents</option><option value="low"' + (mk.sort === 'low' ? ' selected' : '') + '>Prix croissant</option><option value="high"' + (mk.sort === 'high' ? ' selected' : '') + '>Prix décroissant</option></select></div>';
+    if (!rows.length) return h + '<div class="panel"><p class="small" style="margin:0">Aucune annonce pour le moment. Mets tes objets en vente dans l’onglet « Vendre » !</p></div>';
+    return h + '<div class="shoplist">' + rows.map(function (r) {
+      var inf = mkKind(r.ref, r.kind) || { t: r.kind, ic: '📦', name: (r.meta && r.meta.name) || r.ref };
+      var ok = coinsOf() >= r.price;
+      return '<div class="shoprow mkrow">' + mkItemHTML(inf, ' · par ' + esc(r.seller_name)) + '<span class="mkp"><b>' + r.price + '</b> 金</span><button type="button" class="btn primary" data-mk="buy:' + r.id + '"' + (ok ? '' : ' disabled') + '>Acheter</button></div>';
+    }).join('') + '</div>';
+  }
+  var MK_ERR = { coins: 'Pas assez de pièces.', gone: 'Cette annonce n’existe plus.', mine: 'C’est ton annonce.', already: 'Tu possèdes déjà cet objet.', full: 'Tu as déjà le maximum d’exemplaires.', max: 'Maximum de 20 annonces en même temps.', price: 'Prix hors limites.', notowned: 'Tu ne possèdes plus cet objet.', needdup: 'Il faut un exemplaire en double.', bad: 'Annonce impossible.', nodata: 'Progression introuvable.' };
+  function mkCall(name, args) {
+    if (mk.busy) return Promise.reject('busy'); mk.busy = true;
+    return flush().then(function () { return backend.rpc(name, args); }).then(function (r) { mk.busy = false; return r; }, function (e) { mk.busy = false; throw e; });
+  }
+  function mkFail(e) { if (e === 'busy') return; toast(typeof e === 'string' ? e : 'Connexion au marché impossible'); }
+  function mkAction(a) {
+    var p = a.split(':'), op = p[0], arg = p.slice(1).join(':');
+    if (op === 'tab') { mk.tab = arg; mkRefresh(); return; }
+    if (op === 'reload') { mk.loaded = false; mkRefresh(); mkLoad(); return; }
+    if (op === 'claim') {
+      mkCall('market_claim').then(function (r) {
+        if (!r || r.err) { toast('Encaissement impossible'); return; }
+        S.coins = coinsOf() + (r.amt | 0); persist(); sfx('coin', true); toast('💰 +' + r.amt + ' pièces encaissées'); mk.pending = 0; renderBars(); mkRefresh();
+      }, mkFail); return;
+    }
+    if (op === 'sell') {
+      var kk = arg.split(':'), kind = kk[0], ref = kk.slice(1).join(':'), inp = document.querySelector('[data-mkp="' + kind + ':' + ref + '"]'), inf = mkKind(ref, kind);
+      if (!inf || !inp) return; var price = Math.round(+inp.value);
+      if (!(price >= inf.min && price <= inf.max)) { toast('Prix entre ' + inf.min + ' et ' + inf.max); return; }
+      mkCall('market_list', { p_kind: kind, p_ref: ref, p_price: price, p_meta: { name: inf.name } }).then(function (r) {
+        if (!r || r.err) { toast(MK_ERR[r && r.err] || 'Mise en vente impossible'); return; }
+        mkMirrorOut(kind, ref); persist(); toast('🏮 « ' + inf.name + ' » est en vente pour ' + price + ' pièces'); mk.tab = 'mine'; mk.loaded = false; mkRefresh(); mkLoad();
+      }, mkFail); return;
+    }
+    if (op === 'cancel') {
+      mkCall('market_cancel', { p_id: +arg }).then(function (r) {
+        if (!r || r.err) { toast(MK_ERR[r && r.err] || 'Annulation impossible'); mkLoad(); return; }
+        mkMirrorIn(r.kind, r.key); persist(); toast('Annonce retirée : l’objet est revenu chez toi'); mk.loaded = false; mkRefresh(); mkLoad();
+      }, mkFail); return;
+    }
+    if (op === 'buy') {
+      var row = mk.rows.filter(function (x) { return String(x.id) === arg; })[0]; if (!row) return;
+      var inf2 = mkKind(row.ref, row.kind);
+      mkCall('market_buy', { p_id: +arg, p_multi: !!(inf2 && inf2.multi) }).then(function (r) {
+        if (!r || r.err) { toast(MK_ERR[r && r.err] || 'Achat impossible'); mk.loaded = false; mkLoad(); return; }
+        S.coins = coinsOf() - r.price; mkMirrorIn(r.kind, r.key); persist(); sfx('coin', true); renderBars();
+        toast('🛍 Acheté : ' + (inf2 ? inf2.name : 'objet') + ' (−' + r.price + ' pièces)'); mk.loaded = false; mkRefresh(); mkLoad();
+      }, mkFail); return;
+    }
+  }
+  function mkMirrorOut(kind, ref) {
+    if (kind === 'card') { var co = S.cards.owned; co[ref] = Math.max(0, (co[ref] | 0) - 1); return; }
+    var o = shopS().owned, hi = 0, i; for (i = 1; i <= MAXCOPY; i++) if (o[i === 1 ? ref : ref + '#' + i]) hi = i;
+    if (!hi) return; var key = hi === 1 ? ref : ref + '#' + hi; delete o[key];
+    if (S.shop.kat === key) S.shop.kat = 'kt_base';
+    if (S.shop.pos && S.shop.pos[key]) delete S.shop.pos[key];
+    if (key.indexOf('bn_') === 0 && S.banner && S.banner.k === 'p' && 'bn_' + S.banner.v === key) S.banner = null;
+  }
+  function mkMirrorIn(kind, key) {
+    if (kind === 'card') { if (!S.cards.owned) S.cards.owned = {}; S.cards.owned[key] = (S.cards.owned[key] | 0) + 1; return; }
+    shopS().owned[key] = 1;
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target.closest('#appModalBody [data-mk]') : null; if (!t) return;
+    mkAction(t.getAttribute('data-mk'));
+  });
+  document.addEventListener('change', function (e) {
+    var t = e.target; if (!t || !t.closest || !t.closest('.mkmodal')) return;
+    if (t.id === 'mkF') { mk.f = t.value; mkRefresh(); } else if (t.id === 'mkS') { mk.sort = t.value; mkRefresh(); }
+  });
   function openShop() { if (!unlOn('bazar')) { toast("🔒 La Boutique se débloque au niveau " + UNL.bazar[0]); return; } if (!netOn()) { netBlock("La Boutique"); return; } vxTry = {}; openModal('La Boutique du Dōjō', shopHTML(), 'shopmodal'); }
   function refreshShop() { if (!$('appModal').hidden && $('appModal').querySelector('.shopmodal')) setModalBody(shopHTML()); }
 
