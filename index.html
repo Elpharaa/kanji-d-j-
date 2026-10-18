@@ -3401,8 +3401,92 @@ button,[role="button"],.tab{touch-action:manipulation;-webkit-tap-highlight-colo
 
 #testLv{position:fixed;right:8px;top:calc(58px + env(safe-area-inset-top,0px));opacity:.88;z-index:3500;padding:5px 9px;border-radius:999px;border:2px solid #2a1c14;background:#ffe27a;color:#2a1c14;font-weight:800;font-size:.7rem;box-shadow:0 2px 0 rgba(0,0,0,.35);cursor:pointer}
 #testLv[hidden]{display:none}
+
+/* ===== v155 : tuiles washi, fond anime, profil rangé ===== */
+#animebg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:linear-gradient(180deg,#b9a8dc 0%,#d8b0cf 28%,#f3b9a6 56%,#fbd9b4 80%,#fdeccd 100%)}
+#animebg svg.sky{position:absolute;left:0;right:0;bottom:0;width:100%;height:100%}
+#animebg .petal{position:absolute;top:-24px;width:11px;height:9px;border-radius:70% 0 70% 0;background:radial-gradient(circle at 30% 30%,#fff3f6,#f6a9c0);opacity:.85;animation:petalfall linear infinite;will-change:transform}
+@keyframes petalfall{0%{transform:translate3d(0,-30px,0) rotate(0)}50%{transform:translate3d(46px,55vh,0) rotate(200deg)}100%{transform:translate3d(-24px,112vh,0) rotate(420deg)}}
+html.lite #animebg .petal,html.lite #animebg .twk{display:none}
+@media (prefers-reduced-motion:reduce){#animebg .petal{display:none}}
+#animebg .twk{animation:twk 3.2s ease-in-out infinite alternate}
+@keyframes twk{from{opacity:.35}to{opacity:1}}
+.hubcard .hart,.hubcard .hartimg,.djt .gart,.qvt .qvimg,.hubtile .htart{display:none!important}
+.hubcard,#games .djt,.qvt,.hubmore{
+  --tl:#8e231a;position:relative;overflow:hidden;border:1.5px solid rgba(142,35,26,.55)!important;border-radius:14px!important;
+  background:
+    radial-gradient(circle at 100% 0,rgba(142,35,26,.09),transparent 55%),
+    repeating-radial-gradient(circle at 50% 100%,transparent 0 9px,rgba(120,84,40,.07) 9px 10px),
+    linear-gradient(#fdf8ea,#f4e8cb)!important;
+  box-shadow:0 3px 0 rgba(90,50,20,.35),0 8px 16px rgba(60,35,10,.16),inset 0 0 0 3px rgba(255,255,255,.5),inset 0 0 0 4px rgba(196,154,58,.45)!important;
+  transition:transform .22s cubic-bezier(.2,.9,.3,1.2),box-shadow .22s,border-color .22s}
+.hubcard::before,#games .djt::before,.qvt::before{content:"";position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(180deg,#c0392b,#7a1a10);transition:width .25s ease;z-index:0}
+.hubcard::after,#games .djt::after,.qvt::after{content:"";position:absolute;right:-30%;top:-60%;width:90%;height:220%;background:radial-gradient(closest-side,rgba(192,57,43,.18),transparent);transform:scale(.2);opacity:0;transition:transform .45s ease,opacity .35s;pointer-events:none}
+@media (hover:hover){
+ .hubcard:hover,#games .djt:hover,.qvt:hover,.hubmore:hover{transform:translateY(-4px);border-color:#c0392b!important;box-shadow:0 7px 0 rgba(90,50,20,.3),0 16px 24px rgba(60,35,10,.22),inset 0 0 0 3px rgba(255,255,255,.55),inset 0 0 0 4px rgba(214,170,70,.8)!important}
+ .hubcard:hover::before,#games .djt:hover::before,.qvt:hover::before{width:6px}
+ .hubcard:hover::after,#games .djt:hover::after,.qvt:hover::after{transform:scale(1);opacity:1}
+ .hubcard:hover .hseal,#games .djt:hover .tk,.qvt:hover .qvk{color:#c0392b;transform:scale(1.1) rotate(-4deg)}}
+.hubcard:active,#games .djt:active,.qvt:active,.hubmore:active{transform:translateY(2px) scale(.985);border-color:#c0392b!important}
+.hubcard:active::before,#games .djt:active::before,.qvt:active::before{width:6px}
+.hubcard:active::after,#games .djt:active::after,.qvt:active::after{transform:scale(1);opacity:1}
+.hubcard:active .hseal,#games .djt:active .tk,.qvt:active .qvk{color:#c0392b;transform:scale(1.1) rotate(-4deg)}
+.hubcard>*,#games .djt>*,.qvt>*{position:relative;z-index:1}
+.hubcard{min-height:0!important;height:auto!important;padding:14px 12px 12px!important;align-items:flex-start;gap:6px}
+.hubcard .hseal{position:static!important;width:auto!important;height:auto!important;background:none!important;border:0!important;box-shadow:none!important;transform:none;font-family:var(--font-brush);font-size:2.4rem!important;line-height:1;color:#2a1c14!important;text-shadow:none;transition:color .2s,transform .25s;display:block!important}
+.hubcard .htx{border:0!important;background:none!important;padding:0!important;flex:0 0 auto!important}
+.hubcard.wide{flex-direction:row!important;align-items:center;gap:14px;padding:16px 16px!important;min-height:92px!important}
+.hubcard.wide .hseal{font-size:3.1rem!important}
+.hubcard.wide .htx b{font-size:1.3rem}
+.hubcard.big{border-color:rgba(142,35,26,.8)!important}
+.hubcard .hchip{z-index:2}
+.djgrid{gap:12px}
+#games .djt{height:auto!important;min-height:112px!important;padding:12px 12px 12px 14px!important;justify-content:flex-start!important;align-items:flex-start!important;gap:4px;color:#2a1c14}
+#games .djt .tk{display:block;font-family:var(--font-brush);font-size:2.3rem;line-height:1;color:#2a1c14;transition:color .2s,transform .25s;margin-bottom:2px}
+#games .djt .gtx{padding:0!important;background:none!important;color:#2a1c14!important;width:100%}
+#games .djt .gtx b,#games .djt .gtx small{color:#2a1c14!important;text-shadow:none!important}
+#games .djt .gtx b{font-family:var(--font-brush);font-weight:400;font-size:1.12rem}
+#games .djt .gtx small{opacity:.75;font-size:.74rem}
+#games .djt .djchip{z-index:2}
+.djgrid .djt[data-djsub="daily"],.djgrid .djt[data-djsub="jlpt"]{grid-column:auto}
+.qvt{color:#2a1c14}
+.qvt .qvk{transition:color .2s,transform .25s}
+.qvt.hasimg .qvk{display:block!important}
+.pfgrid{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:2px 0 4px}
+.pfbtn{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 4px 10px;border:1.5px solid rgba(142,35,26,.5);border-radius:14px;background:linear-gradient(#fdf8ea,#f4e8cb);box-shadow:0 3px 0 rgba(90,50,20,.3),inset 0 0 0 3px rgba(255,255,255,.5);font:inherit;color:#2a1c14;cursor:pointer;transition:transform .2s,border-color .2s,background .2s}
+.pfbtn i{font-style:normal;font-family:var(--font-brush);font-size:1.7rem;line-height:1;transition:color .2s,transform .25s}
+.pfbtn span{font-size:.78rem;font-weight:600}
+.pfbtn:active{transform:translateY(2px)}
+.pfbtn[aria-pressed="true"]{border-color:#c0392b;background:linear-gradient(#fff3ee,#f6d8cf);box-shadow:0 1px 0 rgba(90,50,20,.3),inset 0 0 0 2px #c0392b}
+.pfbtn[aria-pressed="true"] i{color:#c0392b}
+@media (hover:hover){.pfbtn:hover{transform:translateY(-3px);border-color:#c0392b}.pfbtn:hover i{color:#c0392b;transform:scale(1.12) rotate(-4deg)}}
+#vProfil>#custPanel,#vProfil>#cdBinder,#vProfil>#cdVit,#vProfil>.passacc,#vProfil>.badgeacc{display:none}
+#vProfil[data-pf="cust"]>#custPanel,#vProfil[data-pf="vit"]>#cdBinder,#vProfil[data-pf="vit"]>#cdVit,#vProfil[data-pf="pass"]>.passacc,#vProfil[data-pf="badges"]>.badgeacc{display:block}
+#vProfil .passacc>summary,#vProfil .badgeacc>summary{display:none}
+#vProfil>.hubmini{display:none}
+.app{background:transparent!important}
+html{background:#b9a8dc!important}
+#games>.qvtop{width:auto;justify-self:start;background:rgba(253,248,234,.92);padding:5px 14px;border-radius:999px;margin:0;box-shadow:0 2px 6px rgba(60,35,10,.15)}
+.hubwelcome,#hubWelcome{text-shadow:0 1px 0 rgba(255,255,255,.6)}
+body{background:transparent!important}
+#games>.qvlvseg{grid-column:1/-1;width:100%;box-sizing:border-box}
 </style>
 
+<div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
+<defs><radialGradient id="sunG" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fffbe9"/><stop offset=".45" stop-color="#ffe3b0" stop-opacity=".95"/><stop offset="1" stop-color="#ffc99a" stop-opacity="0"/></radialGradient>
+<linearGradient id="mt1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9a86bd"/><stop offset="1" stop-color="#c7a1c2"/></linearGradient>
+<linearGradient id="mt2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6f5f9a"/><stop offset="1" stop-color="#a98aae"/></linearGradient></defs>
+<circle cx="285" cy="420" r="150" fill="url(#sunG)"/><circle cx="285" cy="420" r="46" fill="#fff6dc" opacity=".95"/>
+<g fill="#fff" opacity=".55"><ellipse cx="80" cy="330" rx="70" ry="9"/><ellipse cx="130" cy="344" rx="52" ry="7"/><ellipse cx="330" cy="290" rx="64" ry="8"/><ellipse cx="45" cy="450" rx="46" ry="6"/></g>
+<g fill="#fff"><circle class="twk" cx="40" cy="70" r="1.6"/><circle class="twk" cx="120" cy="38" r="1.2"/><circle class="twk" cx="210" cy="90" r="1.5"/><circle class="twk" cx="330" cy="50" r="1.3"/><circle class="twk" cx="370" cy="130" r="1.1"/><circle class="twk" cx="70" cy="150" r="1.1"/></g>
+<path d="M0 560 L60 500 L110 540 L190 470 L260 540 L320 490 L400 550 L400 800 L0 800Z" fill="url(#mt1)" opacity=".85"/>
+<path d="M0 620 L70 575 L140 610 L220 560 L300 615 L360 585 L400 610 L400 800 L0 800Z" fill="url(#mt2)" opacity=".9"/>
+<g fill="#3a2d57" opacity=".92"><path d="M0 700 Q90 668 170 690 T400 676 L400 800 L0 800Z"/>
+<g transform="translate(300 610)"><rect x="-1" y="-4" width="60" height="5" rx="1"/><rect x="6" y="3" width="48" height="3.4"/><rect x="10" y="6" width="5" height="62"/><rect x="45" y="6" width="5" height="62"/><path d="M-6 -4 Q30 -16 66 -4 L62 -9 Q30 -21 -2 -9Z"/></g>
+<g transform="translate(40 655)"><path d="M0 40 L-4 4 M0 40 L5 8 M0 40 L14 14" stroke="#3a2d57" stroke-width="2.4" fill="none"/><circle cx="-6" cy="2" r="9"/><circle cx="8" cy="0" r="10"/><circle cx="18" cy="12" r="8"/></g></g>
+<g fill="#f4a9c2" opacity=".9"><circle cx="34" cy="651" r="3"/><circle cx="48" cy="648" r="3.4"/><circle cx="58" cy="662" r="2.8"/><circle cx="26" cy="660" r="2.2"/></g>
+</svg>
+<span class="petal" style="left:6%;animation-duration:17s;animation-delay:-3s"></span><span class="petal" style="left:19%;animation-duration:21s;animation-delay:-11s"></span><span class="petal" style="left:34%;animation-duration:15s;animation-delay:-7s"></span><span class="petal" style="left:48%;animation-duration:23s;animation-delay:-1s"></span><span class="petal" style="left:62%;animation-duration:18s;animation-delay:-13s"></span><span class="petal" style="left:75%;animation-duration:20s;animation-delay:-5s"></span><span class="petal" style="left:88%;animation-duration:16s;animation-delay:-9s"></span><span class="petal" style="left:94%;animation-duration:24s;animation-delay:-15s"></span></div>
 <div class="app">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><filter id="kdBevS" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation=".45" result="b"/><feSpecularLighting in="b" surfaceScale="1.6" specularConstant=".75" specularExponent="16" lighting-color="#fff" result="s"><feDistantLight azimuth="235" elevation="52"/></feSpecularLighting><feComposite in="s" in2="SourceAlpha" operator="in" result="s2"/><feComposite in="SourceGraphic" in2="s2" operator="arithmetic" k1="0" k2="1" k3=".5" k4="0" result="lit"/><feDropShadow in="lit" dx="0.35" dy="0.5599999999999999" stdDeviation="0.42" flood-color="#2a1608" flood-opacity=".38"/></filter><filter id="kdBevM" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation=".8" result="b"/><feSpecularLighting in="b" surfaceScale="2.4" specularConstant=".75" specularExponent="16" lighting-color="#fff" result="s"><feDistantLight azimuth="235" elevation="52"/></feSpecularLighting><feComposite in="s" in2="SourceAlpha" operator="in" result="s2"/><feComposite in="SourceGraphic" in2="s2" operator="arithmetic" k1="0" k2="1" k3=".5" k4="0" result="lit"/><feDropShadow in="lit" dx="0.6" dy="0.96" stdDeviation="0.72" flood-color="#2a1608" flood-opacity=".38"/></filter><filter id="kdBevL" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="1.8" result="b"/><feSpecularLighting in="b" surfaceScale="4" specularConstant=".75" specularExponent="16" lighting-color="#fff" result="s"><feDistantLight azimuth="235" elevation="52"/></feSpecularLighting><feComposite in="s" in2="SourceAlpha" operator="in" result="s2"/><feComposite in="SourceGraphic" in2="s2" operator="arithmetic" k1="0" k2="1" k3=".5" k4="0" result="lit"/><feDropShadow in="lit" dx="1.4" dy="2.2399999999999998" stdDeviation="1.68" flood-color="#2a1608" flood-opacity=".38"/></filter><filter id="kdSoft" x="-15%" y="-15%" width="130%" height="130%"><feDropShadow dx=".6" dy="1" stdDeviation=".9" flood-color="#1a0d05" flood-opacity=".35"/></filter></defs></svg>
 
@@ -3497,6 +3581,14 @@ button,[role="button"],.tab{touch-action:manipulation;-webkit-tap-highlight-colo
         <div class="hrow"><div class="hearts" id="hearts" aria-label="Cœurs restants"></div><span class="muted small" id="heartsNote"></span></div>
       </div>
     </div>
+    <div class="pfgrid" id="pfGrid" role="group" aria-label="Mon profil">
+      <button type="button" class="pfbtn" data-pf="cust" aria-pressed="false"><i aria-hidden="true">飾</i><span>Personnaliser</span></button>
+      <button type="button" class="pfbtn" data-pf="vit" aria-pressed="false"><i aria-hidden="true">札</i><span>Vitrine</span></button>
+      <button type="button" class="pfbtn" data-pf="pass" aria-pressed="false"><i aria-hidden="true">道</i><span>Voie du Dōjō</span></button>
+      <button type="button" class="pfbtn" data-pf="badges" aria-pressed="false"><i aria-hidden="true">章</i><span>Badges</span></button>
+      <button type="button" class="pfbtn" data-stats="1"><i aria-hidden="true">統</i><span>Mes stats</span></button>
+      <button type="button" class="pfbtn" data-go="settings"><i aria-hidden="true">設</i><span>Réglages</span></button>
+    </div>
     <div class="panel custpanel" id="custPanel">
       <div class="hrow"><h3 class="sgh sm" data-k="飾"><span>Personnaliser mon profil</span></h3></div>
       <div class="custtabs" role="tablist" aria-label="Personnalisation">
@@ -3536,12 +3628,12 @@ button,[role="button"],.tab{touch-action:manipulation;-webkit-tap-highlight-colo
     </div>
     <button type="button" class="panel cdbinder" id="cdBinder" data-cdalbum="1"></button>
     <div class="panel cdvitpanel" id="cdVit"></div>
-    <details class="acc passacc"><summary><span class="aico" aria-hidden="true">道</span>Voie du Dōjō</summary><div class="panel passpanel" id="passPanel"></div></details>
+    <details class="acc passacc" open><summary><span class="aico" aria-hidden="true">道</span>Voie du Dōjō</summary><div class="panel passpanel" id="passPanel"></div></details>
     <div class="stats" style="grid-template-columns:1fr;display:none">
       <div class="stat towerstat"><b id="stTower">0</b><span>record de la Tour infinie (étages)</span></div>
     </div>
     <div class="panel" id="onlinePanel" hidden><h3 class="sgh sm" data-k="在"><span>En ligne maintenant</span></h3><div id="onlineList" class="olist"></div></div>
-    <details class="acc"><summary><span class="aico" aria-hidden="true">章</span>Badges</summary><div class="badges" id="badges"></div></details>
+    <details class="acc badgeacc" open><summary><span class="aico" aria-hidden="true">章</span>Badges</summary><div class="badges" id="badges"></div></details>
     <div class="hubmini">
       <button class="btn" type="button" data-stats="1"><span class="bi" aria-hidden="true">統</span> Mes stats</button>
       <button class="btn" type="button" data-go="settings"><span class="bi" aria-hidden="true">設</span> Réglages</button>
@@ -18678,11 +18770,19 @@ button,[role="button"],.tab{touch-action:manipulation;-webkit-tap-highlight-colo
      + bulles de conseil d'Archibald sur les écrans (masquables avec « Compris »)
      ===================================================================== */
   var djSub = '';   // '', 'flash', 'kanji', 'mini', 'err'
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-pf]') : null; if (!b) return;
+    var sec = $('vProfil'), v = b.getAttribute('data-pf'), on = sec.getAttribute('data-pf') === v;
+    if (on) sec.removeAttribute('data-pf'); else sec.setAttribute('data-pf', v);
+    [].forEach.call(document.querySelectorAll('#pfGrid [data-pf]'), function (x) { x.setAttribute('aria-pressed', (!on && x === b) ? 'true' : 'false'); });
+    if (!on) { var t = $(v === 'cust' ? 'custPanel' : v === 'vit' ? 'cdBinder' : v === 'pass' ? 'passPanel' : 'badges'); if (t && t.scrollIntoView) setTimeout(function () { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 30); }
+  });
   var DJ_INFO = {
     flash: { k: '札', t: 'Flashcards', art: 'flashfr', d: 'Revois tes mots, les plus urgents d\'abord', tip: 'Les flashcards te montrent d\'abord les mots à revoir. Note-toi honnêtement : c\'est comme ça que tu progresses vite !' },
     kanji: { k: '漢', t: 'Kanjis', art: 'kread', d: 'Lectures, sens et fiches à étudier', tip: 'Entraîne-toi sur les lectures et le sens des kanjis, ou ouvre « Étudier » pour apprendre une fiche.' },
     mini: { k: '遊', t: 'Mini-jeux', art: 'sprint', d: 'Sprint, pêche, paires, examen blanc…', tip: 'Des jeux courts pour réviser en s\'amusant. Essaie l\'examen blanc avant un contrôle !' },
-    daily: { k: '日', t: 'Vie quotidienne', art: '', d: 'Vocabulaire du quotidien et listes JLPT N5 / N4', tip: 'Ici, du vocabulaire hors cours : la vie de tous les jours, puis les listes JLPT N5 et N4. Choisis un niveau avec le menu, un thème (ou le quiz complet du niveau), apprends la liste, puis teste-toi.' },
+    daily: { k: '日', t: 'Vie quotidienne', art: '', d: 'Maison, famille, amis, ville… du vocabulaire hors cours', tip: 'Ici, du vocabulaire de tous les jours, sans rapport avec ton cours : la maison, la famille, les amis, la ville… Choisis un thème, apprends la liste, puis teste-toi.' },
+    jlpt: { k: '試', t: 'JLPT', art: '', d: 'Vocabulaire N5 et N4, quiz par niveau', tip: 'Les listes JLPT : choisis N5 ou N4, un thème ou le quiz complet du niveau, apprends la liste, puis teste-toi. Un mot est acquis après 3 bonnes réponses d\'affilée.' },
     err: { k: '復', t: 'Carnet d\'erreurs', art: '', d: '', tip: 'Ici, tout ce que tu rates. Revois-le avant qu\'il ne s\'efface de ta mémoire.' }
   };
   function tipSeen(key) { return !!(S && S.tips && S.tips[key]); }
@@ -18699,22 +18799,21 @@ button,[role="button"],.tab{touch-action:manipulation;-webkit-tap-highlight-colo
   var DJ_ERR_ART = '<svg viewBox="0 0 160 78" class="gart" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="djeb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c8483a"/><stop offset="1" stop-color="#7a1f16"/></linearGradient></defs><rect width="160" height="78" fill="url(#djeb)"/><g transform="rotate(-6 80 42)"><rect x="44" y="10" width="72" height="62" rx="5" fill="#fbf4e3" stroke="#2a1c14" stroke-width="2.4"/><rect x="44" y="10" width="12" height="62" rx="4" fill="#3a2210"/><g stroke="#b8a888" stroke-width="1.2"><path d="M62 24H108M62 36H108M62 48H108M62 60H100"/></g><text x="86" y="23" font-size="12" fill="#c0392b" font-family="serif" font-weight="900" text-anchor="middle">復</text><path d="M66 32l6 6M72 32l-6 6" stroke="#c0392b" stroke-width="2.4" stroke-linecap="round"/><path d="M66 44l4 5 8-9" fill="none" stroke="#2f7a52" stroke-width="2.6" stroke-linecap="round"/></g><path d="M124 14L140 52L134 54L120 16z" fill="#e8c46a" stroke="#2a1c14" stroke-width="1.6" stroke-linejoin="round"/></svg>';
   function djTile(sub) {
     var i = DJ_INFO[sub], art = sub === 'err' ? DJ_ERR_ART : sub === 'daily' ? QV_ART : (GAME_ART[i.art] || ''), d = i.d, chip = '';
-    art = assetArt('dj_' + sub, art);
-    if (sub === 'daily') { var tq = qvTotals(); d = QV.length + ' thèmes · ' + tq[0] + '/' + tq[1] + ' mots acquis'; }
+    if (sub === 'daily' || sub === 'jlpt') { var tq = qvTotals(sub), nth = QV.filter(function (t) { return !t.virt && (sub === 'jlpt' ? t.lv !== 'q' : t.lv === 'q'); }).length; d = nth + ' thèmes · ' + tq[0] + '/' + tq[1] + ' mots acquis'; }
     if (sub === 'err') {
       var n = dueWords(true).length, e = errCount();
       d = n ? n + ' mot' + (n > 1 ? 's' : '') + ' à revoir maintenant' : (e ? e + ' erreur' + (e > 1 ? 's' : '') + ' à revoir' : 'Aucune erreur : bravo !');
       if (n) chip = '<span class="djchip">🔔 ' + n + '</span>';
     }
-    return '<button class="mode gamecard djt" type="button" data-djsub="' + sub + '">' + art + chip + '<span class="g" aria-hidden="true">' + i.k + '</span><span class="gtx"><b>' + i.t + '</b><small>' + esc(d) + '</small></span></button>';
+    return '<button class="mode gamecard djt" type="button" data-djsub="' + sub + '">' + chip + '<span class="tk" aria-hidden="true">' + i.k + '</span><span class="gtx"><b>' + i.t + '</b><small>' + esc(d) + '</small></span></button>';
   }
   function djBackHTML(sub) { return '<div class="grp djbar"><button type="button" class="btn djback" data-djsub="">‹ Dojo</button><h3 class="sgh" data-k="' + DJ_INFO[sub].k + '"><span>' + DJ_INFO[sub].t + '</span></h3></div>'; }
   function djGamesHTML(fl, kj, mj) {
-    document.body.classList.toggle('qvon', djSub === 'daily');
-    if (!djSub) return tipHTML('dojo', 'Voici ton Dojo ! Touche une carte pour t\'entraîner : <b>Flashcards</b> pour revoir tes mots, <b>Kanjis</b>, <b>Mini-jeux</b>, ton <b>Carnet d\'erreurs</b>, ou du <b>vocabulaire du quotidien</b>.') +
-      '<div class="djgrid">' + ['flash', 'kanji', 'mini', 'err', 'daily'].map(djTile).join('') + '</div>';
+    document.body.classList.toggle('qvon', djSub === 'daily' || djSub === 'jlpt');
+    if (!djSub) return tipHTML('dojo', 'Voici ton Dojo ! Touche une carte pour t\'entraîner : <b>Flashcards</b> pour revoir tes mots, <b>Kanjis</b>, <b>Mini-jeux</b>, ton <b>Carnet d\'erreurs</b>, ou du <b>vocabulaire du quotidien</b> ou le <b>JLPT</b>.') +
+      '<div class="djgrid">' + ['flash', 'kanji', 'mini', 'err', 'daily', 'jlpt'].map(djTile).join('') + '</div>';
     if (djSub === 'err') return '';
-    if (djSub === 'daily') return qvHTML();
+    if (djSub === 'daily' || djSub === 'jlpt') return qvHTML();
     return djBackHTML(djSub) + tipHTML('dj_' + djSub, DJ_INFO[djSub].tip) + (djSub === 'flash' ? fl : djSub === 'kanji' ? kj : mj);
   }
   document.addEventListener('click', function (e) {
@@ -19736,7 +19835,7 @@ button,[role="button"],.tab{touch-action:manipulation;-webkit-tap-highlight-colo
   function qvStatOf(k) { return (S.qv && S.qv[k]) || null; }
   function qvStatus(w) { var s = qvStatOf(w.key); if (!s || !(s.ok || s.ko)) return ''; return s.run >= MASTER_RUN ? 'ok' : (s.ko > 0 ? 'warn' : 'mid'); }
   function qvMasteredN(t) { return t.w.filter(function (w) { return qvStatus(w) === 'ok'; }).length; }
-  function qvTotals() { var m = 0, n = 0; QV.forEach(function (t) { if (t.virt) return; m += qvMasteredN(t); n += t.w.length; }); return [m, n]; }
+  function qvTotals(sc) { var m = 0, n = 0; QV.forEach(function (t) { if (t.virt) return; if (sc === 'jlpt' ? t.lv === 'q' : sc === 'daily' ? t.lv !== 'q' : false) return; m += qvMasteredN(t); n += t.w.length; }); return [m, n]; }
   function qvMark(w, ok) {
     S.qv = S.qv || {}; var s = S.qv[w.key] || (S.qv[w.key] = { ok: 0, ko: 0, run: 0 });
     if (ok) { s.ok++; s.run++; } else { s.ko++; s.run = 0; }
@@ -19745,12 +19844,12 @@ button,[role="button"],.tab{touch-action:manipulation;-webkit-tap-highlight-colo
   function qvTheme(id) { return QV.filter(function (t) { return t.id === id; })[0] || null; }
   function qvRd(w) { var r = toRomaji(w.kana); return w.jp === w.kana ? r : w.kana + ' · ' + r; }
   function qvGrid() {
-    var tot = qvTotals(), list = QV.filter(function (t) { return qv.lv === 'all' || t.lv === qv.lv; });
-    var sel = '<label class="qvlv"><span class="muted small">Niveau</span> <select id="qvLv" aria-label="Niveau">' + QV_LV.map(function (o) { return '<option value="' + o[0] + '"' + (qv.lv === o[0] ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') + '</select></label>';
-    return '<p class="qvtop"><b>' + tot[0] + '</b> / ' + tot[1] + ' mots acquis · ' + QV.filter(function (t) { return !t.virt; }).length + ' thèmes</p>' + sel + '<div class="qvgrid">' + list.map(function (t) {
+    var jl = djSub === 'jlpt', lvv = jl ? (qv.lv === 'n4' ? 'n4' : 'n5') : 'q', tot = qvTotals(djSub || 'daily');
+    var list = QV.filter(function (t) { return t.lv === lvv; });
+    var sel = jl ? '<div class="seg qvlvseg" role="tablist" aria-label="Niveau JLPT">' + [['n5', 'N5 · débutant'], ['n4', 'N4 · élémentaire']].map(function (o) { return '<button type="button" role="tab" data-qvlv="' + o[0] + '" aria-selected="' + (lvv === o[0]) + '">' + o[1] + '</button>'; }).join('') + '</div>' : '';
+    return '<p class="qvtop"><b>' + tot[0] + '</b> / ' + tot[1] + ' mots acquis · ' + list.filter(function (t) { return !t.virt; }).length + ' thèmes</p>' + sel + '<div class="qvgrid">' + list.map(function (t) {
       var m = qvMasteredN(t), pct = Math.round(m / Math.max(1, t.w.length) * 100);
-      var qi = ASSETS['qv_' + t.id];
-      return '<button type="button" class="qvt' + (qi ? ' hasimg' : '') + (t.virt ? ' qvall' : '') + '" data-qvth="' + t.id + '">' + (qi ? '<img class="qvimg" src="' + esc(qi) + '" alt="" decoding="async">' : '') + '<span class="qvk" aria-hidden="true">' + t.k + '</span><b>' + esc(t.name) + '</b><small>' + t.w.length + ' mots · ' + m + ' acquis</small><i class="qvbar"><u style="width:' + pct + '%"></u></i></button>';
+      return '<button type="button" class="qvt' + (t.virt ? ' qvall' : '') + '" data-qvth="' + t.id + '"><span class="qvk" aria-hidden="true">' + t.k + '</span><b>' + esc(t.name) + '</b><small>' + t.w.length + ' mots · ' + m + ' acquis</small><i class="qvbar"><u style="width:' + pct + '%"></u></i></button>';
     }).join('') + '</div>';
   }
   function qvModes() {
@@ -19826,7 +19925,7 @@ button,[role="button"],.tab{touch-action:manipulation;-webkit-tap-highlight-colo
     return h;
   }
   function qvHTML() {
-    if (!qv.th) return djBackHTML('daily') + tipHTML('dj_daily', DJ_INFO.daily.tip) + qvGrid();
+    if (!qv.th) return djBackHTML(djSub) + tipHTML('dj_' + djSub, DJ_INFO[djSub].tip) + qvGrid();
     var t = qvTheme(qv.th); if (!t) { qv.th = ''; return qvHTML(); }
     var body = qv.mode === 'learn' ? qvLearn(t) : qv.mode === 'cards' ? qvCards(t) : qv.mode === 'qcm' ? qvQcm(t) : qvWrite(t);
     return '<div class="grp djbar"><button type="button" class="btn djback" data-qvback="1">‹ Thèmes</button><h3 class="sgh" data-k="' + t.k + '"><span>' + esc(t.name) + '</span></h3></div>' + (t.note && qv.mode === 'learn' ? '<p class="qvnote">' + esc(t.note) + '</p>' : '') + qvModes() + '<div class="qvbody">' + body + '</div>';
@@ -19862,7 +19961,7 @@ button,[role="button"],.tab{touch-action:manipulation;-webkit-tap-highlight-colo
       q.i++; if (q.i >= q.items.length) q.done = true; else qvPrep(); qvRefresh(false); return;
     }
   });
-  document.addEventListener('change', function (e) { if (e.target && e.target.id === 'qvLv') { qv.lv = e.target.value; qvRefresh(false); } });
+  document.addEventListener('click', function (e) { var b = e.target.closest ? e.target.closest('[data-qvlv]') : null; if (b) { qv.lv = b.getAttribute('data-qvlv'); qvRefresh(false); } });
   document.addEventListener('submit', function (e) {
     var f = e.target.closest ? e.target.closest('[data-qvform]') : null; if (!f || !user) return;
     e.preventDefault();
@@ -19915,7 +20014,7 @@ button,[role="button"],.tab{touch-action:manipulation;-webkit-tap-highlight-colo
   function adminRefresh() {
     try { if ($('vHub') && !$('vHub').hidden) renderHub(); } catch (e) { /* ignore */ }
     try { if (typeof renderHome === 'function' && !$('vHome').hidden) renderHome(); } catch (e) { /* ignore */ }
-    try { if (qv && qv.th === '' && typeof qvRefresh === 'function' && djSub === 'daily') qvRefresh(); } catch (e) { /* ignore */ }
+    try { if (qv && qv.th === '' && typeof qvRefresh === 'function' && (djSub === 'daily' || djSub === 'jlpt')) qvRefresh(); } catch (e) { /* ignore */ }
     adminPanel();
   }
   function hubArtFor(c) {
