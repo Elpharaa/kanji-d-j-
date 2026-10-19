@@ -3991,6 +3991,41 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
 .furres { display: grid; gap: 6px; } .furpick { display: flex; align-items: center; gap: 10px; text-align: left; padding: 8px 10px; background: #fffaf0; border: 2px solid #e0a48a; border-radius: 12px; font: inherit; cursor: pointer; } .furpick > b { font-size: 1.4rem; min-width: 3rem; text-align: center; } .furpick span { display: flex; flex-direction: column; flex: 1; } .furpick small { color: #6a5a8a; }
 .erritem { position: relative; } .erfur { position: absolute; right: 8px; top: 8px; width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; background: #fff1cf; border: 1.5px solid #f0b97a; cursor: pointer; font-size: 1rem; z-index: 2; }
 @media (prefers-reduced-motion: reduce) { .furart .ffl, .furart .ffl2, .furart .fsm { animation: none; } }
+
+/* lisibilité : les écrans de résultat / d'intro de combat reposent sur une carte claire, jamais directement sur le décor */
+.result { background: rgba(255,250,240,.95); color: #2a1c3a; border: 2px solid rgba(240,185,122,.95); border-radius: 18px; padding: 16px 16px 14px; box-shadow: 0 8px 22px rgba(30,16,50,.35); }
+.result h3, .result h2, .result p, .result b, .result small { color: inherit; } .result .small, .result small, .result .muted { color: #4a3a6a; opacity: 1; }
+
+/* lisibilité : contrastes renforcés (contrôle automatique mobile + ordinateur) */
+.seg button[aria-selected="true"], .gsegbar button[aria-selected="true"] { color: #a8321a; }
+.seg button:not([aria-selected="true"]) { color: #3f2f66; }
+.mpb[aria-pressed="false"], .mpb:not([aria-pressed="true"]) { color: #3a2a5e; }
+.mpb[aria-pressed="true"] { color: #fff !important; text-shadow: 0 1px 0 rgba(60,10,30,.6); }
+.pcap { color: #7a4e08; }
+.gw1 { color: #7a4e08 !important; }
+.btn.bad { color: #ffd6e0; border-color: #ff9ab4; }
+.setacc .accbody, .setacc .accbody p, .setacc .accbody b, .setacc .accbody small { color: #0f0820; }
+.setacc .accbody .btn.bad { color: #ffd6e0; }
+.podbase .podrank { color: #25163d; text-shadow: 0 1px 0 rgba(255,255,255,.55); }
+.podbase .podrank, .podium b { text-shadow: 0 1px 0 rgba(255,255,255,.4); }
+.bgate .bgt b, .bgate .bgt small, .bgate .bgt small b { color: #3a0f25; } .bgate .bgt small { color: #2a1c4a; }
+.muted, .small.muted, p.muted { color: #3a2c60; } .panel .muted, .card .muted, .player .muted { color: #4a3a6a; }
+#onlineBar .muted, .rail .muted, .sidebar .muted, .social .muted, .friends .muted { color: inherit; }
+#vBoard li b, #vBoard .lrow b { color: #6b1030; }
+.tki, .tki span { color: #fff; text-shadow: 0 1px 2px rgba(20,10,40,.8); }
+body .seg button[aria-selected="true"], body .seg.gsegbar button[aria-selected="true"] { color: #8f2a12; }
+#vKanji .muted, #vKanji .small.muted, #vBoard .muted, #vMulti .muted, #vBoard > p, #vBoard p { color: #1d1236; }
+#vBoard .mxp { color: #1d1236; }
+.pseal { color: #fff; text-shadow: 0 1px 0 rgba(60,10,30,.6); }
+
+.badge { opacity: .88; } .badge:not(.on) .g { filter: grayscale(1); opacity: .6; } .badge:not(.on) { background: rgba(255,250,240,.7); } .badge.on { opacity: 1; }
+.badge b, .badge span { color: #2a1c4a; } .badge .bpn { color: #4a2f80; } .pmlocked .badge { opacity: .85; }
+#furHost { background: rgba(255,250,240,.93); border: 2px solid rgba(240,185,122,.9); border-radius: 18px; padding: 12px; color: #2a1c3a; box-shadow: 0 6px 18px rgba(44,36,82,.25); }
+#furHost .muted, #furHost .small, #furHost small { color: #4a3a6a; } #furHost .prompt { color: #2a1c3a; }
+.radk small, .radt small { color: inherit; opacity: .9; }
+.qvt .qvk { color: #ff9fbb; } .qvsubh { color: #120a26; }
+.fctime, .fccount, .fcskip, .srstx, .srstx small { color: #1d1236 !important; }
+.badge:not(.on) .g { opacity: .8; color: #5b4a8a; } .gachg { color: #a8325a; } #lrnHost .muted, #lrnHost .small.muted { color: #1d1236; }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
