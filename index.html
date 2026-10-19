@@ -12403,7 +12403,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   // Une question = { w, key, type, fmt, big, sub, prompt, hint, ph, correct, options|check, card, extra }
   function hasKanji(m) { return /[\u3400-\u9fff\u3005]/.test(String(m || '')); }
   function buildQ(w, type, fmt) {
-    if (type === 'lecture' && !hasKanji(w.mot)) type = 'sens';   // mot tout en kana : demander sa lecture n'a aucun sens
+    if ((type === 'lecture' || type === 'ortho') && !hasKanji(w.mot)) type = 'sens';   // mot tout en kana : demander sa lecture n'a aucun sens
     var q = { w: w, key: w.key, type: type, fmt: fmt, sub: '', big: w.mot, bigCls: '', tag: typeLabel(w.type), card: w.mot + ' · ' + w.disp + ' · ' + w.sens, extra: '' };
     var traps = trapWords(w, 8);
     if (type === 'sens') {
