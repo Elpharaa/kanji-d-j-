@@ -4189,6 +4189,18 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
 .twtrap:disabled { opacity: .45; } .twtrap.sel { box-shadow: 0 0 0 3px #f0b97a; background: #fff0c8; }
 .twtg { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 8px; }
 @media (prefers-reduced-motion: reduce) { .twgame.hit, .twq.fog .kanji, .twq.fog .prompt { animation: none; } }
+
+/* patate chaude */
+.bbgame { display: grid; gap: 10px; }
+.bbgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(76px, 1fr)); gap: 8px; }
+.bbp { position: relative; display: grid; justify-items: center; gap: 3px; padding: 8px 4px; border-radius: 14px; background: #fffaf0; border: 2px solid #b9acd2; color: #2c2452; }
+.bbp b { font-size: .75rem; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .bbp.me { border-color: #4b3d84; }
+.bbp.hold { border-color: #d0587f; background: #ffe6ee; animation: bbshake .35s infinite; } .bbp.out { opacity: .4; filter: grayscale(1); }
+.bbav img, .bbav .av { width: 40px !important; height: 40px !important; border-radius: 50%; }
+.bbb { position: absolute; top: -10px; right: -4px; font-style: normal; font-size: 1.5rem; filter: drop-shadow(0 2px 3px rgba(0,0,0,.4)); }
+@keyframes bbshake { 0%,100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg) scale(1.04); } }
+.bbwarn { color: #c1245a; font-weight: 800; text-align: center; } .bbboom { font-size: 1.1rem; }
+@media (prefers-reduced-motion: reduce) { .bbp.hold { animation: none; } }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -16765,10 +16777,11 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     team: { name: "Combat d'équipe", g: '団', min: 2, max: 4, desc: '2 contre 2, ou tous ensemble contre un Boss géant.' },
     draw: { name: 'Kanji Pictionary', g: '絵', min: 2, max: 6, desc: 'Dessine le mot en 25 secondes : aucun indice, les autres devinent grâce à ton dessin !' },
     surv: { name: 'Survie', g: '生', min: 3, max: 8, desc: 'Battle royale : le dernier debout gagne (4 joueurs et + conseillé).' },
+    bomb: { name: 'Patate chaude', g: '爆', min: 2, max: 8, desc: 'Une bombe passe de joueur en joueur à chaque bonne réponse. Celui qui la tient quand elle explose est éliminé !' },
     tower: { name: 'Course à la tour', g: '塔', min: 2, max: 6, desc: 'Monte les étages en répondant juste et envoie des pièges aux autres : le premier au sommet gagne !' }
   };
   var DRAW_MS = 25000;   // durée de dessin par tour (courte : rythme rapide)
-  var MP_ORDER = ['duel', 'team', 'draw', 'tower', 'surv'];
+  var MP_ORDER = ['duel', 'team', 'draw', 'tower', 'bomb', 'surv'];
   var CODE_AL = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
   var lobby = null, lobbyList = [], mp = null, mpAv = {}, inviteTimer = null;
   var MP_WIN_XP = 30, MP_WIN_COINS = 25, MP_PART_XP = 6, MP_PART_COINS = 4;
@@ -16977,7 +16990,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     } else if (ev === 'start') {
       if (S.esc && !S.esc.play && betActive({ mode: p.mode, opts: p.opts, players: p.players }) && Math.floor(+p.opts.bet) === S.esc.amt) { S.esc.play = 1; persist(); }
       else if (S.esc && !S.esc.play) betRefund();
-      v.phase = 'play'; v.players = p.players; v.mode = p.mode; v.opts = p.opts; if (p.prog) v.prog = p.prog; v.st = p.st; v.stAt = Date.now(); v.tq = null; v.trapSel = null; v.q = null; v.res = null; v.chat = []; v.rewarded = false; v.winners = null;
+      v.phase = 'play'; v.players = p.players; v.mode = p.mode; v.opts = p.opts; if (p.prog) v.prog = p.prog; v.st = p.st; v.stAt = Date.now(); v.tq = null; v.boom = null; v.trapSel = null; v.q = null; v.res = null; v.chat = []; v.rewarded = false; v.winners = null;
       mpFetchAv(v.players); renderMulti();
     } else if (ev === 'q') {
       v.q = p.q; v.qn = p.n; v.dur = p.dur; v.st = p.st; v.picked = null; v.res = null; v.qt = Date.now(); renderMulti();
@@ -16993,6 +17006,9 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     } else if (ev === 'tres') {
       if (p.id === user.id && v.tq && v.tq.n === p.n) { v.tq.res = { ok: p.ok, correct: p.correct }; sfx(p.ok ? 'ok' : 'bad'); }
       if (p.st) { v.st = p.st; v.stAt = Date.now(); } renderMulti();
+    } else if (ev === 'bboom') {
+      if (p.st) { v.st = p.st; v.stAt = Date.now(); } v.boom = { id: p.id, t: Date.now() }; v.tq = null; sfx('bad');
+      if (p.id === user.id) toast('💥 Boum ! Tu es éliminé.'); renderMulti(); setTimeout(function () { if (mp && mp.v === v && v.phase === 'play') renderMulti(); }, 2400);
     } else if (ev === 'tfx') {
       if (p.st) { v.st = p.st; v.stAt = Date.now(); } var T = TW_TRAPS[p.kind] || { i: '', n: '' };
       if (p.to === user.id) { toast(T.i + ' ' + esc(mpName(p.from)) + ' t\'envoie : ' + T.n + ' !'); v.hit = 1; setTimeout(function () { v.hit = 0; renderMulti(); }, 600); sfx('bad'); }
@@ -17188,11 +17204,89 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     clearTimeout(v.twT); if (frozen > 0) v.twT = setTimeout(function () { if (mp && mp.v === v && v.phase === 'play') renderMulti(); }, Math.min(frozen, 400) + 30);
     else v.twT = setTimeout(function () { var t = $('twTime'); if (t && mp && mp.v === v && v.phase === 'play') { var e2 = Date.now() - (v.stAt || Date.now()); t.textContent = '⏱ ' + Math.ceil(Math.max(0, (st.left || 0) - e2) / 1000) + ' s'; renderMulti(); } }, 1000);
   }
+
+  /* =====================================================================
+     PATATE CHAUDE : une bombe passe de joueur en joueur à chaque bonne réponse. Mèche cachée (9 à 17 s) :
+     celui qui la tient quand elle explose est éliminé. Le dernier en vie gagne.
+     ===================================================================== */
+  function makeBomb(g) {
+    var pl = mp.v.players; g.alive = pl.map(function (p) { return p.id; }); g.holder = null; g.cur = null; g.cnt = 0; g.seq = 0; g.out = [];
+    g.pub = function () { return { holder: g.holder, alive: g.alive.slice(), out: g.out.slice() }; };
+    g.later = function (fn, ms) { var t = setTimeout(function () { if (mp && mp.g === g && !g.over) fn(); }, ms); (g.timers = g.timers || []).push(t); return t; };
+    g.cleanup = function () { (g.timers || []).forEach(clearTimeout); };
+    var isB = function (id) { var p = mpPl(id); return p && p.bot; };
+    function ask(id, seq) {
+      if (g.over || seq !== g.seq || g.holder !== id) return;
+      var q = mpMakeQ(g), n = ++g.cnt; g.cur = { id: id, q: q, n: n };
+      mp.ch.send('tq', { to: id, n: n, dur: 0, fx: {}, st: g.pub(), q: { big: q.big, sub: q.sub, prompt: q.prompt, tag: q.tag, options: q.options, bigCls: q.bigCls || '' } });
+      if (isB(id)) {
+        var L = BOT_LV[mpBotLv()], j = ((mp.botSkill && mp.botSkill[id]) || { j: 0.5 }).j;
+        var d = Math.max(1500, lerp(L.t, Math.random() * 0.7 + j * 0.3) * 0.8 + 600), ok = Math.random() < lerp(L.acc, j), ci = q.options.indexOf(q.correct);
+        if (!ok || ci < 0) { var o = q.options.map(function (_, i) { return i; }).filter(function (i) { return i !== ci; }); ci = o[Math.floor(Math.random() * o.length)]; }
+        g.later(function () { answer(id, n, ci); }, d);
+      }
+    }
+    function newBomb(first) {
+      g.seq++; var seq = g.seq, a = g.alive, h = a[Math.floor(Math.random() * a.length)];
+      g.holder = h; g.cur = null;
+      var fuse = 9000 + Math.random() * 8000 - Math.min(3000, (pl.length - a.length) * 800);
+      g.fuse = g.later(function () { boom(seq); }, Math.max(5000, fuse));
+      mp.ch.send('tres', { id: '', n: 0, ok: true, correct: '', st: g.pub() });
+      g.later(function () { ask(h, seq); }, first ? 400 : 200);
+    }
+    function boom(seq) {
+      if (g.over || seq !== g.seq) return;
+      var v = g.holder; g.cur = null; g.holder = null; g.alive = g.alive.filter(function (x) { return x !== v; }); g.out.push(v); g.seq++;
+      mp.ch.send('bboom', { id: v, st: g.pub() });
+      if (g.alive.length < 2) { g.later(function () { endGame(g.alive.slice()); }, 1600); return; }
+      g.later(function () { newBomb(); }, 2400);
+    }
+    function answer(id, n, c) {
+      var cur = g.cur; if (g.over || !cur || cur.id !== id || cur.n !== n || g.holder !== id) return;
+      g.cur = null; var ok = c >= 0 && cur.q.options[c] === cur.q.correct, seq = g.seq;
+      if (ok) {
+        var others = g.alive.filter(function (x) { return x !== id; }); g.holder = others[Math.floor(Math.random() * others.length)];
+        mp.ch.send('tres', { id: id, n: n, ok: true, correct: cur.q.correct, st: g.pub() });
+        var nh = g.holder; g.later(function () { ask(nh, seq); }, 650);
+      } else {
+        mp.ch.send('tres', { id: id, n: n, ok: false, correct: cur.q.correct, st: g.pub() });
+        g.later(function () { ask(id, seq); }, 1100);
+      }
+    }
+    g.begin = function () { newBomb(true); };
+    g.onAns = function (p) { answer(p.id, p.n, p.c); };
+    g.gone = function (id) {
+      var was = g.holder === id; g.alive = g.alive.filter(function (x) { return x !== id; });
+      if (g.alive.length < 2) { endGame(g.alive.slice()); return; }
+      if (was) { clearTimeout(g.fuse); g.cur = null; newBomb(); }
+    };
+    return g;
+  }
+  function renderBomb(host) {
+    var v = mp.v, st = v.st || { alive: [], out: [], holder: null }, me = user.id, mine = st.holder === me, q = v.tq;
+    var cards = v.players.map(function (p) {
+      var out = (st.out || []).indexOf(p.id) >= 0 || p.gone, h = st.holder === p.id;
+      return '<div class="bbp' + (h ? ' hold' : '') + (out ? ' out' : '') + (p.id === me ? ' me' : '') + '"><span class="bbav">' + mpAvatarOf(p) + '</span>' + (h ? '<i class="bbb" aria-hidden="true">💣</i>' : out ? '<i class="bbb" aria-hidden="true">💥</i>' : '') + '<b>' + esc(p.name) + '</b></div>';
+    }).join('');
+    var body;
+    if (v.boom && v.boom.t > Date.now() - 2300) body = '<p class="mpintro bbboom">💥 <b>' + esc(mpName(v.boom.id)) + '</b> saute avec la bombe !</p>';
+    else if (mine && q && q.q) {
+      var res = q.res;
+      body = '<p class="mpmsg bbwarn">💣 La bombe est chez toi : réponds vite pour la passer !</p><div class="twq"><p class="prompt">' + esc(q.q.prompt) + '</p><div class="kanji' + (q.q.bigCls || (function () { var n = Array.from(q.q.big).length; return n <= 2 ? '' : (n <= 4 ? ' md' : ' sm'); })()) + '">' + esc(q.q.big) + '</div>' + (q.q.sub ? '<p class="sub">' + esc(q.q.sub) + '</p>' : '') +
+        '<div class="choices">' + q.q.options.map(function (o, i) {
+          var c2 = 'choice'; if (res) { if (o === res.correct) c2 += ' good'; else if (q.picked === i) c2 += ' bad'; } else if (q.picked === i) c2 += ' sel';
+          return '<button type="button" class="' + c2 + '" data-twans="' + i + '"' + (q.picked != null || res ? ' disabled' : '') + '><span class="key">' + (i + 1) + '</span><span>' + esc(o) + '</span></button>';
+        }).join('') + '</div></div><p class="mpmsg">' + (res && !res.ok ? '✘ Raté : c\'était ' + esc(res.correct) + ' — la mèche brûle toujours !' : '') + '</p>';
+    } else if (st.holder) body = '<p class="mpintro">💣 <b>' + esc(mpName(st.holder)) + '</b> tient la bombe…<br><small>Elle peut exploser à tout moment !</small></p>';
+    else body = '<p class="mpintro">Une nouvelle bombe est allumée…</p>';
+    host.innerHTML = '<div class="panel mpgame bbgame' + (mine ? ' mine' : '') + '"><div class="bbgrid">' + cards + '</div>' + body + '</div>';
+  }
   function makeEngine(mode) {
     var v = mp.v, g = { mode: mode, n: 0, over: false, ended: false, ans: {}, lastKey: null };
     var pl = v.players;
     if (mode === 'draw') return makeDraw(g);
     if (mode === 'tower') return makeTower(g);
+    if (mode === 'bomb') return makeBomb(g);
     if (mode === 'duel') {
       g.hp = {}; pl.forEach(function (p) { g.hp[p.id] = 100; });
       g.dur = function () { return 15000; }; g.cap = 12;
@@ -17442,6 +17536,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     else if (ph === 'end') renderEnd(host);
     else if (mp.v.mode === 'draw') renderDraw(host);
     else if (mp.v.mode === 'tower') renderTower(host);
+    else if (mp.v.mode === 'bomb') renderBomb(host);
     else renderQuiz(host);
   }
   function renderMenu(host) {
@@ -17536,7 +17631,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     if (f && f.getAttribute && f.getAttribute('data-mppsel')) progSet(f.getAttribute('data-mppfx'), f.getAttribute('data-mppsel'), f.value);
   });
 
-  var MP_TILES = [['duel', 'duel', ''], ['team', 'team', 'team'], ['boss', 'team', 'boss'], ['draw', 'draw', ''], ['tower', 'tower', ''], ['surv', 'surv', '']];
+  var MP_TILES = [['duel', 'duel', ''], ['team', 'team', 'team'], ['boss', 'team', 'boss'], ['draw', 'draw', ''], ['tower', 'tower', ''], ['bomb', 'bomb', ''], ['surv', 'surv', '']];
   var MP_BOSSTILE = { name: 'Quiz Boss', g: '鬼', desc: 'Tous ensemble contre un seul boss : les questions tombent pour tout le monde, mais une seule chance par question !', min: 1, max: 6 };
   function mpTilesHTML() {
     return '<div class="mptiles">' + MP_TILES.map(function (t) {
