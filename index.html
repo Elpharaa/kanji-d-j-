@@ -4209,6 +4209,14 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
 .gramlink .gtx b { font-family: var(--font-brush); font-weight: 400; font-size: 1.1rem; color: #fffaf0; text-shadow: 0 1px 3px rgba(44,36,82,.7); } .gramlink .gtx small { font-size: .76rem; color: #fff0d8; text-shadow: 0 1px 2px rgba(44,36,82,.7); } .gramlink .gtx small i { font-style: normal; color: #fffaf0; }
 .gramlink .gpet { font-size: 1.5rem; opacity: .85; }
 .hubcard.gramlink:active { transform: translateY(2px); box-shadow: 0 2px 0 #4b1f4f !important; }
+
+/* CTA accueil + invitation */
+.hubcta { margin: 10px 0 2px; } .hubcta[hidden] { display: none; }
+.hubctabtn { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; padding: 11px 14px; border-radius: 16px; border: 2px solid #7c1c3f; background: linear-gradient(135deg, #c1245a, #d0587f 60%, #f0a070); color: #fffaf0; box-shadow: 0 5px 0 #7c1c3f, inset 0 0 0 1px rgba(246,213,142,.6); font: inherit; cursor: pointer; }
+.hubctabtn:active { transform: translateY(2px); box-shadow: 0 2px 0 #7c1c3f; }
+.hubctabtn .hcplay { flex: none; width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; background: #fffaf0; color: #c1245a; font-size: 1.1rem; }
+.hubctabtn .hctx { display: grid; gap: 2px; } .hubctabtn b { font-family: var(--font-brush); font-weight: 400; font-size: 1.15rem; text-shadow: 0 1px 3px rgba(44,36,82,.6); } .hubctabtn small { font-size: .74rem; color: #fff0d8; line-height: 1.25; }
+.olinv { width: 100%; margin: 10px 0 6px; }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -4331,6 +4339,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     <div class="gate">
       <canvas class="dragoncv" id="dragonCv" role="img" aria-label="Des rubans de vent emportent des pétales de sakura"></canvas>
       <p class="gwel" id="hubWelcome"></p>
+      <div id="hubCta" class="hubcta" hidden></div>
     </div>
     <div class="hubgrid" id="hubGrid"></div>
     <div class="hubnext" id="hubNext" hidden></div>
@@ -4354,7 +4363,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
         <div class="hrow"><div class="hearts" id="hearts" aria-label="Cœurs restants"></div><span class="muted small" id="heartsNote"></span></div>
       </div>
     </div>
-    <div class="logrow"><button type="button" class="btn primary logbtn editbtn" id="btnEditProf">✎ Modifier mon profil</button><button type="button" class="btn logbtn" id="btnLogout2">⎋ Se déconnecter</button></div>
+    <div class="logrow"><button type="button" class="btn primary logbtn editbtn" id="btnEditProf">✎ Modifier mon profil</button><button type="button" class="btn logbtn" id="btnInvite">✉ Inviter un ami</button><button type="button" class="btn logbtn" id="btnLogout2">⎋ Se déconnecter</button></div>
     <div class="pfgrid" id="pfGrid" role="group" aria-label="Mon profil">
       <button type="button" class="pfbtn" data-pf="cust" aria-pressed="false"><i aria-hidden="true">飾</i><span>Personnaliser</span></button>
       <button type="button" class="pfbtn" data-pf="vit" aria-pressed="false"><i aria-hidden="true">札</i><span>Vitrine</span></button>
@@ -4465,7 +4474,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     
   </section>
 
-  <footer class="sitefoot"><a class="dclink" href="https://discord.gg/MVJNfRSQR2" target="_blank" rel="noopener noreferrer"><span class="dcico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 8Q6 5 9 5H23Q26 5 26 8V19Q26 22 23 22H15L9 27V22Q6 22 6 19z" fill="currentColor"/><circle cx="12.5" cy="13.5" r="1.9" fill="#2c2452"/><circle cx="19.5" cy="13.5" r="1.9" fill="#2c2452"/></svg></span><span class="dctx"><b>Rejoins le serveur Discord</b><small>Apprendre le japonais ensemble</small></span></a></footer>
+  <footer class="sitefoot"><a class="dclink" href="https://discord.gg/fHxsuRBBHW" target="_blank" rel="noopener noreferrer"><span class="dcico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 8Q6 5 9 5H23Q26 5 26 8V19Q26 22 23 22H15L9 27V22Q6 22 6 19z" fill="currentColor"/><circle cx="12.5" cy="13.5" r="1.9" fill="#2c2452"/><circle cx="19.5" cy="13.5" r="1.9" fill="#2c2452"/></svg></span><span class="dctx"><b>Rejoins le serveur Discord</b><small>Apprendre le japonais ensemble</small></span></a></footer>
   <!-- ===== PROFIL D'UN JOUEUR ===== -->
   <div class="modal" id="profModal" hidden>
     <div class="mback" data-close></div>
@@ -12975,6 +12984,18 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     if (r.top && r.top.length) h += '<h4 class="olh">Meilleurs frappeurs</h4><ol class="oltop">' + r.top.map(function (t, i) { return '<li><span>' + (i + 1) + '</span><b>' + esc(t.name) + '</b><em>' + t.dmg + '</em></li>'; }).join('') + '</ol>';
     return h + '</div>';
   }
+  function inviteUrl(clanId) {
+    var base = ''; try { base = location.origin + location.pathname; } catch (e) {}
+    if (!/^https?:/.test(base)) base = 'https://' + (location.host || 'kanji-dojo') + '/';
+    return base + (clanId ? '?clan=' + encodeURIComponent(clanId) : '');
+  }
+  function inviteShare() {
+    var cid = ol && ol.st && ol.st.clan ? ol.st.clan.id : '', url = inviteUrl(cid), text = 'Je t\'attends dans mon dōjō, viens réviser les kanji avec moi !';
+    if (navigator.share) { navigator.share({ title: 'Kanji Dōjō', text: text, url: url }).catch(function () {}); return; }
+    var all = text + ' ' + url;
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(all).then(function () { toast('Invitation copiée : colle-la dans un message !'); }, function () { prompt('Copie ton invitation :', all); });
+    else prompt('Copie ton invitation :', all);
+  }
   function olClanHTML(st) {
     var c = st.clan;
     if (!c) {
@@ -12995,7 +13016,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
       (bd ? (c.boss_claimed ? '<p class="olok">✔ Récompense récupérée</p>' : '<button class="btn primary" type="button" data-ol="claim" data-k="boss"' + (ok ? '' : ' disabled') + '>🎁 Récompense du boss</button>') : '<p class="small muted">Chaque bonne réponse d\'un membre lui retire 10 PV. Il revient plus fort chaque semaine.</p>') + '</div>';
     h2 += '<h4 class="olh">Membres · cette semaine</h4><ul class="olmem">' + c.members.map(function (m) {
       return '<li><b>' + esc(m.name) + (m.role === 'chef' ? ' 👑' : '') + '</b><span>' + m.words + ' mots · ' + m.correct + ' bonnes rép.</span>' + (c.role === 'chef' && m.id !== me ? '<button class="olx" type="button" data-ol="kick" data-id="' + esc(m.id) + '" aria-label="Exclure ' + esc(m.name) + '">✕</button>' : '') + '</li>';
-    }).join('') + '</ul><button class="btn ghost" type="button" data-ol="leave">Quitter le clan</button>';
+    }).join('') + '</ul><button class="btn primary olinv" type="button" data-ol="invite">✉ Inviter un ami</button><button class="btn ghost" type="button" data-ol="leave">Quitter le clan</button>';
     return h2;
   }
   function olBoardHTML() {
@@ -13017,6 +13038,23 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     else h += ol.tab === 'raid' ? olRaidHTML(ol.st) : ol.tab === 'clan' ? olClanHTML(ol.st) : olBoardHTML();
     host.innerHTML = h + '</div>';
   }
+  (function () {
+    var cid = ''; try { cid = new URLSearchParams(location.search).get('clan') || ''; } catch (e) {}
+    if (!cid || !/^[\w-]{6,64}$/.test(cid)) return;
+    var tries = 0, iv = setInterval(function () {
+      if (++tries > 120) { clearInterval(iv); return; }
+      if (!user || !S || !backend || $('appModal') && !$('appModal').hidden) return;
+      clearInterval(iv); try { history.replaceState(null, '', location.pathname); } catch (e) {}
+      openModal('Invitation', '<div class="olform"><p style="text-align:center;font-size:1.05rem">🏯 Un ami t\'invite dans son <b>clan</b> !<br><small class="muted">Révisez ensemble, battez le boss de la semaine et ouvrez le coffre du clan.</small></p><button class="btn primary" type="button" id="invYes">Rejoindre le clan</button><button class="btn ghost" type="button" data-mclose="1">Plus tard</button></div>');
+      var y = $('invYes'); if (y) y.onclick = function () {
+        olRpc('clan_join', { p_clan: cid }).then(function (r) {
+          closeModal(); if (r && r.ok === false) { toast(r.err || 'Impossible de rejoindre ce clan'); return; }
+          if (!S.invJoined) { S.invJoined = 1; olGrant(100, 'Bienvenue dans le clan !'); } else toast('Bienvenue dans le clan !');
+          ol.tab = 'clan'; ol.list = null; go('online');
+        }, function (e) { closeModal(); toast((e && e.message) || 'Impossible de rejoindre ce clan'); });
+      };
+    }, 1500);
+  })();
   function olGrant(n, txt) { S.coins = coinsOf() + n; S.coinsTotal = (S.coinsTotal || 0) + n; persist(); renderBars(); toast(txt + ' +' + n + ' pièces'); if (typeof confetti === 'function') confetti(); }
   var olForm = { banner: 'b0', edit: false };
   function olNewClanModal(edit) {
@@ -13050,7 +13088,8 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
       olRpc('clan_edit', { p_emblem: $('olEmb').value, p_color: $('olCol').value, p_motto: $('olMot').value, p_banner: olForm.banner }).then(function (r) {
         if (r && r.ok === false) { er2.textContent = r.err; er2.hidden = false; return; } closeModal(); toast('Clan mis à jour'); olLoad();
       }, function (e) { er2.textContent = /clan_edit|schema cache|Could not find/i.test((e && e.message) || '') ? 'La base doit être mise à jour (clans_raid_v2.sql).' : ((e && e.message) || 'Erreur'); er2.hidden = false; });
-    } else if (a === 'join') olRpc('clan_join', { p_clan: b.getAttribute('data-id') }).then(function (r) { done(r, 'Bienvenue dans le clan !'); }, fail);
+    } else if (a === 'invite') inviteShare();
+    else if (a === 'join') olRpc('clan_join', { p_clan: b.getAttribute('data-id') }).then(function (r) { done(r, 'Bienvenue dans le clan !'); }, fail);
     else if (a === 'leave') { if (confirm('Quitter ton clan ?')) olRpc('clan_leave').then(function (r) { done(r, 'Tu as quitté le clan.'); }, fail); }
     else if (a === 'kick') { if (confirm('Exclure ce membre ?')) olRpc('clan_kick', { p_user: b.getAttribute('data-id') }).then(function (r) { done(r); }, fail); }
     else if (a === 'claim') olRpc('clan_claim', { p_kind: b.getAttribute('data-k') }).then(function (r) { if (r && r.ok) { olGrant(r.coins, 'Coffre du clan'); olLoad(true); } else toast((r && r.err) || 'Impossible'); }, fail);
@@ -16178,6 +16217,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
       var h = new Date().getHours(), tag = h < 5 ? 'La nuit est calme : un kanji avant de dormir ?' : h < 12 ? 'Un nouveau jour, de nouveaux kanji.' : h < 18 ? 'Que ta voie soit fleurie, comme les cerisiers.' : 'Le soir tombe : une dernière révision sous les lanternes ?';
       $('hubWelcome').innerHTML = '<span class="gw1">ようこそ</span><span class="gw2">Bienvenue au Dōjō, <b>' + esc(user.name) + '</b></span><span class="gw3">' + tag + '</span>';
     })();
+    (function () { var el = $('hubCta'), n = errCount(); if (!el) return; el.hidden = !n; el.innerHTML = n ? '<button type="button" class="hubctabtn" data-errbook="1"><span class="hcplay" aria-hidden="true">▶</span><span class="hctx"><b>Revoir mes ' + n + ' erreur' + (n > 1 ? 's' : '') + '</b><small>Corrige-les : 3 bonnes réponses d\'affilée et elles disparaissent</small></span></button>' : ''; })();
     renderHubSide(); renderStreak(); if (typeof renderDaily === 'function') renderDaily();
 
     unlSync();
@@ -20194,7 +20234,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     return '<div class="gdgrid">' + G.map(function (it) {
       if (it.length === 1) return '<div class="gdh">' + esc(it[0]) + '</div>';
       return '<section class="gdrow"><span class="gdsl" aria-hidden="true">' + it[0] + '</span><div><h4>' + esc(it[1]) + '</h4><p>' + esc(it[2]) + '</p>' + (it[3] ? '<div class="gdc">' + it[3].map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('') + '</div>' : '') + '</div></section>';
-    }).join('') + '<div class="gdfoot"><button type="button" class="btn primary" data-tour="replay">▶ Lancer la visite guidée</button><a class="btn" href="https://discord.gg/MVJNfRSQR2" target="_blank" rel="noopener noreferrer">💬 Serveur Discord</a></div></div>';
+    }).join('') + '<div class="gdfoot"><button type="button" class="btn primary" data-tour="replay">▶ Lancer la visite guidée</button><a class="btn" href="https://discord.gg/fHxsuRBBHW" target="_blank" rel="noopener noreferrer">💬 Serveur Discord</a></div></div>';
   }
   function guideOpen() { openModal('Comment ça marche ?', guideHTML(), 'wide guidemodal'); }
   document.addEventListener('click', function (e) {
@@ -22249,6 +22289,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     var tries = 0, t = setInterval(function () { var b = document.querySelector('#profBody .base'); if (b || ++tries > 20) { clearInterval(t); if (b) b.scrollIntoView({ behavior: 'smooth', block: 'center' }); } }, 150);
   });
   $('btnLogout').onclick = function () { logout(); };
+  $('btnInvite').onclick = function () { inviteShare(); };
   $('btnLogout2').onclick = function () { logout(); }; $('btnEditProf').onclick = function () { var b = document.querySelector('#pfGrid [data-pf="cust"]'); if (b && $('vProfil').getAttribute('data-pf') !== 'cust') b.click(); else if (b) { var cp = $('custPanel'); if (cp) cp.scrollIntoView({ behavior: 'smooth', block: 'start' }); } if (b) { try { b.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {} } }; $('btnLogout3').onclick = function () { logout(); };
 
   // Onglet Kanjis : bascule fiches / mots, recherche, liens entre fiches
