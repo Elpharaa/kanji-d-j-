@@ -12155,8 +12155,9 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     return (w.sens + ',' + (w.alt || '')).split(/[,;]/).map(normText).some(function (a) { return a && (a === u || (a.length >= 5 && lev(a, u) <= 1)); });
   }
   function checkReading(input, w) {
-    var u = normRomaji(toRomaji(input.trim()));
-    return !!u && u === normRomaji(toRomaji(w.lecture));
+    var inp = String(input).normalize('NFKC').replace(/[\u200b-\u200d\ufeff\s]+/g, '');
+    var u = normRomaji(toRomaji(inp));
+    return !!u && (u === normRomaji(toRomaji(w.lecture)) || (w.disp && u === normRomaji(toRomaji(w.disp))));
   }
 
   /* =====================================================================
@@ -12400,7 +12401,9 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   }
 
   // Une question = { w, key, type, fmt, big, sub, prompt, hint, ph, correct, options|check, card, extra }
+  function hasKanji(m) { return /[\u3400-\u9fff\u3005]/.test(String(m || '')); }
   function buildQ(w, type, fmt) {
+    if (type === 'lecture' && !hasKanji(w.mot)) type = 'sens';   // mot tout en kana : demander sa lecture n'a aucun sens
     var q = { w: w, key: w.key, type: type, fmt: fmt, sub: '', big: w.mot, bigCls: '', tag: typeLabel(w.type), card: w.mot + ' · ' + w.disp + ' · ' + w.sens, extra: '' };
     var traps = trapWords(w, 8);
     if (type === 'sens') {
@@ -13475,6 +13478,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
       return q;
     }
     var w = pickItem(sess.pool, sess.prev); sess.prev = w.key;
+    if (t === 'lecture' && !hasKanji(w.mot)) { var kp = sess.pool.filter(function (x) { return hasKanji(x.mot) && x.key !== sess.prev; }); if (kp.length) { w = pickItem(kp, sess.prev); sess.prev = w.key; } }
     if (t === 'lecture') {
       q = buildQ(w, 'lecture', 'input');
       q.hint = 'Écris la lecture : katakana (ON) ou hiragana (KUN)'; q.ph = 'ex. ニホン / にほん';
