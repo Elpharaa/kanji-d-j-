@@ -3973,6 +3973,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
 .gw2 { font-family: var(--font-brush); font-size: 1.5rem; color: #2c2452; line-height: 1.15; text-shadow: 0 1px 0 rgba(255,255,255,.7), 0 2px 10px rgba(255,214,235,.8); }
 .gw2 b { color: #b3264a; }
 .gw3 { font-size: .82rem; font-style: italic; color: #4b3d84; opacity: .9; }
+.logrow { display: flex; justify-content: flex-end; margin: 2px 0 8px; } .logbtn { padding: 8px 16px; font-size: .9rem; background: rgba(255,250,240,.92); border: 2px solid var(--rose, #d0587f); color: #8a2a4a; border-radius: 999px; font-weight: 700; } .logbtn:active { transform: translateY(1px); }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -4118,6 +4119,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
         <div class="hrow"><div class="hearts" id="hearts" aria-label="Cœurs restants"></div><span class="muted small" id="heartsNote"></span></div>
       </div>
     </div>
+    <div class="logrow"><button type="button" class="btn logbtn" id="btnLogout2">⎋ Se déconnecter</button></div>
     <div class="pfgrid" id="pfGrid" role="group" aria-label="Mon profil">
       <button type="button" class="pfbtn" data-pf="cust" aria-pressed="false"><i aria-hidden="true">飾</i><span>Personnaliser</span></button>
       <button type="button" class="pfbtn" data-pf="vit" aria-pressed="false"><i aria-hidden="true">札</i><span>Vitrine</span></button>
@@ -4260,6 +4262,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
 
   <!-- ===== RÉGLAGES ===== -->
   <section id="vSettings" hidden>
+    <div class="logrow" style="grid-column:1/-1"><button type="button" class="btn logbtn" id="btnLogout3">⎋ Se déconnecter</button></div>
     <div class="panel setlink"><button class="btn primary" type="button" data-guide="1" style="width:100%;margin-bottom:10px">❓ Comment ça marche ? Guide et visite</button><p class="small muted" style="margin:0 0 8px">Photo, bannière, cadre, titre et effet de pseudo se règlent maintenant depuis ton profil.</p><button class="btn primary" type="button" data-go="profil" data-cust="photo"><span class="bi" aria-hidden="true">飾</span> Personnaliser mon profil</button></div>
     <details class="acc setacc" id="adminAcc" hidden><summary><span class="aico" aria-hidden="true">絵</span>Atelier d'images (admin)</summary><div class="accbody" id="adminBody"></div></details>
     <details class="acc setacc"><summary><span class="aico" aria-hidden="true">音</span>Contenu et sons</summary><div class="accbody">
@@ -21476,6 +21479,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     var tries = 0, t = setInterval(function () { var b = document.querySelector('#profBody .base'); if (b || ++tries > 20) { clearInterval(t); if (b) b.scrollIntoView({ behavior: 'smooth', block: 'center' }); } }, 150);
   });
   $('btnLogout').onclick = function () { logout(); };
+  $('btnLogout2').onclick = function () { logout(); }; $('btnLogout3').onclick = function () { logout(); };
 
   // Onglet Kanjis : bascule fiches / mots, recherche, liens entre fiches
   $('kanjiBody').onclick = function (e) {
