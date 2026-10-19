@@ -352,7 +352,9 @@ button.chipw:hover { border-color: var(--accent); }
 .swsvg path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .swgrid { stroke: var(--line); stroke-width: 0.6; stroke-dasharray: 3 3; }
 .swframe { fill: none; stroke: var(--line); stroke-width: 0.8; }
-.swghost path { stroke: color-mix(in srgb, var(--fg) 14%, transparent); stroke-width: 5; }
+.swghost path { stroke: color-mix(in srgb, var(--fg) 11%, transparent); stroke-width: 4; }
+.swdone path.swcur { stroke: #d0587f; }
+.swpen { fill: #f0b97a; stroke: #d0587f; stroke-width: 1.4; filter: drop-shadow(0 0 2px rgba(208,88,127,.7)); pointer-events: none; }
 .swdone path { stroke: var(--fg); stroke-width: 3.4; }
 .swdone path.swok { stroke: #2e9e62; }
 .swline { stroke: var(--accent); stroke-width: 4; }
@@ -1410,7 +1412,7 @@ body.railopen .railback { display: block; position: fixed; inset: 0; z-index: 65
   body.railmin .railhead { flex-direction: column; padding: 12px 6px; gap: 10px; }
   body.railmin .fr { padding: 6px 4px; justify-content: center; background: none; border: none; }
   body.railmin .fr .frmain { flex: none; }
-  .hubside #hubFeed { display: none; }   /* actus déjà dans le panneau latéral */
+  body:has(#vHub:not([hidden])) #railFeed, body:has(#vHub:not([hidden])) #railFeedH { display: none; }   /* actus affichées dans le panneau du hub */
   #onlinePanel { display: none; }
   #games.modes { grid-template-columns: repeat(3, 1fr); }
   .hubwrap { grid-template-columns: minmax(0, 1fr) 19rem; }
@@ -4026,6 +4028,59 @@ body .seg button[aria-selected="true"], body .seg.gsegbar button[aria-selected="
 .qvt .qvk { color: #ff9fbb; } .qvsubh { color: #120a26; }
 .fctime, .fccount, .fcskip, .srstx, .srstx small { color: #1d1236 !important; }
 .badge:not(.on) .g { opacity: .8; color: #5b4a8a; } .gachg { color: #a8325a; } #lrnHost .muted, #lrnHost .small.muted { color: #1d1236; }
+
+/* pastilles de compteur : sceau rond (hanko), posé dans un coin libre, jamais sur le texte */
+.hubcard .hchip, .djchip, #games .djt .djchip { position: absolute !important; display: grid; place-items: center; min-width: 30px; height: 30px; padding: 0 8px; box-sizing: border-box; border-radius: 999px; background: radial-gradient(circle at 35% 28%, #ff9db9, #c1245a 72%); color: #fff; font: 800 .84rem/1 var(--font-body, system-ui); letter-spacing: 0; border: 2px solid #f6d58e; box-shadow: 0 0 0 2px #7a1a3e, 0 4px 8px rgba(40,10,30,.4); text-shadow: 0 1px 0 rgba(60,0,20,.6); animation: chipPulse 2.6s ease-in-out infinite; pointer-events: none; z-index: 3; }
+.hubcard .hchip { top: 50%; right: 14px; left: auto; transform: translateY(-50%); } .djchip, #games .djt .djchip { top: 6px !important; bottom: auto !important; right: 6px !important; left: auto !important; }
+.djchip.fur { background: radial-gradient(circle at 35% 28%, #ffd27a, #e0541b 72%); border-color: #ffe9b0; box-shadow: 0 0 0 2px #7a2a0a, 0 4px 8px rgba(60,20,0,.4); text-shadow: 0 1px 0 rgba(90,20,0,.6); }
+@keyframes chipPulse { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.12) drop-shadow(0 0 5px rgba(255,160,190,.8)); } }
+@media (prefers-reduced-motion: reduce) { .hubcard .hchip, .djchip { animation: none; } }
+
+/* PC : carte de profil + panneau d'actualités sakura / eau */
+.hubprof { text-align: center; padding: 18px 16px 16px !important; background: linear-gradient(170deg, #fffaf0, #f7e6ef) !important; border: 2px solid #e9a5b6 !important; }
+.hubprof .pfpic { width: min(100%, 15rem); aspect-ratio: 1; margin: 0 auto 12px; position: relative; border-radius: 22px; padding: 5px; background: linear-gradient(135deg, #f0b97a, #d0587f 60%, #4b3d84); box-shadow: 0 10px 22px rgba(44,36,82,.35); }
+.hubprof .pfpic .frmw, .hubprof .pfpic img { width: 100%; height: 100%; display: block; }
+.hubprof .pfpic img.av { width: 100%; height: 100%; max-width: none; aspect-ratio: 1; object-fit: cover; border-radius: 18px; image-rendering: auto; background: #fff; }
+.hubprof .pfname { display: block; font-family: var(--font-brush); font-weight: 400; font-size: 1.5rem; color: #2c2452; line-height: 1.1; overflow-wrap: anywhere; }
+.hubprof .pftitle { display: block; color: #5b4a86; font-weight: 700; font-size: .86rem; margin-top: 3px; }
+.hubprof .pfrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 12px; }
+.hubprof .pfrow span { background: #fff; border: 1px solid #e9d3dd; border-radius: 12px; padding: 6px 2px; font-size: .68rem; color: #5b4a86; display: grid; gap: 1px; }
+.hubprof .pfrow b { font-size: 1.05rem; color: #c1245a; }
+.newsp { position: relative; overflow: hidden; color: #fffaf0 !important; background: linear-gradient(180deg, #2c2452 0%, #3d3470 55%, #2a5a86 100%) !important; border: 2px solid #f0b97a !important; box-shadow: 0 8px 22px rgba(44,36,82,.4) !important; }
+.newsp::after { content: ""; position: absolute; left: -10%; right: -10%; bottom: -6px; height: 38px; pointer-events: none; opacity: .35; background: radial-gradient(60px 14px at 30px 100%, #8fd0ee 98%, transparent) 0 0 / 60px 24px repeat-x, radial-gradient(60px 14px at 0 100%, #5aa7d6 98%, transparent) 0 6px / 60px 24px repeat-x; }
+.newsp .nph { margin: 0 0 10px; display: flex; align-items: center; gap: 10px; font-family: var(--font-brush); font-weight: 400; font-size: 1.15rem; color: #ffe9a8; position: relative; z-index: 1; }
+.newsp .nph span { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: radial-gradient(circle at 35% 28%, #ff9db9, #c1245a 72%); border: 2px solid #f6d58e; color: #fff; font-size: 1rem; }
+.newsp #hubFeedBody { position: relative; z-index: 1; padding-bottom: 22px; }
+.newsp .feedl li { background: rgba(255,250,240,.1); border: 1px solid rgba(240,185,122,.25); border-radius: 12px; padding: 7px 9px; color: #fffaf0; }
+.newsp .feedl small, .newsp > #hubFeedBody > p, .newsp .muted { color: #d8cdf0 !important; }
+.newsp .annc, .newsp .annc * { color: #2c2452 !important; } .newsp .annc .small, .newsp .annc p { color: #4b3d84 !important; }
+.newsp .npet { position: absolute; width: 10px; height: 13px; border-radius: 80% 0 80% 0; background: #f3a9c0; opacity: .75; pointer-events: none; animation: npfall 9s linear infinite; z-index: 0; }
+.newsp .p1 { left: 18%; top: -14px; } .newsp .p2 { left: 55%; top: -14px; animation-delay: -3.5s; transform: scale(.8); } .newsp .p3 { left: 82%; top: -14px; animation-delay: -6s; }
+@keyframes npfall { to { transform: translate(-40px, 260px) rotate(300deg); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .newsp .npet { animation: none; display: none; } }
+
+/* ambiance de combat */
+#fightFx { position: fixed; inset: 0; pointer-events: none; z-index: 30; overflow: hidden; }
+#fightFx .ffv { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 45%, transparent 48%, rgba(120,10,40,.38) 80%, rgba(30,0,20,.72) 100%); animation: ffbeat 2.4s ease-in-out infinite; }
+#fightFx .ffl { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(40,6,40,.34), rgba(110,10,40,.3)); mix-blend-mode: multiply; }
+#fightFx .ffe { position: absolute; bottom: -12px; width: var(--sz); height: var(--sz); border-radius: 50%; background: radial-gradient(circle, #ffe9a8, #ff7a3d 60%, transparent 72%); box-shadow: 0 0 6px 2px rgba(255,120,60,.7); opacity: 0; animation: ffrise 6s linear infinite; }
+#fightFx.flash::before { content: ""; position: absolute; inset: 0; background: #fff; animation: ffflash .5s ease-out forwards; }
+@keyframes ffbeat { 0%,100% { opacity: .85; } 50% { opacity: 1; } }
+@keyframes ffrise { 0% { transform: translate(0, 0) scale(1); opacity: 0; } 12% { opacity: .95; } 100% { transform: translate(var(--dx), -105vh) scale(.4); opacity: 0; } }
+@keyframes ffflash { 0% { opacity: .85; } 100% { opacity: 0; } }
+.fshake { animation: fshake .5s cubic-bezier(.36,.07,.19,.97); }
+@keyframes fshake { 10%,90% { transform: translate(-2px, 1px); } 20%,80% { transform: translate(4px, -2px); } 30%,50%,70% { transform: translate(-7px, 3px); } 40%,60% { transform: translate(7px, -3px); } }
+body.infight { background-color: #1d0f26; }
+body.infight #vSession .sbar, body.infight #vSession .mini { filter: drop-shadow(0 0 6px rgba(255,70,90,.35)); }
+body.infight #arena { border-color: #e0305a !important; box-shadow: 0 0 0 2px #7a1a3e, 0 0 26px rgba(224,48,90,.65), 0 10px 26px rgba(0,0,0,.5) !important; }
+body.infight #arena .arshade { background: linear-gradient(180deg, rgba(60,0,30,.28), rgba(120,0,40,.38)) !important; }
+body.infight #arena .bossart { filter: drop-shadow(0 0 12px rgba(255,60,80,.8)); }
+#fightBanner { position: fixed; left: 0; right: 0; top: 34%; z-index: 80; display: grid; justify-items: center; gap: 4px; padding: 16px 10px; pointer-events: none; background: linear-gradient(90deg, transparent, rgba(30,0,20,.88) 18%, rgba(30,0,20,.88) 82%, transparent); border-top: 2px solid #f0b97a; border-bottom: 2px solid #f0b97a; animation: fbin 1.9s cubic-bezier(.2,.9,.3,1) forwards; }
+#fightBanner .fbk { font-family: var(--font-brush); font-size: clamp(1.8rem, 8vw, 3.2rem); color: #ffe9a8; letter-spacing: .08em; text-shadow: 0 0 14px #e0305a, 0 3px 0 #7a1a3e; }
+#fightBanner.big .fbk { color: #ff9db9; font-size: clamp(2.1rem, 9.5vw, 3.8rem); }
+#fightBanner .fbs { color: #fffaf0; font-weight: 700; letter-spacing: .12em; font-size: .95rem; }
+@keyframes fbin { 0% { opacity: 0; transform: scaleY(.1) scaleX(1.3); } 14% { opacity: 1; transform: scaleY(1) scaleX(1); } 78% { opacity: 1; } 100% { opacity: 0; transform: scaleX(.92); } }
+@media (prefers-reduced-motion: reduce) { #fightFx .ffe, #fightFx .ffv { animation: none; } #fightFx .ffe { display: none; } #fightFx.flash::before, .fshake { animation: none; } #fightBanner { animation: fbfade 1.9s forwards; } @keyframes fbfade { 0%,80% { opacity: 1; } 100% { opacity: 0; } } }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -4116,7 +4171,7 @@ body .seg button[aria-selected="true"], body .seg.gsegbar button[aria-selected="
       <button class="railmin" id="railMinBtn" type="button" aria-label="Réduire ou agrandir le panneau" title="Réduire / agrandir">⇔</button>
       <button class="railx" id="railClose" type="button" aria-label="Fermer">×</button></div>
     <div class="railscroll"><div class="olist" id="railList"></div>
-    <h4 class="sgh scroll sm" data-k="報"><span>Actualités du dōjō</span></h4><div id="railFeed"></div></div>
+    <h4 class="sgh scroll sm" id="railFeedH" data-k="報"><span>Actualités du dōjō</span></h4><div id="railFeed"></div></div>
   </aside>
 
   <!-- ===== CONNEXION / INSCRIPTION ===== -->
@@ -10400,7 +10455,7 @@ body .seg button[aria-selected="true"], body .seg.gsegbar button[aria-selected="
     return sw;
   }
   function swClear(sw) {
-    sw.timers.forEach(clearTimeout); sw.timers = [];
+    sw.run = (sw.run || 0) + 1; sw.timers.forEach(clearTimeout); sw.timers = [];
     sw.done.innerHTML = ''; sw.num.innerHTML = ''; sw.usr.innerHTML = ''; sw.hint.innerHTML = '';
   }
   function swDraw(sw, i, animate, cls) {
@@ -10414,9 +10469,28 @@ body .seg button[aria-selected="true"], body .seg.gsegbar button[aria-selected="
   }
   function swPlay(sw) {
     swClear(sw); sw.mode = 'view'; sw.host.querySelector('[data-sw="hint"]').hidden = true; sw.ghost.style.opacity = '';
-    var t = 0;
-    sw.st.forEach(function (d, i) { sw.timers.push(setTimeout(function () { var dur = swDraw(sw, i, true); sw.msg.textContent = 'Trait ' + (i + 1) + ' sur ' + sw.st.length; }, t)); t += Math.max(260, Math.round(sw.svg.querySelectorAll('.swghost path')[i].getTotalLength() * 9)) + 220; });
-    sw.timers.push(setTimeout(function () { sw.msg.textContent = sw.st.length + ' traits : voilà l\'ordre complet. Réessaie avec « Je trace ».'; }, t));
+    var gp = sw.ghost.children, run = (sw.run = (sw.run || 0) + 1), reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var pen = swEl('circle', { r: 3.6, 'class': 'swpen' }); pen.style.display = 'none'; sw.hint.appendChild(pen);
+    function ease(t) { return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+    function one(i) {
+      if (sw.run !== run) return;
+      if (i >= sw.st.length) { pen.style.display = 'none'; sw.msg.textContent = sw.st.length + ' traits : voilà l\'ordre complet. Réessaie avec « Je trace ».'; return; }
+      sw.msg.textContent = 'Trait ' + (i + 1) + ' sur ' + sw.st.length;
+      var ref = gp[i], L = ref.getTotalLength(), p = swEl('path', { d: sw.st[i], 'class': 'swcur' }); sw.done.appendChild(p);
+      p.style.strokeDasharray = L + ' ' + (L + 2); p.style.strokeDashoffset = reduce ? 0 : L;
+      var dur = Math.max(420, Math.min(1100, 260 + L * 11)), t0 = null;
+      function fin() { p.setAttribute('class', ''); p.style.strokeDasharray = ''; p.style.strokeDashoffset = ''; var s = swStart(sw.st[i]), t = swEl('text', { x: s[0] - 4, y: s[1] - 3, 'class': 'swn' }); t.textContent = String(i + 1); sw.num.appendChild(t); sw.timers.push(setTimeout(function () { one(i + 1); }, reduce ? 200 : 260)); }
+      if (reduce) { fin(); return; }
+      pen.style.display = '';
+      (function frame(ts) {
+        if (sw.run !== run) return;
+        if (t0 === null) t0 = ts;
+        var k = Math.min(1, (ts - t0) / dur), e = ease(k), q = ref.getPointAtLength(L * e);
+        p.style.strokeDashoffset = L * (1 - e); pen.setAttribute('cx', q.x); pen.setAttribute('cy', q.y);
+        if (k < 1) requestAnimationFrame(frame); else fin();
+      })(performance.now());
+    }
+    one(0);
   }
   function swAll(sw) { swClear(sw); sw.mode = 'view'; sw.host.querySelector('[data-sw="hint"]').hidden = true; sw.st.forEach(function (d, i) { swDraw(sw, i, false); }); sw.msg.textContent = 'Les numéros indiquent l\'ordre et le point de départ de chaque trait.'; }
   function swTrace(sw) {
@@ -12261,6 +12335,7 @@ body .seg button[aria-selected="true"], body .seg.gsegbar button[aria-selected="
     $('userbox').hidden = !inApp;
     $('nav').hidden = !inApp || view === 'vSession';
     document.body.classList.toggle('inapp', inApp);
+    var inFight = view === 'vSession' && !!sess && sess.kind === 'fight'; document.body.classList.toggle('infight', inFight); if (typeof fightFxSync === 'function') fightFxSync(inFight);
     if (typeof unlSync === 'function') unlSync();
     Array.from(document.querySelectorAll('.tab')).forEach(function (t) {
       var key = t.getAttribute('data-tab'), cur;
@@ -12595,6 +12670,24 @@ body .seg button[aria-selected="true"], body .seg.gsegbar button[aria-selected="
   }
 
   /* ---- Gestion de la séance (écran commun) ---- */
+  /* Ambiance de combat : voile sombre rouge, braises, bandeau d'entrée, éclair + secousse */
+  function fightFxSync(on) {
+    var el = document.getElementById('fightFx');
+    if (!on) { if (el) el.remove(); return; }
+    if (el) return;
+    el = document.createElement('div'); el.id = 'fightFx'; el.setAttribute('aria-hidden', 'true');
+    var h = '<i class="ffv"></i><i class="ffl"></i>';
+    for (var i = 0; i < 16; i++) h += '<i class="ffe" style="left:' + (3 + i * 6.1) + '%;animation-delay:' + (-(i * 0.83) % 7).toFixed(2) + 's;animation-duration:' + (5 + (i * 7) % 5) + 's;--sz:' + (3 + (i * 5) % 5) + 'px;--dx:' + (((i * 37) % 60) - 30) + 'px"></i>';
+    el.innerHTML = h; document.body.appendChild(el);
+  }
+  function fightBanner(txt, sub, big) {
+    var old = document.getElementById('fightBanner'); if (old) old.remove();
+    var b = document.createElement('div'); b.id = 'fightBanner'; b.className = big ? 'big' : ''; b.setAttribute('aria-hidden', 'true');
+    b.innerHTML = '<span class="fbk">' + txt + '</span><span class="fbs">' + sub + '</span>'; document.body.appendChild(b);
+    var f = document.getElementById('fightFx'); if (f) fx(f, 'flash');
+    var v = document.getElementById('vSession'); if (v) fx(v, 'fshake');
+    setTimeout(function () { if (b.parentNode) b.remove(); }, 1900);
+  }
   function cleanupSession() { if (sess && sess.nextT) clearTimeout(sess.nextT); sess = null; if (typeof fishHide === 'function') fishHide(); $('timerBar').hidden = true; if (typeof clearTrap === 'function') clearTrap(); }
   function setHud(kind) {
     $('bossHud').hidden = kind !== 'boss';
@@ -13208,6 +13301,7 @@ body .seg button[aria-selected="true"], body .seg.gsegbar button[aria-selected="
     $('energyPips').hidden = !isBoss || !!(opts && opts.dj);
     $('energyLbl').hidden = !isBoss || !!(opts && opts.dj);
     updateFightHud(); show('vSession');
+    fightBanner(isBoss ? '⚔ BOSS ⚔' : isMini ? '⚔ MINI-BOSS ⚔' : '⚔ COMBAT ⚔', esc(en.name), isBoss || isMini);
     fx(art, 'appear'); $('timerBar').hidden = true;
     showResult((isBoss ? bossIntroHTML(ch, en) : '<div class="sprbig appear' + (isMini ? ' boss mini' : '') + '">' + sprite(en.g) + '</div><h3>' + esc(en.name) + '</h3><p>' + esc(en.line) + '</p>') +
       '<p class="small">' + (isBoss ? 'Boss : ' + hp + ' PV' + (st.mobs ? ' · énergie +' + Math.round(st.mobs * 15) + ' % de dégâts' : '') : isMini ? 'Mini-Boss : ' + hp + ' PV' : 'Mob : ' + hp + ' PV') + ' · ' + (isBoss ? 'saisie au clavier obligatoire (aucun QCM), chronomètre selon la longueur de la réponse, phase 2 sous 50 % de PV' : isMini ? 'saisie rapide (lecture, traduction) et décodage de kanjis en QCM de 6 s ; il garde la suite du chemin' : '12 s par question') + '</p>' +
@@ -15404,11 +15498,8 @@ body .seg button[aria-selected="true"], body .seg.gsegbar button[aria-selected="
     var el = $('hubSide'); if (!el || !user) return;
     var lv = levelOf(S.xp), pub = publicStats(S), kt = katOf(katOfShop(S.shop)), pv = pavLvOf(S.shop);
     el.innerHTML =
-      '<div class="panel hubstat"><h3 class="sgh sm" data-k="計"><span>Stats rapides</span></h3><div class="qs">' +
-      [[lv, 'niveau'], [S.xp.toLocaleString('fr-FR'), 'XP'], [S.bossWins || 0, 'boss vaincus'], [(S.dj && S.dj.best) || 0, 'record Tour infinie'], [(S.coins || 0).toLocaleString('fr-FR'), 'pièces']].map(function (t) { return '<div><b>' + t[0] + '</b><span>' + t[1] + '</span></div>'; }).join('') +
-      '</div></div>' +
-      '<div class="panel hubstat basest"><h3 class="sgh sm" data-k="陣"><span>Mon camp</span></h3><ul class="bl"><li><span>🏕️</span> ' + (pub.bs.length) + ' objet(s) &amp; animaux</li><li><span>🏯</span> ' + (pv ? 'Pavillon niveau ' + pv + '/' + PAV_MAX : 'Pavillon à construire') + '</li><li><span>⚔️</span> ' + esc(kt.name) + '</li></ul><button type="button" class="btn" data-go="base">Aller à ma base</button></div>' +
-      '<div class="panel" id="hubFeed"><h3 class="sgh scroll" data-k="報"><span>Actualités du dōjō</span></h3><div id="hubFeedBody">' + feedHTML() + '</div><p class="small muted" style="margin:6px 0 0" id="hubLive"></p></div>';
+      '<div class="panel hubstat hubprof"><div class="pfpic">' + avatarHTML(avatarOf(user.name, user.avatar), 'xl', user.id) + '</div><b class="pfname">' + esc(user.name) + '</b><span class="pftitle">Niveau ' + lv + ' · ' + (S.xp || 0).toLocaleString('fr-FR') + ' XP</span><div class="pfrow"><span><b>' + (S.bossWins || 0) + '</b>boss</span><span><b>' + (S.coins || 0).toLocaleString('fr-FR') + '</b>pièces</span><span><b>' + ((S.dj && S.dj.best) || 0) + '</b>tour infinie</span></div></div>' +
+      '<div class="panel newsp" id="hubFeed"><i class="npet p1"></i><i class="npet p2"></i><i class="npet p3"></i><h3 class="nph"><span>報</span>Actualités du dōjō</h3><div id="hubFeedBody">' + feedHTML() + '</div><p class="small muted" style="margin:6px 0 0" id="hubLive"></p></div>';
     renderOnline();
   }
   /* =====================================================================
@@ -15759,7 +15850,7 @@ body .seg button[aria-selected="true"], body .seg.gsegbar button[aria-selected="
 
     unlSync();
     var cards = [
-      ['home', '学', 'study', 'Dojo · Réviser', words ? mastered + '/' + words + ' mots maîtrisés' + (dueWords().length ? ' · ' + dueWords().length + ' à revoir' : '') : 'Flashcards, jeux et examen blanc'],
+      ['home', '学', 'study', 'Dojo · Réviser', words ? mastered + '/' + words + ' mots maîtrisés' + (errCount() ? ' · ' + errCount() + ' à corriger' : '') : 'Flashcards, jeux et examen blanc'],
       ['story', '旅', 'quest', 'Aventure', L.tag + ' · ' + (chs.length ? done + '/' + chs.length + ' chapitres' : '')],
       ['cards', '札', 'cards', 'Classeur de cartes', cardCount() + '/' + CARDS.length + ' cartes' + (cardFreeReady() ? ' · 🎁 booster gratuit !' : ' · ouvre des boosters')],
       ['bazar', '店', 'shop', 'Boutique', ((freeReady() || cardFreeReady()) ? '🎁 Cadeau du jour à ouvrir !' : coinsOf() + ' pièces · tous les achats')],
@@ -15767,7 +15858,7 @@ body .seg button[aria-selected="true"], body .seg.gsegbar button[aria-selected="
     ].filter(function (c) { return c[0] === 'home' || c[0] === 'kanji' || unlOn(c[0]); });
     var nSm = cards.length - 1;
     $('hubGrid').innerHTML = cards.map(function (c) {
-      return '<button type="button" class="hubcard' + (c[0] === 'home' ? ' wide big' : ' sm' + nSm) + '" ' + (c[0] === 'bazar' ? 'data-bazar="1"' : c[0] === 'cards' ? 'data-cdalbum="1"' : 'data-go="' + c[0] + '"') + '>' + hubArtFor(c) + adminBtns('hub_' + c[0]) + (c[0] === 'home' && dueWords().length ? '<span class="hchip">🔔 ' + dueWords().length + ' à revoir</span>' : '') + '<span class="hseal" aria-hidden="true">' + c[1] + '</span><span class="htx"><b>' + c[3] + '</b><small>' + esc(c[4]) + '</small></span></button>';
+      return '<button type="button" class="hubcard' + (c[0] === 'home' ? ' wide big' : ' sm' + nSm) + '" ' + (c[0] === 'bazar' ? 'data-bazar="1"' : c[0] === 'cards' ? 'data-cdalbum="1"' : 'data-go="' + c[0] + '"') + '>' + hubArtFor(c) + adminBtns('hub_' + c[0]) + (c[0] === 'home' && errCount() ? '<span class="hchip" role="img" aria-label="' + errCount() + ' à corriger" title="' + errCount() + ' à corriger">' + errCount() + '</span>' : '') + '<span class="hseal" aria-hidden="true">' + c[1] + '</span><span class="htx"><b>' + c[3] + '</b><small>' + esc(c[4]) + '</small></span></button>';
     }).join('');
     unlHint();
     if (typeof renderHubTiles === 'function') renderHubTiles();
@@ -19287,6 +19378,7 @@ body .seg button[aria-selected="true"], body .seg.gsegbar button[aria-selected="
     base = base.concat(jlTouched().filter(function (w) { return !have[w.key]; }));
     return base.filter(function (w) {
       var st = S.stats[w.key] || (S.qv && S.qv[w.key]), e = S.srs[w.key];
+      if (!((S.err && S.err[w.key]) || (st && st.ko > 0))) return false;   // « à revoir » = les mots ratés, comme le carnet d'erreurs
       if (e) return e.due <= now;
       if (!st || (!st.ok && !st.ko)) return false;
       return st.ko > 0 || st.run < MASTER_RUN;
@@ -20129,11 +20221,11 @@ body .seg button[aria-selected="true"], body .seg.gsegbar button[aria-selected="
   function djTile(sub) {
     var i = DJ_INFO[sub], art = sub === 'err' ? DJ_ERR_ART : sub === 'daily' ? QV_ART : (GAME_ART[i.art] || ''), d = i.d, chip = '';
     if (sub === 'daily' || sub === 'jlpt') { var tq = qvTotals(sub), nth = QV.filter(function (t) { return !t.virt && (sub === 'jlpt' ? t.lv !== 'q' : t.lv === 'q'); }).length; d = nth + ' thèmes · ' + tq[0] + '/' + tq[1] + ' mots acquis'; }
-    if (sub === 'fur') { var fc = furCount(); d = fc ? fc + ' mot' + (fc > 1 ? 's' : '') + ' en cuisson · ' + (S.furDone || 0) + ' forgé' + ((S.furDone || 0) > 1 ? 's' : '') : 'Les mots qui te résistent, cuits jusqu\'à être retenus'; if (fc) chip = '<span class="djchip">🔥 ' + fc + '</span>'; }
+    if (sub === 'fur') { var fc = furCount(); d = fc ? fc + ' mot' + (fc > 1 ? 's' : '') + ' en cuisson · ' + (S.furDone || 0) + ' forgé' + ((S.furDone || 0) > 1 ? 's' : '') : 'Les mots qui te résistent, cuits jusqu\'à être retenus'; if (fc) chip = '<span class="djchip fur" role="img" aria-label="' + fc + ' au fourneau">' + fc + '</span>'; }
     if (sub === 'err') {
-      var n = dueWords(true).length, e = errCount();
-      d = n ? n + ' mot' + (n > 1 ? 's' : '') + ' à revoir maintenant' : (e ? e + ' erreur' + (e > 1 ? 's' : '') + ' à revoir' : 'Aucune erreur : bravo !');
-      if (n) chip = '<span class="djchip">🔔 ' + n + '</span>';
+      var e = errCount();
+      d = e ? e + ' erreur' + (e > 1 ? 's' : '') + ' à corriger' : 'Aucune erreur : bravo !';
+      if (e) chip = '<span class="djchip" role="img" aria-label="' + e + ' à corriger">' + e + '</span>';
     }
     return '<button class="mode gamecard djt" type="button" data-djsub="' + sub + '">' + chip + '<span class="tk" aria-hidden="true">' + i.k + '</span><span class="gtx"><b>' + i.t + '</b><small>' + esc(d) + '</small></span></button>';
   }
