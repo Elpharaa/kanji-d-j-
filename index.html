@@ -4086,6 +4086,29 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
 #fightBanner .fbs { color: #fffaf0; font-weight: 700; letter-spacing: .12em; font-size: .95rem; }
 @keyframes fbin { 0% { opacity: 0; transform: scaleY(.1) scaleX(1.3); } 14% { opacity: 1; transform: scaleY(1) scaleX(1); } 78% { opacity: 1; } 100% { opacity: 0; transform: scaleX(.92); } }
 @media (prefers-reduced-motion: reduce) { #fightFx .ffe, #fightFx .ffl, #fightFx .ffp { animation: none; } #fightFx .ffe, #fightFx .ffp { display: none; } #fightFx.flash::before, .fshake { animation: none; } #fightBanner { animation: fbfade 1.9s forwards; } @keyframes fbfade { 0%,80% { opacity: 1; } 100% { opacity: 0; } } }
+
+/* fluidité mobile : transitions douces, retours au toucher, entrées échelonnées */
+@media (prefers-reduced-motion: no-preference) {
+  main > section:not([hidden]), body > section:not([hidden]), #vHub:not([hidden]), #vHome:not([hidden]), #vStory:not([hidden]), #vKanji:not([hidden]), #vBoard:not([hidden]), #vSettings:not([hidden]), #vProfil:not([hidden]), #vMulti:not([hidden]) { animation: kdView .32s cubic-bezier(.2,.8,.25,1) both; }
+  @keyframes kdView { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .hubgrid > *, #games > *, #hubTiles > *, .stack > .panel, .stack > .lvmini, #storyBody > * { animation: kdRise .42s cubic-bezier(.2,.8,.25,1) both; }
+  .hubgrid > :nth-child(1), #games > :nth-child(1) { animation-delay: .02s; } .hubgrid > :nth-child(2), #games > :nth-child(2) { animation-delay: .07s; } .hubgrid > :nth-child(3), #games > :nth-child(3) { animation-delay: .12s; } .hubgrid > :nth-child(4), #games > :nth-child(4) { animation-delay: .17s; } .hubgrid > :nth-child(5), #games > :nth-child(5) { animation-delay: .22s; } .hubgrid > :nth-child(n+6), #games > :nth-child(n+6) { animation-delay: .27s; }
+  @keyframes kdRise { from { opacity: 0; transform: translateY(18px) scale(.97); } to { opacity: 1; transform: none; } }
+  .hubcard, .gamecard, .djt, .btn, .opt, .qopt, .tab, .fchip, .fkb { transition: transform .16s cubic-bezier(.2,.8,.25,1), box-shadow .2s ease, filter .2s ease, background-color .2s ease; -webkit-tap-highlight-color: transparent; }
+  .hubcard:active, .gamecard:active, .djt:active, .btn:active, .opt:active, .qopt:active { transform: scale(.965); filter: brightness(1.06); }
+  .tab[aria-current="page"] .ni, .tab[aria-current="page"] svg { animation: kdPop .35s cubic-bezier(.3,1.6,.5,1); }
+  @keyframes kdPop { from { transform: scale(.7); } to { transform: none; } }
+  .modal > * { animation: kdModal .28s cubic-bezier(.2,.9,.3,1.2) both; }
+  @keyframes kdModal { from { opacity: 0; transform: translateY(24px) scale(.94); } to { opacity: 1; transform: none; } }
+  .stagebox > *, #stage > * { animation: kdStage .3s ease-out both; }
+  @keyframes kdStage { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  .opt.ok, .qopt.ok, .btn.ok { animation: kdOk .45s ease; } .opt.bad, .qopt.bad, .btn.bad { animation: kdBad .4s ease; }
+  @keyframes kdOk { 0% { transform: scale(1); } 40% { transform: scale(1.04); box-shadow: 0 0 0 6px rgba(46,158,98,.3); } 100% { transform: scale(1); } }
+  @keyframes kdBad { 20%,60% { transform: translateX(-5px); } 40%,80% { transform: translateX(5px); } }
+  .fill, .hpfill, .timerfill { transition: width .6s cubic-bezier(.2,.8,.25,1); }
+  .toast { animation: kdToast .35s cubic-bezier(.2,.9,.3,1.2) both; } @keyframes kdToast { from { opacity: 0; transform: translateY(16px) scale(.9); } to { opacity: 1; transform: none; } }
+  html { scroll-behavior: smooth; }
+}
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
