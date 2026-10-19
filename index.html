@@ -4111,6 +4111,43 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
 }
 
 .logrow { gap: 10px; flex-wrap: wrap; justify-content: center; } .logbtn.editbtn { background: linear-gradient(180deg, #e9709a, #c1245a) !important; color: #fff !important; border-color: #f6d58e !important; }
+
+/* mode en ligne */
+.oltabs { display: flex; gap: 6px; padding: 4px; background: rgba(255,250,240,.9); border: 2px solid #4b3d84; border-radius: 16px; margin-bottom: 12px; }
+.oltab { flex: 1; min-height: 44px; border: 0; border-radius: 12px; background: transparent; color: #4b3d84; font-weight: 800; font-size: .88rem; }
+.oltab.on { background: linear-gradient(180deg, #e9709a, #c1245a); color: #fff; box-shadow: 0 3px 0 #7a1a3e; }
+.olpanel { background: linear-gradient(180deg, #fffaf0, #f7e6ef); color: #2c2452; border: 2px solid #e9a5b6; border-radius: 18px; padding: 14px; display: grid; gap: 10px; }
+.olpanel .muted, .olpanel small, .olpanel .small { color: #5b4a86; }
+.olraid { display: grid; gap: 10px; }
+.olfoe { display: flex; align-items: center; gap: 12px; }
+.olfoe b { display: block; font-family: var(--font-brush); font-weight: 400; font-size: 1.3rem; line-height: 1.1; }
+.olsp { flex: none; width: 84px; height: 84px; border-radius: 18px; background: radial-gradient(circle at 50% 40%, #fff, #e9d3f5); border: 2px solid #4b3d84; display: grid; place-items: center; padding: 6px; box-sizing: border-box; box-shadow: 0 6px 14px rgba(44,36,82,.3); animation: olfloat 3.2s ease-in-out infinite; }
+.olsp svg, .olsp .sprglyph { width: 100%; height: 100%; font-size: 3rem; }
+.olraid.dead .olsp { filter: grayscale(1); animation: none; opacity: .7; }
+@keyframes olfloat { 50% { transform: translateY(-5px) rotate(-2deg); } }
+.olhp { margin: 0; font-weight: 800; }
+.olbar { position: relative; height: 24px; border-radius: 99px; background: #3a2d5c; border: 2px solid #2c2452; overflow: hidden; }
+.olbar i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #d0587f, #ff9db9); transition: width .8s cubic-bezier(.2,.8,.25,1); }
+.olbar.goal i { background: linear-gradient(90deg, #2e9e62, #8fd9a8); } .olbar.win i { background: linear-gradient(90deg, #d9a93a, #ffe08a); }
+.olbar span { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 800; font-size: .78rem; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.7); }
+.olme { margin: 0; } .olok { margin: 0; font-weight: 800; color: #1f7a48; }
+.olact { display: flex; gap: 8px; flex-wrap: wrap; } .olact .btn { flex: 1; }
+.olh { margin: 6px 0 0; font-family: var(--font-brush); font-weight: 400; font-size: 1.05rem; color: #4b3d84; }
+.oltop, .olrank, .olmem, .olclans { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.oltop li, .olmem li { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid #e9d3dd; border-radius: 12px; padding: 7px 10px; }
+.oltop li span { width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; background: #f0b97a; font-weight: 800; }
+.oltop li b, .olmem li b { flex: 1; min-width: 0; overflow-wrap: anywhere; } .oltop em { font-style: normal; font-weight: 800; color: #c1245a; }
+.olmem li span { font-size: .8rem; color: #5b4a86; } .olx { border: 0; background: #f6d4de; color: #c1245a; width: 28px; height: 28px; border-radius: 50%; font-weight: 800; }
+.olcl, .olrank li, .olhead { display: flex; align-items: center; gap: 10px; background: #fff; border: 2px solid var(--cc, #d0587f); border-radius: 14px; padding: 8px 10px; }
+.olcl > div, .olrank li > div, .olhead > div { flex: 1; min-width: 0; } .olcl b, .olrank b, .olhead b { display: block; overflow-wrap: anywhere; }
+.olem { flex: none; width: 40px; height: 40px; border-radius: 12px; background: var(--cc, #d0587f); color: #fff; display: grid; place-items: center; font-size: 1.4rem; text-shadow: 0 1px 2px rgba(0,0,0,.4); } .olem.big { width: 52px; height: 52px; font-size: 1.9rem; }
+.olrank li.me { box-shadow: 0 0 0 3px #f0b97a; } .olrank em { font-style: normal; font-weight: 800; color: #c1245a; white-space: nowrap; }
+.olpos { width: 24px; text-align: center; font-weight: 800; color: #4b3d84; }
+.olgoal { display: grid; gap: 8px; } .olwarn { margin: 0; padding: 8px 10px; background: #fff0c8; border: 1px solid #d9bf84; border-radius: 10px; font-weight: 700; color: #6a4a00; }
+.olnone p { margin: 0 0 10px; } .olform { display: grid; gap: 10px; } .olform label { display: grid; gap: 4px; font-weight: 700; } .olform input:not([type=color]), .olform select { min-height: 44px; padding: 0 10px; border-radius: 10px; border: 2px solid #b9a8dc; font-size: 1rem; } .olform input[type=color] { width: 100%; height: 44px; border: 2px solid #b9a8dc; border-radius: 10px; padding: 2px; }
+@media (prefers-reduced-motion: reduce) { .olsp { animation: none; } .olbar i { transition: none; } }
+
+.hubcard.olwide { grid-column: 1 / -1 !important; }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -4334,6 +4371,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   <section id="vStory" hidden><div class="stack" id="storyBody"></div></section>
 
   <!-- ===== EN SAVOIR PLUS SUR LES KANJIS ===== -->
+  <section id="vOnline" hidden><div class="stack" id="onlineBody"></div></section>
   <section id="vKanji" hidden><div class="stack" id="kanjiBody"></div></section>
 
   <!-- ===== SÉANCE ===== -->
@@ -11018,6 +11056,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
           return r.data.map(function (x) { return { id: x.id, name: x.username, avatar: x.avatar, wc: x.stats && x.stats.wc || null }; });
         });
       },
+      rpc: function (name, args) { return sb.rpc(name, args || {}).then(function (r) { if (r.error) throw r.error; return r.data; }); },
       avatars: function (ids) { return sb.from('profiles').select('id,avatar').in('id', ids).then(function (r) { var m = {}; (r.data || []).forEach(function (x) { m[x.id] = x.avatar || null; }); return m; }); },
       subscribe: function (cb, onStatus) {
         var ch = sb.channel('profiles-live').on('postgres_changes', { event: '*', schema: 'public', table: 'profiles' }, cb)
@@ -12340,11 +12379,11 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   /* =====================================================================
      9. AFFICHAGE : NAVIGATION ET ACCUEIL
      ===================================================================== */
-  var TABS = { hub: 'vHub', home: 'vHome', story: 'vStory', kanji: 'vKanji', board: 'vBoard', settings: 'vSettings', multi: 'vMulti', profil: 'vProfil' };
+  var TABS = { hub: 'vHub', home: 'vHome', story: 'vStory', kanji: 'vKanji', online: 'vOnline', board: 'vBoard', settings: 'vSettings', multi: 'vMulti', profil: 'vProfil' };
   function setVox(on) { document.body.classList.remove('vox'); }
   // Chaque grande section a sa couleur et son titre, pour toujours savoir où l'on est
   var SECINFO = { hub: ['道', 'Accueil', 'Ta journée au dōjō'], story: ['旅', 'Aventure', 'Chapitres, mobs et boss'], home: ['場', 'Dojo', 'Révisions, mini-jeux et duels'], base: ['村', 'Base', 'Ton camp et le village'], profil: ['証', 'Profil', 'Ton carnet, la Voie du Dōjō et les réglages'] };
-  var VIEWINFO = { vMulti: ['対', 'Salons duel', 'Affronte tes amis en direct'], vBoard: ['位', 'Classement', 'Les meilleurs élèves du dōjō'], vSettings: ['設', 'Réglages', 'Son, affichage et compte'], vKanji: ['漢', 'Fiches kanjis', 'Les kanjis de la semaine'] };
+  var VIEWINFO = { vMulti: ['対', 'Salons duel', 'Affronte tes amis en direct'], vBoard: ['位', 'Classement', 'Les meilleurs élèves du dōjō'], vSettings: ['設', 'Réglages', 'Son, affichage et compte'], vKanji: ['漢', 'Fiches kanjis', 'Les kanjis de la semaine'], vOnline: ['盟', 'Mode en ligne', 'Raid et clans'] };
   function secOf(view) {
     if (view === 'vStory') return storyTab === 'base' ? 'base' : 'story';
     if (view === 'vHome' || view === 'vMulti') return 'home';
@@ -12360,7 +12399,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   }
   function show(view) {
     if (view !== 'vMulti' && typeof mpLeaveOnNav === 'function') mpLeaveOnNav();
-    ['vAuth', 'vHub', 'vHome', 'vStory', 'vKanji', 'vSession', 'vSettings', 'vBoard', 'vMulti', 'vProfil'].forEach(function (id) { $(id).hidden = (id !== view); });
+    ['vAuth', 'vHub', 'vHome', 'vStory', 'vKanji', 'vOnline', 'vSession', 'vSettings', 'vBoard', 'vMulti', 'vProfil'].forEach(function (id) { $(id).hidden = (id !== view); });
     var inApp = !!user && view !== 'vAuth';
     $('userbox').hidden = !inApp;
     $('nav').hidden = !inApp || view === 'vSession';
@@ -12421,6 +12460,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     else if (tab === 'base') { storyTab = 'base'; baseMode = netOn() ? 'village' : 'camp'; renderStory(); show('vStory'); }
     else if (tab === 'multi') { show('vMulti'); renderMulti(); }
     else if (tab === 'kanji') { renderKanji(); show('vKanji'); }
+    else if (tab === 'online') { if (!olOpen()) return; show('vOnline'); renderOnlineView(); }
     else if (tab === 'settings') renderSettings();
     else { renderHome(); show('vHome'); }
   }
@@ -12675,7 +12715,8 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     var st = stat(q.key), before = level(), gained = 0, bonus = false;
     if (ok) {
       gained = st.run >= MASTER_RUN * 2 ? 2 : (q.fmt === 'input' ? 7 : 4);   // saisie clavier : plus de XP qu'un QCM ; mot déjà très bien su : peu de XP
-      st.ok++; st.run++; sess.combo++; S.correct++;
+      var wasM = st.run >= MASTER_RUN; st.ok++; st.run++; sess.combo++; S.correct++;
+      if (typeof coopHit === 'function') coopHit(!wasM && st.run >= MASTER_RUN);
       if (sess.combo % COMBO_EVERY === 0) { gained += XP_COMBO; bonus = true; }
       S.xp += gained;
       S.best = Math.max(S.best, sess.combo);
@@ -12768,6 +12809,139 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   }, 100);
 
   /* ---- Lancement d'un jeu ---- */
+  /* =====================================================================
+     MODE EN LIGNE : raid de boss quotidien + clans (objectif de la semaine, coffre, boss de clan, classement)
+     Tout passe par des fonctions Supabase (rpc) : coop_state, coop_sync, clan_*, raid_claim.
+     ===================================================================== */
+  var OL_BOSS = [['岐', 'Orochi aux huit têtes'], ['尾', 'Renard aux neuf queues'], ['鵺', 'Nue, la chimère'], ['雪', 'Yuki-onna, dame des neiges'], ['閻', 'Roi des enfers'], ['蛸', 'Kraken d\'encre']];
+  var OL_EMBLEMS = ['桜', '竜', '虎', '鶴', '月', '星', '炎', '氷', '風', '雷', '花', '刀', '盾', '鬼', '狐', '波'];
+  var ol = { tab: 'raid', st: null, list: null, board: null, busy: false, at: 0, timer: null, msg: '' };
+  var coopQ = { c: 0, w: 0, t: null, sending: false };
+  function olRpc(name, args) {
+    if (!backend || !backend.rpc) return Promise.reject(new Error('Mode en ligne indisponible.'));
+    return backend.rpc(name, args || {});
+  }
+  // Appelé après chaque bonne réponse (applyResult) : regroupe les envois toutes les ~8 s
+  function coopHit(mastered) {
+    if (!user || !backend || !backend.rpc || backend.mode === 'local') return;
+    coopQ.c++; if (mastered) coopQ.w++;
+    if (!coopQ.t) coopQ.t = setTimeout(coopFlush, 8000);
+  }
+  function coopFlush() {
+    clearTimeout(coopQ.t); coopQ.t = null;
+    if (coopQ.sending || !coopQ.c || !user || !backend || !backend.rpc) return;
+    var c = coopQ.c, w = coopQ.w; coopQ.c = 0; coopQ.w = 0; coopQ.sending = true;
+    olRpc('coop_sync', { p_correct: c, p_words: w }).then(function () { coopQ.sending = false; if (!$('vOnline').hidden) olLoad(true); }, function () { coopQ.sending = false; coopQ.c += c; coopQ.w += w; });
+  }
+  document.addEventListener('visibilitychange', function () { if (document.hidden) coopFlush(); });
+  function olLoad(quiet) {
+    if (!backend || !backend.rpc) { olRender(); return; }
+    if (ol.busy) return; ol.busy = true;
+    var ps = [olRpc('coop_state')];
+    if (ol.tab === 'clan' && (!ol.st || !ol.st.clan)) ps.push(olRpc('clan_list'));
+    if (ol.tab === 'rank') ps.push(olRpc('clan_board'));
+    Promise.all(ps).then(function (r) {
+      ol.busy = false; ol.st = r[0]; ol.at = Date.now(); ol.err = '';
+      if (ol.tab === 'clan' && (!ol.st || !ol.st.clan)) ol.list = r[1] || [];
+      if (ol.tab === 'rank') ol.board = r[1] || [];
+      olRender();
+    }, function (e) { ol.busy = false; ol.err = (e && e.message) || 'Erreur réseau'; olRender(); });
+  }
+  function olOpen() {
+    if (backend.mode === 'local') { netBlock('Le mode en ligne'); return false; }
+    return true;
+  }
+  function olCountdown(ms) {
+    var s = Math.max(0, Math.floor((ms - Date.now()) / 1000)), h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60);
+    return h + ' h ' + ('0' + m).slice(-2) + ' min';
+  }
+  function olBar(v, max, cls) { var p = max ? Math.min(100, Math.round(v / max * 100)) : 0; return '<div class="olbar ' + (cls || '') + '" role="progressbar" aria-valuemin="0" aria-valuemax="' + max + '" aria-valuenow="' + v + '"><i style="width:' + p + '%"></i><span>' + v.toLocaleString('fr-FR') + ' / ' + max.toLocaleString('fr-FR') + '</span></div>'; }
+  function olRaidHTML(st) {
+    var r = st.raid, b = OL_BOSS[r.boss % OL_BOSS.length], hp = Math.max(0, r.hp_max - r.dmg), dead = hp <= 0;
+    var h = '<div class="olraid' + (dead ? ' dead' : '') + '"><div class="olfoe"><span class="olsp">' + sprite(b[0]) + '</span><div><small>Raid du jour · fin dans ' + olCountdown(r.ends) + '</small><b>' + esc(b[1]) + '</b></div></div>' +
+      '<p class="olhp">' + (dead ? '💥 Le boss est vaincu !' : 'PV restants du boss') + '</p>' + olBar(hp, r.hp_max, dead ? 'win' : 'hp') +
+      '<p class="olme">⚔ Tes dégâts : <b>' + r.mine + '</b> · ' + r.players + ' joueur' + (r.players > 1 ? 's' : '') + ' au combat</p>';
+    if (dead) h += r.mine >= 30 ? (r.claimed ? '<p class="olok">✔ Récompense déjà récupérée</p>' : '<button class="btn primary" type="button" data-ol="raidclaim">🎁 Récupérer ma récompense</button>') : '<p class="small muted">Il fallait infliger au moins 30 dégâts pour la récompense.</p>';
+    else h += '<p class="small muted">Chaque bonne réponse dans l\'appli inflige 10 dégâts au boss, partout (quiz, jeux, combats). Tout le monde frappe le même boss !</p><div class="olact"><button class="btn primary" type="button" data-ol="play" data-g="sprint">⚡ Sprint éclair</button><button class="btn" type="button" data-ol="play" data-g="lecture">📖 Lecture exacte</button></div>';
+    if (r.top && r.top.length) h += '<h4 class="olh">Meilleurs frappeurs</h4><ol class="oltop">' + r.top.map(function (t, i) { return '<li><span>' + (i + 1) + '</span><b>' + esc(t.name) + '</b><em>' + t.dmg + '</em></li>'; }).join('') + '</ol>';
+    return h + '</div>';
+  }
+  function olClanHTML(st) {
+    var c = st.clan;
+    if (!c) {
+      var h = '<div class="olnone"><p>Tu n\'as pas encore de clan. Un clan, c\'est 5 à 15 élèves qui visent un objectif commun chaque semaine : mots maîtrisés, boss de clan et coffre partagé.</p><button class="btn primary" type="button" data-ol="newclan">＋ Créer mon clan</button></div>';
+      h += '<h4 class="olh">Clans qui recrutent</h4>';
+      h += (ol.list && ol.list.length) ? '<div class="olclans">' + ol.list.map(function (x) {
+        return '<div class="olcl" style="--cc:' + esc(x.color) + '"><span class="olem">' + esc(x.emblem) + '</span><div><b>' + esc(x.name) + ' <small>[' + esc(x.tag) + ']</small></b><small>' + x.n + '/15 membres' + (x.motto ? ' · ' + esc(x.motto) : '') + '</small></div><button class="btn" type="button" data-ol="join" data-id="' + esc(x.id) + '">Rejoindre</button></div>';
+      }).join('') + '</div>' : '<p class="small muted">Aucun clan pour l\'instant : crée le premier !</p>';
+      return h;
+    }
+    var ok = c.n >= c.min, me = user.id;
+    var h2 = '<div class="olhead" style="--cc:' + esc(c.color) + '"><span class="olem big">' + esc(c.emblem) + '</span><div><b>' + esc(c.name) + ' <small>[' + esc(c.tag) + ']</small></b><small>' + c.n + '/15 membres' + (c.motto ? ' · ' + esc(c.motto) : '') + '</small></div></div>';
+    if (!ok) h2 += '<p class="olwarn">Il faut au moins ' + c.min + ' membres pour ouvrir les coffres (' + c.n + ' pour l\'instant). Invite tes amis !</p>';
+    h2 += '<div class="olgoal"><h4 class="olh">🎯 Objectif de la semaine · mots maîtrisés</h4>' + olBar(Math.min(c.words, c.goal), c.goal, 'goal') +
+      (c.words >= c.goal ? (c.goal_claimed ? '<p class="olok">✔ Coffre récupéré</p>' : '<button class="btn primary" type="button" data-ol="claim" data-k="goal"' + (ok ? '' : ' disabled') + '>🎁 Ouvrir le coffre du clan</button>') : '<p class="small muted">Un mot est maîtrisé après 3 bonnes réponses d\'affilée.</p>') + '</div>';
+    var bd = c.boss_dmg >= c.boss_max;
+    h2 += '<div class="olgoal"><h4 class="olh">👹 Boss du clan</h4>' + olBar(Math.max(0, c.boss_max - c.boss_dmg), c.boss_max, bd ? 'win' : 'hp') +
+      (bd ? (c.boss_claimed ? '<p class="olok">✔ Récompense récupérée</p>' : '<button class="btn primary" type="button" data-ol="claim" data-k="boss"' + (ok ? '' : ' disabled') + '>🎁 Récompense du boss</button>') : '<p class="small muted">Chaque bonne réponse d\'un membre lui retire 10 PV. Il revient plus fort chaque semaine.</p>') + '</div>';
+    h2 += '<h4 class="olh">Membres · cette semaine</h4><ul class="olmem">' + c.members.map(function (m) {
+      return '<li><b>' + esc(m.name) + (m.role === 'chef' ? ' 👑' : '') + '</b><span>' + m.words + ' mots · ' + m.correct + ' bonnes rép.</span>' + (c.role === 'chef' && m.id !== me ? '<button class="olx" type="button" data-ol="kick" data-id="' + esc(m.id) + '" aria-label="Exclure ' + esc(m.name) + '">✕</button>' : '') + '</li>';
+    }).join('') + '</ul><button class="btn ghost" type="button" data-ol="leave">Quitter le clan</button>';
+    return h2;
+  }
+  function olBoardHTML() {
+    var b = ol.board || [], mine = ol.st && ol.st.clan ? ol.st.clan.id : '';
+    if (!b.length) return '<p class="small muted">Aucun clan classé pour le moment.</p>';
+    return '<p class="small muted">Points de la semaine : 5 par mot maîtrisé + 1 par bonne réponse.</p><ol class="olrank">' + b.map(function (x, i) {
+      return '<li class="' + (x.id === mine ? 'me' : '') + '" style="--cc:' + esc(x.color) + '"><span class="olpos">' + (i + 1) + '</span><span class="olem">' + esc(x.emblem) + '</span><div><b>' + esc(x.name) + ' <small>[' + esc(x.tag) + ']</small></b><small>' + x.n + ' membre' + (x.n > 1 ? 's' : '') + ' · ' + x.words + ' mots</small></div><em>' + x.pts + ' pts</em></li>';
+    }).join('') + '</ol>';
+  }
+  function olRender() {
+    var host = $('onlineBody'); if (!host || $('vOnline').hidden) return;
+    var tabs = [['raid', '👹 Raid'], ['clan', '🏯 Mon clan'], ['rank', '🏆 Clans']];
+    var h = '<div class="oltabs" role="tablist">' + tabs.map(function (t) { return '<button type="button" role="tab" class="oltab' + (ol.tab === t[0] ? ' on' : '') + '" aria-selected="' + (ol.tab === t[0]) + '" data-ol="tab" data-t="' + t[0] + '">' + t[1] + '</button>'; }).join('') + '</div>';
+    h += '<div class="olpanel">';
+    if (!backend || !backend.rpc) h += '<p class="muted">Le mode en ligne n\'est pas disponible dans cette version (hors connexion).</p>';
+    else if (ol.err) h += '<p class="olwarn">' + esc(ol.err) + '</p><button class="btn" type="button" data-ol="reload">Réessayer</button>';
+    else if (!ol.st) h += '<p class="muted">Chargement…</p>';
+    else h += ol.tab === 'raid' ? olRaidHTML(ol.st) : ol.tab === 'clan' ? olClanHTML(ol.st) : olBoardHTML();
+    host.innerHTML = h + '</div>';
+  }
+  function olGrant(n, txt) { S.coins = coinsOf() + n; S.coinsTotal = (S.coinsTotal || 0) + n; persist(); renderBars(); toast(txt + ' +' + n + ' pièces'); if (typeof confetti === 'function') confetti(); }
+  function olNewClanModal() {
+    openModal('Créer mon clan', '<div class="olform"><label>Nom du clan (3 à 20 caractères)<input id="olName" maxlength="20" autocomplete="off"></label><label>Tag (2 à 4 lettres)<input id="olTag" maxlength="4" autocomplete="off"></label><label>Emblème<select id="olEmb">' + OL_EMBLEMS.map(function (e) { return '<option>' + e + '</option>'; }).join('') + '</select></label><label>Couleur<input id="olCol" type="color" value="#d0587f"></label><label>Devise (facultatif)<input id="olMot" maxlength="60" autocomplete="off"></label><p class="olwarn" id="olFormErr" hidden></p><button class="btn primary" type="button" data-ol="create">Fonder le clan</button></div>');
+  }
+  function olAct(b) {
+    var a = b.getAttribute('data-ol');
+    if (a === 'tab') { ol.tab = b.getAttribute('data-t'); ol.list = null; olRender(); olLoad(); return; }
+    if (a === 'reload') { ol.err = ''; olLoad(); return; }
+    if (a === 'play') { coopFlush(); startGame(b.getAttribute('data-g')); return; }
+    if (a === 'newclan') { olNewClanModal(); return; }
+    var done = function (r, okMsg) { if (r && r.ok === false) { toast(r.err || 'Action impossible'); return; } if (okMsg) toast(okMsg); ol.list = null; olLoad(); };
+    var fail = function (e) { toast('Erreur : ' + ((e && e.message) || e)); };
+    if (a === 'create') {
+      var err = $('olFormErr');
+      olRpc('clan_create', { p_name: $('olName').value, p_tag: $('olTag').value, p_emblem: $('olEmb').value, p_color: $('olCol').value, p_motto: $('olMot').value }).then(function (r) {
+        if (r && r.ok === false) { err.textContent = r.err; err.hidden = false; return; }
+        closeModal(); ol.tab = 'clan'; toast('Clan créé !'); olLoad();
+      }, function (e) { err.textContent = (e && e.message) || 'Erreur'; err.hidden = false; });
+    } else if (a === 'join') olRpc('clan_join', { p_clan: b.getAttribute('data-id') }).then(function (r) { done(r, 'Bienvenue dans le clan !'); }, fail);
+    else if (a === 'leave') { if (confirm('Quitter ton clan ?')) olRpc('clan_leave').then(function (r) { done(r, 'Tu as quitté le clan.'); }, fail); }
+    else if (a === 'kick') { if (confirm('Exclure ce membre ?')) olRpc('clan_kick', { p_user: b.getAttribute('data-id') }).then(function (r) { done(r); }, fail); }
+    else if (a === 'claim') olRpc('clan_claim', { p_kind: b.getAttribute('data-k') }).then(function (r) { if (r && r.ok) { olGrant(r.coins, 'Coffre du clan'); olLoad(true); } else toast((r && r.err) || 'Impossible'); }, fail);
+    else if (a === 'raidclaim') olRpc('raid_claim').then(function (r) { if (r && r.ok) { olGrant(r.coins, 'Raid vaincu'); olLoad(true); } else toast((r && r.err) || 'Impossible'); }, fail);
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-ol]') : null; if (!b || !user) return;
+    olAct(b);
+  });
+  function renderOnlineView() {
+    ol.err = '';
+    olRender(); coopFlush();
+    olLoad();
+    clearInterval(ol.timer);
+    ol.timer = setInterval(function () { if ($('vOnline').hidden) { clearInterval(ol.timer); return; } if (!document.hidden) olLoad(true); }, 25000);
+  }
   function startGame(id) {
     if (!weekWords('all').length) { toast('Pas encore de mots en ' + CURSUS[curLv()].tag + ' : le contenu arrive bientôt.'); return; }
     if (id === 'pairs') startPairs();
@@ -15678,6 +15852,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
 
   /* ---- Hall d'accueil ---- */
   var HUBART = {
+    online: '<svg viewBox="0 0 320 112" class="hart" aria-hidden="true"><defs><linearGradient id="olsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1e1838"/><stop offset=".6" stop-color="#5a3a7e"/><stop offset="1" stop-color="#e2787f"/></linearGradient></defs><rect width="320" height="112" fill="url(#olsky)"/><circle cx="250" cy="34" r="20" fill="#fff3c4" opacity=".9"/><path d="M0 112V86Q60 62 120 84T240 80T320 90V112z" fill="#2c2452"/><g fill="#f0b97a" opacity=".95"><circle cx="70" cy="70" r="6"/><circle cx="130" cy="78" r="5"/><circle cx="190" cy="66" r="6"/></g><g stroke="#f6d58e" stroke-width="2" opacity=".6"><path d="M70 70L130 78L190 66L250 34"/></g><g fill="#f3a9c0"><ellipse cx="40" cy="30" rx="6" ry="4" transform="rotate(30 40 30)"/><ellipse cx="110" cy="18" rx="5" ry="3.5" transform="rotate(-20 110 18)"/><ellipse cx="180" cy="40" rx="6" ry="4" transform="rotate(50 180 40)"/></g></svg>',
     quest: '<svg viewBox="0 0 320 112" class="hart" aria-hidden="true"><defs>' +
       '<linearGradient id="qsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a3f86"/><stop offset=".5" stop-color="#e2787f"/><stop offset=".85" stop-color="#fbc998"/><stop offset="1" stop-color="#fde6c4"/></linearGradient>' +
       '<radialGradient id="qsun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff3c4"/><stop offset=".4" stop-color="#ffd27a" stop-opacity=".85"/><stop offset="1" stop-color="#ffb060" stop-opacity="0"/></radialGradient>' +
@@ -15885,11 +16060,12 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
       ['story', '旅', 'quest', 'Aventure', L.tag + ' · ' + (chs.length ? done + '/' + chs.length + ' chapitres' : '')],
       ['cards', '札', 'cards', 'Classeur de cartes', cardCount() + '/' + CARDS.length + ' cartes' + (cardFreeReady() ? ' · 🎁 booster gratuit !' : ' · ouvre des boosters')],
       ['bazar', '店', 'shop', 'Boutique', ((freeReady() || cardFreeReady()) ? '🎁 Cadeau du jour à ouvrir !' : coinsOf() + ' pièces · tous les achats')],
-      ['kanji', '漢', 'kanji', 'Fiches kanji', Object.keys(S.seen || {}).length + ' / ' + KANJI_DATA.length + ' vues']
-    ].filter(function (c) { return c[0] === 'home' || c[0] === 'kanji' || unlOn(c[0]); });
+      ['kanji', '漢', 'kanji', 'Fiches kanji', Object.keys(S.seen || {}).length + ' / ' + KANJI_DATA.length + ' vues'],
+      ['online', '盟', 'online', 'Mode en ligne', 'Raid du jour · clans · classement']
+    ].filter(function (c) { return c[0] === 'home' || c[0] === 'kanji' || c[0] === 'online' || unlOn(c[0]); });
     var nSm = cards.length - 1;
     $('hubGrid').innerHTML = cards.map(function (c) {
-      return '<button type="button" class="hubcard' + (c[0] === 'home' ? ' wide big' : ' sm' + nSm) + '" ' + (c[0] === 'bazar' ? 'data-bazar="1"' : c[0] === 'cards' ? 'data-cdalbum="1"' : 'data-go="' + c[0] + '"') + '>' + hubArtFor(c) + adminBtns('hub_' + c[0]) + (c[0] === 'home' && errCount() ? '<span class="hchip" role="img" aria-label="' + errCount() + ' à corriger" title="' + errCount() + ' à corriger">' + errCount() + '</span>' : '') + '<span class="hseal" aria-hidden="true">' + c[1] + '</span><span class="htx"><b>' + c[3] + '</b><small>' + esc(c[4]) + '</small></span></button>';
+      return '<button type="button" class="hubcard' + (c[0] === 'home' ? ' wide big' : ' sm' + nSm + (c[0] === 'online' && nSm % 2 ? ' olwide' : '')) + '" ' + (c[0] === 'bazar' ? 'data-bazar="1"' : c[0] === 'cards' ? 'data-cdalbum="1"' : 'data-go="' + c[0] + '"') + '>' + hubArtFor(c) + adminBtns('hub_' + c[0]) + (c[0] === 'home' && errCount() ? '<span class="hchip" role="img" aria-label="' + errCount() + ' à corriger" title="' + errCount() + ' à corriger">' + errCount() + '</span>' : '') + '<span class="hseal" aria-hidden="true">' + c[1] + '</span><span class="htx"><b>' + c[3] + '</b><small>' + esc(c[4]) + '</small></span></button>';
     }).join('');
     unlHint();
     if (typeof renderHubTiles === 'function') renderHubTiles();
