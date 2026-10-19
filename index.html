@@ -21236,7 +21236,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     var Q = furUI.q, it = Q.items[Q.i];
     if (!it || !Q.cur) {
       var fg = Q.forged.length;
-      return '<div class="furend"><div class="furart2">' + FUR_ART + '</div><h3>' + (fg ? 'Forgé ! 🔥' : 'Cuisson terminée') + '</h3><p>' + Q.right + ' bonne' + (Q.right > 1 ? 's' : '') + ' réponse' + (Q.right > 1 ? 's' : '') + ' sur ' + Q.tot + '.' + (fg ? '<br>' + Q.forged.map(function (k) { var w = furWord(k) || { mot: k }; return '<b class="jp">' + esc(w.mot) + '</b>'; }).join(', ') + ' : retenu' + (fg > 1 ? 's' : '') + ' pour de bon ! (+' + fg * 15 + ' pièces)' : '') + '</p><button type="button" class="btn primary" data-furquit="1">Retour au fourneau</button></div>';
+      return '<div class="furend"><div class="furart2">' + FUR_ART + '</div><h3>' + (fg ? 'Forgé ! 🔥' : 'Cuisson terminée') + '</h3><p>' + Q.right + ' bonne' + (Q.right > 1 ? 's' : '') + ' réponse' + (Q.right > 1 ? 's' : '') + ' sur ' + Q.tot + '.' + (Q.xp ? '<br><b>+' + Q.xp + ' XP</b>' : '') + (fg ? '<br>' + Q.forged.map(function (k) { var w = furWord(k) || { mot: k }; return '<b class="jp">' + esc(w.mot) + '</b>'; }).join(', ') + ' : retenu' + (fg > 1 ? 's' : '') + ' pour de bon ! (+' + fg * 15 + ' pièces, +' + fg * 25 + ' XP)' : '') + '</p><button type="button" class="btn primary" data-furquit="1">Retour au fourneau</button></div>';
     }
     var q = Q.cur, w = furWord(it.key), h = '<div class="furq"><div class="grp"><small class="muted">Série ' + Q.round + ' · question ' + (Q.i + 1) + '/' + Q.items.length + ' · chaleur ' + (furS()[it.key] ? furS()[it.key].heat : FUR_FORGE) + '/' + FUR_FORGE + '</small></div>';
     h += '<p class="prompt" style="text-align:center;margin:8px 0">' + esc(q.prompt) + '</p><div class="furqbig jp' + (String(q.big).length > 4 ? ' sm' : '') + '">' + esc(q.big) + '</div>' + (q.sub ? '<p class="small" style="text-align:center">' + esc(q.sub) + '</p>' : '');
@@ -21245,7 +21245,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
       else h += '<form class="answer" id="furForm" autocomplete="off"><input type="text" id="furAns" class="ansin" placeholder="' + esc(q.ph || '') + '" autocapitalize="none" autocorrect="off" spellcheck="false"><button class="btn primary" type="submit">Valider</button></form><p class="small muted" style="text-align:center">' + esc(q.hint || '') + '</p>';
       h += '<div style="text-align:center;margin-top:10px"><button type="button" class="btn ghost dkb" data-furskip="1">🤷 Je ne sais pas</button></div>';
     } else {
-      h += '<div class="fb ' + (Q.ok ? 'good' : 'bad') + '"><b>' + (Q.ok ? (Q.forged.indexOf(it.key) >= 0 ? '🔥 Forgé ! Ce mot est retenu.' : 'Bonne réponse ! Chaleur +1') : 'Raté. Réponse : ' + esc(q.correct) + ' (chaleur −1)') + '</b>' + esc(q.card) + '</div>' +
+      h += '<div class="fb ' + (Q.ok ? 'good' : 'bad') + '"><b>' + (Q.ok ? (Q.forged.indexOf(it.key) >= 0 ? '🔥 Forgé ! Ce mot est retenu. +25 XP' : 'Bonne réponse ! Chaleur +1 · +' + (q.fmt === 'input' ? 7 : 4) + ' XP') : 'Raté. Réponse : ' + esc(q.correct) + ' (chaleur −1)') + '</b>' + esc(q.card) + '</div>' +
         (!Q.ok && w ? '<p class="small muted" style="text-align:center;margin:6px 0">Ouvre la fiche mémo du mot pour le retenir autrement.</p>' : '') + '<div style="text-align:center;margin-top:10px"><button type="button" class="btn primary" data-furnext="1">' + 'Suivant' + '</button></div>';
     }
     return h + '<div style="text-align:center;margin-top:12px"><button type="button" class="btn ghost" data-furquit="1">Quitter</button></div></div>';
@@ -21254,8 +21254,8 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     var Q = furUI.q; if (!Q || Q.ans !== null) return; var q = Q.cur, f = furS()[q.fkey]; Q.ans = true; Q.ok = !!ok; Q.tot++;
     if (f) {
       f.heat = ok ? Math.min(FUR_FORGE, f.heat + 1) : Math.max(0, f.heat - 1);
-      if (ok) Q.right++; else if (q.w || furWord(q.fkey)) { try { errLog(q.fkey, 'Fourneau'); } catch (e) {} }
-      if (f.heat >= FUR_FORGE) { delete furS()[q.fkey]; S.furDone = (S.furDone || 0) + 1; S.coins = coinsOf() + 15; S.coinsTotal = (S.coinsTotal || 0) + 15; Q.forged.push(q.fkey); Q.items = Q.items.filter(function (x, i) { return i <= Q.i || x.key !== q.fkey; }); sfx('win', true); }
+      if (ok) { Q.right++; var gx = q.fmt === 'input' ? 7 : 4; Q.xp = (Q.xp || 0) + gx; addXp(gx); } else if (q.w || furWord(q.fkey)) { try { errLog(q.fkey, 'Fourneau'); } catch (e) {} }
+      if (f.heat >= FUR_FORGE) { delete furS()[q.fkey]; S.furDone = (S.furDone || 0) + 1; Q.xp = (Q.xp || 0) + 25; addXp(25); S.coins = coinsOf() + 15; S.coinsTotal = (S.coinsTotal || 0) + 15; Q.forged.push(q.fkey); Q.items = Q.items.filter(function (x, i) { return i <= Q.i || x.key !== q.fkey; }); sfx('win', true); }
       persist();
     }
     sfx(ok ? 'ok' : 'bad'); furRefresh();
