@@ -4371,7 +4371,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   <section id="vStory" hidden><div class="stack" id="storyBody"></div></section>
 
   <!-- ===== EN SAVOIR PLUS SUR LES KANJIS ===== -->
-  <section id="vOnline" hidden><div class="stack" id="onlineBody"></div></section>
+  <section id="vOnline" hidden><div class="gseg" data-seg="online"></div><div class="stack" id="onlineBody"></div></section>
   <section id="vKanji" hidden><div class="stack" id="kanjiBody"></div></section>
 
   <!-- ===== SÉANCE ===== -->
@@ -4424,7 +4424,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   </div>
 
   <!-- ===== CLASSEMENT ===== -->
-  <section id="vMulti" hidden><div class="gseg" data-seg="dojo"></div><div id="multiBody"></div></section>
+  <section id="vMulti" hidden><div class="gseg" data-seg="online"></div><div id="multiBody"></div></section>
 
   <section id="vBoard" hidden>
     <div class="gseg" data-seg="profil"></div>
@@ -12386,7 +12386,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   var VIEWINFO = { vMulti: ['対', 'Salons duel', 'Affronte tes amis en direct'], vBoard: ['位', 'Classement', 'Les meilleurs élèves du dōjō'], vSettings: ['設', 'Réglages', 'Son, affichage et compte'], vKanji: ['漢', 'Fiches kanjis', 'Les kanjis de la semaine'], vOnline: ['盟', 'Mode en ligne', 'Raid et clans'] };
   function secOf(view) {
     if (view === 'vStory') return storyTab === 'base' ? 'base' : 'story';
-    if (view === 'vHome' || view === 'vMulti') return 'home';
+    if (view === 'vHome') return 'home';
     if (view === 'vProfil' || view === 'vBoard' || view === 'vSettings') return 'profil';
     return 'hub';
   }
@@ -12817,13 +12817,44 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   var OL_EMBLEMS = ['桜', '竜', '虎', '鶴', '月', '星', '炎', '氷', '風', '雷', '花', '刀', '盾', '鬼', '狐', '波'];
   var ol = { tab: 'raid', st: null, list: null, board: null, busy: false, at: 0, timer: null, msg: '' };
   var coopQ = { c: 0, w: 0, t: null, sending: false };
+  // Hors connexion (version démo) : un faux serveur en mémoire, pour voir et essayer toute l'interface
+  var olDemo = null;
+  function olDemoInit() {
+    if (olDemo) return olDemo;
+    olDemo = { clan: null, raid: { boss: new Date().getDate() % 6, hp_max: 3000, dmg: 1240, mine: 0, claimed: false, players: 7, top: [{ name: 'Aicha', dmg: 410 }, { name: 'Léo', dmg: 360 }, { name: 'Mei', dmg: 300 }] },
+      clans: [{ id: 'd1', name: 'Les Cerisiers', tag: 'SAKU', emblem: '桜', color: '#d0587f', motto: 'Fleurir ensemble', n: 6, words: 240, pts: 1500 }, { id: 'd2', name: 'Ronin du Dojo', tag: 'RONI', emblem: '刀', color: '#2c2452', motto: '', n: 9, words: 410, pts: 2600 }, { id: 'd3', name: 'Carpes Dorées', tag: 'KOI', emblem: '鯉', color: '#e0902b', motto: 'Toujours plus haut', n: 4, words: 90, pts: 640 }] };
+    return olDemo;
+  }
+  function olDemoCall(name, a) {
+    var d = olDemoInit(), me = user ? user.name : 'Moi', r = d.raid;
+    if (name === 'coop_state') {
+      var c = d.clan, st = { week: '', day: '', clan: null, raid: { id: 'demo', boss: r.boss, hp_max: r.hp_max, dmg: r.dmg, mine: r.mine, claimed: r.claimed, players: r.players + (r.mine ? 1 : 0), top: r.mine ? r.top.concat([{ name: me, dmg: r.mine }]).sort(function (x, y) { return y.dmg - x.dmg; }).slice(0, 5) : r.top, ends: new Date().setHours(24, 0, 0, 0) } };
+      if (c) st.clan = { id: c.id, name: c.name, tag: c.tag, emblem: c.emblem, color: c.color, motto: c.motto, role: 'chef', n: c.n, min: 5, goal: c.n * 100, words: c.words, boss_max: c.n * 500, boss_dmg: c.bossDmg, goal_claimed: !!c.gc, boss_claimed: !!c.bc,
+        members: [{ id: user ? user.id : 'me', name: me, role: 'chef', words: c.myWords, correct: c.myCorrect }, { id: 'm2', name: 'Aicha', role: 'membre', words: 80, correct: 160 }, { id: 'm3', name: 'Léo', role: 'membre', words: 55, correct: 120 }, { id: 'm4', name: 'Mei', role: 'membre', words: 40, correct: 90 }, { id: 'm5', name: 'Hugo', role: 'membre', words: 25, correct: 60 }] };
+      return st;
+    }
+    if (name === 'clan_list') return d.clans.filter(function (x) { return x.n < 15; });
+    if (name === 'clan_board') return d.clans.map(function (x) { return { id: x.id, name: x.name, tag: x.tag, emblem: x.emblem, color: x.color, n: x.n, words: x.words, pts: x.pts }; }).concat(d.clan ? [{ id: d.clan.id, name: d.clan.name, tag: d.clan.tag, emblem: d.clan.emblem, color: d.clan.color, n: d.clan.n, words: d.clan.words, pts: d.clan.words * 5 + d.clan.myCorrect }] : []).sort(function (x, y) { return y.pts - x.pts; });
+    if (name === 'clan_create') { if (!a.p_name || a.p_name.length < 3) return { ok: false, err: 'Nom : 3 à 20 caractères.' }; if (!a.p_tag || a.p_tag.length < 2) return { ok: false, err: 'Tag : 2 à 4 caractères.' }; d.clan = { id: 'mine', name: a.p_name, tag: String(a.p_tag).toUpperCase(), emblem: a.p_emblem, color: a.p_color, motto: a.p_motto, n: 5, words: 480, myWords: 120, myCorrect: 150, bossDmg: 2400 }; return { ok: true }; }
+    if (name === 'clan_join') { var x = d.clans.filter(function (z) { return z.id === a.p_clan; })[0]; if (!x) return { ok: false, err: 'Clan introuvable.' }; d.clan = { id: x.id, name: x.name, tag: x.tag, emblem: x.emblem, color: x.color, motto: x.motto, n: x.n + 1, words: x.words, myWords: 0, myCorrect: 0, bossDmg: 600 }; return { ok: true }; }
+    if (name === 'clan_leave') { d.clan = null; return { ok: true }; }
+    if (name === 'clan_claim') { if (a.p_kind === 'goal') d.clan.gc = 1; else d.clan.bc = 1; return { ok: true, coins: a.p_kind === 'goal' ? 150 : 250 }; }
+    if (name === 'raid_claim') { r.claimed = true; return { ok: true, coins: 120 + Math.min(180, Math.floor(r.mine / 4)) }; }
+    return { ok: true };
+  }
   function olRpc(name, args) {
+    if (backend && backend.mode === 'local') return new Promise(function (res) { setTimeout(function () { res(JSON.parse(JSON.stringify(olDemoCall(name, args || {})))); }, 120); });
     if (!backend || !backend.rpc) return Promise.reject(new Error('Mode en ligne indisponible.'));
     return backend.rpc(name, args || {});
   }
   // Appelé après chaque bonne réponse (applyResult) : regroupe les envois toutes les ~8 s
   function coopHit(mastered) {
-    if (!user || !backend || !backend.rpc || backend.mode === 'local') return;
+    if (user && backend && backend.mode === 'local') {
+      var d = olDemoInit(); d.raid.dmg = Math.min(d.raid.hp_max, d.raid.dmg + 10); d.raid.mine += 10;
+      if (d.clan) { d.clan.myCorrect++; d.clan.bossDmg = Math.min(d.clan.n * 500, d.clan.bossDmg + 10); if (mastered) { d.clan.words++; d.clan.myWords++; } }
+      return;
+    }
+    if (!user || !backend || !backend.rpc) return;
     coopQ.c++; if (mastered) coopQ.w++;
     if (!coopQ.t) coopQ.t = setTimeout(coopFlush, 8000);
   }
@@ -12835,7 +12866,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   }
   document.addEventListener('visibilitychange', function () { if (document.hidden) coopFlush(); });
   function olLoad(quiet) {
-    if (!backend || !backend.rpc) { olRender(); return; }
+    if (!backend || (!backend.rpc && backend.mode !== 'local')) { olRender(); return; }
     if (ol.busy) return; ol.busy = true;
     var ps = [olRpc('coop_state')];
     if (ol.tab === 'clan' && (!ol.st || !ol.st.clan)) ps.push(olRpc('clan_list'));
@@ -12848,7 +12879,6 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     }, function (e) { ol.busy = false; ol.err = (e && e.message) || 'Erreur réseau'; olRender(); });
   }
   function olOpen() {
-    if (backend.mode === 'local') { netBlock('Le mode en ligne'); return false; }
     return true;
   }
   function olCountdown(ms) {
@@ -12901,7 +12931,8 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     var tabs = [['raid', '👹 Raid'], ['clan', '🏯 Mon clan'], ['rank', '🏆 Clans']];
     var h = '<div class="oltabs" role="tablist">' + tabs.map(function (t) { return '<button type="button" role="tab" class="oltab' + (ol.tab === t[0] ? ' on' : '') + '" aria-selected="' + (ol.tab === t[0]) + '" data-ol="tab" data-t="' + t[0] + '">' + t[1] + '</button>'; }).join('') + '</div>';
     h += '<div class="olpanel">';
-    if (!backend || !backend.rpc) h += '<p class="muted">Le mode en ligne n\'est pas disponible dans cette version (hors connexion).</p>';
+    if (backend && backend.mode === 'local') h += '<p class="olwarn">Mode démo : tu n\'es pas connecté à un serveur, ces clans et ce raid sont fictifs (ils servent à tout essayer). En ligne, ils sont partagés avec tous les joueurs.</p>';
+    if (!backend || (!backend.rpc && backend.mode !== 'local')) h += '<p class="muted">Le mode en ligne n\'est pas disponible dans cette version.</p>';
     else if (ol.err) h += '<p class="olwarn">' + esc(ol.err) + '</p><button class="btn" type="button" data-ol="reload">Réessayer</button>';
     else if (!ol.st) h += '<p class="muted">Chargement…</p>';
     else h += ol.tab === 'raid' ? olRaidHTML(ol.st) : ol.tab === 'clan' ? olClanHTML(ol.st) : olBoardHTML();
@@ -15832,11 +15863,12 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     $('trail').innerHTML = '<span class="cur" aria-current="page">' + esc(crumbParts(view)[0][0]) + '</span>';
   }
   /* ---- Navigation groupée : Dojo (exercices | salons) et Profil (profil | classement) + sélecteur de niveau ---- */
-  var SEGS = { dojo: [['home', 'Exercices'], ['multi', 'Salons duel']], profil: [['profil', 'Mon profil'], ['board', 'Classement']] };
+  var SEGS = { dojo: [['home', 'Exercices']], online: [['online', 'Raid & clans'], ['multi', 'Salons duel']], profil: [['profil', 'Mon profil'], ['board', 'Classement']] };
   function renderSegs(view) {
-    var cur = { vHome: 'home', vMulti: 'multi', vProfil: 'profil', vBoard: 'board' }[view];
+    var cur = { vHome: 'home', vMulti: 'multi', vOnline: 'online', vProfil: 'profil', vBoard: 'board' }[view];
     Array.from(document.querySelectorAll('.gseg')).forEach(function (el) {
       var list = SEGS[el.getAttribute('data-seg')];
+      if (list.length < 2) { el.innerHTML = ''; return; }
       el.innerHTML = '<div class="seg gsegbar" role="tablist">' + list.map(function (x) { return '<button type="button" role="tab" data-go="' + x[0] + '" aria-selected="' + (x[0] === cur) + '">' + x[1] + '</button>'; }).join('') + '</div>' + '';
     });
   }
@@ -16061,7 +16093,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
       ['cards', '札', 'cards', 'Classeur de cartes', cardCount() + '/' + CARDS.length + ' cartes' + (cardFreeReady() ? ' · 🎁 booster gratuit !' : ' · ouvre des boosters')],
       ['bazar', '店', 'shop', 'Boutique', ((freeReady() || cardFreeReady()) ? '🎁 Cadeau du jour à ouvrir !' : coinsOf() + ' pièces · tous les achats')],
       ['kanji', '漢', 'kanji', 'Fiches kanji', Object.keys(S.seen || {}).length + ' / ' + KANJI_DATA.length + ' vues'],
-      ['online', '盟', 'online', 'Mode en ligne', 'Raid du jour · clans · classement']
+      ['online', '盟', 'online', 'Mode en ligne', 'Raid du jour · clans · duels']
     ].filter(function (c) { return c[0] === 'home' || c[0] === 'kanji' || c[0] === 'online' || unlOn(c[0]); });
     var nSm = cards.length - 1;
     $('hubGrid').innerHTML = cards.map(function (c) {
