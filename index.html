@@ -4109,6 +4109,8 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   .toast { animation: kdToast .35s cubic-bezier(.2,.9,.3,1.2) both; } @keyframes kdToast { from { opacity: 0; transform: translateY(16px) scale(.9); } to { opacity: 1; transform: none; } }
   html { scroll-behavior: smooth; }
 }
+
+.logrow { gap: 10px; flex-wrap: wrap; justify-content: center; } .logbtn.editbtn { background: linear-gradient(180deg, #e9709a, #c1245a) !important; color: #fff !important; border-color: #f6d58e !important; }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -4254,7 +4256,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
         <div class="hrow"><div class="hearts" id="hearts" aria-label="Cœurs restants"></div><span class="muted small" id="heartsNote"></span></div>
       </div>
     </div>
-    <div class="logrow"><button type="button" class="btn logbtn" id="btnLogout2">⎋ Se déconnecter</button></div>
+    <div class="logrow"><button type="button" class="btn primary logbtn editbtn" id="btnEditProf">✎ Modifier mon profil</button><button type="button" class="btn logbtn" id="btnLogout2">⎋ Se déconnecter</button></div>
     <div class="pfgrid" id="pfGrid" role="group" aria-label="Mon profil">
       <button type="button" class="pfbtn" data-pf="cust" aria-pressed="false"><i aria-hidden="true">飾</i><span>Personnaliser</span></button>
       <button type="button" class="pfbtn" data-pf="vit" aria-pressed="false"><i aria-hidden="true">札</i><span>Vitrine</span></button>
@@ -21730,7 +21732,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     var tries = 0, t = setInterval(function () { var b = document.querySelector('#profBody .base'); if (b || ++tries > 20) { clearInterval(t); if (b) b.scrollIntoView({ behavior: 'smooth', block: 'center' }); } }, 150);
   });
   $('btnLogout').onclick = function () { logout(); };
-  $('btnLogout2').onclick = function () { logout(); }; $('btnLogout3').onclick = function () { logout(); };
+  $('btnLogout2').onclick = function () { logout(); }; $('btnEditProf').onclick = function () { var b = document.querySelector('#pfGrid [data-pf="cust"]'); if (b) { b.click(); try { b.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {} } }; $('btnLogout3').onclick = function () { logout(); };
 
   // Onglet Kanjis : bascule fiches / mots, recherche, liens entre fiches
   $('kanjiBody').onclick = function (e) {
