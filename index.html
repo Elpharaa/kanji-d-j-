@@ -20532,34 +20532,42 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
   function furStart(keys, single) {
     var list = keys.map(function (k) { var w = furWord(k), kj = w && /[㐀-鿿]/.test(w.mot), pool = kj ? ['sens', 'lecture', 'ortho', 'rev'] : ['sens', 'rev']; return { key: k, types: single ? pool : [pool[Math.floor(Math.random() * pool.length)]] }; });
     var items = shuffle(furBuild(list)); if (!items.length) return;
-    furUI.q = { items: items, i: 0, right: 0, cur: null, ans: null, ok: null, gain: {}, forged: [] }; furNextQ();
+    furUI.q = { items: items, i: 0, right: 0, tot: 0, round: 1, scope: keys.slice(), single: !!single, cur: null, ans: null, ok: null, gain: {}, forged: [] }; furNextQ();
   }
   function furNextQ() {
-    var Q = furUI.q, it = Q.items[Q.i]; if (!it) { furRefresh(); return; }
+    var Q = furUI.q, it = Q.items[Q.i];
+    if (!it) {   // série finie : on continue tant qu'un mot du fourneau n'est pas forgé
+      var left = Q.scope.filter(function (k) { return furS()[k] && furWord(k); });
+      if (!left.length) { furRefresh(); return; }
+      var last = Q.items.length ? Q.items[Q.items.length - 1].key : '';
+      var nxt = shuffle(furBuild(left.map(function (k) { var w0 = furWord(k), kj0 = /[\u3400-\u9fff]/.test(w0.mot), pool = kj0 ? ['sens', 'lecture', 'ortho', 'rev'] : ['sens', 'rev']; return { key: k, types: Q.single ? pool : [pool[Math.floor(Math.random() * pool.length)]] }; })));
+      if (nxt.length > 1 && nxt[0].key === last) nxt.push(nxt.shift());
+      Q.items = nxt; Q.i = 0; Q.round++; it = nxt[0]; if (!it) { furRefresh(); return; }
+    }
     var w = furWord(it.key); if (!w) { Q.i++; furNextQ(); return; }
     var fmt = it.type === 'sens' || it.type === 'ortho' ? 'mcq' : 'input', q = buildQ(w, it.type, fmt);
     q.fkey = it.key; Q.cur = q; Q.ans = null; Q.ok = null; furRefresh();
   }
   function furQuizHTML() {
     var Q = furUI.q, it = Q.items[Q.i];
-    if (!it) {
+    if (!it || !Q.cur) {
       var fg = Q.forged.length;
-      return '<div class="furend"><div class="furart2">' + FUR_ART + '</div><h3>' + (fg ? 'Forgé ! 🔥' : 'Cuisson terminée') + '</h3><p>' + Q.right + ' bonne' + (Q.right > 1 ? 's' : '') + ' réponse' + (Q.right > 1 ? 's' : '') + ' sur ' + Q.items.length + '.' + (fg ? '<br>' + Q.forged.map(function (k) { var w = furWord(k) || { mot: k }; return '<b class="jp">' + esc(w.mot) + '</b>'; }).join(', ') + ' : retenu' + (fg > 1 ? 's' : '') + ' pour de bon ! (+' + fg * 15 + ' pièces)' : '') + '</p><button type="button" class="btn primary" data-furquit="1">Retour au fourneau</button></div>';
+      return '<div class="furend"><div class="furart2">' + FUR_ART + '</div><h3>' + (fg ? 'Forgé ! 🔥' : 'Cuisson terminée') + '</h3><p>' + Q.right + ' bonne' + (Q.right > 1 ? 's' : '') + ' réponse' + (Q.right > 1 ? 's' : '') + ' sur ' + Q.tot + '.' + (fg ? '<br>' + Q.forged.map(function (k) { var w = furWord(k) || { mot: k }; return '<b class="jp">' + esc(w.mot) + '</b>'; }).join(', ') + ' : retenu' + (fg > 1 ? 's' : '') + ' pour de bon ! (+' + fg * 15 + ' pièces)' : '') + '</p><button type="button" class="btn primary" data-furquit="1">Retour au fourneau</button></div>';
     }
-    var q = Q.cur, w = furWord(it.key), h = '<div class="furq"><div class="grp"><small class="muted">Question ' + (Q.i + 1) + '/' + Q.items.length + ' · chaleur ' + (furS()[it.key] ? furS()[it.key].heat : 0) + '/' + FUR_FORGE + '</small></div>';
+    var q = Q.cur, w = furWord(it.key), h = '<div class="furq"><div class="grp"><small class="muted">Série ' + Q.round + ' · question ' + (Q.i + 1) + '/' + Q.items.length + ' · chaleur ' + (furS()[it.key] ? furS()[it.key].heat : FUR_FORGE) + '/' + FUR_FORGE + '</small></div>';
     h += '<p class="prompt" style="text-align:center;margin:8px 0">' + esc(q.prompt) + '</p><div class="furqbig jp' + (String(q.big).length > 4 ? ' sm' : '') + '">' + esc(q.big) + '</div>' + (q.sub ? '<p class="small" style="text-align:center">' + esc(q.sub) + '</p>' : '');
     if (Q.ans === null) {
-      if (q.fmt === 'mcq') h += '<div class="choices furch">' + q.options.map(function (o, i) { return '<button type="button" class="choice" data-furopt="' + i + '"><span class="cn">' + (i + 1) + '</span><span class="ct jp">' + esc(o) + '</span></button>'; }).join('') + '</div>';
+      if (q.fmt === 'mcq') h += '<div class="choices">' + q.options.map(function (o, i) { return '<button type="button" class="choice" data-furopt="' + i + '"><span class="key">' + (i + 1) + '</span><span>' + esc(o) + '</span></button>'; }).join('') + '</div>';
       else h += '<form class="answer" id="furForm" autocomplete="off"><input type="text" id="furAns" class="ansin" placeholder="' + esc(q.ph || '') + '" autocapitalize="none" autocorrect="off" spellcheck="false"><button class="btn primary" type="submit">Valider</button></form><p class="small muted" style="text-align:center">' + esc(q.hint || '') + '</p>';
       h += '<div style="text-align:center;margin-top:10px"><button type="button" class="btn ghost dkb" data-furskip="1">🤷 Je ne sais pas</button></div>';
     } else {
-      h += '<div class="fb ' + (Q.ok ? 'good' : 'bad') + '"><b>' + (Q.ok ? 'Bonne réponse ! Chaleur +1' : 'Raté. Réponse : ' + esc(q.correct) + ' (chaleur −1)') + '</b>' + esc(q.card) + '</div>' +
-        (!Q.ok && w ? '<p class="small muted" style="text-align:center;margin:6px 0">Ouvre la fiche mémo du mot pour le retenir autrement.</p>' : '') + '<div style="text-align:center;margin-top:10px"><button type="button" class="btn primary" data-furnext="1">' + (Q.i + 1 >= Q.items.length ? 'Terminer' : 'Suivant') + '</button></div>';
+      h += '<div class="fb ' + (Q.ok ? 'good' : 'bad') + '"><b>' + (Q.ok ? (Q.forged.indexOf(it.key) >= 0 ? '🔥 Forgé ! Ce mot est retenu.' : 'Bonne réponse ! Chaleur +1') : 'Raté. Réponse : ' + esc(q.correct) + ' (chaleur −1)') + '</b>' + esc(q.card) + '</div>' +
+        (!Q.ok && w ? '<p class="small muted" style="text-align:center;margin:6px 0">Ouvre la fiche mémo du mot pour le retenir autrement.</p>' : '') + '<div style="text-align:center;margin-top:10px"><button type="button" class="btn primary" data-furnext="1">' + 'Suivant' + '</button></div>';
     }
     return h + '<div style="text-align:center;margin-top:12px"><button type="button" class="btn ghost" data-furquit="1">Quitter</button></div></div>';
   }
   function furAnswer(ok) {
-    var Q = furUI.q; if (!Q || Q.ans !== null) return; var q = Q.cur, f = furS()[q.fkey]; Q.ans = true; Q.ok = !!ok;
+    var Q = furUI.q; if (!Q || Q.ans !== null) return; var q = Q.cur, f = furS()[q.fkey]; Q.ans = true; Q.ok = !!ok; Q.tot++;
     if (f) {
       f.heat = ok ? Math.min(FUR_FORGE, f.heat + 1) : Math.max(0, f.heat - 1);
       if (ok) Q.right++; else if (q.w || furWord(q.fkey)) { try { errLog(q.fkey, 'Fourneau'); } catch (e) {} }
@@ -20582,7 +20590,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
     if (e.target.closest('[data-furnew]')) { furAddModal(); return; }
     if ((b = e.target.closest('[data-furopt]'))) { var Q = furUI.q; if (!Q || Q.ans !== null) return; var q = Q.cur; furAnswer(q.options[+b.getAttribute('data-furopt')] === q.correct); return; }
     if (e.target.closest('[data-furskip]')) { furAnswer(false); return; }
-    if (e.target.closest('[data-furnext]')) { var Q2 = furUI.q; if (Q2) { Q2.i++; if (Q2.items[Q2.i]) furNextQ(); else furRefresh(); } return; }
+    if (e.target.closest('[data-furnext]')) { var Q2 = furUI.q; if (Q2) { Q2.i++; Q2.cur = null; furNextQ(); } return; }
     if (e.target.closest('[data-furquit]')) { furUI.q = null; furRefresh(); return; }
     if ((b = e.target.closest('[data-furaud]'))) { var w = furWord(b.getAttribute('data-furaud')); if (w) aidSpeak(w.disp || w.lecture, b.getAttribute('data-slow') ? 0.55 : 0.85); return; }
     if ((b = e.target.closest('[data-furaudtxt]'))) { var ex = exOf(b.getAttribute('data-furaudtxt')); if (ex) aidSpeak(ex.full, 0.8); return; }
