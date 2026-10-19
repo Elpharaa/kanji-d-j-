@@ -16544,54 +16544,33 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     var lite = document.documentElement.classList.contains('lite');
     var t = 0, seed = 5, petals = [], i;
     function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
-    // rubans : hauteur, amplitude, boucle, vitesse, épaisseur, teinte
-    var RB = [
-      { y: 40, a: 14, l: 24, s: 0.9, w: 2.2, c: '255,255,255', k: 2.2 },
-      { y: 66, a: 18, l: 30, s: 0.7, w: 1.7, c: '233,200,255', k: 1.7 },
-      { y: 88, a: 12, l: 20, s: 1.1, w: 2.6, c: '255,196,220', k: 2.6 },
-      { y: 112, a: 16, l: 26, s: 0.8, w: 1.5, c: '255,255,255', k: 2.0 },
-      { y: 54, a: 10, l: 16, s: 1.3, w: 1.2, c: '210,190,255', k: 3.0 },
-      { y: 100, a: 9, l: 14, s: 1.5, w: 1.1, c: '255,225,238', k: 3.2 }
-    ];
-    function pt(r, u) {
-      // trochoïde : une onde avec des boucles qui se déroulent comme une volute de vent
-      var ph = 6.2832 * (u * r.k * 1.9) - t * r.s * 2.2, x = u * (W + 60) - 30 + r.l * 0.22 * Math.sin(ph), y = r.y + r.a * Math.sin(6.2832 * u * 1.3 - t * r.s) * 0.6 + r.l * 0.5 * Math.cos(ph) + 6 * Math.sin(t * 0.6 + r.y);
-      return [x, y];
-    }
-    function ribbon(r) {
-      var n = 110, k, p, q, g = ctx.createLinearGradient(0, 0, W, 0), al = reduce ? 0.55 : 0.62;
-      g.addColorStop(0, 'rgba(' + r.c + ',0)'); g.addColorStop(0.2, 'rgba(' + r.c + ',' + al + ')'); g.addColorStop(0.8, 'rgba(' + r.c + ',' + al + ')'); g.addColorStop(1, 'rgba(' + r.c + ',0)');
-      ctx.strokeStyle = g; ctx.lineCap = 'butt';
-      for (k = 0; k < n; k++) {
-        var u0 = k / n, u1 = (k + 1) / n, taper = Math.sin(3.1416 * ((u0 + u1) / 2 + 0.02 * Math.sin(t * 0.5 + r.y)));
-        p = pt(r, u0); q = pt(r, u1); ctx.lineWidth = Math.max(0.3, r.w * (0.35 + 0.9 * Math.abs(taper))); ctx.beginPath(); ctx.arc(p[0], p[1], ctx.lineWidth / 2, 0, 7); ctx.fillStyle = 'rgba(' + r.c + ',0)';
-        ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.stroke();
-      }
-    }
-    var COLS = ['#ffc7d9', '#f9a1bd', '#fff0f5', '#ffb3cb', '#f7cbd9', '#ffffff'];
+    // pétales de sakura qui tombent doucement en diagonale, avec profondeur (petits = loin = pâles)
+    var COLS = [['#ffe3ed', '#e9729d'], ['#fff0f5', '#f08cb0'], ['#ffd3e2', '#d9558b'], ['#ffffff', '#f2a0bf']];
     function addPetal(init) {
-      var rb = Math.floor(rnd() * RB.length);
-      petals.push({ rb: rb, u: init ? rnd() : -0.05, sp: 0.045 + rnd() * 0.05, off: (rnd() - 0.5) * 18, offv: rnd() * 6, sz: 1.2 + rnd() * 1.1, rot: rnd() * 6.3, vr: (rnd() - 0.5) * 4, flip: rnd() * 6, col: COLS[Math.floor(rnd() * COLS.length)] });
+      var z = 0.45 + rnd() * 0.55;
+      petals.push({ x0: rnd() * (W + 80) - 10, v: init ? rnd() : -0.05, sp: (0.075 + rnd() * 0.06) * (0.6 + z * 0.5), z: z, amp: 8 + rnd() * 16, f: 0.7 + rnd() * 0.8, ph: rnd() * 6.3, rot: rnd() * 6.3, vr: (rnd() - 0.5) * 1.6, flip: rnd() * 6, col: COLS[Math.floor(rnd() * COLS.length)] });
     }
     function drawPetal(p, x, y, al) {
-      ctx.save(); ctx.globalAlpha = al; ctx.translate(x, y); ctx.rotate(p.rot); ctx.scale(p.sz, p.sz * (0.55 + 0.45 * Math.abs(Math.sin(p.flip))));
-      ctx.fillStyle = p.col; ctx.strokeStyle = 'rgba(190,90,130,.35)'; ctx.lineWidth = 0.5;
-      ctx.beginPath(); ctx.moveTo(0, 2.6); ctx.bezierCurveTo(-4.2, 0.6, -3.6, -3.2, -1.2, -3.6); ctx.lineTo(0, -2); ctx.lineTo(1.2, -3.6); ctx.bezierCurveTo(3.6, -3.2, 4.2, 0.6, 0, 2.6); ctx.fill(); ctx.stroke(); ctx.restore();
+      var sz = 5.2 * p.z + 2.6, g;
+      ctx.save(); ctx.globalAlpha = al; ctx.translate(x, y); ctx.rotate(p.rot); ctx.scale(1, 0.55 + 0.45 * Math.abs(Math.sin(p.flip)));
+      g = ctx.createRadialGradient(-sz * 0.2, -sz * 0.3, 0.2, 0, 0, sz * 1.3); g.addColorStop(0, p.col[0]); g.addColorStop(1, p.col[1]);
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.moveTo(0, sz * 0.9); ctx.bezierCurveTo(-sz * 1.1, sz * 0.2, -sz * 0.95, -sz * 0.95, -sz * 0.32, -sz); ctx.lineTo(0, -sz * 0.55); ctx.lineTo(sz * 0.32, -sz); ctx.bezierCurveTo(sz * 0.95, -sz * 0.95, sz * 1.1, sz * 0.2, 0, sz * 0.9); ctx.fill();
+      ctx.restore();
     }
     function draw() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
-      RB.forEach(ribbon);
-      petals.forEach(function (p) {
-        var q = pt(RB[p.rb], p.u), al = Math.min(1, Math.max(0, Math.sin(3.1416 * Math.min(1, Math.max(0, p.u))) * 3));
-        drawPetal(p, q[0] + p.off * Math.sin(t * 1.3 + p.offv), q[1] + p.off * 0.6 * Math.cos(t * 1.1 + p.offv), Math.min(1, al));
+      petals.slice().sort(function (a, b) { return a.z - b.z; }).forEach(function (p) {
+        var v = p.v, x = p.x0 - v * 90 + p.amp * Math.sin(t * p.f + p.ph), y = -8 + v * (H + 16), al = Math.min(1, Math.max(0, Math.min(v * 6, (1 - v) * 4))) * (0.7 + 0.3 * p.z);
+        drawPetal(p, x, y, al);
       });
     }
     function step(dt) {
       t += dt;
-      for (var k = petals.length - 1; k >= 0; k--) { var p = petals[k]; p.u += p.sp * dt; p.rot += p.vr * dt; p.flip += dt * 3.5; if (p.u > 1.04) petals.splice(k, 1); }
-      var want = lite ? 18 : 34; while (petals.length < want) addPetal(false);
+      for (var k = petals.length - 1; k >= 0; k--) { var p = petals[k]; p.v += p.sp * dt; p.rot += p.vr * dt; p.flip += dt * 1.8; if (p.v > 1.02) petals.splice(k, 1); }
+      var want = lite ? 8 : 15; while (petals.length < want) addPetal(false);
     }
-    for (i = 0; i < (lite ? 18 : 34); i++) addPetal(true);
+    for (i = 0; i < (lite ? 8 : 15); i++) addPetal(true);
     t = 2; draw();
     if (reduce) return { draw: draw, step: step };
     var last = 0;
