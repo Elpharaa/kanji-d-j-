@@ -4061,8 +4061,13 @@ body .seg button[aria-selected="true"], body .seg.gsegbar button[aria-selected="
 
 /* ambiance de combat */
 #fightFx { position: fixed; inset: 0; pointer-events: none; z-index: 30; overflow: hidden; }
-#fightFx .ffv { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 45%, transparent 48%, rgba(120,10,40,.38) 80%, rgba(30,0,20,.72) 100%); animation: ffbeat 2.4s ease-in-out infinite; }
-#fightFx .ffl { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(40,6,40,.34), rgba(110,10,40,.3)); mix-blend-mode: multiply; }
+#fightFx .ffv { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 42%, transparent 62%, rgba(8,2,16,.5) 100%); }
+#fightFx .ffl { position: absolute; width: 60%; height: 30%; bottom: -20%; border-radius: 50%; background: radial-gradient(closest-side, rgba(10,4,20,.6), rgba(10,4,20,0)); filter: blur(14px); animation: ffsmoke 7s ease-in-out infinite; }
+#fightFx .ffl.l1 { left: -26%; } #fightFx .ffl.l2 { right: -26%; animation-delay: -3s; } #fightFx .ffl.l3 { left: 15%; width: 70%; height: 20%; bottom: -16%; animation-delay: -5s; }
+#fightFx .ffl.t1 { top: -16%; bottom: auto; left: -20%; height: 30%; animation-delay: -2s; } #fightFx .ffl.t2 { top: -16%; bottom: auto; right: -20%; left: auto; height: 30%; animation-delay: -4s; }
+#fightFx .ffp { position: absolute; top: -20px; width: 12px; height: 15px; border-radius: 80% 0 80% 0; background: linear-gradient(135deg, #ffc2d4, #e8588a); opacity: 0; box-shadow: 0 0 6px rgba(255,150,190,.6); animation: ffpetal 8s linear infinite; }
+@keyframes ffsmoke { 0%,100% { transform: translateY(0) scale(1); opacity: .8; } 50% { transform: translateY(-5%) scale(1.12); opacity: 1; } }
+@keyframes ffpetal { 0% { transform: translate(0,-10px) rotate(0); opacity: 0; } 10% { opacity: .9; } 100% { transform: translate(var(--dx), 105vh) rotate(540deg); opacity: .2; } }
 #fightFx .ffe { position: absolute; bottom: -12px; width: var(--sz); height: var(--sz); border-radius: 50%; background: radial-gradient(circle, #ffe9a8, #ff7a3d 60%, transparent 72%); box-shadow: 0 0 6px 2px rgba(255,120,60,.7); opacity: 0; animation: ffrise 6s linear infinite; }
 #fightFx.flash::before { content: ""; position: absolute; inset: 0; background: #fff; animation: ffflash .5s ease-out forwards; }
 @keyframes ffbeat { 0%,100% { opacity: .85; } 50% { opacity: 1; } }
@@ -4073,14 +4078,14 @@ body .seg button[aria-selected="true"], body .seg.gsegbar button[aria-selected="
 body.infight { background-color: #1d0f26; }
 body.infight #vSession .sbar, body.infight #vSession .mini { filter: drop-shadow(0 0 6px rgba(255,70,90,.35)); }
 body.infight #arena { border-color: #e0305a !important; box-shadow: 0 0 0 2px #7a1a3e, 0 0 26px rgba(224,48,90,.65), 0 10px 26px rgba(0,0,0,.5) !important; }
-body.infight #arena .arshade { background: linear-gradient(180deg, rgba(60,0,30,.28), rgba(120,0,40,.38)) !important; }
-body.infight #arena .bossart { filter: drop-shadow(0 0 12px rgba(255,60,80,.8)); }
+body.infight #arena .arshade { background: linear-gradient(180deg, rgba(10,4,20,.3), rgba(10,4,20,.45)) !important; }
+body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) drop-shadow(0 0 6px rgba(255,90,60,.7)); }
 #fightBanner { position: fixed; left: 0; right: 0; top: 34%; z-index: 80; display: grid; justify-items: center; gap: 4px; padding: 16px 10px; pointer-events: none; background: linear-gradient(90deg, transparent, rgba(30,0,20,.88) 18%, rgba(30,0,20,.88) 82%, transparent); border-top: 2px solid #f0b97a; border-bottom: 2px solid #f0b97a; animation: fbin 1.9s cubic-bezier(.2,.9,.3,1) forwards; }
 #fightBanner .fbk { font-family: var(--font-brush); font-size: clamp(1.8rem, 8vw, 3.2rem); color: #ffe9a8; letter-spacing: .08em; text-shadow: 0 0 14px #e0305a, 0 3px 0 #7a1a3e; }
 #fightBanner.big .fbk { color: #ff9db9; font-size: clamp(2.1rem, 9.5vw, 3.8rem); }
 #fightBanner .fbs { color: #fffaf0; font-weight: 700; letter-spacing: .12em; font-size: .95rem; }
 @keyframes fbin { 0% { opacity: 0; transform: scaleY(.1) scaleX(1.3); } 14% { opacity: 1; transform: scaleY(1) scaleX(1); } 78% { opacity: 1; } 100% { opacity: 0; transform: scaleX(.92); } }
-@media (prefers-reduced-motion: reduce) { #fightFx .ffe, #fightFx .ffv { animation: none; } #fightFx .ffe { display: none; } #fightFx.flash::before, .fshake { animation: none; } #fightBanner { animation: fbfade 1.9s forwards; } @keyframes fbfade { 0%,80% { opacity: 1; } 100% { opacity: 0; } } }
+@media (prefers-reduced-motion: reduce) { #fightFx .ffe, #fightFx .ffl, #fightFx .ffp { animation: none; } #fightFx .ffe, #fightFx .ffp { display: none; } #fightFx.flash::before, .fshake { animation: none; } #fightBanner { animation: fbfade 1.9s forwards; } @keyframes fbfade { 0%,80% { opacity: 1; } 100% { opacity: 0; } } }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -4384,18 +4389,6 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 12px rgba(255,60,80,.8));
     <details class="acc setacc"><summary><span class="aico" aria-hidden="true">戸</span>Compte et progression</summary><div class="accbody">
       <p>Connecté en tant que <b id="acctName"></b>.</p>
       <button class="btn" id="btnLogout" type="button">Se déconnecter</button>
-      <div id="dcBox" hidden>
-        <hr class="sethr">
-        <p><b>Lier mon Discord</b> <span class="small muted">(facultatif)</span></p>
-        <div id="dcOff">
-          <p class="small muted">Sur le serveur Discord, tape <b>/lier</b> : le bot te donne un code à 6 caractères. Colle-le ici. Les XP gagnées dans les quiz Discord arriveront sur ton compte.</p>
-          <div class="row" style="gap:8px;flex-wrap:wrap"><input type="text" id="dcCode" maxlength="6" placeholder="CODE" autocapitalize="characters" autocomplete="off" spellcheck="false" style="width:9em;text-transform:uppercase;letter-spacing:.15em"><button class="btn" id="dcLink" type="button">Lier</button></div>
-        </div>
-        <div id="dcOn" hidden>
-          <p class="small">Lié au compte Discord <b id="dcName"></b>.</p>
-          <button class="btn" id="dcUnlink" type="button">Détacher</button>
-        </div>
-      </div>
       <hr class="sethr">
       <p class="small muted">Réinitialiser efface l'XP, le niveau, les badges et les mots maîtrisés de ce compte.</p>
       <div id="resetIdle"><button class="btn bad" id="btnReset" type="button">Réinitialiser ma progression</button></div>
@@ -10929,8 +10922,6 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 12px rgba(255,60,80,.8));
         });
       },
       signOut: function () { return sb.auth.signOut(); },
-      rpc: function (name, args) { return sb.rpc(name, args || {}).then(function (r) { if (r.error) throw r.error; return r.data; }); },
-      discordLink: function () { return sb.from('discord_links').select('discord_name').maybeSingle().then(function (r) { if (r.error) throw r.error; return r.data; }); },
       assetsLoad: function () { return sb.from('site_assets').select('id,data').then(function (r) { if (r.error) throw r.error; return r.data || []; }); },
       assetSave: function (id, data, uid) { return sb.from('site_assets').upsert({ id: id, data: data, updated_at: new Date().toISOString(), updated_by: uid || null }).then(function (r) { if (r.error) throw r.error; }); },
       assetDelete: function (id) { return sb.from('site_assets').delete().eq('id', id).then(function (r) { if (r.error) throw r.error; }); },
@@ -12690,7 +12681,8 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 12px rgba(255,60,80,.8));
     if (!on) { if (el) el.remove(); return; }
     if (el) return;
     el = document.createElement('div'); el.id = 'fightFx'; el.setAttribute('aria-hidden', 'true');
-    var h = '<i class="ffv"></i><i class="ffl"></i>';
+    var h = '<i class="ffv"></i><i class="ffl l1"></i><i class="ffl l2"></i><i class="ffl l3"></i><i class="ffl t1"></i><i class="ffl t2"></i>';
+    for (var p = 0; p < 12; p++) h += '<i class="ffp" style="left:' + (p * 8.5 + 2) + '%;animation-delay:' + (-(p * 1.37) % 8).toFixed(2) + 's;animation-duration:' + (7 + (p * 3) % 5) + 's;--dx:' + (((p * 53) % 90) - 45) + 'px;transform:scale(' + (0.7 + (p % 4) * 0.2) + ')"></i>';
     for (var i = 0; i < 16; i++) h += '<i class="ffe" style="left:' + (3 + i * 6.1) + '%;animation-delay:' + (-(i * 0.83) % 7).toFixed(2) + 's;animation-duration:' + (5 + (i * 7) % 5) + 's;--sz:' + (3 + (i * 5) % 5) + 'px;--dx:' + (((i * 37) % 60) - 30) + 'px"></i>';
     el.innerHTML = h; document.body.appendChild(el);
   }
@@ -15523,7 +15515,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 12px rgba(255,60,80,.8));
   function publicStats(s) {
     var m = 0; WORDS.forEach(function (w) { var t = s.stats && s.stats[w.key]; if (t && t.run >= MASTER_RUN) m++; });
     var chs = 0; CHAPTERS.forEach(function (c) { if (s.story && s.story[c.id] && s.story[c.id].boss) chs++; });
-    return { b: Object.keys(s.badges || {}), m: m, w: s.bossWins || 0, c: s.correct || 0, s: s.best || 0, dj: (s.dj && s.dj.best) || 0, fr: cosmOf(s).frame, ti: cosmOf(s).title, nf: cosmOf(s).fx, sk: (s.streak && s.streak.last && strNum(strDay()) - strNum(s.streak.last) <= 1 ? s.streak.n : 0) || 0, ch: chs, k: s.kills || 0, bs: Object.keys(baseVisible(s.shop)).filter(function (x) { return x.indexOf('__') !== 0; }), pv: pavLvOf(s.shop), kt: katOfShop(s.shop), bn: bnPub(s), lx: s.lastEx || null, hx: vxPub(s), fm: s.fam || null, fq: s.famOut ? s.famOut.id : null, ft: s.famOut ? s.famOut.t : null, fok: (s.famOk || []).slice(-12), fno: (s.famNo || []).slice(-12), bp: bpPub(s), cf: (typeof cardFavOf === 'function' ? cardFavOf(s) : []), cc: (s.cards && s.cards.owned ? CARDS.filter(function (c) { return s.cards.owned[c[0]]; }).length : 0) };
+    return { b: Object.keys(s.badges || {}), m: m, w: s.bossWins || 0, c: s.correct || 0, s: s.best || 0, dj: (s.dj && s.dj.best) || 0, fr: cosmOf(s).frame, ti: cosmOf(s).title, nf: cosmOf(s).fx, sk: (s.streak && s.streak.last && strNum(strDay()) - strNum(s.streak.last) <= 1 ? s.streak.n : 0) || 0, ch: chs, k: s.kills || 0, bs: Object.keys(baseVisible(s.shop)).filter(function (x) { return x.indexOf('__') !== 0; }), pv: pavLvOf(s.shop), kt: katOfShop(s.shop), bn: bnPub(s), lx: s.lastEx || null, hx: vxPub(s), fm: s.fam || null, fq: s.famOut ? s.famOut.id : null, ft: s.famOut ? s.famOut.t : null, fok: (s.famOk || []).slice(-12), fno: (s.famNo || []).slice(-12), bp: bpPub(s), cf: (typeof cardFavOf === 'function' ? cardFavOf(s) : []) };
   }
   // Joueurs « démo » (mode local) : un profil plausible calculé à partir de leur XP
   function demoStats(xp) {
@@ -21630,14 +21622,14 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 12px rgba(255,60,80,.8));
       dirty = !loadedFromCache;
       return flush();
     }).then(function () {
-      startLive(); startPresence(); if (typeof dcStart === 'function') dcStart();
+      startLive(); startPresence();
       go('hub'); if (typeof tourMaybe === 'function') setTimeout(tourMaybe, 600); if (typeof famStart === 'function') famStart();
     });
   }
   function logout() {
     var done = flush().then(function () { return backend.signOut(); }).catch(function () {});
     if (unsubLive) { unsubLive(); unsubLive = null; }
-    stopPresence(); if (typeof dcStop === 'function') dcStop();
+    stopPresence();
     cleanupSession(); user = null; S = freshState(); dirty = false;
     $('authUser').value = ''; $('authPass').value = '';
     setAuthMode('login'); show('vAuth');
@@ -22199,48 +22191,6 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 12px rgba(255,60,80,.8));
     id = b.getAttribute('data-admindel');
     backend.assetDelete(id).then(function () { delete ASSETS[id]; assetsStore(); assetsAt = 0; adminRefresh(); toast('Image retirée : le dessin d\'origine revient.'); }).catch(function (er) { toast('Échec : ' + ((er && er.message) || er)); });
   }, true);
-
-  /* =====================================================================
-     DISCORD : liaison du compte et XP gagnées dans les quiz du bot (Réglages > Compte et progression)
-     ===================================================================== */
-  var dcTimer = null, dcBusy = false;
-  function dcClaim() {
-    if (!user || !backend.rpc || dcBusy) return;
-    dcBusy = true;
-    backend.rpc('claim_discord_rewards').then(function (rows) {
-      var r = (rows && rows[0]) || { xp: 0, coins: 0 };
-      if (r.coins > 0) { S.coins = coinsOf() + r.coins; S.coinsTotal = (S.coinsTotal || 0) + r.coins; }
-      if (r.xp > 0) addXp(r.xp); else if (r.coins > 0) persist();
-      if (r.xp > 0 || r.coins > 0) { toast('🎁 Discord : +' + r.xp + ' XP' + (r.coins ? ' et +' + r.coins + ' pièces' : '')); flush(); }
-    }).catch(function () {}).then(function () { dcBusy = false; });
-  }
-  function dcRender() {
-    var box = $('dcBox'); if (!box) return;
-    if (!user || !backend.discordLink) { box.hidden = true; return; }
-    backend.discordLink().then(function (l) {
-      box.hidden = false;
-      $('dcOn').hidden = !l; $('dcOff').hidden = !!l;
-      if (l) $('dcName').textContent = l.discord_name || '?';
-    }).catch(function () { box.hidden = true; });
-  }
-  function dcStart() {
-    dcStop(); dcRender(); dcClaim();
-    dcTimer = setInterval(dcClaim, 120000);
-  }
-  function dcStop() { if (dcTimer) { clearInterval(dcTimer); dcTimer = null; } }
-  document.addEventListener('visibilitychange', function () { if (!document.hidden) dcClaim(); });
-  if ($('dcLink')) $('dcLink').onclick = function () {
-    var c = ($('dcCode').value || '').trim().toUpperCase();
-    if (c.length !== 6) { toast('Le code fait 6 caractères (tape /lier sur Discord).'); return; }
-    $('dcLink').disabled = true;
-    backend.rpc('link_discord', { p_code: c }).then(function (name) {
-      $('dcCode').value = ''; toast('🔗 Compte Discord lié : ' + (name || 'OK')); dcRender(); dcClaim();
-    }).catch(function (e) { toast(/invalide|expir/i.test((e && e.message) || '') ? 'Code invalide ou expiré : refais /lier sur Discord.' : 'Échec de la liaison, réessaie.'); })
-      .then(function () { $('dcLink').disabled = false; });
-  };
-  if ($('dcUnlink')) $('dcUnlink').onclick = function () {
-    backend.rpc('unlink_discord').then(function () { toast('Compte Discord détaché.'); dcRender(); }).catch(function () { toast('Échec, réessaie.'); });
-  };
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
