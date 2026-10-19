@@ -4148,6 +4148,25 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
 @media (prefers-reduced-motion: reduce) { .olsp { animation: none; } .olbar i { transition: none; } }
 
 .hubcard.olwide { grid-column: 1 / -1 !important; }
+
+/* salons : tuiles par mini-jeu */
+.mptiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 10px; }
+.mptile { position: relative; display: grid; gap: 4px; justify-items: start; text-align: left; padding: 12px 12px 10px; border: 3px solid #7c1c3f; border-radius: 16px; background: linear-gradient(180deg, #fffaf0, #f7e6ef); color: #2c2452; box-shadow: 0 5px 0 #7c1c3f, 0 10px 18px rgba(94,16,45,.25); min-height: 150px; transition: transform .16s ease; }
+.mptile:active { transform: translateY(3px) scale(.98); box-shadow: 0 2px 0 #7c1c3f; }
+.mptile .mpg { font-family: var(--font-brush); font-size: 2.4rem; line-height: 1; color: #c1245a; }
+.mptile b { font-size: 1rem; line-height: 1.15; } .mptile small { color: #5b4a86; font-size: .74rem; line-height: 1.25; } .mptile em { font-style: normal; font-size: .72rem; font-weight: 800; color: #4b3d84; background: #ece3fa; border-radius: 99px; padding: 2px 8px; margin-top: auto; }
+@media (min-width: 768px) { .mptiles { grid-template-columns: repeat(4, 1fr); } }
+
+.olbn { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+.hasbn { position: relative; overflow: hidden; }
+.olcl.hasbn > *:not(.olbn), .olrank li.hasbn > *:not(.olbn), .olhead.hasbn > .olhin { position: relative; z-index: 1; }
+.olcl.hasbn::after, .olrank li.hasbn::after, .olhead.hasbn::after { content: ""; position: absolute; inset: 0; z-index: 0; background: linear-gradient(90deg, rgba(255,250,240,.94) 0, rgba(255,250,240,.86) 55%, rgba(255,250,240,.35)); }
+.olhead.hasbn { min-height: 86px; align-items: center; } .olhead .olhin { display: flex; align-items: center; gap: 10px; width: 100%; }
+.olbnlab { font-weight: 700; margin-bottom: -4px; }
+.olbnpick { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.olbnopt { position: relative; height: 62px; border: 3px solid #b9a8dc; border-radius: 12px; overflow: hidden; padding: 0; background: #fff; }
+.olbnopt .olbn { position: absolute; inset: 0; } .olbnopt span { position: absolute; left: 0; right: 0; bottom: 0; background: rgba(30,20,60,.72); color: #fff; font-size: .72rem; font-weight: 800; padding: 2px 0; }
+.olbnopt.on { border-color: #c1245a; box-shadow: 0 0 0 3px #f0b97a; }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -12410,9 +12429,9 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
       var key = t.getAttribute('data-tab'), cur;
       if (key === 'base') cur = view === 'vStory' && storyTab === 'base';
       else if (key === 'story') cur = view === 'vStory' && storyTab !== 'base';
-      else if (key === 'home') cur = view === 'vHome' || view === 'vMulti';
+      else if (key === 'home') cur = view === 'vHome';
       else if (key === 'profil') cur = view === 'vProfil' || view === 'vBoard' || view === 'vSettings';
-      else if (key === 'hub') cur = view === 'vHub' || view === 'vKanji';
+      else if (key === 'hub') cur = view === 'vHub' || view === 'vKanji' || view === 'vOnline' || view === 'vMulti';
       else cur = TABS[key] === view;
       t.setAttribute('aria-current', cur ? 'page' : 'false');
     });
@@ -12815,6 +12834,23 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
      ===================================================================== */
   var OL_BOSS = [['岐', 'Orochi aux huit têtes'], ['尾', 'Renard aux neuf queues'], ['鵺', 'Nue, la chimère'], ['雪', 'Yuki-onna, dame des neiges'], ['閻', 'Roi des enfers'], ['蛸', 'Kraken d\'encre']];
   var OL_EMBLEMS = ['桜', '竜', '虎', '鶴', '月', '星', '炎', '氷', '風', '雷', '花', '刀', '盾', '鬼', '狐', '波'];
+  // Bannières de clan : 10 motifs originaux (SVG), choisis à la création ou plus tard par le chef
+  var OL_BANNERS = [['b0', 'Crépuscule'], ['b1', 'Sakura'], ['b2', 'Vagues'], ['b3', 'Montagnes'], ['b4', 'Foudre'], ['b5', 'Nuit étoilée'], ['b6', 'Bambous'], ['b7', 'Flammes'], ['b8', 'Neige'], ['b9', 'Torii']];
+  var OL_BN_SVG = {
+    b0: '<defs><linearGradient id="c0" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c2452"/><stop offset=".6" stop-color="#b0507a"/><stop offset="1" stop-color="#f6b27a"/></linearGradient></defs><rect width="320" height="100" fill="url(#c0)"/><circle cx="240" cy="62" r="26" fill="#ffe9a8"/><path d="M0 100V78Q80 58 160 78T320 74V100z" fill="#2c2452"/>',
+    b1: '<rect width="320" height="100" fill="#f7c6d6"/><g fill="#e9709a" opacity=".85"><ellipse cx="40" cy="30" rx="9" ry="6" transform="rotate(30 40 30)"/><ellipse cx="120" cy="64" rx="9" ry="6" transform="rotate(-25 120 64)"/><ellipse cx="200" cy="24" rx="9" ry="6" transform="rotate(50 200 24)"/><ellipse cx="270" cy="70" rx="9" ry="6" transform="rotate(10 270 70)"/><ellipse cx="300" cy="20" rx="7" ry="5"/><ellipse cx="80" cy="84" rx="7" ry="5"/></g><path d="M0 100Q60 70 120 90T240 80T320 92V100z" fill="#c1245a" opacity=".5"/>',
+    b2: '<rect width="320" height="100" fill="#1f5f9a"/><g fill="none" stroke="#bfe6ff" stroke-width="3" opacity=".8"><path d="M-10 30Q20 10 50 30T110 30T170 30T230 30T290 30T350 30"/><path d="M-10 52Q20 32 50 52T110 52T170 52T230 52T290 52T350 52"/><path d="M-10 74Q20 54 50 74T110 74T170 74T230 74T290 74T350 74"/></g>',
+    b3: '<defs><linearGradient id="c3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a9ad0"/><stop offset="1" stop-color="#e8e0f4"/></linearGradient></defs><rect width="320" height="100" fill="url(#c3)"/><path d="M0 100L50 40L90 72L150 20L210 78L260 44L320 90V100z" fill="#4b3d84"/><path d="M150 20L132 40L150 36L164 44z" fill="#fff"/>',
+    b4: '<rect width="320" height="100" fill="#1b1534"/><path d="M200 0L170 46H198L160 100L240 38H210L236 0z" fill="#ffd45a"/><path d="M60 0L40 34H58L34 70L90 28H70L88 0z" fill="#ffd45a" opacity=".6"/>',
+    b5: '<rect width="320" height="100" fill="#14143a"/><g fill="#fff6d0"><circle cx="30" cy="20" r="2"/><circle cx="90" cy="60" r="1.6"/><circle cx="140" cy="26" r="2.4"/><circle cx="210" cy="70" r="1.8"/><circle cx="260" cy="30" r="2.2"/><circle cx="300" cy="80" r="1.6"/><circle cx="60" cy="84" r="1.4"/></g><circle cx="270" cy="30" r="14" fill="#fff3b0"/><circle cx="276" cy="27" r="12" fill="#14143a"/>',
+    b6: '<rect width="320" height="100" fill="#dff0c8"/><g fill="#4b8a3a"><rect x="20" y="0" width="8" height="100"/><rect x="70" y="0" width="10" height="100"/><rect x="130" y="0" width="8" height="100"/><rect x="200" y="0" width="10" height="100"/><rect x="260" y="0" width="8" height="100"/></g><g fill="#2f6a2a"><rect x="16" y="30" width="16" height="4"/><rect x="66" y="60" width="18" height="4"/><rect x="126" y="24" width="16" height="4"/><rect x="196" y="52" width="18" height="4"/><rect x="256" y="70" width="16" height="4"/></g>',
+    b7: '<defs><linearGradient id="c7" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#e0301a"/><stop offset="1" stop-color="#2c1020"/></linearGradient></defs><rect width="320" height="100" fill="url(#c7)"/><g fill="#ffb347"><path d="M40 100Q20 60 46 40Q44 70 64 60Q70 80 56 100z"/><path d="M150 100Q128 50 160 24Q156 62 182 54Q190 80 172 100z"/><path d="M260 100Q244 66 266 48Q266 72 282 66Q288 84 276 100z"/></g>',
+    b8: '<rect width="320" height="100" fill="#cfe4f6"/><g fill="#fff"><circle cx="30" cy="20" r="4"/><circle cx="80" cy="60" r="5"/><circle cx="130" cy="30" r="3"/><circle cx="190" cy="74" r="5"/><circle cx="240" cy="26" r="4"/><circle cx="296" cy="64" r="4"/><circle cx="160" cy="88" r="3"/></g><path d="M0 100Q80 80 160 92T320 86V100z" fill="#fff"/>',
+    b9: '<defs><linearGradient id="c9" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a3f86"/><stop offset="1" stop-color="#f4a07a"/></linearGradient></defs><rect width="320" height="100" fill="url(#c9)"/><g fill="#c1245a"><rect x="120" y="34" width="8" height="66"/><rect x="192" y="34" width="8" height="66"/><path d="M104 32Q160 22 216 32L212 42H108z"/><rect x="124" y="50" width="72" height="6"/></g>'
+  };
+  function olBanner(id) { return '<svg class="olbn" viewBox="0 0 320 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' + (OL_BN_SVG[id] || OL_BN_SVG.b0) + '</svg>'; }
+  function olBnName(id) { var f = OL_BANNERS.filter(function (b) { return b[0] === id; })[0]; return f ? f[1] : ''; }
+  function olBnPicker(cur) { return '<div class="olbnpick" role="radiogroup" aria-label="Bannière du clan">' + OL_BANNERS.map(function (b) { return '<button type="button" class="olbnopt' + (b[0] === cur ? ' on' : '') + '" role="radio" aria-checked="' + (b[0] === cur) + '" data-ol="bnpick" data-b="' + b[0] + '" title="' + esc(b[1]) + '">' + olBanner(b[0]) + '<span>' + esc(b[1]) + '</span></button>'; }).join('') + '</div>'; }
   var ol = { tab: 'raid', st: null, list: null, board: null, busy: false, at: 0, timer: null, msg: '' };
   var coopQ = { c: 0, w: 0, t: null, sending: false };
   // Hors connexion (version démo) : un faux serveur en mémoire, pour voir et essayer toute l'interface
@@ -12822,22 +12858,23 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   function olDemoInit() {
     if (olDemo) return olDemo;
     olDemo = { clan: null, raid: { boss: new Date().getDate() % 6, hp_max: 3000, dmg: 1240, mine: 0, claimed: false, players: 7, top: [{ name: 'Aicha', dmg: 410 }, { name: 'Léo', dmg: 360 }, { name: 'Mei', dmg: 300 }] },
-      clans: [{ id: 'd1', name: 'Les Cerisiers', tag: 'SAKU', emblem: '桜', color: '#d0587f', motto: 'Fleurir ensemble', n: 6, words: 240, pts: 1500 }, { id: 'd2', name: 'Ronin du Dojo', tag: 'RONI', emblem: '刀', color: '#2c2452', motto: '', n: 9, words: 410, pts: 2600 }, { id: 'd3', name: 'Carpes Dorées', tag: 'KOI', emblem: '鯉', color: '#e0902b', motto: 'Toujours plus haut', n: 4, words: 90, pts: 640 }] };
+      clans: [{ id: 'd1', banner: 'b1', name: 'Les Cerisiers', tag: 'SAKU', emblem: '桜', color: '#d0587f', motto: 'Fleurir ensemble', n: 6, words: 240, pts: 1500 }, { id: 'd2', banner: 'b4', name: 'Ronin du Dojo', tag: 'RONI', emblem: '刀', color: '#2c2452', motto: '', n: 9, words: 410, pts: 2600 }, { id: 'd3', banner: 'b2', name: 'Carpes Dorées', tag: 'KOI', emblem: '鯉', color: '#e0902b', motto: 'Toujours plus haut', n: 4, words: 90, pts: 640 }] };
     return olDemo;
   }
   function olDemoCall(name, a) {
     var d = olDemoInit(), me = user ? user.name : 'Moi', r = d.raid;
     if (name === 'coop_state') {
       var c = d.clan, st = { week: '', day: '', clan: null, raid: { id: 'demo', boss: r.boss, hp_max: r.hp_max, dmg: r.dmg, mine: r.mine, claimed: r.claimed, players: r.players + (r.mine ? 1 : 0), top: r.mine ? r.top.concat([{ name: me, dmg: r.mine }]).sort(function (x, y) { return y.dmg - x.dmg; }).slice(0, 5) : r.top, ends: new Date().setHours(24, 0, 0, 0) } };
-      if (c) st.clan = { id: c.id, name: c.name, tag: c.tag, emblem: c.emblem, color: c.color, motto: c.motto, role: 'chef', n: c.n, min: 5, goal: c.n * 100, words: c.words, boss_max: c.n * 500, boss_dmg: c.bossDmg, goal_claimed: !!c.gc, boss_claimed: !!c.bc,
+      if (c) st.clan = { id: c.id, banner: c.banner, name: c.name, tag: c.tag, emblem: c.emblem, color: c.color, motto: c.motto, role: 'chef', n: c.n, min: 5, goal: c.n * 100, words: c.words, boss_max: c.n * 500, boss_dmg: c.bossDmg, goal_claimed: !!c.gc, boss_claimed: !!c.bc,
         members: [{ id: user ? user.id : 'me', name: me, role: 'chef', words: c.myWords, correct: c.myCorrect }, { id: 'm2', name: 'Aicha', role: 'membre', words: 80, correct: 160 }, { id: 'm3', name: 'Léo', role: 'membre', words: 55, correct: 120 }, { id: 'm4', name: 'Mei', role: 'membre', words: 40, correct: 90 }, { id: 'm5', name: 'Hugo', role: 'membre', words: 25, correct: 60 }] };
       return st;
     }
     if (name === 'clan_list') return d.clans.filter(function (x) { return x.n < 15; });
-    if (name === 'clan_board') return d.clans.map(function (x) { return { id: x.id, name: x.name, tag: x.tag, emblem: x.emblem, color: x.color, n: x.n, words: x.words, pts: x.pts }; }).concat(d.clan ? [{ id: d.clan.id, name: d.clan.name, tag: d.clan.tag, emblem: d.clan.emblem, color: d.clan.color, n: d.clan.n, words: d.clan.words, pts: d.clan.words * 5 + d.clan.myCorrect }] : []).sort(function (x, y) { return y.pts - x.pts; });
-    if (name === 'clan_create') { if (!a.p_name || a.p_name.length < 3) return { ok: false, err: 'Nom : 3 à 20 caractères.' }; if (!a.p_tag || a.p_tag.length < 2) return { ok: false, err: 'Tag : 2 à 4 caractères.' }; d.clan = { id: 'mine', name: a.p_name, tag: String(a.p_tag).toUpperCase(), emblem: a.p_emblem, color: a.p_color, motto: a.p_motto, n: 5, words: 480, myWords: 120, myCorrect: 150, bossDmg: 2400 }; return { ok: true }; }
-    if (name === 'clan_join') { var x = d.clans.filter(function (z) { return z.id === a.p_clan; })[0]; if (!x) return { ok: false, err: 'Clan introuvable.' }; d.clan = { id: x.id, name: x.name, tag: x.tag, emblem: x.emblem, color: x.color, motto: x.motto, n: x.n + 1, words: x.words, myWords: 0, myCorrect: 0, bossDmg: 600 }; return { ok: true }; }
+    if (name === 'clan_board') return d.clans.map(function (x) { return { id: x.id, banner: x.banner, name: x.name, tag: x.tag, emblem: x.emblem, color: x.color, n: x.n, words: x.words, pts: x.pts }; }).concat(d.clan ? [{ id: d.clan.id, banner: d.clan.banner, name: d.clan.name, tag: d.clan.tag, emblem: d.clan.emblem, color: d.clan.color, n: d.clan.n, words: d.clan.words, pts: d.clan.words * 5 + d.clan.myCorrect }] : []).sort(function (x, y) { return y.pts - x.pts; });
+    if (name === 'clan_create') { if (!a.p_name || a.p_name.length < 3) return { ok: false, err: 'Nom : 3 à 20 caractères.' }; if (!a.p_tag || a.p_tag.length < 2) return { ok: false, err: 'Tag : 2 à 4 caractères.' }; d.clan = { id: 'mine', banner: a.p_banner, name: a.p_name, tag: String(a.p_tag).toUpperCase(), emblem: a.p_emblem, color: a.p_color, motto: a.p_motto, n: 5, words: 480, myWords: 120, myCorrect: 150, bossDmg: 2400 }; return { ok: true }; }
+    if (name === 'clan_join') { var x = d.clans.filter(function (z) { return z.id === a.p_clan; })[0]; if (!x) return { ok: false, err: 'Clan introuvable.' }; d.clan = { id: x.id, banner: x.banner, name: x.name, tag: x.tag, emblem: x.emblem, color: x.color, motto: x.motto, n: x.n + 1, words: x.words, myWords: 0, myCorrect: 0, bossDmg: 600 }; return { ok: true }; }
     if (name === 'clan_leave') { d.clan = null; return { ok: true }; }
+    if (name === 'clan_edit') { if (d.clan) { d.clan.emblem = a.p_emblem; d.clan.color = a.p_color; d.clan.motto = a.p_motto; d.clan.banner = a.p_banner; } return { ok: true }; }
     if (name === 'clan_claim') { if (a.p_kind === 'goal') d.clan.gc = 1; else d.clan.bc = 1; return { ok: true, coins: a.p_kind === 'goal' ? 150 : 250 }; }
     if (name === 'raid_claim') { r.claimed = true; return { ok: true, coins: 120 + Math.min(180, Math.floor(r.mine / 4)) }; }
     return { ok: true };
@@ -12902,12 +12939,12 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
       var h = '<div class="olnone"><p>Tu n\'as pas encore de clan. Un clan, c\'est 5 à 15 élèves qui visent un objectif commun chaque semaine : mots maîtrisés, boss de clan et coffre partagé.</p><button class="btn primary" type="button" data-ol="newclan">＋ Créer mon clan</button></div>';
       h += '<h4 class="olh">Clans qui recrutent</h4>';
       h += (ol.list && ol.list.length) ? '<div class="olclans">' + ol.list.map(function (x) {
-        return '<div class="olcl" style="--cc:' + esc(x.color) + '"><span class="olem">' + esc(x.emblem) + '</span><div><b>' + esc(x.name) + ' <small>[' + esc(x.tag) + ']</small></b><small>' + x.n + '/15 membres' + (x.motto ? ' · ' + esc(x.motto) : '') + '</small></div><button class="btn" type="button" data-ol="join" data-id="' + esc(x.id) + '">Rejoindre</button></div>';
+        return '<div class="olcl hasbn" style="--cc:' + esc(x.color) + '">' + olBanner(x.banner || 'b0') + '<span class="olem">' + esc(x.emblem) + '</span><div><b>' + esc(x.name) + ' <small>[' + esc(x.tag) + ']</small></b><small>' + x.n + '/15 membres' + (x.motto ? ' · ' + esc(x.motto) : '') + '</small></div><button class="btn" type="button" data-ol="join" data-id="' + esc(x.id) + '">Rejoindre</button></div>';
       }).join('') + '</div>' : '<p class="small muted">Aucun clan pour l\'instant : crée le premier !</p>';
       return h;
     }
     var ok = c.n >= c.min, me = user.id;
-    var h2 = '<div class="olhead" style="--cc:' + esc(c.color) + '"><span class="olem big">' + esc(c.emblem) + '</span><div><b>' + esc(c.name) + ' <small>[' + esc(c.tag) + ']</small></b><small>' + c.n + '/15 membres' + (c.motto ? ' · ' + esc(c.motto) : '') + '</small></div></div>';
+    var h2 = '<div class="olhead hasbn" style="--cc:' + esc(c.color) + '">' + olBanner(c.banner || 'b0') + '<div class="olhin"><span class="olem big">' + esc(c.emblem) + '</span><div><b>' + esc(c.name) + ' <small>[' + esc(c.tag) + ']</small></b><small>' + c.n + '/15 membres' + (c.motto ? ' · ' + esc(c.motto) : '') + '</small></div></div></div>' + (c.role === 'chef' ? '<button class="btn ghost" type="button" data-ol="editclan">✎ Modifier le clan</button>' : '');
     if (!ok) h2 += '<p class="olwarn">Il faut au moins ' + c.min + ' membres pour ouvrir les coffres (' + c.n + ' pour l\'instant). Invite tes amis !</p>';
     h2 += '<div class="olgoal"><h4 class="olh">🎯 Objectif de la semaine · mots maîtrisés</h4>' + olBar(Math.min(c.words, c.goal), c.goal, 'goal') +
       (c.words >= c.goal ? (c.goal_claimed ? '<p class="olok">✔ Coffre récupéré</p>' : '<button class="btn primary" type="button" data-ol="claim" data-k="goal"' + (ok ? '' : ' disabled') + '>🎁 Ouvrir le coffre du clan</button>') : '<p class="small muted">Un mot est maîtrisé après 3 bonnes réponses d\'affilée.</p>') + '</div>';
@@ -12923,7 +12960,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     var b = ol.board || [], mine = ol.st && ol.st.clan ? ol.st.clan.id : '';
     if (!b.length) return '<p class="small muted">Aucun clan classé pour le moment.</p>';
     return '<p class="small muted">Points de la semaine : 5 par mot maîtrisé + 1 par bonne réponse.</p><ol class="olrank">' + b.map(function (x, i) {
-      return '<li class="' + (x.id === mine ? 'me' : '') + '" style="--cc:' + esc(x.color) + '"><span class="olpos">' + (i + 1) + '</span><span class="olem">' + esc(x.emblem) + '</span><div><b>' + esc(x.name) + ' <small>[' + esc(x.tag) + ']</small></b><small>' + x.n + ' membre' + (x.n > 1 ? 's' : '') + ' · ' + x.words + ' mots</small></div><em>' + x.pts + ' pts</em></li>';
+      return '<li class="hasbn ' + (x.id === mine ? 'me' : '') + '" style="--cc:' + esc(x.color) + '">' + olBanner(x.banner || 'b0') + '<span class="olpos">' + (i + 1) + '</span><span class="olem">' + esc(x.emblem) + '</span><div><b>' + esc(x.name) + ' <small>[' + esc(x.tag) + ']</small></b><small>' + x.n + ' membre' + (x.n > 1 ? 's' : '') + ' · ' + x.words + ' mots</small></div><em>' + x.pts + ' pts</em></li>';
     }).join('') + '</ol>';
   }
   function olRender() {
@@ -12939,8 +12976,13 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     host.innerHTML = h + '</div>';
   }
   function olGrant(n, txt) { S.coins = coinsOf() + n; S.coinsTotal = (S.coinsTotal || 0) + n; persist(); renderBars(); toast(txt + ' +' + n + ' pièces'); if (typeof confetti === 'function') confetti(); }
-  function olNewClanModal() {
-    openModal('Créer mon clan', '<div class="olform"><label>Nom du clan (3 à 20 caractères)<input id="olName" maxlength="20" autocomplete="off"></label><label>Tag (2 à 4 lettres)<input id="olTag" maxlength="4" autocomplete="off"></label><label>Emblème<select id="olEmb">' + OL_EMBLEMS.map(function (e) { return '<option>' + e + '</option>'; }).join('') + '</select></label><label>Couleur<input id="olCol" type="color" value="#d0587f"></label><label>Devise (facultatif)<input id="olMot" maxlength="60" autocomplete="off"></label><p class="olwarn" id="olFormErr" hidden></p><button class="btn primary" type="button" data-ol="create">Fonder le clan</button></div>');
+  var olForm = { banner: 'b0', edit: false };
+  function olNewClanModal(edit) {
+    var c = edit && ol.st && ol.st.clan ? ol.st.clan : null;
+    olForm = { banner: (c && c.banner) || 'b0', edit: !!c };
+    openModal(c ? 'Modifier le clan' : 'Créer mon clan', '<div class="olform">' + (c ? '' : '<label>Nom du clan (3 à 20 caractères)<input id="olName" maxlength="20" autocomplete="off"></label><label>Tag (2 à 4 lettres)<input id="olTag" maxlength="4" autocomplete="off"></label>') +
+      '<label>Emblème<select id="olEmb">' + OL_EMBLEMS.map(function (e) { return '<option' + (c && c.emblem === e ? ' selected' : '') + '>' + e + '</option>'; }).join('') + '</select></label><label>Couleur<input id="olCol" type="color" value="' + (c ? esc(c.color) : '#d0587f') + '"></label>' +
+      '<div class="olbnlab">Bannière du clan</div><div id="olBnHost">' + olBnPicker(olForm.banner) + '</div><label>Devise (facultatif)<input id="olMot" maxlength="60" autocomplete="off" value="' + (c && c.motto ? esc(c.motto) : '') + '"></label><p class="olwarn" id="olFormErr" hidden></p><button class="btn primary" type="button" data-ol="' + (c ? 'saveclan' : 'create') + '">' + (c ? 'Enregistrer' : 'Fonder le clan') + '</button></div>');
   }
   function olAct(b) {
     var a = b.getAttribute('data-ol');
@@ -12948,14 +12990,24 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     if (a === 'reload') { ol.err = ''; olLoad(); return; }
     if (a === 'play') { coopFlush(); startGame(b.getAttribute('data-g')); return; }
     if (a === 'newclan') { olNewClanModal(); return; }
+    if (a === 'editclan') { olNewClanModal(true); return; }
+    if (a === 'bnpick') { olForm.banner = b.getAttribute('data-b'); $('olBnHost').innerHTML = olBnPicker(olForm.banner); return; }
     var done = function (r, okMsg) { if (r && r.ok === false) { toast(r.err || 'Action impossible'); return; } if (okMsg) toast(okMsg); ol.list = null; olLoad(); };
     var fail = function (e) { toast('Erreur : ' + ((e && e.message) || e)); };
     if (a === 'create') {
       var err = $('olFormErr');
-      olRpc('clan_create', { p_name: $('olName').value, p_tag: $('olTag').value, p_emblem: $('olEmb').value, p_color: $('olCol').value, p_motto: $('olMot').value }).then(function (r) {
-        if (r && r.ok === false) { err.textContent = r.err; err.hidden = false; return; }
-        closeModal(); ol.tab = 'clan'; toast('Clan créé !'); olLoad();
-      }, function (e) { err.textContent = (e && e.message) || 'Erreur'; err.hidden = false; });
+      var args = { p_name: $('olName').value, p_tag: $('olTag').value, p_emblem: $('olEmb').value, p_color: $('olCol').value, p_motto: $('olMot').value, p_banner: olForm.banner };
+      var okc = function (r) { if (r && r.ok === false) { err.textContent = r.err; err.hidden = false; return; } closeModal(); ol.tab = 'clan'; toast('Clan créé !'); olLoad(); };
+      olRpc('clan_create', args).then(okc, function (e) {
+        // base pas encore mise à jour avec les bannières : on crée quand même le clan, sans bannière
+        if (/clan_create|schema cache|Could not find/i.test((e && e.message) || '')) { delete args.p_banner; olRpc('clan_create', args).then(okc, function (e2) { err.textContent = (e2 && e2.message) || 'Erreur'; err.hidden = false; }); return; }
+        err.textContent = (e && e.message) || 'Erreur'; err.hidden = false;
+      });
+    } else if (a === 'saveclan') {
+      var er2 = $('olFormErr');
+      olRpc('clan_edit', { p_emblem: $('olEmb').value, p_color: $('olCol').value, p_motto: $('olMot').value, p_banner: olForm.banner }).then(function (r) {
+        if (r && r.ok === false) { er2.textContent = r.err; er2.hidden = false; return; } closeModal(); toast('Clan mis à jour'); olLoad();
+      }, function (e) { er2.textContent = /clan_edit|schema cache|Could not find/i.test((e && e.message) || '') ? 'La base doit être mise à jour (clans_raid_v2.sql).' : ((e && e.message) || 'Erreur'); er2.hidden = false; });
     } else if (a === 'join') olRpc('clan_join', { p_clan: b.getAttribute('data-id') }).then(function (r) { done(r, 'Bienvenue dans le clan !'); }, fail);
     else if (a === 'leave') { if (confirm('Quitter ton clan ?')) olRpc('clan_leave').then(function (r) { done(r, 'Tu as quitté le clan.'); }, fail); }
     else if (a === 'kick') { if (confirm('Exclure ce membre ?')) olRpc('clan_kick', { p_user: b.getAttribute('data-id') }).then(function (r) { done(r); }, fail); }
@@ -17247,7 +17299,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     var off = !netOn();
     var html = off ? '<div class="panel mpoff"><p class="small" style="margin:0">📴 <b>Hors ligne</b> : tu peux jouer contre les bots. Crée un salon, puis ajoute des bots. Les salons ouverts et les amis reviennent dès que la connexion est rétablie.</p></div>' : '';
     html +=
-      '<div class="panel"><h3 class="sgh sm" data-k="創"><span>Créer un salon</span></h3>' + modeSelect('mpModeSel', 'duel') + '<details class="acc mpprogacc" id="mpProgAcc"' + (mpProgOpen ? ' open' : '') + '><summary><span class="aico" aria-hidden="true">課</span>Programme : ' + esc(progShort(progClean(mpMenuProg))) + '</summary><div class="accbody">' + progPicker('menu', progClean(mpMenuProg)) + '</div></details><button type="button" class="btn primary mpfull" id="mpCreate">Créer le salon</button></div>' +
+      '<div class="panel"><h3 class="sgh sm" data-k="創"><span>Choisis un mini-jeu</span></h3><p class="small muted" style="margin:0 0 8px">Touche une tuile : le salon est créé, tu reçois le code et tu peux inviter tes amis.</p>' + mpTilesHTML() + '<details class="acc mpprogacc" id="mpProgAcc"' + (mpProgOpen ? ' open' : '') + '><summary><span class="aico" aria-hidden="true">課</span>Programme : ' + esc(progShort(progClean(mpMenuProg))) + '</summary><div class="accbody">' + progPicker('menu', progClean(mpMenuProg)) + '</div></details></div>' +
       '<div class="panel"><h3 class="sgh sm" data-k="入"><span>Rejoindre avec un code</span></h3><form class="mpjoin" id="mpJoinForm" autocomplete="off"><input id="mpCode" maxlength="4" placeholder="CODE" aria-label="Code du salon" autocapitalize="characters" spellcheck="false"><button class="btn primary" type="submit">Rejoindre</button></form></div>' +
       '<div class="panel"><h3 class="sgh sm" data-k="場"><span>Salons ouverts</span></h3><div id="mpRooms">' + (rooms.length ? rooms.map(function (x) {
         return '<div class="mproom"><span class="hseal sm">' + MPM[x.room.mode].g + '</span><span class="oinfo"><b>' + esc(MPM[x.room.mode].name) + '</b><small>Hôte : ' + esc(x.room.host) + ' · ' + x.room.n + '/' + x.room.max + ' joueurs' + (x.room.prog ? ' · ' + esc(x.room.prog) : '') + (x.room.bet ? ' · mise ' + (+x.room.bet || 0) + ' 🪙' : '') + '</small></span><button type="button" class="btn" data-mpjoin="' + esc(x.room.code) + '">Rejoindre</button></div>';
@@ -17332,6 +17384,11 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     if (f && f.getAttribute && f.getAttribute('data-mppsel')) progSet(f.getAttribute('data-mppfx'), f.getAttribute('data-mppsel'), f.value);
   });
 
+  function mpTilesHTML() {
+    return '<div class="mptiles">' + MP_ORDER.map(function (k) {
+      return '<button type="button" class="mptile" data-mpnew="' + k + '"><span class="mpg" aria-hidden="true">' + MPM[k].g + '</span><b>' + esc(MPM[k].name) + '</b><small>' + esc(MPM[k].desc) + '</small><em>' + (MPM[k].min === MPM[k].max ? MPM[k].min + ' joueurs' : MPM[k].min + ' à ' + MPM[k].max + ' joueurs') + '</em></button>';
+    }).join('') + '</div>';
+  }
   function modeSelect(id, cur) {
     return '<label class="mplabel" for="' + id + '">Mode de jeu</label><select class="mpselect" id="' + id + '">' + MP_ORDER.map(function (k) {
       return '<option value="' + k + '"' + (k === cur ? ' selected' : '') + '>' + MPM[k].g + ' · ' + MPM[k].name + '</option>';
@@ -17458,7 +17515,8 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
       var to = b.getAttribute('data-invto'), md = $('invModeSel').value;
       closeModal(); createRoom(md); setTimeout(function () { sendInvite(to); }, 400); return;
     }
-    if (t.closest('#mpCreate')) { createRoom($('mpModeSel').value); return; }
+    var nt = t.closest('[data-mpnew]'); if (nt) { createRoom(nt.getAttribute('data-mpnew')); return; }
+    if (t.closest('#mpCreate')) { createRoom($('mpModeSel') ? $('mpModeSel').value : 'duel'); return; }
     if ((b = t.closest('[data-mpjoin]'))) { joinRoom(b.getAttribute('data-mpjoin')); return; }
     if (t.closest('[data-mpleave]')) { leaveRoom(); return; }
     if ((b = t.closest('[data-mpteam]'))) { if (mp) mp.ch.send('team', { id: user.id, team: +b.getAttribute('data-mpteam') }); return; }
@@ -21533,6 +21591,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   function djStart(floor, hp, pool) {
     arcS(); if (!weekWords('all').length) { toast('Pas encore de mots dans ce niveau.'); return; }
     floor = floor || 1; pool = pool || djPool(); hp = hp === undefined ? HERO_PV : hp;
+    S.dj.run = { floor: floor, hp: hp }; persist();   // la descente est sauvegardée : on peut la reprendre tant qu'on n'est pas tombé
     var boss = floor % 5 === 0, E = djEnemies(), en = boss ? E.bosses[Math.floor(Math.random() * E.bosses.length)] : E.mobs[Math.floor(Math.random() * E.mobs.length)];
     var enemy = { name: en.name, g: en.g, base: en.base, line: boss ? 'Un gardien des profondeurs te barre la route : étage ' + floor + '.' : 'Étage ' + floor + ' : ' + en.line };
     startFight(DJCH, boss ? 3 : 0, boss ? STAGE_N - 1 : 0, { dj: true, floor: floor, enemy: enemy, hp: boss ? djBossHp(floor) : 30 + 6 * floor, heroHp: hp, pool: pool });
@@ -21575,7 +21634,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   function djWin() {
     var d = sess.dj, floor = d.floor, heal = djHeal(floor, sess.isBoss), hp = Math.min(HERO_PV, sess.hp + heal), pool = d.pool;
     var gain = katGain(3 + floor); S.coins = coinsOf() + gain; S.coinsTotal = (S.coinsTotal || 0) + gain; addXp(2 + Math.floor(floor / 2)); 
-    var a = S.dj; if (floor > a.best) a.best = floor; persist();
+    var a = S.dj; if (floor > a.best) a.best = floor; a.run = { floor: floor + 1, hp: hp }; persist();
     var pal = djClaim(floor), nextF = floor + 5 - (floor % 5), nr = djReward(nextF);
     showResult(towerHTML(floor) + '<h3>Étage ' + floor + ' franchi !</h3><p>+' + gain + ' pièces' + katTag() + ' · PV rendus : +' + heal + ' (' + hp + '/' + HERO_PV + ') · record : étage ' + a.best + '</p>' +
       (pal ? '<p class="djprize"><b>🏆 Palier ' + floor + ' atteint !</b><br>' + esc(pal) + '</p>' : '<p class="small muted">Prochain palier : étage ' + nextF + ' (' + esc(djRewardTxt(nr)) + ')</p>') +
@@ -21583,7 +21642,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
       [{ label: 'Étage ' + (floor + 1), cls: 'primary', fn: function () { djStart(floor + 1, hp, pool); } }, { label: 'M\'arrêter ici', fn: function () { cleanupSession(); go('story'); } }]);
   }
   function djLose() {
-    var d = sess.dj, floor = d.floor, a = S.dj; a.runs = (a.runs || 0) + 1; if (floor - 1 > a.best) a.best = floor - 1; persist();
+    var d = sess.dj, floor = d.floor, a = S.dj; a.runs = (a.runs || 0) + 1; if (floor - 1 > a.best) a.best = floor - 1; a.run = null; persist();
     showResult(towerHTML(Math.max(1, floor - 1), true) + '<h3>Tombé à l\'étage ' + floor + '</h3><p>Tu as franchi ' + (floor - 1) + ' étage' + (floor > 2 ? 's' : '') + '. Record : étage ' + a.best + '.</p>',
       [{ label: 'Nouvelle descente', cls: 'primary', fn: function () { djStart(1); } }, { label: 'Retour à la carte', fn: function () { cleanupSession(); go('story'); } }]);
   }
@@ -21643,9 +21702,10 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     else if (w === 'dungeon') {
       djCatchup();
       var a2 = arcS(), bst = a2.best || (S.dj && S.dj.best) || 0;
-      openModal('La Tour infinie', '<div class="gintro"><div class="gimasc">' + mascotHTML() + '<b>Asahi</b></div><div class="gibub"><p>Voici la Tour infinie : un étage après l\'autre, avec tes mots à revoir et ceux que tu as ratés.</p><p>Tu as ' + HERO_PV + ' PV et tu en récupères à chaque étage (+3 après un monstre, +6 après un gardien). Un gardien t\'attend tous les 5 étages, avec une récompense à la clé :</p>' + djPalierHTML() + '<p class="gitip">💡 Plus tu montes, plus c\'est dur : à chaque palier de 5 étages, le chrono raccourcit, les erreurs coûtent plus cher, les soins baissent et les saisies au clavier se multiplient.</p><p class="small muted gibest">' + (S.dj.best ? 'Record : étage ' + S.dj.best + ' · ' + (S.dj.runs || 0) + ' descente' + ((S.dj.runs || 0) > 1 ? 's' : '') + ' tentée' + ((S.dj.runs || 0) > 1 ? 's' : '') : 'Aucun étage franchi pour l\'instant.') + '</p></div></div><div class="row" style="margin-top:12px"><button type="button" class="btn primary" data-arc="djgo">Monter !</button><button type="button" class="btn" data-mclose>Plus tard</button></div>', 'gimodal');
+      openModal('La Tour infinie', '<div class="gintro"><div class="gimasc">' + mascotHTML() + '<b>Asahi</b></div><div class="gibub"><p>Voici la Tour infinie : un étage après l\'autre, avec tes mots à revoir et ceux que tu as ratés.</p><p>Tu as ' + HERO_PV + ' PV et tu en récupères à chaque étage (+3 après un monstre, +6 après un gardien). Un gardien t\'attend tous les 5 étages, avec une récompense à la clé :</p>' + djPalierHTML() + '<p class="gitip">💡 Plus tu montes, plus c\'est dur : à chaque palier de 5 étages, le chrono raccourcit, les erreurs coûtent plus cher, les soins baissent et les saisies au clavier se multiplient.</p><p class="small muted gibest">' + (S.dj.best ? 'Record : étage ' + S.dj.best + ' · ' + (S.dj.runs || 0) + ' descente' + ((S.dj.runs || 0) > 1 ? 's' : '') + ' tentée' + ((S.dj.runs || 0) > 1 ? 's' : '') : 'Aucun étage franchi pour l\'instant.') + '</p></div></div><div class="row" style="margin-top:12px">' + (S.dj.run && S.dj.run.floor > 1 ? '<button type="button" class="btn primary" data-arc="djresume">Reprendre : étage ' + S.dj.run.floor + ' (' + S.dj.run.hp + '/' + HERO_PV + ' PV)</button><button type="button" class="btn" data-arc="djgo">Recommencer à l\'étage 1</button>' : '<button type="button" class="btn primary" data-arc="djgo">Monter !</button>') + '<button type="button" class="btn" data-mclose>Plus tard</button></div>', 'gimodal');
     }
-    else if (w === 'djgo') { closeModal(); djStart(1); }
+    else if (w === 'djgo') { closeModal(); S.dj.run = null; djStart(1); }
+    else if (w === 'djresume') { closeModal(); var rn = S.dj.run || { floor: 1 }; djStart(rn.floor, Math.max(1, Math.min(HERO_PV, rn.hp || HERO_PV))); }
     else if (w === 'secret') { closeModal(); var c = secretCh(+t.getAttribute('data-wk')); startFight(c, 3, STAGE_N - 1); }
     else if (w === 'replay') { var wk = +t.getAttribute('data-wk'), e2 = ARC_END[wk]; arcDialog(e2.ttl, e2.lines, null, 'Fermer', null); }
   });
