@@ -4245,6 +4245,10 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
 .knqcard .prompt { margin: 0 0 2px; color: #4b3d84; font-weight: 700; }
 .knqcard .knqk { margin: 0; color: #2c2452; background: none; border: 0; box-shadow: none; text-shadow: 0 1px 0 rgba(255,250,240,.8); }
 .errfurbtn { width: 100%; margin: 0 0 8px; border-color: #f0b97a; background: linear-gradient(#fff1cf,#ffe0a8); color: #6b3a14; font-weight: 800; } .errfurnote { margin: 0 0 8px; }
+#petalFx { position: fixed; inset: 0; pointer-events: none; z-index: 99999; overflow: hidden; }
+#petalFx i { position: absolute; border-radius: 80% 0 80% 0; opacity: 0; transform: translate(-50%,-50%); animation: petalPop 1.25s cubic-bezier(.2,.7,.3,1) forwards; box-shadow: inset -1px -1px 0 rgba(120,20,60,.25); }
+@keyframes petalPop { 0% { opacity: 0; transform: translate(-50%,-50%) scale(.4) rotate(0); } 15% { opacity: .95; } 60% { opacity: .9; } 100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy) + 90px)) scale(1) rotate(var(--rot)); } }
+@media (prefers-reduced-motion: reduce) { #petalFx { display: none; } }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -12174,7 +12178,24 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   var sfxOn = true, actx = null;
   try { sfxOn = localStorage.getItem('kd.sfx') !== '0'; } catch (e) {}
   function setSfx(on) { sfxOn = !!on; try { localStorage.setItem('kd.sfx', on ? '1' : '0'); } catch (e) {} }
+  var lastPt = { x: 0, y: 0 };
+  document.addEventListener('pointerdown', function (e) { lastPt = { x: e.clientX, y: e.clientY }; }, true);
+  var petalAt = 0;
+  function petalBurst() {
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var n0 = Date.now(); if (n0 - petalAt < 350) return; petalAt = n0;
+    var x = lastPt.x || innerWidth / 2, y = lastPt.y || innerHeight * 0.45, host = document.getElementById('petalFx');
+    if (!host) { host = document.createElement('div'); host.id = 'petalFx'; host.setAttribute('aria-hidden', 'true'); document.body.appendChild(host); }
+    var cols = ['#e9a5b6', '#d0587f', '#f4b8c8', '#c1245a', '#fbd3dd'], i;
+    for (i = 0; i < 14; i++) {
+      var p = document.createElement('i'), a = Math.random() * Math.PI * 2, d = 40 + Math.random() * 90, sz = 8 + Math.random() * 7;
+      p.style.cssText = 'left:' + x + 'px;top:' + y + 'px;width:' + sz + 'px;height:' + (sz * 0.7) + 'px;background:' + cols[i % cols.length] + ';--dx:' + (Math.cos(a) * d).toFixed(0) + 'px;--dy:' + (Math.sin(a) * d * 0.6 - 40).toFixed(0) + 'px;--rot:' + (Math.random() * 540 - 270).toFixed(0) + 'deg;animation-delay:' + (Math.random() * 0.08).toFixed(2) + 's';
+      host.appendChild(p);
+      setTimeout(function (el) { return function () { if (el.parentNode) el.parentNode.removeChild(el); }; }(p), 1500);
+    }
+  }
   function sfx(kind, force) {
+    if (kind === 'ok') { try { petalBurst(); } catch (e) {} }
     if (!sfxOn || (!force && !document.body.classList.contains('vox'))) return;
     try {
       var AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
@@ -20082,7 +20103,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     return '<div class="srsbox' + (n ? ' on' : '') + '"><span class="srsico" aria-hidden="true">復</span><button type="button" class="srstx srsopen" data-errbook="1"><b>📓 Carnet d\'erreurs' + (e ? ' · ' + e : '') + '</b>' +
       '<small>' + (n ? n + ' mot' + (n > 1 ? 's' : '') + ' à revoir maintenant. Touche pour voir tout ce que tu rates.' : (e ? 'Rien à revoir maintenant. Touche pour voir tes erreurs.' : 'Aucune erreur pour l\'instant : bravo !')) + '</small></button>' +
       (n ? '<button type="button" class="btn primary" data-srsgo="1">Réviser ' + Math.min(10, n) + '</button>' : '') + '</div>' +
-      '<div class="toolrow"><button type="button" class="btn" data-tool="traps">Pièges et lectures</button><button type="button" class="btn" data-tool="stats">Mes statistiques</button></div>';
+      '<div class="toolrow"><button type="button" class="btn furgo" data-djsub="fur">🔥 Fourneau' + (furCount() ? ' · ' + furCount() : '') + '</button><button type="button" class="btn" data-tool="traps">Pièges et lectures</button><button type="button" class="btn" data-tool="stats">Mes statistiques</button></div>';
   }
   function renderSrsBox() {
     var g = $('games'); if (!g) return;
@@ -20844,7 +20865,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     rad: { k: '部', t: 'Radicaux', art: '', d: 'Les clés des kanjis, et devine le sens d\'un kanji', tip: 'Les kanjis sont construits avec des briques : les clés (radicaux). Apprends-les, puis devine le sens d\'un kanji grâce à elles !' },
     cuis: { k: '料', t: 'Cuisine japonaise', art: '', d: 'Recettes à lire et à écouter, avec le vocabulaire', tip: 'Choisis une recette : écoute chaque étape, apprends les ingrédients et les verbes de cuisine.' },
     lire: { k: '読', t: 'Karaoké de lecture', art: '', d: 'Un texte se lit à voix haute, mot par mot', tip: 'Lance le texte : chaque mot s\'illumine au moment où il est lu. Touche un mot pour l\'entendre seul, et lis en même temps pour travailler ta prononciation.' },
-    fur: { k: '炉', t: 'Fourneau', art: '', d: '', tip: 'Le fourneau, c\'est pour les mots qui te résistent vraiment. Mets-en jusqu\'à 8, ouvre leur fiche mémo, puis fais-les cuire : à 6 de chaleur, le mot est forgé !' },
+    fur: { k: '炉', t: 'Fourneau', art: '', d: '', tip: 'Le fourneau, c\'est pour les mots qui te résistent vraiment. Mets-en jusqu\'à 8 depuis le carnet d\'erreurs, ouvre leur fiche mémo, puis fais-les cuire : à 6 de chaleur, le mot est forgé !' },
     err: { k: '復', t: 'Carnet d\'erreurs', art: '', d: '', tip: 'Ici, tout ce que tu rates. Revois-le avant qu\'il ne s\'efface de ta mémoire.' }
   };
   function tipSeen(key) { return !!(S && S.tips && S.tips[key]); }
@@ -20871,7 +20892,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     }
     return '<button class="mode gamecard djt" type="button" data-djsub="' + sub + '">' + chip + '<span class="tk" aria-hidden="true">' + i.k + '</span><span class="gtx"><b>' + i.t + '</b><small>' + esc(d) + '</small></span></button>';
   }
-  function djBackHTML(sub) { var oral = sub === 'lire' || sub === 'cuis' || sub === 'nb'; return '<div class="grp djbar"><button type="button" class="btn djback" data-djsub="' + (oral ? 'mini' : '') + '">‹ ' + (oral ? 'Mini-jeux' : 'Dojo') + '</button><h3 class="sgh" data-k="' + DJ_INFO[sub].k + '"><span>' + DJ_INFO[sub].t + '</span></h3></div>'; }
+  function djBackHTML(sub) { var oral = sub === 'lire' || sub === 'cuis' || sub === 'nb', fu = sub === 'fur'; return '<div class="grp djbar"><button type="button" class="btn djback" data-djsub="' + (oral ? 'mini' : fu ? 'err' : '') + '">‹ ' + (oral ? 'Mini-jeux' : fu ? 'Carnet d\'erreurs' : 'Dojo') + '</button><h3 class="sgh" data-k="' + DJ_INFO[sub].k + '"><span>' + DJ_INFO[sub].t + '</span></h3></div>'; }
   var LISTEN_GAMES = [['ecoute', '聴', 'Écoute', 'Entends le mot, retrouve-le parmi 4'], ['dictee', '写', 'Dictée', 'Écris ce que tu entends'], ['petales', '花', 'Pétales', 'Touche le bon pétale avant la rivière']];
   function listenTiles() {
     return LISTEN_GAMES.map(function (g) {
@@ -21236,7 +21257,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     if (F[key]) { if (!quiet) toast('Ce mot est déjà au fourneau'); return false; }
     if (furCount() >= FUR_MAX) { toast('Le fourneau est plein (' + FUR_MAX + ' mots). Forge-en un d\'abord !'); return false; }
     F[key] = { t: Date.now(), heat: 0, mn: '' }; persist(); sfx('coin', true);
-    toast('🔥 « ' + w.mot + ' » est au fourneau (Dojo › Fourneau)');
+    toast('🔥 « ' + w.mot + ' » est au fourneau (Carnet d\'erreurs › Fourneau)');
     furRefresh(); return true;
   }
   function furHeatHTML(h) { var s = ''; for (var i = 0; i < FUR_FORGE; i++) s += '<i class="fh' + (i < h ? ' on' : '') + '"></i>'; return '<span class="furheat" aria-label="Chaleur ' + h + ' sur ' + FUR_FORGE + '">' + s + '</span>'; }
@@ -21543,7 +21564,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   function djGamesHTML(fl, kj, mj) {
     document.body.classList.toggle('qvon', djSub === 'daily' || djSub === 'jlpt');
     if (!djSub) return tipHTML('dojo', 'Voici ton Dojo ! Touche une carte pour t\'entraîner : <b>Flashcards</b> pour revoir tes mots, <b>Kanjis</b>, <b>Mini-jeux</b>, ton <b>Carnet d\'erreurs</b>, ou du <b>vocabulaire du quotidien</b> ou le <b>JLPT</b>.') +
-      '<div class="djgrid">' + ['flash', 'kana', 'kanji', 'mini', 'err', 'fur', 'daily', 'jlpt', 'rad'].map(djTile).join('') + '</div>';
+      '<div class="djgrid">' + ['flash', 'kana', 'kanji', 'mini', 'err', 'daily', 'jlpt', 'rad'].map(djTile).join('') + '</div>';
     if (djSub === 'err') return '';
     if (djSub === 'kana') return djBackHTML('kana') + tipHTML('dj_kana', DJ_INFO.kana.tip) + '<div id="kanaHost">' + knInner() + '</div>';
     if (djSub === 'fur') return djBackHTML('fur') + tipHTML('dj_fur', DJ_INFO.fur.tip) + '<div id="furHost">' + furInner() + '</div>';
@@ -21801,8 +21822,8 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   }
   function errFurCTA(open) {
     var c = errFurCand(open), inF = furCount();
-    if (!c.length) return inF ? '<p class="small muted errfurnote">🔥 ' + inF + ' mot' + (inF > 1 ? 's' : '') + ' au fourneau' + (inF >= FUR_MAX ? ' (plein)' : '') + ' · Dojo › Fourneau</p>' : '';
-    return '<button type="button" class="btn errfurbtn" data-errfurfill="1">🔥 Envoyer mes ' + c.length + ' mot' + (c.length > 1 ? 's' : '') + ' les plus ratés au fourneau</button>';
+    if (!c.length) return !inF ? '<button type="button" class="btn ghost errfurgo" data-errfurgo="1" style="width:100%;margin-bottom:8px">🔥 Ouvrir le fourneau</button>' : '<p class="small muted errfurnote">🔥 ' + inF + ' mot' + (inF > 1 ? 's' : '') + ' au fourneau' + (inF >= FUR_MAX ? ' (plein)' : '') + ' · <button type="button" class="btn ghost" data-errfurgo="1">Ouvrir le fourneau</button></p>';
+    return '<button type="button" class="btn ghost errfurgo" data-errfurgo="1" style="width:100%;margin-bottom:6px">🔥 Ouvrir le fourneau' + (inF ? ' (' + inF + '/' + FUR_MAX + ')' : '') + '</button><button type="button" class="btn errfurbtn" data-errfurfill="1">🔥 Envoyer mes ' + c.length + ' mot' + (c.length > 1 ? 's' : '') + ' les plus ratés au fourneau</button>';
   }
   function errBodyHTML() {
     var all = errList(), open = all.filter(function (x) { return !x.done; }), nd = all.length - open.length;
@@ -21825,11 +21846,13 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   document.addEventListener('click', function (e) {
     var t = e.target.closest ? e.target.closest('[data-errbook]') : null;
     if (t && user) { e.preventDefault(); errOpen(); return; }
+    var fg = e.target.closest ? e.target.closest('[data-errfurgo]') : null;
+    if (fg && user) { e.preventDefault(); closeModal(); go('home'); setTimeout(function () { djSub = 'fur'; renderHome(); window.scrollTo(0, 0); }, 60); return; }
     var ff = e.target.closest ? e.target.closest('[data-errfurfill]') : null;
     if (ff && user) {
       e.preventDefault(); var c = errFurCand(errList().filter(function (x) { return !x.done; })), n = 0;
       c.forEach(function (x) { if (furAdd(x.key, true)) n++; });
-      if (n) toast('🔥 ' + n + ' mot' + (n > 1 ? 's' : '') + ' au fourneau (Dojo › Fourneau)');
+      if (n) toast('🔥 ' + n + ' mot' + (n > 1 ? 's' : '') + ' au fourneau (Carnet d\'erreurs › Fourneau)');
       errRefresh(); return;
     }
     var it = e.target.closest ? e.target.closest('[data-err]') : null;
