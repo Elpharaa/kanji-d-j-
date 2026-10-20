@@ -4252,6 +4252,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
 .qcard .kanji { margin: 2px auto; color: #2c2452; text-shadow: 0 1px 0 rgba(255,250,240,.8); }
 .qcard .sub, .qcard .rom, .qcard .prompt small { color: #4b3d84 !important; margin: 4px 0 0; }
 .qcard .prompt { color: #4b3d84 !important; font-weight: 700; }
+.errg { display: flex; align-items: center; gap: 8px; margin-top: 4px; } .errgb { display: flex; gap: 3px; flex: none; } .errgb i { width: 22px; height: 8px; border-radius: 5px; background: rgba(75,61,132,.2); border: 1px solid rgba(75,61,132,.35); } .errgb i.on { background: linear-gradient(90deg,#d0587f,#f0b97a); border-color: #c1245a; } .errg em { font-style: normal; font-size: .72rem; font-weight: 700; color: #4b3d84; } .errg.done .errgb i { background: #3a8a5a; border-color: #2e7a4c; } .errg.done em { color: #2e7a4c; }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -21809,7 +21810,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     Object.keys(S.err).forEach(function (k) {
       var info = errInfo(k); if (!info) return;
       var st = S.stats[k] || (S.qv && S.qv[k]) || {}, e = S.err[k];
-      out.push({ key: k, info: info, n: e.n, t: e.t, s: e.s, done: (st.run || 0) >= MASTER_RUN });
+      out.push({ key: k, info: info, n: e.n, t: e.t, s: e.s, run: Math.min(MASTER_RUN, st.run || 0), done: (st.run || 0) >= MASTER_RUN });
     });
     return out;
   }
@@ -21820,6 +21821,11 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   }
   var errF = { kind: 'all', sort: 'recent', done: false };
   function errCount() { return errList().filter(function (x) { return !x.done; }).length; }
+  function errGauge(x) {
+    var r = x.done ? MASTER_RUN : x.run, left = MASTER_RUN - r, p = '', i;
+    for (i = 0; i < MASTER_RUN; i++) p += '<i class="' + (i < r ? 'on' : '') + '"></i>';
+    return '<span class="errg' + (x.done ? ' done' : '') + '" role="img" aria-label="' + r + ' sur ' + MASTER_RUN + ' réussites d\'affilée"><span class="errgb">' + p + '</span><em>' + (x.done ? 'Résolu !' : r + '/' + MASTER_RUN + ' · encore ' + left + ' bonne' + (left > 1 ? 's' : '') + ' réponse' + (left > 1 ? 's' : '') + ' d\'affilée') + '</em></span>';
+  }
   function errFurCand(open) {
     var F = furS(), room = FUR_MAX - furCount();
     return room > 0 ? open.filter(function (x) { return x.info.kind === 'mot' && !F[x.key]; }).sort(function (a, b) { return b.n - a.n || b.t - a.t; }).slice(0, room) : [];
@@ -21842,7 +21848,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     if (!list.length) return h + '<p class="muted" style="text-align:center;margin:18px 0">' + (open.length || nd ? 'Rien dans ce filtre.' : 'Aucune erreur pour l\'instant, bravo ! 🎉') + '</p>';
     return h + '<div class="errlist">' + list.slice(0, 120).map(function (x) {
       var i = x.info;
-      return '<button type="button" class="erritem' + (x.done ? ' done' : '') + '" data-err="' + esc(i.kind === 'kanji' ? i.big : i.w.mot) + '" data-ek="' + i.kind + '">' + (i.kind === 'mot' && !(S.fur && S.fur[i.key]) ? '<span class="erfur" role="button" tabindex="0" data-furadd="' + esc(i.key) + '" aria-label="Mettre au fourneau" title="Mettre au fourneau">🔥</span>' : '') + '<span class="errbig' + (i.big.length > 2 ? ' sm' : '') + '">' + esc(i.big) + '</span><span class="errtx"><b>' + esc(i.sens) + '</b><small>' + esc(i.read) + '</small><small class="errmeta">' + (x.done ? '✓ résolu · ' : '') + '× ' + x.n + ' · ' + errAgo(x.t) + (x.s ? ' · ' + esc(x.s) : '') + (i.kind === 'mot' && S.fur && S.fur[i.key] ? ' · 🔥 au fourneau' : '') + '</small></span></button>';
+      return '<button type="button" class="erritem' + (x.done ? ' done' : '') + '" data-err="' + esc(i.kind === 'kanji' ? i.big : i.w.mot) + '" data-ek="' + i.kind + '">' + (i.kind === 'mot' && !(S.fur && S.fur[i.key]) ? '<span class="erfur" role="button" tabindex="0" data-furadd="' + esc(i.key) + '" aria-label="Mettre au fourneau" title="Mettre au fourneau">🔥</span>' : '') + '<span class="errbig' + (i.big.length > 2 ? ' sm' : '') + '">' + esc(i.big) + '</span><span class="errtx"><b>' + esc(i.sens) + '</b><small>' + esc(i.read) + '</small><small class="errmeta">' + (x.done ? '✓ résolu · ' : '') + '× ' + x.n + ' · ' + errAgo(x.t) + (x.s ? ' · ' + esc(x.s) : '') + (i.kind === 'mot' && S.fur && S.fur[i.key] ? ' · 🔥 au fourneau' : '') + '</small>' + errGauge(x) + '</span></button>';
     }).join('') + (list.length > 120 ? '<p class="small muted">' + (list.length - 120) + ' de plus…</p>' : '') + '</div>';
   }
   function errOpen() { openModal('Carnet d\'erreurs', '<div id="errHost">' + errBodyHTML() + '</div>', 'wide errmodal'); }
