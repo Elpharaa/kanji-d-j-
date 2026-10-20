@@ -4258,6 +4258,12 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
 .romtog { font-family: var(--font-jp, inherit); font-weight: 800; font-size: 1rem; } .romtog.on { background: linear-gradient(135deg,#c1245a,#d0587f) !important; color: #fffaf0 !important; }
 .gear.romtog { display: grid; place-items: center; width: auto; height: 30px; padding: 0 10px; border-radius: 15px; font: 800 .72rem/1 inherit; font-family: inherit; cursor: pointer; white-space: nowrap; }
 .gear.romtog:hover { transform: none; } .romtog { font-size: .7rem !important; padding: 0 9px !important; }
+.tab[data-tab="clz"] { --tc: #c1245a; --ti: #f6d58e; --tn: #ffb020; }
+#vClz { display: block; } #vClz[hidden] { display: none; } #clzHost { width: 100%; max-width: 760px; margin: 0 auto; }
+.clzpanel { display: grid; gap: 10px; } .clzgo { width: 100%; } .clzcount small { opacity: .8; }
+.clzcard { padding: 16px 12px 12px; } .clzjp { margin: 8px 0 6px; font-size: 1.35rem; line-height: 2.1; color: #2c2452; text-align: center; font-weight: 600; } .clzjp rt { font-size: .5em; color: #7a4a88; font-weight: 700; }
+.clzblank { display: inline-block; min-width: 3.2em; border-bottom: 3px solid #c1245a; color: transparent; margin: 0 2px; letter-spacing: .1em; } .clzfill { background: linear-gradient(transparent 55%, rgba(240,185,122,.7) 55%); color: #c1245a; font-weight: 800; border-radius: 3px; padding: 0 2px; }
+.clzfr { margin: 4px 0 0; font-size: .92rem; color: #4b3d84; font-style: italic; text-align: center; }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -4302,7 +4308,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     <button class="tab" type="button" data-tab="hub" aria-label="Accueil"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 5.5c4 1.6 15 1.6 19 0"/><path d="M4 9h16"/><path d="M7 5.8V21M17 5.8V21"/><path d="M12 9v3"/></svg><span class="nl">Accueil</span></button>
     <button class="tab" type="button" data-tab="story" aria-label="Aventure"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 3 6.2v14L9 18l6 2.2 6-2.2V4l-6 2.2z"/><path d="M9 4v14M15 6.2v14"/></svg><span class="nl">Aventure</span></button>
     <button class="tab" type="button" data-tab="home" aria-label="Dojo"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4l11 11M20 4 9 15"/><path d="M13 17l3 3M11 17l-3 3M16 20l1.5-1.5M8 20l-1.5-1.5"/></svg><span class="nl">Dojo</span></button>
-    <button class="tab" type="button" data-tab="base" aria-label="Base"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20 12 5l9 15z"/><path d="M9.5 20 12 14.5l2.5 5.5"/></svg><span class="nl">Base</span></button>
+    <button class="tab" type="button" data-tab="clz" aria-label="Phrases à trou"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h6M14 12h6M4 18h16"/><path d="M9 10v4h6v-4"/></svg><span class="nl">Phrases</span></button>
     <button class="tab" type="button" data-tab="profil" aria-label="Profil"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c.6-4 3.6-6.5 7.5-6.5s6.9 2.5 7.5 6.5"/></svg><span class="nl">Profil</span></button>
   <div class="navfall" aria-hidden="true"><svg viewBox="0 0 200 440" preserveAspectRatio="xMidYMax slice"><defs>
 <linearGradient id="nfSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2150" stop-opacity="0"/><stop offset=".12" stop-color="#4a3c8c"/><stop offset=".5" stop-color="#b57fb0"/><stop offset=".72" stop-color="#f4b3b8"/><stop offset="1" stop-color="#ffd9b8"/></linearGradient>
@@ -4537,6 +4543,8 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
 
   <!-- ===== CLASSEMENT ===== -->
   <section id="vMulti" hidden><div class="gseg" data-seg="online"></div><div id="multiBody"></div></section>
+
+  <section id="vClz" hidden><div id="clzHost"></div></section>
 
   <section id="vBoard" hidden>
     <div class="gseg" data-seg="profil"></div>
@@ -12520,7 +12528,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   /* =====================================================================
      9. AFFICHAGE : NAVIGATION ET ACCUEIL
      ===================================================================== */
-  var TABS = { hub: 'vHub', home: 'vHome', story: 'vStory', kanji: 'vKanji', online: 'vOnline', board: 'vBoard', settings: 'vSettings', multi: 'vMulti', profil: 'vProfil' };
+  var TABS = { hub: 'vHub', home: 'vHome', story: 'vStory', kanji: 'vKanji', online: 'vOnline', clz: 'vClz', board: 'vBoard', settings: 'vSettings', multi: 'vMulti', profil: 'vProfil' };
   function setVox(on) { document.body.classList.remove('vox'); }
   // Chaque grande section a sa couleur et son titre, pour toujours savoir où l'on est
   var SECINFO = { hub: ['道', 'Accueil', 'Ta journée au dōjō'], story: ['旅', 'Aventure', 'Chapitres, mobs et boss'], home: ['場', 'Dojo', 'Révisions, mini-jeux et duels'], base: ['村', 'Base', 'Ton camp et le village'], profil: ['証', 'Profil', 'Ton carnet, la Voie du Dōjō et les réglages'] };
@@ -12540,7 +12548,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   }
   function show(view) {
     if (view !== 'vMulti' && typeof mpLeaveOnNav === 'function') mpLeaveOnNav();
-    ['vAuth', 'vHub', 'vHome', 'vStory', 'vKanji', 'vOnline', 'vSession', 'vSettings', 'vBoard', 'vMulti', 'vProfil'].forEach(function (id) { $(id).hidden = (id !== view); });
+    ['vAuth', 'vHub', 'vHome', 'vStory', 'vKanji', 'vOnline', 'vSession', 'vSettings', 'vBoard', 'vMulti', 'vProfil', 'vClz'].forEach(function (id) { $(id).hidden = (id !== view); });
     var inApp = !!user && view !== 'vAuth';
     $('userbox').hidden = !inApp;
     $('nav').hidden = !inApp || view === 'vSession';
@@ -12601,6 +12609,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     else if (tab === 'base') { storyTab = 'base'; baseMode = netOn() ? 'village' : 'camp'; renderStory(); show('vStory'); }
     else if (tab === 'multi') { show('vMulti'); renderMulti(); }
     else if (tab === 'kanji') { renderKanji(); show('vKanji'); }
+    else if (tab === 'clz') { clz.view = 'setup'; renderClz(); show('vClz'); }
     else if (tab === 'online') { if (!olOpen()) return; show('vOnline'); renderOnlineView(); }
     else if (tab === 'settings') renderSettings();
     else { renderHome(); show('vHome'); }
@@ -21586,6 +21595,152 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     else if (a === 'pick') knAnswer(+b.getAttribute('data-i'));
     else if (a === 'skip') knAnswer(-1);
     else if (a === 'nextq') knForward();
+  });
+  /* =====================================================================
+     PHRASES À TROU : une phrase japonaise avec un trou + sa traduction française ; on complète avec le mot de vocabulaire travaillé.
+     Source des mots : la sélection courante (playPool : cours L0/L1/L2 + semaine, ou JLPT / vie quotidienne).
+     Furigana facultatif : lectures trouvées dans le lexique de l'appli (plus long mot d'abord) ; les kanjis inconnus restent sans furigana.
+     ===================================================================== */
+  var clz = { view: 'setup', items: [], i: 0, n: 10, ok: 0, q: null, ans: null, miss: [] };
+  var CLZ_FD = null;
+  function clzFD() {
+    if (CLZ_FD) return CLZ_FD;
+    var d = {};
+    function add(m, r) {
+      if (!m || !r || !/[㐀-鿿]/.test(m)) return; r = toHira(r);
+      if (!d[m]) d[m] = r;
+      if (m.length >= 2 && /[ぁ-ん]$/.test(m) && !/[ぁ-ん]/.test(m.charAt(0))) { var st = m.slice(0, -1), sr = r.slice(0, -1); if (sr && !d[st]) d[st] = sr; }
+      if (/する$/.test(m) && m.length > 2) { var n = m.slice(0, -2), nr = r.slice(0, -2); if (nr && !d[n]) d[n] = nr; }
+    }
+    WORDS.forEach(function (w) { add(w.mot, w.lecture); });
+    Object.keys(QVW).forEach(function (k) { var v = QVW[k]; add(v.jp, v.kana); });
+    Object.keys(KMAP).forEach(function (c) { var k = KMAP[c]; if (k.kun && k.kun.length === 1 && (!k.on || !k.on.length)) { var kr = String(k.kun[0]).replace(/\(.*\)/, '').replace(/[.\-]/g, ''); if (kr && !d[c]) d[c] = toHira(kr); } });
+    return (CLZ_FD = d);
+  }
+  function furiHTML(text, skipFrom, skipTo) {
+    var fd = clzFD(), out = '', i = 0, a = Array.from(String(text));
+    while (i < a.length) {
+      var c = a[i];
+      if (/[㐀-鿿]/.test(c)) {
+        var done = false, len;
+        for (len = Math.min(8, a.length - i); len >= 1 && !done; len--) {
+          var sub = a.slice(i, i + len).join(''), r = fd[sub];
+          if (r) {
+            var sa = Array.from(sub), ra = Array.from(r);
+            while (sa.length > 1 && ra.length > 1 && /[ぁ-ん]/.test(sa[sa.length - 1]) && sa[sa.length - 1] === ra[ra.length - 1]) { sa.pop(); ra.pop(); }
+            var tail = sub.slice(sa.join('').length);
+            out += '<ruby>' + esc(sa.join('')) + '<rt>' + esc(ra.join('')) + '</rt></ruby>' + esc(tail);
+            i += len; done = true;
+          }
+        }
+        if (!done) { out += esc(c); i++; }
+      } else { out += esc(c); i++; }
+    }
+    return out;
+  }
+  function clzSplit(w) {
+    var mot = w.mot, e = exOf(mot); if (!e || !e.full) return null;
+    var full = e.full, at = full.indexOf(mot), len = mot.length;
+    if (at < 0 && /[㐀-鿿]/.test(mot) && mot.length >= 2) {
+      var st = /する$/.test(mot) ? mot.slice(0, -2) : mot.slice(0, -1);
+      if (st.length >= 1 && (/する$/.test(mot) || /[ぁ-ん]$/.test(mot)) && /[㐀-鿿]/.test(st)) { at = full.indexOf(st); len = st.length; }
+    }
+    if (at < 0) return null;
+    return { w: w, pre: full.slice(0, at), hit: full.slice(at, at + len), post: full.slice(at + len), fr: e.fr || '', full: full };
+  }
+  function clzItems() {
+    var out = [], seen = {};
+    playPool().forEach(function (w) { if (seen[w.key]) return; seen[w.key] = 1; var it = clzSplit(w); if (it) out.push(it); });
+    return out;
+  }
+  function clzSetupHTML() {
+    var items = clzItems(), tot = playPool().length, on = !!(S && S.clzFuri), md = S && S.clzMode === 'input' ? 'input' : 'mcq';
+    return '<div class="grp djbar"><h3 class="sgh" data-k="文"><span>Phrases à trou</span></h3></div>' +
+      tipHTML('clz', 'Je te donne une phrase japonaise avec un trou et sa traduction. Complète-la avec le mot de vocabulaire qui convient. Tu peux activer les furigana pour t\'aider à lire.') +
+      '<div class="panel clzpanel"><div id="gsHost">' + scopeBlockHTML() + '</div>' +
+      '<p class="gscount clzcount">' + (items.length ? '<b>' + items.length + ' phrase' + (items.length > 1 ? 's' : '') + '</b> disponible' + (items.length > 1 ? 's' : '') + ' pour cette sélection <small>(sur ' + tot + ' mot' + (tot > 1 ? 's' : '') + ')</small>' : '<b>Aucune phrase</b> pour cette sélection pour l\'instant. Choisis un autre niveau ou une autre semaine.') + '</p>' +
+      '<label class="seenopt"><input type="checkbox" id="clzFuri"' + (on ? ' checked' : '') + '><span>Afficher les <b>furigana</b> <small>(lecture au-dessus des kanjis)</small></span></label>' +
+      '<label class="kindopt">Façon de répondre<select id="clzMode" aria-label="Façon de répondre"><option value="mcq"' + (md === 'mcq' ? ' selected' : '') + '>Choisir parmi 4 mots</option><option value="input"' + (md === 'input' ? ' selected' : '') + '>Écrire le mot au clavier</option></select></label>' +
+      '<button type="button" class="btn primary clzgo" data-clz="start"' + (items.length ? '' : ' disabled') + '>▶ Commencer (' + Math.min(10, items.length) + ' phrases)</button></div>';
+  }
+  function clzSentenceHTML(q, filled) {
+    var f = S && S.clzFuri, it = q.it, mid = filled ? '<mark class="clzfill">' + (f ? furiHTML(it.hit) : esc(it.hit)) + '</mark>' : '<span class="clzblank">＿＿＿</span>';
+    return '<p class="clzjp jp">' + (f ? furiHTML(it.pre) : esc(it.pre)) + mid + (f ? furiHTML(it.post) : esc(it.post)) + '</p>';
+  }
+  function clzDistractors(it) {
+    var w = it.w, pool = clz.all || [], cand = [], seen = {}; seen[w.mot] = 1;
+    shuffle(pool.slice()).forEach(function (x) {
+      if (cand.length >= 3 || seen[x.w.mot]) return; if (it.full.indexOf(x.w.mot) >= 0) return;
+      if (w.mot.length > 1 && x.w.mot.length === 1) return; seen[x.w.mot] = 1; cand.push(x.w);
+    });
+    return cand;
+  }
+  function clzNext() {
+    var it = clz.items[clz.i]; if (!it) return;
+    var opts = shuffle([it.w].concat(clzDistractors(it)));
+    clz.q = { it: it, opts: opts }; clz.ans = null;
+  }
+  function clzQuizHTML() {
+    var q = clz.q, it = q.it, md = S && S.clzMode === 'input' ? 'input' : 'mcq', h = '';
+    h += '<div class="grp djbar"><button type="button" class="btn djback" data-clz="stop">‹ Arrêter</button><h3 class="sgh" data-k="文"><span>Phrases à trou</span></h3></div>';
+    h += '<p class="small muted" style="margin:6px 0 2px;text-align:center">Phrase ' + (clz.i + 1) + ' / ' + clz.items.length + '</p><div class="knqbar"><u style="width:' + Math.round(clz.i / clz.items.length * 100) + '%"></u></div>';
+    h += '<div class="knqcard qcard clzcard"><p class="prompt">Complète la phrase avec le bon mot</p>' + clzSentenceHTML(q, clz.ans !== null) + '<p class="clzfr">' + esc(it.fr) + '</p></div>';
+    if (clz.ans === null) {
+      if (md === 'mcq') {
+        h += '<div class="choices">' + q.opts.map(function (o, i) { return '<button type="button" class="choice" data-clz="pick" data-i="' + i + '"><span class="key">' + (i + 1) + '</span><span class="jp">' + esc(o.mot) + (S && S.clzFuri && /[㐀-鿿]/.test(o.mot) ? ' <small class="muted">' + esc(o.lecture) + '</small>' : '') + '</span></button>'; }).join('') + '</div>';
+      } else {
+        h += '<form class="answer" id="clzForm" autocomplete="off"><label class="prompt" for="clzAns" style="text-align:left">Le mot qui manque (kanji ou kana)</label><input type="text" id="clzAns" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="ex. ' + esc(it.w.lecture) + '"><button class="btn primary" type="submit">Valider</button></form>';
+      }
+      h += '<div class="skiprow"><button class="btn skipq" type="button" data-clz="skip">🤷 Je ne sais pas</button></div>';
+    } else {
+      var ok = clz.ans === 1, w = it.w;
+      h += '<div class="choices">' + (md === 'mcq' ? q.opts.map(function (o, i) { var c = 'choice'; if (o.mot === w.mot) c += ' good'; else if (clz.pick === i) c += ' bad'; return '<button type="button" class="' + c + '" disabled><span class="key">' + (i + 1) + '</span><span class="jp">' + esc(o.mot) + '</span></button>'; }).join('') : '') + '</div>';
+      h += '<div class="fb ' + (ok ? 'good' : 'bad') + '"><b>' + (ok ? 'Bonne réponse !' : 'Raté. Le mot était : ' + esc(w.mot)) + '</b><span class="jp">' + esc(w.mot) + '</span> · ' + esc(w.lecture || '') + ' · ' + esc(w.sens) + '<div class="aids"><button type="button" class="aidbtn" data-clz="say">🔊 Écouter la phrase</button></div>' + (typeof errFbHTML === 'function' ? errFbHTML(w.key) : '') + '</div>';
+      h += '<div style="text-align:center;margin-top:10px"><button type="button" class="btn primary" data-clz="next">' + (clz.i + 1 >= clz.items.length ? 'Voir le résultat' : 'Suivant') + '</button></div>';
+    }
+    return h;
+  }
+  function clzEndHTML() {
+    var tot = clz.items.length, pct = tot ? Math.round(clz.ok / tot * 100) : 0;
+    return '<div class="result"><div class="sprbig win jp" aria-hidden="true">文</div><h3>' + (pct >= 80 ? 'Excellent !' : pct >= 50 ? 'Bien joué !' : 'Continue, ça vient !') + '</h3><p>' + clz.ok + ' bonne' + (clz.ok > 1 ? 's' : '') + ' réponse' + (clz.ok > 1 ? 's' : '') + ' sur ' + tot + '.' +
+      (clz.miss.length ? '<br><small>À revoir : ' + clz.miss.map(function (m) { return '<span class="jp">' + esc(m) + '</span>'; }).join(' · ') + '</small>' : '') + '</p><div class="row"><button type="button" class="btn primary" data-clz="start">Rejouer</button><button type="button" class="btn" data-clz="stop">Changer de sélection</button></div></div>';
+  }
+  function renderClz() {
+    var h = $('clzHost'); if (!h) return;
+    h.innerHTML = clz.view === 'quiz' ? clzQuizHTML() : clz.view === 'end' ? '<div class="grp djbar"><h3 class="sgh" data-k="文"><span>Phrases à trou</span></h3></div>' + clzEndHTML() : clzSetupHTML();
+    var a = $('clzAns'); if (a && clz.view === 'quiz' && clz.ans === null) { try { a.focus({ preventScroll: true }); } catch (e) {} }
+  }
+  function clzAnswer(ok, pickIdx) {
+    var q = clz.q; if (!q || clz.ans !== null) return;
+    clz.ans = ok ? 1 : 0; clz.pick = pickIdx; var w = q.it.w;
+    var st = stat(w.key), before = level();
+    if (ok) { st.ok++; st.run++; clz.ok++; S.correct = (S.correct || 0) + 1; sfx('ok'); var d = dayKey(), x = S.clzxp && S.clzxp.d === d ? S.clzxp : (S.clzxp = { d: d, n: 0 }), g = Math.min(5, 80 - x.n); if (g > 0) { x.n += g; addXp(g); } }
+    else { st.ko++; st.run = 0; errLog(w.key, 'Phrases à trou'); if (clz.miss.indexOf(w.mot) < 0) clz.miss.push(w.mot); sfx('bad'); }
+    try { srsUpdate(w.key, ok); } catch (e) {}
+    persist(); renderClz();
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-clz]') : null; if (!b || !user || !S) return;
+    var a = b.getAttribute('data-clz');
+    if (a === 'start') {
+      var all = clzItems(); if (!all.length) return;
+      clz.all = all; clz.items = shuffle(all.slice()).slice(0, 10); clz.i = 0; clz.ok = 0; clz.miss = []; clz.view = 'quiz'; clzNext(); renderClz(); window.scrollTo(0, 0);
+    } else if (a === 'stop') { clz.view = 'setup'; renderClz(); }
+    else if (a === 'pick') { var i = +b.getAttribute('data-i'); clzAnswer(clz.q.opts[i].mot === clz.q.it.w.mot, i); }
+    else if (a === 'skip') clzAnswer(false, -1);
+    else if (a === 'say') { if (typeof aidSpeak === 'function') aidSpeak(clz.q.it.full, 0.85); }
+    else if (a === 'next') { clz.i++; if (clz.i >= clz.items.length) { clz.view = 'end'; try { streakTick(1); } catch (er) {} persist(); } else clzNext(); renderClz(); window.scrollTo(0, 0); }
+  });
+  document.addEventListener('submit', function (e) {
+    if (!e.target || e.target.id !== 'clzForm') return; e.preventDefault();
+    var v = ($('clzAns').value || ''), w = clz.q.it.w, n = toHira(normJP(v)); if (!n) return;
+    clzAnswer(n === toHira(normJP(w.mot)) || n === toHira(normJP(w.lecture || '')), -1);
+  });
+  document.addEventListener('change', function (e) {
+    var t = e.target; if (!t || !S) return;
+    if (t.id === 'clzFuri') { S.clzFuri = !!t.checked; persist(); }
+    else if (t.id === 'clzMode') { S.clzMode = t.value === 'input' ? 'input' : 'mcq'; persist(); }
+    else if (t.id === 'gsLv' || t.id === 'gsWk') setTimeout(function () { if ($('vClz') && !$('vClz').hidden) renderClz(); }, 0);
   });
   function djGamesHTML(fl, kj, mj) {
     document.body.classList.toggle('qvon', djSub === 'daily' || djSub === 'jlpt');
