@@ -12779,7 +12779,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     }
     if (q.sub) h += '<p class="sub">' + esc(q.sub) + '</p>';
     h = '<div class="knqcard qcard">' + h + '</div>';
-    try { if (S.err && q.key && S.err[q.key]) { var pst = (S.stats && S.stats[q.key]) || (S.qv && S.qv[q.key]) || {}, prun = pst.run || 0; if (prun < MASTER_RUN) h += '<div class="errpre"><small>📓 Dans ton carnet d\'erreurs</small>' + errGauge({ done: false, run: prun }) + '</div>'; } } catch (e) {}
+    try { if (q.key && ((S.err && S.err[q.key]) || (sess && sess.game === 'srs'))) { var pst = (S.stats && S.stats[q.key]) || (S.qv && S.qv[q.key]) || {}, prun = pst.run || 0; if (prun < MASTER_RUN) h += '<div class="errpre"><small>' + (S.err && S.err[q.key] ? '📓 Dans ton carnet d\'erreurs' : '📈 Maîtrise du mot') + '</small>' + errGauge({ done: false, run: prun }) + '</div>'; } } catch (e) {}
     if (q.fmt === 'mcq') {
       h += (q.kind ? '<div class="langrow">' + kindChip(q) + '</div>' : '') + '<div class="choices">' + q.options.map(function (o, i) {
         return '<button class="choice" type="button" data-i="' + i + '"><span class="key">' + (i + 1) + '</span><span>' + esc(o) + (romOn() && kanaOnly(o) && q.type !== 'ortho' ? ' <small class="rom">' + esc(romOf(o)) + '</small>' : '') + '</span></button>';
@@ -21826,9 +21826,10 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   var errF = { kind: 'all', sort: 'recent', done: false };
   function errCount() { return errList().filter(function (x) { return !x.done; }).length; }
   function errFbHTML(key) {
-    if (!S || !key || !S.err || !S.err[key]) return '';
+    var inErr = !!(S && key && S.err && S.err[key]), inSrs = !!(sess && sess.game === 'srs');
+    if (!key || (!inErr && !inSrs)) return '';
     var st = (S.stats && S.stats[key]) || (S.qv && S.qv[key]) || {}, run = st.run || 0, done = run >= MASTER_RUN;
-    return '<div class="errfb"><small>📓 Carnet d\'erreurs</small>' + errGauge({ done: done, run: Math.min(MASTER_RUN, run) }) + (done ? '<b class="errfbok">✔ Corrigé : ce mot sort du carnet !</b>' : '') + '</div>';
+    return '<div class="errfb"><small>' + (inErr ? '📓 Carnet d\'erreurs' : '📈 Maîtrise du mot') + '</small>' + errGauge({ done: done, run: Math.min(MASTER_RUN, run) }) + (done ? '<b class="errfbok">✔ Corrigé : ce mot sort du carnet !</b>' : '') + '</div>';
   }
   function errGauge(x) {
     var r = x.done ? MASTER_RUN : x.run, left = MASTER_RUN - r, p = '', i;
