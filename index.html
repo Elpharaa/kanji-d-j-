@@ -12652,7 +12652,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     trad: { name: 'Du français au japonais', g: '訳', desc: 'Tu vois seulement le sens en français : écris la lecture du mot, sans voir le kanji. Chrono et clavier.', n: 10, qLimit: 30000, types: ['rev'], fmt: 'input', unit: '/10' },
     pairs: { name: 'Paires chrono', g: '組', desc: 'Associe 6 mots à leur sens, sans lecture pour t\'aider. 105 s maximum, 4 s de pénalité par erreur.', unit: 's' },
     exam: { name: 'Examen blanc', g: '試', desc: "20 questions mélangées (sens, lecture, écriture) sur la semaine choisie, 25 s chacune. Une note sur 20 et la liste de tes erreurs.", n: 20, qLimit: 25000, types: ['sens', 'lecture', 'ortho', 'sens', 'lecture'], fmtMap: { sens: 'mcq', lecture: 'input', ortho: 'mcq' }, exam: true, unit: '/20' },
-    srs: { name: 'À revoir aujourd\'hui', g: '復', desc: 'Les mots dont la révision est due : lecture au clavier ou QCM sur le sens.', n: 10, qLimit: 30000, types: ['lecture', 'sens', 'lecture'], fmtMap: { sens: 'mcq', lecture: 'input' }, unit: '/10' },
+    srs: { name: 'À revoir aujourd\'hui', g: '復', desc: 'Les mots dont la révision est due. Pour chaque mot, le type de question change quand tu réussis : lecture, puis sens, puis écriture.', n: 10, qLimit: 30000, types: ['lecture', 'sens', 'ortho'], rot: true, fmtMap: { sens: 'mcq', lecture: 'input', ortho: 'input' }, unit: '/10' },
     write: { name: 'Écriture libre', g: '書', desc: 'Tu vois seulement la lecture : trace le mot ou le kanji au doigt. Si c\'est ressemblant, c\'est validé. Un bouton montre la réponse.', n: 8 },
     fish: { name: 'Pêche au kana', g: '釣', desc: 'Quand un poisson mord, reconstitue la lecture du mot en touchant les kana dans le bon ordre pour le remonter. Attention aux faux kana : une erreur tend la ligne. 10 prises.', n: 10, types: ['lecture'], fmt: 'mcq', fish: true, unit: '/10' },
     kstudy: { name: 'Mixte', g: '漢', desc: 'Choisis tes kanjis : sens, lectures, kanji à retrouver, clé… les questions varient. 12 questions, au clavier ou en QCM.', n: 12, qLimit: 25000, custom: 'kstudy', kmode: 'mix', unit: '/12' },
@@ -13272,6 +13272,10 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     else {
       var w = pickItem(sess.pool, sess.prev); sess.prev = w.key;
       var type = cfg.types[Math.floor(Math.random() * cfg.types.length)];
+      if (cfg.rot) {   // rotation par mot : réussi → on passe au type suivant (lecture → sens → écriture), raté → on recommence le même
+        var rq = (S.qrot || {})[w.key], oi = rq ? cfg.types.indexOf(rq.t) : -1;
+        type = oi < 0 ? cfg.types[0] : (rq.ok ? cfg.types[(oi + 1) % cfg.types.length] : rq.t);
+      }
       q = buildQ(w, type, cfg.fmtMap ? cfg.fmtMap[type] : cfg.fmt);
       q.miss = w.mot + ' (' + w.disp + ') : ' + w.sens;
     }
@@ -13286,6 +13290,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     var spent = sess.qStart ? Date.now() - sess.qStart : (sess.cfg.qLimit || 0);
     sess.answered = true; sess.qStart = 0;
     var cfg = sess.cfg, r = applyResult(ok, q, !!cfg.hearts), note = '';
+    if (cfg.rot && q.key) { S.qrot = S.qrot || {}; S.qrot[q.key] = { t: q.type === 'rev' ? 'lecture' : q.type, ok: !!ok }; }
     if (cfg.weekly && ok) { var got = 10 + Math.max(0, Math.round(5 * (1 - spent / cfg.qLimit))); sess.pts += got; note = '+' + got + ' pts'; }
     sess.qn++; if (ok) sess.right++; else if (q.miss && sess.missed.indexOf(q.miss) < 0) sess.missed.push(q.miss);
     if (!ok && cfg.penalty) { sess.clockEnd -= cfg.penalty; note = '−' + (cfg.penalty / 1000) + ' s'; }
