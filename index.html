@@ -4253,6 +4253,8 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
 .qcard .sub, .qcard .rom, .qcard .prompt small { color: #4b3d84 !important; margin: 4px 0 0; }
 .qcard .prompt { color: #4b3d84 !important; font-weight: 700; }
 .errg { display: flex; align-items: center; gap: 8px; margin-top: 4px; } .errgb { display: flex; gap: 3px; flex: none; } .errgb i { width: 22px; height: 8px; border-radius: 5px; background: rgba(75,61,132,.2); border: 1px solid rgba(75,61,132,.35); } .errgb i.on { background: linear-gradient(90deg,#d0587f,#f0b97a); border-color: #c1245a; } .errg em { font-style: normal; font-size: .72rem; font-weight: 700; color: #4b3d84; } .errg.done .errgb i { background: #3a8a5a; border-color: #2e7a4c; } .errg.done em { color: #2e7a4c; }
+.errfb { margin-top: 8px; padding-top: 6px; border-top: 1px dashed rgba(75,61,132,.3); text-align: left; } .errfb small { font-weight: 800; color: #4b3d84; } .errfb .errg { margin-top: 3px; } .errfbok { display: block; margin-top: 3px; color: #2e7a4c; }
+.errpre { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 4px 10px; margin: 6px 0 2px; padding: 5px 10px; border-radius: 12px; background: rgba(255,250,240,.88); border: 1.5px solid #d9c9ec; } .errpre small { font-weight: 800; color: #4b3d84; font-size: .74rem; } .errpre .errg { margin-top: 0; }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -12777,6 +12779,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     }
     if (q.sub) h += '<p class="sub">' + esc(q.sub) + '</p>';
     h = '<div class="knqcard qcard">' + h + '</div>';
+    try { if (S.err && q.key && S.err[q.key]) { var pst = (S.stats && S.stats[q.key]) || (S.qv && S.qv[q.key]) || {}, prun = pst.run || 0; if (prun < MASTER_RUN) h += '<div class="errpre"><small>📓 Dans ton carnet d\'erreurs</small>' + errGauge({ done: false, run: prun }) + '</div>'; } } catch (e) {}
     if (q.fmt === 'mcq') {
       h += (q.kind ? '<div class="langrow">' + kindChip(q) + '</div>' : '') + '<div class="choices">' + q.options.map(function (o, i) {
         return '<button class="choice" type="button" data-i="' + i + '"><span class="key">' + (i + 1) + '</span><span>' + esc(o) + (romOn() && kanaOnly(o) && q.type !== 'ortho' ? ' <small class="rom">' + esc(romOf(o)) + '</small>' : '') + '</span></button>';
@@ -12869,6 +12872,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     fb.innerHTML = (ok
       ? '<b>Bonne réponse. +' + r.gained + ' XP' + (r.bonus ? ' (combo +' + XP_COMBO + ')' : '') + '</b>'
       : '<b>Raté. Réponse : ' + esc(q.correct) + '</b>') + esc(q.card + tag) + (romOn() && q.w && q.w.lecture ? ' · ' + esc(romOf(q.w.lecture)) : '') + (q.extra ? '<br>' + esc(q.extra) : '') + (note ? '<br>' + esc(note) : '') + (q.w ? aidsHTML(q.w) : '') + (!ok && q.w && q.w.key && !(S.fur && S.fur[q.w.key]) ? '<div class="aids"><button type="button" class="aidbtn" data-furadd="' + esc(q.w.key) + '">🔥 Mettre au fourneau</button></div>' : '');
+    try { fb.insertAdjacentHTML('beforeend', errFbHTML(q.key)); } catch (e) {}
     fb.hidden = false;
     sfx(ok ? 'ok' : 'bad');
   }
@@ -21821,6 +21825,11 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   }
   var errF = { kind: 'all', sort: 'recent', done: false };
   function errCount() { return errList().filter(function (x) { return !x.done; }).length; }
+  function errFbHTML(key) {
+    if (!S || !key || !S.err || !S.err[key]) return '';
+    var st = (S.stats && S.stats[key]) || (S.qv && S.qv[key]) || {}, run = st.run || 0, done = run >= MASTER_RUN;
+    return '<div class="errfb"><small>📓 Carnet d\'erreurs</small>' + errGauge({ done: done, run: Math.min(MASTER_RUN, run) }) + (done ? '<b class="errfbok">✔ Corrigé : ce mot sort du carnet !</b>' : '') + '</div>';
+  }
   function errGauge(x) {
     var r = x.done ? MASTER_RUN : x.run, left = MASTER_RUN - r, p = '', i;
     for (i = 0; i < MASTER_RUN; i++) p += '<i class="' + (i < r ? 'on' : '') + '"></i>';
