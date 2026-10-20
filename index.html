@@ -4249,6 +4249,9 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
 #petalFx i { position: absolute; border-radius: 80% 0 80% 0; opacity: 0; transform: translate(-50%,-50%); animation: petalPop 1.25s cubic-bezier(.2,.7,.3,1) forwards; box-shadow: inset -1px -1px 0 rgba(120,20,60,.25); }
 @keyframes petalPop { 0% { opacity: 0; transform: translate(-50%,-50%) scale(.4) rotate(0); } 15% { opacity: .95; } 60% { opacity: .9; } 100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy) + 90px)) scale(1) rotate(var(--rot)); } }
 @media (prefers-reduced-motion: reduce) { #petalFx { display: none; } }
+.qcard .kanji { margin: 2px auto; color: #2c2452; text-shadow: 0 1px 0 rgba(255,250,240,.8); }
+.qcard .sub, .qcard .rom, .qcard .prompt small { color: #4b3d84 !important; margin: 4px 0 0; }
+.qcard .prompt { color: #4b3d84 !important; font-weight: 700; }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -12772,6 +12775,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
       if (rb) h += '<p class="rom">' + esc(rb) + '</p>';
     }
     if (q.sub) h += '<p class="sub">' + esc(q.sub) + '</p>';
+    h = '<div class="knqcard qcard">' + h + '</div>';
     if (q.fmt === 'mcq') {
       h += (q.kind ? '<div class="langrow">' + kindChip(q) + '</div>' : '') + '<div class="choices">' + q.options.map(function (o, i) {
         return '<button class="choice" type="button" data-i="' + i + '"><span class="key">' + (i + 1) + '</span><span>' + esc(o) + (romOn() && kanaOnly(o) && q.type !== 'ortho' ? ' <small class="rom">' + esc(romOf(o)) + '</small>' : '') + '</span></button>';
