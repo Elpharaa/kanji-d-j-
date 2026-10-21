@@ -4527,27 +4527,81 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
 
 .clzfill[data-wtok] { cursor: pointer; } .clzfill[data-wtok]:hover { background: rgba(180, 42, 93, .14) !important; }
 
-/* ===== v246 : Voyage JLPT ===== */
-.voytog { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0 0 12px; }
-.voytog button { padding: 12px 8px; border-radius: 14px; border: 2px solid rgba(75, 61, 132, .5); background: rgba(255, 250, 240, .94); color: #2c2452; font-weight: 800; font-size: .95rem; transition: scale .25s cubic-bezier(.34, 1.56, .64, 1), box-shadow .2s; }
-.voytog button[aria-selected="true"] { background: linear-gradient(160deg, #3a2d6e, #231a45); color: #ffe9a8; border-color: #ffd36e; box-shadow: 0 0 0 2px rgba(255, 211, 110, .45); }
-.voytog button .jp { font-size: 1.25rem; margin-right: 4px; }
-.voyhead { display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: 18px; background: linear-gradient(135deg, #3a2d6e, #6a3f8f); color: #fff7e0; margin-bottom: 10px; }
-.voyhead h3 { margin: 2px 0 6px; font-size: 1.3rem; color: #fff7e0; } .voyhead small { opacity: .85; }
-.voyg { width: 62px; height: 62px; flex: none; display: grid; place-items: center; font-size: 2.2rem; border-radius: 50%; background: radial-gradient(circle, #ffe9a8, #e8b84a); color: #5a2a00; box-shadow: 0 0 20px rgba(255, 211, 110, .7); }
-.voyprog { display: block; height: 8px; border-radius: 6px; background: rgba(255, 255, 255, .22); overflow: hidden; margin: 4px 0; } .voyprog i { display: block; height: 100%; background: linear-gradient(90deg, #ffcf5a, #f29b2e); border-radius: 6px; transition: width .8s; }
-.voyreq .voyprog { background: rgba(75, 61, 132, .15); }
-.voylore { font-size: .95rem; line-height: 1.5; margin-bottom: 10px; }
-.voypath { display: grid; gap: 10px; position: relative; }
-.voych { display: flex; align-items: center; gap: 12px; text-align: left; padding: 10px 12px; border-radius: 16px; border: 2px solid rgba(75, 61, 132, .45); background: rgba(255, 250, 240, .95); color: #2c2452; }
-.voych .voynode { width: 52px; height: 52px; flex: none; display: grid; place-items: center; border-radius: 50%; font-size: 1.7rem; background: linear-gradient(145deg, #f6d8e4, #e9709a); color: #fff; box-shadow: 0 3px 0 rgba(0, 0, 0, .2); }
-.voych.done .voynode { background: linear-gradient(145deg, #ffe9a8, #e8b84a); color: #5a2a00; } .voych.locked { opacity: .7; } .voych.locked .voynode { background: #8e86a8; }
-.voych.boss { border-color: #c1245a; } .voych.boss .voynode { background: linear-gradient(145deg, #c1245a, #7c1c3f); }
-.voytx { display: grid; gap: 2px; } .voytx b { font-size: 1.02rem; } .voytx small { color: #4b3d84; font-size: .78rem; } .voywhy { color: #8a1a45 !important; }
-.voysoonh { margin: 16px 0 6px; font-size: .95rem; color: #fff7e0; text-shadow: 0 1px 3px rgba(0, 0, 0, .5); }
-.voysoon { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; } .voyso { display: grid; gap: 2px; padding: 10px; border-radius: 14px; background: rgba(36, 26, 62, .7); color: #e8dcff; position: relative; } .voyso .jp { font-size: 1.6rem; opacity: .7; } .voyso small { font-size: .72rem; opacity: .85; } .voyso em { position: absolute; top: 8px; right: 10px; font-size: .68rem; font-style: normal; background: rgba(255, 255, 255, .15); padding: 1px 8px; border-radius: 9px; }
-.voyscene { text-align: center; } .voyscene .voysg { font-size: 3.4rem; color: #c1245a; line-height: 1.1; } .voyscene p { text-align: left; line-height: 1.55; margin: 8px 0; } .voywin { background: rgba(255, 211, 110, .3); padding: 8px 10px; border-radius: 10px; font-weight: 600; }
-.voycard { text-align: center; } .voywinp { margin: 8px 0; }
+/* ===== v247 : Voyage JLPT, décor et mise en page ===== */
+#storyBody.voyon, #storyBody:has(> .voytog) { display: flex !important; flex-direction: column; align-items: center; gap: 14px; }
+#storyBody > .voytog, #storyBody > .voywrap { width: min(100%, 760px); grid-column: 1 / -1; }
+#storyBody:has(> .voytog) > :not(.voytog):not(.voywrap) { width: 100%; max-width: 1180px; }
+.voywrap { display: flex; flex-direction: column; gap: 14px; }
+.voytog { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0; }
+.voytog button { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 10px; border-radius: 18px; border: 2px solid rgba(75, 61, 132, .4); background: rgba(255, 250, 240, .95); color: #2c2452; text-align: left; transition: scale .25s cubic-bezier(.34, 1.56, .64, 1), box-shadow .25s; }
+.voytog button:hover { scale: 1.03; }
+.voytog button .jp { font-size: 1.7rem; line-height: 1; }
+.voytog button b { display: block; font-size: 1rem; } .voytog button small { display: block; font-size: .72rem; opacity: .7; }
+.voytog button[aria-selected="true"] { background: linear-gradient(160deg, #3d2f75, #1f1640); color: #ffe9a8; border-color: #ffd36e; box-shadow: 0 0 0 2px rgba(255, 211, 110, .4), 0 8px 22px rgba(30, 20, 70, .45); }
+.voyhero { position: relative; overflow: hidden; border-radius: 22px; min-height: 250px; display: flex; align-items: flex-end; box-shadow: 0 14px 34px rgba(30, 20, 70, .5); border: 2px solid rgba(255, 211, 110, .55); isolation: isolate; }
+.voysvg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; }
+.voym1 { animation: voyDrift 24s ease-in-out infinite alternate; } .voym2 { animation: voyDrift 17s ease-in-out infinite alternate-reverse; }
+@keyframes voyDrift { from { transform: translateX(-14px); } to { transform: translateX(14px); } }
+.voyhalo { animation: voyHalo 5s ease-in-out infinite; transform-origin: 610px 92px; } @keyframes voyHalo { 50% { opacity: .4; transform: scale(1.12); } }
+.voyfly circle { animation: voyBlink 3s ease-in-out infinite; } .voyfly circle:nth-child(2) { animation-delay: -1s; } .voyfly circle:nth-child(3) { animation-delay: -2s; } @keyframes voyBlink { 50% { opacity: .15; } }
+.voypet { position: absolute; top: -20px; width: 11px; height: 8px; border-radius: 80% 0 80% 0; background: linear-gradient(135deg, #ffe3ee, #f48fb1); opacity: .9; z-index: -1; animation: voyFall 11s linear infinite; pointer-events: none; }
+@keyframes voyFall { 0% { transform: translate(0, -20px) rotate(0); } 50% { transform: translate(38px, 140px) rotate(200deg); } 100% { transform: translate(-10px, 330px) rotate(420deg); opacity: .2; } }
+.voylans { position: absolute; top: 0; left: 0; right: 0; height: 60px; pointer-events: none; }
+.voylan { position: absolute; top: 0; width: 2px; background: rgba(255, 220, 150, .6); transform-origin: top; animation: voySway 4s ease-in-out infinite; }
+.voylan b { position: absolute; left: -9px; bottom: -22px; width: 20px; height: 24px; border-radius: 40% 40% 45% 45%; background: radial-gradient(circle at 50% 40%, #fff2b8, #ff9d3d 70%); box-shadow: 0 0 16px 4px rgba(255, 170, 60, .65); }
+@keyframes voySway { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+.voygl { position: absolute; right: 14px; top: 38px; font-size: 7.5rem; line-height: 1; color: rgba(255, 233, 168, .22); text-shadow: 0 0 30px rgba(255, 200, 100, .4); z-index: -1; }
+.voyhx { padding: 70px 20px 18px; color: #fff7e0; text-shadow: 0 2px 8px rgba(20, 10, 50, .7); width: 100%; background: linear-gradient(0deg, rgba(25, 16, 56, .78), rgba(25, 16, 56, 0)); }
+.voyhx small { opacity: .92; letter-spacing: .04em; } .voyhx h2 { margin: 2px 0 10px; font-size: clamp(1.8rem, 5vw, 2.5rem); letter-spacing: .02em; color: #fff7e0; }
+.voyslots { display: flex; gap: 7px; margin-bottom: 6px; flex-wrap: wrap; }
+.voyslot { width: 30px; height: 30px; border-radius: 50%; border: 2px dashed rgba(255, 233, 168, .6); display: grid; place-items: center; font-size: .95rem; color: transparent; }
+.voyslot.on { border: 2px solid #ffd36e; background: radial-gradient(circle, #e0457f, #a01a4c); color: #fff3d6; box-shadow: 0 0 12px rgba(255, 120, 150, .8); }
+.voyslot.boss { border-color: #ffb3c8; }
+.voylore { display: flex; gap: 10px; align-items: flex-start; font-size: .98rem; line-height: 1.55; font-style: italic; }
+.voylore .jp { font-size: 2rem; color: #c1456f; line-height: .8; }
+.voypath { display: flex; flex-direction: column; align-items: stretch; }
+.voych { position: relative; display: flex; align-items: center; gap: 14px; text-align: left; padding: 12px 16px 12px 12px; border-radius: 22px; border: 2px solid color-mix(in srgb, var(--a2) 55%, white); background: linear-gradient(120deg, rgba(255, 250, 240, .97), color-mix(in srgb, var(--a1) 22%, #fffaf0)); color: #2c2452; box-shadow: 0 6px 16px rgba(40, 25, 80, .2); transition: scale .25s cubic-bezier(.34, 1.56, .64, 1), box-shadow .25s; }
+.voych.r { flex-direction: row-reverse; text-align: right; padding: 12px 12px 12px 16px; }
+.voych:hover { scale: 1.025; box-shadow: 0 12px 26px rgba(40, 25, 80, .32); }
+.voynode { position: relative; flex: none; width: 66px; height: 66px; display: grid; place-items: center; border-radius: 50%; font-size: 2.1rem; color: #fff; background: radial-gradient(circle at 35% 30%, var(--a1), var(--a2)); box-shadow: 0 4px 0 rgba(0, 0, 0, .22), inset 0 -6px 10px rgba(0, 0, 0, .18); }
+.voynode em { font-style: normal; opacity: .55; } .voynode u { position: absolute; right: -4px; bottom: -4px; text-decoration: none; font-size: 1.05rem; background: #fff; border-radius: 50%; width: 26px; height: 26px; display: grid; place-items: center; box-shadow: 0 2px 5px rgba(0, 0, 0, .3); }
+.voych.done .voynode { background: radial-gradient(circle at 35% 30%, #ff7aa0, #b01c52); color: #fff3d6; box-shadow: 0 0 0 4px #ffd36e, 0 0 18px rgba(255, 190, 80, .7); }
+.voych.cur { border-color: #ffd36e; } .voych.cur .voynode { animation: voyPulse 1.8s ease-in-out infinite; }
+@keyframes voyPulse { 0%, 100% { box-shadow: 0 4px 0 rgba(0, 0, 0, .22), 0 0 0 0 rgba(255, 211, 110, .8); } 50% { box-shadow: 0 4px 0 rgba(0, 0, 0, .22), 0 0 0 14px rgba(255, 211, 110, 0); } }
+.voych.locked { filter: saturate(.35); background: linear-gradient(120deg, rgba(240, 236, 248, .92), rgba(220, 214, 236, .9)); } .voych.locked .voynode { background: radial-gradient(circle at 35% 30%, #aaa3c4, #6f6890); }
+.voych.boss { border-width: 3px; border-color: #c1245a; background: linear-gradient(120deg, #fff0f4, #f7c9d9); } .voych.boss .voynode { width: 78px; height: 78px; background: radial-gradient(circle at 35% 30%, #e0457f, #4a0f2e); } .voych.boss.cur .voynode { animation: voyPulse 1.2s ease-in-out infinite; }
+.voytx { display: grid; gap: 4px; flex: 1; min-width: 0; } .voytx b { font-size: 1.1rem; } .voytx small { font-size: .78rem; color: #4b3d84; } .voytx .voyk { text-transform: uppercase; letter-spacing: .08em; font-weight: 800; color: var(--a2); font-size: .7rem; } .voywhy { color: #8a1a45 !important; }
+.voybar { display: block; height: 7px; border-radius: 6px; background: rgba(75, 61, 132, .16); overflow: hidden; } .voybar i { display: block; height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--a1), var(--a2)); transition: width .9s; }
+.voyconn { display: block; width: 100%; height: 38px; overflow: visible; } .voyconn.flip { transform: scaleX(-1); }
+.voyconn path { fill: none; stroke: rgba(255, 245, 225, .75); stroke-width: 3; stroke-dasharray: 2 9; stroke-linecap: round; } .voyconn.lit path { stroke: #ffd36e; filter: drop-shadow(0 0 4px rgba(255, 200, 80, .9)); animation: voyDash 1.4s linear infinite; }
+@keyframes voyDash { to { stroke-dashoffset: -11; } }
+.voysoonh { margin: 12px 0 0; text-align: center; } .voysoonh span { display: inline-block; padding: 4px 18px; border-radius: 14px; background: rgba(30, 20, 60, .7); color: #ffe9a8; font-size: .9rem; letter-spacing: .06em; }
+.voysoon { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; } .voyso { position: relative; display: grid; gap: 2px; padding: 14px; border-radius: 16px; background: linear-gradient(150deg, rgba(48, 34, 92, .82), rgba(28, 20, 56, .82)); color: #e8dcff; overflow: hidden; border: 1px solid rgba(255, 255, 255, .12); }
+.voyso .jp { position: absolute; right: 8px; bottom: -8px; font-size: 3.6rem; opacity: .16; } .voyso small { font-size: .74rem; opacity: .85; max-width: 85%; } .voyso em { position: static; justify-self: start; margin-top: 6px; font-size: .66rem; font-style: normal; background: rgba(255, 211, 110, .2); color: #ffd36e; padding: 1px 9px; border-radius: 9px; }
+.voyscene { position: relative; overflow: hidden; border-radius: 22px; min-height: 170px; display: flex; align-items: flex-end; padding: 18px; color: #fff; background: linear-gradient(160deg, var(--a1), var(--a2) 70%, #1e1440); box-shadow: 0 12px 28px rgba(30, 20, 70, .45); border: 2px solid rgba(255, 255, 255, .45); isolation: isolate; }
+.voyscene.boss { background: linear-gradient(160deg, #7c1c3f, #2a0a1e 80%); border-color: #ff7aa0; box-shadow: 0 0 40px rgba(224, 69, 127, .55); }
+.voyscene .voysg { position: absolute; right: -6px; top: -14px; font-size: 11rem; line-height: 1; color: rgba(255, 255, 255, .2); z-index: -1; } .voyscene .voypet { z-index: 0; }
+.voyst small { letter-spacing: .08em; text-transform: uppercase; font-weight: 800; opacity: .9; } .voyst h3 { margin: 2px 0 0; font-size: clamp(1.6rem, 5vw, 2.2rem); color: #fff; text-shadow: 0 3px 12px rgba(0, 0, 0, .5); }
+.voydlg { padding: 16px 18px; border-radius: 20px; background: rgba(255, 250, 240, .96); box-shadow: 0 6px 18px rgba(40, 25, 80, .25); line-height: 1.6; }
+.voydlg p { margin: 0 0 8px; } .voynar { font-style: italic; color: #4b3d84; }
+.voysay { position: relative; margin-top: 12px; padding: 14px 14px 6px; border-radius: 14px; background: linear-gradient(120deg, color-mix(in srgb, var(--a1) 26%, #fff), #fff); border-left: 5px solid var(--a2); }
+.voyspk { position: absolute; top: -11px; left: 12px; padding: 1px 12px; border-radius: 10px; font-size: .74rem; font-weight: 800; color: #fff; background: var(--a2); }
+.voywin { background: rgba(255, 211, 110, .35); padding: 9px 12px; border-radius: 12px; font-weight: 600; margin-top: 10px !important; }
+.voyreq { padding: 16px 18px; border-radius: 20px; background: rgba(255, 250, 240, .96); display: grid; gap: 8px; box-shadow: 0 6px 18px rgba(40, 25, 80, .25); text-align: center; }
+.voyrq1 b { font-size: 1.5rem; color: var(--a2); margin-right: 6px; } .voywhy2 { color: #8a1a45; margin: 4px 0 0; font-weight: 600; }
+.voygo { font-size: 1.1rem; padding: 14px 20px; animation: voyGlow 2.2s ease-in-out infinite; } @keyframes voyGlow { 50% { box-shadow: 0 0 0 6px rgba(255, 211, 110, .35); } }
+.voylant { display: flex; gap: 6px; justify-content: center; margin: 8px 0 2px; } .voylant i { width: 18px; height: 22px; border-radius: 40% 40% 45% 45%; background: rgba(75, 61, 132, .25); transition: all .3s; } .voylant i.ok { background: radial-gradient(circle at 50% 40%, #fff2b8, #ff9d3d 75%); box-shadow: 0 0 10px rgba(255, 160, 60, .8); } .voylant i.ko { background: #8e86a8; } .voylant i.cur { background: #fff; outline: 2px solid #ffd36e; animation: voyPulse2 1s ease-in-out infinite; } @keyframes voyPulse2 { 50% { scale: 1.25; } }
+.voycard { border: 2px solid var(--a2) !important; } .voycard.clzko { animation: voyShake .45s; } @keyframes voyShake { 20% { translate: -9px 0; } 40% { translate: 8px 0; } 60% { translate: -5px 0; } 80% { translate: 3px 0; } }
+.voycard.clzok { box-shadow: 0 0 0 4px rgba(255, 211, 110, .6), 0 0 26px rgba(255, 190, 80, .7); }
+.voyend { text-align: center; display: grid; gap: 10px; justify-items: center; padding: 22px 16px; border-radius: 24px; background: rgba(255, 250, 240, .96); box-shadow: 0 10px 28px rgba(40, 25, 80, .35); position: relative; overflow: hidden; }
+.voyend.win { background: linear-gradient(170deg, #fffaf0, color-mix(in srgb, var(--a1) 30%, #fff3d6)); } .voyend h3 { margin: 0; font-size: 1.8rem; } .voyscore { font-size: 1.1rem; margin: 0; } .voyscore b { font-size: 2rem; color: var(--a2); }
+.voyhanko { width: 130px; height: 130px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 35% 30%, #ff6a98, #a01a4c); color: #fff3d6; font-size: 4.4rem; border: 6px double #ffd6a0; box-shadow: 0 0 0 4px #ffd36e, 0 0 40px rgba(255, 120, 150, .8); animation: voyStamp .8s cubic-bezier(.2, 1.6, .4, 1) both; } .voyhanko.boss { width: 160px; height: 160px; font-size: 5.4rem; }
+@keyframes voyStamp { 0% { scale: 3.2; rotate: -30deg; opacity: 0; } 60% { opacity: 1; } 100% { scale: 1; rotate: -6deg; } }
+.voylose { font-size: 5rem; line-height: 1; color: var(--a2); opacity: .5; }
+.voyrw { display: flex; gap: 10px; } .voyrw span { padding: 6px 16px; border-radius: 14px; background: #3d2f75; color: #ffe9a8; font-weight: 800; animation: voyRise .6s .5s both; } @keyframes voyRise { from { opacity: 0; translate: 0 14px; } }
+.voyend .row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+@media (min-width: 768px) { .voysoon { grid-template-columns: repeat(4, 1fr); } .voyhero { min-height: 300px; } .voygl { font-size: 10rem; } }
+@media (prefers-reduced-motion: reduce) { .voypet, .voylan, .voym1, .voym2, .voyhalo, .voygo, .voych.cur .voynode { animation: none !important; } }
 
 </style>
 
@@ -24509,30 +24563,65 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
     return qs;
   }
   /* ---- rendu ---- */
+  var VOY_ACC = [['#f6a5c0', '#c1456f', 'Lion de pierre'], ['#f6c675', '#c9742b', 'Obāsan'], ['#f0967c', '#a8402f', 'Le Tanuki'], ['#7fd0e6', '#2f6f9a', 'Chef de gare Kitsune'], ['#b5aff0', '#5a4fb0', 'Élève-fantôme'], ['#7ad2a8', '#2d7a64', 'Le passeur'], ['#9cbcf5', '#3e5fb0', 'Marchand du col'], ['#e0457f', '#4a0f2e', 'Le Gardien']];
+  function voyAcc(i) { var a = VOY_ACC[i] || VOY_ACC[0]; return '--a1:' + a[0] + ';--a2:' + a[1]; }
+  function voyPetals(n) { var h = ''; for (var i = 0; i < n; i++) h += '<span class="voypet" style="left:' + ((i * 53 + 7) % 100) + '%;animation-delay:' + (-(i * 1.7) % 14).toFixed(1) + 's;animation-duration:' + (9 + (i * 3) % 7) + 's;scale:' + (0.6 + (i % 4) * 0.25) + '"></span>'; return h; }
+  function voyLanterns() { var h = '<div class="voylans" aria-hidden="true">'; [6, 19, 33, 50, 67, 81, 93].forEach(function (x, i) { h += '<i class="voylan" style="left:' + x + '%;animation-delay:' + (-i * 0.7) + 's;height:' + (18 + (i % 3) * 10) + 'px"><b></b></i>'; }); return h + '</div>'; }
+  function voyScene() {
+    return '<svg class="voysvg" viewBox="0 0 800 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="vsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#241a54"/><stop offset=".55" stop-color="#8a4f9e"/><stop offset="1" stop-color="#f6a97c"/></linearGradient><radialGradient id="vmoon"><stop offset="0" stop-color="#fffbe6"/><stop offset="1" stop-color="#ffd978"/></radialGradient></defs>' +
+      '<rect width="800" height="280" fill="url(#vsky)"/>' +
+      '<g fill="#fff" opacity=".8"><circle cx="90" cy="40" r="1.6"/><circle cx="210" cy="70" r="1.2"/><circle cx="330" cy="28" r="1.5"/><circle cx="450" cy="60" r="1.1"/><circle cx="740" cy="36" r="1.6"/><circle cx="520" cy="22" r="1.2"/></g>' +
+      '<circle class="voyhalo" cx="610" cy="92" r="78" fill="#ffe9a8" opacity=".22"/><circle cx="610" cy="92" r="44" fill="url(#vmoon)"/>' +
+      '<path class="voym1" d="M-40 200 L60 120 L140 180 L250 90 L360 190 L470 110 L590 200 L700 130 L840 210 L840 300 L-40 300Z" fill="#6d4a9c" opacity=".85"/>' +
+      '<path class="voym2" d="M-40 230 L90 160 L190 215 L300 150 L420 225 L540 165 L660 230 L780 175 L860 230 L860 300 L-40 300Z" fill="#46327a"/>' +
+      '<g fill="#2a1f55"><path d="M-20 260 Q120 215 260 250 T560 245 T860 250 L860 300 L-20 300Z"/><g transform="translate(120 160)"><rect x="-3" y="30" width="6" height="52"/><path d="M-30 30 L0 6 L30 30Z"/><path d="M-24 52 L0 32 L24 52Z"/><path d="M-18 72 L0 56 L18 72Z"/></g>' +
+      '<g transform="translate(300 190)"><rect x="-28" y="0" width="5" height="60"/><rect x="23" y="0" width="5" height="60"/><path d="M-40 0 Q0 -14 40 0 L40 9 L-40 9Z"/><rect x="-30" y="20" width="60" height="5"/></g>' +
+      '<path d="M520 258 Q600 205 680 258 L680 266 Q600 218 520 266Z"/><g transform="translate(720 200)"><path d="M0 60 L18 6 L36 60Z"/><path d="M-10 60 L10 24 L30 60Z"/></g></g>' +
+      '<g fill="#ffcf5a" class="voyfly"><circle cx="150" cy="215" r="2.2"/><circle cx="340" cy="228" r="2"/><circle cx="560" cy="212" r="2.4"/><circle cx="690" cy="232" r="2"/></g></svg>';
+  }
+  function voyHero(R, seals, tot) {
+    var sl = '', i; for (i = 0; i < tot; i++) sl += '<span class="voyslot' + (voySt().seals[i] ? ' on' : '') + (i === tot - 1 ? ' boss' : '') + ' jp">' + (voySt().seals[i] ? '印' : '') + '</span>';
+    return '<div class="voyhero">' + voyScene() + voyPetals(14) + voyLanterns() + '<div class="voygl jp" aria-hidden="true">' + R.glyph + '</div><div class="voyhx"><small>Voyage JLPT · ' + R.lv + '</small><h2>' + esc(R.name) + '</h2><div class="voyslots">' + sl + '</div><small>' + seals + ' / ' + tot + ' sceaux de langue</small></div></div>';
+  }
+  function voyConn(i, st) { return '<svg class="voyconn' + (i % 2 ? ' flip' : '') + (st ? ' lit' : '') + '" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><path d="M8 0 C8 36 92 4 92 40" vector-effect="non-scaling-stroke"/></svg>'; }
   function voyMapHTML() {
-    var R = VOY.n5, st = voySt(), seals = Object.keys(st.seals).filter(function (k) { return st.seals[k]; }).length, tot = R.chapters.length + 1;
-    var h = '<div class="voyhead"><div class="voyg jp" aria-hidden="true">' + R.glyph + '</div><div><small>Voyage JLPT · ' + R.lv + '</small><h3>' + esc(R.name) + '</h3><span class="voyprog"><i style="width:' + Math.round(seals / tot * 100) + '%"></i></span><small>' + seals + ' / ' + tot + ' sceaux</small></div></div>';
-    h += '<div class="panel voylore">' + esc(R.lore) + '</div><div class="voypath">';
-    for (var i = 0; i < tot; i++) {
-      var f = voyInfo(i), c = f.c, boss = i === R.chapters.length;
-      h += '<button type="button" class="voych' + (f.done ? ' done' : f.open ? ' open' : ' locked') + (boss ? ' boss' : '') + '" data-voy="ch:' + i + '"><span class="voynode jp">' + (f.done ? '✔' : esc(c.g)) + '</span><span class="voytx"><b>' + (boss ? 'Boss · ' : (i + 1) + '. ') + esc(c.t) + '</b><small>' + (f.done ? 'Sceau obtenu · ' : '') + f.acq + ' / ' + f.pool.length + ' mots acquis</small>' + (!f.open ? '<small class="voywhy">🔒 ' + esc(f.why) + '</small>' : '') + '</span></button>';
+    var R = VOY.n5, st = voySt(), tot = R.chapters.length + 1, seals = 0, i;
+    for (i = 0; i < tot; i++) if (st.seals[i]) seals++;
+    var h = voyHero(R, seals, tot) + '<div class="panel voylore"><span class="jp" aria-hidden="true">❝</span>' + esc(R.lore) + '</div><div class="voypath">', cur = -1;
+    for (i = 0; i < tot; i++) { var q = voyInfo(i); if (q.open && !q.done && cur < 0) cur = i; }
+    for (i = 0; i < tot; i++) {
+      var f = voyInfo(i), c = f.c, boss = i === R.chapters.length, pct = Math.round(f.acq / Math.max(1, f.pool.length) * 100);
+      h += '<button type="button" style="' + voyAcc(i) + '" class="voych' + (f.done ? ' done' : f.open ? ' open' : ' locked') + (i === cur ? ' cur' : '') + (boss ? ' boss' : '') + (i % 2 ? ' r' : '') + '" data-voy="ch:' + i + '"><span class="voynode jp">' + (f.done ? '印' : f.open ? esc(c.g) : '<em>' + esc(c.g) + '</em>') + (f.open || f.done ? '' : '<u aria-hidden="true">🔒</u>') + '</span><span class="voytx"><small class="voyk">' + (boss ? 'Boss final' : 'Chapitre ' + (i + 1)) + (i === cur ? ' · à toi !' : '') + '</small><b>' + esc(c.t) + '</b><span class="voybar"><i style="width:' + pct + '%"></i></span><small>' + f.acq + ' / ' + f.pool.length + ' mots acquis' + (f.done ? ' · sceau obtenu' : '') + '</small>' + (!f.open ? '<small class="voywhy">' + esc(f.why) + '</small>' : '') + '</span></button>';
+      if (i < tot - 1) h += voyConn(i, f.done);
     }
-    h += '</div><h4 class="voysoonh">La suite du voyage</h4><div class="voysoon">' + VOY_SOON.map(function (x) { return '<div class="voyso"><span class="jp">' + x[1] + '</span><b>' + x[0] + ' · ' + esc(x[2]) + '</b><small>' + esc(x[3]) + '</small><em>Bientôt</em></div>'; }).join('') + '</div>';
+    h += '</div><h4 class="voysoonh"><span>La suite du voyage</span></h4><div class="voysoon">' + VOY_SOON.map(function (x) { return '<div class="voyso"><span class="jp">' + x[1] + '</span><b>' + x[0] + ' · ' + esc(x[2]) + '</b><small>' + esc(x[3]) + '</small><em>Bientôt</em></div>'; }).join('') + '</div>';
     return h;
   }
   function voyChapHTML() {
-    var i = voy.ci, f = voyInfo(i), c = f.c, boss = i === VOY.n5.chapters.length;
-    var h = '<div class="grp djbar"><button type="button" class="btn djback" data-voy="map">‹ Carte</button><h3 class="sgh" data-k="' + esc(c.g) + '"><span>' + (boss ? 'Boss' : 'Chapitre ' + (i + 1)) + '</span></h3></div>';
-    h += '<div class="panel voyscene"><div class="voysg jp" aria-hidden="true">' + esc(c.g) + '</div><h3>' + esc(c.t) + '</h3>' + voyText(c.intro) + (f.done ? '<p class="voywin">' + esc(c.win) + '</p>' : '') + '</div>';
-    h += '<div class="panel voyreq"><b>' + f.acq + ' / ' + f.pool.length + '</b> mots acquis dans ce chapitre<span class="voyprog"><i style="width:' + Math.round(f.acq / Math.max(1, f.pool.length) * 100) + '%"></i></span>' +
-      (f.open ? '<p class="small muted">Défi : ' + c.n + ' questions, il en faut ' + (c.pass || Math.ceil(c.n * 0.7)) + ' bonnes pour obtenir le sceau. Chaque question travaille tes mots acquis.</p><button type="button" class="btn primary" data-voy="start">' + (f.done ? '⚔ Rejouer le défi' : '⚔ Commencer le défi') + '</button>' : '<p class="note">🔒 ' + esc(f.why) + '</p>') + '</div>';
+    var i = voy.ci, f = voyInfo(i), c = f.c, boss = i === VOY.n5.chapters.length, a = VOY_ACC[i] || VOY_ACC[0], pct = Math.round(f.acq / Math.max(1, f.pool.length) * 100);
+    var h = '<div class="grp djbar"><button type="button" class="btn djback" data-voy="map">‹ Carte</button><h3 class="sgh" data-k="' + esc(c.g) + '"><span>' + (boss ? 'Boss final' : 'Chapitre ' + (i + 1)) + '</span></h3></div>';
+    h += '<div class="voyscene' + (boss ? ' boss' : '') + '" style="' + voyAcc(i) + '">' + voyPetals(8) + '<div class="voysg jp" aria-hidden="true">' + esc(c.g) + '</div><div class="voyst"><small>' + (boss ? 'Boss final' : 'Chapitre ' + (i + 1)) + ' · ' + VOY.n5.lv + '</small><h3>' + esc(c.t) + '</h3></div></div>';
+    h += '<div class="voydlg"><p class="voynar">' + voyText([c.intro[0]]).replace(/^<p>|<\/p>$/g, '') + '</p><div class="voysay"><span class="voyspk">' + esc(a[2]) + '</span>' + voyText([c.intro[1]]) + '</div>' + (f.done ? '<p class="voywin">✦ ' + esc(c.win) + '</p>' : '') + '</div>';
+    h += '<div class="voyreq" style="' + voyAcc(i) + '"><div class="voyrq1"><b>' + f.acq + ' / ' + f.pool.length + '</b><span>mots acquis dans ce chapitre</span></div><span class="voybar"><i style="width:' + pct + '%"></i></span>' +
+      (f.open ? '<p class="small">Défi : <b>' + c.n + ' questions</b>, au moins <b>' + (c.pass || Math.ceil(c.n * 0.7)) + '</b> bonnes réponses pour obtenir le sceau.</p><button type="button" class="btn primary voygo" data-voy="start">' + (f.done ? '⚔ Rejouer le défi' : '⚔ Relever le défi') + '</button>' : '<p class="voywhy2">🔒 ' + esc(f.why) + '</p>') + '</div>';
     return h;
+  }
+  function voyEndHTML() {
+    var r = voy.run, c = voyChap(r.ci), need = c.pass || Math.ceil(c.n * 0.7), win = r.score >= need, boss = r.ci === VOY.n5.chapters.length;
+    var h = '<div class="voyend' + (win ? ' win' : '') + '" style="' + voyAcc(r.ci) + '">';
+    h += win ? '<div class="voyhanko' + (boss ? ' boss' : '') + ' jp" aria-hidden="true"><span>印</span></div><h3>Sceau obtenu !</h3>' : '<div class="voylose jp" aria-hidden="true">' + esc(c.g) + '</div><h3>Pas encore…</h3>';
+    h += '<p class="voyscore"><b>' + r.score + '</b> / ' + r.qs.length + ' <small>(il en fallait ' + need + ')</small></p>';
+    h += win ? '<div class="voydlg"><p class="voywin">✦ ' + esc(c.win) + '</p></div>' + (r.reward ? '<div class="voyrw"><span>+' + r.reward.xp + ' XP</span><span>+' + r.reward.coins + ' 🪙</span></div>' : '') : '<p class="small muted">Chaque réponse compte pour tes mots acquis. Le défi change à chaque tentative.</p>';
+    return h + '<div class="row"><button type="button" class="btn primary voygo" data-voy="' + (win ? 'map' : 'start') + '">' + (win ? 'Retour à la carte' : '⚔ Retenter') + '</button>' + (win ? '' : '<button type="button" class="btn" data-voy="map">Carte</button>') + '</div></div>';
+  }
+  function voyToggle(onJ) {
+    return '<div class="voytog" role="tablist"><button type="button" role="tab" aria-selected="' + !onJ + '" data-voy="tog:cours"><span class="jp" aria-hidden="true">冒</span><span><b>Aventure</b><small>Ton cours</small></span></button><button type="button" role="tab" aria-selected="' + !!onJ + '" data-voy="tog:jlpt"><span class="jp" aria-hidden="true">旅</span><span><b>Voyage JLPT</b><small>De N5 à N1</small></span></button></div>';
   }
   function voyRunHTML() {
     var r = voy.run, q = r.qs[r.i], c = voyChap(r.ci), h = '';
     h += '<div class="grp djbar"><button type="button" class="btn djback" data-voy="quit">‹ Quitter</button><h3 class="sgh" data-k="' + esc(c.g) + '"><span>' + esc(c.t) + '</span></h3></div>';
-    h += '<p class="small muted" style="margin:6px 0 2px;text-align:center">Question ' + (r.i + 1) + ' / ' + r.qs.length + ' · ' + r.score + ' bonne' + (r.score > 1 ? 's' : '') + '</p><div class="knqbar"><u style="width:' + Math.round(r.i / r.qs.length * 100) + '%"></u></div>';
-    h += '<div class="knqcard qcard voycard' + (r.ans === null ? '' : r.ans === q.correct ? ' clzok' : ' clzko') + '"><p class="prompt">' + esc(q.prompt) + '</p>';
+    h += '<p class="small" style="margin:6px 0 0;text-align:center;color:#fff7e0;text-shadow:0 1px 4px rgba(0,0,0,.6)">Question ' + (r.i + 1) + ' / ' + r.qs.length + ' · ' + r.score + ' bonne' + (r.score > 1 ? 's' : '') + '</p><div class="voylant">' + r.qs.map(function (_, k) { return '<i class="' + (k < r.i ? (r.res && r.res[k] ? 'ok' : 'ko') : k === r.i ? 'cur' : '') + '"></i>'; }).join('') + '</div>';
+    h += '<div style="' + voyAcc(r.ci) + '" class="knqcard qcard voycard' + (r.ans === null ? '' : r.ans === q.correct ? ' clzok' : ' clzko') + '"><p class="prompt">' + esc(q.prompt) + '</p>';
     if (q.t === 'cloze') h += '<p class="clzjp jp">' + esc(q.sent).split(esc(q.w.jp)).join('<span class="' + (r.ans === null ? 'clzblank' : 'clzfill') + '" style="min-width:' + Math.max(3.4, Array.from(q.w.jp).length * 1.15 + 1.4).toFixed(1) + 'em">' + (r.ans === null ? '' : esc(q.w.jp)) + '</span>') + '</p><p class="clzfr">' + esc(q.fr) + '</p>';
     else { var bl = Array.from(q.big).length, fs = q.small ? (bl <= 4 ? 3.2 : 2.4) : bl <= 1 ? 7 : bl <= 2 ? 5.6 : bl <= 4 ? 4 : bl <= 6 ? 3 : 2.3; h += '<div class="kanji" style="font-size:' + fs + 'rem!important;line-height:1.25;white-space:normal;word-break:keep-all">' + esc(q.big) + '</div>'; }
     h += '</div><div class="choices">' + q.opts.map(function (o, i) {
@@ -24542,25 +24631,17 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
     if (r.ans !== null) h += '<div class="fb ' + (r.ans === q.correct ? 'good' : 'bad') + '"><b>' + (r.ans === q.correct ? 'Bonne réponse !' : 'Raté.') + '</b> <span class="jp">' + esc(q.w.jp) + '</span> · ' + esc(q.w.kana || '') + ' · ' + esc(q.w.fr) + '</div><div style="text-align:center;margin-top:10px"><button type="button" class="btn primary" data-voy="next">' + (r.i + 1 >= r.qs.length ? 'Voir le résultat' : 'Suivant') + '</button></div>';
     return h;
   }
-  function voyEndHTML() {
-    var r = voy.run, c = voyChap(r.ci), need = c.pass || Math.ceil(c.n * 0.7), win = r.score >= need;
-    return '<div class="result voyend"><div class="sprbig ' + (win ? 'win' : '') + ' jp" aria-hidden="true">' + (win ? '印' : esc(c.g)) + '</div><h3>' + (win ? 'Sceau obtenu !' : 'Pas encore…') + '</h3><p>' + r.score + ' bonnes réponses sur ' + r.qs.length + ' (il en fallait ' + need + ').</p>' +
-      (win ? '<div class="panel voywinp">' + esc(c.win) + (r.reward ? '<p class="small"><b>+' + r.reward.xp + ' XP · +' + r.reward.coins + ' pièces</b></p>' : '') + '</div>' : '<p class="small muted">Chaque réponse compte pour tes mots acquis. Retente le défi, il change à chaque fois.</p>') +
-      '<div class="row"><button type="button" class="btn primary" data-voy="' + (win ? 'map' : 'start') + '">' + (win ? 'Retour à la carte' : 'Retenter') + '</button><button type="button" class="btn" data-voy="map">Carte</button></div></div>';
-  }
   function voyRender() {
     var host = $('storyBody'); if (!host) return;
     var body = voy.view === 'run' ? (voy.run.done ? voyEndHTML() : voyRunHTML()) : voy.view === 'chap' ? voyChapHTML() : voyMapHTML();
-    host.onclick = null; host.innerHTML = voyToggle() + '<div class="voywrap">' + body + '</div>';
+    host.onclick = null; host.classList.add('voyon'); host.innerHTML = voyToggle(true) + '<div class="voywrap">' + body + '</div>';
   }
-  function voyToggle() { return '<div class="voytog" role="tablist"><button type="button" role="tab" aria-selected="false" data-voy="tog:cours"><span class="jp" aria-hidden="true">冒</span> Aventure du cours</button><button type="button" role="tab" aria-selected="true" data-voy="tog:jlpt"><span class="jp" aria-hidden="true">旅</span> Voyage JLPT</button></div>'; }
   var _renderStory0 = renderStory;
   renderStory = function () {
+    var host0 = $('storyBody'); if (host0) host0.classList.remove('voyon');
     if (S && S.voyOn && storyTab !== 'base') { setVox(false); voyRender(); return; }
     _renderStory0();
-    try {
-      var host = $('storyBody'); if (host && S && storyTab !== 'base') host.insertAdjacentHTML('afterbegin', '<div class="voytog" role="tablist"><button type="button" role="tab" aria-selected="true" data-voy="tog:cours"><span class="jp" aria-hidden="true">冒</span> Aventure du cours</button><button type="button" role="tab" aria-selected="false" data-voy="tog:jlpt"><span class="jp" aria-hidden="true">旅</span> Voyage JLPT</button></div>');
-    } catch (e) {}
+    try { var host = $('storyBody'); if (host && S && storyTab !== 'base') host.insertAdjacentHTML('afterbegin', voyToggle(false)); } catch (e) {}
   };
   function voyStart() {
     var c = voyChap(voy.ci), f = voyInfo(voy.ci); if (!f.open) return;
@@ -24586,7 +24667,7 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
     else if (cmd === 'start') voyStart();
     else if (cmd === 'pick') {
       var r = voy.run; if (!r || r.ans !== null) return; var q = r.qs[r.i]; r.ans = +arg; var ok = r.ans === q.correct;
-      if (ok) r.score++; try { qvMark(q.w, ok); } catch (er) {} sfx(ok ? 'ok' : 'bad'); persist(); voyRender();
+      if (ok) r.score++; (r.res = r.res || [])[r.i] = ok; try { qvMark(q.w, ok); } catch (er) {} sfx(ok ? 'ok' : 'bad'); persist(); voyRender();
     } else if (cmd === 'next') {
       var r2 = voy.run; if (!r2) return; r2.i++; r2.ans = null; if (r2.i >= r2.qs.length) voyFinish(); voyRender(); window.scrollTo(0, 0);
     }
