@@ -4527,6 +4527,28 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
 
 .clzfill[data-wtok] { cursor: pointer; } .clzfill[data-wtok]:hover { background: rgba(180, 42, 93, .14) !important; }
 
+/* ===== v246 : Voyage JLPT ===== */
+.voytog { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0 0 12px; }
+.voytog button { padding: 12px 8px; border-radius: 14px; border: 2px solid rgba(75, 61, 132, .5); background: rgba(255, 250, 240, .94); color: #2c2452; font-weight: 800; font-size: .95rem; transition: scale .25s cubic-bezier(.34, 1.56, .64, 1), box-shadow .2s; }
+.voytog button[aria-selected="true"] { background: linear-gradient(160deg, #3a2d6e, #231a45); color: #ffe9a8; border-color: #ffd36e; box-shadow: 0 0 0 2px rgba(255, 211, 110, .45); }
+.voytog button .jp { font-size: 1.25rem; margin-right: 4px; }
+.voyhead { display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: 18px; background: linear-gradient(135deg, #3a2d6e, #6a3f8f); color: #fff7e0; margin-bottom: 10px; }
+.voyhead h3 { margin: 2px 0 6px; font-size: 1.3rem; color: #fff7e0; } .voyhead small { opacity: .85; }
+.voyg { width: 62px; height: 62px; flex: none; display: grid; place-items: center; font-size: 2.2rem; border-radius: 50%; background: radial-gradient(circle, #ffe9a8, #e8b84a); color: #5a2a00; box-shadow: 0 0 20px rgba(255, 211, 110, .7); }
+.voyprog { display: block; height: 8px; border-radius: 6px; background: rgba(255, 255, 255, .22); overflow: hidden; margin: 4px 0; } .voyprog i { display: block; height: 100%; background: linear-gradient(90deg, #ffcf5a, #f29b2e); border-radius: 6px; transition: width .8s; }
+.voyreq .voyprog { background: rgba(75, 61, 132, .15); }
+.voylore { font-size: .95rem; line-height: 1.5; margin-bottom: 10px; }
+.voypath { display: grid; gap: 10px; position: relative; }
+.voych { display: flex; align-items: center; gap: 12px; text-align: left; padding: 10px 12px; border-radius: 16px; border: 2px solid rgba(75, 61, 132, .45); background: rgba(255, 250, 240, .95); color: #2c2452; }
+.voych .voynode { width: 52px; height: 52px; flex: none; display: grid; place-items: center; border-radius: 50%; font-size: 1.7rem; background: linear-gradient(145deg, #f6d8e4, #e9709a); color: #fff; box-shadow: 0 3px 0 rgba(0, 0, 0, .2); }
+.voych.done .voynode { background: linear-gradient(145deg, #ffe9a8, #e8b84a); color: #5a2a00; } .voych.locked { opacity: .7; } .voych.locked .voynode { background: #8e86a8; }
+.voych.boss { border-color: #c1245a; } .voych.boss .voynode { background: linear-gradient(145deg, #c1245a, #7c1c3f); }
+.voytx { display: grid; gap: 2px; } .voytx b { font-size: 1.02rem; } .voytx small { color: #4b3d84; font-size: .78rem; } .voywhy { color: #8a1a45 !important; }
+.voysoonh { margin: 16px 0 6px; font-size: .95rem; color: #fff7e0; text-shadow: 0 1px 3px rgba(0, 0, 0, .5); }
+.voysoon { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; } .voyso { display: grid; gap: 2px; padding: 10px; border-radius: 14px; background: rgba(36, 26, 62, .7); color: #e8dcff; position: relative; } .voyso .jp { font-size: 1.6rem; opacity: .7; } .voyso small { font-size: .72rem; opacity: .85; } .voyso em { position: absolute; top: 8px; right: 10px; font-size: .68rem; font-style: normal; background: rgba(255, 255, 255, .15); padding: 1px 8px; border-radius: 9px; }
+.voyscene { text-align: center; } .voyscene .voysg { font-size: 3.4rem; color: #c1245a; line-height: 1.1; } .voyscene p { text-align: left; line-height: 1.55; margin: 8px 0; } .voywin { background: rgba(255, 211, 110, .3); padding: 8px 10px; border-radius: 10px; font-weight: 600; }
+.voycard { text-align: center; } .voywinp { margin: 8px 0; }
+
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -24400,6 +24422,175 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
     if (h && window.MutationObserver) new MutationObserver(sync).observe(h, { childList: true, subtree: true, attributes: true });
     setInterval(sync, 1500); setTimeout(sync, 400);
   })();
+
+  /* =====================================================================
+     v246 : VOYAGE JLPT · la Vallée de Hanami (N5)
+     ===================================================================== */
+  var VOY = {
+    n5: {
+      name: 'Vallée de Hanami', lv: 'N5', glyph: '花', need: 0.2, bossNeed: 100,
+      lore: 'Le Grand Souffle a dispersé les Sceaux de Langue comme des pétales. Le chevalier doit les retrouver, région après région. Tout commence dans la Vallée de Hanami.',
+      chapters: [
+        { t: 'Le seuil du village', g: '門', th: ['n5_salut', 'n5_nombre'], n: 10,
+          intro: ['Le chevalier s\'éveille enfin au pied du rocher. Devant lui, la porte du village de Hanami, gardée par deux lions de pierre qui ne s\'ouvrent que pour les voyageurs polis.', '« {{こんにちは}} », murmure l\'un d\'eux, les yeux mi-clos. « Salue-nous comme il faut, puis compte les sept lanternes de l\'allée. »'],
+          win: 'Les lions de pierre sourient, leurs mâchoires craquent… et la porte s\'ouvre. Une première lueur dorée s\'échappe du sol : le premier Sceau de Langue est à toi.' },
+        { t: 'La maison d\'Obāsan', g: '家', th: ['n5_temps', 'n5_famille'], n: 10,
+          intro: ['Au bout de l\'allée, une vieille dame range des bols sous un auvent : Obāsan. Elle a perdu son calendrier dans le Grand Souffle et ne sait plus quel jour on est, ni qui vient dîner ce soir.', '« Aide-moi à retrouver les jours, et à nommer ceux qui forment ma {{家族}}. »'],
+          win: 'Obāsan sort un vieux sceau de cire de sa manche. « Tu parles comme un enfant du village. Prends-le, il t\'appartient. »' },
+        { t: 'L\'auberge du Tanuki', g: '宿', th: ['n5_corps', 'n5_manger'], n: 10,
+          intro: ['Le chevalier a faim, et le tanuki de l\'auberge est affamé de mots justes. Il se plaint d\'avoir mal à la {{頭}} et réclame son {{ご飯}} sans savoir comment l\'appeler.', '« Décris mes douleurs et lis-moi la carte, sinon, pas de bol de riz ! »'],
+          win: 'Un bol fumant arrive. Au fond du bouillon, quelque chose scintille : le troisième Sceau.' },
+        { t: 'La gare du Kitsune', g: '駅', th: ['n5_lieux', 'n5_transport'], n: 10,
+          intro: ['Une gare minuscule se dresse sous les cerisiers. Le chef de gare, un renard à lunettes, a perdu tous ses panneaux : plus de {{駅}}, plus de {{電車}}, plus la moindre direction !', '« Aide-moi à tout replacer, et le train du col t\'attendra. »'],
+          win: 'Le sifflet retentit. Le renard te tend un petit sceau en laiton : « Ton billet pour la suite ! »' },
+        { t: 'L\'école des brumes', g: '校', th: ['n5_ecole', 'n5_objets'], n: 10,
+          intro: ['Une brume épaisse flotte autour d\'une école de bois. Les élèves-fantômes cherchent leurs {{宿題}} et leurs affaires, mais les objets de la classe ont perdu leur nom.', '« Rends-leur leurs noms, ou nous resterons dans la brume pour toujours ! »'],
+          win: 'La brume se lève d\'un coup. Sur le tableau noir, une craie dessine un cinquième sceau : le tien.' },
+        { t: 'Le pont des Verbes', g: '橋', th: ['n5_verbes', 'n5_adj'], n: 10,
+          intro: ['Un pont de corde enjambe la gorge. Il ne porte que ceux qui savent agir et décrire : chaque planche est gravée d\'un mot, {{見る}}, {{食べる}}, {{大きい}}…', '« Un faux pas, gamin, et c\'est la rivière. »'],
+          win: 'Le pont cesse de trembler. À l\'autre bout, un sceau luit, planté dans un poteau couvert de mousse.' },
+        { t: 'Le col du Vent', g: '風', th: ['n5_nature', 'n5_gram', 'n5_plus'], n: 10,
+          intro: ['Au sommet du col, le vent siffle entre les pins. Il apporte de la {{雨}}, de la {{雪}}, des couleurs, et mille petits mots de liaison. Un marchand ambulant propose de te guider pour un bon {{値段}}.', '« Parle bien, voyageur : le vent écoute. »'],
+          win: 'Le vent tombe. Devant toi se dresse la Porte du Gardien : il ne te reste qu\'un sceau à gagner.' }
+      ],
+      boss: { t: 'Le Gardien de la Porte', g: '鬼', th: ['n5_all'], n: 12, pass: 9,
+        intro: ['La Porte du Gardien se dresse, immense. Un oni de pierre ouvre un œil : « Qui ose quitter la Vallée de Hanami ? Prouve que tu connais vraiment ses mots, pas seulement leur ombre. »', 'Douze questions sur tout le vocabulaire N5, aucune pitié.'],
+        win: 'L\'oni éclate de rire, s\'effrite en pétales… et la porte s\'ouvre sur la Route des Brumes. Le Sceau de la Vallée est à toi : le chapitre N5 est refermé.' }
+    }
+  };
+  var VOY_SOON = [['N4', '霧', 'La Route des Brumes', 'Auberges, gares et rencontres : le voyage s\'allonge.'], ['N3', '桜', 'Les Monts Sakura', 'Récits, opinions et premières vraies conversations.'], ['N2', '烏', 'Le Château du Corbeau', 'Nuances, registres et langue des affaires.'], ['N1', '頂', 'Le Sommet Sans Nom', 'Le dernier Sceau, au-dessus des nuages.']];
+  var voy = { view: 'map', ci: 0, run: null };
+  window.__voy = voy;
+  function voySt() { S.voy = S.voy || {}; var r = S.voy.n5 = S.voy.n5 || { seals: {}, best: {} }; return r; }
+  function voyPool(th) {
+    var out = [], seen = {};
+    QV.forEach(function (t) { if (th.indexOf(t.id) >= 0) t.w.forEach(function (w) { if (!seen[w.key]) { seen[w.key] = 1; out.push(w); } }); });
+    return out;
+  }
+  function voyAcq(pool) { var n = 0; pool.forEach(function (w) { if (mst(S.qv && S.qv[w.key])) n++; }); return n; }
+  function voyChap(i) { var R = VOY.n5; return i >= R.chapters.length ? R.boss : R.chapters[i]; }
+  function voyInfo(i) {
+    var R = VOY.n5, st = voySt(), c = voyChap(i), pool = voyPool(c.th), done = !!st.seals[i], ok = true, why = '';
+    if (i < R.chapters.length) {
+      if (i > 0) {
+        var pp = voyPool(R.chapters[i - 1].th), nd = Math.ceil(pp.length * R.need), ac = voyAcq(pp);
+        if (!st.seals[i - 1]) { ok = false; why = 'Réussis d\'abord le chapitre précédent.'; }
+        else if (ac < nd) { ok = false; why = 'Il te manque des mots acquis du chapitre précédent : ' + ac + ' / ' + nd + '. Révise-les au Dojo ou rejoue son défi.'; }
+      }
+    } else {
+      var all = voyAcq(voyPool(['n5_all'])), allSeals = R.chapters.every(function (_, k) { return st.seals[k]; });
+      if (!allSeals) { ok = false; why = 'Il te faut les 7 sceaux de la vallée.'; }
+      else if (all < R.bossNeed) { ok = false; why = 'Mots N5 acquis : ' + all + ' / ' + R.bossNeed + ' pour affronter le Gardien.'; }
+    }
+    return { c: c, pool: pool, done: done, open: ok, why: why, acq: voyAcq(pool) };
+  }
+  function voyText(par) { return par.map(function (p) { return '<p>' + p.replace(/\{\{(.+?)\}\}/g, function (m, j) { return '<span class="jp">' + wtokHTML(j, false) + '</span>'; }) + '</p>'; }).join(''); }
+  /* ---- questions ---- */
+  function voyW(w) { var s = S.qv && S.qv[w.key]; return (mst(s) ? 0 : s ? 2 : 1.4) + Math.random() * 1.2; }
+  function voyOpts(w, pool, lab) {
+    var pick = [], seen = {}; seen[lab(w)] = 1;
+    shuffle(pool).forEach(function (x) { if (pick.length >= 3) return; var l = lab(x); if (!l || seen[l]) return; seen[l] = 1; pick.push(x); });
+    var all = shuffle(pick.concat([w]));
+    return { opts: all.map(lab), correct: all.indexOf(w) };
+  }
+  function voyBuild(pool, n) {
+    var chosen = pool.slice().sort(function (a, b) { return voyW(b) - voyW(a); }).slice(0, n), types = ['sens', 'cloze', 'read', 'trad'], qs = [];
+    shuffle(chosen).forEach(function (w, i) {
+      var t = types[i % 4], ex = EXS[w.jp];
+      if (t === 'cloze' && !(ex && ex[0] && ex[0].indexOf(w.jp) >= 0)) t = 'trad';
+      if (t === 'read' && !(w.kana && w.kana !== w.jp && /[㐀-鿿]/.test(w.jp))) t = 'sens';
+      var q = { t: t, w: w }, o;
+      if (t === 'sens') { o = voyOpts(w, pool, function (x) { return x.fr; }); q.prompt = 'Que signifie ce mot ?'; q.big = w.jp; }
+      else if (t === 'trad') { o = voyOpts(w, pool, function (x) { return x.jp; }); q.prompt = 'Comment dit-on en japonais ?'; q.big = w.fr; q.small = true; }
+      else if (t === 'read') { o = voyOpts(w, pool, function (x) { return x.kana; }); q.prompt = 'Comment se lit ce mot ?'; q.big = w.jp; }
+      else { o = voyOpts(w, pool, function (x) { return x.jp; }); q.prompt = 'Complète la phrase'; q.sent = ex[0]; q.fr = ex[1] || ''; }
+      q.opts = o.opts; q.correct = o.correct; qs.push(q);
+    });
+    return qs;
+  }
+  /* ---- rendu ---- */
+  function voyMapHTML() {
+    var R = VOY.n5, st = voySt(), seals = Object.keys(st.seals).filter(function (k) { return st.seals[k]; }).length, tot = R.chapters.length + 1;
+    var h = '<div class="voyhead"><div class="voyg jp" aria-hidden="true">' + R.glyph + '</div><div><small>Voyage JLPT · ' + R.lv + '</small><h3>' + esc(R.name) + '</h3><span class="voyprog"><i style="width:' + Math.round(seals / tot * 100) + '%"></i></span><small>' + seals + ' / ' + tot + ' sceaux</small></div></div>';
+    h += '<div class="panel voylore">' + esc(R.lore) + '</div><div class="voypath">';
+    for (var i = 0; i < tot; i++) {
+      var f = voyInfo(i), c = f.c, boss = i === R.chapters.length;
+      h += '<button type="button" class="voych' + (f.done ? ' done' : f.open ? ' open' : ' locked') + (boss ? ' boss' : '') + '" data-voy="ch:' + i + '"><span class="voynode jp">' + (f.done ? '✔' : esc(c.g)) + '</span><span class="voytx"><b>' + (boss ? 'Boss · ' : (i + 1) + '. ') + esc(c.t) + '</b><small>' + (f.done ? 'Sceau obtenu · ' : '') + f.acq + ' / ' + f.pool.length + ' mots acquis</small>' + (!f.open ? '<small class="voywhy">🔒 ' + esc(f.why) + '</small>' : '') + '</span></button>';
+    }
+    h += '</div><h4 class="voysoonh">La suite du voyage</h4><div class="voysoon">' + VOY_SOON.map(function (x) { return '<div class="voyso"><span class="jp">' + x[1] + '</span><b>' + x[0] + ' · ' + esc(x[2]) + '</b><small>' + esc(x[3]) + '</small><em>Bientôt</em></div>'; }).join('') + '</div>';
+    return h;
+  }
+  function voyChapHTML() {
+    var i = voy.ci, f = voyInfo(i), c = f.c, boss = i === VOY.n5.chapters.length;
+    var h = '<div class="grp djbar"><button type="button" class="btn djback" data-voy="map">‹ Carte</button><h3 class="sgh" data-k="' + esc(c.g) + '"><span>' + (boss ? 'Boss' : 'Chapitre ' + (i + 1)) + '</span></h3></div>';
+    h += '<div class="panel voyscene"><div class="voysg jp" aria-hidden="true">' + esc(c.g) + '</div><h3>' + esc(c.t) + '</h3>' + voyText(c.intro) + (f.done ? '<p class="voywin">' + esc(c.win) + '</p>' : '') + '</div>';
+    h += '<div class="panel voyreq"><b>' + f.acq + ' / ' + f.pool.length + '</b> mots acquis dans ce chapitre<span class="voyprog"><i style="width:' + Math.round(f.acq / Math.max(1, f.pool.length) * 100) + '%"></i></span>' +
+      (f.open ? '<p class="small muted">Défi : ' + c.n + ' questions, il en faut ' + (c.pass || Math.ceil(c.n * 0.7)) + ' bonnes pour obtenir le sceau. Chaque question travaille tes mots acquis.</p><button type="button" class="btn primary" data-voy="start">' + (f.done ? '⚔ Rejouer le défi' : '⚔ Commencer le défi') + '</button>' : '<p class="note">🔒 ' + esc(f.why) + '</p>') + '</div>';
+    return h;
+  }
+  function voyRunHTML() {
+    var r = voy.run, q = r.qs[r.i], c = voyChap(r.ci), h = '';
+    h += '<div class="grp djbar"><button type="button" class="btn djback" data-voy="quit">‹ Quitter</button><h3 class="sgh" data-k="' + esc(c.g) + '"><span>' + esc(c.t) + '</span></h3></div>';
+    h += '<p class="small muted" style="margin:6px 0 2px;text-align:center">Question ' + (r.i + 1) + ' / ' + r.qs.length + ' · ' + r.score + ' bonne' + (r.score > 1 ? 's' : '') + '</p><div class="knqbar"><u style="width:' + Math.round(r.i / r.qs.length * 100) + '%"></u></div>';
+    h += '<div class="knqcard qcard voycard' + (r.ans === null ? '' : r.ans === q.correct ? ' clzok' : ' clzko') + '"><p class="prompt">' + esc(q.prompt) + '</p>';
+    if (q.t === 'cloze') h += '<p class="clzjp jp">' + esc(q.sent).split(esc(q.w.jp)).join('<span class="' + (r.ans === null ? 'clzblank' : 'clzfill') + '" style="min-width:' + Math.max(3.4, Array.from(q.w.jp).length * 1.15 + 1.4).toFixed(1) + 'em">' + (r.ans === null ? '' : esc(q.w.jp)) + '</span>') + '</p><p class="clzfr">' + esc(q.fr) + '</p>';
+    else { var bl = Array.from(q.big).length, fs = q.small ? (bl <= 4 ? 3.2 : 2.4) : bl <= 1 ? 7 : bl <= 2 ? 5.6 : bl <= 4 ? 4 : bl <= 6 ? 3 : 2.3; h += '<div class="kanji" style="font-size:' + fs + 'rem!important;line-height:1.25;white-space:normal;word-break:keep-all">' + esc(q.big) + '</div>'; }
+    h += '</div><div class="choices">' + q.opts.map(function (o, i) {
+      var cls = 'choice' + (r.ans === null ? '' : i === q.correct ? ' good' : i === r.ans ? ' bad' : '');
+      return '<button type="button" class="' + cls + '"' + (r.ans === null ? '' : ' disabled') + ' data-voy="pick:' + i + '"><span class="key">' + (i + 1) + '</span><span class="jp">' + esc(o) + '</span></button>';
+    }).join('') + '</div>';
+    if (r.ans !== null) h += '<div class="fb ' + (r.ans === q.correct ? 'good' : 'bad') + '"><b>' + (r.ans === q.correct ? 'Bonne réponse !' : 'Raté.') + '</b> <span class="jp">' + esc(q.w.jp) + '</span> · ' + esc(q.w.kana || '') + ' · ' + esc(q.w.fr) + '</div><div style="text-align:center;margin-top:10px"><button type="button" class="btn primary" data-voy="next">' + (r.i + 1 >= r.qs.length ? 'Voir le résultat' : 'Suivant') + '</button></div>';
+    return h;
+  }
+  function voyEndHTML() {
+    var r = voy.run, c = voyChap(r.ci), need = c.pass || Math.ceil(c.n * 0.7), win = r.score >= need;
+    return '<div class="result voyend"><div class="sprbig ' + (win ? 'win' : '') + ' jp" aria-hidden="true">' + (win ? '印' : esc(c.g)) + '</div><h3>' + (win ? 'Sceau obtenu !' : 'Pas encore…') + '</h3><p>' + r.score + ' bonnes réponses sur ' + r.qs.length + ' (il en fallait ' + need + ').</p>' +
+      (win ? '<div class="panel voywinp">' + esc(c.win) + (r.reward ? '<p class="small"><b>+' + r.reward.xp + ' XP · +' + r.reward.coins + ' pièces</b></p>' : '') + '</div>' : '<p class="small muted">Chaque réponse compte pour tes mots acquis. Retente le défi, il change à chaque fois.</p>') +
+      '<div class="row"><button type="button" class="btn primary" data-voy="' + (win ? 'map' : 'start') + '">' + (win ? 'Retour à la carte' : 'Retenter') + '</button><button type="button" class="btn" data-voy="map">Carte</button></div></div>';
+  }
+  function voyRender() {
+    var host = $('storyBody'); if (!host) return;
+    var body = voy.view === 'run' ? (voy.run.done ? voyEndHTML() : voyRunHTML()) : voy.view === 'chap' ? voyChapHTML() : voyMapHTML();
+    host.onclick = null; host.innerHTML = voyToggle() + '<div class="voywrap">' + body + '</div>';
+  }
+  function voyToggle() { return '<div class="voytog" role="tablist"><button type="button" role="tab" aria-selected="false" data-voy="tog:cours"><span class="jp" aria-hidden="true">冒</span> Aventure du cours</button><button type="button" role="tab" aria-selected="true" data-voy="tog:jlpt"><span class="jp" aria-hidden="true">旅</span> Voyage JLPT</button></div>'; }
+  var _renderStory0 = renderStory;
+  renderStory = function () {
+    if (S && S.voyOn && storyTab !== 'base') { setVox(false); voyRender(); return; }
+    _renderStory0();
+    try {
+      var host = $('storyBody'); if (host && S && storyTab !== 'base') host.insertAdjacentHTML('afterbegin', '<div class="voytog" role="tablist"><button type="button" role="tab" aria-selected="true" data-voy="tog:cours"><span class="jp" aria-hidden="true">冒</span> Aventure du cours</button><button type="button" role="tab" aria-selected="false" data-voy="tog:jlpt"><span class="jp" aria-hidden="true">旅</span> Voyage JLPT</button></div>');
+    } catch (e) {}
+  };
+  function voyStart() {
+    var c = voyChap(voy.ci), f = voyInfo(voy.ci); if (!f.open) return;
+    voy.run = { ci: voy.ci, qs: voyBuild(f.pool, c.n), i: 0, score: 0, ans: null, done: false, reward: null };
+    voy.view = 'run'; voyRender(); window.scrollTo(0, 0);
+  }
+  function voyFinish() {
+    var r = voy.run, c = voyChap(r.ci), need = c.pass || Math.ceil(c.n * 0.7), st = voySt();
+    r.done = true;
+    if (r.score >= need && !st.seals[r.ci]) {
+      var boss = r.ci === VOY.n5.chapters.length, xp = boss ? 200 : 60, coins = boss ? 100 : 20;
+      st.seals[r.ci] = Date.now(); r.reward = { xp: xp, coins: coins };
+      S.coins = coinsOf() + coins; S.coinsTotal = (S.coinsTotal || 0) + coins; addXp(xp); try { confetti(); } catch (e) {} sfx('win');
+    } else if (r.score >= need) sfx('win');
+    try { streakTick(1); } catch (e) {} persist();
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-voy]') : null; if (!b || !user || !S) return;
+    var a = b.getAttribute('data-voy'), p = a.split(':'), cmd = p[0], arg = p[1];
+    if (cmd === 'tog') { S.voyOn = arg === 'jlpt'; persist(); voy.view = 'map'; renderStory(); return; }
+    if (cmd === 'ch') { voy.ci = +arg; voy.view = 'chap'; voyRender(); window.scrollTo(0, 0); }
+    else if (cmd === 'map' || cmd === 'quit') { voy.view = 'map'; voy.run = null; voyRender(); window.scrollTo(0, 0); }
+    else if (cmd === 'start') voyStart();
+    else if (cmd === 'pick') {
+      var r = voy.run; if (!r || r.ans !== null) return; var q = r.qs[r.i]; r.ans = +arg; var ok = r.ans === q.correct;
+      if (ok) r.score++; try { qvMark(q.w, ok); } catch (er) {} sfx(ok ? 'ok' : 'bad'); persist(); voyRender();
+    } else if (cmd === 'next') {
+      var r2 = voy.run; if (!r2) return; r2.i++; r2.ans = null; if (r2.i >= r2.qs.length) voyFinish(); voyRender(); window.scrollTo(0, 0);
+    }
+  });
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
