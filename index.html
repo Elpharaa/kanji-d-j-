@@ -16265,9 +16265,6 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
     var nItems = Object.keys(vis).length, pv = Math.max(0, Math.min(PAV_MAX, Math.floor(+st.pv) || 0));
     if (pv) vis.__pav = pv;
     h += st.kt ? '<div class="pavbadge">⚔ Katana : <b>' + esc(katOf(st.kt).name) + '</b></div>' : '';
-    h += pv ? '<div class="pavbadge"><b>Pavillon niv. ' + pv + '</b> · ' + esc(pavTier(pv).name) + '</div>' : '';
-    h += '<h4 class="pmh">Aperçu de sa Base <span class="muted">(' + nItems + ' objet' + (nItems > 1 ? 's' : '') + ' ou animal' + (nItems > 1 ? 'ux' : '') + ')</span></h4>' +
-      (visCtx = { vis: vis, av: avatarOf(d.name, d.avatar), pos: st.bp, plot: 0 }, baseHTML(vis, avatarOf(d.name, d.avatar), 'mini', st.bp)) + ((nItems || pv) ? '' : '<p class="small muted">Ce joueur n\'a pas encore installé d\'objet ni d\'animal dans sa base.</p>');
     return h;
   }
   function openProfile(id, hint) {
