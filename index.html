@@ -3838,6 +3838,7 @@ html.vt .hubcard,html.vt .mode{animation:none!important}
 
 /* ===== v165 : pied de page Discord, ordre des traits, guide ===== */
 .sitefoot{display:flex;justify-content:center;padding:18px 16px calc(26px + env(safe-area-inset-bottom,0px));position:relative;z-index:2}
+.sitefoot{display:none !important}body.onhome .sitefoot{display:flex !important}
 .dclink{display:inline-flex;align-items:center;gap:11px;padding:9px 18px 9px 11px;border-radius:999px;text-decoration:none;color:#fffaf0;background:linear-gradient(135deg,#4b3d84,#2c2452);border:2px solid #f0b97a;box-shadow:0 4px 0 rgba(20,14,44,.55),0 10px 22px rgba(20,14,44,.3);transition:transform .15s,box-shadow .15s}
 .dclink:hover{transform:translateY(-2px);box-shadow:0 6px 0 rgba(20,14,44,.55),0 14px 26px rgba(20,14,44,.35)}
 .dclink:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(20,14,44,.55)}
@@ -4265,6 +4266,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
 .clzblank { display: inline-block; min-width: 3.2em; border-bottom: 3px solid #c1245a; color: transparent; margin: 0 2px; letter-spacing: .1em; } .clzfill { background: linear-gradient(transparent 55%, rgba(240,185,122,.7) 55%); color: #c1245a; font-weight: 800; border-radius: 3px; padding: 0 2px; }
 .clzfr { margin: 4px 0 0; font-size: .92rem; color: #4b3d84; font-style: italic; text-align: center; }
 .frhl { background: #ffc7dc; color: #a31548; font-weight: 800; font-style: normal; border-radius: 4px; padding: 0 3px; }
+.furwrap ruby{ruby-position:over}.furwrap rt{font-size:.5em;font-weight:600;color:#6b3f86}.codeform{display:flex;gap:8px;margin:8px 0}.codeform input{flex:1;min-width:0;padding:10px 12px;border:2px solid #d9c9ec;border-radius:10px;font:inherit;text-transform:uppercase}
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -4295,6 +4297,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     <span class="sstat sheart" id="hdrHearts" title="Cœurs"></span>
     <span class="sstat scoin" id="hdrCoins" title="Pièces d'or"></span>
     <button class="gear romtog" type="button" id="btnRomTog" aria-pressed="false" aria-label="Afficher ou masquer le romaji" title="Romaji">Romaji</button>
+    <button class="gear romtog" type="button" id="btnFuriTog" aria-pressed="false" aria-label="Afficher ou masquer les furigana" title="Furigana">ふりがな</button>
     <button class="gear" type="button" data-go="settings" aria-label="Réglages">⚙</button>
   </div>
 
@@ -4428,7 +4431,6 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
         <button type="button" role="tab" class="custtab" data-custtab="photo" aria-selected="true"><span aria-hidden="true">像</span>Photo</button>
         <button type="button" role="tab" class="custtab" data-custtab="banner" aria-selected="false"><span aria-hidden="true">旗</span>Bannière</button>
         <button type="button" role="tab" class="custtab" data-custtab="deco" aria-selected="false"><span aria-hidden="true">称</span>Cadre &amp; titre</button>
-        <button type="button" role="tab" class="custtab" data-custtab="cards" aria-selected="false"><span aria-hidden="true">札</span>Cartes</button>
       </div>
       <div class="custbody" data-cb="photo">
       <p class="small muted">Choisis un avatar ou importe une photo (recadrée en carré).</p>
@@ -4558,8 +4560,9 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
 
   <!-- ===== RÉGLAGES ===== -->
   <section id="vSettings" hidden>
+    <div id="codeHost"></div>
     <div class="logrow" style="grid-column:1/-1;display:none !important" hidden><button type="button" class="btn logbtn" id="btnLogout3">⎋ Se déconnecter</button></div>
-    <div class="panel setlink"><button class="btn primary" type="button" data-guide="1" style="width:100%;margin-bottom:10px">❓ Comment ça marche ? Guide et visite</button><p class="small muted" hidden style="display:none !important">Photo, bannière, cadre, titre et effet de pseudo se règlent maintenant depuis ton profil.</p><button class="btn primary" type="button" data-go="profil" data-cust="photo" hidden style="display:none !important"><span class="bi" aria-hidden="true">飾</span> Personnaliser mon profil</button></div>
+    <div class="panel setlink"><p class="small muted" hidden style="display:none !important">Photo, bannière, cadre, titre et effet de pseudo se règlent maintenant depuis ton profil.</p><button class="btn primary" type="button" data-go="profil" data-cust="photo" hidden style="display:none !important"><span class="bi" aria-hidden="true">飾</span> Personnaliser mon profil</button></div>
     <details class="acc setacc" id="adminAcc" hidden><summary><span class="aico" aria-hidden="true">絵</span>Atelier d'images (admin)</summary><div class="accbody" id="adminBody"></div></details>
     <details class="acc setacc"><summary><span class="aico" aria-hidden="true">音</span>Contenu et sons</summary><div class="accbody">
       <p id="contentInfo"></p>
@@ -12553,7 +12556,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     var inApp = !!user && view !== 'vAuth';
     $('userbox').hidden = !inApp;
     $('nav').hidden = !inApp || view === 'vSession';
-    document.body.classList.toggle('inapp', inApp);
+    document.body.classList.toggle('inapp', inApp); document.body.classList.toggle('onhome', view === 'vHub' || view === 'vAuth');
     var inFight = view === 'vSession' && !!sess && sess.kind === 'fight'; document.body.classList.toggle('infight', inFight); if (typeof fightFxSync === 'function') fightFxSync(inFight);
     if (typeof unlSync === 'function') unlSync();
     Array.from(document.querySelectorAll('.tab')).forEach(function (t) {
@@ -12808,7 +12811,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
       }).join('') + '</div>';
     } else {
       h += '<div class="langrow">' + (q.kind ? kindChip(q) : '') + langChip(q) + '</div><form class="answer" id="form" autocomplete="off"><label class="prompt" for="ans" style="text-align:left">Ta réponse (hiragana, katakana ou romaji)</label>' +
-        '<input type="text" id="ans" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="' + esc(q.ph) + '">' +
+        '<input type="text" id="ans"' + (q.type === 'sens' ? '' : ' data-ime="1"') + ' autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="' + esc(q.ph) + '">' +
         '<button class="btn primary" type="submit">Valider</button></form>';
     }
     h += '<div class="skiprow"><button class="btn skipq" type="button" id="skipQ">🤷 Je ne sais pas</button></div>';
@@ -13444,7 +13447,6 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   function flTouch() { flLast = Date.now(); }
   function flTick() {
     if (!sess || sess.kind !== 'flash' || !sess.cur || document.hidden) return;
-    if (Date.now() - flLast > 180000) { var t0 = $('fcTime'); if (t0) t0.textContent = '⏸ en pause (touche l\'écran)'; return; }
     sess.sec = (sess.sec || 0) + 1;
     if (sess.sec % 60 === 0) { S.coins = coinsOf() + 1; S.coinsTotal = (S.coinsTotal || 0) + 1; sess.gold = (sess.gold || 0) + 1; persist(); sfx('coin', true); renderBars();
       var xd = dayKey(), xt = S.flxt && S.flxt.d === xd ? S.flxt : (S.flxt = { d: xd, n: 0 });          // XP au temps passé : +2 par minute active, 60 XP max par jour
@@ -15414,6 +15416,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     if (!$('vStory').hidden && storyTab === 'base') { var sc = $('baseScene'); if (sc) sc.outerHTML = ownSceneHTML(); refreshEditBar(); }
   }
   function pavTeaser() {
+    return '';
     var lv = pavLv();
     return '<div class="panel pavteaser"><div class="hrow"><h3 class="sgh" data-k="館"><span>Pavillon du Dōjō</span></h3><span class="pavlv">' + (lv ? 'Niv. ' + lv + ' / ' + PAV_MAX : 'À construire') + '</span></div><p class="small">' + (lv ? esc(pavTier(lv).name) + ' · prochain niveau : ' + (lv < PAV_MAX ? fmtN(pavCost(lv + 1)) + ' 金' : 'maximum atteint') + '. Les autres joueurs voient ton niveau sur ton profil.' : 'Une structure qui grandit avec toi, de l\'abri de bois au temple impérial (50 niveaux).') + '</p><button class="btn' + (lv ? '' : ' primary') + '" type="button" id="openPav">' + (lv >= PAV_MAX ? 'Voir le pavillon' : lv ? 'Améliorer le pavillon' : 'Construire l\'abri') + '</button></div>';
   }
@@ -16426,8 +16429,8 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   /* ---- Boutique en fenêtre ---- */
   var shopTab = '';   // '' = accueil de la Boutique, sinon le rayon ouvert
   // [id, sceau, nom, description]
-  var SHOPCATS = [['loot', '宝', 'Coffres du dōjō', 'Un objet de profil au hasard'], ['card', '札', 'Cartes', 'Boosters de 3 cartes : profs, fac, Japon'], ['kat', '刀', 'Katanas', 'Armes et bonus de pièces'], ['pet', '獣', 'Animaux', 'Compagnons de ta base'], ['deco', '飾', 'Décors', 'Objets de ta base'],
-    ['bn', '旗', 'Bannières', 'Le décor de ton profil'], ['pav', '殿', 'Pavillon', 'Agrandis ton dōjō'], ['house', '家', 'Ma maison', 'Construis dans le village'], ['ft', '紋', 'Thèmes de cartes', 'Décore tes flashcards']];
+  var SHOPCATS = [['loot', '宝', 'Coffres du dōjō', 'Un objet de profil au hasard'], ['card', '札', 'Cartes', 'Boosters de 3 cartes : profs, fac, Japon'], ['kat', '刀', 'Katanas', 'Armes et bonus de pièces'], ['deco', '飾', 'Décors', 'Objets de ta base'],
+    ['bn', '旗', 'Bannières', 'Le décor de ton profil'], ];
   function shopCount(k) {
     if (k === 'deco') return DECO.filter(function (x) { return owns(x.id) && !x.trophy; }).length + '/' + DECO.filter(function (x) { return !x.trophy; }).length;
     if (k === 'pet') return PETS.filter(function (x) { return owns(x.id); }).length + '/' + PETS.length;
@@ -20379,15 +20382,14 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   function renderHubTiles() {
     var host = $('hubTiles'), gh = $('hubGuide'); if (!host || !S) return;
     var seen = Object.keys(S.seen || {}).length;
-    host.innerHTML = '<button type="button" class="hubmore" data-more="1"><span class="hmk" aria-hidden="true">他</span><span class="hmtx"><b>Plus</b><small>Classement · Statistiques · Guide du Dōjō</small></span><span class="hmchips" aria-hidden="true"><i>順</i><i>統</i><i>問</i></span></button>';
+    host.innerHTML = '<button type="button" class="hubmore" data-more="1"><span class="hmk" aria-hidden="true">他</span><span class="hmtx"><b>Plus</b><small>Classement · Statistiques</small></span><span class="hmchips" aria-hidden="true"><i>順</i><i>統</i><i>問</i></span></button>';
     if (gh) gh.innerHTML = '';
   }
   function moreHTML() {
     var seen = Object.keys(S.seen || {}).length;
     var rows = [
       ['data-go="board"', '順', 'Classement', 'Le top du dojo, entre camarades'],
-      ['data-stats="1"', '統', 'Statistiques', masteredCount() + ' mots maîtrisés · activité · mots ratés'],
-      ['data-guide="1"', '問', 'Guide du Dōjō', 'Tout comprendre en images, relancer la visite']
+      ['data-stats="1"', '統', 'Statistiques', masteredCount() + ' mots maîtrisés · activité · mots ratés']
     ];
     return '<div class="morelist">' + rows.map(function (r) { return '<button type="button" class="morerow" ' + r[0] + '><span class="mrseal" aria-hidden="true">' + r[1] + '</span><span class="mrtx"><b>' + r[2] + '</b><small>' + r[3] + '</small></span><span class="mrgo" aria-hidden="true">›</span></button>'; }).join('') + '</div>';
   }
@@ -21384,7 +21386,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     h += '<p class="prompt" style="text-align:center;margin:8px 0">' + esc(q.prompt) + '</p><div class="furqbig jp' + (String(q.big).length > 4 ? ' sm' : '') + '">' + esc(q.big) + '</div>' + (q.sub ? '<p class="small" style="text-align:center">' + esc(q.sub) + '</p>' : '');
     if (Q.ans === null) {
       if (q.fmt === 'mcq') h += '<div class="choices">' + q.options.map(function (o, i) { return '<button type="button" class="choice" data-furopt="' + i + '"><span class="key">' + (i + 1) + '</span><span>' + esc(o) + '</span></button>'; }).join('') + '</div>';
-      else h += '<form class="answer" id="furForm" autocomplete="off"><input type="text" id="furAns" class="ansin" placeholder="' + esc(q.ph || '') + '" autocapitalize="none" autocorrect="off" spellcheck="false"><button class="btn primary" type="submit">Valider</button></form><p class="small muted" style="text-align:center">' + esc(q.hint || '') + '</p>';
+      else h += '<form class="answer" id="furForm" autocomplete="off"><input type="text" id="furAns" class="ansin"' + (q.type === 'sens' ? '' : ' data-ime="1"') + ' placeholder="' + esc(q.ph || '') + '" autocapitalize="none" autocorrect="off" spellcheck="false"><button class="btn primary" type="submit">Valider</button></form><p class="small muted" style="text-align:center">' + esc(q.hint || '') + '</p>';
       h += '<div style="text-align:center;margin-top:10px"><button type="button" class="btn ghost dkb" data-furskip="1">🤷 Je ne sais pas</button></div>';
     } else {
       h += '<div class="fb ' + (Q.ok ? 'good' : 'bad') + '"><b>' + (Q.ok ? (Q.forged.indexOf(it.key) >= 0 ? '🔥 Forgé ! Ce mot est retenu. +25 XP' : 'Bonne réponse ! Chaleur +1 · +' + (q.fmt === 'input' ? 7 : 4) + ' XP') : 'Raté. Réponse : ' + esc(q.correct) + ' (chaleur −1)') + '</b>' + esc(q.card) + '</div>' +
@@ -21537,7 +21539,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   }
   function knStart(pool) {
     pool = pool.filter(Boolean); if (!pool.length) { toast('Pas de kana à réviser pour l\'instant.'); return; }
-    kn.pool = pool; kn.i = 0; kn.ok = 0; kn.tot = 0; kn.newly = []; kn.view = 'quiz'; kn.len = 10; knNextQ(); knRefresh();
+    kn.pool = pool; kn.i = 0; kn.ok = 0; kn.tot = 0; kn.xp = 0; kn.newly = []; kn.view = 'quiz'; kn.len = 10; knNextQ(); knRefresh();
   }
   function knQuizHTML() {
     var q = kn.q, h = knBack('home', 'Arrêter') + '<p class="small muted knqn">Question ' + (kn.i + 1) + ' / ' + kn.len + '</p><div class="knqbar"><u style="width:' + Math.round(kn.i / kn.len * 100) + '%"></u></div>';
@@ -21562,20 +21564,20 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     if (ok) {
       s.ok++; s.run++; kn.ok++; sfx('ok');
       if (!was && s.run >= MASTER_RUN && kn.newly.indexOf(k) < 0) kn.newly.push(k);
-      var d = dayKey(), x = S.knxp && S.knxp.d === d ? S.knxp : (S.knxp = { d: d, n: 0 }), g = Math.min(2, 40 - x.n); if (g > 0) { x.n += g; addXp(g); }
+      var d = dayKey(), x = S.knxp && S.knxp.d === d ? S.knxp : (S.knxp = { d: d, n: 0 }), g = Math.min(3, 120 - x.n); if (g > 0) { x.n += g; kn.xp = (kn.xp || 0) + g; addXp(g); }
     } else { s.ko++; s.run = 0; sfx('bad'); }
     persist(); knRefresh();
     if (ok) setTimeout(function () { if (kn.view === 'quiz' && kn.q === q) knForward(); }, 650);
   }
   function knForward() {
     kn.i++;
-    if (kn.i >= kn.len) { kn.view = 'end'; try { streakTick(1); } catch (e) {} persist(); }
+    if (kn.i >= kn.len) { kn.view = 'end'; try { streakTick(1); } catch (e) {} if (kn.tot >= 5 && kn.ok / kn.tot >= 0.8) { kn.xp = (kn.xp || 0) + 10; addXp(10); } persist(); }
     else knNextQ();
     knRefresh();
   }
   function knEndHTML() {
     var pct = kn.tot ? Math.round(kn.ok / kn.tot * 100) : 0;
-    return '<div class="result"><div class="sprbig win jp" aria-hidden="true">' + (kn.sc === 'k' ? 'ア' : 'あ') + '</div><h3>' + (pct >= 80 ? 'Excellent !' : pct >= 50 ? 'Bien joué !' : 'Continue, ça vient !') + '</h3><p>' + kn.ok + ' bonne' + (kn.ok > 1 ? 's' : '') + ' réponse' + (kn.ok > 1 ? 's' : '') + ' sur ' + kn.tot + '.' + (kn.newly.length ? '<br>Nouveaux kana maîtrisés : <b class="jp">' + esc(kn.newly.join(' ')) + '</b>' : '') + '</p><div class="row"><button type="button" class="btn primary" data-kn="again">Rejouer</button><button type="button" class="btn" data-kn="home">Retour aux groupes</button></div></div>';
+    return '<div class="result"><div class="sprbig win jp" aria-hidden="true">' + (kn.sc === 'k' ? 'ア' : 'あ') + '</div><h3>' + (pct >= 80 ? 'Excellent !' : pct >= 50 ? 'Bien joué !' : 'Continue, ça vient !') + '</h3><p>' + kn.ok + ' bonne' + (kn.ok > 1 ? 's' : '') + ' réponse' + (kn.ok > 1 ? 's' : '') + ' sur ' + kn.tot + '.' + (kn.newly.length ? '<br>Nouveaux kana maîtrisés : <b class="jp">' + esc(kn.newly.join(' ')) + '</b>' : '') + (kn.xp ? '<br><b>+' + kn.xp + ' XP</b>' : '') + '</p><div class="row"><button type="button" class="btn primary" data-kn="again">Rejouer</button><button type="button" class="btn" data-kn="home">Retour aux groupes</button></div></div>';
   }
   function knRefresh() { var h = $('kanaHost'); if (h) h.innerHTML = knInner(); }
   document.addEventListener('click', function (e) {
@@ -21706,7 +21708,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
       if (md === 'mcq') {
         h += '<div class="choices">' + q.opts.map(function (o, i) { return '<button type="button" class="choice" data-clz="pick" data-i="' + i + '"><span class="key">' + (i + 1) + '</span><span class="jp">' + esc(o.mot) + (S && S.clzFuri && /[㐀-鿿]/.test(o.mot) ? ' <small class="muted">' + esc(o.lecture) + '</small>' : '') + '</span></button>'; }).join('') + '</div>';
       } else {
-        h += '<form class="answer" id="clzForm" autocomplete="off"><label class="prompt" for="clzAns" style="text-align:left">Le mot qui manque (kanji ou kana)</label><input type="text" id="clzAns" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="ex. 日本 / にほん"><button class="btn primary" type="submit">Valider</button></form>';
+        h += '<form class="answer" id="clzForm" autocomplete="off"><label class="prompt" for="clzAns" style="text-align:left">Le mot qui manque (kanji ou kana)</label><input type="text" id="clzAns" data-ime="1" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="ex. 日本 / にほん"><button class="btn primary" type="submit">Valider</button></form>';
       }
       h += '<div class="skiprow"><button class="btn skipq" type="button" data-clz="skip">🤷 Je ne sais pas</button></div>';
     } else {
@@ -22950,7 +22952,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     if (q.done) return qvEndHTML(q);
     var w = q.items[q.i];
     var h = qvProg(q) + '<div class="qvq"><small>Écoute et écris ce que tu entends (kana ou romaji)</small><button type="button" class="qvhear" data-qvhear="1" aria-label="Réécouter le mot">🔊<span>Réécouter</span></button><button type="button" class="linkbtn" data-qvslow="1">🐢 Plus lentement</button></div>';
-    if (q.ans === null) h += '<form class="qvform" data-qvform="1"><input type="text" id="qvIn" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="ex. nihon" aria-label="Ta réponse"><button type="submit" class="btn primary">Valider</button></form>';
+    if (q.ans === null) h += '<form class="qvform" data-qvform="1"><input type="text" id="qvIn" data-ime="1" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="ex. nihon" aria-label="Ta réponse"><button type="submit" class="btn primary">Valider</button></form>';
     else h += '<div class="qvfb ' + (q.ok ? 'good' : 'bad') + '"><b>' + (q.ok ? 'Bien entendu !' : 'Raté.') + '</b> ' + esc(w.jp) + ' · ' + esc(qvRd(w)) + ' = ' + esc(w.fr) + '</div><button type="button" class="btn primary" data-qvnext="1">' + (q.i + 1 >= q.items.length ? 'Voir le résultat' : 'Suivant') + '</button>';
     return h;
   }
@@ -23083,7 +23085,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     if (q.done) return qvEndHTML(q);
     var w = q.items[q.i];
     var h = qvProg(q) + '<div class="qvq"><small>Écris la lecture de ce mot en kana ou en romaji</small><span class="qvfrbig">' + esc(w.fr) + '</span></div>';
-    if (q.ans === null) h += '<form class="qvform" data-qvform="1"><input type="text" id="qvIn" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="ex. Nihon" aria-label="Ta réponse"><button type="submit" class="btn primary">Valider</button></form>';
+    if (q.ans === null) h += '<form class="qvform" data-qvform="1"><input type="text" id="qvIn" data-ime="1" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="ex. Nihon" aria-label="Ta réponse"><button type="submit" class="btn primary">Valider</button></form>';
     else h += '<div class="qvfb ' + (q.ok ? 'good' : 'bad') + '"><b>' + (q.ok ? 'Bonne réponse !' : 'Raté.') + '</b> ' + esc(w.jp) + ' · ' + esc(qvRd(w)) + '</div><button type="button" class="btn primary" data-qvnext="1">' + (q.i + 1 >= q.items.length ? 'Voir le résultat' : 'Suivant') + '</button>';
     return h;
   }
@@ -23239,6 +23241,131 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     id = b.getAttribute('data-admindel');
     backend.assetDelete(id).then(function () { delete ASSETS[id]; assetsStore(); assetsAt = 0; adminRefresh(); toast('Image retirée : le dessin d\'origine revient.'); }).catch(function (er) { toast('Échec : ' + ((er && er.message) || er)); });
   }, true);
+
+  /* =====================================================================
+     v218 : furigana à la demande pendant les révisions, saisie automatique en kana,
+     codes de récompense
+     ===================================================================== */
+  function furOnSess() { return !!(S && S.furiSess); }
+  function furTogSync() { var b = document.getElementById('btnFuriTog'); if (!b) return; var on = furOnSess(); b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.classList.toggle('on', on); b.title = on ? 'Furigana affichés (toucher pour masquer)' : 'Furigana masqués (toucher pour afficher)'; }
+  var furObs = null, furBusy = false, furTimer = 0;
+  function furApplyTo(root) {
+    if (!root || !furOnSess()) return;
+    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), nodes = [], n;
+    while ((n = w.nextNode())) {
+      if (!/[㐀-鿿]/.test(n.nodeValue)) continue;
+      var p = n.parentNode; if (!p || !p.closest) continue;
+      if (p.closest('ruby,rt,script,style,textarea,input,select,svg,.nofuri,[data-nofuri]')) continue;
+      nodes.push(n);
+    }
+    nodes.forEach(function (t) {
+      var html = furiHTML(t.nodeValue); if (html.indexOf('<ruby>') < 0) return;
+      var sp = document.createElement('span'); sp.className = 'furwrap'; sp.innerHTML = html; t.parentNode.replaceChild(sp, t);
+    });
+  }
+  function furUnwrap() {
+    document.querySelectorAll('.furwrap').forEach(function (sp) { sp.parentNode.replaceChild(document.createTextNode((function () { var c = sp.cloneNode(true); c.querySelectorAll('rt').forEach(function (r) { r.parentNode.removeChild(r); }); return c.textContent; })()), sp); });
+  }
+  function furRun() {
+    furBusy = true;
+    try {
+      var roots = [document.getElementById('stage'), document.querySelector('#games .qvbody'), document.getElementById('vClz')];
+      roots.forEach(function (r) { if (r && !r.hidden) furApplyTo(r); });
+    } catch (e) {}
+    furBusy = false;
+  }
+  function furRefresh() { if (furOnSess()) furRun(); }
+  function furInit() {
+    if (furObs || !window.MutationObserver) return;
+    furObs = new MutationObserver(function () { if (furBusy || !furOnSess()) return; clearTimeout(furTimer); furTimer = setTimeout(furRun, 30); });
+    ['stage', 'games', 'vClz'].forEach(function (id) { var el = document.getElementById(id); if (el) furObs.observe(el, { childList: true, subtree: true }); });
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('#btnFuriTog') : null; if (!b || !S) return;
+    S.furiSess = !S.furiSess; persist(); furTogSync(); furInit();
+    if (S.furiSess) { furRun(); toast('Furigana affichés pendant les révisions.'); }
+    else { try { furUnwrap(); } catch (er) {} toast('Furigana masqués.'); }
+  });
+  setInterval(function () { furTogSync(); if (furOnSess()) { furInit(); } }, 1500);
+
+  /* ---- saisie automatique : romaji -> hiragana ; MAJUSCULES -> katakana ---- */
+  var IME = (function () {
+    var t = {}, V = { a: 'あ', i: 'い', u: 'う', e: 'え', o: 'お' };
+    var rows = { '': 'あいうえお', k: 'かきくけこ', s: 'さしすせそ', t: 'たちつてと', n: 'なにぬねの', h: 'はひふへほ', m: 'まみむめも', r: 'らりるれろ', g: 'がぎぐげご', z: 'ざじずぜぞ', d: 'だぢづでど', b: 'ばびぶべぼ', p: 'ぱぴぷぺぽ' };
+    Object.keys(rows).forEach(function (c) { 'aiueo'.split('').forEach(function (v, i) { t[c + v] = rows[c][i]; }); });
+    t.ya = 'や'; t.yu = 'ゆ'; t.yo = 'よ'; t.wa = 'わ'; t.wo = 'を'; t.wi = 'うぃ'; t.we = 'うぇ';
+    t.shi = 'し'; t.chi = 'ち'; t.tsu = 'つ'; t.fu = 'ふ'; t.ji = 'じ'; t.si = 'し'; t.ti = 'ち'; t.tu = 'つ'; t.hu = 'ふ'; t.zi = 'じ';
+    t.dzu = 'づ';
+    var sm = { a: 'ゃ', u: 'ゅ', o: 'ょ' };
+    var combos = { ky: 'き', gy: 'ぎ', sh: 'し', ch: 'ち', j: 'じ', ny: 'に', hy: 'ひ', by: 'び', py: 'ぴ', my: 'み', ry: 'り', sy: 'し', ty: 'ち', zy: 'じ', dy: 'ぢ', cy: 'ち' };
+    Object.keys(combos).forEach(function (c) { Object.keys(sm).forEach(function (v) { t[c + v] = combos[c] + sm[v]; }); });
+    t.je = 'じぇ'; t.she = 'しぇ'; t.che = 'ちぇ'; t.fa = 'ふぁ'; t.fi = 'ふぃ'; t.fe = 'ふぇ'; t.fo = 'ふぉ'; t.ti2 = '';
+    t.thi = 'てぃ'; t.dhi = 'でぃ'; t.tsa = 'つぁ'; t.va = 'ゔぁ'; t.vu = 'ゔ';
+    'aiueo'.split('').forEach(function (v) { t['x' + v] = 'ぁぃぅぇぉ'['aiueo'.indexOf(v)]; t['l' + v] = t['x' + v]; });
+    t.xya = 'ゃ'; t.xyu = 'ゅ'; t.xyo = 'ょ'; t.lya = 'ゃ'; t.lyu = 'ゅ'; t.lyo = 'ょ'; t.xtu = 'っ'; t.ltu = 'っ'; t.xtsu = 'っ'; t.ltsu = 'っ';
+    var keys = Object.keys(t).filter(function (k) { return t[k]; });
+    var vow = 'aiueo';
+    function conv(str) {
+      var out = '', i = 0, kat = false, L = str.length;
+      while (i < L) {
+        var ch = str.charAt(i), lo = ch.toLowerCase();
+        if (!/[A-Za-z'\-]/.test(ch)) { if (/\s/.test(ch)) kat = false; out += ch; i++; continue; }
+        if (ch === '-') { out += 'ー'; i++; continue; }
+        if (/[A-Z]/.test(ch) || /[ァ-ヶー]$/.test(out)) kat = true;
+        var m = '', len;
+        for (len = Math.min(4, L - i); len >= 1; len--) { var sub = str.substr(i, len).toLowerCase(); if (t[sub]) { m = sub; break; } }
+        if (m) { var k = t[m]; out += kat ? toKata(k) : k; i += m.length; continue; }
+        var nx = str.charAt(i + 1).toLowerCase();
+        if (lo === 'n') {
+          if (nx === "'") { out += kat ? 'ン' : 'ん'; i += 2; continue; }
+          if (nx === 'n') { var n2 = str.charAt(i + 2).toLowerCase(); out += kat ? 'ン' : 'ん'; i += (n2 && 'aiueoy'.indexOf(n2) >= 0) ? 1 : 2; continue; }
+          if (nx && !/[a-z]/.test(nx)) { out += kat ? 'ン' : 'ん'; i++; continue; }
+          if (nx && vow.indexOf(nx) < 0 && nx !== 'y' && nx !== 'n' && /[a-z]/.test(nx)) { out += kat ? 'ン' : 'ん'; i++; continue; }
+        }
+        if (nx && nx === lo && /[bcdfghjklmpqrstvwxyz]/.test(lo)) { out += kat ? 'ッ' : 'っ'; i++; continue; }
+        out += ch; i++;
+      }
+      return out;
+    }
+    function finish(str) { return str.replace(/([ァ-ヶー])[nN]$/, '$1ン').replace(/[nN]$/, function (m, off, st) { return /[ァ-ヶ]$/.test(st.slice(0, off)) || m === 'N' ? 'ン' : 'ん'; }); }
+    return { conv: conv, finish: finish };
+  })();
+  window.__ime = IME;
+  document.addEventListener('input', function (e) {
+    var el = e.target; if (!el || !el.matches || !el.matches('input[data-ime]')) return;
+    if (e.isComposing) return;
+    var v = el.value, nv = IME.conv(v);
+    if (nv !== v) { el.value = nv; try { el.setSelectionRange(nv.length, nv.length); } catch (er) {} }
+  });
+  document.addEventListener('submit', function (e) {
+    var f = e.target; if (!f || !f.querySelectorAll) return;
+    f.querySelectorAll('input[data-ime]').forEach(function (el) { el.value = IME.finish(IME.conv(el.value)); });
+  }, true);
+
+  /* ---- codes de récompense ---- */
+  var REWARD_CODES = { AICHA: { coins: 4000, label: '4 000 pièces' } };
+  function codesHTML() {
+    return '<div class="panel codepanel"><h3 class="sgh sm" data-k="贈"><span>Code de récompense</span></h3><p class="small muted">Tu as reçu un code ? Entre-le ici pour récupérer ton cadeau.</p>' +
+      '<form class="codeform" id="codeForm" autocomplete="off"><input type="text" id="codeIn" maxlength="24" placeholder="Ton code" autocapitalize="characters" autocorrect="off" spellcheck="false" aria-label="Code de récompense"><button class="btn primary" type="submit">Valider</button></form><p class="small" id="codeMsg" role="status"></p></div>';
+  }
+  function codesMount() {
+    var host = document.getElementById('codeHost'); if (host && !host.firstChild) host.innerHTML = codesHTML();
+  }
+  document.addEventListener('submit', function (e) {
+    var f = e.target; if (!f || f.id !== 'codeForm' || !S) return; e.preventDefault();
+    var inp = document.getElementById('codeIn'), msg = document.getElementById('codeMsg'), c = String(inp.value || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+    var r = REWARD_CODES[c];
+    if (!c) { msg.textContent = 'Entre un code.'; return; }
+    if (!r) { msg.textContent = 'Ce code n’existe pas.'; try { sfx('bad'); } catch (er) {} return; }
+    S.codes = S.codes || {};
+    if (S.codes[c]) { msg.textContent = 'Tu as déjà utilisé ce code.'; return; }
+    S.codes[c] = Date.now();
+    if (r.coins) { S.coins = coinsOf() + r.coins; S.coinsTotal = (S.coinsTotal || 0) + r.coins; }
+    persist(); try { renderBars(); } catch (er) {}
+    inp.value = ''; msg.textContent = '🎁 Code accepté : +' + r.label + ' !';
+    toast('🎁 +' + r.label); try { sfx('coin', true); } catch (er) {}
+  });
+  setInterval(codesMount, 1000);
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
