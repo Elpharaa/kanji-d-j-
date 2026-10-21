@@ -4455,6 +4455,13 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
 @keyframes xpShine { 0%, 40% { left: -50%; } 100% { left: 130%; } }
 @media (prefers-reduced-motion: reduce) { #vProfil .pfbtn, #vProfil #pAvatar, #vProfil .track .fill::after, .clzretry { animation: none !important; } }
 
+/* ===== v234 : photo de profil, tremblement, fiche mot ===== */
+#vProfil .player > #pAvatar { margin-top: 2px; }
+#vProfil #pAvatar .av-lg { width: 7.6rem !important; height: 7.6rem !important; font-size: 3.6rem !important; border: 4px solid #e8c46a !important; box-shadow: 0 0 0 4px rgba(255, 250, 240, .9), 0 0 26px rgba(232, 184, 74, .75), 0 10px 22px rgba(0, 0, 0, .3) !important; }
+#vProfil .pname { font-size: 1.5rem !important; }
+.clzcard.clzko { animation: cardBad .9s ease-out, cardShake .55s ease-out; }
+@keyframes cardShake { 0%, 100% { translate: 0 0; } 15% { translate: -7px 0; } 30% { translate: 6px 0; } 45% { translate: -5px 0; } 60% { translate: 3px 0; } 75% { translate: -2px 0; } }
+
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -23791,9 +23798,11 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
       if (!cur) d[jp] = { jp: jp, kana: toHira(kana || ''), fr: fr || '', lvl: lvl || '', tag: tag || '', course: extra || '' };
       else { if (lvl && (!cur.lvl || cur.lvl === 'Cours')) cur.lvl = lvl; if (tag && !cur.tag) cur.tag = tag; if (!cur.kana && kana) cur.kana = toHira(kana); }
     }
-    BONUS.forEach(function (c) { c.items.forEach(function (it) { add(it.jp, it.kana, it.fr, 'Bonus', c.id); }); });
-    Object.keys(QVW).forEach(function (k) { var v = QVW[k], p = k.split(':')[0]; add(v.jp, v.kana, v.fr, WLEX_LV[p] || '', v.reg || ''); });
-    WORDS.forEach(function (w) { add(w.mot, w.lecture, w.sens, 'Cours', ''); });
+    function srcAdd(jp, label) { jp = String(jp || '').replace(/^[〜～]/, ''); var c = d[jp]; if (!c || !label) return; (c.srcs = c.srcs || []); if (c.srcs.indexOf(label) < 0) c.srcs.push(label); }
+    BONUS.forEach(function (c) { c.items.forEach(function (it) { add(it.jp, it.kana, it.fr, 'Bonus', c.id); srcAdd(it.jp, 'Vocabulaire bonus'); }); });
+    Object.keys(QVW).forEach(function (k) { var v = QVW[k], p = k.split(':')[0]; add(v.jp, v.kana, v.fr, WLEX_LV[p] || '', v.reg || ''); srcAdd(v.jp, p === 'q' ? 'Vie quotidienne' : (WLEX_LV[p] ? 'JLPT ' + WLEX_LV[p] : '')); });
+    WORDS.forEach(function (w) { add(w.mot, w.lecture, w.sens, 'Cours', ''); try { srcAdd(w.mot, 'Cours ' + (CURSUS[wkLevel(w.wk)] || {}).tag); } catch (e) {} });
+    Object.keys(d).forEach(function (jp) { var c = d[jp]; if (!c.srcs) return; var rk = function (x) { return /^JLPT/.test(x) ? 0 : /^Cours/.test(x) ? 1 : /^Vie/.test(x) ? 2 : 3; }; c.srcs.sort(function (a, b) { return rk(a) - rk(b) || (a < b ? -1 : a > b ? 1 : 0); }); });
     Object.keys(d).forEach(function (jp) {
       var m = jp;
       if (m.length >= 2 && /[ぁ-ん]$/.test(m) && /[㐀-鿿]/.test(m.charAt(0))) {
@@ -23827,7 +23836,7 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
     var kj = Array.from(e.jp).filter(function (c) { return /[㐀-鿿]/.test(c); });
     var h = '<div class="wfcard"><div class="wfcbig jp">' + esc(e.jp) + '</div>' +
       (e.kana && e.kana !== e.jp ? '<div class="wfcrd jp">' + esc(e.kana) + (rom ? ' <small>' + esc(rom) + '</small>' : '') + '</div>' : '') +
-      '<div class="wfcfr">' + esc(e.fr) + '</div><div class="wfcchips">' + (e.lvl ? '<span class="wfcchip lv">' + esc(e.lvl) + '</span>' : '') + '<span class="wfcchip rg">Registre : ' + esc(regOfWord(e.jp, e.tag)) + '</span></div>' +
+      '<div class="wfcfr">' + esc(e.fr) + '</div><div class="wfcchips">' + (e.srcs && e.srcs.length ? e.srcs.map(function (x) { return '<span class="wfcchip lv">' + esc(x) + '</span>'; }).join('') : (e.lvl ? '<span class="wfcchip lv">' + esc(e.lvl) + '</span>' : '')) + '<span class="wfcchip rg">Registre : ' + esc(regOfWord(e.jp, e.tag)) + '</span></div>' +
       '<div class="wfcact"><button type="button" class="btn" data-wcsay="' + esc(e.kana || e.jp) + '">🔊 Écouter</button></div>';
     var st = kj.filter(function (c) { return typeof STROKES === 'object' && STROKES[c]; });
     if (st.length) h += '<div class="wfstk"><div class="wfstt">Tracé 書き順</div>' + st.map(function (c) { return '<div class="wfsk"><button class="btn" type="button" data-sw="open" data-k="' + esc(c) + '">▶ ' + esc(c) + '</button><span class="swhost"></span></div>'; }).join('') + '</div>';
@@ -24056,9 +24065,9 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
         if (el && (el.disabled || el.getAttribute('aria-disabled') === 'true')) el = null;
         if (cur && cur !== el) reset(cur);
         cur = el; if (!el) return;
-        var r = el.getBoundingClientRect(), tx = (ev.clientX - r.left) / Math.max(1, r.width) * 2 - 1, ty = (ev.clientY - r.top) / Math.max(1, r.height) * 2 - 1, big = r.width > 260 || r.height > 110;
+        var r = el.getBoundingClientRect(), tx = (ev.clientX - r.left) / Math.max(1, r.width) * 2 - 1, ty = (ev.clientY - r.top) / Math.max(1, r.height) * 2 - 1, big = r.width > 260 || r.height > 110, tile = !!(el.matches && el.matches('.hubcard,.gamecard,.mode,.qvt,.ktile,.pfbtn')), huge = r.width > 520;
         el.classList.add('tilting');
-        el.style.transform = 'perspective(650px) rotateX(' + (-ty * (big ? 6 : 11)).toFixed(1) + 'deg) rotateY(' + (tx * (big ? 8 : 14)).toFixed(1) + 'deg) translateY(-3px) scale(' + (big ? 1.02 : 1.06) + ')';
+        el.style.transform = 'perspective(650px) rotateX(' + (-ty * (huge ? 6 : 11)).toFixed(1) + 'deg) rotateY(' + (tx * (huge ? 8 : 14)).toFixed(1) + 'deg) translateY(' + (tile ? 0 : -3) + 'px) scale(' + (tile ? 1 : big ? 1.02 : 1.06) + ')';
         el.style.filter = 'drop-shadow(' + (-tx * 6).toFixed(0) + 'px ' + (10 + ty * 3).toFixed(0) + 'px 9px rgba(30,16,40,.32))';
       });
     }, true);
@@ -24216,7 +24225,7 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
       var e = wlookup(el.getAttribute('data-wtok')); if (!e) return;
       var rom = (typeof toRomaji === 'function' && e.kana) ? toRomaji(e.kana) : '';
       tip.innerHTML = '<div class="tj jp">' + esc(e.jp) + '</div>' + (e.kana && e.kana !== e.jp ? '<div class="tr jp">' + esc(e.kana) + (rom ? '<small>' + esc(rom) + '</small>' : '') + '</div>' : '') +
-        '<div class="tf">' + esc(e.fr) + '</div><div class="tc">' + (e.lvl ? '<span>' + esc(e.lvl) + '</span>' : '') + '<span>' + esc(regOfWord(e.jp, e.tag)) + '</span><span>clic = fiche complète</span></div>';
+        '<div class="tf">' + esc(e.fr) + '</div><div class="tc">' + (e.srcs && e.srcs.length ? e.srcs.map(function (x) { return '<span>' + esc(x) + '</span>'; }).join('') : (e.lvl ? '<span>' + esc(e.lvl) + '</span>' : '')) + '<span>' + esc(regOfWord(e.jp, e.tag)) + '</span><span>clic = fiche complète</span></div>';
       tip.classList.add('on'); var r = el.getBoundingClientRect(), w = tip.offsetWidth, h = tip.offsetHeight;
       var x = Math.min(Math.max(8, r.left + r.width / 2 - w / 2), window.innerWidth - w - 8), y = r.top - h - 10; if (y < 8) y = r.bottom + 10;
       tip.style.left = x + 'px'; tip.style.top = y + 'px';
