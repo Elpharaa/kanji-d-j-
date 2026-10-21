@@ -4603,6 +4603,29 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
 @media (min-width: 768px) { .voysoon { grid-template-columns: repeat(4, 1fr); } .voyhero { min-height: 300px; } .voygl { font-size: 10rem; } }
 @media (prefers-reduced-motion: reduce) { .voypet, .voylan, .voym1, .voym2, .voyhalo, .voygo, .voych.cur .voynode { animation: none !important; } }
 
+/* ===== v248 : régions ===== */
+.voyregs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.voyreg { position: relative; display: grid; justify-items: center; gap: 0; padding: 8px 2px; border-radius: 16px; border: 2px solid rgba(75, 61, 132, .4); background: rgba(255, 250, 240, .93); color: #2c2452; transition: scale .25s cubic-bezier(.34, 1.56, .64, 1); }
+.voyreg:hover { scale: 1.06; } .voyreg .jp { font-size: 1.6rem; line-height: 1.1; } .voyreg b { font-size: .8rem; }
+.voyreg.on { background: linear-gradient(160deg, #3d2f75, #1f1640); color: #ffe9a8; border-color: #ffd36e; box-shadow: 0 0 0 2px rgba(255, 211, 110, .4); }
+.voyreg.lk { opacity: .6; filter: saturate(.4); } .voyreg u { position: absolute; top: -6px; right: -4px; text-decoration: none; font-size: .8rem; background: #fff; border-radius: 50%; width: 20px; height: 20px; display: grid; place-items: center; }
+.voyreg i { position: absolute; top: -7px; right: -5px; font-style: normal; font-size: .7rem; width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; background: radial-gradient(circle, #e0457f, #a01a4c); color: #fff3d6; box-shadow: 0 0 8px rgba(255, 120, 150, .8); }
+.voyfog { position: absolute; left: -30%; width: 160%; height: 70px; border-radius: 50%; background: radial-gradient(ellipse at center, rgba(255, 255, 255, .5), rgba(255, 255, 255, 0) 70%); filter: blur(6px); z-index: -1; pointer-events: none; }
+.voyfog.a { bottom: 40px; animation: voyFog 16s ease-in-out infinite alternate; } .voyfog.b { bottom: 100px; opacity: .7; animation: voyFog 22s ease-in-out infinite alternate-reverse; }
+@keyframes voyFog { from { transform: translateX(-9%); } to { transform: translateX(9%); } }
+.voypet.pale { background: linear-gradient(135deg, #ffffff, #bcd8ee); } .voypet.snow { width: 7px; height: 7px; border-radius: 50%; background: #fff; box-shadow: 0 0 6px rgba(255, 255, 255, .9); animation-name: voyFall; } .voypet.ember { width: 6px; height: 6px; border-radius: 50%; background: #ff9a5a; box-shadow: 0 0 8px #ff6a3a; animation-name: voyRise2; top: auto; bottom: -10px; }
+@keyframes voyRise2 { 0% { transform: translate(0, 0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translate(30px, -260px); opacity: 0; } }
+.voycrow { position: absolute; width: 34px; height: 14px; fill: #0c0614; z-index: -1; opacity: .9; animation: voyFly 18s linear infinite; }
+.voycrow.c1 { top: 40px; } .voycrow.c2 { top: 80px; animation-delay: -6s; scale: .8; } .voycrow.c3 { top: 55px; animation-delay: -12s; scale: 1.2; }
+@keyframes voyFly { from { left: -8%; transform: translateY(0); } 50% { transform: translateY(14px); } to { left: 108%; transform: translateY(-6px); } }
+.voyhero.r-n2 .voylan b { background: radial-gradient(circle at 50% 40%, #ffd0c0, #e0453a 70%); box-shadow: 0 0 16px 4px rgba(255, 70, 60, .6); }
+.voyhero.r-n1 .voylan b { background: radial-gradient(circle at 50% 40%, #ffffff, #8fd0ff 70%); box-shadow: 0 0 16px 4px rgba(150, 210, 255, .7); }
+.voyhero.r-n4 .voylan b { background: radial-gradient(circle at 50% 40%, #f0ffff, #7ad0e0 70%); box-shadow: 0 0 16px 4px rgba(120, 210, 230, .6); }
+.voyscene.r-n1 { border-color: rgba(220, 240, 255, .8); } .voyscene.r-n2 { border-color: rgba(255, 150, 140, .6); }
+.voynext { display: grid; justify-items: center; gap: 6px; text-align: center; padding: 20px 16px; border-radius: 22px; background: linear-gradient(160deg, #3d2f75, #1f1640); color: #ffe9a8; box-shadow: 0 0 0 2px rgba(255, 211, 110, .5), 0 12px 28px rgba(30, 20, 70, .5); }
+.voynext .voynx { font-size: 4rem; line-height: 1; color: #ffd36e; text-shadow: 0 0 22px rgba(255, 200, 100, .7); } .voynext small { color: #e8dcff; } .voynext.final { background: linear-gradient(160deg, #a01a4c, #3d1148); }
+.voyhint { text-align: center; color: #fff7e0; text-shadow: 0 1px 4px rgba(0, 0, 0, .6); margin: 4px 0; }
+
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -24478,53 +24501,182 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
   })();
 
   /* =====================================================================
-     v246 : VOYAGE JLPT · la Vallée de Hanami (N5)
+     v248 : VOYAGE JLPT · 5 régions (N5 à N1)
      ===================================================================== */
+  var VOY_ORDER = ['n5', 'n4', 'n3', 'n2', 'n1'];
   var VOY = {
     n5: {
-      name: 'Vallée de Hanami', lv: 'N5', glyph: '花', need: 0.2, bossNeed: 100,
+      name: 'Vallée de Hanami', lv: 'N5', glyph: '花', need: 0.2, bossNeed: 100, fx: 'petal', deco: 'pagoda',
+      sky: ['#241a54', '#8a4f9e', '#f6a97c'], mt: ['#6d4a9c', '#46327a', '#2a1f55'], moon: '#ffd978',
+      pal: [['#f6a5c0', '#c1456f'], ['#f6c675', '#c9742b'], ['#f0967c', '#a8402f'], ['#7fd0e6', '#2f6f9a'], ['#b5aff0', '#5a4fb0'], ['#7ad2a8', '#2d7a64'], ['#9cbcf5', '#3e5fb0'], ['#e0457f', '#4a0f2e']],
       lore: 'Le Grand Souffle a dispersé les Sceaux de Langue comme des pétales. Le chevalier doit les retrouver, région après région. Tout commence dans la Vallée de Hanami.',
       chapters: [
-        { t: 'Le seuil du village', g: '門', th: ['n5_salut', 'n5_nombre'], n: 10,
+        { t: 'Le seuil du village', g: '門', th: ['n5_salut', 'n5_nombre'], n: 10, sp: 'Lion de pierre',
           intro: ['Le chevalier s\'éveille enfin au pied du rocher. Devant lui, la porte du village de Hanami, gardée par deux lions de pierre qui ne s\'ouvrent que pour les voyageurs polis.', '« {{こんにちは}} », murmure l\'un d\'eux, les yeux mi-clos. « Salue-nous comme il faut, puis compte les sept lanternes de l\'allée. »'],
           win: 'Les lions de pierre sourient, leurs mâchoires craquent… et la porte s\'ouvre. Une première lueur dorée s\'échappe du sol : le premier Sceau de Langue est à toi.' },
-        { t: 'La maison d\'Obāsan', g: '家', th: ['n5_temps', 'n5_famille'], n: 10,
+        { t: 'La maison d\'Obāsan', g: '家', th: ['n5_temps', 'n5_famille'], n: 10, sp: 'Obāsan',
           intro: ['Au bout de l\'allée, une vieille dame range des bols sous un auvent : Obāsan. Elle a perdu son calendrier dans le Grand Souffle et ne sait plus quel jour on est, ni qui vient dîner ce soir.', '« Aide-moi à retrouver les jours, et à nommer ceux qui forment ma {{家族}}. »'],
           win: 'Obāsan sort un vieux sceau de cire de sa manche. « Tu parles comme un enfant du village. Prends-le, il t\'appartient. »' },
-        { t: 'L\'auberge du Tanuki', g: '宿', th: ['n5_corps', 'n5_manger'], n: 10,
+        { t: 'L\'auberge du Tanuki', g: '宿', th: ['n5_corps', 'n5_manger'], n: 10, sp: 'Le Tanuki',
           intro: ['Le chevalier a faim, et le tanuki de l\'auberge est affamé de mots justes. Il se plaint d\'avoir mal à la {{頭}} et réclame son {{ご飯}} sans savoir comment l\'appeler.', '« Décris mes douleurs et lis-moi la carte, sinon, pas de bol de riz ! »'],
           win: 'Un bol fumant arrive. Au fond du bouillon, quelque chose scintille : le troisième Sceau.' },
-        { t: 'La gare du Kitsune', g: '駅', th: ['n5_lieux', 'n5_transport'], n: 10,
+        { t: 'La gare du Kitsune', g: '駅', th: ['n5_lieux', 'n5_transport'], n: 10, sp: 'Chef de gare Kitsune',
           intro: ['Une gare minuscule se dresse sous les cerisiers. Le chef de gare, un renard à lunettes, a perdu tous ses panneaux : plus de {{駅}}, plus de {{電車}}, plus la moindre direction !', '« Aide-moi à tout replacer, et le train du col t\'attendra. »'],
           win: 'Le sifflet retentit. Le renard te tend un petit sceau en laiton : « Ton billet pour la suite ! »' },
-        { t: 'L\'école des brumes', g: '校', th: ['n5_ecole', 'n5_objets'], n: 10,
+        { t: 'L\'école des brumes', g: '校', th: ['n5_ecole', 'n5_objets'], n: 10, sp: 'Élève-fantôme',
           intro: ['Une brume épaisse flotte autour d\'une école de bois. Les élèves-fantômes cherchent leurs {{宿題}} et leurs affaires, mais les objets de la classe ont perdu leur nom.', '« Rends-leur leurs noms, ou nous resterons dans la brume pour toujours ! »'],
           win: 'La brume se lève d\'un coup. Sur le tableau noir, une craie dessine un cinquième sceau : le tien.' },
-        { t: 'Le pont des Verbes', g: '橋', th: ['n5_verbes', 'n5_adj'], n: 10,
+        { t: 'Le pont des Verbes', g: '橋', th: ['n5_verbes', 'n5_adj'], n: 10, sp: 'Le passeur',
           intro: ['Un pont de corde enjambe la gorge. Il ne porte que ceux qui savent agir et décrire : chaque planche est gravée d\'un mot, {{見る}}, {{食べる}}, {{大きい}}…', '« Un faux pas, gamin, et c\'est la rivière. »'],
           win: 'Le pont cesse de trembler. À l\'autre bout, un sceau luit, planté dans un poteau couvert de mousse.' },
-        { t: 'Le col du Vent', g: '風', th: ['n5_nature', 'n5_gram', 'n5_plus'], n: 10,
+        { t: 'Le col du Vent', g: '風', th: ['n5_nature', 'n5_gram', 'n5_plus'], n: 10, sp: 'Marchand du col',
           intro: ['Au sommet du col, le vent siffle entre les pins. Il apporte de la {{雨}}, de la {{雪}}, des couleurs, et mille petits mots de liaison. Un marchand ambulant propose de te guider pour un bon {{値段}}.', '« Parle bien, voyageur : le vent écoute. »'],
           win: 'Le vent tombe. Devant toi se dresse la Porte du Gardien : il ne te reste qu\'un sceau à gagner.' }
       ],
-      boss: { t: 'Le Gardien de la Porte', g: '鬼', th: ['n5_all'], n: 12, pass: 9,
+      boss: { t: 'Le Gardien de la Porte', g: '鬼', th: ['n5_all'], n: 12, pass: 9, sp: 'L\'oni',
         intro: ['La Porte du Gardien se dresse, immense. Un oni de pierre ouvre un œil : « Qui ose quitter la Vallée de Hanami ? Prouve que tu connais vraiment ses mots, pas seulement leur ombre. »', 'Douze questions sur tout le vocabulaire N5, aucune pitié.'],
         win: 'L\'oni éclate de rire, s\'effrite en pétales… et la porte s\'ouvre sur la Route des Brumes. Le Sceau de la Vallée est à toi : le chapitre N5 est refermé.' }
+    },
+    n4: {
+      name: 'La Route des Brumes', lv: 'N4', glyph: '霧', need: 0.2, bossNeed: 100, fx: 'fog', deco: 'torii',
+      sky: ['#14284a', '#4f7c9e', '#cfe4ea'], mt: ['#5a7fa6', '#35577e', '#1c3150'], moon: '#f4f8ff',
+      pal: [['#9fd4e0', '#2d7a8f'], ['#b8c9f0', '#4a5fa8'], ['#f0c48f', '#b5733a'], ['#a8e0c4', '#2f8068'], ['#e0b8e8', '#8a4a9e'], ['#c4d4e8', '#4a6585'], ['#9fe0d8', '#2a7f7a'], ['#a7b4c9', '#1d2c45']],
+      lore: 'Le premier sceau a rouvert la Route des Brumes. Plus longue, plus floue : ici les mots se cachent dans le brouillard, et chaque sceau éclaire un morceau du chemin.',
+      chapters: [
+        { t: 'Le sentier des Brumes', g: '霧', th: ['n4_verbes'], n: 10, sp: 'Le vieux guide',
+          intro: ['La Route des Brumes commence là où la Vallée s\'arrête. Le brouillard avale les pierres, les pins, jusqu\'aux pas du chevalier. Seul un guide à chapeau de paille y voit clair.', '« Je connais chaque virage, mais je ne sais plus comment dire ce que je {{見る}} ni ce que je {{聞く}}. Rends-moi mes verbes, voyageur, et je t\'ouvre le sentier. »'],
+          win: 'Le brouillard se déchire en rubans. Le guide te tend un sceau gravé d\'une spirale : le premier de la Route.' },
+        { t: 'Le relais des voyageurs', g: '旅', th: ['n4_voyage', 'n4_gens'], n: 10, sp: 'Le maître du relais',
+          intro: ['Un relais de poste surgit de la brume, plein de marchands, de pèlerins et de colporteurs qui se bousculent. Le maître des lieux a perdu son registre des {{旅行}} et des visiteurs.', '« Qui est qui, et qui va où ? Remets de l\'ordre dans tout ça avant la nuit ! »'],
+          win: 'Le registre se remplit comme par magie. Le maître le referme d\'un claquement : « Un sceau pour le scribe de la brume ! »' },
+        { t: 'L\'auberge de la Source', g: '泉', th: ['n4_cuisine', 'n4_maison'], n: 10, sp: 'L\'aubergiste',
+          intro: ['Au creux d\'un vallon, une auberge fume au-dessus d\'une source chaude. L\'aubergiste court de la {{台所}} à la salle, mais les noms des plats et des meubles se sont mélangés.', '« Un client a commandé du thé, un autre veut une couverture, et moi je ne retrouve plus un mot ! »'],
+          win: 'Le thé fume, la couverture est posée. Dans le fond de la tasse, un sceau doré brille comme un grain de riz.' },
+        { t: 'Le sanctuaire du Guérisseur', g: '薬', th: ['n4_sante', 'n4_nature'], n: 10, sp: 'Le guérisseur',
+          intro: ['Sur une colline battue par la pluie, un sanctuaire sent l\'herbe et l\'encens. Le guérisseur soigne tout le monde, mais les mots du {{体}} et de la {{天気}} lui échappent un à un.', '« Si je confonds la tête et le ventre, je préfère ne plus soigner personne. Aide-moi. »'],
+          win: 'La pluie cesse. Le guérisseur sourit et dépose un sceau vert dans ta main : « Pour ton cœur solide. »' },
+        { t: 'Le marché de Kumo', g: '市', th: ['n4_temps', 'n4_kata', 'n4_adj'], n: 10, sp: 'La marchande de nuages',
+          intro: ['À Kumo, on vend des nuages en bocaux et du temps en sachets. La marchande aux mille étals compte, mesure, pèse, mais les {{時間}}, les quantités et les mots venus de loin se sont mêlés.', '« Dis-moi ce qui est grand, petit, lent, rapide, et je te cède un sceau au prix juste. »'],
+          win: 'La marchande scelle le marché d\'un coup de tampon. « Affaire conclue, chevalier. »' },
+        { t: 'L\'académie du Pinceau', g: '筆', th: ['n4_ecole', 'n4_travail'], n: 10, sp: 'Maître Fude',
+          intro: ['Une académie de bois, ouverte au vent, où l\'encre ne sèche jamais. Maître Fude corrige des copies de {{勉強}} et dirige un atelier, mais ses étudiants ne savent plus parler d\'école ni de métier.', '« Un bon pinceau trace les mots, un bon élève les connaît. Montre-moi lequel tu es ! »'],
+          win: 'Le maître trempe son pinceau et trace un sceau sur ta main. « Il ne s\'effacera plus. »' },
+        { t: 'Le gué des Mille Voix', g: '声', th: ['n4_verbes2', 'n4_expr'], n: 10, sp: 'La voix du gué',
+          intro: ['La rivière qui coupe la Route chuchote mille voix à la fois, qui reprennent des tournures et des verbes que le chevalier croit connaître. On ne la traverse qu\'en répondant juste.', '« Écoute, répète, choisis. Une mauvaise réponse, et le courant t\'emporte. »'],
+          win: 'Les voix se taisent. À l\'autre rive, un sceau repose sur une pierre ronde, encore tiède.' }
+      ],
+      boss: { t: 'Le Spectre de la Brume', g: '幻', th: ['n4_all'], n: 12, pass: 9, sp: 'Le Spectre',
+        intro: ['Au bout de la Route, la brume prend forme : un spectre immense, fait de tous les mots que tu as oubliés. « Ce que tu crois savoir n\'est que brouillard », souffle-t-il.', 'Douze questions sur tout le N4. Dissipe la brume d\'un seul coup de savoir.'],
+        win: 'Le spectre se dissout en gouttes de lumière. Le Sceau de la Route est à toi, et au loin, les Monts Sakura se dessinent.' }
+    },
+    n3: {
+      name: 'Les Monts Sakura', lv: 'N3', glyph: '桜', need: 0.2, bossNeed: 120, fx: 'petal', deco: 'tree',
+      sky: ['#3a1a4a', '#c0568a', '#ffc3a0'], mt: ['#b0558a', '#80386e', '#4a1f4a'], moon: '#fff0c4',
+      pal: [['#f8b4cb', '#c24a78'], ['#f9d29a', '#c9803a'], ['#c8e0a0', '#5e8a30'], ['#c9b0f0', '#6a45b0'], ['#f4a98a', '#b84a2a'], ['#9fc8f4', '#3a6aa8'], ['#f0e08a', '#a89020'], ['#e06a9a', '#5a1238']],
+      lore: 'Au-delà des brumes, les Monts Sakura s\'élèvent en terrasses roses. On n\'y parle plus par phrases courtes : récits, opinions, nuances. Le chevalier doit apprendre à raconter.',
+      chapters: [
+        { t: 'Le col des Cerisiers', g: '桜', th: ['n3_verbes'], n: 10, sp: 'Le jardinier',
+          intro: ['Les premières terrasses des Monts Sakura sont couvertes de cerisiers en fleurs. Un vieux jardinier y ratisse les pétales avec une patience infinie, tout en grommelant des phrases que tu comprends à moitié.', '« Ici, on ne se contente plus de {{食べる}} et de {{飲む}}. On {{育てる}}, on {{整える}}, on {{眺める}}. Voyons si tu suis. »'],
+          win: 'Le jardinier ratisse un dernier tas de pétales et, dessous, un sceau rose apparaît. « Tu as l\'oreille. »' },
+        { t: 'Le village des Pèlerins', g: '巡', th: ['n3_gens', 'n3_voyage'], n: 10, sp: 'La cheffe du village',
+          intro: ['Des pèlerins venus des quatre coins du pays campent autour de lanternes de papier. Chacun raconte son voyage, ses rencontres, ses mésaventures.', '« Écoute leurs histoires et retrouve les mots qui les décrivent, sinon je ne te laisse pas traverser le village. »'],
+          win: 'La cheffe fait tinter une clochette : les pèlerins applaudissent, et un sceau passe de main en main jusqu\'à toi.' },
+        { t: 'La maison de thé', g: '茶', th: ['n3_maison', 'n3_cuisine'], n: 10, sp: 'La maîtresse de thé',
+          intro: ['Dans une petite maison de thé suspendue au-dessus du vide, la maîtresse de cérémonie prépare chaque geste avec lenteur. Elle ne tolère ni mot approximatif ni tasse mal tenue.', '« Chaque objet a son nom, chaque saveur sa nuance. Dis-les justement, et le thé sera servi. »'],
+          win: 'Un thé vert parfait, une mousse fine… et au fond de la tasse, un sceau couleur de matcha.' },
+        { t: 'Le sanctuaire des Ombres', g: '影', th: ['n3_sante', 'n3_nature'], n: 10, sp: 'Le gardien des ombres',
+          intro: ['À l\'ombre d\'un grand cèdre, un sanctuaire où le jour ne pénètre jamais. Son gardien parle de maux, de saisons et d\'orages comme on lit dans un livre ancien.', '« Les ombres ont peur des mots précis. Nomme ce qui fait mal, ce qui change, ce qui passe. »'],
+          win: 'Les ombres reculent d\'un pas, puis de dix. Le gardien incline la tête et te confie un sceau gris perle.' },
+        { t: 'La forge du Temps', g: '鍛', th: ['n3_temps', 'n3_kata', 'n3_adj'], n: 10, sp: 'Le forgeron',
+          intro: ['Une forge accrochée à la falaise bat au rythme du temps. Le forgeron y martèle des heures, des durées, des mots d\'ailleurs et des adjectifs rougis au feu.', '« Un mot mal forgé casse au premier choc. Montre-moi que les tiens tiennent. »'],
+          win: 'Un dernier coup de marteau : l\'étincelle jaillit et se fige en sceau, encore brûlant.' },
+        { t: 'Le dojo du Pinceau', g: '道', th: ['n3_ecole', 'n3_travail'], n: 10, sp: 'Sensei Kasumi',
+          intro: ['Sur un plateau venteux, le dojo où l\'on apprend par la plume autant que par l\'épée. Sensei Kasumi y enseigne le travail, les études, la manière de présenter une idée.', '« Parle d\'études, de métier, d\'objectifs. Et surtout, sois précis. »'],
+          win: 'Sensei Kasumi hoche la tête, rarement mais sincèrement. Elle te remet un sceau noué d\'un cordon bleu.' },
+        { t: 'La bibliothèque suspendue', g: '書', th: ['n3_verbes2', 'n3_expr', 'n3_abst'], n: 10, sp: 'Le bibliothécaire',
+          intro: ['Au sommet des terrasses, une bibliothèque tient à des chaînes au-dessus d\'un gouffre. Le bibliothécaire, un hibou, y range des mots abstraits, des tournures et des verbes de lettrés.', '« Chaque livre se referme à moins qu\'on lui donne le mot qu\'il attend. Essaie, si tu l\'oses. »'],
+          win: 'Les livres s\'ouvrent un à un. Dans le dernier, plié en deux, un sceau doré marque la page.' }
+      ],
+      boss: { t: 'Le Dragon de Pétales', g: '龍', th: ['n3_all'], n: 12, pass: 9, sp: 'Le Dragon',
+        intro: ['Un dragon tout en pétales de cerisier se dresse au sommet des Monts. Il murmure dans la langue des récits : « Voyageur, que sais-tu raconter ? »', 'Douze questions sur tout le N3. Ne laisse pas la tempête de pétales t\'emporter.'],
+        win: 'Le dragon éclate en une pluie rose. Le Sceau des Monts est à toi, et au loin, une silhouette noire de château se dessine.' }
+    },
+    n2: {
+      name: 'Le Château du Corbeau', lv: 'N2', glyph: '烏', need: 0.2, bossNeed: 60, fx: 'crow', deco: 'castle',
+      sky: ['#10091e', '#5a1a3a', '#c4503c'], mt: ['#5a2a4a', '#3a1a38', '#1a0c22'], moon: '#ffb0a0',
+      pal: [['#d08a9a', '#7a2038'], ['#b4a0d0', '#4a3578'], ['#e8c070', '#9a6a10'], ['#90a8c8', '#2a4468'], ['#c8a0a0', '#6a2a2a'], ['#a0c0b0', '#2f5a48'], ['#d098c0', '#783a68'], ['#a01c3c', '#1a0510']],
+      lore: 'Un château de pierre noire domine la vallée. Ses habitants parlent par sous-entendus, en langue de cour et d\'affaires. Chaque porte exige un mot juste.',
+      chapters: [
+        { t: 'La porte des Corbeaux', g: '烏', th: ['n2_verbes1'], n: 10, sp: 'Le portier',
+          intro: ['Le Château du Corbeau se découpe sur un ciel de cendre. À sa porte, un portier à plumes noires inspecte chaque visiteur et ne laisse entrer que ceux qui manient les verbes de la cour.', '« On ne {{訪れる}} pas ici comme on {{行く}} au marché. Prouve que tu sais parler comme il faut. »'],
+          win: 'La porte s\'ouvre dans un grondement. Un corbeau laisse tomber un sceau sombre à tes pieds.' },
+        { t: 'La salle des Registres', g: '記', th: ['n2_verbes2'], n: 10, sp: 'Le grand scribe',
+          intro: ['Des milliers de rouleaux s\'empilent jusqu\'au plafond. Le grand scribe y classe les décisions du château, mais ses verbes se sont mélangés dans la poussière.', '« Replace chaque action au bon endroit, ou je te fais copier ce registre pendant mille nuits. »'],
+          win: 'Le scribe souffle sur son encre. Un sceau se détache du dernier rouleau : « Tu as l\'œil. »' },
+        { t: 'La galerie des Éventails', g: '扇', th: ['n2_adj', 'n2_adv'], n: 10, sp: 'La dame à l\'éventail',
+          intro: ['Dans la galerie, les dames de la cour se parlent derrière leurs éventails. Rien n\'y est dit droit : tout passe par la nuance, l\'adverbe, l\'adjectif choisi.', '« Il y a mille manières de dire « grand ». Sais-tu laquelle je pense ? »'],
+          win: 'Un éventail se referme avec un petit claquement. Entre ses lames, un sceau couleur d\'or pâle.' },
+        { t: 'La salle du Conseil', g: '議', th: ['n2_societe'], n: 10, sp: 'Le conseiller',
+          intro: ['Le conseil du château débat de lois, d\'élections, d\'économie. Le conseiller en chef, sec comme un parchemin, attend un voyageur qui comprenne les mots de la société.', '« Un seul mot mal choisi, et c\'est la guerre. Mesure tes réponses. »'],
+          win: 'Le conseil vote à l\'unanimité. On te remet un sceau frappé du blason du château.' },
+        { t: 'Le bureau des Marchands', g: '商', th: ['n2_travail', 'n2_katakana'], n: 10, sp: 'La cheffe des marchands',
+          intro: ['Dans une aile rénovée, les marchands du château discutent contrats et affaires, en mêlant mots anciens et emprunts à l\'étranger. La cheffe lève un sourcil à chaque faux pas.', '« Le travail, les contrats, les mots venus d\'ailleurs. Dis-moi que tu les as. »'],
+          win: 'Un contrat est signé, l\'encre sèche, un sceau change de main. « Ravie de faire affaire. »' },
+        { t: 'Les jardins du Soir', g: '夕', th: ['n2_quotidien'], n: 10, sp: 'Le jardinier de la cour',
+          intro: ['À la tombée du jour, les jardins du château embaument. Le jardinier y parle de santé, de météo, de la vie de tous les jours, mais avec des mots que l\'on n\'apprend qu\'ici.', '« Même un jardin a son vocabulaire. Parle-moi du quotidien, version château. »'],
+          win: 'Les lanternes s\'allument une à une. Au pied d\'un pin, un sceau vert sombre t\'attend.' },
+        { t: 'La tour des Confidences', g: '心', th: ['n2_relations'], n: 10, sp: 'La princesse',
+          intro: ['Tout en haut d\'une tour, la princesse du château reçoit en secret ceux qui savent parler des sentiments et des liens entre les gens.', '« Dire « je t\'aime » est simple. Dire ce qu\'on ressent vraiment, c\'est une autre histoire. »'],
+          win: 'Elle sourit, et la tour s\'éclaire. Elle te confie un sceau tiède, comme un secret bien gardé.' }
+      ],
+      boss: { t: 'Le Seigneur Corbeau', g: '鴉', th: ['n2_all'], n: 12, pass: 9, sp: 'Le Seigneur Corbeau',
+        intro: ['Au sommet du château, le Seigneur Corbeau déploie des ailes qui couvrent le ciel. « Tu as franchi mes portes. Franchiras-tu mes mots ? »', 'Douze questions sur tout le N2. Il ne pardonne rien.'],
+        win: 'Le Seigneur Corbeau s\'envole en mille plumes. Le Sceau du Château est à toi, et très haut, un sommet sans nom perce les nuages.' }
+    },
+    n1: {
+      name: 'Le Sommet Sans Nom', lv: 'N1', glyph: '頂', need: 0.2, bossNeed: 35, fx: 'snow', deco: 'summit',
+      sky: ['#0c1a3a', '#3a5c96', '#e4eefc'], mt: ['#8aa6d0', '#5a7cb0', '#2c4676'], moon: '#ffffff',
+      pal: [['#cfe4f8', '#4a7aa8'], ['#f4e0a0', '#a88820'], ['#d8d0f4', '#5a4a9a'], ['#a8e8e0', '#2a8a88'], ['#f0c8d8', '#a84a68'], ['#ffe9a8', '#6a3a00']],
+      lore: 'Au-dessus des nuages, un sommet sans nom. Les derniers Sceaux dorment dans la langue rare, celle des savants et des anciens. Le dernier pas est le plus difficile.',
+      chapters: [
+        { t: 'Le sentier des Nuages', g: '雲', th: ['n1_verbes1'], n: 10, sp: 'Le moine',
+          intro: ['Au-dessus des nuages, un sentier de pierre grimpe vers le sommet. Un moine y marche pieds nus et ne parle qu\'en verbes rares, ceux que les livres ont presque oubliés.', '« Chaque pas est un mot. Fais-en peu, mais justes. »'],
+          win: 'Le moine s\'incline. Sous ses sandales, un sceau blanc luit dans la neige.' },
+        { t: 'Le monastère du Silence', g: '静', th: ['n1_verbes2'], n: 10, sp: 'L\'abbé',
+          intro: ['Un monastère accroché à la roche, où les moines ne parlent que par nécessité. L\'abbé attend un visiteur qui sache dire beaucoup avec peu de verbes.', '« Dans le silence, un mot pèse mille fois plus. Choisis bien. »'],
+          win: 'L\'abbé frappe un gong une seule fois. Un sceau repose sur l\'autel, encore froid.' },
+        { t: 'La crête des Contrastes', g: '峰', th: ['n1_adj'], n: 10, sp: 'La voix du vent',
+          intro: ['Sur une crête battue par le vent, tout n\'est que contraste : lumière et ombre, vide et plein. Le vent lui-même parle en adjectifs et en adverbes que peu de voyageurs connaissent.', '« Dis-moi avec exactitude comment est ce que tu vois. »'],
+          win: 'Le vent retombe d\'un coup. Dans un creux de glace, un sceau d\'argent scintille.' },
+        { t: 'La cité des Sages', g: '賢', th: ['n1_societe'], n: 10, sp: 'Le sage',
+          intro: ['Une petite cité d\'érudits, perchée sur une corniche, où l\'on débat de droit, d\'économie et de société en termes qui donneraient le vertige.', '« Le monde est complexe. Ceux qui le nomment bien le comprennent mieux. »'],
+          win: 'Le sage referme son livre. Il te remet un sceau, avec une poignée de main solennelle.' },
+        { t: 'L\'observatoire des Étoiles', g: '星', th: ['n1_savoir'], n: 10, sp: 'L\'astronome',
+          intro: ['Au pic du sommet, un observatoire ouvert sur les étoiles. L\'astronome y étudie la science, la pensée et les médias dans une langue précise, presque mathématique.', '« Même les étoiles ont un nom. Connais-tu le leur ? »'],
+          win: 'Une étoile filante traverse le dôme. À tes pieds, un sceau doré attend : le dernier avant le Gardien.' }
+      ],
+      boss: { t: 'Le Gardien du Sommet', g: '頂', th: ['n1_all'], n: 12, pass: 9, sp: 'Le Gardien',
+        intro: ['Sur le sommet sans nom, un être de lumière et de glace se tient immobile. « Peu arrivent jusqu\'ici. Aucun n\'a encore tout dit. »', 'Douze questions sur tout le N1. Voici ton dernier combat.'],
+        win: 'Le Gardien s\'efface dans la lumière. Le dernier Sceau de Langue est à toi : le Grand Souffle s\'apaise, et le chevalier peut enfin se reposer.' }
     }
   };
-  var VOY_SOON = [['N4', '霧', 'La Route des Brumes', 'Auberges, gares et rencontres : le voyage s\'allonge.'], ['N3', '桜', 'Les Monts Sakura', 'Récits, opinions et premières vraies conversations.'], ['N2', '烏', 'Le Château du Corbeau', 'Nuances, registres et langue des affaires.'], ['N1', '頂', 'Le Sommet Sans Nom', 'Le dernier Sceau, au-dessus des nuages.']];
-  var voy = { view: 'map', ci: 0, run: null };
+  var voy = { lv: 'n5', view: 'map', ci: 0, run: null };
   window.__voy = voy;
-  function voySt() { S.voy = S.voy || {}; var r = S.voy.n5 = S.voy.n5 || { seals: {}, best: {} }; return r; }
+  function VR() { return VOY[voy.lv]; }
+  function voySt(lv) { lv = lv || voy.lv; S.voy = S.voy || {}; return (S.voy[lv] = S.voy[lv] || { seals: {}, best: {} }); }
+  function voyBossIx(lv) { return VOY[lv].chapters.length; }
+  function voyRegDone(lv) { return !!voySt(lv).seals[voyBossIx(lv)]; }
+  function voyRegOpen(lv) { var k = VOY_ORDER.indexOf(lv); return k <= 0 || voyRegDone(VOY_ORDER[k - 1]); }
   function voyPool(th) {
     var out = [], seen = {};
     QV.forEach(function (t) { if (th.indexOf(t.id) >= 0) t.w.forEach(function (w) { if (!seen[w.key]) { seen[w.key] = 1; out.push(w); } }); });
     return out;
   }
   function voyAcq(pool) { var n = 0; pool.forEach(function (w) { if (mst(S.qv && S.qv[w.key])) n++; }); return n; }
-  function voyChap(i) { var R = VOY.n5; return i >= R.chapters.length ? R.boss : R.chapters[i]; }
+  function voyChap(i) { var R = VR(); return i >= R.chapters.length ? R.boss : R.chapters[i]; }
+  function voyAcc(i) { var a = VR().pal[i] || VR().pal[0]; return '--a1:' + a[0] + ';--a2:' + a[1]; }
   function voyInfo(i) {
-    var R = VOY.n5, st = voySt(), c = voyChap(i), pool = voyPool(c.th), done = !!st.seals[i], ok = true, why = '';
+    var R = VR(), st = voySt(), c = voyChap(i), pool = voyPool(c.th), done = !!st.seals[i], ok = true, why = '';
     if (i < R.chapters.length) {
       if (i > 0) {
         var pp = voyPool(R.chapters[i - 1].th), nd = Math.ceil(pp.length * R.need), ac = voyAcq(pp);
@@ -24532,9 +24684,9 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
         else if (ac < nd) { ok = false; why = 'Il te manque des mots acquis du chapitre précédent : ' + ac + ' / ' + nd + '. Révise-les au Dojo ou rejoue son défi.'; }
       }
     } else {
-      var all = voyAcq(voyPool(['n5_all'])), allSeals = R.chapters.every(function (_, k) { return st.seals[k]; });
-      if (!allSeals) { ok = false; why = 'Il te faut les 7 sceaux de la vallée.'; }
-      else if (all < R.bossNeed) { ok = false; why = 'Mots N5 acquis : ' + all + ' / ' + R.bossNeed + ' pour affronter le Gardien.'; }
+      var all = voyAcq(voyPool(R.boss.th)), allSeals = R.chapters.every(function (_, k) { return st.seals[k]; });
+      if (!allSeals) { ok = false; why = 'Il te faut les ' + R.chapters.length + ' sceaux de la région.'; }
+      else if (all < R.bossNeed) { ok = false; why = 'Mots ' + R.lv + ' acquis : ' + all + ' / ' + R.bossNeed + ' pour affronter le boss.'; }
     }
     return { c: c, pool: pool, done: done, open: ok, why: why, acq: voyAcq(pool) };
   }
@@ -24562,60 +24714,69 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
     });
     return qs;
   }
-  /* ---- rendu ---- */
-  var VOY_ACC = [['#f6a5c0', '#c1456f', 'Lion de pierre'], ['#f6c675', '#c9742b', 'Obāsan'], ['#f0967c', '#a8402f', 'Le Tanuki'], ['#7fd0e6', '#2f6f9a', 'Chef de gare Kitsune'], ['#b5aff0', '#5a4fb0', 'Élève-fantôme'], ['#7ad2a8', '#2d7a64', 'Le passeur'], ['#9cbcf5', '#3e5fb0', 'Marchand du col'], ['#e0457f', '#4a0f2e', 'Le Gardien']];
-  function voyAcc(i) { var a = VOY_ACC[i] || VOY_ACC[0]; return '--a1:' + a[0] + ';--a2:' + a[1]; }
-  function voyPetals(n) { var h = ''; for (var i = 0; i < n; i++) h += '<span class="voypet" style="left:' + ((i * 53 + 7) % 100) + '%;animation-delay:' + (-(i * 1.7) % 14).toFixed(1) + 's;animation-duration:' + (9 + (i * 3) % 7) + 's;scale:' + (0.6 + (i % 4) * 0.25) + '"></span>'; return h; }
+  /* ---- décor ---- */
+  function voyPetals(n, cls) { var h = ''; for (var i = 0; i < n; i++) h += '<span class="voypet ' + (cls || '') + '" style="left:' + ((i * 53 + 7) % 100) + '%;animation-delay:' + (-(i * 1.7) % 14).toFixed(1) + 's;animation-duration:' + (9 + (i * 3) % 7) + 's;scale:' + (0.6 + (i % 4) * 0.25) + '"></span>'; return h; }
   function voyLanterns() { var h = '<div class="voylans" aria-hidden="true">'; [6, 19, 33, 50, 67, 81, 93].forEach(function (x, i) { h += '<i class="voylan" style="left:' + x + '%;animation-delay:' + (-i * 0.7) + 's;height:' + (18 + (i % 3) * 10) + 'px"><b></b></i>'; }); return h + '</div>'; }
-  function voyScene() {
-    return '<svg class="voysvg" viewBox="0 0 800 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="vsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#241a54"/><stop offset=".55" stop-color="#8a4f9e"/><stop offset="1" stop-color="#f6a97c"/></linearGradient><radialGradient id="vmoon"><stop offset="0" stop-color="#fffbe6"/><stop offset="1" stop-color="#ffd978"/></radialGradient></defs>' +
-      '<rect width="800" height="280" fill="url(#vsky)"/>' +
-      '<g fill="#fff" opacity=".8"><circle cx="90" cy="40" r="1.6"/><circle cx="210" cy="70" r="1.2"/><circle cx="330" cy="28" r="1.5"/><circle cx="450" cy="60" r="1.1"/><circle cx="740" cy="36" r="1.6"/><circle cx="520" cy="22" r="1.2"/></g>' +
-      '<circle class="voyhalo" cx="610" cy="92" r="78" fill="#ffe9a8" opacity=".22"/><circle cx="610" cy="92" r="44" fill="url(#vmoon)"/>' +
-      '<path class="voym1" d="M-40 200 L60 120 L140 180 L250 90 L360 190 L470 110 L590 200 L700 130 L840 210 L840 300 L-40 300Z" fill="#6d4a9c" opacity=".85"/>' +
-      '<path class="voym2" d="M-40 230 L90 160 L190 215 L300 150 L420 225 L540 165 L660 230 L780 175 L860 230 L860 300 L-40 300Z" fill="#46327a"/>' +
-      '<g fill="#2a1f55"><path d="M-20 260 Q120 215 260 250 T560 245 T860 250 L860 300 L-20 300Z"/><g transform="translate(120 160)"><rect x="-3" y="30" width="6" height="52"/><path d="M-30 30 L0 6 L30 30Z"/><path d="M-24 52 L0 32 L24 52Z"/><path d="M-18 72 L0 56 L18 72Z"/></g>' +
-      '<g transform="translate(300 190)"><rect x="-28" y="0" width="5" height="60"/><rect x="23" y="0" width="5" height="60"/><path d="M-40 0 Q0 -14 40 0 L40 9 L-40 9Z"/><rect x="-30" y="20" width="60" height="5"/></g>' +
-      '<path d="M520 258 Q600 205 680 258 L680 266 Q600 218 520 266Z"/><g transform="translate(720 200)"><path d="M0 60 L18 6 L36 60Z"/><path d="M-10 60 L10 24 L30 60Z"/></g></g>' +
+  var VOY_DECO = {
+    pagoda: '<g transform="translate(120 160)"><rect x="-3" y="30" width="6" height="52"/><path d="M-30 30 L0 6 L30 30Z"/><path d="M-24 52 L0 32 L24 52Z"/><path d="M-18 72 L0 56 L18 72Z"/></g><g transform="translate(300 190)"><rect x="-28" y="0" width="5" height="60"/><rect x="23" y="0" width="5" height="60"/><path d="M-40 0 Q0 -14 40 0 L40 9 L-40 9Z"/><rect x="-30" y="20" width="60" height="5"/></g><path d="M520 258 Q600 205 680 258 L680 266 Q600 218 520 266Z"/>',
+    torii: '<g transform="translate(180 185)"><rect x="-28" y="0" width="5" height="60"/><rect x="23" y="0" width="5" height="60"/><path d="M-40 0 Q0 -14 40 0 L40 9 L-40 9Z"/><rect x="-30" y="20" width="60" height="5"/></g><g transform="translate(330 205)"><rect x="-22" y="0" width="4" height="50"/><rect x="18" y="0" width="4" height="50"/><path d="M-32 0 Q0 -10 32 0 L32 7 L-32 7Z"/></g><path d="M520 258 Q600 205 680 258 L680 266 Q600 218 520 266Z"/><g transform="translate(720 200)"><path d="M0 60 L18 6 L36 60Z"/></g>',
+    tree: '<g transform="translate(140 175)"><rect x="-4" y="22" width="8" height="52"/><circle cx="0" cy="10" r="30" fill="#f08fb0" opacity=".92"/><circle cx="-26" cy="28" r="20" fill="#e8739e" opacity=".92"/><circle cx="26" cy="28" r="20" fill="#f4a0bd" opacity=".92"/></g><g transform="translate(330 170)"><rect x="-3" y="30" width="6" height="52"/><path d="M-30 30 L0 6 L30 30Z"/><path d="M-24 52 L0 32 L24 52Z"/></g><g transform="translate(520 200)"><rect x="-4" y="22" width="8" height="40"/><circle cx="0" cy="12" r="22" fill="#f08fb0" opacity=".92"/><circle cx="-18" cy="26" r="14" fill="#e8739e" opacity=".92"/></g>',
+    castle: '<g transform="translate(150 150)"><rect x="0" y="70" width="140" height="40"/><path d="M-12 70 L70 40 L152 70Z"/><rect x="25" y="38" width="90" height="32"/><path d="M15 38 L70 8 L125 38Z"/><rect x="45" y="12" width="50" height="26"/><path d="M38 12 L70 -14 L102 12Z"/></g><g transform="translate(560 190)"><rect x="0" y="20" width="60" height="60"/><path d="M-8 20 L30 -6 L68 20Z"/></g>',
+    summit: '<path d="M300 270 L410 40 L520 270Z" fill="#dfeaf8"/><path d="M410 40 L450 120 L420 105 L400 130 L380 100Z" fill="#fff"/><g transform="translate(410 30)"><rect x="-1" y="-24" width="2" height="26" fill="#ffd36e"/><path d="M1 -24 L20 -18 L1 -12Z" fill="#e0457f"/></g><path d="M100 270 L170 150 L240 270Z" fill="#bcd0ec"/><path d="M600 270 L680 130 L760 270Z" fill="#bcd0ec"/>'
+  };
+  function voyScene(R) {
+    var id = R.lv.toLowerCase();
+    return '<svg class="voysvg" viewBox="0 0 800 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="vsky' + id + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + R.sky[0] + '"/><stop offset=".55" stop-color="' + R.sky[1] + '"/><stop offset="1" stop-color="' + R.sky[2] + '"/></linearGradient><radialGradient id="vmoon' + id + '"><stop offset="0" stop-color="#fffef2"/><stop offset="1" stop-color="' + R.moon + '"/></radialGradient></defs>' +
+      '<rect width="800" height="280" fill="url(#vsky' + id + ')"/>' +
+      '<g fill="#fff" opacity=".8"><circle cx="90" cy="40" r="1.6"/><circle cx="210" cy="70" r="1.2"/><circle cx="330" cy="28" r="1.5"/><circle cx="450" cy="60" r="1.1"/><circle cx="740" cy="36" r="1.6"/><circle cx="520" cy="22" r="1.2"/><circle cx="40" cy="90" r="1.2"/><circle cx="260" cy="30" r="1.1"/></g>' +
+      '<circle class="voyhalo" cx="610" cy="92" r="78" fill="' + R.moon + '" opacity=".22"/><circle cx="610" cy="92" r="44" fill="url(#vmoon' + id + ')"/>' +
+      '<path class="voym1" d="M-40 200 L60 120 L140 180 L250 90 L360 190 L470 110 L590 200 L700 130 L840 210 L840 300 L-40 300Z" fill="' + R.mt[0] + '" opacity=".85"/>' +
+      '<path class="voym2" d="M-40 230 L90 160 L190 215 L300 150 L420 225 L540 165 L660 230 L780 175 L860 230 L860 300 L-40 300Z" fill="' + R.mt[1] + '"/>' +
+      '<g fill="' + R.mt[2] + '"><path d="M-20 260 Q120 215 260 250 T560 245 T860 250 L860 300 L-20 300Z"/>' + VOY_DECO[R.deco] + '</g>' +
       '<g fill="#ffcf5a" class="voyfly"><circle cx="150" cy="215" r="2.2"/><circle cx="340" cy="228" r="2"/><circle cx="560" cy="212" r="2.4"/><circle cx="690" cy="232" r="2"/></g></svg>';
   }
+  function voyFx(R) {
+    if (R.fx === 'fog') return '<div class="voyfog a"></div><div class="voyfog b"></div>' + voyPetals(6, 'pale');
+    if (R.fx === 'snow') return voyPetals(20, 'snow');
+    if (R.fx === 'crow') return '<svg class="voycrow c1" viewBox="0 0 40 16"><path d="M0 8 Q10 -2 20 8 Q30 -2 40 8 Q30 4 20 14 Q10 4 0 8Z"/></svg><svg class="voycrow c2" viewBox="0 0 40 16"><path d="M0 8 Q10 -2 20 8 Q30 -2 40 8 Q30 4 20 14 Q10 4 0 8Z"/></svg><svg class="voycrow c3" viewBox="0 0 40 16"><path d="M0 8 Q10 -2 20 8 Q30 -2 40 8 Q30 4 20 14 Q10 4 0 8Z"/></svg>' + voyPetals(8, 'ember');
+    return voyPetals(14);
+  }
   function voyHero(R, seals, tot) {
-    var sl = '', i; for (i = 0; i < tot; i++) sl += '<span class="voyslot' + (voySt().seals[i] ? ' on' : '') + (i === tot - 1 ? ' boss' : '') + ' jp">' + (voySt().seals[i] ? '印' : '') + '</span>';
-    return '<div class="voyhero">' + voyScene() + voyPetals(14) + voyLanterns() + '<div class="voygl jp" aria-hidden="true">' + R.glyph + '</div><div class="voyhx"><small>Voyage JLPT · ' + R.lv + '</small><h2>' + esc(R.name) + '</h2><div class="voyslots">' + sl + '</div><small>' + seals + ' / ' + tot + ' sceaux de langue</small></div></div>';
+    var sl = '', i, st = voySt(); for (i = 0; i < tot; i++) sl += '<span class="voyslot' + (st.seals[i] ? ' on' : '') + (i === tot - 1 ? ' boss' : '') + ' jp">' + (st.seals[i] ? '印' : '') + '</span>';
+    return '<div class="voyhero r-' + R.lv.toLowerCase() + '">' + voyScene(R) + voyFx(R) + voyLanterns() + '<div class="voygl jp" aria-hidden="true">' + R.glyph + '</div><div class="voyhx"><small>Voyage JLPT · ' + R.lv + '</small><h2>' + esc(R.name) + '</h2><div class="voyslots">' + sl + '</div><small>' + seals + ' / ' + tot + ' sceaux de langue</small></div></div>';
   }
   function voyConn(i, st) { return '<svg class="voyconn' + (i % 2 ? ' flip' : '') + (st ? ' lit' : '') + '" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><path d="M8 0 C8 36 92 4 92 40" vector-effect="non-scaling-stroke"/></svg>'; }
+  function voyRegs() {
+    return '<div class="voyregs">' + VOY_ORDER.map(function (l) {
+      var R = VOY[l], o = voyRegOpen(l), d = voyRegDone(l);
+      return '<button type="button" class="voyreg' + (l === voy.lv ? ' on' : '') + (o ? '' : ' lk') + (d ? ' dn' : '') + '" data-voy="reg:' + l + '"><span class="jp">' + R.glyph + '</span><b>' + R.lv + '</b>' + (d ? '<i class="jp">印</i>' : o ? '' : '<u>🔒</u>') + '</button>';
+    }).join('') + '</div>';
+  }
   function voyMapHTML() {
-    var R = VOY.n5, st = voySt(), tot = R.chapters.length + 1, seals = 0, i;
+    var R = VR(), st = voySt(), tot = R.chapters.length + 1, seals = 0, i;
     for (i = 0; i < tot; i++) if (st.seals[i]) seals++;
-    var h = voyHero(R, seals, tot) + '<div class="panel voylore"><span class="jp" aria-hidden="true">❝</span>' + esc(R.lore) + '</div><div class="voypath">', cur = -1;
+    var h = voyRegs() + voyHero(R, seals, tot) + '<div class="panel voylore"><span class="jp" aria-hidden="true">❝</span>' + esc(R.lore) + '</div><div class="voypath">', cur = -1;
     for (i = 0; i < tot; i++) { var q = voyInfo(i); if (q.open && !q.done && cur < 0) cur = i; }
     for (i = 0; i < tot; i++) {
       var f = voyInfo(i), c = f.c, boss = i === R.chapters.length, pct = Math.round(f.acq / Math.max(1, f.pool.length) * 100);
       h += '<button type="button" style="' + voyAcc(i) + '" class="voych' + (f.done ? ' done' : f.open ? ' open' : ' locked') + (i === cur ? ' cur' : '') + (boss ? ' boss' : '') + (i % 2 ? ' r' : '') + '" data-voy="ch:' + i + '"><span class="voynode jp">' + (f.done ? '印' : f.open ? esc(c.g) : '<em>' + esc(c.g) + '</em>') + (f.open || f.done ? '' : '<u aria-hidden="true">🔒</u>') + '</span><span class="voytx"><small class="voyk">' + (boss ? 'Boss final' : 'Chapitre ' + (i + 1)) + (i === cur ? ' · à toi !' : '') + '</small><b>' + esc(c.t) + '</b><span class="voybar"><i style="width:' + pct + '%"></i></span><small>' + f.acq + ' / ' + f.pool.length + ' mots acquis' + (f.done ? ' · sceau obtenu' : '') + '</small>' + (!f.open ? '<small class="voywhy">' + esc(f.why) + '</small>' : '') + '</span></button>';
       if (i < tot - 1) h += voyConn(i, f.done);
     }
-    h += '</div><h4 class="voysoonh"><span>La suite du voyage</span></h4><div class="voysoon">' + VOY_SOON.map(function (x) { return '<div class="voyso"><span class="jp">' + x[1] + '</span><b>' + x[0] + ' · ' + esc(x[2]) + '</b><small>' + esc(x[3]) + '</small><em>Bientôt</em></div>'; }).join('') + '</div>';
+    h += '</div>';
+    var k = VOY_ORDER.indexOf(voy.lv), nx = VOY[VOY_ORDER[k + 1]];
+    if (voyRegDone(voy.lv) && nx) h += '<div class="voynext"><div class="voynx jp" aria-hidden="true">' + nx.glyph + '</div><b>Région suivante débloquée</b><small>' + nx.lv + ' · ' + esc(nx.name) + '</small><button type="button" class="btn primary voygo" data-voy="reg:' + VOY_ORDER[k + 1] + '">Partir vers ' + nx.lv + ' ›</button></div>';
+    else if (!nx && voyRegDone(voy.lv)) h += '<div class="voynext final"><div class="voynx jp" aria-hidden="true">印</div><b>Tous les Sceaux de Langue sont réunis</b><small>Le Grand Souffle s\'est apaisé. Le chevalier peut enfin se reposer.</small></div>';
+    else if (nx) h += '<p class="voyhint">Prochaine région : <b>' + nx.lv + ' · ' + esc(nx.name) + '</b>. Vaincs le boss pour y accéder.</p>';
     return h;
   }
   function voyChapHTML() {
-    var i = voy.ci, f = voyInfo(i), c = f.c, boss = i === VOY.n5.chapters.length, a = VOY_ACC[i] || VOY_ACC[0], pct = Math.round(f.acq / Math.max(1, f.pool.length) * 100);
+    var R = VR(), i = voy.ci, f = voyInfo(i), c = f.c, boss = i === R.chapters.length, pct = Math.round(f.acq / Math.max(1, f.pool.length) * 100);
     var h = '<div class="grp djbar"><button type="button" class="btn djback" data-voy="map">‹ Carte</button><h3 class="sgh" data-k="' + esc(c.g) + '"><span>' + (boss ? 'Boss final' : 'Chapitre ' + (i + 1)) + '</span></h3></div>';
-    h += '<div class="voyscene' + (boss ? ' boss' : '') + '" style="' + voyAcc(i) + '">' + voyPetals(8) + '<div class="voysg jp" aria-hidden="true">' + esc(c.g) + '</div><div class="voyst"><small>' + (boss ? 'Boss final' : 'Chapitre ' + (i + 1)) + ' · ' + VOY.n5.lv + '</small><h3>' + esc(c.t) + '</h3></div></div>';
-    h += '<div class="voydlg"><p class="voynar">' + voyText([c.intro[0]]).replace(/^<p>|<\/p>$/g, '') + '</p><div class="voysay"><span class="voyspk">' + esc(a[2]) + '</span>' + voyText([c.intro[1]]) + '</div>' + (f.done ? '<p class="voywin">✦ ' + esc(c.win) + '</p>' : '') + '</div>';
+    h += '<div class="voyscene r-' + R.lv.toLowerCase() + (boss ? ' boss' : '') + '" style="' + voyAcc(i) + '">' + voyPetals(8, R.fx === 'snow' ? 'snow' : R.fx === 'crow' ? 'ember' : '') + '<div class="voysg jp" aria-hidden="true">' + esc(c.g) + '</div><div class="voyst"><small>' + (boss ? 'Boss final' : 'Chapitre ' + (i + 1)) + ' · ' + R.lv + '</small><h3>' + esc(c.t) + '</h3></div></div>';
+    h += '<div class="voydlg" style="' + voyAcc(i) + '"><p class="voynar">' + voyText([c.intro[0]]).replace(/^<p>|<\/p>$/g, '') + '</p><div class="voysay"><span class="voyspk">' + esc(c.sp || '') + '</span>' + voyText([c.intro[1]]) + '</div>' + (f.done ? '<p class="voywin">✦ ' + esc(c.win) + '</p>' : '') + '</div>';
     h += '<div class="voyreq" style="' + voyAcc(i) + '"><div class="voyrq1"><b>' + f.acq + ' / ' + f.pool.length + '</b><span>mots acquis dans ce chapitre</span></div><span class="voybar"><i style="width:' + pct + '%"></i></span>' +
       (f.open ? '<p class="small">Défi : <b>' + c.n + ' questions</b>, au moins <b>' + (c.pass || Math.ceil(c.n * 0.7)) + '</b> bonnes réponses pour obtenir le sceau.</p><button type="button" class="btn primary voygo" data-voy="start">' + (f.done ? '⚔ Rejouer le défi' : '⚔ Relever le défi') + '</button>' : '<p class="voywhy2">🔒 ' + esc(f.why) + '</p>') + '</div>';
     return h;
-  }
-  function voyEndHTML() {
-    var r = voy.run, c = voyChap(r.ci), need = c.pass || Math.ceil(c.n * 0.7), win = r.score >= need, boss = r.ci === VOY.n5.chapters.length;
-    var h = '<div class="voyend' + (win ? ' win' : '') + '" style="' + voyAcc(r.ci) + '">';
-    h += win ? '<div class="voyhanko' + (boss ? ' boss' : '') + ' jp" aria-hidden="true"><span>印</span></div><h3>Sceau obtenu !</h3>' : '<div class="voylose jp" aria-hidden="true">' + esc(c.g) + '</div><h3>Pas encore…</h3>';
-    h += '<p class="voyscore"><b>' + r.score + '</b> / ' + r.qs.length + ' <small>(il en fallait ' + need + ')</small></p>';
-    h += win ? '<div class="voydlg"><p class="voywin">✦ ' + esc(c.win) + '</p></div>' + (r.reward ? '<div class="voyrw"><span>+' + r.reward.xp + ' XP</span><span>+' + r.reward.coins + ' 🪙</span></div>' : '') : '<p class="small muted">Chaque réponse compte pour tes mots acquis. Le défi change à chaque tentative.</p>';
-    return h + '<div class="row"><button type="button" class="btn primary voygo" data-voy="' + (win ? 'map' : 'start') + '">' + (win ? 'Retour à la carte' : '⚔ Retenter') + '</button>' + (win ? '' : '<button type="button" class="btn" data-voy="map">Carte</button>') + '</div></div>';
-  }
-  function voyToggle(onJ) {
-    return '<div class="voytog" role="tablist"><button type="button" role="tab" aria-selected="' + !onJ + '" data-voy="tog:cours"><span class="jp" aria-hidden="true">冒</span><span><b>Aventure</b><small>Ton cours</small></span></button><button type="button" role="tab" aria-selected="' + !!onJ + '" data-voy="tog:jlpt"><span class="jp" aria-hidden="true">旅</span><span><b>Voyage JLPT</b><small>De N5 à N1</small></span></button></div>';
   }
   function voyRunHTML() {
     var r = voy.run, q = r.qs[r.i], c = voyChap(r.ci), h = '';
@@ -24631,43 +24792,95 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
     if (r.ans !== null) h += '<div class="fb ' + (r.ans === q.correct ? 'good' : 'bad') + '"><b>' + (r.ans === q.correct ? 'Bonne réponse !' : 'Raté.') + '</b> <span class="jp">' + esc(q.w.jp) + '</span> · ' + esc(q.w.kana || '') + ' · ' + esc(q.w.fr) + '</div><div style="text-align:center;margin-top:10px"><button type="button" class="btn primary" data-voy="next">' + (r.i + 1 >= r.qs.length ? 'Voir le résultat' : 'Suivant') + '</button></div>';
     return h;
   }
+  function voyEndHTML() {
+    var r = voy.run, c = voyChap(r.ci), need = c.pass || Math.ceil(c.n * 0.7), win = r.score >= need, boss = r.ci === VR().chapters.length;
+    var h = '<div class="voyend' + (win ? ' win' : '') + '" style="' + voyAcc(r.ci) + '">';
+    h += win ? '<div class="voyhanko' + (boss ? ' boss' : '') + ' jp" aria-hidden="true"><span>印</span></div><h3>Sceau obtenu !</h3>' : '<div class="voylose jp" aria-hidden="true">' + esc(c.g) + '</div><h3>Pas encore…</h3>';
+    h += '<p class="voyscore"><b>' + r.score + '</b> / ' + r.qs.length + ' <small>(il en fallait ' + need + ')</small></p>';
+    h += win ? '<div class="voydlg"><p class="voywin">✦ ' + esc(c.win) + '</p></div>' + (r.reward ? '<div class="voyrw"><span>+' + r.reward.xp + ' XP</span><span>+' + r.reward.coins + ' 🪙</span></div>' : '') : '<p class="small muted">Chaque réponse compte pour tes mots acquis. Le défi change à chaque tentative.</p>';
+    return h + '<div class="row"><button type="button" class="btn primary voygo" data-voy="' + (win ? 'map' : 'start') + '">' + (win ? 'Retour à la carte' : '⚔ Retenter') + '</button>' + (win ? '' : '<button type="button" class="btn" data-voy="map">Carte</button>') + '</div></div>';
+  }
+  function voyToggle(onJ) {
+    return '<div class="voytog" role="tablist"><button type="button" role="tab" aria-selected="' + !onJ + '" data-voy="tog:cours"><span class="jp" aria-hidden="true">冒</span><span><b>Aventure</b><small>Ton cours</small></span></button><button type="button" role="tab" aria-selected="' + !!onJ + '" data-voy="tog:jlpt"><span class="jp" aria-hidden="true">旅</span><span><b>Voyage JLPT</b><small>De N5 à N1</small></span></button></div>';
+  }
   function voyRender() {
     var host = $('storyBody'); if (!host) return;
+    if (!VOY[voy.lv] || !voyRegOpen(voy.lv)) voy.lv = 'n5';
     var body = voy.view === 'run' ? (voy.run.done ? voyEndHTML() : voyRunHTML()) : voy.view === 'chap' ? voyChapHTML() : voyMapHTML();
     host.onclick = null; host.classList.add('voyon'); host.innerHTML = voyToggle(true) + '<div class="voywrap">' + body + '</div>';
   }
   var _renderStory0 = renderStory;
   renderStory = function () {
     var host0 = $('storyBody'); if (host0) host0.classList.remove('voyon');
-    if (S && S.voyOn && storyTab !== 'base') { setVox(false); voyRender(); return; }
+    if (S && S.voyOn && storyTab !== 'base') { if (S.voyLv && VOY[S.voyLv] && voy.view === 'map' && !voy.init) { voy.lv = S.voyLv; } voy.init = 1; setVox(false); voyRender(); return; }
     _renderStory0();
     try { var host = $('storyBody'); if (host && S && storyTab !== 'base') host.insertAdjacentHTML('afterbegin', voyToggle(false)); } catch (e) {}
   };
+  /* ---- sons ---- */
+  var voyNoise = null;
+  function voyAudio(kind) {
+    if (!sfxOn) return;
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
+      if (!actx) actx = new AC(); if (actx.state === 'suspended') actx.resume();
+      var t0 = actx.currentTime + 0.02, out = actx.createGain(); out.gain.value = 0.9;
+      var dl = actx.createDelay(1), fb = actx.createGain(), wet = actx.createGain(); dl.delayTime.value = 0.19; fb.gain.value = 0.34; wet.gain.value = 0.36;
+      out.connect(actx.destination); out.connect(dl); dl.connect(fb); fb.connect(dl); dl.connect(wet); wet.connect(actx.destination);
+      var pluck = function (f, at, dur, g, type) {
+        [[1, 1, type || 'triangle'], [2, 0.32, 'sine'], [3, 0.12, 'sine']].forEach(function (p) {
+          var o = actx.createOscillator(), e = actx.createGain(); o.type = p[2]; o.frequency.value = f * p[0];
+          e.gain.setValueAtTime(0.0001, t0 + at); e.gain.exponentialRampToValueAtTime(g * p[1], t0 + at + 0.008); e.gain.exponentialRampToValueAtTime(0.0001, t0 + at + dur);
+          o.connect(e); e.connect(out); o.start(t0 + at); o.stop(t0 + at + dur + 0.05);
+        });
+      };
+      var taiko = function (at, g) {
+        var o = actx.createOscillator(), e = actx.createGain(); o.type = 'sine'; o.frequency.setValueAtTime(170, t0 + at); o.frequency.exponentialRampToValueAtTime(45, t0 + at + 0.4);
+        e.gain.setValueAtTime(g, t0 + at); e.gain.exponentialRampToValueAtTime(0.0001, t0 + at + 0.6); o.connect(e); e.connect(out); o.start(t0 + at); o.stop(t0 + at + 0.65);
+        if (!voyNoise) { voyNoise = actx.createBuffer(1, actx.sampleRate * 0.15, actx.sampleRate); var d = voyNoise.getChannelData(0); for (var k = 0; k < d.length; k++) d[k] = (Math.random() * 2 - 1) * (1 - k / d.length); }
+        var ns = actx.createBufferSource(), nf = actx.createBiquadFilter(), ne = actx.createGain(); ns.buffer = voyNoise; nf.type = 'lowpass'; nf.frequency.value = 900; ne.gain.setValueAtTime(g * 0.7, t0 + at); ne.gain.exponentialRampToValueAtTime(0.0001, t0 + at + 0.14);
+        ns.connect(nf); nf.connect(ne); ne.connect(out); ns.start(t0 + at);
+      };
+      var P = [587, 659, 784, 880, 1175, 1319, 1568, 1760];
+      if (kind === 'good') { pluck(1047, 0, 0.35, 0.2); pluck(1568, 0.075, 0.5, 0.16); pluck(2093, 0.15, 0.4, 0.07, 'sine'); }
+      else if (kind === 'bad') { pluck(233, 0, 0.3, 0.2, 'sine'); pluck(175, 0.09, 0.4, 0.16, 'sine'); }
+      else if (kind === 'lose') { [392, 349, 311, 262].forEach(function (f, k) { pluck(f, k * 0.17, 0.5, 0.15, 'triangle'); }); }
+      else if (kind === 'seal') { taiko(0, 0.7); P.forEach(function (f, k) { pluck(f, 0.32 + k * 0.085, 0.55, 0.17); }); [587, 740, 880, 1175, 1480].forEach(function (f, k) { pluck(f, 1.05 + k * 0.02, 1.9, 0.12, 'sine'); }); taiko(1.05, 0.45); }
+      else if (kind === 'boss') { taiko(0, 0.8); taiko(0.3, 0.8); taiko(0.6, 0.9); P.concat([2093, 2349]).forEach(function (f, k) { pluck(f, 0.95 + k * 0.075, 0.6, 0.17); }); [392, 587, 740, 880, 1175, 1480, 1760].forEach(function (f, k) { pluck(f, 1.85 + k * 0.025, 2.6, 0.12, 'sine'); }); taiko(1.85, 0.75); }
+      else if (kind === 'open') { pluck(523, 0, 0.3, 0.14); pluck(784, 0.1, 0.4, 0.14); }
+    } catch (e) {}
+  }
   function voyStart() {
     var c = voyChap(voy.ci), f = voyInfo(voy.ci); if (!f.open) return;
-    voy.run = { ci: voy.ci, qs: voyBuild(f.pool, c.n), i: 0, score: 0, ans: null, done: false, reward: null };
-    voy.view = 'run'; voyRender(); window.scrollTo(0, 0);
+    voy.run = { ci: voy.ci, qs: voyBuild(f.pool, c.n), i: 0, score: 0, ans: null, done: false, reward: null, res: [] };
+    voy.view = 'run'; voyAudio('open'); voyRender(); window.scrollTo(0, 0);
   }
   function voyFinish() {
-    var r = voy.run, c = voyChap(r.ci), need = c.pass || Math.ceil(c.n * 0.7), st = voySt();
+    var r = voy.run, c = voyChap(r.ci), need = c.pass || Math.ceil(c.n * 0.7), st = voySt(), boss = r.ci === VR().chapters.length;
     r.done = true;
-    if (r.score >= need && !st.seals[r.ci]) {
-      var boss = r.ci === VOY.n5.chapters.length, xp = boss ? 200 : 60, coins = boss ? 100 : 20;
-      st.seals[r.ci] = Date.now(); r.reward = { xp: xp, coins: coins };
-      S.coins = coinsOf() + coins; S.coinsTotal = (S.coinsTotal || 0) + coins; addXp(xp); try { confetti(); } catch (e) {} sfx('win');
-    } else if (r.score >= need) sfx('win');
+    if (r.score >= need) {
+      if (!st.seals[r.ci]) {
+        var ri = VOY_ORDER.indexOf(voy.lv), xp = boss ? 200 + 80 * ri : 60 + 20 * ri, coins = boss ? 100 + 50 * ri : 20 + 10 * ri;
+        st.seals[r.ci] = Date.now(); r.reward = { xp: xp, coins: coins };
+        S.coins = coinsOf() + coins; S.coinsTotal = (S.coinsTotal || 0) + coins; addXp(xp);
+      }
+      try { confetti(); } catch (e) {} voyAudio(boss ? 'boss' : 'seal');
+    } else voyAudio('lose');
     try { streakTick(1); } catch (e) {} persist();
   }
   document.addEventListener('click', function (e) {
     var b = e.target.closest ? e.target.closest('[data-voy]') : null; if (!b || !user || !S) return;
     var a = b.getAttribute('data-voy'), p = a.split(':'), cmd = p[0], arg = p[1];
     if (cmd === 'tog') { S.voyOn = arg === 'jlpt'; persist(); voy.view = 'map'; renderStory(); return; }
+    if (cmd === 'reg') {
+      if (!voyRegOpen(arg)) { var k = VOY_ORDER.indexOf(arg); toast('🔒 Vaincs d\'abord le boss de la région ' + VOY_ORDER[k - 1].toUpperCase()); return; }
+      voy.lv = arg; S.voyLv = arg; voy.view = 'map'; persist(); voyRender(); window.scrollTo(0, 0); return;
+    }
     if (cmd === 'ch') { voy.ci = +arg; voy.view = 'chap'; voyRender(); window.scrollTo(0, 0); }
     else if (cmd === 'map' || cmd === 'quit') { voy.view = 'map'; voy.run = null; voyRender(); window.scrollTo(0, 0); }
     else if (cmd === 'start') voyStart();
     else if (cmd === 'pick') {
       var r = voy.run; if (!r || r.ans !== null) return; var q = r.qs[r.i]; r.ans = +arg; var ok = r.ans === q.correct;
-      if (ok) r.score++; (r.res = r.res || [])[r.i] = ok; try { qvMark(q.w, ok); } catch (er) {} sfx(ok ? 'ok' : 'bad'); persist(); voyRender();
+      if (ok) r.score++; r.res[r.i] = ok; try { qvMark(q.w, ok); } catch (er) {} sfx(ok ? 'ok' : 'bad'); voyAudio(ok ? 'good' : 'bad'); persist(); voyRender();
     } else if (cmd === 'next') {
       var r2 = voy.run; if (!r2) return; r2.i++; r2.ans = null; if (r2.i >= r2.qs.length) voyFinish(); voyRender(); window.scrollTo(0, 0);
     }
