@@ -4466,6 +4466,31 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
 :is(.hubgrid, #hubGrid, #games, #hubTiles, .wgrid, .modes, .qvgrid, .djgrid, .pglist, .stgrid, .cuisgrid, .pfgrid, .stack, .tilegrid) > *, body.casc :is(.djgrid, #hubGrid, .qvgrid, .pglist, .stgrid, .cuisgrid, .hubgrid) > * { animation-fill-mode: backwards !important; }
 .hubcard, .gamecard, .mode, .qvt, .ktile, .pfbtn { animation-fill-mode: backwards !important; }
 
+/* ===== v236 : dock façon console, icônes, pastille de série ===== */
+body .nav .tab .niw .ni { stroke-width: 1.9; }
+body .nav .tab:not([aria-current="page"]) .niw .ni { opacity: .8; }
+@media (max-width: 767px) {
+  body .nav { padding-top: 20px; }
+  body .nav .tab .niw { width: 50px; height: 34px; border-radius: 17px; transition: width .4s cubic-bezier(.34, 1.56, .64, 1), height .4s cubic-bezier(.34, 1.56, .64, 1), translate .45s cubic-bezier(.34, 1.56, .64, 1), background .3s, box-shadow .3s; }
+  body .nav .tab[aria-current="page"] .niw { width: 56px; height: 42px; border-radius: 21px; translate: 0 -8px; background: linear-gradient(150deg, color-mix(in srgb, var(--tn, #d6679a) 70%, #fff), var(--tn, #d6679a)) !important; box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .45), 0 8px 16px color-mix(in srgb, var(--tn, #d6679a) 55%, transparent) !important; animation: dockPop .6s cubic-bezier(.34, 1.56, .64, 1); }
+  body .nav .tab[aria-current="page"] .niw .ni { width: 29px; height: 29px; animation: dockBob 2.8s ease-in-out infinite; }
+  body .nav .tab[aria-current="page"] .nl { translate: 0 -6px; font-weight: 800; }
+  body .nav .tab .nl { transition: translate .4s cubic-bezier(.34, 1.56, .64, 1); }
+}
+@keyframes dockPop { 0% { scale: .7; } 55% { scale: 1.16; } 100% { scale: 1; } }
+@keyframes dockBob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -2px; } }
+@media (hover: hover) { body .nav .tab:not([aria-current="page"]):hover .niw .ni { scale: 1.22; translate: 0 -2px; } body .nav .tab .niw .ni { transition: scale .25s cubic-bezier(.34, 1.56, .64, 1), translate .25s; } }
+body .nav .tab:active .niw .ni { scale: .85; }
+@media (min-width: 768px) { body .nav .tab[aria-current="page"] .niw .ni { animation: dockBob 2.8s ease-in-out infinite; } }
+@media (prefers-reduced-motion: reduce) { body .nav .tab .niw, body .nav .tab .niw .ni { animation: none !important; } }
+#kdCombo { position: fixed; z-index: 30; width: max-content; white-space: nowrap; display: flex; align-items: center; gap: 6px; padding: 3px 10px 3px 7px; border-radius: 999px; background: rgba(36, 26, 62, .94); border: 2px solid #ffd36e; color: #fff7e0; font-weight: 800; font-size: .85rem; pointer-events: none; opacity: 0; scale: .6; transition: opacity .25s, scale .35s cubic-bezier(.34, 1.56, .64, 1); box-shadow: 0 4px 12px rgba(0, 0, 0, .3); }
+#kdCombo.on { opacity: 1; scale: 1; }
+#kdCombo .kcf { font-size: 1rem; } #kdCombo .kcb { display: flex; gap: 2px; } #kdCombo .kcb i { width: 7px; height: 7px; border-radius: 50%; background: rgba(255, 255, 255, .25); transition: background .2s, box-shadow .2s; }
+#kdCombo .kcb i.f { background: #ffb020; box-shadow: 0 0 6px #ff8a2a; }
+#kdCombo.pop { animation: cbPop .45s cubic-bezier(.34, 1.56, .64, 1); } @keyframes cbPop { 0% { scale: 1; } 45% { scale: 1.3; } 100% { scale: 1; } }
+#kdCombo.lost { animation: cbLost .45s ease-out; border-color: #d6303c; } @keyframes cbLost { 0%, 100% { translate: 0 0; } 25% { translate: -6px 0; } 50% { translate: 5px 0; } 75% { translate: -3px 0; } }
+#kdCombo.big { border-color: #fff3a0; box-shadow: 0 0 14px rgba(255, 190, 70, .8); }
+
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -4508,12 +4533,12 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
   <div class="sechead" id="secHead" hidden></div>
 
   <nav class="nav" id="nav" aria-label="Sections" hidden>
-    <button class="tab" type="button" data-tab="hub" aria-label="Accueil"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 5.6Q12 8.4 21.5 5.6"/><path d="M2.5 5.6 2 4M21.5 5.6l.5-1.6"/><path d="M5.5 10.8h13"/><path d="M7 7.4V21M17 7.4V21"/><rect x="10.7" y="10.8" width="2.6" height="3.4" rx=".5" fill="currentColor" fill-opacity=".2"/></svg><span class="nl">Accueil</span></button>
-    <button class="tab" type="button" data-tab="story" aria-label="Aventure"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="currentColor" fill-opacity=".2"/><path d="m15.8 8.2-2.3 5.3-5.3 2.3 2.3-5.3z"/><path d="M12 3v1.6M12 19.4V21M3 12h1.6M19.4 12H21"/></svg><span class="nl">Aventure</span></button>
-    <button class="tab" type="button" data-tab="home" aria-label="Dojo"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4l12 12M19 4 7 16"/><path d="M15.6 17.4l2.8-2.8M8.4 17.4 5.6 14.6"/><path d="M17 16l3 3M7 16l-3 3"/></svg><span class="nl">Dojo</span></button>
-    <button class="tab" type="button" data-tab="clz" aria-label="Phrases"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16a1.5 1.5 0 0 1 1.5 1.5v8.5A1.5 1.5 0 0 1 20 17h-7.6l-4.4 3.5V17H4a1.5 1.5 0 0 1-1.5-1.5V7A1.5 1.5 0 0 1 4 5.5z" fill="currentColor" fill-opacity=".2"/><path d="M6.5 9.4h3.6M13.9 9.4h3.6"/><rect x="9.6" y="12" width="4.8" height="2.2" rx="1.1" stroke-dasharray="1.5 1.5"/></svg><span class="nl">Phrases</span></button>
-    <button class="tab" type="button" data-tab="prog" aria-label="Ma progression"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21v-8.5"/><path d="M12 12.5c0-4 2.8-6.7 8-6.7 0 4.2-3 6.7-8 6.7z" fill="currentColor" fill-opacity=".2"/><path d="M12 16.2c0-3-2.2-5-6.6-5 0 3.1 2.2 5 6.6 5z" fill="currentColor" fill-opacity=".2"/><path d="M5.5 21h13"/></svg><span class="nl">Progrès</span></button>
-    <button class="tab" type="button" data-tab="profil" aria-label="Profil"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.9" fill="currentColor" fill-opacity=".2"/><path d="M4.5 20.6c.6-4 3.6-6.4 7.5-6.4s6.9 2.4 7.5 6.4"/></svg><span class="nl">Profil</span></button>
+    <button class="tab" type="button" data-tab="hub" aria-label="Accueil"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4.4h20l-1.2 2.8H3.2z" fill="currentColor" fill-opacity=".38"/><path d="M4.6 10.6h14.8"/><path d="M6.6 7.2V21M17.4 7.2V21"/><path d="M12 10.6v3.2"/><path d="M9 21h6" /></svg><span class="nl">Accueil</span></button>
+    <button class="tab" type="button" data-tab="story" aria-label="Aventure"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 20.5 8.8 8.2l3.7 5.6 2.6-3.6 6.9 10.3z" fill="currentColor" fill-opacity=".32"/><path d="M8.8 8.2V3l4.6 1.6-4.6 1.7"/></svg><span class="nl">Aventure</span></button>
+    <button class="tab" type="button" data-tab="home" aria-label="Dojo"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 3.5 17 16M19.5 3.5 7 16"/><path d="M14.6 17.8l3.3-3.3M9.4 17.8 6.1 14.5"/><path d="M17 16l3.4 3.4M7 16l-3.4 3.4"/><circle cx="12" cy="9.8" r="1.7" fill="currentColor" fill-opacity=".4"/></svg><span class="nl">Dojo</span></button>
+    <button class="tab" type="button" data-tab="clz" aria-label="Phrases"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.8h16a1.6 1.6 0 0 1 1.6 1.6v9a1.6 1.6 0 0 1-1.6 1.6h-7.4L8 20.8V17H4a1.6 1.6 0 0 1-1.6-1.6V6.4A1.6 1.6 0 0 1 4 4.8z" fill="currentColor" fill-opacity=".3"/><path d="M6 9.4h4.2M13.8 9.4H18"/><rect x="9.6" y="11.9" width="4.8" height="2.4" rx="1.2" stroke-dasharray="1.6 1.6"/></svg><span class="nl">Phrases</span></button>
+    <button class="tab" type="button" data-tab="prog" aria-label="Ma progression"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.6" y="14" width="4.4" height="6.6" rx="1" fill="currentColor" fill-opacity=".3"/><rect x="9.8" y="9" width="4.4" height="11.6" rx="1" fill="currentColor" fill-opacity=".3"/><rect x="16" y="4" width="4.4" height="16.6" rx="1" fill="currentColor" fill-opacity=".3"/><path d="M3 3.2l2.4 2.4M3 6.2 5.4 3.8"/></svg><span class="nl">Progrès</span></button>
+    <button class="tab" type="button" data-tab="profil" aria-label="Profil"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7.6" r="4" fill="currentColor" fill-opacity=".32"/><path d="M4.2 21c.5-4.4 3.6-7 7.8-7s7.3 2.6 7.8 7z" fill="currentColor" fill-opacity=".32"/></svg><span class="nl">Profil</span></button>
   <div class="navfall" aria-hidden="true"><svg viewBox="0 0 200 440" preserveAspectRatio="xMidYMax slice"><defs>
 <linearGradient id="nfSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2150" stop-opacity="0"/><stop offset=".12" stop-color="#4a3c8c"/><stop offset=".5" stop-color="#b57fb0"/><stop offset=".72" stop-color="#f4b3b8"/><stop offset="1" stop-color="#ffd9b8"/></linearGradient>
 <linearGradient id="nfRkL" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6d6296"/><stop offset=".6" stop-color="#9a8cb8"/><stop offset="1" stop-color="#c9b6cf"/></linearGradient>
@@ -24256,6 +24281,35 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
       })(t0);
     }
     new MutationObserver(function () { if (v.hidden) return; setTimeout(function () { up(document.getElementById('lvl')); up(document.getElementById('xpText')); }, 120); }).observe(v, { attributes: true, attributeFilter: ['hidden'] });
+  })();
+
+  /* ===== v236 : pastille de série, accrochée à la carte de question ===== */
+  (function () {
+    var cb = document.createElement('div'); cb.id = 'kdCombo'; cb.setAttribute('aria-hidden', 'true');
+    cb.innerHTML = '<span class="kcf">🔥</span><span class="kcn">0</span><span class="kcb"><i></i><i></i><i></i><i></i><i></i></span>';
+    document.body.appendChild(cb);
+    var combo = 0, idle = 0;
+    function card() { var c = document.querySelector('.clzcard,.knqcard,#stage .qcard,.qcard'); return c && c.offsetParent !== null ? c : null; }
+    function place() {
+      var c = card(); if (!c) return false; var r = c.getBoundingClientRect(); cb.style.top = Math.max(60, r.top - 12) + 'px'; cb.style.right = Math.max(8, window.innerWidth - r.right + 10) + 'px'; return true;
+    }
+    function paint(kind) {
+      cb.querySelector('.kcn').textContent = '×' + combo;
+      cb.querySelectorAll('.kcb i').forEach(function (i, k) { i.classList.toggle('f', combo > 0 && (combo % 5 === 0 || k < combo % 5)); });
+      cb.classList.toggle('big', combo >= 10); cb.classList.toggle('on', combo >= 2 && place());
+      cb.classList.remove('pop', 'lost'); void cb.offsetWidth;
+      if (kind === 'ok' && combo >= 2) cb.classList.add('pop');
+    }
+    var prev = sfx;
+    sfx = function (kind, force) {
+      if (kind === 'ok') { combo++; paint('ok'); }
+      else if (kind === 'bad' || kind === 'hurt') { if (combo >= 2) { cb.classList.add('on', 'lost'); place(); setTimeout(function () { cb.classList.remove('on', 'lost'); }, 700); } combo = 0; }
+      return prev.apply(this, arguments);
+    };
+    setInterval(function () {
+      if (!card()) { idle++; if (idle > 3) { combo = 0; cb.classList.remove('on'); } } else { idle = 0; if (combo >= 2) place(); }
+    }, 400);
+    window.addEventListener('scroll', function () { if (combo >= 2) place(); }, { passive: true });
   })();
 
   backend.init().then(function (u) {
