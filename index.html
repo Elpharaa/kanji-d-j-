@@ -4470,16 +4470,16 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
 body .nav .tab .niw .ni { stroke-width: 1.9; }
 body .nav .tab:not([aria-current="page"]) .niw .ni { opacity: .8; }
 @media (max-width: 767px) {
-  body .nav { padding-top: 20px; }
+  body .nav { padding-top: 24px; }
   body .nav .tab .niw { width: 50px; height: 34px; border-radius: 17px; transition: width .4s cubic-bezier(.34, 1.56, .64, 1), height .4s cubic-bezier(.34, 1.56, .64, 1), translate .45s cubic-bezier(.34, 1.56, .64, 1), background .3s, box-shadow .3s; }
-  body .nav .tab[aria-current="page"] .niw { width: 56px; height: 42px; border-radius: 21px; translate: 0 -8px; background: linear-gradient(150deg, color-mix(in srgb, var(--tn, #d6679a) 70%, #fff), var(--tn, #d6679a)) !important; box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .45), 0 8px 16px color-mix(in srgb, var(--tn, #d6679a) 55%, transparent) !important; animation: dockPop .6s cubic-bezier(.34, 1.56, .64, 1); }
-  body .nav .tab[aria-current="page"] .niw .ni { width: 29px; height: 29px; animation: dockBob 2.8s ease-in-out infinite; }
-  body .nav .tab[aria-current="page"] .nl { translate: 0 -6px; font-weight: 800; }
+  body .nav .tab[aria-current="page"] .niw { width: 64px; height: 48px; border-radius: 24px; translate: 0 -10px; background: linear-gradient(150deg, color-mix(in srgb, var(--tn, #d6679a) 70%, #fff), var(--tn, #d6679a)) !important; box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .45), 0 8px 16px color-mix(in srgb, var(--tn, #d6679a) 55%, transparent) !important; animation: dockPop .6s cubic-bezier(.34, 1.56, .64, 1); }
+  body .nav .tab[aria-current="page"] .niw .ni { width: 34px; height: 34px; animation: dockBob 2.8s ease-in-out infinite; }
+  body .nav .tab[aria-current="page"] .nl { translate: 0 -8px; font-weight: 800; }
   body .nav .tab .nl { transition: translate .4s cubic-bezier(.34, 1.56, .64, 1); }
 }
-@keyframes dockPop { 0% { scale: .7; } 55% { scale: 1.16; } 100% { scale: 1; } }
+@keyframes dockPop { 0% { scale: .6; } 55% { scale: 1.28; } 100% { scale: 1; } }
 @keyframes dockBob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -2px; } }
-@media (hover: hover) { body .nav .tab:not([aria-current="page"]):hover .niw .ni { scale: 1.22; translate: 0 -2px; } body .nav .tab .niw .ni { transition: scale .25s cubic-bezier(.34, 1.56, .64, 1), translate .25s; } }
+@media (hover: hover) { body .nav .tab:not([aria-current="page"]):hover .niw .ni { scale: 1.4; translate: 0 -3px; } body .nav .tab .niw .ni { transition: scale .25s cubic-bezier(.34, 1.56, .64, 1), translate .25s; } }
 body .nav .tab:active .niw .ni { scale: .85; }
 @media (min-width: 768px) { body .nav .tab[aria-current="page"] .niw .ni { animation: dockBob 2.8s ease-in-out infinite; } }
 @media (prefers-reduced-motion: reduce) { body .nav .tab .niw, body .nav .tab .niw .ni { animation: none !important; } }
@@ -4490,6 +4490,11 @@ body .nav .tab:active .niw .ni { scale: .85; }
 #kdCombo.pop { animation: cbPop .45s cubic-bezier(.34, 1.56, .64, 1); } @keyframes cbPop { 0% { scale: 1; } 45% { scale: 1.3; } 100% { scale: 1; } }
 #kdCombo.lost { animation: cbLost .45s ease-out; border-color: #d6303c; } @keyframes cbLost { 0%, 100% { translate: 0 0; } 25% { translate: -6px 0; } 50% { translate: 5px 0; } 75% { translate: -3px 0; } }
 #kdCombo.big { border-color: #fff3a0; box-shadow: 0 0 14px rgba(255, 190, 70, .8); }
+
+body .nav .tab .navav { border-radius: 50%; object-fit: cover; border: 2px solid rgba(255, 255, 255, .7); box-sizing: border-box; background: #fff; }
+body .nav .tab:not([aria-current="page"]) .navav { width: 26px !important; height: 26px !important; }
+body .nav .tab[aria-current="page"] .navav { border-color: #fff; box-shadow: 0 0 0 2px rgba(255, 255, 255, .4); }
+body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
 
 </style>
 
@@ -24310,6 +24315,23 @@ body .nav .tab:active .niw .ni { scale: .85; }
       if (!card()) { idle++; if (idle > 3) { combo = 0; cb.classList.remove('on'); } } else { idle = 0; if (combo >= 2) place(); }
     }, 400);
     window.addEventListener('scroll', function () { if (combo >= 2) place(); }, { passive: true });
+  })();
+
+  /* ===== v237 : l'onglet Profil montre la photo de profil ===== */
+  (function () {
+    function sync() {
+      try {
+        var tab = document.querySelector('.nav .tab[data-tab="profil"]'), src = document.querySelector('#hAvatar img'); if (!tab || !src) return;
+        var holder = tab.querySelector('.niw') || tab, svg = holder.querySelector('svg.ni'), im = holder.querySelector('img.navav');
+        if (svg) svg.classList.add('navhid');
+        if (!im) { im = document.createElement('img'); im.className = 'ni navav'; im.alt = ''; im.setAttribute('aria-hidden', 'true'); holder.insertBefore(im, holder.firstChild); }
+        if (im.getAttribute('src') !== src.getAttribute('src')) im.setAttribute('src', src.getAttribute('src'));
+        var g = holder.querySelector('.nglow'); if (g) g.style.display = 'none';
+      } catch (e) {}
+    }
+    var h = document.getElementById('hAvatar');
+    if (h && window.MutationObserver) new MutationObserver(sync).observe(h, { childList: true, subtree: true, attributes: true });
+    setInterval(sync, 1500); setTimeout(sync, 400);
   })();
 
   backend.init().then(function (u) {
