@@ -4510,6 +4510,12 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
 .pgold { color: #c1560a; font-weight: 800; }
 .stmix.pgbar i.o { background: #f29b2e; } .pgw.st-old .pgdot { background: #f29b2e; box-shadow: 0 0 0 2px rgba(242, 155, 46, .35); }
 
+/* ===== v241 : plus de barre de défilement sur les onglets ===== */
+.bnseg, .seg, .pgseg, .cs-chips, .cs-tabs, .gsegbar, .nav { scrollbar-width: none; -ms-overflow-style: none; }
+.bnseg::-webkit-scrollbar, .seg::-webkit-scrollbar, .pgseg::-webkit-scrollbar, .cs-chips::-webkit-scrollbar, .cs-tabs::-webkit-scrollbar, .gsegbar::-webkit-scrollbar, .nav::-webkit-scrollbar { display: none; height: 0; }
+.pgseg, .bnseg { overflow: hidden !important; display: flex; }
+.pgseg button, .bnseg button { flex: 1 1 0; min-width: 0; scale: 1 !important; transform: none !important; }
+
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
