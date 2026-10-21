@@ -4395,6 +4395,8 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
 .knqcard .knqk { font-size: clamp(6.5rem, 32vw, 10rem) !important; }
 .furqbig { font-size: clamp(3.4rem, 17vw, 5.6rem) !important; }
 
+.wtok { border-bottom: 0 !important; }
+.wtok:hover { background: rgba(180, 42, 93, .12); }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -24112,6 +24114,33 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
     else if (b.hasAttribute('data-pgmore')) PG.lim += 60;
     else { try { openKanji(b.getAttribute('data-pgk')); } catch (x) {} return; }
     pgRefresh();
+  });
+
+  /* ===== v230 : bascule romaji / furigana appliquée tout de suite pendant un exercice ===== */
+  var lastRQ = null, _renderQ0 = renderQ;
+  renderQ = function (q, cb) {
+    var rec = { q: q, cb: cb, done: false, ctl: null };
+    lastRQ = rec;
+    rec.ctl = _renderQ0(q, function (ok, t) { rec.done = true; cb(ok, t); });
+    return rec.ctl;
+  };
+  function reRenderNow() {
+    try {
+      var st = $('stage');
+      if (lastRQ && !lastRQ.done && st && !st.hidden && st.querySelector('.qcard') && st.offsetParent !== null) {
+        var inp = $('ans'), v = inp ? inp.value : '', rec = lastRQ;
+        var ctl = _renderQ0(rec.q, function (ok, t) { rec.done = true; rec.cb(ok, t); });
+        if (sess && sess.ctl === rec.ctl) sess.ctl = ctl; rec.ctl = ctl;
+        if (v && $('ans')) { $('ans').value = v; }
+      }
+    } catch (e) {}
+    try { if (typeof clz !== 'undefined' && clz.view === 'quiz' && clz.ans === null && $('clzHost') && $('clzHost').offsetParent !== null) renderClz(); } catch (e) {}
+    try { if (typeof kn !== 'undefined' && kn.view === 'quiz' && $('kanaHost') && $('kanaHost').offsetParent !== null) knRefresh(); } catch (e) {}
+  }
+  document.addEventListener('click', function (e) {
+    var r = e.target.closest ? e.target.closest('#btnRomTog,#btnFuriTog') : null; if (!r || !S) return;
+    if (r.id === 'btnFuriTog') S.clzFuri = !!S.furiSess;
+    setTimeout(reRenderNow, 40);
   });
 
   backend.init().then(function (u) {
