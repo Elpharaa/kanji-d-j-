@@ -4273,6 +4273,45 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
 .wfstk{margin-top:8px;text-align:left}.wfstt{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-bottom:4px}.wfsk{margin:6px 0}.wfsk .swhost{display:block;margin-top:6px}
 .bnseg{display:flex;gap:6px;overflow-x:auto;margin:8px 0}.bnseg button{flex:1 0 auto;padding:8px 10px;border:2px solid #d9c9ec;border-radius:12px;background:#fbf4e3;font:inherit;font-weight:700;font-size:.82rem;cursor:pointer}.bnseg button.on{background:#b42a5d;color:#fff;border-color:#7f1c40}
 .bnlist{display:grid;gap:8px;margin-top:10px}.bnrow{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;padding:10px;border:1.5px solid #d9c9ec;border-radius:12px;background:#fffaf0;align-items:baseline}.bnw{font-size:1.2rem;font-weight:800}.bnrd{opacity:.75}.bnfr{grid-column:1/-1;font-weight:700}.bnex{grid-column:1/-1;font-size:.95rem}.bnexfr{grid-column:1/-1;font-size:.82rem;opacity:.75}
+/* ===== v220b : choix en pastilles, retour tactile discret, progression ===== */
+.cs-hid { display: none !important; }
+.cs-box { margin: 2px 0 10px; }
+.cs-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; }
+.cs-tab { min-height: 38px; padding: 4px 14px; border-radius: 999px; border: 2px solid var(--wood2, #b59b6a); background: transparent; color: inherit; font: 800 .85rem var(--font-body, inherit); cursor: pointer; }
+.cs-tab.on { background: var(--sumi, #2a1c14); color: #fffaf0; border-color: var(--sumi, #2a1c14); }
+.cs-tab.has:not(.on)::after { content: ' ●'; color: #c1245a; font-size: .7em; }
+.cs-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.cs-chip { min-width: 46px; min-height: 42px; padding: 6px 12px; border-radius: 12px; border: 2px solid var(--wood2, #b59b6a); background: #fffaf0; color: #2a1c14; font: 700 .92rem var(--font-body, inherit); cursor: pointer; transition: transform .15s, box-shadow .15s, background .15s; }
+.cs-chip.on { background: linear-gradient(135deg, #c1245a, #d0587f); color: #fffaf0; border-color: #9b1a47; box-shadow: 0 3px 0 #7d1438; }
+@media (hover: hover) { .cs-chip:not(.on):hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(42,28,20,.18); } }
+.cs-cap { margin-top: 6px; font-size: .8rem; opacity: .8; }
+.tapring { position: fixed; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; border: 2px solid rgba(208, 88, 127, .65); background: rgba(247, 166, 192, .25); pointer-events: none; z-index: 99999; animation: tapring .5s ease-out forwards; }
+@keyframes tapring { to { transform: scale(4.2); opacity: 0; } }
+:where(.btn, .mode, .qvt, .ktile, .tab, .gear):active { transform: scale(.97); transition: transform .08s; }
+@media (hover: hover) { :where(.tab):hover .ti, :where(.tab):hover svg { transform: translateY(-2px); transition: transform .2s; } }
+@media (prefers-reduced-motion: reduce) { .tapring { display: none; } }
+#btnAmbTog { font-size: 1.05rem; }
+.pgsum { display: flex; gap: 14px; align-items: center; padding: 12px; border: 2px solid var(--wood2, #b59b6a); border-radius: 16px; background: rgba(255, 250, 240, .92); color: #2a1c14; margin-bottom: 12px; }
+#pgHost { width: 100%; min-width: 0; grid-column: 1 / -1; box-sizing: border-box; }
+.pgsum { flex-wrap: wrap; }
+.pgbig { min-width: 96px; text-align: center; } .pgbig small { display: block; font-size: .7rem; opacity: .7; } .pgbig b { font-size: 1.5rem; color: #c1245a; display: block; }
+.pgtx { font-size: .9rem; } .pgtx i { display: block; font-style: normal; font-size: .78rem; opacity: .8; } .pgtx small { display: block; margin-top: 4px; opacity: .65; font-size: .72rem; }
+.pgseg { margin-bottom: 8px; }
+.pglist { display: flex; flex-direction: column; gap: 8px; }
+.pglv { border: 2px solid var(--wood2, #b59b6a); border-radius: 14px; background: rgba(255, 250, 240, .94); color: #2a1c14; overflow: hidden; }
+.pghead { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; width: 100%; padding: 10px 12px; background: none; border: 0; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.pgname { font-weight: 800; } .pgnum { font-size: .85rem; } .pgbar { grid-column: 1 / -1; margin: 0; }
+.pgdet { padding: 4px 12px 12px; }
+.pgfilt { margin-bottom: 8px; } .pgfilt .cs-chip { min-height: 34px; padding: 3px 10px; font-size: .8rem; }
+.pgw { display: grid; grid-template-columns: 14px auto 1fr; gap: 2px 8px; align-items: baseline; padding: 6px 0; border-bottom: 1px solid rgba(42, 28, 20, .1); }
+.pgw .small:last-child { grid-column: 2 / -1; opacity: .8; }
+.pgdot { width: 10px; height: 10px; border-radius: 50%; background: #b9a67a; align-self: center; }
+.st-ok .pgdot { background: #4a8f5a; } .st-mid .pgdot { background: #e0a030; }
+.pgks { display: flex; flex-wrap: wrap; gap: 6px; }
+.pgk { width: 46px; height: 46px; border-radius: 10px; border: 2px solid #b9a67a; background: #f3ead2; color: #2a1c14; font-size: 1.35rem; cursor: pointer; padding: 0; }
+.pgk.st-ok { background: #cfe8d3; border-color: #4a8f5a; } .pgk.st-mid { background: #fbe6b8; border-color: #e0a030; } .pgk.st-new { opacity: .6; }
+.pgnote { margin-top: 12px; }
+.pgseg button[aria-selected="true"] { background: #2a1c14 !important; color: #fffaf0 !important; border-color: #2a1c14 !important; }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -4304,6 +4343,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     <span class="sstat scoin" id="hdrCoins" title="Pièces d'or"></span>
     <button class="gear romtog" type="button" id="btnRomTog" aria-pressed="false" aria-label="Afficher ou masquer le romaji" title="Romaji">Romaji</button>
     <button class="gear romtog" type="button" id="btnFuriTog" aria-pressed="false" aria-label="Afficher ou masquer les furigana" title="Furigana">ふりがな</button>
+    <button class="gear romtog" type="button" id="btnAmbTog" aria-pressed="false" aria-label="Ambiance sakura (sons)" title="Ambiance sakura">🌸</button>
     <button class="gear" type="button" data-go="settings" aria-label="Réglages">⚙</button>
   </div>
 
@@ -4575,6 +4615,10 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
       <p class="small muted">Vocabulaire fixé sur le polycopié du cours (L2 S3, Lexique et idéogrammes, Junko CHABOT BABA, 2023-2024) ; niveau L1 débutant : fascicules « Lexique et idéogrammes » L1D débutants, 2024-2025. Toute la promotion révise la même liste.</p>
       <p>Bruitages 8 bits : <b id="sfxState">activés</b></p>
       <button class="btn" id="btnSfx" type="button">Couper les sons</button>
+      <hr class="sethr"><p>Ambiance sakura (vent, ruisseau, clochettes) : <b id="ambState">coupée</b></p>
+      <button class="btn" id="btnAmb" type="button">Activer l'ambiance</button>
+      <label class="seenopt"><span>Volume</span> <input type="range" id="ambVol" min="0" max="100" step="5" value="40" aria-label="Volume de l'ambiance"></label>
+      <p class="small muted">Sons générés par l'appareil, aucun fichier. L'ambiance repart d'elle-même à ta prochaine visite si tu la laisses activée.</p>
       <div id="aidPrefs"></div>
       <label class="seenopt"><input type="checkbox" id="optRomaji"><span>Afficher le <b>romaji</b> sous les mots en kana <small>(aide pour débuter ; activé par défaut en L0)</small></span></label>
       <hr class="sethr">
@@ -20516,7 +20560,11 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   /* Asahi pose une question à la fois (niveau, semaine, kanjis) avec un menu déroulant ; 0 = résumé */
   var gsStep = 1;
   function askSel(id, label, opts, cur) {
-    return '<select class="wksel asksel" id="' + id + '" aria-label="' + esc(label) + '">' + opts.map(function (o) { return '<option value="' + esc(o[0]) + '"' + (String(o[0]) === String(cur) ? ' selected' : '') + '>' + esc(o[1]) + '</option>'; }).join('') + '</select>';
+    var gl = [], gm = {}; opts.forEach(function (o) { var g = o[2] || ''; if (!(g in gm)) { gm[g] = []; gl.push(g); } gm[g].push(o); });
+    return '<select class="wksel asksel" id="' + id + '" aria-label="' + esc(label) + '">' + gl.map(function (g) {
+      var inner = gm[g].map(function (o) { return '<option value="' + esc(o[0]) + '"' + (String(o[0]) === String(cur) ? ' selected' : '') + '>' + esc(o[1]) + '</option>'; }).join('');
+      return g ? '<optgroup label="' + esc(g) + '">' + inner + '</optgroup>' : inner;
+    }).join('') + '</select>';
   }
   function askHTML(px, withK) {
     var sel = weekSel(), lv = curLv(), wks = lvWeeks(), ks = kSelList(), jl = px === 'gs' && S.flJl ? S.flJl : '', last = jl ? 1 : (withK ? 3 : 2), st = gsStep;
@@ -20535,7 +20583,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     }
     var q = '<div class="askq"><span class="askn">' + st + '/' + last + '</span>', body = '';
     if (st === 1) {
-      body = q + 'Quel niveau veux-tu travailler ?</div>' + askSel(px + 'Lv', 'Année et semestre', ['L0', 'L0S2', 'L1', 'L1S2', 'L2'].map(function (id) { return [id, CURSUS[id].tag + ' · ' + CURSUS[id].sem]; }).concat(px === 'gs' ? JL_LV.map(function (l) { return ['J:' + l[0], l[0] === 'q' ? 'Vie quotidienne (hors cours)' : 'JLPT ' + l[1]]; }) : []), jl ? 'J:' + jl : lv) + (jl ? nav(0, 0, 'Terminé ✓') : nav(0, 2, 'Suivant ›'));
+      body = q + 'Quel niveau veux-tu travailler ?</div>' + askSel(px + 'Lv', 'Année et semestre', ['L0', 'L0S2', 'L1', 'L1S2', 'L2'].map(function (id) { return [id, CURSUS[id].tag + ' · ' + CURSUS[id].sem, 'Cours']; }).concat(px === 'gs' ? JL_LV.map(function (l) { return ['J:' + l[0], l[0] === 'q' ? 'Vie quotidienne (hors cours)' : 'JLPT ' + l[1], 'JLPT et quotidien']; }) : []), jl ? 'J:' + jl : lv) + (jl ? nav(0, 0, 'Terminé ✓') : nav(0, 2, 'Suivant ›'));
     } else if (st === 2) {
       body = q + 'Quelle semaine ?</div>' + askSel(px + 'Wk', 'Semaine à réviser', [['all', 'Toutes les semaines']].concat(wks.map(function (wk) {
         var t = wk < 100 ? MP_WKNAME[wk] : (L1_TITLES[wk] || {}).title; return [String(wk), 'Semaine ' + wkNum(wk) + (t ? ' · ' + t : '')];
@@ -20911,6 +20959,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     cuis: { k: '料', t: 'Cuisine japonaise', art: '', d: 'Recettes à lire et à écouter, avec le vocabulaire', tip: 'Choisis une recette : écoute chaque étape, apprends les ingrédients et les verbes de cuisine.' },
     lire: { k: '読', t: 'Karaoké de lecture', art: '', d: 'Un texte se lit à voix haute, mot par mot', tip: 'Lance le texte : chaque mot s\'illumine au moment où il est lu. Touche un mot pour l\'entendre seul, et lis en même temps pour travailler ta prononciation.' },
     fur: { k: '炉', t: 'Fourneau', art: '', d: '', tip: 'Le fourneau, c\'est pour les mots qui te résistent vraiment. Mets-en jusqu\'à 8 depuis le carnet d\'erreurs, ouvre leur fiche mémo, puis fais-les cuire : à 6 de chaleur, le mot est forgé !' },
+    prog: { k: '進', t: 'Ma progression', art: '', d: 'Mots et kanjis acquis, niveau par niveau', tip: '' },
     bonus: { k: '楽', t: 'Vocab bonus', art: '', d: 'Onomatopées, mots familiers, oral, entre amis', tip: 'Ici, le japonais vivant : onomatopées, mots familiers, contractions de l\'oral et expressions entre amis proches. Touche un mot pour voir sa fiche, puis fais le quiz.' },
     err: { k: '復', t: 'Carnet d\'erreurs', art: '', d: '', tip: 'Ici, tout ce que tu rates. Revois-le avant qu\'il ne s\'efface de ta mémoire.' }
   };
@@ -21776,8 +21825,9 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   function djGamesHTML(fl, kj, mj) {
     document.body.classList.toggle('qvon', djSub === 'daily' || djSub === 'jlpt');
     if (!djSub) return tipHTML('dojo', 'Voici ton Dojo ! Touche une carte pour t\'entraîner : <b>Flashcards</b> pour revoir tes mots, <b>Kanjis</b>, <b>Mini-jeux</b>, ton <b>Carnet d\'erreurs</b>, ou du <b>vocabulaire du quotidien</b> ou le <b>JLPT</b>.') +
-      '<div class="djgrid">' + ['flash', 'kana', 'kanji', 'mini', 'err', 'daily', 'jlpt', 'bonus', 'rad'].map(djTile).join('') + '</div>';
+      '<div class="djgrid">' + ['flash', 'kana', 'kanji', 'mini', 'err', 'daily', 'jlpt', 'bonus', 'rad', 'prog'].map(djTile).join('') + '</div>';
     if (djSub === 'err') return '';
+    if (djSub === 'prog') return djBackHTML('prog') + '<div id="pgHost">' + progInner() + '</div>';
     if (djSub === 'bonus') return djBackHTML('bonus') + tipHTML('dj_bonus', DJ_INFO.bonus.tip) + '<div id="bonusHost">' + bonusInner() + '</div>';
     if (djSub === 'kana') return djBackHTML('kana') + tipHTML('dj_kana', DJ_INFO.kana.tip) + '<div id="kanaHost">' + knInner() + '</div>';
     if (djSub === 'fur') return djBackHTML('fur') + tipHTML('dj_fur', DJ_INFO.fur.tip) + '<div id="furHost">' + furInner() + '</div>';
@@ -22621,7 +22671,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     $('resetIdle').hidden = false; $('resetConfirm').hidden = true;
     var av = avatarOf(user.name, user.avatar);
     if (pickSettings) pickSettings.set(av);
-    bnRenderPanel(); assetsLoad(); adminPanel();
+    bnRenderPanel(); assetsLoad(); adminPanel(); ambUI();
     show('vSettings');
   }
   document.addEventListener('change', function (e) { if (e.target && e.target.id === 'setRet' && S) { S.fsR = +e.target.value; persist(); toast('Fréquence des révisions mise à jour'); } });
@@ -23682,6 +23732,279 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
       persist();
     } else if (a === 'next') { bonusV.i++; if (bonusV.i >= bonusV.items.length) { bonusV.view = 'end'; try { streakTick(1); } catch (er) {} persist(); } else bonusNext(); }
     bonusRefresh(); 
+  });
+
+  /* =====================================================================
+     v220b. CHOIX SIMPLIFIÉ : onglets + pastilles à la place des longs menus déroulants
+     ===================================================================== */
+  var CS_SKIP = { bnSel: 1, vilSel: 1, vxSel: 1 };
+  function csShort(t, gl) {
+    var m;
+    if (/^Toutes?\s/i.test(t)) return 'Toutes';
+    if ((m = /^Semaine\s+(\S+)/.exec(t))) return 'S' + m[1];
+    if ((m = /^JLPT (N\d)\b/.exec(t))) return m[1];
+    if (gl) { var pre = gl.split(' · ')[0] + ' · '; if (t.indexOf(pre) === 0) { t = t.slice(pre.length); if ((m = /^Semaine\s+(\S+)/.exec(t))) return 'S' + m[1]; if (/^Toutes?\s/i.test(t)) return 'Toutes'; } }
+    return t;
+  }
+  function csPaint(box) {
+    var sel = box.__sel; if (!sel || !sel.parentNode) return;
+    var groups = [], cur = sel.value, ogs = sel.querySelectorAll('optgroup');
+    if (ogs.length > 1) [].forEach.call(ogs, function (g) { groups.push({ label: g.label, opts: [].slice.call(g.querySelectorAll('option')) }); });
+    else groups.push({ label: '', opts: [].slice.call(sel.options) });
+    var gi = box.dataset.cg !== undefined && +box.dataset.cg < groups.length ? +box.dataset.cg : -1;
+    if (gi < 0) { gi = 0; groups.forEach(function (g, i) { if (g.opts.some(function (o) { return o.value === cur; })) gi = i; }); box.dataset.cg = gi; }
+    var curOpt = sel.options[sel.selectedIndex], h = '';
+    if (groups.length > 1) h += '<div class="cs-tabs" role="tablist">' + groups.map(function (g, i) {
+      var inG = g.opts.some(function (o) { return o.value === cur; });
+      return '<button type="button" role="tab" class="cs-tab' + (i === gi ? ' on' : '') + (inG ? ' has' : '') + '" data-csg="' + i + '" aria-selected="' + (i === gi) + '">' + esc((g.label || '').split(' · ')[0].replace(/ et vie quotidienne/, ' · quotidien')) + '</button>';
+    }).join('') + '</div>';
+    var g0 = groups[gi];
+    h += '<div class="cs-chips" role="listbox" aria-label="' + esc(sel.getAttribute('aria-label') || 'Choix') + '">' + g0.opts.map(function (o) {
+      return '<button type="button" role="option" class="cs-chip' + (o.value === cur ? ' on' : '') + '" data-csv="' + esc(o.value) + '" aria-selected="' + (o.value === cur) + '" title="' + esc(o.text) + '">' + esc(csShort(o.text, g0.label)) + '</button>';
+    }).join('') + '</div>';
+    if (curOpt) h += '<div class="cs-cap">Choix actuel : <b>' + esc(curOpt.text) + '</b></div>';
+    box.innerHTML = h;
+  }
+  function csEnhance() {
+    [].forEach.call(document.querySelectorAll('select.wksel:not([data-cs])'), function (sel) {
+      if (!sel.options.length) return;
+      if (CS_SKIP[sel.id] || sel.hasAttribute('data-lvsel')) { sel.setAttribute('data-cs', '0'); return; }
+      var og = sel.querySelectorAll('optgroup').length;
+      if (sel.options.length < 6 && og < 2) { sel.setAttribute('data-cs', '0'); return; }
+      sel.setAttribute('data-cs', '1'); sel.classList.add('cs-hid');
+      var box = document.createElement('div'); box.className = 'cs-box'; box.__sel = sel;
+      sel.parentNode.insertBefore(box, sel.nextSibling); csPaint(box);
+    });
+  }
+  (function () {
+    var q = 0;
+    new MutationObserver(function () { if (q) return; q = requestAnimationFrame(function () { q = 0; try { csEnhance(); } catch (e) {} }); }).observe(document.body, { childList: true, subtree: true });
+    document.addEventListener('click', function (e) {
+      var c = e.target.closest ? e.target.closest('.cs-chip,.cs-tab') : null; if (!c) return;
+      var box = c.closest('.cs-box'); if (!box || !box.__sel) return;
+      e.preventDefault();
+      if (c.classList.contains('cs-tab')) { box.dataset.cg = c.getAttribute('data-csg'); csPaint(box); return; }
+      var sel = box.__sel, v = c.getAttribute('data-csv');
+      if (sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event('change', { bubbles: true })); }
+      if (box.isConnected && sel.isConnected) { box.removeAttribute('data-cg'); csPaint(box); }
+    });
+  })();
+
+  /* =====================================================================
+     v220c. Retour tactile discret : onde au toucher + ambiance sakura (sons générés, aucun fichier)
+     ===================================================================== */
+  (function () {
+    var last = 0;
+    document.addEventListener('pointerdown', function (e) {
+      if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var t = e.target.closest ? e.target.closest('button,.mode,.qvt,.ktile,.tab,.cs-chip,[role="button"]') : null;
+      if (!t || t.disabled) return;
+      var n = Date.now(); if (n - last < 120) return; last = n;
+      var r = document.createElement('i'); r.className = 'tapring'; r.setAttribute('aria-hidden', 'true');
+      r.style.left = e.clientX + 'px'; r.style.top = e.clientY + 'px'; document.body.appendChild(r);
+      setTimeout(function () { if (r.parentNode) r.parentNode.removeChild(r); }, 520);
+    }, true);
+  })();
+  var AMB = { ctx: null, master: null, on: false, t: [], src: [], vol: 40 };
+  try { AMB.vol = +(localStorage.getItem('kd.ambv') || 40); } catch (e) {}
+  function ambWanted() { try { return localStorage.getItem('kd.amb') === '1'; } catch (e) { return false; } }
+  function ambNoise(ctx, sec) {
+    var len = ctx.sampleRate * sec, b = ctx.createBuffer(1, len, ctx.sampleRate), d = b.getChannelData(0), b0 = 0, b1 = 0, b2 = 0, i, w;
+    for (i = 0; i < len; i++) { w = Math.random() * 2 - 1; b0 = 0.99765 * b0 + w * 0.099046; b1 = 0.963 * b1 + w * 0.2965164; b2 = 0.57 * b2 + w * 1.0526913; d[i] = (b0 + b1 + b2 + w * 0.1848) * 0.18; }
+    return b;
+  }
+  function ambChime() {
+    if (!AMB.on || !AMB.ctx) return;
+    var c = AMB.ctx, t = c.currentTime, notes = [523.25, 587.33, 659.25, 783.99, 880, 1046.5], f = notes[Math.floor(Math.random() * notes.length)], n = Math.random() < 0.35 ? 2 : 1, i;
+    for (i = 0; i < n; i++) {
+      var ff = i ? notes[Math.floor(Math.random() * notes.length)] : f, st = t + i * (0.18 + Math.random() * 0.25);
+      [[1, 0.09], [2.76, 0.03]].forEach(function (p) {
+        var o = c.createOscillator(), g = c.createGain(); o.type = 'sine'; o.frequency.value = ff * p[0];
+        g.gain.setValueAtTime(0.0001, st); g.gain.exponentialRampToValueAtTime(p[1], st + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, st + 3.2);
+        o.connect(g); g.connect(AMB.echo); o.start(st); o.stop(st + 3.3);
+      });
+    }
+    AMB.t.push(setTimeout(ambChime, 7000 + Math.random() * 9000));
+  }
+  function ambKnock() {
+    if (!AMB.on || !AMB.ctx) return;
+    var c = AMB.ctx, t = c.currentTime, o = c.createOscillator(), g = c.createGain();
+    o.type = 'sine'; o.frequency.setValueAtTime(260, t); o.frequency.exponentialRampToValueAtTime(170, t + 0.14);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.16, t + 0.008); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.3);
+    o.connect(g); g.connect(AMB.echo); o.start(t); o.stop(t + 0.32);
+    AMB.t.push(setTimeout(ambKnock, 24000 + Math.random() * 22000));
+  }
+  function ambStart() {
+    var AC = window.AudioContext || window.webkitAudioContext; if (!AC) return false;
+    try {
+      if (!AMB.ctx) {
+        var c = AMB.ctx = new AC(), m = AMB.master = c.createGain(); m.gain.value = 0; m.connect(c.destination);
+        var dl = c.createDelay(1), fb = c.createGain(), wet = c.createGain(), dry = c.createGain(); dl.delayTime.value = 0.29; fb.gain.value = 0.38; wet.gain.value = 0.5; dry.gain.value = 1;
+        var echo = AMB.echo = c.createGain(); echo.connect(dry); dry.connect(m); echo.connect(dl); dl.connect(fb); fb.connect(dl); dl.connect(wet); wet.connect(m);
+        var nb = ambNoise(c, 6);
+        // vent dans les cerisiers : bruit rose filtré, souffle lent
+        var w = c.createBufferSource(); w.buffer = nb; w.loop = true;
+        var wf = c.createBiquadFilter(); wf.type = 'bandpass'; wf.frequency.value = 420; wf.Q.value = 0.7;
+        var wg = c.createGain(); wg.gain.value = 0.55;
+        var l1 = c.createOscillator(), l1g = c.createGain(); l1.frequency.value = 0.07; l1g.gain.value = 0.35; l1.connect(l1g); l1g.connect(wg.gain);
+        var l2 = c.createOscillator(), l2g = c.createGain(); l2.frequency.value = 0.043; l2g.gain.value = 180; l2.connect(l2g); l2g.connect(wf.frequency);
+        w.connect(wf); wf.connect(wg); wg.connect(m); w.start(); l1.start(); l2.start();
+        // petit ruisseau : bruit clair, très discret
+        var s = c.createBufferSource(); s.buffer = nb; s.loop = true; s.playbackRate.value = 1.7;
+        var sf = c.createBiquadFilter(); sf.type = 'bandpass'; sf.frequency.value = 2400; sf.Q.value = 1.4;
+        var sg = c.createGain(); sg.gain.value = 0.12;
+        var l3 = c.createOscillator(), l3g = c.createGain(); l3.frequency.value = 5.5; l3g.gain.value = 0.05; l3.connect(l3g); l3g.connect(sg.gain);
+        s.connect(sf); sf.connect(sg); sg.connect(m); s.start(); l3.start();
+      }
+      if (AMB.ctx.state === 'suspended') AMB.ctx.resume();
+      AMB.on = true; var t = AMB.ctx.currentTime;
+      AMB.master.gain.cancelScheduledValues(t); AMB.master.gain.setValueAtTime(AMB.master.gain.value, t); AMB.master.gain.linearRampToValueAtTime(AMB.vol / 100 * 0.6, t + 2.5);
+      AMB.t.forEach(clearTimeout); AMB.t = [setTimeout(ambChime, 2500), setTimeout(ambKnock, 14000)];
+      return true;
+    } catch (e) { return false; }
+  }
+  function ambStop() {
+    AMB.on = false; AMB.t.forEach(clearTimeout); AMB.t = [];
+    try { if (AMB.ctx) { var t = AMB.ctx.currentTime; AMB.master.gain.cancelScheduledValues(t); AMB.master.gain.setValueAtTime(AMB.master.gain.value, t); AMB.master.gain.linearRampToValueAtTime(0, t + 0.8); setTimeout(function () { if (!AMB.on && AMB.ctx) AMB.ctx.suspend(); }, 1000); } } catch (e) {}
+  }
+  function ambUI() {
+    var on = AMB.on, b = $('btnAmbTog'); if (b) { b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.classList.toggle('on', on); }
+    if ($('ambState')) { $('ambState').textContent = on ? 'activée' : 'coupée'; $('btnAmb').textContent = on ? 'Couper l\'ambiance' : 'Activer l\'ambiance'; $('ambVol').value = String(AMB.vol); }
+  }
+  function ambToggle(force) {
+    var want = force === undefined ? !AMB.on : !!force;
+    if (want) { if (!ambStart()) { toast('Sons non disponibles sur cet appareil'); return; } } else ambStop();
+    try { localStorage.setItem('kd.amb', want ? '1' : '0'); } catch (e) {}
+    ambUI();
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.closest && (e.target.closest('#btnAmbTog') || e.target.closest('#btnAmb'))) ambToggle();
+  });
+  document.addEventListener('input', function (e) {
+    if (e.target && e.target.id === 'ambVol') {
+      AMB.vol = +e.target.value; try { localStorage.setItem('kd.ambv', String(AMB.vol)); } catch (x) {}
+      if (AMB.on && AMB.master) AMB.master.gain.setTargetAtTime(AMB.vol / 100 * 0.6, AMB.ctx.currentTime, 0.1);
+    }
+  });
+  (function () {
+    // l'ambiance mémorisée repart au premier geste (les navigateurs interdisent le son automatique)
+    function first() { document.removeEventListener('pointerdown', first, true); document.removeEventListener('keydown', first, true); if (ambWanted() && !AMB.on) { ambStart(); ambUI(); } }
+    if (ambWanted()) { document.addEventListener('pointerdown', first, true); document.addEventListener('keydown', first, true); }
+    document.addEventListener('visibilitychange', function () { if (!AMB.ctx) return; if (document.hidden) AMB.ctx.suspend(); else if (AMB.on) AMB.ctx.resume(); });
+    setTimeout(ambUI, 0);
+  })();
+
+  /* =====================================================================
+     v220d. MA PROGRESSION : suivi des mots et des kanjis par niveau
+     ===================================================================== */
+  var PG = { tab: 'mots', src: 'jlpt', open: '', filt: 'all', lim: 60 };
+  var PG_JL = ['n5', 'n4', 'n3', 'n2', 'n1', 'q'];
+  function pgWst(st) { if (!st || !((st.ok || 0) + (st.ko || 0))) return 'new'; return (st.run || 0) >= MASTER_RUN ? 'ok' : 'mid'; }
+  function pgIndex() {
+    var best = {}, rank = { new: 0, mid: 1, ok: 2 }, I = {};
+    function add(word, st) {
+      var s = pgWst(st);
+      Array.from(word).forEach(function (c) {
+        if (!isKanji(c)) return; var k = c + '|' + word;
+        if (!(k in best) || rank[s] > rank[best[k]]) best[k] = s;
+      });
+    }
+    WORDS.forEach(function (w) { add(w.mot, S.stats && S.stats[w.key]); });
+    Object.keys(QVW).forEach(function (k) { add(QVW[k].jp, S.qv && S.qv[k]); });
+    Object.keys(best).forEach(function (k) { var c = k.charAt(0), e = I[c] || (I[c] = { t: 0, m: 0, a: 0 }); e.t++; if (best[k] === 'ok') e.m++; if (best[k] !== 'new') e.a++; });
+    return I;
+  }
+  function pgKst(c, I) {
+    var d = S.stats && S.stats['kj:' + c], e = I[c] || { t: 0, m: 0, a: 0 };
+    if ((d && (d.run || 0) >= MASTER_RUN) || (e.t && e.m >= Math.min(2, e.t))) return 'ok';
+    if ((d && ((d.ok || 0) + (d.ko || 0)) > 0) || e.a > 0 || (S.seen && S.seen[c])) return 'mid';
+    return 'new';
+  }
+  function pgWordGroups(src) {
+    var G = [];
+    if (src === 'cours') {
+      Object.keys(CURSUS).forEach(function (id) {
+        var it = WORDS.filter(function (w) { return wkLevel(w.wk) === id; }).map(function (w) { var st = S.stats && S.stats[w.key]; return { a: w.mot, b: w.disp || w.lecture || '', c: w.sens, s: pgWst(st), ko: st ? st.ko || 0 : 0 }; });
+        G.push({ id: id, name: CURSUS[id].tag + ' · ' + CURSUS[id].sem, items: it });
+      });
+    } else {
+      PG_JL.forEach(function (lv) {
+        var it = Object.keys(QVW).filter(function (k) { return k.split(':')[0] === lv; }).map(function (k) { var w = QVW[k], st = S.qv && S.qv[k]; return { a: w.jp, b: w.kana === w.jp ? '' : w.kana, c: w.fr, s: pgWst(st), ko: st ? st.ko || 0 : 0 }; });
+        G.push({ id: lv, name: lv === 'q' ? 'Vie quotidienne' : 'JLPT ' + lv.toUpperCase(), items: it });
+      });
+    }
+    return G;
+  }
+  function pgKanjiGroups(src, I) {
+    var G = [];
+    function sens(c) { var k = KMAP[c]; return k ? k.sens : (JK[c] ? JK[c][0] : ''); }
+    if (src === 'cours') {
+      Object.keys(CURSUS).forEach(function (id) {
+        var seen = {}, it = [];
+        KANJI_DATA.forEach(function (k) { if (wkLevel(k.wk) === id && !seen[k.k]) { seen[k.k] = 1; it.push({ a: k.k, c: k.sens, s: pgKst(k.k, I) }); } });
+        G.push({ id: id, name: CURSUS[id].tag + ' · ' + CURSUS[id].sem, items: it });
+      });
+    } else {
+      var jl = jlBuild();
+      PG_JL.forEach(function (lv) {
+        G.push({ id: lv, name: lv === 'q' ? 'Vie quotidienne' : 'JLPT ' + lv.toUpperCase(), items: jl[lv].map(function (c) { return { a: c, c: sens(c), s: pgKst(c, I) }; }) });
+      });
+    }
+    return G;
+  }
+  function pgCount(items) { var n = { ok: 0, mid: 0, new: 0 }; items.forEach(function (x) { n[x.s]++; }); return n; }
+  function pgEstimate(I) {
+    var wg = pgWordGroups('jlpt'), kg = pgKanjiGroups('jlpt', I), est = '', info = [], i;
+    for (i = 0; i < 5; i++) {
+      var wc = pgCount(wg[i].items), kc = pgCount(kg[i].items), wp = wg[i].items.length ? wc.ok / wg[i].items.length : 0, kp = kg[i].items.length ? kc.ok / kg[i].items.length : 0, p = Math.round((wp * 0.6 + kp * 0.4) * 100);
+      info.push({ lv: PG_JL[i], p: p, wp: Math.round(wp * 100), kp: Math.round(kp * 100) });
+    }
+    for (i = 0; i < 5; i++) { if (info[i].p >= 50) est = info[i].lv; else break; }
+    return { est: est, info: info };
+  }
+  var PG_LAB = { ok: 'Acquis', mid: 'En cours', new: 'À découvrir' };
+  function progInner() {
+    var I = pgIndex(), E = pgEstimate(I), h = '', next = E.est ? PG_JL[PG_JL.indexOf(E.est) + 1] : 'n5', ni = E.info[PG_JL.indexOf(next)];
+    h += '<div class="pgsum"><div class="pgbig"><small>Niveau estimé</small><b>' + (E.est ? E.est.toUpperCase() : 'Débutant') + '</b></div><div class="pgtx">' +
+      (next && next !== 'q' && ni ? 'Vers le <b>' + next.toUpperCase() + '</b> : <b>' + ni.p + ' %</b> (objectif 50 %) <i>vocabulaire ' + ni.wp + ' % · kanjis ' + ni.kp + ' %</i>' : 'Tous les niveaux sont validés, bravo !') +
+      '<small>Estimation indicative : 60 % du vocabulaire acquis + 40 % des kanjis acquis, niveau par niveau.</small></div></div>';
+    h += '<div class="bnseg pgseg" role="tablist">' + [['mots', 'Vocabulaire'], ['kanjis', 'Kanjis']].map(function (o) { return '<button type="button" role="tab" data-pgtab="' + o[0] + '" aria-selected="' + (PG.tab === o[0]) + '">' + o[1] + '</button>'; }).join('') + '</div>';
+    h += '<div class="bnseg pgseg" role="tablist">' + [['jlpt', 'JLPT et quotidien'], ['cours', 'Mon cours']].map(function (o) { return '<button type="button" role="tab" data-pgsrc="' + o[0] + '" aria-selected="' + (PG.src === o[0]) + '">' + o[1] + '</button>'; }).join('') + '</div>';
+    var G = PG.tab === 'mots' ? pgWordGroups(PG.src) : pgKanjiGroups(PG.src, I), tot = { ok: 0, mid: 0, new: 0 };
+    G.forEach(function (g) { var c = pgCount(g.items); tot.ok += c.ok; tot.mid += c.mid; tot.new += c.new; });
+    var all = tot.ok + tot.mid + tot.new || 1;
+    h += '<p class="qvtop"><b>' + tot.ok + '</b> / ' + all + (PG.tab === 'mots' ? ' mots' : ' kanjis') + ' acquis · ' + tot.mid + ' en cours · ' + tot.new + ' à découvrir</p>';
+    h += '<div class="pglist">' + G.map(function (g) {
+      var c = pgCount(g.items), n = g.items.length || 1, op = PG.open === g.id;
+      return '<div class="pglv' + (op ? ' open' : '') + '"><button type="button" class="pghead" data-pgopen="' + g.id + '" aria-expanded="' + op + '"><span class="pgname">' + esc(g.name) + '</span><span class="pgnum"><b>' + c.ok + '</b>/' + g.items.length + ' · ' + Math.round(c.ok / n * 100) + ' %</span>' +
+        '<span class="stmix pgbar" role="img" aria-label="Acquis ' + c.ok + ', en cours ' + c.mid + ', à découvrir ' + c.new + '"><i class="m" style="width:' + (c.ok / n * 100) + '%"></i><i class="p" style="width:' + (c.mid / n * 100) + '%"></i><i class="n" style="width:' + (c.new / n * 100) + '%"></i></span></button>' + (op ? pgDetail(g) : '') + '</div>';
+    }).join('') + '</div>';
+    h += '<p class="small muted pgnote">' + (PG.tab === 'mots' ? 'Un mot est <b>acquis</b> après 3 bonnes réponses d\'affilée, <b>en cours</b> dès que tu l\'as essayé.' : 'Un kanji est <b>acquis</b> quand tu le réussis 3 fois de suite, ou quand 2 mots qui le contiennent sont acquis. Il est <b>en cours</b> dès que tu as ouvert sa fiche ou essayé un mot ou un jeu avec lui. Son niveau est celui du premier vocabulaire qui l\'utilise.') + '</p>';
+    return h;
+  }
+  function pgDetail(g) {
+    var f = PG.filt, items = g.items.filter(function (x) { return f === 'all' ? true : f === 'hard' ? (x.ko || 0) > 0 && x.s !== 'ok' : x.s === f; }), h = '<div class="pgdet"><div class="cs-chips pgfilt">';
+    [['all', 'Tous'], ['ok', 'Acquis'], ['mid', 'En cours'], ['new', 'À découvrir']].concat(PG.tab === 'mots' ? [['hard', 'Difficiles']] : []).forEach(function (o) {
+      h += '<button type="button" class="cs-chip' + (f === o[0] ? ' on' : '') + '" data-pgfilt="' + o[0] + '">' + o[1] + '</button>';
+    });
+    h += '</div>';
+    if (!items.length) return h + '<p class="muted small">Rien dans cette catégorie pour l\'instant.</p></div>';
+    if (PG.tab === 'mots') h += '<div class="pgwords">' + items.slice(0, PG.lim).map(function (x) { return '<div class="pgw st-' + x.s + '"><i class="pgdot" title="' + PG_LAB[x.s] + '"></i><b class="jp">' + esc(x.a) + '</b><span class="jp small">' + esc(x.b) + '</span><span class="small">' + esc(x.c) + '</span></div>'; }).join('') + '</div>';
+    else h += '<div class="pgks">' + items.slice(0, PG.lim * 2).map(function (x) { return '<button type="button" class="pgk st-' + x.s + '" data-pgk="' + esc(x.a) + '" title="' + esc(x.c + ' · ' + PG_LAB[x.s]) + '"><span class="jp">' + esc(x.a) + '</span></button>'; }).join('') + '</div>';
+    var lim = PG.tab === 'mots' ? PG.lim : PG.lim * 2;
+    if (items.length > lim) h += '<button type="button" class="btn" data-pgmore="1">Voir plus (' + (items.length - lim) + ')</button>';
+    return h + '</div>';
+  }
+  function pgRefresh() { var h = $('pgHost'); if (h) h.innerHTML = progInner(); }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-pgtab],[data-pgsrc],[data-pgopen],[data-pgfilt],[data-pgmore],[data-pgk]') : null; if (!b || !user) return;
+    if (b.hasAttribute('data-pgtab')) { PG.tab = b.getAttribute('data-pgtab'); PG.open = ''; PG.filt = 'all'; PG.lim = 60; }
+    else if (b.hasAttribute('data-pgsrc')) { PG.src = b.getAttribute('data-pgsrc'); PG.open = ''; PG.filt = 'all'; PG.lim = 60; }
+    else if (b.hasAttribute('data-pgopen')) { var id = b.getAttribute('data-pgopen'); PG.open = PG.open === id ? '' : id; PG.filt = 'all'; PG.lim = 60; }
+    else if (b.hasAttribute('data-pgfilt')) { PG.filt = b.getAttribute('data-pgfilt'); PG.lim = 60; }
+    else if (b.hasAttribute('data-pgmore')) PG.lim += 60;
+    else { try { openKanji(b.getAttribute('data-pgk')); } catch (x) {} return; }
+    pgRefresh();
   });
 
   backend.init().then(function (u) {
