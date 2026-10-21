@@ -4626,6 +4626,16 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
 .voynext .voynx { font-size: 4rem; line-height: 1; color: #ffd36e; text-shadow: 0 0 22px rgba(255, 200, 100, .7); } .voynext small { color: #e8dcff; } .voynext.final { background: linear-gradient(160deg, #a01a4c, #3d1148); }
 .voyhint { text-align: center; color: #fff7e0; text-shadow: 0 1px 4px rgba(0, 0, 0, .6); margin: 4px 0; }
 
+
+.voyi { display: inline-grid; place-items: center; width: 20px; height: 20px; margin-left: 4px; border-radius: 50%; background: linear-gradient(145deg, #5b4aa8, #3a2d6e); color: #ffe9a8; font: italic 800 .8rem/1 Georgia, serif; cursor: pointer; vertical-align: middle; box-shadow: 0 0 0 2px rgba(255, 211, 110, .55); transition: scale .2s cubic-bezier(.34, 1.56, .64, 1); }
+.voyi:hover, .voyi:focus-visible { scale: 1.2; outline: none; box-shadow: 0 0 0 3px #ffd36e; }
+.voyhow { display: grid; gap: 12px; line-height: 1.5; } .voyhow p { margin: 0; }
+.voysteps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.voysteps li { display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border-radius: 14px; background: rgba(75, 61, 132, .1); }
+.voysteps .jp { flex: none; width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #ff7aa0, #b01c52); color: #fff3d6; font-size: 1.2rem; }
+.voysteps b { display: block; } .voysteps small { display: block; opacity: .8; font-size: .85rem; }
+.voyhow1 { padding: 8px 12px; border-radius: 12px; background: rgba(255, 211, 110, .3); font-size: .9rem; }
+
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -24745,6 +24755,14 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
     var sl = '', i, st = voySt(); for (i = 0; i < tot; i++) sl += '<span class="voyslot' + (st.seals[i] ? ' on' : '') + (i === tot - 1 ? ' boss' : '') + ' jp">' + (st.seals[i] ? '印' : '') + '</span>';
     return '<div class="voyhero r-' + R.lv.toLowerCase() + '">' + voyScene(R) + voyFx(R) + voyLanterns() + '<div class="voygl jp" aria-hidden="true">' + R.glyph + '</div><div class="voyhx"><small>Voyage JLPT · ' + R.lv + '</small><h2>' + esc(R.name) + '</h2><div class="voyslots">' + sl + '</div><small>' + seals + ' / ' + tot + ' sceaux de langue</small></div></div>';
   }
+  function voyI() { return '<span class="voyi" role="button" tabindex="0" aria-label="Comment acquérir un mot ?" data-voy="info">i</span>'; }
+  function voyInfoHTML() {
+    return '<div class="voyhow"><p class="voyhow0">Un mot est <b>acquis</b> quand tu le maîtrises vraiment, pas juste une fois par chance.</p>' +
+      '<ol class="voysteps"><li><span class="jp">一</span><div><b>3 bonnes réponses d\'affilée</b><small>Une seule erreur remet la série à zéro pour ce mot.</small></div></li>' +
+      '<li><span class="jp">二</span><div><b>Sur 2 jours différents</b><small>Réussis-le un jour, puis refais-le un autre jour : ce qui reste en mémoire dure plus longtemps.</small></div></li>' +
+      '<li><span class="jp">三</span><div><b>Où le travailler ?</b><small>Dans les défis du Voyage, mais aussi au Dojo, dans les quiz et les exercices : toutes tes réponses comptent.</small></div></li></ol>' +
+      '<p class="voyhow1">⏳ Un mot acquis passe « à revoir » après 21 jours sans le pratiquer. Un petit rappel suffit à le retrouver.</p></div>';
+  }
   function voyConn(i, st) { return '<svg class="voyconn' + (i % 2 ? ' flip' : '') + (st ? ' lit' : '') + '" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><path d="M8 0 C8 36 92 4 92 40" vector-effect="non-scaling-stroke"/></svg>'; }
   function voyRegs() {
     return '<div class="voyregs">' + VOY_ORDER.map(function (l) {
@@ -24759,7 +24777,7 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
     for (i = 0; i < tot; i++) { var q = voyInfo(i); if (q.open && !q.done && cur < 0) cur = i; }
     for (i = 0; i < tot; i++) {
       var f = voyInfo(i), c = f.c, boss = i === R.chapters.length, pct = Math.round(f.acq / Math.max(1, f.pool.length) * 100);
-      h += '<button type="button" style="' + voyAcc(i) + '" class="voych' + (f.done ? ' done' : f.open ? ' open' : ' locked') + (i === cur ? ' cur' : '') + (boss ? ' boss' : '') + (i % 2 ? ' r' : '') + '" data-voy="ch:' + i + '"><span class="voynode jp">' + (f.done ? '印' : f.open ? esc(c.g) : '<em>' + esc(c.g) + '</em>') + (f.open || f.done ? '' : '<u aria-hidden="true">🔒</u>') + '</span><span class="voytx"><small class="voyk">' + (boss ? 'Boss final' : 'Chapitre ' + (i + 1)) + (i === cur ? ' · à toi !' : '') + '</small><b>' + esc(c.t) + '</b><span class="voybar"><i style="width:' + pct + '%"></i></span><small>' + f.acq + ' / ' + f.pool.length + ' mots acquis' + (f.done ? ' · sceau obtenu' : '') + '</small>' + (!f.open ? '<small class="voywhy">' + esc(f.why) + '</small>' : '') + '</span></button>';
+      h += '<button type="button" style="' + voyAcc(i) + '" class="voych' + (f.done ? ' done' : f.open ? ' open' : ' locked') + (i === cur ? ' cur' : '') + (boss ? ' boss' : '') + (i % 2 ? ' r' : '') + '" data-voy="ch:' + i + '"><span class="voynode jp">' + (f.done ? '印' : f.open ? esc(c.g) : '<em>' + esc(c.g) + '</em>') + (f.open || f.done ? '' : '<u aria-hidden="true">🔒</u>') + '</span><span class="voytx"><small class="voyk">' + (boss ? 'Boss final' : 'Chapitre ' + (i + 1)) + (i === cur ? ' · à toi !' : '') + '</small><b>' + esc(c.t) + '</b><span class="voybar"><i style="width:' + pct + '%"></i></span><small>' + f.acq + ' / ' + f.pool.length + ' mots acquis ' + voyI() + (f.done ? ' · sceau obtenu' : '') + '</small>' + (!f.open ? '<small class="voywhy">' + esc(f.why) + '</small>' : '') + '</span></button>';
       if (i < tot - 1) h += voyConn(i, f.done);
     }
     h += '</div>';
@@ -24774,7 +24792,7 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
     var h = '<div class="grp djbar"><button type="button" class="btn djback" data-voy="map">‹ Carte</button><h3 class="sgh" data-k="' + esc(c.g) + '"><span>' + (boss ? 'Boss final' : 'Chapitre ' + (i + 1)) + '</span></h3></div>';
     h += '<div class="voyscene r-' + R.lv.toLowerCase() + (boss ? ' boss' : '') + '" style="' + voyAcc(i) + '">' + voyPetals(8, R.fx === 'snow' ? 'snow' : R.fx === 'crow' ? 'ember' : '') + '<div class="voysg jp" aria-hidden="true">' + esc(c.g) + '</div><div class="voyst"><small>' + (boss ? 'Boss final' : 'Chapitre ' + (i + 1)) + ' · ' + R.lv + '</small><h3>' + esc(c.t) + '</h3></div></div>';
     h += '<div class="voydlg" style="' + voyAcc(i) + '"><p class="voynar">' + voyText([c.intro[0]]).replace(/^<p>|<\/p>$/g, '') + '</p><div class="voysay"><span class="voyspk">' + esc(c.sp || '') + '</span>' + voyText([c.intro[1]]) + '</div>' + (f.done ? '<p class="voywin">✦ ' + esc(c.win) + '</p>' : '') + '</div>';
-    h += '<div class="voyreq" style="' + voyAcc(i) + '"><div class="voyrq1"><b>' + f.acq + ' / ' + f.pool.length + '</b><span>mots acquis dans ce chapitre</span></div><span class="voybar"><i style="width:' + pct + '%"></i></span>' +
+    h += '<div class="voyreq" style="' + voyAcc(i) + '"><div class="voyrq1"><b>' + f.acq + ' / ' + f.pool.length + '</b><span>mots acquis dans ce chapitre</span>' + voyI() + '</div><span class="voybar"><i style="width:' + pct + '%"></i></span>' +
       (f.open ? '<p class="small">Défi : <b>' + c.n + ' questions</b>, au moins <b>' + (c.pass || Math.ceil(c.n * 0.7)) + '</b> bonnes réponses pour obtenir le sceau.</p><button type="button" class="btn primary voygo" data-voy="start">' + (f.done ? '⚔ Rejouer le défi' : '⚔ Relever le défi') + '</button>' : '<p class="voywhy2">🔒 ' + esc(f.why) + '</p>') + '</div>';
     return h;
   }
@@ -24870,6 +24888,7 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
   document.addEventListener('click', function (e) {
     var b = e.target.closest ? e.target.closest('[data-voy]') : null; if (!b || !user || !S) return;
     var a = b.getAttribute('data-voy'), p = a.split(':'), cmd = p[0], arg = p[1];
+    if (cmd === 'info') { e.preventDefault(); e.stopPropagation(); openModal('Comment acquérir un mot ?', voyInfoHTML(), 'voymodal'); return; }
     if (cmd === 'tog') { S.voyOn = arg === 'jlpt'; persist(); voy.view = 'map'; renderStory(); return; }
     if (cmd === 'reg') {
       if (!voyRegOpen(arg)) { var k = VOY_ORDER.indexOf(arg); toast('🔒 Vaincs d\'abord le boss de la région ' + VOY_ORDER[k - 1].toUpperCase()); return; }
