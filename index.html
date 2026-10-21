@@ -4521,6 +4521,10 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
 .askbox .cs-tab { padding: 14px 10px !important; font-size: 1.05rem !important; text-align: center; justify-content: center; min-height: 52px; }
 .askbox .cs-chips .cs-chip { min-height: 44px; padding-inline: 16px; font-size: 1rem; }
 
+/* ===== v244 : les phrases ne se coupent plus n'importe où ===== */
+.clzjp { word-break: keep-all; overflow-wrap: break-word; line-break: strict; text-wrap: balance; }
+.clznb { white-space: nowrap; }
+
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -21997,7 +22001,8 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
   }
   function clzSentenceHTML(q, filled) {
     var f = S && S.clzFuri, it = q.it, mid = filled ? '<mark class="clzfill">' + (f ? furiHTML(it.hit) : esc(it.hit)) + '</mark>' : '<span class="clzblank" style="min-width:' + Math.max(3.4, Array.from(it.hit).length * 1.15 + 1.4).toFixed(1) + 'em"></span>';
-    return '<p class="clzjp jp">' + wtokHTML(it.pre, f) + mid + wtokHTML(it.post, f) + '</p>';
+    var post = String(it.post || ''), pm = post.match(/^[はがをにでともへの]/), glue = pm ? pm[0] : '';
+    return '<p class="clzjp jp">' + wtokHTML(it.pre, f, true) + '<wbr><span class="clznb">' + mid + esc(glue) + '</span>' + wtokHTML(post.slice(glue.length), f, true) + '</p>';
   }
   function clzDistractors(it) {
     var w = it.w, pool = clz.all || [], cand = [], seen = {}; seen[w.mot] = 1;
@@ -23890,7 +23895,7 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
     return WLEX_C;
   }
   function wlookup(tok) { var L = wlex(); return L.d[tok] || (L.stem[tok] ? L.d[L.stem[tok]] : null); }
-  function wtokHTML(text, furi) {
+  function wtokHTML(text, furi, brk) {
     var L = wlex(), a = Array.from(String(text)), out = '', i = 0;
     while (i < a.length) {
       var hit = null, len;
@@ -23902,8 +23907,8 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
           if (wlookup(sub)) hit = sub;
         }
       }
-      if (hit) { var n = Array.from(hit).length; out += '<button type="button" class="wtok" data-wtok="' + esc(hit) + '">' + (furi ? furiHTML(hit) : esc(hit)) + '</button>'; i += n; }
-      else { out += esc(a[i]); i++; }
+      if (hit) { var n = Array.from(hit).length; out += (brk && i > 0 ? '<wbr>' : '') + '<button type="button" class="wtok" data-wtok="' + esc(hit) + '">' + (furi ? furiHTML(hit) : esc(hit)) + '</button>'; i += n; }
+      else { out += esc(a[i]); if (brk && /[はがをにでともへの、]/.test(a[i]) && a.length - i > 3) out += '<wbr>'; i++; }
     }
     return out;
   }
