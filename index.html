@@ -4525,6 +4525,8 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
 .clzjp { word-break: keep-all; overflow-wrap: break-word; line-break: strict; text-wrap: balance; }
 .clznb { white-space: nowrap; }
 
+.clzfill[data-wtok] { cursor: pointer; } .clzfill[data-wtok]:hover { background: rgba(180, 42, 93, .14) !important; }
+
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -22000,7 +22002,7 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
       '<button type="button" class="btn primary clzgo" data-clz="start"' + (items.length ? '' : ' disabled') + '>▶ Commencer (' + Math.min(10, items.length) + ' phrases)</button></div>';
   }
   function clzSentenceHTML(q, filled) {
-    var f = S && S.clzFuri, it = q.it, mid = filled ? '<mark class="clzfill">' + (f ? furiHTML(it.hit) : esc(it.hit)) + '</mark>' : '<span class="clzblank" style="min-width:' + Math.max(3.4, Array.from(it.hit).length * 1.15 + 1.4).toFixed(1) + 'em"></span>';
+    var f = S && S.clzFuri, it = q.it, mid = filled ? '<mark class="clzfill" data-wtok="' + esc(wlookup(it.hit) ? it.hit : it.w.mot) + '" tabindex="0" role="button">' + (f ? furiHTML(it.hit) : esc(it.hit)) + '</mark>' : '<span class="clzblank" style="min-width:' + Math.max(3.4, Array.from(it.hit).length * 1.15 + 1.4).toFixed(1) + 'em"></span>';
     var post = String(it.post || ''), pm = post.match(/^[はがをにでともへの]/), glue = pm ? pm[0] : '';
     return '<p class="clzjp jp">' + wtokHTML(it.pre, f, true) + '<wbr><span class="clznb">' + mid + esc(glue) + '</span>' + wtokHTML(post.slice(glue.length), f, true) + '</p>';
   }
