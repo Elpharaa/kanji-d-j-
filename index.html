@@ -4339,6 +4339,42 @@ body .nav .tab[aria-current="page"] .niw .ni { animation: navPop .5s cubic-bezie
 @keyframes selGlow { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.14); } }
 .pgk.st-ok, .pgk.st-mid { box-shadow: 0 2px 0 rgba(42, 28, 20, .25); }
 @media (prefers-reduced-motion: reduce) { :is(.cs-chip.on, .cs-tab.on, .gskc.on) { animation: none; } .tilting { transition: none !important; } }
+/* ===== v224 : phrase plus grande, blanc qui respire, bonnes/mauvaises réponses, sélections qui grossissent, contraste ===== */
+.clzcard { padding: 20px 14px 16px; background: rgba(255, 250, 240, .97) !important; box-shadow: 0 10px 26px rgba(42, 28, 60, .28); }
+.clzcard .prompt { font-size: .85rem; letter-spacing: .02em; }
+.clzjp { font-size: clamp(1.9rem, 7.6vw, 2.7rem) !important; line-height: 2.15 !important; margin: 14px 0 10px !important; font-weight: 700 !important; letter-spacing: .02em; }
+.clzjp rt { font-size: .42em !important; }
+.clzblank { position: relative; display: inline-block; vertical-align: baseline; height: 1.25em; margin: 0 .12em !important; border: 2.5px dashed #c1245a !important; border-bottom-width: 4px !important; border-radius: .35em; background: radial-gradient(circle at 50% 120%, rgba(255, 190, 215, .8), rgba(255, 224, 236, .45)); box-shadow: 0 0 0 0 rgba(193, 36, 90, .35); animation: blankBreath 2.6s ease-in-out infinite; transform-origin: 50% 80%; }
+@keyframes blankBreath { 0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(193, 36, 90, .28); } 50% { transform: scale(1.07); box-shadow: 0 0 0 7px rgba(193, 36, 90, 0), 0 4px 16px rgba(193, 36, 90, .35); } }
+.clzfill { font-size: 1.04em; padding: 0 .12em !important; animation: fillPop .55s cubic-bezier(.34, 1.56, .64, 1); display: inline-block; }
+@keyframes fillPop { 0% { transform: scale(.3) translateY(-14px); opacity: 0; } 60% { transform: scale(1.22); opacity: 1; } 100% { transform: none; } }
+.clzfr { font-size: 1.05rem !important; line-height: 1.5; }
+.clzhint { font-size: .78rem !important; }
+.clzcard.clzok { animation: cardGood .9s cubic-bezier(.34, 1.4, .64, 1); border-color: #e8b84a !important; box-shadow: 0 0 0 3px #e8b84a, 0 0 34px rgba(232, 184, 74, .75), 0 10px 26px rgba(42, 28, 60, .28); position: relative; overflow: hidden; }
+.clzcard.clzok::after { content: ''; position: absolute; top: -20%; bottom: -20%; width: 40%; left: -60%; background: linear-gradient(100deg, transparent, rgba(255, 244, 190, .85), transparent); transform: skewX(-18deg); animation: goldSweep 1s ease-out .1s forwards; pointer-events: none; }
+@keyframes cardGood { 0% { transform: scale(1); } 35% { transform: scale(1.045); } 100% { transform: scale(1); } }
+@keyframes goldSweep { to { left: 130%; } }
+.clzcard.clzko { animation: cardBad .9s ease-out; }
+@keyframes cardBad { 0% { box-shadow: 0 0 0 0 rgba(200, 40, 50, .0), inset 0 0 0 0 rgba(220, 50, 60, 0); } 15% { box-shadow: 0 0 0 4px rgba(214, 48, 60, .85), inset 0 0 36px rgba(220, 50, 60, .4); } 100% { box-shadow: 0 0 0 0 rgba(214, 48, 60, 0), inset 0 0 0 0 rgba(220, 50, 60, 0); } }
+.choice { transition: transform .22s cubic-bezier(.34, 1.56, .64, 1), box-shadow .2s, background .2s, border-color .2s; }
+@media (hover: hover) { .choice:hover:not(:disabled) { transform: translateY(-2px) scale(1.035) !important; box-shadow: 0 10px 22px rgba(60, 30, 90, .25); } }
+.choice:active:not(:disabled) { transform: scale(1.07) !important; box-shadow: 0 0 0 3px #ffd36e, 0 12px 24px rgba(193, 36, 90, .35) !important; transition-duration: .08s; }
+.choice.good { animation: choiceGood .75s cubic-bezier(.34, 1.56, .64, 1); box-shadow: 0 0 0 3px #e8b84a, 0 0 24px rgba(232, 184, 74, .7); }
+@keyframes choiceGood { 0% { transform: scale(.96); } 45% { transform: scale(1.08); } 100% { transform: scale(1); } }
+.choice.bad { animation: choiceBad .5s ease-out; }
+@keyframes choiceBad { 0%, 100% { transform: none; } 20% { transform: translateX(-6px); } 40% { transform: translateX(5px); } 60% { transform: translateX(-3px); } 80% { transform: translateX(2px); } }
+.gskc { transition: transform .2s cubic-bezier(.34, 1.56, .64, 1), box-shadow .2s; }
+@media (hover: hover) { .gskc:hover { transform: scale(1.14); } .ktile:hover, .qvt:hover { transform: scale(1.025); } }
+.qcard, .knqcard { background: rgba(255, 250, 240, .96); }
+.panel { background-color: rgba(255, 250, 240, .94); }
+.vin { animation: vinK .55s cubic-bezier(.2, .8, .3, 1) both !important; }
+body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
+@keyframes vinK { from { opacity: 0; transform: translate(var(--vx, 0), 14px); filter: blur(5px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes ctaGlow { 0%, 100% { filter: drop-shadow(0 0 0 rgba(255, 140, 180, 0)); } 50% { filter: drop-shadow(0 0 9px rgba(255, 140, 180, .75)); } }
+.btn.primary:not(.tilting):not(:disabled) { animation: ctaGlow 3.4s ease-in-out infinite; }
+.sgh[data-k]::before, .tk { animation: tkFloat 5s ease-in-out infinite; }
+@keyframes tkFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@media (prefers-reduced-motion: reduce) { .clzblank, .btn.primary, .tk, .clzcard, .choice { animation: none !important; } }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -21798,7 +21834,7 @@ body .nav .tab[aria-current="page"] .niw .ni { animation: navPop .5s cubic-bezie
       '<button type="button" class="btn primary clzgo" data-clz="start"' + (items.length ? '' : ' disabled') + '>▶ Commencer (' + Math.min(10, items.length) + ' phrases)</button></div>';
   }
   function clzSentenceHTML(q, filled) {
-    var f = S && S.clzFuri, it = q.it, mid = filled ? '<mark class="clzfill">' + (f ? furiHTML(it.hit) : esc(it.hit)) + '</mark>' : '<span class="clzblank">＿＿＿</span>';
+    var f = S && S.clzFuri, it = q.it, mid = filled ? '<mark class="clzfill">' + (f ? furiHTML(it.hit) : esc(it.hit)) + '</mark>' : '<span class="clzblank" style="min-width:' + Math.max(3.4, Array.from(it.hit).length * 1.15 + 1.4).toFixed(1) + 'em"></span>';
     return '<p class="clzjp jp">' + wtokHTML(it.pre, f) + mid + wtokHTML(it.post, f) + '</p>';
   }
   function clzDistractors(it) {
@@ -21818,7 +21854,7 @@ body .nav .tab[aria-current="page"] .niw .ni { animation: navPop .5s cubic-bezie
     var q = clz.q, it = q.it, md = S && S.clzMode === 'input' ? 'input' : 'mcq', h = '';
     h += '<div class="grp djbar"><button type="button" class="btn djback" data-clz="stop">‹ Arrêter</button><h3 class="sgh" data-k="文"><span>Phrases à trou</span></h3></div>';
     h += '<p class="small muted" style="margin:6px 0 2px;text-align:center">Phrase ' + (clz.i + 1) + ' / ' + clz.items.length + '</p><div class="knqbar"><u style="width:' + Math.round(clz.i / clz.items.length * 100) + '%"></u></div>';
-    h += '<div class="knqcard qcard clzcard"><p class="prompt">Complète la phrase avec le bon mot</p>' + clzSentenceHTML(q, clz.ans !== null) + '<p class="clzfr">' + frHL(it.fr, it.w) + '</p><p class="clzhint">☝ Touche un mot de la phrase pour voir sa lecture, son sens, son niveau et ses tracés</p></div>';
+    h += '<div class="knqcard qcard clzcard' + (clz.ans === 1 ? ' clzok' : clz.ans === 0 ? ' clzko' : '') + '"><p class="prompt">Complète la phrase avec le bon mot</p>' + clzSentenceHTML(q, clz.ans !== null) + '<p class="clzfr">' + frHL(it.fr, it.w) + '</p><p class="clzhint">☝ Touche un mot de la phrase pour voir sa lecture, son sens, son niveau et ses tracés</p></div>';
     if (clz.ans === null) {
       if (md === 'mcq') {
         h += '<div class="choices">' + q.opts.map(function (o, i) { return '<button type="button" class="choice" data-clz="pick" data-i="' + i + '"><span class="key">' + (i + 1) + '</span><span class="jp">' + esc(o.mot) + (S && S.clzFuri && /[㐀-鿿]/.test(o.mot) ? ' <small class="muted">' + esc(o.lecture) + '</small>' : '') + '</span></button>'; }).join('') + '</div>';
@@ -21882,7 +21918,7 @@ body .nav .tab[aria-current="page"] .niw .ni { animation: navPop .5s cubic-bezie
   function djGamesHTML(fl, kj, mj) {
     document.body.classList.toggle('qvon', djSub === 'daily' || djSub === 'jlpt');
     if (!djSub) return tipHTML('dojo', 'Voici ton Dojo ! Touche une carte pour t\'entraîner : <b>Flashcards</b> pour revoir tes mots, <b>Kanjis</b>, <b>Mini-jeux</b>, ton <b>Carnet d\'erreurs</b>, ou du <b>vocabulaire du quotidien</b> ou le <b>JLPT</b>.') +
-      '<div class="djgrid">' + ['flash', 'kana', 'kanji', 'mini', 'err', 'daily', 'jlpt', 'bonus', 'rad', 'prog'].map(djTile).join('') + '</div>';
+      '<div class="djgrid">' + ['flash', 'kana', 'kanji', 'mini', 'err', 'daily', 'jlpt', 'bonus', 'rad'].map(djTile).join('') + '</div>';
     if (djSub === 'err') return '';
     if (djSub === 'prog') return djBackHTML('prog') + '<div id="pgHost">' + progInner() + '</div>';
     if (djSub === 'bonus') return djBackHTML('bonus') + tipHTML('dj_bonus', DJ_INFO.bonus.tip) + '<div id="bonusHost">' + bonusInner() + '</div>';
@@ -22861,6 +22897,7 @@ body .nav .tab[aria-current="page"] .niw .ni { animation: navPop .5s cubic-bezie
     var t = e.target.closest ? e.target.closest('.tab') : null;
     if (!t) return;
     var k = t.getAttribute('data-tab');
+    try { var tabs = [].slice.call(document.querySelectorAll('#nav .tab')), ci = tabs.findIndex(function (x) { return x.getAttribute('aria-current') === 'page'; }), ni = tabs.indexOf(t); document.body.setAttribute('data-dir', ci >= 0 && ni < ci ? 'l' : 'r'); } catch (er) {}
     if (k === 'story') { storyTab = 'map'; arStage = 'castle'; cstTalk = false; }
     go(k);
   };
