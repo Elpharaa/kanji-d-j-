@@ -4332,6 +4332,13 @@ body.casc :is(.djgrid, #hubGrid, .qvgrid, .pglist, .stgrid, .cuisgrid, .hubgrid)
 body .nav .tab[aria-current="page"] .niw .ni { animation: navPop .5s cubic-bezier(.34, 1.56, .64, 1); }
 @keyframes navPop { 0% { transform: scale(.7) rotate(-8deg); } 100% { transform: none; } }
 @media (prefers-reduced-motion: reduce) { .vin, body.casc * { animation: none !important; } }
+/* ===== v223 : inclinaison, case sélectionnée qui ressort ===== */
+.tilting { transition: transform .12s ease-out, filter .15s !important; will-change: transform; position: relative; z-index: 2; }
+:is(.cs-chip.on, .cs-tab.on, .gskc.on, .bnseg [aria-selected="true"], .seg [aria-selected="true"], .pgfilt .cs-chip.on) { position: relative; z-index: 1; transform: translateY(-3px) scale(1.07); box-shadow: 0 0 0 3px rgba(255, 255, 255, .75), 0 9px 18px rgba(193, 36, 90, .45), 0 0 22px rgba(255, 150, 190, .65) !important; animation: selPop .5s cubic-bezier(.34, 1.56, .64, 1), selGlow 2.6s ease-in-out .5s infinite; }
+@keyframes selPop { 0% { transform: scale(.88); } 55% { transform: translateY(-5px) scale(1.14); } 100% { transform: translateY(-3px) scale(1.07); } }
+@keyframes selGlow { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.14); } }
+.pgk.st-ok, .pgk.st-mid { box-shadow: 0 2px 0 rgba(42, 28, 20, .25); }
+@media (prefers-reduced-motion: reduce) { :is(.cs-chip.on, .cs-tab.on, .gskc.on) { animation: none; } .tilting { transition: none !important; } }
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -4374,12 +4381,12 @@ body .nav .tab[aria-current="page"] .niw .ni { animation: navPop .5s cubic-bezie
   <div class="sechead" id="secHead" hidden></div>
 
   <nav class="nav" id="nav" aria-label="Sections" hidden>
-    <button class="tab" type="button" data-tab="hub" aria-label="Accueil"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 5.5c4 1.6 15 1.6 19 0"/><path d="M4 9h16"/><path d="M7 5.8V21M17 5.8V21"/><path d="M12 9v3"/></svg><span class="nl">Accueil</span></button>
-    <button class="tab" type="button" data-tab="story" aria-label="Aventure"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 3 6.2v14L9 18l6 2.2 6-2.2V4l-6 2.2z"/><path d="M9 4v14M15 6.2v14"/></svg><span class="nl">Aventure</span></button>
-    <button class="tab" type="button" data-tab="home" aria-label="Dojo"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4l11 11M20 4 9 15"/><path d="M13 17l3 3M11 17l-3 3M16 20l1.5-1.5M8 20l-1.5-1.5"/></svg><span class="nl">Dojo</span></button>
-    <button class="tab" type="button" data-tab="clz" aria-label="Phrases à trou"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h6M14 12h6M4 18h16"/><path d="M9 10v4h6v-4"/></svg><span class="nl">Phrases</span></button>
-    <button class="tab" type="button" data-tab="prog" aria-label="Ma progression"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/><path d="m3 7 5-4 5 4 6-3"/></svg><span class="nl">Progrès</span></button>
-    <button class="tab" type="button" data-tab="profil" aria-label="Profil"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c.6-4 3.6-6.5 7.5-6.5s6.9 2.5 7.5 6.5"/></svg><span class="nl">Profil</span></button>
+    <button class="tab" type="button" data-tab="hub" aria-label="Accueil"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 5.6Q12 8.4 21.5 5.6"/><path d="M2.5 5.6 2 4M21.5 5.6l.5-1.6"/><path d="M5.5 10.8h13"/><path d="M7 7.4V21M17 7.4V21"/><rect x="10.7" y="10.8" width="2.6" height="3.4" rx=".5" fill="currentColor" fill-opacity=".2"/></svg><span class="nl">Accueil</span></button>
+    <button class="tab" type="button" data-tab="story" aria-label="Aventure"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="currentColor" fill-opacity=".2"/><path d="m15.8 8.2-2.3 5.3-5.3 2.3 2.3-5.3z"/><path d="M12 3v1.6M12 19.4V21M3 12h1.6M19.4 12H21"/></svg><span class="nl">Aventure</span></button>
+    <button class="tab" type="button" data-tab="home" aria-label="Dojo"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4l12 12M19 4 7 16"/><path d="M15.6 17.4l2.8-2.8M8.4 17.4 5.6 14.6"/><path d="M17 16l3 3M7 16l-3 3"/></svg><span class="nl">Dojo</span></button>
+    <button class="tab" type="button" data-tab="clz" aria-label="Phrases"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16a1.5 1.5 0 0 1 1.5 1.5v8.5A1.5 1.5 0 0 1 20 17h-7.6l-4.4 3.5V17H4a1.5 1.5 0 0 1-1.5-1.5V7A1.5 1.5 0 0 1 4 5.5z" fill="currentColor" fill-opacity=".2"/><path d="M6.5 9.4h3.6M13.9 9.4h3.6"/><rect x="9.6" y="12" width="4.8" height="2.2" rx="1.1" stroke-dasharray="1.5 1.5"/></svg><span class="nl">Phrases</span></button>
+    <button class="tab" type="button" data-tab="prog" aria-label="Ma progression"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21v-8.5"/><path d="M12 12.5c0-4 2.8-6.7 8-6.7 0 4.2-3 6.7-8 6.7z" fill="currentColor" fill-opacity=".2"/><path d="M12 16.2c0-3-2.2-5-6.6-5 0 3.1 2.2 5 6.6 5z" fill="currentColor" fill-opacity=".2"/><path d="M5.5 21h13"/></svg><span class="nl">Progrès</span></button>
+    <button class="tab" type="button" data-tab="profil" aria-label="Profil"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.9" fill="currentColor" fill-opacity=".2"/><path d="M4.5 20.6c.6-4 3.6-6.4 7.5-6.4s6.9 2.4 7.5 6.4"/></svg><span class="nl">Profil</span></button>
   <div class="navfall" aria-hidden="true"><svg viewBox="0 0 200 440" preserveAspectRatio="xMidYMax slice"><defs>
 <linearGradient id="nfSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2150" stop-opacity="0"/><stop offset=".12" stop-color="#4a3c8c"/><stop offset=".5" stop-color="#b57fb0"/><stop offset=".72" stop-color="#f4b3b8"/><stop offset="1" stop-color="#ffd9b8"/></linearGradient>
 <linearGradient id="nfRkL" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6d6296"/><stop offset=".6" stop-color="#9a8cb8"/><stop offset="1" stop-color="#c9b6cf"/></linearGradient>
@@ -4487,7 +4494,6 @@ body .nav .tab[aria-current="page"] .niw .ni { animation: navPop .5s cubic-bezie
       <button type="button" class="pfbtn" data-pf="vit" aria-pressed="false"><i aria-hidden="true">札</i><span>Vitrine</span></button>
       <button type="button" class="pfbtn" data-pf="pass" aria-pressed="false"><i aria-hidden="true">道</i><span>Voie du Dōjō</span></button>
       <button type="button" class="pfbtn" data-pf="badges" aria-pressed="false"><i aria-hidden="true">章</i><span>Badges</span></button>
-      <button type="button" class="pfbtn" data-stats="1"><i aria-hidden="true">統</i><span>Mes stats</span></button>
       <button type="button" class="pfbtn" data-sharecard="1"><i aria-hidden="true">写</i><span>Partager ma carte</span></button>
       <button type="button" class="pfbtn" data-go="settings"><i aria-hidden="true">設</i><span>Réglages</span></button>
     </div>
@@ -4536,7 +4542,6 @@ body .nav .tab[aria-current="page"] .niw .ni { animation: navPop .5s cubic-bezie
     <div class="panel" id="onlinePanel" hidden><h3 class="sgh sm" data-k="在"><span>En ligne maintenant</span></h3><div id="onlineList" class="olist"></div></div>
     <details class="acc badgeacc" open><summary><span class="aico" aria-hidden="true">章</span>Badges</summary><div class="badges" id="badges"></div></details>
     <div class="hubmini">
-      <button class="btn" type="button" data-stats="1"><span class="bi" aria-hidden="true">統</span> Mes stats</button>
       <button class="btn" type="button" data-go="settings"><span class="bi" aria-hidden="true">設</span> Réglages</button>
     </div>
   </section>
@@ -4634,6 +4639,7 @@ body .nav .tab[aria-current="page"] .niw .ni { animation: navPop .5s cubic-bezie
       <p id="contentInfo"></p>
       <p class="small muted">Vocabulaire fixé sur le polycopié du cours (L2 S3, Lexique et idéogrammes, Junko CHABOT BABA, 2023-2024) ; niveau L1 débutant : fascicules « Lexique et idéogrammes » L1D débutants, 2024-2025. Toute la promotion révise la même liste.</p>
       <p>Bruitages et petits sons des menus : <b id="sfxState">activés</b></p>
+      <label class="seenopt"><input type="checkbox" id="optHov" checked><span>Petits sons quand on <b>survole</b> un bouton <small>(souris)</small></span></label>
       <button class="btn" id="btnSfx" type="button">Couper les sons</button>
       <div id="aidPrefs"></div>
       <label class="seenopt"><input type="checkbox" id="optRomaji"><span>Afficher le <b>romaji</b> sous les mots en kana <small>(aide pour débuter ; activé par défaut en L0)</small></span></label>
@@ -12769,9 +12775,20 @@ body .nav .tab[aria-current="page"] .niw .ni { animation: navPop .5s cubic-bezie
   // Mots les plus proches (même kanji, même clé, même type de lecture) : ce sont les intrus
   var scope = null;   // mots utilisables comme intrus pour la séance en cours (semaine choisie ou chapitre)
   function weekSel() { return lvWeeks().map(String).indexOf(String(S.weekSel)) >= 0 ? String(S.weekSel) : 'all'; }
-  function kSelList() { var s = weekSel(), cur = {}; weekKanjis(s === 'all' ? 'all' : +s).forEach(function (k) { cur[k.k] = 1; }); return (S && S.kSel || []).filter(function (c) { return cur[c]; }); }
+  function kSelList() { if (S && S.flJl) { var cj = {}; jlKanjiList().forEach(function (c) { cj[c] = 1; }); return (S.kSelJ || []).filter(function (c) { return cj[c]; }); } var s = weekSel(), cur = {}; weekKanjis(s === 'all' ? 'all' : +s).forEach(function (k) { cur[k.k] = 1; }); return (S && S.kSel || []).filter(function (c) { return cur[c]; }); }
+  /* ---- JLPT : choix du thème et des kanjis comme pour le cours ---- */
+  function jlTh() { if (!S || !S.flJl || !S.flTh) return null; var t = typeof qvTheme === 'function' ? qvTheme(S.flTh) : null; return t && t.lv === S.flJl ? t : null; }
+  function jlWordsSel(noK) {
+    var all = jlFlashWords(S.flJl), th = jlTh();
+    if (th) { var ok = {}; th.w.forEach(function (w) { ok[w.key] = 1; }); all = all.filter(function (a) { return ok[a.key]; }); }
+    if (!noK) { var ks = kSelList(); if (ks.length) { var f = all.filter(function (a) { return a.kanjis.some(function (c) { return ks.indexOf(c) >= 0; }); }); if (f.length) return f; } }
+    return all;
+  }
+  function jlKanjiList() { var seen = {}, o = []; jlWordsSel(true).forEach(function (w) { w.kanjis.forEach(function (c) { if (!seen[c] && (KMAP[c] || JK[c])) { seen[c] = 1; o.push(c); } }); }); return o; }
+  function jlKObj(c) { var k = KMAP[c]; if (k) return k; var j = JK[c]; return { k: c, sens: j[0], on: j[1], kun: j[2], wk: 0, n: j[3] }; }
+  function setKSel(a) { if (S.flJl) S.kSelJ = a; else S.kSel = a; }
   function playPool(forFlash) {   // forFlash : seules les flashcards peuvent masquer les mots aux kanjis pas encore vus en cours
-    if (S && S.flJl) return jlFlashWords(S.flJl);
+    if (S && S.flJl) return jlWordsSel();
     var s = weekSel(), p = s === 'all' ? weekWords('all') : weekWords(+s), ks = kSelList();
     if (forFlash && S && S.seenOnly) { var q = p.filter(wordSeen); if (q.length) p = q; }
     return ks.length ? p.filter(function (w) { return w.kanjis.some(function (c) { return ks.indexOf(c) >= 0; }); }) : p;
@@ -13289,6 +13306,7 @@ body .nav .tab[aria-current="page"] .niw .ni { animation: navPop .5s cubic-bezie
 
   /* ---- Étude des kanjis : uniquement des kanjis (sens, lectures, clé), types variés ---- */
   function kStudyPool(mode) {
+    if (S && S.flJl) { var jls = kSelList(), jlist = jlKanjiList().filter(function (c) { return !jls.length || jls.indexOf(c) >= 0; }).map(jlKObj), jrk = readKind(); return mode === 'read' ? jlist.filter(function (k) { return jrk === 'on' ? (k.on && k.on.length) : jrk === 'kun' ? (k.kun && k.kun.length) : ((k.on && k.on.length) || (k.kun && k.kun.length)); }) : jlist; }
     var s = weekSel(), list = weekKanjis(s === 'all' ? 'all' : +s), ks = kSelList();
     list = ks.length ? list.filter(function (k) { return ks.indexOf(k.k) >= 0; }) : list;
     var rk = readKind();
@@ -20586,7 +20604,7 @@ body .nav .tab[aria-current="page"] .niw .ni { animation: navPop .5s cubic-bezie
     }).join('') + '</select>';
   }
   function askHTML(px, withK) {
-    var sel = weekSel(), lv = curLv(), wks = lvWeeks(), ks = kSelList(), jl = px === 'gs' && S.flJl ? S.flJl : '', last = jl ? 1 : (withK ? 3 : 2), st = gsStep;
+    var sel = weekSel(), lv = curLv(), wks = lvWeeks(), ks = kSelList(), jl = px === 'gs' && S.flJl ? S.flJl : '', last = withK ? 3 : 2, st = gsStep;
     if (st > last) st = 0;
     var lvName = jl ? (jl === 'q' ? 'Vie quotidienne' : 'JLPT ' + jl.toUpperCase()) : CURSUS[lv].tag + ' · ' + CURSUS[lv].sem;
     var wkName = sel === 'all' ? 'toutes les semaines' : 'Semaine ' + wkNum(+sel) + ((L1_TITLES[+sel] || {}).title ? ' · ' + L1_TITLES[+sel].title : (+sel < 100 && MP_WKNAME[+sel] ? ' · ' + MP_WKNAME[+sel] : ''));
@@ -20597,20 +20615,20 @@ body .nav .tab[aria-current="page"] .niw .ni { animation: navPop .5s cubic-bezie
         (st > 0 ? '<button type="button" class="asklink" data-gsstep="0" data-gspx="' + px + '">Garder mes choix actuels</button>' : '');
     }
     if (st === 0) {
-      return '<div class="asksum"><span><i>Niveau</i><b>' + esc(lvName) + '</b></span>' + (jl ? '<span><i>Mots</i><b>' + jlFlashWords(jl).length + '</b></span>' : '<span><i>Semaine</i><b>' + esc(wkName) + '</b></span>') + (withK && !jl ? '<span><i>Kanjis</i><b>' + esc(kName) + '</b></span>' : '') +
+      return '<div class="asksum"><span><i>Niveau</i><b>' + esc(lvName) + '</b></span>' + (jl ? '<span><i>Thème</i><b>' + esc(jlTh() ? jlTh().name : 'tous les thèmes') + '</b></span>' : '<span><i>Semaine</i><b>' + esc(wkName) + '</b></span>') + (withK ? '<span><i>Kanjis</i><b>' + esc(kName) + '</b></span>' : '') +
         '<button type="button" class="gsksm" data-gsstep="1" data-gspx="' + px + '">Modifier</button></div>';
     }
     var q = '<div class="askq"><span class="askn">' + st + '/' + last + '</span>', body = '';
     if (st === 1) {
-      body = q + 'Quel niveau veux-tu travailler ?</div>' + askSel(px + 'Lv', 'Année et semestre', ['L0', 'L0S2', 'L1', 'L1S2', 'L2'].map(function (id) { return [id, CURSUS[id].tag + ' · ' + CURSUS[id].sem, 'Cours']; }).concat(px === 'gs' ? JL_LV.map(function (l) { return ['J:' + l[0], l[0] === 'q' ? 'Vie quotidienne (hors cours)' : 'JLPT ' + l[1], 'JLPT et quotidien']; }) : []), jl ? 'J:' + jl : lv) + (jl ? nav(0, 0, 'Terminé ✓') : nav(0, 2, 'Suivant ›'));
+      body = q + 'Quel niveau veux-tu travailler ?</div>' + askSel(px + 'Lv', 'Année et semestre', ['L0', 'L0S2', 'L1', 'L1S2', 'L2'].map(function (id) { return [id, CURSUS[id].tag + ' · ' + CURSUS[id].sem, 'Cours']; }).concat(px === 'gs' ? JL_LV.map(function (l) { return ['J:' + l[0], l[0] === 'q' ? 'Vie quotidienne (hors cours)' : 'JLPT ' + l[1], 'JLPT et quotidien']; }) : []), jl ? 'J:' + jl : lv) + nav(0, 2, 'Suivant ›');
     } else if (st === 2) {
-      body = q + 'Quelle semaine ?</div>' + askSel(px + 'Wk', 'Semaine à réviser', [['all', 'Toutes les semaines']].concat(wks.map(function (wk) {
+      body = jl ? (q + 'Quel thème ?</div>' + askSel(px + 'Th', 'Thème à réviser', [['', 'Tous les thèmes']].concat(QV.filter(function (t) { return !t.virt && t.lv === jl; }).map(function (t) { return [t.id, t.name]; })), S.flTh || '') + nav(1, withK ? 3 : 0, withK ? 'Suivant ›' : 'Terminé ✓')) : q + 'Quelle semaine ?</div>' + askSel(px + 'Wk', 'Semaine à réviser', [['all', 'Toutes les semaines']].concat(wks.map(function (wk) {
         var t = wk < 100 ? MP_WKNAME[wk] : (L1_TITLES[wk] || {}).title; return [String(wk), 'Semaine ' + wkNum(wk) + (t ? ' · ' + t : '')];
       })), sel) + nav(1, withK ? 3 : 0, withK ? 'Suivant ›' : 'Terminé ✓');
     } else {
-      var list = weekKanjis(sel === 'all' ? 'all' : +sel), panel = '';
+      var list = jl ? jlKanjiList().map(function (c) { return { k: c }; }) : weekKanjis(sel === 'all' ? 'all' : +sel), panel = '';
       if (gsKOpen) {
-        panel = '<div class="gskpanel"><div class="gskbar"><button type="button" class="gsksm" data-gsk="all">Tout cocher</button><button type="button" class="gsksm" data-gsk="none">Effacer</button><span>Touche les kanjis à travailler</span></div><div class="gskgrid">' +
+        panel = '<div class="gskpanel"><div class="gskbar"><button type="button" class="gsksm" data-gsk="all">Tout cocher</button><button type="button" class="gsksm" data-gsk="none">Effacer</button><span>Touche les kanjis à travailler</span></div>' + (list.length ? '' : '<p class="muted small">Aucun kanji dans cette sélection (mots en kana).</p>') + '<div class="gskgrid">' +
           list.map(function (k) { return '<button type="button" class="gskc' + (ks.indexOf(k.k) >= 0 ? ' on' : '') + '" data-gsk="k" data-k="' + esc(k.k) + '" aria-pressed="' + (ks.indexOf(k.k) >= 0) + '">' + esc(k.k) + '</button>'; }).join('') + '</div></div>';
       }
       body = q + 'Quels kanjis ?</div>' + askSel('gsKm', 'Choix des kanjis', [['all', 'Tous les kanjis de la sélection'], ['pick', 'Je choisis moi-même…']], gsKOpen || ks.length ? 'pick' : 'all') + panel + nav(2, 0, 'Terminé ✓');
@@ -20647,21 +20665,21 @@ body .nav .tab[aria-current="page"] .niw .ni { animation: navPop .5s cubic-bezie
   });
   document.addEventListener('change', function (e) {
     var t = e.target; if (!t || !user || t.id !== 'gsKm') return;
-    gsKOpen = t.value === 'pick'; if (!gsKOpen) { S.kSel = []; persist(); }
+    gsKOpen = t.value === 'pick'; if (!gsKOpen) { S.kSel = []; S.kSelJ = []; persist(); }
     askRefresh('gs');
   });
   document.addEventListener('click', function (e) {
     var b = e.target.closest ? e.target.closest('[data-gsk]') : null; if (!b || !user) return;
     var a = b.getAttribute('data-gsk'), cur = kSelList();
     if (a === 'toggle') gsKOpen = !gsKOpen;
-    else if (a === 'all' || a === 'none') { S.kSel = a === 'all' ? weekKanjis(weekSel() === 'all' ? 'all' : +weekSel()).map(function (k) { return k.k; }) : []; persist(); }
-    else if (a === 'k') { var c = b.getAttribute('data-k'), i = cur.indexOf(c); if (i >= 0) cur.splice(i, 1); else cur.push(c); S.kSel = cur; persist(); }
+    else if (a === 'all' || a === 'none') { setKSel(a === 'all' ? (S.flJl ? jlKanjiList() : weekKanjis(weekSel() === 'all' ? 'all' : +weekSel()).map(function (k) { return k.k; })) : []); persist(); }
+    else if (a === 'k') { var c = b.getAttribute('data-k'), i = cur.indexOf(c); if (i >= 0) cur.splice(i, 1); else cur.push(c); setKSel(cur); persist(); }
     var host = document.getElementById('gsHost'); if (host) host.innerHTML = scopeBlockHTML();
   });
   document.addEventListener('change', function (e) {
-    var t = e.target; if (!t || !user || (t.id !== 'gsLv' && t.id !== 'gsWk')) return;
-    if (t.id === 'gsLv') { if (t.value.indexOf('J:') === 0) { S.flJl = t.value.slice(2); } else { S.flJl = ''; setCursus(t.value); } } else { S.weekSel = t.value; persist(); }
-    S.kSel = []; persist();
+    var t = e.target; if (!t || !user || (t.id !== 'gsLv' && t.id !== 'gsWk' && t.id !== 'gsTh')) return;
+    if (t.id === 'gsLv') { S.flTh = ''; if (t.value.indexOf('J:') === 0) { S.flJl = t.value.slice(2); } else { S.flJl = ''; setCursus(t.value); } } else if (t.id === 'gsTh') { S.flTh = t.value; persist(); } else { S.weekSel = t.value; persist(); }
+    S.kSel = []; S.kSelJ = []; persist();
     var host = document.getElementById('gsHost'); if (host) host.innerHTML = scopeBlockHTML();
     if (!$('vHome').hidden) renderHome(); else if (!$('vHub').hidden) renderHub();
   });
@@ -22707,6 +22725,7 @@ body .nav .tab[aria-current="page"] .niw .ni { animation: navPop .5s cubic-bezie
     if (typeof aidSettings === 'function') aidSettings();
     if ($('optRomaji')) $('optRomaji').checked = romOn();
     $('sfxState').textContent = sfxOn ? 'activés' : 'coupés'; $('btnSfx').textContent = sfxOn ? 'Couper les sons' : 'Activer les sons';
+    if ($('optHov')) $('optHov').checked = uiHovOn();
     $('avatarMsg').hidden = true; if ($('setRet')) $('setRet').value = String(fsTarget());
     $('resetIdle').hidden = false; $('resetConfirm').hidden = true;
     var av = avatarOf(user.name, user.avatar);
@@ -23845,44 +23864,89 @@ body .nav .tab[aria-current="page"] .niw .ni { animation: navPop .5s cubic-bezie
       setTimeout(function () { if (r.parentNode) r.parentNode.removeChild(r); }, 520);
     }, true);
   })();
-  /* ===== Petits bruitages cristallins quand on touche un élément (sons générés, aucun fichier) ===== */
-  var UIS = { ctx: null, last: 0 };
+  /* ===== Bruitages d'interface : sobres, doux, façon menus de console (PS3 / Minecraft PS3), sons générés ===== */
+  var UIS = { ctx: null, out: null, last: 0, lastH: 0 };
+  function uiHovOn() { try { return localStorage.getItem('kd.hov') !== '0'; } catch (e) { return true; } }
+  function uiGraph() {
+    var AC = window.AudioContext || window.webkitAudioContext; if (!AC) return null;
+    if (!UIS.ctx) {
+      var c = UIS.ctx = new AC(), m = c.createGain(), lp = c.createBiquadFilter(), dl = c.createDelay(0.5), fb = c.createGain(), wet = c.createGain();
+      m.gain.value = 0.9; lp.type = 'lowpass'; lp.frequency.value = 5200; dl.delayTime.value = 0.12; fb.gain.value = 0.3; wet.gain.value = 0.2;
+      m.connect(lp); lp.connect(c.destination); m.connect(dl); dl.connect(fb); fb.connect(dl); dl.connect(wet); wet.connect(lp);
+      var nb = c.createBuffer(1, c.sampleRate * 0.3, c.sampleRate), d = nb.getChannelData(0), i; for (i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+      UIS.out = m; UIS.noise = nb;
+    }
+    if (UIS.ctx.state === 'suspended') UIS.ctx.resume();
+    return UIS.ctx;
+  }
+  function uiTone(c, f0, f1, t0, dur, gain, att) {
+    var o = c.createOscillator(), g = c.createGain(); o.type = 'sine'; o.frequency.setValueAtTime(f0, t0); if (f1 && f1 !== f0) o.frequency.exponentialRampToValueAtTime(f1, t0 + dur * 0.8);
+    g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(gain, t0 + (att || 0.006)); g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    o.connect(g); g.connect(UIS.out); o.start(t0); o.stop(t0 + dur + 0.02);
+  }
+  function uiClick(c, t0, dur, gain, fc, type, q) {
+    var s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain(); s.buffer = UIS.noise; f.type = type || 'lowpass'; f.frequency.value = fc; f.Q.value = q || 0.7;
+    g.gain.setValueAtTime(gain, t0); g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur); s.connect(f); f.connect(g); g.connect(UIS.out); s.start(t0); s.stop(t0 + dur + 0.02);
+  }
   function uiSnd(kind) {
     if (!sfxOn) return;
-    var n = Date.now(); if (n - UIS.last < 55) return; UIS.last = n;
+    var n = Date.now(); if (kind === 'hover') { if (n - UIS.lastH < 60 || !uiHovOn()) return; UIS.lastH = n; } else { if (n - UIS.last < 50) return; UIS.last = n; }
     try {
-      var AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
-      if (!UIS.ctx) UIS.ctx = new AC();
-      var c = UIS.ctx; if (c.state === 'suspended') c.resume();
-      var t = c.currentTime, pent = [1174.66, 1318.51, 1567.98, 1760, 2093], r = pent[Math.floor(Math.random() * 3)];
-      var seq = {
-        tap: [[r, 0, 0.16, 0.05]],
-        pick: [[1760, 0, 0.14, 0.05], [2349.3, 0.05, 0.18, 0.035]],
-        nav: [[880, 0, 0.2, 0.05], [1318.51, 0.07, 0.26, 0.045]],
-        back: [[1318.51, 0, 0.16, 0.045], [987.77, 0.06, 0.22, 0.04]]
-      }[kind] || [];
-      seq.forEach(function (s) {
-        [[1, s[3]], [2.01, s[3] * 0.3]].forEach(function (p) {
-          var o = c.createOscillator(), g = c.createGain(); o.type = 'sine'; o.frequency.value = s[0] * p[0];
-          g.gain.setValueAtTime(0.0001, t + s[1]); g.gain.exponentialRampToValueAtTime(p[1], t + s[1] + 0.008); g.gain.exponentialRampToValueAtTime(0.0001, t + s[1] + s[2]);
-          o.connect(g); g.connect(c.destination); o.start(t + s[1]); o.stop(t + s[1] + s[2] + 0.02);
-        });
-      });
+      var c = uiGraph(); if (!c) return; var t = c.currentTime + 0.005;
+      if (kind === 'hover') { uiClick(c, t, 0.022, 0.05, 3400, 'bandpass', 1.6); uiTone(c, 1480, 1400, t, 0.05, 0.012, 0.004); }
+      else if (kind === 'tap') { uiClick(c, t, 0.05, 0.16, 1500, 'lowpass'); uiTone(c, 340, 205, t, 0.09, 0.13, 0.004); }
+      else if (kind === 'pick') { uiClick(c, t, 0.035, 0.1, 2200, 'lowpass'); uiTone(c, 520, 720, t, 0.11, 0.09, 0.006); uiTone(c, 1040, 1080, t + 0.03, 0.08, 0.02, 0.006); }
+      else if (kind === 'nav') { uiTone(c, 392, 392, t, 0.42, 0.07, 0.02); uiTone(c, 587.3, 587.3, t + 0.06, 0.42, 0.05, 0.02); uiClick(c, t, 0.03, 0.06, 1800, 'lowpass'); }
+      else if (kind === 'back') { uiClick(c, t, 0.04, 0.12, 1200, 'lowpass'); uiTone(c, 300, 190, t, 0.11, 0.1, 0.005); }
     } catch (e) {}
   }
+  function uiKindOf(t) {
+    if (t.classList.contains('tab')) return 'nav';
+    if (t.classList.contains('djback') || t.hasAttribute('data-qvback') || t.hasAttribute('data-back')) return 'back';
+    if (t.classList.contains('cs-chip') || t.classList.contains('cs-tab') || t.getAttribute('role') === 'tab' || t.getAttribute('role') === 'option') return 'pick';
+    return 'tap';
+  }
+  var UI_HOV = 'button,.mode,.qvt,.ktile,.tab,[role="button"],[role="tab"],[role="option"],.pghead,.gskc,.pgk';
   document.addEventListener('pointerdown', function (e) {
-    var t = e.target.closest ? e.target.closest('button,.mode,.qvt,.ktile,.tab,[role="button"],[role="tab"],[role="option"]') : null;
+    var t = e.target.closest ? e.target.closest(UI_HOV) : null;
     if (!t || t.disabled || t.getAttribute('aria-disabled') === 'true') return;
-    var k = 'tap';
-    if (t.classList.contains('tab')) k = 'nav';
-    else if (t.classList.contains('djback') || t.hasAttribute('data-qvback') || t.hasAttribute('data-back')) k = 'back';
-    else if (t.classList.contains('cs-chip') || t.classList.contains('cs-tab') || t.getAttribute('role') === 'tab' || t.getAttribute('role') === 'option') k = 'pick';
-    uiSnd(k);
+    uiSnd(uiKindOf(t));
   }, true);
+  (function () {
+    var lastEl = null;
+    document.addEventListener('pointerover', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      var t = e.target.closest ? e.target.closest(UI_HOV) : null;
+      if (!t || t === lastEl || t.disabled) { if (!t) lastEl = null; return; }
+      lastEl = t; uiSnd('hover');
+    }, true);
+  })();
+  /* Les cases penchent vers la souris, la case survolée se détache */
+  (function () {
+    var SEL = '.mode,.qvt,.gamecard,.hubcard,.ktile,.pghead,.cs-chip,.cs-tab,.btn,.pfbtn,.morerow,.gskc,.pgk,.bnseg button,.seg button,.wfcchip', cur = null, raf = 0, le = null;
+    function reset(el) { if (!el) return; el.style.transform = ''; el.style.filter = ''; el.classList.remove('tilting'); }
+    document.addEventListener('pointermove', function (e) {
+      if (e.pointerType !== 'mouse') return; le = e;
+      if (raf) return;
+      raf = requestAnimationFrame(function () {
+        raf = 0; var ev = le, el = ev.target.closest ? ev.target.closest(SEL) : null;
+        if (el && (el.disabled || el.getAttribute('aria-disabled') === 'true')) el = null;
+        if (cur && cur !== el) reset(cur);
+        cur = el; if (!el) return;
+        var r = el.getBoundingClientRect(), tx = (ev.clientX - r.left) / Math.max(1, r.width) * 2 - 1, ty = (ev.clientY - r.top) / Math.max(1, r.height) * 2 - 1, big = r.width > 260 || r.height > 110;
+        el.classList.add('tilting');
+        el.style.transform = 'perspective(650px) rotateX(' + (-ty * (big ? 6 : 11)).toFixed(1) + 'deg) rotateY(' + (tx * (big ? 8 : 14)).toFixed(1) + 'deg) translateY(-3px) scale(' + (big ? 1.02 : 1.06) + ')';
+        el.style.filter = 'drop-shadow(' + (-tx * 6).toFixed(0) + 'px ' + (10 + ty * 3).toFixed(0) + 'px 9px rgba(30,16,40,.32))';
+      });
+    }, true);
+    document.addEventListener('pointerout', function (e) { if (cur && (!e.relatedTarget || !cur.contains(e.relatedTarget))) { reset(cur); cur = null; } }, true);
+    document.addEventListener('pointerdown', function () { if (cur) { reset(cur); } }, true);
+  })();
 
   /* =====================================================================
      v220d. MA PROGRESSION : suivi des mots et des kanjis par niveau
      ===================================================================== */
+  document.addEventListener('change', function (e) { if (e.target && e.target.id === 'optHov') { try { localStorage.setItem('kd.hov', e.target.checked ? '1' : '0'); } catch (x) {} } });
   var PG = { tab: 'mots', src: 'jlpt', open: '', filt: 'all', lim: 60 };
   var PG_JL = ['n5', 'n4', 'n3', 'n2', 'n1', 'q'];
   function pgWst(st) { if (!st || !((st.ok || 0) + (st.ko || 0))) return 'new'; return (st.run || 0) >= MASTER_RUN ? 'ok' : 'mid'; }
