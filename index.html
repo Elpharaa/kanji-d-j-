@@ -4397,6 +4397,19 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
 
 .wtok { border-bottom: 0 !important; }
 .wtok:hover { background: rgba(180, 42, 93, .12); }
+/* ===== v231 : bouton furigana visible, infobulle au survol ===== */
+#btnFuriTog { display: inline-flex !important; align-items: center; justify-content: center; white-space: nowrap; height: 36px !important; padding: 0 14px !important; font-size: .9rem !important; border: 2px solid #ffd36e !important; border-radius: 18px !important; background: rgba(255, 211, 110, .14) !important; color: #ffe9a8 !important; letter-spacing: .02em; }
+#btnFuriTog::after { content: 'OFF'; margin-left: 7px; font-size: .62rem; padding: 2px 6px; border-radius: 8px; background: rgba(255, 255, 255, .18); }
+#btnFuriTog.on { background: linear-gradient(135deg, #ffcf5a, #f29b2e) !important; color: #3a2400 !important; box-shadow: 0 0 14px rgba(255, 190, 70, .65); }
+#btnFuriTog.on::after { content: 'ON'; background: rgba(58, 36, 0, .22); }
+#wtip { position: fixed; z-index: 9999; max-width: min(290px, 88vw); padding: 10px 14px 11px; border-radius: 14px; background: rgba(255, 250, 240, .98); color: #2c2452; border: 2px solid #c1245a; box-shadow: 0 10px 28px rgba(35, 26, 54, .4); pointer-events: none; opacity: 0; transform: translateY(6px) scale(.96); transition: opacity .15s, transform .18s cubic-bezier(.34, 1.56, .64, 1); text-align: center; }
+#wtip.on { opacity: 1; transform: none; }
+#wtip .tj { font-size: 1.9rem; line-height: 1.2; font-weight: 700; }
+#wtip .tr { font-size: 1.02rem; color: #6a2a55; margin-top: 2px; } #wtip .tr small { opacity: .75; margin-left: 4px; }
+#wtip .tf { font-size: 1.02rem; font-weight: 700; margin-top: 4px; }
+#wtip .tc { margin-top: 6px; display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; font-size: .72rem; }
+#wtip .tc span { padding: 2px 8px; border-radius: 9px; background: rgba(193, 36, 90, .12); color: #8a1a45; font-weight: 700; }
+
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -24142,6 +24155,29 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
     if (r.id === 'btnFuriTog') S.clzFuri = !!S.furiSess;
     setTimeout(reRenderNow, 40);
   });
+
+  /* ===== v231 : infobulle d'un mot de la phrase au survol de la souris ===== */
+  (function () {
+    var tip = document.createElement('div'); tip.id = 'wtip'; tip.setAttribute('aria-hidden', 'true'); document.body.appendChild(tip);
+    var cur = null, tm = 0;
+    function hide() { clearTimeout(tm); tip.classList.remove('on'); cur = null; }
+    function show(el) {
+      var e = wlookup(el.getAttribute('data-wtok')); if (!e) return;
+      var rom = (typeof toRomaji === 'function' && e.kana) ? toRomaji(e.kana) : '';
+      tip.innerHTML = '<div class="tj jp">' + esc(e.jp) + '</div>' + (e.kana && e.kana !== e.jp ? '<div class="tr jp">' + esc(e.kana) + (rom ? '<small>' + esc(rom) + '</small>' : '') + '</div>' : '') +
+        '<div class="tf">' + esc(e.fr) + '</div><div class="tc">' + (e.lvl ? '<span>' + esc(e.lvl) + '</span>' : '') + '<span>' + esc(regOfWord(e.jp, e.tag)) + '</span><span>clic = fiche complète</span></div>';
+      tip.classList.add('on'); var r = el.getBoundingClientRect(), w = tip.offsetWidth, h = tip.offsetHeight;
+      var x = Math.min(Math.max(8, r.left + r.width / 2 - w / 2), window.innerWidth - w - 8), y = r.top - h - 10; if (y < 8) y = r.bottom + 10;
+      tip.style.left = x + 'px'; tip.style.top = y + 'px';
+    }
+    document.addEventListener('mouseover', function (ev) {
+      if (!window.matchMedia || !window.matchMedia('(hover: hover)').matches) return;
+      var t = ev.target.closest ? ev.target.closest('[data-wtok]') : null;
+      if (!t) { if (cur) hide(); return; }
+      if (t === cur) return; clearTimeout(tm); cur = t; tm = setTimeout(function () { if (cur === t) show(t); }, 120);
+    });
+    document.addEventListener('click', hide, true); window.addEventListener('scroll', hide, true);
+  })();
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
