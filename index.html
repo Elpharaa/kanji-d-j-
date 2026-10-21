@@ -4462,6 +4462,10 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
 .clzcard.clzko { animation: cardBad .9s ease-out, cardShake .55s ease-out; }
 @keyframes cardShake { 0%, 100% { translate: 0 0; } 15% { translate: -7px 0; } 30% { translate: 6px 0; } 45% { translate: -5px 0; } 60% { translate: 3px 0; } 75% { translate: -2px 0; } }
 
+/* ===== v235 : les animations d'entrée ne bloquent plus l'inclinaison des tuiles ===== */
+:is(.hubgrid, #hubGrid, #games, #hubTiles, .wgrid, .modes, .qvgrid, .djgrid, .pglist, .stgrid, .cuisgrid, .pfgrid, .stack, .tilegrid) > *, body.casc :is(.djgrid, #hubGrid, .qvgrid, .pglist, .stgrid, .cuisgrid, .hubgrid) > * { animation-fill-mode: backwards !important; }
+.hubcard, .gamecard, .mode, .qvt, .ktile, .pfbtn { animation-fill-mode: backwards !important; }
+
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -24067,7 +24071,7 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
         cur = el; if (!el) return;
         var r = el.getBoundingClientRect(), tx = (ev.clientX - r.left) / Math.max(1, r.width) * 2 - 1, ty = (ev.clientY - r.top) / Math.max(1, r.height) * 2 - 1, big = r.width > 260 || r.height > 110, tile = !!(el.matches && el.matches('.hubcard,.gamecard,.mode,.qvt,.ktile,.pfbtn')), huge = r.width > 520;
         el.classList.add('tilting');
-        el.style.transform = 'perspective(650px) rotateX(' + (-ty * (huge ? 6 : 11)).toFixed(1) + 'deg) rotateY(' + (tx * (huge ? 8 : 14)).toFixed(1) + 'deg) translateY(' + (tile ? 0 : -3) + 'px) scale(' + (tile ? 1 : big ? 1.02 : 1.06) + ')';
+        el.style.setProperty('transform', 'perspective(650px) rotateX(' + (-ty * (huge ? 6 : 11)).toFixed(1) + 'deg) rotateY(' + (tx * (huge ? 8 : 14)).toFixed(1) + 'deg) translateY(' + (tile ? 0 : -3) + 'px) scale(' + (tile ? 1 : big ? 1.02 : 1.06) + ')', 'important');
         el.style.filter = 'drop-shadow(' + (-tx * 6).toFixed(0) + 'px ' + (10 + ty * 3).toFixed(0) + 'px 9px rgba(30,16,40,.32))';
       });
     }, true);
