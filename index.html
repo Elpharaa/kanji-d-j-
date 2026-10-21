@@ -4415,6 +4415,46 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
 .clzfr { color: #2c2452 !important; font-style: normal !important; font-weight: 600; font-size: 1.12rem !important; }
 .clzfr .clzfrhl, .clzfr mark { font-weight: 800; }
 
+/* ===== v233 : registre, seconde chance, profil centré et vivant ===== */
+.clzreg { display: inline-block; margin: 0 auto 4px; padding: 3px 12px; border-radius: 999px; font-size: .74rem; font-weight: 800; letter-spacing: .03em; }
+.clzreg.poli { background: #fde1ec; color: #a3194f; border: 1.5px solid #e8a0bd; }
+.clzreg.neutre { background: #e4ecfb; color: #274a8a; border: 1.5px solid #9db6e8; }
+.clzcard { text-align: center; }
+.clzretry { text-align: center; margin: 8px 0 2px; padding: 7px 12px; border-radius: 12px; background: rgba(255, 211, 110, .35); color: #5a3b00; font-size: .95rem; animation: kjFloat2 1.6s ease-in-out infinite; }
+@keyframes kjFloat2 { 0%, 100% { translate: 0 0; } 50% { translate: 0 -3px; } }
+.choice:disabled.bad { opacity: .55; text-decoration: line-through; }
+/* profil */
+#vProfil:not([hidden]) { display: flex !important; flex-direction: column; align-items: center; gap: 14px; }
+#vProfil > * { width: min(100%, 620px); box-sizing: border-box; }
+#vProfil .gsegbar button, #vProfil .gseg button { scale: 1 !important; transform: none !important; }
+#vProfil .player { display: flex !important; flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 20px 18px 18px; }
+#vProfil .player > #pBan { position: absolute; inset: 0; }
+#vProfil .player > #pKat { position: absolute; right: 16px; top: 14px; }
+#vProfil .player > #pAvatar { display: block; }
+#vProfil .player { margin: 0 !important; }
+#vProfil .player > .pseal { right: auto !important; left: 14px !important; top: 14px !important; bottom: auto !important; }
+#vProfil .xpwrap { align-items: center; width: 100%; text-align: center; }
+#vProfil .xptext { width: 100%; justify-content: space-between; }
+#vProfil .track { width: 100%; }
+#vProfil .hrow { justify-content: center; }
+#vProfil .logrow { display: grid !important; grid-template-columns: 1fr 1fr; gap: 10px; }
+#vProfil .logrow .editbtn { grid-column: 1 / -1; }
+#vProfil .logrow .btn { width: 100%; justify-content: center; }
+#vProfil .pfgrid { display: flex !important; flex-wrap: wrap; justify-content: center; gap: 12px; }
+#vProfil .pfbtn { flex: 0 0 calc(33.333% - 8px); max-width: 190px; min-width: 100px; }
+#vProfil .pfbtn { transition: scale .28s cubic-bezier(.34, 1.56, .64, 1), translate .28s ease, transform .25s, box-shadow .25s !important; }
+@media (hover: hover) { #vProfil .pfbtn:hover { scale: 1.055; translate: 0 -3px; } }
+#vProfil .pfbtn:active { scale: .95; transition-duration: .08s !important; }
+#vProfil .pfbtn { animation: pfFloat 6s ease-in-out infinite; } #vProfil .pfbtn:nth-child(2n) { animation-delay: -2s; } #vProfil .pfbtn:nth-child(3n) { animation-delay: -4s; }
+@keyframes pfFloat { 0%, 100% { translate: 0 0; } 50% { translate: 0 -3px; } }
+#vProfil #pAvatar { animation: avBreath 4.2s ease-in-out infinite; border-radius: 50%; }
+@keyframes avBreath { 0%, 100% { scale: 1; filter: drop-shadow(0 0 0 rgba(232, 184, 74, 0)); } 50% { scale: 1.06; filter: drop-shadow(0 0 14px rgba(232, 184, 74, .85)); } }
+#vProfil .track { position: relative; overflow: hidden; }
+#vProfil .track .fill { position: relative; overflow: hidden; }
+#vProfil .track .fill::after { content: ''; position: absolute; top: 0; bottom: 0; width: 40%; left: -50%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .75), transparent); animation: xpShine 3s ease-in-out infinite; }
+@keyframes xpShine { 0%, 40% { left: -50%; } 100% { left: 130%; } }
+@media (prefers-reduced-motion: reduce) { #vProfil .pfbtn, #vProfil #pAvatar, #vProfil .track .fill::after, .clzretry { animation: none !important; } }
+
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -21888,18 +21928,19 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
   function clzNext() {
     var it = clz.items[clz.i]; if (!it) return;
     var opts = shuffle([it.w].concat(clzDistractors(it)));
-    clz.q = { it: it, opts: opts }; clz.ans = null; clz.alt = false;
+    clz.q = { it: it, opts: opts }; clz.ans = null; clz.alt = false; clz.retried = false; clz.dead = [];
   }
   function clzQuizHTML() {
     var q = clz.q, it = q.it, md = S && S.clzMode === 'input' ? 'input' : 'mcq', h = '';
     h += '<div class="grp djbar"><button type="button" class="btn djback" data-clz="stop">‹ Arrêter</button><h3 class="sgh" data-k="文"><span>Phrases à trou</span></h3></div>';
     h += '<p class="small muted" style="margin:6px 0 2px;text-align:center">Phrase ' + (clz.i + 1) + ' / ' + clz.items.length + '</p><div class="knqbar"><u style="width:' + Math.round(clz.i / clz.items.length * 100) + '%"></u></div>';
-    h += '<div class="knqcard qcard clzcard' + (clz.ans === 1 ? ' clzok' : clz.ans === 0 ? ' clzko' : '') + '"><p class="prompt">Complète la phrase avec le bon mot</p>' + clzSentenceHTML(q, clz.ans !== null) + '<p class="clzfr">' + frHL(it.fr, it.w) + '</p><p class="clzhint">☝ Touche un mot de la phrase pour voir sa lecture, son sens, son niveau et ses tracés</p></div>';
+    h += '<div class="knqcard qcard clzcard' + (clz.ans === 1 ? ' clzok' : (clz.ans === 0 || (clz.retried && clz.ans === null)) ? ' clzko' : '') + '"><span class="clzreg ' + (clzPolite(it.full) ? 'poli' : 'neutre') + '" title="Registre de la phrase">' + (clzPolite(it.full) ? '丁寧 Phrase polie' : '普通 Phrase neutre') + '</span><p class="prompt">Complète la phrase avec le bon mot</p>' + clzSentenceHTML(q, clz.ans !== null) + '<p class="clzfr">' + frHL(it.fr, it.w) + '</p><p class="clzhint">☝ Touche un mot de la phrase pour voir sa lecture, son sens, son niveau et ses tracés</p></div>';
     if (clz.ans === null) {
       if (md === 'mcq') {
-        h += '<div class="choices">' + q.opts.map(function (o, i) { return '<button type="button" class="choice" data-clz="pick" data-i="' + i + '"><span class="key">' + (i + 1) + '</span><span class="jp">' + esc(o.mot) + (S && S.clzFuri && /[㐀-鿿]/.test(o.mot) ? ' <small class="muted">' + esc(o.lecture) + '</small>' : '') + '</span></button>'; }).join('') + '</div>';
+        if (clz.retried) h += '<p class="clzretry">Presque ! <b>Seconde chance</b> : si tu trouves, tu gagnes la moitié des points.</p>';
+        h += '<div class="choices">' + q.opts.map(function (o, i) { var dead = (clz.dead || []).indexOf(i) >= 0; return '<button type="button" class="choice' + (dead ? ' bad' : '') + '"' + (dead ? ' disabled' : '') + ' data-clz="pick" data-i="' + i + '"><span class="key">' + (i + 1) + '</span><span class="jp">' + esc(o.mot) + (S && S.clzFuri && /[㐀-鿿]/.test(o.mot) ? ' <small class="muted">' + esc(o.lecture) + '</small>' : '') + '</span></button>'; }).join('') + '</div>';
       } else {
-        h += '<form class="answer" id="clzForm" autocomplete="off"><label class="prompt" for="clzAns" style="text-align:left">Le mot qui manque (kanji ou kana)</label><input type="text" id="clzAns" data-ime="1" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="ex. 日本 / にほん"><button class="btn primary" type="submit">Valider</button></form>';
+        h += '<form class="answer" id="clzForm" autocomplete="off"><label class="prompt" for="clzAns" style="text-align:left">Le mot qui manque (kanji ou kana), en forme neutre du dictionnaire</label><input type="text" id="clzAns" data-ime="1" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="ex. 日本 / にほん"><button class="btn primary" type="submit">Valider</button></form>';
       }
       h += '<div class="skiprow"><button class="btn skipq" type="button" data-clz="skip">🤷 Je ne sais pas</button></div>';
     } else {
@@ -21922,12 +21963,17 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
     h.innerHTML = clz.view === 'quiz' ? clzQuizHTML() : clz.view === 'end' ? '<div class="grp djbar"><h3 class="sgh" data-k="文"><span>Phrases à trou</span></h3></div>' + clzEndHTML() : clzSetupHTML();
     var a = $('clzAns'); if (a && clz.view === 'quiz' && clz.ans === null) { try { a.focus({ preventScroll: true }); } catch (e) {} }
   }
+  function clzPolite(t) { return /(です|ます|ました|ません|でした|ましょう|ください|でしょう|ございます)[かね]?[。？?！!」ょ]*$/.test(String(t || '').replace(/\s+/g, '')); }
   function clzAnswer(ok, pickIdx) {
     var q = clz.q; if (!q || clz.ans !== null) return;
+    if (!ok && !clz.alt && !clz.retried && pickIdx !== -2 && !clz.skipNow) {
+      clz.retried = true; clz.dead = clz.dead || []; if (pickIdx >= 0) clz.dead.push(pickIdx); sfx('bad'); renderClz(); return;
+    }
+    clz.skipNow = false; var retryWin = !!clz.retried && ok;
     clz.ans = ok ? 1 : 0; clz.pick = pickIdx; var w = q.it.w;
     if (clz.alt) { sfx(ok ? 'ok' : 'bad'); renderClz(); return; }
     var st = stat(w.key), before = level();
-    if (ok) { st.ok++; st.run++; clz.ok++; S.correct = (S.correct || 0) + 1; sfx('ok'); var d = dayKey(), x = S.clzxp && S.clzxp.d === d ? S.clzxp : (S.clzxp = { d: d, n: 0 }), g = Math.min(5, 80 - x.n); if (g > 0) { x.n += g; addXp(g); } }
+    if (ok) { st.ok++; if (!retryWin) st.run++; clz.ok++; S.correct = (S.correct || 0) + 1; sfx('ok'); var d = dayKey(), x = S.clzxp && S.clzxp.d === d ? S.clzxp : (S.clzxp = { d: d, n: 0 }), g = Math.min(retryWin ? 3 : 5, 80 - x.n); if (g > 0) { x.n += g; addXp(g); } }
     else { st.ko++; st.run = 0; errLog(w.key, 'Phrases à trou'); if (clz.miss.indexOf(w.mot) < 0) clz.miss.push(w.mot); sfx('bad'); }
     try { srsUpdate(w.key, ok); } catch (e) {}
     persist(); renderClz();
@@ -21940,7 +21986,7 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
       clz.all = all; clz.items = shuffle(all.slice()).slice(0, 10); clz.i = 0; clz.ok = 0; clz.miss = []; clz.view = 'quiz'; clzNext(); renderClz(); window.scrollTo(0, 0);
     } else if (a === 'stop') { clz.view = 'setup'; renderClz(); }
     else if (a === 'pick') { var i = +b.getAttribute('data-i'); clzAnswer(clz.q.opts[i].mot === clz.q.it.w.mot, i); }
-    else if (a === 'skip') clzAnswer(false, -1);
+    else if (a === 'skip') { clz.skipNow = true; clzAnswer(false, -1); }
     else if (a === 'say') { if (typeof aidSpeak === 'function') aidSpeak(clz.q.it.full, 0.85); }
     else if (a === 'next') { clz.i++; if (clz.i >= clz.items.length) { clz.view = 'end'; try { streakTick(1); } catch (er) {} persist(); } else clzNext(); renderClz(); window.scrollTo(0, 0); }
   });
@@ -24182,6 +24228,21 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
       if (t === cur) return; clearTimeout(tm); cur = t; tm = setTimeout(function () { if (cur === t) show(t); }, 120);
     });
     document.addEventListener('click', hide, true); window.addEventListener('scroll', hide, true);
+  })();
+
+  /* ===== v233 : compteurs du profil qui montent ===== */
+  (function () {
+    var v = document.getElementById('vProfil'); if (!v || !window.MutationObserver) return;
+    function up(el) {
+      if (!el) return; var fin = el.textContent, nums = fin.match(/\d+/g); if (!nums) return;
+      var t0 = performance.now(), D = 800;
+      (function step(t) {
+        var k = Math.min(1, (t - t0) / D), e = 1 - Math.pow(1 - k, 3), i = 0;
+        el.textContent = k >= 1 ? fin : fin.replace(/\d+/g, function (m) { return Math.round(+nums[i++] * e); });
+        if (k < 1) requestAnimationFrame(step);
+      })(t0);
+    }
+    new MutationObserver(function () { if (v.hidden) return; setTimeout(function () { up(document.getElementById('lvl')); up(document.getElementById('xpText')); }, 120); }).observe(v, { attributes: true, attributeFilter: ['hidden'] });
   })();
 
   backend.init().then(function (u) {
