@@ -4506,6 +4506,10 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
 .pgskb { grid-area: b; height: 9px; border-radius: 6px; background: rgba(75, 61, 132, .14); overflow: hidden; } .pgskb i { display: block; height: 100%; background: linear-gradient(90deg, #3fb37f, #8bdc6a); border-radius: 6px; transition: width .8s; } .pgsk small { grid-area: s; font-size: .7rem; color: #4b3d84; }
 .wfsk4 { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 8px 0 2px; } .wfsk4i { display: inline-flex; align-items: center; gap: 4px; padding: 2px 9px; border-radius: 10px; font-size: .75rem; font-weight: 700; background: rgba(63, 179, 127, .18); color: #1f6b4a; } .wfsk4i.off { background: rgba(75, 61, 132, .1); color: #6a5aa0; } .wfsk4i.acq { background: rgba(255, 190, 70, .35); color: #6b4300; }
 
+/* ===== v240 : mots à revoir après un long oubli ===== */
+.pgold { color: #c1560a; font-weight: 800; }
+.stmix.pgbar i.o { background: #f29b2e; } .pgw.st-old .pgdot { background: #f29b2e; box-shadow: 0 0 0 2px rgba(242, 155, 46, .35); }
+
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -12755,9 +12759,13 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
      8. RÉPÉTITION ESPACÉE : les mots ratés reviennent plus souvent
      ===================================================================== */
   function stat(k) { return S.stats[k] || (S.stats[k] = { ok: 0, ko: 0, run: 0 }); }
+  /* v240 : un mot acquis qu'on n'a pas revu depuis 21 jours repasse « à revoir » */
+  var STALE_DAYS = 21;
+  function stale(st) { return !!(st && st.run >= MASTER_RUN && st.lt && (Date.now() - st.lt) > STALE_DAYS * 864e5); }
+  function mst(st) { return !!(st && st.run >= MASTER_RUN && !stale(st)); }
   /* v239 : un mot n'est « acquis » que si la série de réussites s'étend sur au moins 2 jours différents */
   function runUp(st) {
-    var d = dayKey(); if (!st.run || !st.rd) st.rd = (st.rd && st.run) ? st.rd : d;
+    st.lt = Date.now(); var d = dayKey(); if (!st.run || !st.rd) st.rd = (st.rd && st.run) ? st.rd : d;
     if (st.run === MASTER_RUN - 1 && st.rd === d) { st.pend = d; return false; }
     st.run++; if (st.run >= MASTER_RUN) delete st.pend; return true;
   }
@@ -12768,8 +12776,8 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
     if (t === 'trad' || t === 'ortho' || t === 'ecr') return 'ecriture'; if (t === 'ecoute') return 'ecoute';
     return f === 'input' ? 'ecriture' : 'sens';
   }
-  function skillNote(st, sk, ok) { if (!st || !sk) return; var m = st.sk || (st.sk = {}), e = m[sk] || (m[sk] = { ok: 0, ko: 0 }); if (ok) e.ok++; else e.ko++; }
-  function masteredCount() { var n = 0; weekWords('all').forEach(function (w) { var s = S.stats[w.key]; if (s && s.run >= MASTER_RUN) n++; }); return n; }
+  function skillNote(st, sk, ok) { if (!st || !sk) return; st.lt = Date.now(); var m = st.sk || (st.sk = {}), e = m[sk] || (m[sk] = { ok: 0, ko: 0 }); if (ok) e.ok++; else e.ko++; }
+  function masteredCount() { var n = 0; weekWords('all').forEach(function (w) { var s = S.stats[w.key]; if (mst(s)) n++; }); return n; }
   function weightOf(key) {
     var s = S.stats[key] || { ok: 0, ko: 0, run: 0 };
     return Math.max(0.4, 1 + s.ko * 2 + (s.run < MASTER_RUN ? 2 : 0) - Math.min(s.run, MASTER_RUN) * 0.3);
@@ -16255,7 +16263,7 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
      Les statistiques publiques sont un petit résumé enregistré avec le profil ; la progression détaillée reste privée.
      ===================================================================== */
   function publicStats(s) {
-    var m = 0; WORDS.forEach(function (w) { var t = s.stats && s.stats[w.key]; if (t && t.run >= MASTER_RUN) m++; });
+    var m = 0; WORDS.forEach(function (w) { var t = s.stats && s.stats[w.key]; if (mst(t)) m++; });
     var chs = 0; CHAPTERS.forEach(function (c) { if (s.story && s.story[c.id] && s.story[c.id].boss) chs++; });
     return { b: Object.keys(s.badges || {}), m: m, w: s.bossWins || 0, c: s.correct || 0, s: s.best || 0, dj: (s.dj && s.dj.best) || 0, fr: cosmOf(s).frame, ti: cosmOf(s).title, nf: cosmOf(s).fx, sk: (s.streak && s.streak.last && strNum(strDay()) - strNum(s.streak.last) <= 1 ? s.streak.n : 0) || 0, ch: chs, k: s.kills || 0, bs: Object.keys(baseVisible(s.shop)).filter(function (x) { return x.indexOf('__') !== 0; }), pv: pavLvOf(s.shop), kt: katOfShop(s.shop), bn: bnPub(s), lx: s.lastEx || null, hx: vxPub(s), fm: s.fam || null, fq: s.famOut ? s.famOut.id : null, ft: s.famOut ? s.famOut.t : null, fok: (s.famOk || []).slice(-12), fno: (s.famNo || []).slice(-12), bp: bpPub(s), cf: (typeof cardFavOf === 'function' ? cardFavOf(s) : []) };
   }
@@ -20343,7 +20351,7 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
       if (!((S.err && S.err[w.key]) || (st && st.ko > 0))) return false;   // « à revoir » = les mots ratés, comme le carnet d'erreurs
       if (e) return e.due <= now;
       if (!st || (!st.ok && !st.ko)) return false;
-      return st.ko > 0 || st.run < MASTER_RUN;
+      return st.ko > 0 || st.run < MASTER_RUN || stale(st);
     }).sort(function (a, b) { return ((S.srs[a.key] || {}).due || 0) - ((S.srs[b.key] || {}).due || 0); });
   }
   function srsPool() { return dueWords(true).slice(0, 30); }
@@ -20445,7 +20453,7 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
     var tot = days.reduce(function (a, d) { return a + d.ok + d.ko; }, 0), okt = days.reduce(function (a, d) { return a + d.ok; }, 0);
     var active = days.filter(function (d) { return d.ok + d.ko > 0; }).length;
     var all = weekWords('all'), nM = 0, nP = 0, nN = 0;
-    all.forEach(function (w) { var s2 = S.stats[w.key]; if (s2 && s2.run >= MASTER_RUN) nM++; else if (s2 && (s2.ok + s2.ko) > 0) nP++; else nN++; });
+    all.forEach(function (w) { var s2 = S.stats[w.key]; if (mst(s2)) nM++; else if (s2 && (s2.ok + s2.ko) > 0) nP++; else nN++; });
     var T = all.length || 1, pM = Math.round(nM / T * 100), pP = Math.round(nP / T * 100);
     var due = dueWords().length;
     var svg = '<svg viewBox="0 0 280 96" class="barchart" role="img" aria-label="Réponses des 14 derniers jours">' + days.map(function (d, j) {
@@ -20462,7 +20470,7 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
       '<h3 class="stth">Activité des 14 derniers jours</h3>' + svg +
       '<p class="muted small" style="margin:2px 0 6px">Vert : bonnes réponses · rouge : erreurs.</p><h3 class="stth">Maîtrise par semaine</h3>';
     lvWeeks().forEach(function (wk) {
-      var ws = weekWords(wk), m = ws.filter(function (w) { var s3 = S.stats[w.key]; return s3 && s3.run >= MASTER_RUN; }).length, p = ws.length ? Math.round(m / ws.length * 100) : 0;
+      var ws = weekWords(wk), m = ws.filter(function (w) { var s3 = S.stats[w.key]; return mst(s3); }).length, p = ws.length ? Math.round(m / ws.length * 100) : 0;
       h += '<div class="wkbar"><span>S' + wkNum(wk) + '</span><span class="wkt"><i style="width:' + p + '%"></i></span><span class="wkn">' + m + '/' + ws.length + '</span></div>';
     });
     var worst = all.filter(function (w) { var s4 = S.stats[w.key]; return s4 && s4.ko > 0; }).sort(function (a, b) { return S.stats[b.key].ko - S.stats[a.key].ko; }).slice(0, 8);
@@ -22606,7 +22614,7 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
   /* ---- Boss secret : un écho du Silence par semaine, quand tu maîtrises tes mots ---- */
   function wkMastery(wk) {
     var ws = weekWords(wk); if (!ws.length) return 0;
-    var m = ws.filter(function (w) { var s = S.stats[w.key]; return s && s.run >= MASTER_RUN; }).length;
+    var m = ws.filter(function (w) { var s = S.stats[w.key]; return mst(s); }).length;
     return m / ws.length;
   }
   function secretCh(wk) {
@@ -23157,7 +23165,7 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
   var qv = { th: '', mode: 'learn', dir: 'jp', q: null, lv: 'all', ex: null };
   var QV_ART = '<svg viewBox="0 0 320 78" class="gart" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="qvbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e98a3a"/><stop offset="1" stop-color="#b3461e"/></linearGradient></defs><rect width="320" height="78" fill="url(#qvbg)"/><g opacity=".95"><path d="M196 44L232 16L268 44Z" fill="#3a2210" stroke="#2a1c14" stroke-width="2" stroke-linejoin="round"/><rect x="204" y="44" width="56" height="30" fill="#fbf0d8" stroke="#2a1c14" stroke-width="2"/><rect x="214" y="52" width="14" height="22" fill="#8a4a1a" stroke="#2a1c14" stroke-width="1.5"/><rect x="236" y="52" width="16" height="12" fill="#ffd978" stroke="#2a1c14" stroke-width="1.5"/><path d="M236 58H252M244 52V64" stroke="#2a1c14" stroke-width="1"/></g><g stroke="#2a1c14" stroke-width="2" stroke-linejoin="round"><ellipse cx="120" cy="58" rx="24" ry="9" fill="#e8d8b8"/><path d="M98 36H142L138 58Q120 66 102 58Z" fill="#fbf4e3"/><path d="M142 42Q158 42 156 52Q154 58 140 56" fill="none"/><path d="M110 28Q106 20 112 16M122 28Q118 18 124 12" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".8"/></g><text x="30" y="52" font-size="30" fill="#fff6e0" font-family="serif" font-weight="900" opacity=".9">日常</text></svg>';
   function qvStatOf(k) { return (S.qv && S.qv[k]) || null; }
-  function qvStatus(w) { var s = qvStatOf(w.key); if (!s || !(s.ok || s.ko)) return ''; return s.run >= MASTER_RUN ? 'ok' : (s.ko > 0 ? 'warn' : 'mid'); }
+  function qvStatus(w) { var s = qvStatOf(w.key); if (!s || !(s.ok || s.ko)) return ''; return mst(s) ? 'ok' : (stale(s) || s.ko > 0 ? 'warn' : 'mid'); }
   function qvMasteredN(t) { return t.w.filter(function (w) { return qvStatus(w) === 'ok'; }).length; }
   function qvTotals(sc) { var m = 0, n = 0; QV.forEach(function (t) { if (t.virt) return; if (sc === 'jlpt' ? t.lv === 'q' : sc === 'daily' ? t.lv !== 'q' : false) return; m += qvMasteredN(t); n += t.w.length; }); return [m, n]; }
   function qvMark(w, ok) {
@@ -24145,9 +24153,9 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
   document.addEventListener('change', function (e) { if (e.target && e.target.id === 'optHov') { try { localStorage.setItem('kd.hov', e.target.checked ? '1' : '0'); } catch (x) {} } });
   var PG = { tab: 'mots', src: 'jlpt', open: '', filt: 'all', lim: 60 };
   var PG_JL = ['n5', 'n4', 'n3', 'n2', 'n1', 'q'];
-  function pgWst(st) { if (!st || !((st.ok || 0) + (st.ko || 0))) return 'new'; return (st.run || 0) >= MASTER_RUN ? 'ok' : 'mid'; }
+  function pgWst(st) { if (!st || !((st.ok || 0) + (st.ko || 0))) return 'new'; return stale(st) ? 'old' : (st.run || 0) >= MASTER_RUN ? 'ok' : 'mid'; }
   function pgIndex() {
-    var best = {}, rank = { new: 0, mid: 1, ok: 2 }, I = {};
+    var best = {}, rank = { new: 0, old: 1, mid: 1, ok: 2 }, I = {};
     function add(word, st) {
       var s = pgWst(st);
       Array.from(word).forEach(function (c) {
@@ -24162,7 +24170,7 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
   }
   function pgKst(c, I) {
     var d = S.stats && S.stats['kj:' + c], e = I[c] || { t: 0, m: 0, a: 0 };
-    if ((d && (d.run || 0) >= MASTER_RUN) || (e.t && e.m >= Math.min(2, e.t))) return 'ok';
+    if (mst(d) || (e.t && e.m >= Math.min(2, e.t))) return 'ok';
     if ((d && ((d.ok || 0) + (d.ko || 0)) > 0) || e.a > 0 || (S.seen && S.seen[c])) return 'mid';
     return 'new';
   }
@@ -24198,7 +24206,7 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
     }
     return G;
   }
-  function pgCount(items) { var n = { ok: 0, mid: 0, new: 0 }; items.forEach(function (x) { n[x.s]++; }); return n; }
+  function pgCount(items) { var n = { ok: 0, mid: 0, new: 0, old: 0 }; items.forEach(function (x) { n[x.s] = (n[x.s] || 0) + 1; }); return n; }
   function pgEstimate(I) {
     var wg = pgWordGroups('jlpt'), kg = pgKanjiGroups('jlpt', I), est = '', info = [], i;
     for (i = 0; i < 5; i++) {
@@ -24208,7 +24216,7 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
     for (i = 0; i < 5; i++) { if (info[i].p >= 50) est = info[i].lv; else break; }
     return { est: est, info: info };
   }
-  var PG_LAB = { ok: 'Acquis', mid: 'En cours', new: 'À découvrir' };
+  var PG_LAB = { ok: 'Acquis', mid: 'En cours', new: 'À découvrir', old: 'À revoir' };
   var SK_LAB = [['lecture', 'Lecture', '読'], ['sens', 'Sens', '意'], ['ecriture', 'Écriture', '書'], ['ecoute', 'Écoute', '聴']];
   function skillTotals() {
     var t = { lecture: [0, 0], sens: [0, 0], ecriture: [0, 0], ecoute: [0, 0] };
@@ -24227,21 +24235,21 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
       '<div class="pglvbars" role="img" aria-label="Avancement par niveau JLPT">' + E.info.map(function (x) { return '<div class="pglb' + (x.p >= 50 ? ' ok' : '') + '"><b>' + x.lv.toUpperCase() + '</b><span class="pglbt"><i style="height:' + Math.max(4, x.p) + '%"></i></span><small>' + x.p + ' %</small></div>'; }).join('') + '</div>' + skillsHTML();
     h += '<div class="bnseg pgseg" role="tablist">' + [['mots', 'Vocabulaire'], ['kanjis', 'Kanjis']].map(function (o) { return '<button type="button" role="tab" data-pgtab="' + o[0] + '" aria-selected="' + (PG.tab === o[0]) + '">' + o[1] + '</button>'; }).join('') + '</div>';
     h += '<div class="bnseg pgseg" role="tablist">' + [['jlpt', 'JLPT et quotidien'], ['cours', 'Mon cours']].map(function (o) { return '<button type="button" role="tab" data-pgsrc="' + o[0] + '" aria-selected="' + (PG.src === o[0]) + '">' + o[1] + '</button>'; }).join('') + '</div>';
-    var G = PG.tab === 'mots' ? pgWordGroups(PG.src) : pgKanjiGroups(PG.src, I), tot = { ok: 0, mid: 0, new: 0 };
-    G.forEach(function (g) { var c = pgCount(g.items); tot.ok += c.ok; tot.mid += c.mid; tot.new += c.new; });
-    var all = tot.ok + tot.mid + tot.new || 1;
-    h += '<p class="qvtop"><b>' + tot.ok + '</b> / ' + all + (PG.tab === 'mots' ? ' mots' : ' kanjis') + ' acquis · ' + tot.mid + ' en cours · ' + tot.new + ' à découvrir</p>';
+    var G = PG.tab === 'mots' ? pgWordGroups(PG.src) : pgKanjiGroups(PG.src, I), tot = { ok: 0, mid: 0, new: 0, old: 0 };
+    G.forEach(function (g) { var c = pgCount(g.items); tot.ok += c.ok; tot.mid += c.mid; tot.new += c.new; tot.old += c.old; });
+    var all = tot.ok + tot.mid + tot.new + tot.old || 1;
+    h += '<p class="qvtop"><b>' + tot.ok + '</b> / ' + all + (PG.tab === 'mots' ? ' mots' : ' kanjis') + ' acquis · ' + tot.mid + ' en cours · ' + (tot.old ? '<span class="pgold">' + tot.old + ' à revoir</span> · ' : '') + tot.new + ' à découvrir</p>';
     h += '<div class="pglist">' + G.map(function (g) {
       var c = pgCount(g.items), n = g.items.length || 1, op = PG.open === g.id;
       return '<div class="pglv' + (op ? ' open' : '') + '"><button type="button" class="pghead" data-pgopen="' + g.id + '" aria-expanded="' + op + '"><span class="pgname">' + esc(g.name) + '</span><span class="pgnum"><b>' + c.ok + '</b>/' + g.items.length + ' · ' + Math.round(c.ok / n * 100) + ' %</span>' +
-        '<span class="stmix pgbar" role="img" aria-label="Acquis ' + c.ok + ', en cours ' + c.mid + ', à découvrir ' + c.new + '"><i class="m" style="width:' + (c.ok / n * 100) + '%"></i><i class="p" style="width:' + (c.mid / n * 100) + '%"></i><i class="n" style="width:' + (c.new / n * 100) + '%"></i></span></button>' + (op ? pgDetail(g) : '') + '</div>';
+        '<span class="stmix pgbar" role="img" aria-label="Acquis ' + c.ok + ', en cours ' + c.mid + ', à découvrir ' + c.new + '"><i class="m" style="width:' + (c.ok / n * 100) + '%"></i><i class="o" style="width:' + (c.old / n * 100) + '%"></i><i class="p" style="width:' + (c.mid / n * 100) + '%"></i><i class="n" style="width:' + (c.new / n * 100) + '%"></i></span></button>' + (op ? pgDetail(g) : '') + '</div>';
     }).join('') + '</div>';
-    h += '<p class="small muted pgnote">' + (PG.tab === 'mots' ? 'Un mot est <b>acquis</b> après 3 bonnes réponses d\'affilée réparties sur <b>au moins 2 jours</b>, <b>en cours</b> dès que tu l\'as essayé.' : 'Un kanji est <b>acquis</b> quand tu le réussis 3 fois de suite, ou quand 2 mots qui le contiennent sont acquis. Il est <b>en cours</b> dès que tu as ouvert sa fiche ou essayé un mot ou un jeu avec lui. Son niveau est celui du premier vocabulaire qui l\'utilise.') + '</p>';
+    h += '<p class="small muted pgnote">' + (PG.tab === 'mots' ? 'Un mot est <b>acquis</b> après 3 bonnes réponses d\'affilée réparties sur <b>au moins 2 jours</b>, <b>en cours</b> dès que tu l\'as essayé. Un mot acquis que tu n\'as pas revu depuis <b>21 jours</b> repasse <b>à revoir</b> : une bonne réponse suffit à le retrouver.' : 'Un kanji est <b>acquis</b> quand tu le réussis 3 fois de suite, ou quand 2 mots qui le contiennent sont acquis. Il est <b>en cours</b> dès que tu as ouvert sa fiche ou essayé un mot ou un jeu avec lui. Son niveau est celui du premier vocabulaire qui l\'utilise.') + '</p>';
     return h;
   }
   function pgDetail(g) {
     var f = PG.filt, items = g.items.filter(function (x) { return f === 'all' ? true : f === 'hard' ? (x.ko || 0) > 0 && x.s !== 'ok' : x.s === f; }), h = '<div class="pgdet"><div class="cs-chips pgfilt">';
-    [['all', 'Tous'], ['ok', 'Acquis'], ['mid', 'En cours'], ['new', 'À découvrir']].concat(PG.tab === 'mots' ? [['hard', 'Difficiles']] : []).forEach(function (o) {
+    [['all', 'Tous'], ['ok', 'Acquis'], ['old', 'À revoir'], ['mid', 'En cours'], ['new', 'À découvrir']].concat(PG.tab === 'mots' ? [['hard', 'Difficiles']] : []).forEach(function (o) {
       h += '<button type="button" class="cs-chip' + (f === o[0] ? ' on' : '') + '" data-pgfilt="' + o[0] + '">' + o[1] + '</button>';
     });
     h += '</div>';
