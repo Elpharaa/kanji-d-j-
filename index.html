@@ -4267,6 +4267,12 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
 .clzfr { margin: 4px 0 0; font-size: .92rem; color: #4b3d84; font-style: italic; text-align: center; }
 .frhl { background: #ffc7dc; color: #a31548; font-weight: 800; font-style: normal; border-radius: 4px; padding: 0 3px; }
 .furwrap ruby{ruby-position:over}.furwrap rt{font-size:.5em;font-weight:600;color:#6b3f86}.codeform{display:flex;gap:8px;margin:8px 0}.codeform input{flex:1;min-width:0;padding:10px 12px;border:2px solid #d9c9ec;border-radius:10px;font:inherit;text-transform:uppercase}
+.wtok{background:none;border:0;border-bottom:2px dotted #b42a5d;padding:0 1px;margin:0;font:inherit;color:inherit;cursor:pointer;border-radius:2px}.wtok:hover{background:rgba(180,42,93,.12)}
+.wfcard{text-align:center;display:block}.wfcbig{font-size:2.6rem;line-height:1.3}.wfcrd{font-size:1.1rem;margin-top:2px}.wfcrd small{opacity:.7;font-size:.8rem}.wfcfr{margin:6px 0 10px;font-weight:700}.wfcchips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:10px}
+.wfcchip{padding:4px 10px;border-radius:999px;font-size:.78rem;font-weight:800;background:#efe6fb;color:#4b3d84}.wfcchip.lv{background:#b42a5d;color:#fff}.wfcact{margin:6px 0 10px}.wfckl{list-style:none;padding:0;margin:10px 0 0;text-align:left;font-size:.85rem}.wfckl li{padding:4px 0;border-top:1px solid rgba(0,0,0,.08)}
+.wfstk{margin-top:8px;text-align:left}.wfstt{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-bottom:4px}.wfsk{margin:6px 0}.wfsk .swhost{display:block;margin-top:6px}
+.bnseg{display:flex;gap:6px;overflow-x:auto;margin:8px 0}.bnseg button{flex:1 0 auto;padding:8px 10px;border:2px solid #d9c9ec;border-radius:12px;background:#fbf4e3;font:inherit;font-weight:700;font-size:.82rem;cursor:pointer}.bnseg button.on{background:#b42a5d;color:#fff;border-color:#7f1c40}
+.bnlist{display:grid;gap:8px;margin-top:10px}.bnrow{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;padding:10px;border:1.5px solid #d9c9ec;border-radius:12px;background:#fffaf0;align-items:baseline}.bnw{font-size:1.2rem;font-weight:800}.bnrd{opacity:.75}.bnfr{grid-column:1/-1;font-weight:700}.bnex{grid-column:1/-1;font-size:.95rem}.bnexfr{grid-column:1/-1;font-size:.82rem;opacity:.75}
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -20904,6 +20910,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     cuis: { k: '料', t: 'Cuisine japonaise', art: '', d: 'Recettes à lire et à écouter, avec le vocabulaire', tip: 'Choisis une recette : écoute chaque étape, apprends les ingrédients et les verbes de cuisine.' },
     lire: { k: '読', t: 'Karaoké de lecture', art: '', d: 'Un texte se lit à voix haute, mot par mot', tip: 'Lance le texte : chaque mot s\'illumine au moment où il est lu. Touche un mot pour l\'entendre seul, et lis en même temps pour travailler ta prononciation.' },
     fur: { k: '炉', t: 'Fourneau', art: '', d: '', tip: 'Le fourneau, c\'est pour les mots qui te résistent vraiment. Mets-en jusqu\'à 8 depuis le carnet d\'erreurs, ouvre leur fiche mémo, puis fais-les cuire : à 6 de chaleur, le mot est forgé !' },
+    bonus: { k: '楽', t: 'Vocab bonus', art: '', d: 'Onomatopées, mots familiers, oral, entre amis', tip: 'Ici, le japonais vivant : onomatopées, mots familiers, contractions de l\'oral et expressions entre amis proches. Touche un mot pour voir sa fiche, puis fais le quiz.' },
     err: { k: '復', t: 'Carnet d\'erreurs', art: '', d: '', tip: 'Ici, tout ce que tu rates. Revois-le avant qu\'il ne s\'efface de ta mémoire.' }
   };
   function tipSeen(key) { return !!(S && S.tips && S.tips[key]); }
@@ -20921,6 +20928,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   function djTile(sub) {
     var i = DJ_INFO[sub], art = sub === 'err' ? DJ_ERR_ART : sub === 'daily' ? QV_ART : (GAME_ART[i.art] || ''), d = i.d, chip = '';
     if (sub === 'daily' || sub === 'jlpt') { var tq = qvTotals(sub), nth = QV.filter(function (t) { return !t.virt && (sub === 'jlpt' ? t.lv !== 'q' : t.lv === 'q'); }).length; d = nth + ' thèmes · ' + tq[0] + '/' + tq[1] + ' mots acquis'; }
+    if (sub === 'bonus') d = BONUS.reduce(function (n, c) { return n + c.items.length; }, 0) + ' mots : onomatopées, familier, oral, amis';
     if (sub === 'kana') d = knProgressAll() + ' / ' + knTotalAll() + ' kana maîtrisés';
     if (sub === 'fur') { var fc = furCount(); d = fc ? fc + ' mot' + (fc > 1 ? 's' : '') + ' en cuisson · ' + (S.furDone || 0) + ' forgé' + ((S.furDone || 0) > 1 ? 's' : '') : 'Les mots qui te résistent, cuits jusqu\'à être retenus'; if (fc) chip = '<span class="djchip fur" role="img" aria-label="' + fc + ' au fourneau">' + fc + '</span>'; }
     if (sub === 'err') {
@@ -21684,7 +21692,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   }
   function clzSentenceHTML(q, filled) {
     var f = S && S.clzFuri, it = q.it, mid = filled ? '<mark class="clzfill">' + (f ? furiHTML(it.hit) : esc(it.hit)) + '</mark>' : '<span class="clzblank">＿＿＿</span>';
-    return '<p class="clzjp jp">' + (f ? furiHTML(it.pre) : esc(it.pre)) + mid + (f ? furiHTML(it.post) : esc(it.post)) + '</p>';
+    return '<p class="clzjp jp">' + wtokHTML(it.pre, f) + mid + wtokHTML(it.post, f) + '</p>';
   }
   function clzDistractors(it) {
     var w = it.w, pool = clz.all || [], cand = [], seen = {}; seen[w.mot] = 1;
@@ -21697,7 +21705,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   function clzNext() {
     var it = clz.items[clz.i]; if (!it) return;
     var opts = shuffle([it.w].concat(clzDistractors(it)));
-    clz.q = { it: it, opts: opts }; clz.ans = null;
+    clz.q = { it: it, opts: opts }; clz.ans = null; clz.alt = false;
   }
   function clzQuizHTML() {
     var q = clz.q, it = q.it, md = S && S.clzMode === 'input' ? 'input' : 'mcq', h = '';
@@ -21715,6 +21723,8 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
       var ok = clz.ans === 1, w = it.w;
       h += '<div class="choices">' + (md === 'mcq' ? q.opts.map(function (o, i) { var c = 'choice'; if (o.mot === w.mot) c += ' good'; else if (clz.pick === i) c += ' bad'; return '<button type="button" class="' + c + '" disabled><span class="key">' + (i + 1) + '</span><span class="jp">' + esc(o.mot) + '</span></button>'; }).join('') : '') + '</div>';
       h += '<div class="fb ' + (ok ? 'good' : 'bad') + '"><b>' + (ok ? 'Bonne réponse !' : 'Raté. Le mot était : ' + esc(w.mot)) + '</b><span class="jp">' + esc(w.mot) + '</span> · ' + esc(w.lecture || '') + ' · ' + esc(w.sens) + '<div class="aids"><button type="button" class="aidbtn" data-clz="say">🔊 Écouter la phrase</button></div>' + '' + '</div>';
+      if (clz.alt) h += '<p class="small muted" style="text-align:center">Phrase bonus : pas de points pour celle-ci.</p>';
+      if (clzAltList(clz.items[clz.i]).length) h += '<div style="text-align:center;margin-top:10px"><button type="button" class="btn" data-clz="alt">🔁 Étudier une autre phrase avec ce mot</button></div>';
       h += '<div style="text-align:center;margin-top:10px"><button type="button" class="btn primary" data-clz="next">' + (clz.i + 1 >= clz.items.length ? 'Voir le résultat' : 'Suivant') + '</button></div>';
     }
     return h;
@@ -21732,6 +21742,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   function clzAnswer(ok, pickIdx) {
     var q = clz.q; if (!q || clz.ans !== null) return;
     clz.ans = ok ? 1 : 0; clz.pick = pickIdx; var w = q.it.w;
+    if (clz.alt) { sfx(ok ? 'ok' : 'bad'); renderClz(); return; }
     var st = stat(w.key), before = level();
     if (ok) { st.ok++; st.run++; clz.ok++; S.correct = (S.correct || 0) + 1; sfx('ok'); var d = dayKey(), x = S.clzxp && S.clzxp.d === d ? S.clzxp : (S.clzxp = { d: d, n: 0 }), g = Math.min(5, 80 - x.n); if (g > 0) { x.n += g; addXp(g); } }
     else { st.ko++; st.run = 0; errLog(w.key, 'Phrases à trou'); if (clz.miss.indexOf(w.mot) < 0) clz.miss.push(w.mot); sfx('bad'); }
@@ -21764,8 +21775,9 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   function djGamesHTML(fl, kj, mj) {
     document.body.classList.toggle('qvon', djSub === 'daily' || djSub === 'jlpt');
     if (!djSub) return tipHTML('dojo', 'Voici ton Dojo ! Touche une carte pour t\'entraîner : <b>Flashcards</b> pour revoir tes mots, <b>Kanjis</b>, <b>Mini-jeux</b>, ton <b>Carnet d\'erreurs</b>, ou du <b>vocabulaire du quotidien</b> ou le <b>JLPT</b>.') +
-      '<div class="djgrid">' + ['flash', 'kana', 'kanji', 'mini', 'err', 'daily', 'jlpt', 'rad'].map(djTile).join('') + '</div>';
+      '<div class="djgrid">' + ['flash', 'kana', 'kanji', 'mini', 'err', 'daily', 'jlpt', 'bonus', 'rad'].map(djTile).join('') + '</div>';
     if (djSub === 'err') return '';
+    if (djSub === 'bonus') return djBackHTML('bonus') + tipHTML('dj_bonus', DJ_INFO.bonus.tip) + '<div id="bonusHost">' + bonusInner() + '</div>';
     if (djSub === 'kana') return djBackHTML('kana') + tipHTML('dj_kana', DJ_INFO.kana.tip) + '<div id="kanaHost">' + knInner() + '</div>';
     if (djSub === 'fur') return djBackHTML('fur') + tipHTML('dj_fur', DJ_INFO.fur.tip) + '<div id="furHost">' + furInner() + '</div>';
     if (djSub === 'rad' || djSub === 'cuis' || djSub === 'lire' || djSub === 'nb') return djBackHTML(djSub) + tipHTML('dj_' + djSub, DJ_INFO[djSub].tip) + '<div id="lrnHost">' + lrnInner() + '</div>';
@@ -23269,7 +23281,7 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
   function furRun() {
     furBusy = true;
     try {
-      var roots = [document.getElementById('stage'), document.querySelector('#games .qvbody'), document.getElementById('vClz')];
+      var roots = [document.getElementById('stage'), document.querySelector('#games .qvbody'), document.getElementById('bonusHost'), document.getElementById('vClz')];
       roots.forEach(function (r) { if (r && !r.hidden) furApplyTo(r); });
     } catch (e) {}
     furBusy = false;
@@ -23366,6 +23378,308 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
     toast('🎁 +' + r.label); try { sfx('coin', true); } catch (er) {}
   });
   setInterval(codesMount, 1000);
+
+  /* =====================================================================
+     v218 : fiche d'un mot au clic (tracés, niveau JLPT, registre, lecture),
+     autre phrase avec le même mot, vocabulaire bonus
+     ===================================================================== */
+  var BONUS_RAW = `@ono|Onomatopées|ぎおんご・ぎたいご : les sons et les états décrits par des mots-images
+わくわく|わくわく|trépigner d'impatience|明日の遠足が、わくわくします。|Je suis tout excité par la sortie de demain.
+どきどき|どきどき|cœur qui bat fort|発表の前は、どきどきします。|Avant la présentation, mon cœur bat fort.
+ぺらぺら|ぺらぺら|couramment (parler)|彼は英語がぺらぺらです。|Il parle l'anglais couramment.
+ぐっすり|ぐっすり|profondément (dormir)|昨日はぐっすり眠りました。|Hier, j'ai dormi à poings fermés.
+うとうと|うとうと|somnoler|電車でうとうとしました。|J'ai somnolé dans le train.
+ぺこぺこ|ぺこぺこ|avoir très faim|お腹がぺこぺこです。|J'ai une faim de loup.
+ぐうぐう|ぐうぐう|ronfler ; gargouiller|お腹がぐうぐう鳴っています。|Mon ventre gargouille.
+ざあざあ|ざあざあ|pluie battante|雨がざあざあ降っています。|La pluie tombe à verse.
+しとしと|しとしと|pluie fine|雨がしとしと降っています。|Une pluie fine tombe doucement.
+ぽつぽつ|ぽつぽつ|gouttes éparses|雨がぽつぽつ降ってきました。|Quelques gouttes se sont mises à tomber.
+ごろごろ|ごろごろ|rouler ; paresser ; gronder|日曜日は家でごろごろします。|Le dimanche, je paresse à la maison.
+ぴかぴか|ぴかぴか|étincelant|靴をぴかぴかにしました。|J'ai fait briller mes chaussures.
+きらきら|きらきら|scintiller|星がきらきら光っています。|Les étoiles scintillent.
+ふわふわ|ふわふわ|moelleux ; léger|このパンはふわふわです。|Ce pain est moelleux.
+もちもち|もちもち|moelleux et élastique|この餅はもちもちしています。|Ce mochi est moelleux et élastique.
+さくさく|さくさく|croustillant|このクッキーはさくさくです。|Ce biscuit est croustillant.
+ぱりぱり|ぱりぱり|croquant|ぱりぱりのせんべいを食べました。|J'ai mangé un senbei croquant.
+とろとろ|とろとろ|fondant|卵がとろとろに煮えました。|Les œufs ont cuit jusqu'à être fondants.
+ぐつぐつ|ぐつぐつ|mijoter|鍋がぐつぐつ煮えています。|La marmite mijote en bouillonnant.
+じゅうじゅう|じゅうじゅう|grésiller|肉がじゅうじゅう焼けています。|La viande grésille sur le gril.
+ぺたぺた|ぺたぺた|coller ; pas pieds nus|床をぺたぺた歩きました。|J'ai marché pieds nus sur le sol.
+べたべた|べたべた|collant|手がべたべたします。|Mes mains sont collantes.
+つるつる|つるつる|lisse|この板はつるつるです。|Cette planche est lisse.
+ざらざら|ざらざら|rugueux|壁がざらざらしています。|Le mur est rugueux.
+ちくちく|ちくちく|piquer|このセーターはちくちくします。|Ce pull gratte.
+ずきずき|ずきずき|élancement|歯がずきずき痛みます。|Ma dent me lance.
+ひりひり|ひりひり|brûler (douleur piquante)|日焼けで背中がひりひりします。|Mon dos me brûle à cause du coup de soleil.
+がらがら|がらがら|vide ; fracas|電車はがらがらでした。|Le train était quasiment vide.
+ぎゅうぎゅう|ぎゅうぎゅう|serré, bondé|朝の電車はぎゅうぎゅうです。|Le train du matin est bondé.
+ぎりぎり|ぎりぎり|de justesse|ぎりぎりで間に合いました。|Je suis arrivé juste à temps.
+びっくり|びっくり|sursauter, être surpris|大きな音にびっくりしました。|J'ai sursauté à cause d'un gros bruit.
+がっかり|がっかり|déçu|試合に負けてがっかりしました。|J'ai perdu le match, je suis déçu.
+いらいら|いらいら|s'énerver|待たされていらいらします。|Ça m'énerve d'être fait attendre.
+そわそわ|そわそわ|ne pas tenir en place|試験の前でそわそわします。|Avant l'examen, je n'arrive pas à tenir en place.
+のんびり|のんびり|tranquillement|休日はのんびり過ごします。|Les jours de congé, je me détends tranquillement.
+ゆっくり|ゆっくり|lentement ; à son aise|ゆっくり話してください。|Parlez lentement, s'il vous plaît.
+てくてく|てくてく|marcher d'un bon pas|駅までてくてく歩きました。|J'ai marché d'un bon pas jusqu'à la gare.
+うろうろ|うろうろ|rôder|駅の前でうろうろしました。|J'ai rôdé devant la gare.
+にこにこ|にこにこ|sourire radieux|赤ちゃんがにこにこ笑っています。|Le bébé sourit à pleines dents.
+くすくす|くすくす|rire sous cape|教室でくすくす笑う声がしました。|On entendait des rires étouffés dans la classe.
+げらげら|げらげら|rire aux éclats|みんなでげらげら笑いました。|Nous avons tous éclaté de rire.
+しくしく|しくしく|pleurnicher|子どもがしくしく泣いています。|L'enfant pleurniche doucement.
+わんわん|わんわん|ouaf ; pleurer fort|犬がわんわん鳴いています。|Le chien aboie.
+にゃあにゃあ|にゃあにゃあ|miaou|子猫がにゃあにゃあ鳴いています。|Le chaton miaule.
+ぴよぴよ|ぴよぴよ|piou-piou|ひよこがぴよぴよ鳴いています。|Les poussins piaillent.
+@fam|Mots familiers|Mots familiers du quotidien : à comprendre, à utiliser avec des proches
+めっちゃ|めっちゃ|vachement, super|このラーメン、めっちゃおいしい！|Ces ramen sont super bons !
+超|ちょう|ultra, hyper|この映画、超おもしろい。|Ce film est hyper drôle.
+すごく|すごく|très (oral)|今日はすごく暑いね。|Il fait super chaud aujourd'hui.
+やばい|やばい|dingue ; flippant ; génial|この景色、やばい！|Ce paysage est dingue !
+マジ|まじ|sérieux ? ; vraiment|マジで？ほんとに？|Sérieux ? C'est vrai ?
+本当に|ほんとうに|vraiment|本当にありがとう。|Merci vraiment.
+うるさい|うるさい|la ferme ; bruyant|うるさいなあ、静かにして。|Ça fait du bruit, du calme.
+うざい|うざい|saoulant|彼の話、ちょっとうざい。|Ses histoires sont un peu saoulantes.
+きもい|きもい|dégueu|あの虫、きもい！|Cet insecte est dégueu !
+だるい|だるい|avoir la flemme ; sans énergie|今日は体がだるい。|Aujourd'hui je me sens sans énergie.
+めんどくさい|めんどくさい|casse-pieds|宿題、めんどくさい。|Les devoirs, quelle corvée.
+むかつく|むかつく|énerver|あの言い方、むかつく。|Sa façon de parler m'énerve.
+ずるい|ずるい|pas juste ; filou|それはずるいよ。|C'est pas juste.
+ださい|ださい|ringard|その服、ちょっとださいよ。|Ces vêtements sont un peu ringards.
+かわいい|かわいい|mignon|この子猫、かわいい！|Ce chaton est mignon !
+かっこいい|かっこいい|classe, cool|あの人、かっこいいね。|Ce gars est classe.
+うまい|うまい|délicieux ; doué (masculin)|この肉、うまい！|Cette viande est délicieuse !
+まずい|まずい|dégueulasse ; embêtant|この料理、まずい。|Ce plat est mauvais.
+ぼろぼろ|ぼろぼろ|en lambeaux|靴がぼろぼろです。|Mes chaussures sont en lambeaux.
+ぼっち|ぼっち|solitaire (seul)|昼ご飯はぼっちだった。|J'ai déjeuné tout seul.
+ちゃんと|ちゃんと|comme il faut|ちゃんと勉強してね。|Étudie comme il faut.
+ぜんぜん|ぜんぜん|pas du tout ; super (oral)|ぜんぜんわからない。|Je ne comprends rien du tout.
+とっても|とっても|très|とっても楽しかった。|C'était très amusant.
+ちょっと|ちょっと|un peu ; dis donc|ちょっと待って。|Attends un peu.
+バイト|ばいと|petit boulot (abrégé)|週末はバイトがある。|J'ai mon petit boulot ce week-end.
+コンビニ|こんびに|supérette (abrégé)|コンビニでお茶を買った。|J'ai acheté du thé à la supérette.
+スマホ|すまほ|smartphone (abrégé)|スマホを忘れた。|J'ai oublié mon smartphone.
+パソコン|ぱそこん|ordinateur (abrégé)|パソコンが壊れた。|Mon ordinateur est cassé.
+リモコン|りもこん|télécommande|リモコンはどこ？|Où est la télécommande ?
+おやつ|おやつ|goûter|おやつにクッキーを食べた。|J'ai mangé des biscuits au goûter.
+ご飯|ごはん|repas ; riz|ご飯できたよ。|À table, c'est prêt !
+お腹|おなか|ventre|お腹すいた。|J'ai faim.
+おっきい|おっきい|gros (oral de おおきい)|おっきい犬だね。|Quel gros chien.
+ちっちゃい|ちっちゃい|tout petit (oral de ちいさい)|ちっちゃい手だね。|Quelles petites mains.
+@cont|Contractions à l'oral|Ce qui se prononce vite : ～てる, ～ちゃう, ～なきゃ…
+食べてる|たべてる|je mange / être en train de manger (食べている)|今、ご飯を食べてる。|Là, je suis en train de manger.
+見てる|みてる|regarder (見ている)|何を見てるの？|Tu regardes quoi ?
+行ってる|いってる|aller (régulièrement) (行っている)|毎日ジムに行ってる。|Je vais à la salle de sport tous les jours.
+知ってる|しってる|savoir (知っている)|その人、知ってる。|Cette personne, je la connais.
+食べちゃう|たべちゃう|manger (par mégarde) (食べてしまう)|ケーキ、全部食べちゃった。|J'ai tout mangé, le gâteau.
+忘れちゃう|わすれちゃう|oublier (忘れてしまう)|すぐ忘れちゃうんだ。|J'oublie tout de suite.
+飲んじゃう|のんじゃう|boire (par mégarde) (飲んでしまう)|ジュース、飲んじゃった。|J'ai bu le jus par erreur.
+置いとく|おいとく|laisser à l'avance (置いておく)|ここに置いとくね。|Je le laisse ici.
+やっとく|やっとく|faire d'avance (やっておく)|宿題、やっとくよ。|Je fais les devoirs d'avance.
+行かなきゃ|いかなきゃ|il faut que j'y aille (行かなければ)|もう行かなきゃ。|Il faut que j'y aille.
+勉強しなきゃ|べんきょうしなきゃ|il faut que j'étudie|試験だから勉強しなきゃ。|J'ai un examen, il faut que j'étudie.
+帰らなくちゃ|かえらなくちゃ|il faut que je rentre (帰らなくては)|遅いから帰らなくちゃ。|Il est tard, il faut que je rentre.
+持ってく|もってく|emporter (持っていく)|傘を持ってくね。|Je prends un parapluie.
+やっぱ|やっぱ|finalement (やはり)|やっぱ行こうかな。|Finalement, je vais peut-être y aller.
+じゃあ|じゃあ|alors (では)|じゃあ、また明日。|Alors, à demain.
+そっか|そっか|ah, je vois (そうか)|そっか、わかった。|Ah, d'accord, j'ai compris.
+だって|だって|mais (parce que)|だって、眠かったんだもん。|Mais j'avais sommeil, quoi.
+でも|でも|mais|でも、行きたくない。|Mais je ne veux pas y aller.
+なんで|なんで|pourquoi (なぜ)|なんで来なかったの？|Pourquoi tu n'es pas venu ?
+どうして|どうして|pourquoi|どうして泣いてるの？|Pourquoi tu pleures ?
+ってば|ってば|insistance (「ほら」)|早く起きてってば。|Lève-toi vite, je te dis !
+んだ|んだ|explication (のだ)|雨が降ってるんだ。|C'est qu'il pleut.
+ていうか|ていうか|enfin ; plutôt (というか)|ていうか、お腹すいた。|Enfin bref, j'ai faim.
+じゃん|じゃん|n'est-ce pas ! (じゃないか)|いいじゃん、行こうよ。|Pourquoi pas, allons-y !
+@ami|Entre amis proches|Le langage détendu qu'on parle avec ses copains : à ne pas utiliser avec un professeur
+ねえ|ねえ|dis ! (pour interpeller)|ねえ、聞いて。|Dis, écoute.
+あのさ|あのさ|dis-moi, tu sais|あのさ、明日ひま？|Dis, tu es libre demain ?
+ありがと|ありがと|merci (court)|手伝ってくれて、ありがと！|Merci de m'avoir aidé !
+ごめん|ごめん|pardon|遅れてごめん。|Pardon d'être en retard.
+ごめんね|ごめんね|désolé (doux)|待たせてごめんね。|Désolé de t'avoir fait attendre.
+うん|うん|oui|うん、わかった。|Oui, compris.
+ううん|ううん|non (doux)|ううん、大丈夫。|Non, ça va.
+ほんと|ほんと|vraiment ? (本当)|ほんと？うれしい！|Vraiment ? Je suis content !
+うそ|うそ|menteur ! ; sans blague|うそ！信じられない。|Sans blague ! Je n'y crois pas.
+そうなんだ|そうなんだ|ah, c'est comme ça|そうなんだ、知らなかった。|Ah bon, je ne savais pas.
+だよね|だよね|n'est-ce pas|暑いよね。|Il fait chaud, hein ?
+いいね|いいね|chouette|その服、いいね！|Ces vêtements, ils sont bien !
+いいよ|いいよ|d'accord ; ça marche|いいよ、行こう。|D'accord, allons-y.
+だめ|だめ|pas question ; nul|それはだめだよ。|Ça, pas question.
+ひま|ひま|libre ; qui s'ennuie|今日はひまだよ。|Aujourd'hui je suis libre.
+遊ぼう|あそぼう|jouons ! (遊ぼう)|今日、遊ぼうよ。|Si on sortait aujourd'hui ?
+行こう|いこう|allons-y|一緒に行こう。|Allons-y ensemble.
+食べよう|たべよう|mangeons|お昼、食べよう。|Mangeons à midi.
+お疲れ|おつかれ|salut ! (fin de journée)|お疲れ！また明日。|Bonne soirée ! À demain.
+おはよ|おはよ|salut (matin)|おはよ！早いね。|Salut ! Tu es matinal.
+じゃね|じゃね|à plus|じゃね、また連絡する。|À plus, je te recontacte.
+またね|またね|à bientôt|またね！気をつけて。|À bientôt ! Fais attention.
+お前|おまえ|toi (très familier, masculin)|お前、元気か？|Toi, ça va ?
+あいつ|あいつ|ce type|あいつ、いいやつだよ。|Ce type, il est sympa.
+やつ|やつ|type, gars|いいやつだよ。|C'est un chic type.
+友達|ともだち|ami|友達と遊んだ。|J'ai joué avec un ami.
+親友|しんゆう|meilleur ami|彼は私の親友だ。|C'est mon meilleur ami.
+`;
+  var BONUS = (function () {
+    var cats = [], cur = null;
+    BONUS_RAW.split('\n').forEach(function (l) {
+      l = l.trim(); if (!l) return;
+      if (l.charAt(0) === '@') { var p = l.slice(1).split('|'); cur = { id: p[0], name: p[1], desc: p[2] || '', items: [] }; cats.push(cur); return; }
+      var q = l.split('|'); if (!cur || q.length < 3) return;
+      cur.items.push({ jp: q[0], kana: q[1], fr: q[2], ex: q[3] || '', exfr: q[4] || '', cat: cur.id, key: 'bn:' + cur.id + ':' + q[0] });
+    });
+    return cats;
+  })();
+  var BONUS_REG = { ono: 'Onomatopée', fam: 'Familier', cont: 'Oral (contraction)', ami: 'Entre amis (très familier)' };
+  var REG_HON = ['召し上がる', 'いらっしゃる', 'おっしゃる', 'くださる', 'ご覧になる', 'なさる'];
+  var REG_HUM = ['申す', '致す', '存じる', '拝見する', '差し上げる', 'お目にかかる', 'うかがう', '伺う', '参る', 'いただく', '申し上げる', '承る'];
+  var REG_POL = ['お願いします', '分かりません', '失礼します', 'お疲れ様です', 'よろしくお願いします', 'お久しぶりです', 'お元気ですか', '申し訳ありません', 'お邪魔します', 'お邪魔しました', '失礼しました', 'いらっしゃいませ', 'お世話になります', 'どうぞよろしく', 'ご苦労さま', 'お元気で', 'お誕生日おめでとう', 'あけましておめでとう', '行ってらっしゃい', 'お先に', 'お願い'];
+  var REG_FAM = ['じゃあね', 'またね', 'かっこいい', 'スマホ', 'やっぱり', 'めちゃくちゃ', 'やたらに', 'うるさい', 'いらいら', 'ドキドキ', 'イライラ', 'ワクワク', 'おっきい', 'ちっちゃい', 'バイク', 'アニメ', 'カラオケ', 'ゴミ', 'すごい', 'すごく', 'ひどい', 'とにかく', 'かっこいい', 'ごろごろ', 'ぺらぺら', 'ぐっすり', 'ぴったり', 'ぺこぺこ', 'どうせ', 'ちっとも', 'つい', 'ぎりぎり'];
+  var REG_WRI = ['なぜなら', 'ゆえに', 'もしくは', '万一', '著しい', '荘厳', '厳か', '偉大', '至急', '円満', '被疑者', '被選挙権', '渡航', '推定', '拝見', '謙譲語', '賢明', '賢者', '均衡', '逃亡', '警戒', '捕獲', '専ら', '被害', 'いわゆる', '従って', 'すなわち', 'あらゆる', 'ただし', 'もっとも', 'ところが', 'または', 'つまり'];
+  var WLEX_C = null, WLEX_LV = { n5: 'N5', n4: 'N4', n3: 'N3', n2: 'N2', n1: 'N1', q: 'Vie quotidienne' };
+  function regOfWord(jp, tag) {
+    if (tag && BONUS_REG[tag]) return BONUS_REG[tag];
+    if (tag === 'wri') return 'Écrit / soutenu';
+    if (tag === 'fam') return 'Familier';
+    if (tag === 'pol') return 'Poli';
+    if (REG_HON.indexOf(jp) >= 0) return 'Honorifique (sonkeigo)';
+    if (REG_HUM.indexOf(jp) >= 0) return 'Humble (kenjōgo)';
+    if (REG_POL.indexOf(jp) >= 0) return 'Poli (formule)';
+    if (REG_FAM.indexOf(jp) >= 0) return 'Familier';
+    if (REG_WRI.indexOf(jp) >= 0) return 'Écrit / soutenu';
+    return 'Neutre (courant)';
+  }
+  function wlex() {
+    if (WLEX_C) return WLEX_C;
+    var d = {}, stem = {};
+    function add(jp, kana, fr, lvl, tag, extra) {
+      if (!jp) return; jp = String(jp).replace(/^[〜～]/, ''); if (!jp) return;
+      var cur = d[jp];
+      if (!cur) d[jp] = { jp: jp, kana: toHira(kana || ''), fr: fr || '', lvl: lvl || '', tag: tag || '', course: extra || '' };
+      else { if (lvl && (!cur.lvl || cur.lvl === 'Cours')) cur.lvl = lvl; if (tag && !cur.tag) cur.tag = tag; if (!cur.kana && kana) cur.kana = toHira(kana); }
+    }
+    BONUS.forEach(function (c) { c.items.forEach(function (it) { add(it.jp, it.kana, it.fr, 'Bonus', c.id); }); });
+    Object.keys(QVW).forEach(function (k) { var v = QVW[k], p = k.split(':')[0]; add(v.jp, v.kana, v.fr, WLEX_LV[p] || '', v.reg || ''); });
+    WORDS.forEach(function (w) { add(w.mot, w.lecture, w.sens, 'Cours', ''); });
+    Object.keys(d).forEach(function (jp) {
+      var m = jp;
+      if (m.length >= 2 && /[ぁ-ん]$/.test(m) && /[㐀-鿿]/.test(m.charAt(0))) {
+        var st = /する$/.test(m) ? m.slice(0, -2) : m.slice(0, -1);
+        if (st && !d[st] && !stem[st] && (/[㐀-鿿]/.test(st))) stem[st] = jp;
+      }
+    });
+    WLEX_C = { d: d, stem: stem };
+    return WLEX_C;
+  }
+  function wlookup(tok) { var L = wlex(); return L.d[tok] || (L.stem[tok] ? L.d[L.stem[tok]] : null); }
+  function wtokHTML(text, furi) {
+    var L = wlex(), a = Array.from(String(text)), out = '', i = 0;
+    while (i < a.length) {
+      var hit = null, len;
+      if (/[㐀-鿿ぁ-んァ-ヶー]/.test(a[i])) {
+        for (len = Math.min(8, a.length - i); len >= 1 && !hit; len--) {
+          var sub = a.slice(i, i + len).join('');
+          if (len === 1 && !/[㐀-鿿]/.test(sub)) continue;
+          if (len < 2 && !/[㐀-鿿]/.test(sub)) continue;
+          if (wlookup(sub)) hit = sub;
+        }
+      }
+      if (hit) { var n = Array.from(hit).length; out += '<button type="button" class="wtok" data-wtok="' + esc(hit) + '">' + (furi ? furiHTML(hit) : esc(hit)) + '</button>'; i += n; }
+      else { out += esc(a[i]); i++; }
+    }
+    return out;
+  }
+  function wcardHTML(e) {
+    var rom = (typeof toRomaji === 'function' && e.kana) ? toRomaji(e.kana) : '';
+    var kj = Array.from(e.jp).filter(function (c) { return /[㐀-鿿]/.test(c); });
+    var h = '<div class="wfcard"><div class="wfcbig jp">' + esc(e.jp) + '</div>' +
+      (e.kana && e.kana !== e.jp ? '<div class="wfcrd jp">' + esc(e.kana) + (rom ? ' <small>' + esc(rom) + '</small>' : '') + '</div>' : '') +
+      '<div class="wfcfr">' + esc(e.fr) + '</div><div class="wfcchips">' + (e.lvl ? '<span class="wfcchip lv">' + esc(e.lvl) + '</span>' : '') + '<span class="wfcchip rg">Registre : ' + esc(regOfWord(e.jp, e.tag)) + '</span></div>' +
+      '<div class="wfcact"><button type="button" class="btn" data-wcsay="' + esc(e.kana || e.jp) + '">🔊 Écouter</button></div>';
+    var st = kj.filter(function (c) { return typeof STROKES === 'object' && STROKES[c]; });
+    if (st.length) h += '<div class="wfstk"><div class="wfstt">Tracé 書き順</div>' + st.map(function (c) { return '<div class="wfsk"><button class="btn" type="button" data-sw="open" data-k="' + esc(c) + '">▶ ' + esc(c) + '</button><span class="swhost"></span></div>'; }).join('') + '</div>';
+    var kinfo = kj.map(function (c) { var k = typeof KMAP === 'object' && KMAP[c]; return k ? '<li><span class="jp">' + esc(c) + '</span> · ON ' + esc((k.on || []).join('、') || '—') + ' / KUN ' + esc((k.kun || []).join('、') || '—') + ' · ' + esc(k.sens || '') + '</li>' : ''; }).join('');
+    if (kinfo) h += '<ul class="wfckl">' + kinfo + '</ul>';
+    return h + '</div>';
+  }
+  function wcOpen(tok) {
+    var e = wlookup(tok); if (!e) return;
+    openModal('Fiche du mot', wcardHTML(e), 'wfcmodal');
+  }
+  document.addEventListener('click', function (ev) {
+    var t = ev.target.closest ? ev.target.closest('[data-wtok]') : null;
+    if (t) { ev.preventDefault(); wcOpen(t.getAttribute('data-wtok')); return; }
+    var s = ev.target.closest ? ev.target.closest('[data-wcsay]') : null;
+    if (s && typeof aidSpeak === 'function') aidSpeak(s.getAttribute('data-wcsay'), 0.85);
+  });
+
+  /* ---- phrases à trou : texte cliquable + autre phrase avec le même mot ---- */
+  function clzAltList(it) {
+    var key = String(it.w.mot).replace(/^[〜～]/, ''), cur = it.full, out = [];
+    if (!key || (key.length < 2 && !/[㐀-鿿]/.test(key))) return out;
+    var seen = {}; seen[cur] = 1;
+    function push(full, fr, from) {
+      if (!full || seen[full] || full.indexOf(key) < 0) return; seen[full] = 1;
+      var at = full.indexOf(key); out.push({ w: it.w, pre: full.slice(0, at), hit: key, post: full.slice(at + key.length), fr: fr || '', full: full, from: from });
+    }
+    Object.keys(EXS).forEach(function (k) { if (k !== it.w.mot) push(EXS[k][0], EXS[k][1], k); });
+    if (typeof SENT !== 'undefined') Object.keys(SENT).forEach(function (k) { var s = SENT[k]; if (k !== it.w.mot && s && s.full) push(s.full, s.fr, k); });
+    return out;
+  }
+  window.__clzAlt = clzAltList;
+  var clzAltI = {};
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-clz="alt"]') : null; if (!b || !user || !S || !clz.q) return;
+    var it = clz.items[clz.i], list = clzAltList(it);
+    if (!list.length) { toast('Pas d’autre phrase pour ce mot pour l’instant.'); return; }
+    var n = (clzAltI[it.w.key] = ((clzAltI[it.w.key] || 0) + 1)) % list.length, nit = list[n];
+    clz.alt = true; clz.q = { it: nit, opts: shuffle([it.w].concat(clzDistractors(nit))) }; clz.ans = null; clz.pick = null;
+    renderClz(); window.scrollTo(0, 0);
+  });
+
+  /* ---- vocabulaire bonus (Dojo) ---- */
+  var bonusV = { cat: 'ono', view: 'list', q: null, i: 0, ok: 0, items: [] };
+  function bonusInner() {
+    if (bonusV.view === 'quiz' && bonusV.q) return bonusQuizHTML();
+    if (bonusV.view === 'end') return '<div class="result"><div class="sprbig win jp" aria-hidden="true">楽</div><h3>' + (bonusV.ok >= bonusV.items.length * 0.8 ? 'Excellent !' : 'Bien joué !') + '</h3><p>' + bonusV.ok + ' bonne' + (bonusV.ok > 1 ? 's' : '') + ' réponse' + (bonusV.ok > 1 ? 's' : '') + ' sur ' + bonusV.items.length + '.' + (bonusV.xp ? '<br><b>+' + bonusV.xp + ' XP</b>' : '') + '</p><div class="row"><button type="button" class="btn primary" data-bn="quiz">Rejouer</button><button type="button" class="btn" data-bn="list">Retour à la liste</button></div></div>';
+    var cats = BONUS, cur = cats.filter(function (c) { return c.id === bonusV.cat; })[0] || cats[0];
+    var h = '<div class="seg bnseg" role="tablist" aria-label="Catégorie">' + cats.map(function (c) { return '<button type="button" role="tab" class="' + (c.id === cur.id ? 'on' : '') + '" aria-selected="' + (c.id === cur.id) + '" data-bn="cat" data-c="' + c.id + '">' + esc(c.name) + '</button>'; }).join('') + '</div>';
+    h += '<p class="small muted">' + esc(cur.desc) + '</p><div class="knact"><button type="button" class="btn primary" data-bn="quiz">▶ Quiz de ' + cur.items.length + ' mots</button></div><div class="bnlist">';
+    cur.items.forEach(function (it) {
+      h += '<div class="bnrow"><button type="button" class="wtok bnw jp" data-wtok="' + esc(it.jp) + '">' + esc(it.jp) + '</button><span class="bnrd jp">' + esc(it.kana) + '</span><span class="bnfr">' + esc(it.fr) + '</span>' +
+        (it.ex ? '<span class="bnex jp">' + wtokHTML(it.ex, false) + '</span><span class="bnexfr">' + esc(it.exfr) + '</span>' : '') + '</div>';
+    });
+    return h + '</div>';
+  }
+  function bonusStart() {
+    var cur = BONUS.filter(function (c) { return c.id === bonusV.cat; })[0], all = [];
+    BONUS.forEach(function (c) { all = all.concat(c.items); });
+    bonusV.items = shuffle(cur.items.slice()).slice(0, 10); bonusV.pool = all; bonusV.i = 0; bonusV.ok = 0; bonusV.xp = 0; bonusV.view = 'quiz'; bonusNext();
+  }
+  function bonusNext() {
+    var it = bonusV.items[bonusV.i], others = shuffle(bonusV.pool.filter(function (x) { return x.jp !== it.jp && x.fr !== it.fr; })).slice(0, 3);
+    bonusV.q = { it: it, opts: shuffle([it].concat(others)), ans: null };
+  }
+  function bonusQuizHTML() {
+    var q = bonusV.q, it = q.it, h = '<div class="knbar"><button type="button" class="btn" data-bn="list">‹ Arrêter</button></div><p class="small muted" style="text-align:center">Mot ' + (bonusV.i + 1) + ' / ' + bonusV.items.length + '</p><div class="knqcard qcard"><p class="prompt">Que signifie ce mot ?</p><div class="qbig jp" style="font-size:2.2rem;text-align:center">' + esc(it.jp) + '</div><p class="small muted" style="text-align:center">' + esc(it.kana) + '</p></div><div class="choices">';
+    q.opts.forEach(function (o, i) { var c = 'choice'; if (q.ans !== null) { if (o.jp === it.jp) c += ' good'; else if (q.ans === i) c += ' bad'; } h += '<button type="button" class="' + c + '" data-bn="pick" data-i="' + i + '"' + (q.ans !== null ? ' disabled' : '') + '><span class="key">' + (i + 1) + '</span><span>' + esc(o.fr) + '</span></button>'; });
+    h += '</div>';
+    if (q.ans !== null) h += '<div class="fb ' + (q.ans === 1 ? 'good' : 'bad') + '"><b>' + (q.ans === 1 ? 'Bien joué !' : 'Raté.') + '</b> ' + esc(it.jp) + ' = ' + esc(it.fr) + (it.ex ? '<br><span class="jp">' + esc(it.ex) + '</span><br><small>' + esc(it.exfr) + '</small>' : '') + '</div><div style="text-align:center;margin-top:10px"><button type="button" class="btn primary" data-bn="next">' + (bonusV.i + 1 >= bonusV.items.length ? 'Voir le résultat' : 'Suivant') + '</button></div>';
+    return h;
+  }
+  function bonusRefresh() { var h = $('bonusHost'); if (h) h.innerHTML = bonusInner(); }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-bn]') : null; if (!b || !user || !S) return;
+    var a = b.getAttribute('data-bn');
+    if (a === 'cat') { bonusV.cat = b.getAttribute('data-c'); bonusV.view = 'list'; }
+    else if (a === 'list') bonusV.view = 'list';
+    else if (a === 'quiz') bonusStart();
+    else if (a === 'pick') {
+      var q = bonusV.q; if (!q || q.ans !== null) return; var i = +b.getAttribute('data-i'), ok = q.opts[i].jp === q.it.jp;
+      q.ans = ok ? 1 : 0; q.pick = i;
+      if (ok) { bonusV.ok++; sfx('ok'); var d = dayKey(), x = S.bnxp && S.bnxp.d === d ? S.bnxp : (S.bnxp = { d: d, n: 0 }), g = Math.min(2, 60 - x.n); if (g > 0) { x.n += g; bonusV.xp += g; addXp(g); } } else { sfx('bad'); }
+      persist();
+    } else if (a === 'next') { bonusV.i++; if (bonusV.i >= bonusV.items.length) { bonusV.view = 'end'; try { streakTick(1); } catch (er) {} persist(); } else bonusNext(); }
+    bonusRefresh(); 
+  });
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
