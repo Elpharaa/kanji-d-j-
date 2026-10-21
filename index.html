@@ -4388,6 +4388,13 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
 .hubctabtn:active { scale: .95; transition-duration: .08s !important; }
 @media (prefers-reduced-motion: reduce) { .hubctabtn .hcplay { animation: none; } }
 
+/* ===== v229 : mot / kanji plus grand ===== */
+.qcard .kanji:not(.sent):not(.knqk) { font-size: clamp(7.4rem, 36vw, 11.5rem) !important; }
+.qcard .kanji.md { font-size: clamp(4.6rem, 23vw, 7.2rem) !important; }
+.qcard .kanji.sm { font-size: clamp(3rem, 14vw, 4.6rem) !important; }
+.knqcard .knqk { font-size: clamp(6.5rem, 32vw, 10rem) !important; }
+.furqbig { font-size: clamp(3.4rem, 17vw, 5.6rem) !important; }
+
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
