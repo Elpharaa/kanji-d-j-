@@ -4516,6 +4516,11 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
 .pgseg, .bnseg { overflow: hidden !important; display: flex; }
 .pgseg button, .bnseg button { flex: 1 1 0; min-width: 0; scale: 1 !important; transform: none !important; }
 
+/* ===== v242 : sélecteur de niveau : onglets Cours / JLPT plus grands ===== */
+.askbox .cs-tabs { display: grid !important; grid-template-columns: 1fr 1fr; gap: 10px; overflow: visible; }
+.askbox .cs-tab { padding: 14px 10px !important; font-size: 1.05rem !important; text-align: center; justify-content: center; min-height: 52px; }
+.askbox .cs-chips .cs-chip { min-height: 44px; padding-inline: 16px; font-size: 1rem; }
+
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -20837,7 +20842,7 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
     var n = playPool().length, ks = kSelList(), s = weekSel(), list = weekKanjis(s === 'all' ? 'all' : +s);
     if (gsKMode) n = (ks.length ? ks.length : list.length);
     var count = '<p class="gscount">' + (n ? (gsKMode ? '<b>' + n + ' kanji' + (n > 1 ? 's' : '') + '</b> dans cette sélection' : '<b>' + n + ' mot' + (n > 1 ? 's' : '') + '</b> dans cette sélection' + (ks.length ? ' (mots contenant ' + ks.length + ' kanji' + (ks.length > 1 ? 's' : '') + ')' : '')) : 'Aucun mot ici pour l\'instant : choisis un autre niveau.') + '</p>';
-    return '<div class="gsblock"><p class="gshead">Tu t\'entraînes sur quoi ?</p>' + askHTML('gs', true) + (gsKind ? '<label class="kindopt">Lectures à travailler<select id="gsKind" aria-label="Lectures à travailler">' + [['both', 'ON et KUN'], ['on', 'Seulement les lectures ON (katakana)'], ['kun', 'Seulement les lectures KUN (hiragana)']].map(function (o) { return '<option value="' + o[0] + '"' + (readKind() === o[0] ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') + '</select></label>' : '') + (gsFlashCtx ? seenOptHTML('gs') : '') + (gsStep === 0 || gsStep > 3 ? count : '') + '</div>';
+    return '<div class="gsblock">' + askHTML('gs', true) + (gsKind ? '<label class="kindopt">Lectures à travailler<select id="gsKind" aria-label="Lectures à travailler">' + [['both', 'ON et KUN'], ['on', 'Seulement les lectures ON (katakana)'], ['kun', 'Seulement les lectures KUN (hiragana)']].map(function (o) { return '<option value="' + o[0] + '"' + (readKind() === o[0] ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') + '</select></label>' : '') + (gsFlashCtx ? seenOptHTML('gs') : '') + (gsStep === 0 || gsStep > 3 ? count : '') + '</div>';
   }
   document.addEventListener('change', function (e) {
     var b = e.target && e.target.matches && e.target.matches('[data-seenonly]') ? e.target : null; if (!b || !user) return;
