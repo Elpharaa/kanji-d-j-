@@ -16391,7 +16391,7 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
     $('trail').innerHTML = '<span class="cur" aria-current="page">' + esc(crumbParts(view)[0][0]) + '</span>';
   }
   /* ---- Navigation groupée : Dojo (exercices | salons) et Profil (profil | classement) + sélecteur de niveau ---- */
-  var SEGS = { dojo: [['home', 'Exercices']], online: [['online', 'Raid & clans'], ['multi', 'Salons duel']], profil: [['profil', 'Mon profil'], ['board', 'Classement']] };
+  var SEGS = { dojo: [['home', 'Exercices']], online: [['multi', 'Salons duel'], ['online', 'Raid & clans']], profil: [['profil', 'Mon profil'], ['board', 'Classement']] };
   function renderSegs(view) {
     var cur = { vHome: 'home', vMulti: 'multi', vOnline: 'online', vProfil: 'profil', vBoard: 'board' }[view];
     Array.from(document.querySelectorAll('.gseg')).forEach(function (el) {
@@ -16626,7 +16626,7 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
     ].filter(function (c) { return c[0] === 'home' || c[0] === 'kanji' || c[0] === 'online' || unlOn(c[0]); });
     var nSm = cards.length - 1;
     $('hubGrid').innerHTML = cards.map(function (c) {
-      return '<button type="button" class="hubcard' + (c[0] === 'home' ? ' wide big' : ' sm' + nSm + (c[0] === 'online' && nSm % 2 ? ' olwide' : '')) + '" ' + (c[0] === 'bazar' ? 'data-bazar="1"' : c[0] === 'cards' ? 'data-cdalbum="1"' : 'data-go="' + c[0] + '"') + '>' + hubArtFor(c) + adminBtns('hub_' + c[0]) + (c[0] === 'home' && errCount() ? '<span class="hchip" role="img" aria-label="' + errCount() + ' à corriger" title="' + errCount() + ' à corriger">' + errCount() + '</span>' : '') + '<span class="hseal" aria-hidden="true">' + c[1] + '</span><span class="htx"><b>' + c[3] + '</b><small>' + esc(c[4]) + '</small></span></button>';
+      return '<button type="button" class="hubcard' + (c[0] === 'home' ? ' wide big' : ' sm' + nSm + (c[0] === 'online' && nSm % 2 ? ' olwide' : '')) + '" ' + (c[0] === 'bazar' ? 'data-bazar="1"' : c[0] === 'cards' ? 'data-cdalbum="1"' : 'data-go="' + (c[0] === 'online' ? 'multi' : c[0]) + '"') + '>' + hubArtFor(c) + adminBtns('hub_' + c[0]) + (c[0] === 'home' && errCount() ? '<span class="hchip" role="img" aria-label="' + errCount() + ' à corriger" title="' + errCount() + ' à corriger">' + errCount() + '</span>' : '') + '<span class="hseal" aria-hidden="true">' + c[1] + '</span><span class="htx"><b>' + c[3] + '</b><small>' + esc(c[4]) + '</small></span></button>';
     }).join('');
     $('hubGrid').insertAdjacentHTML('beforeend', '<a class="hubcard gramlink" href="' + GRAM_URL + '" target="_blank" rel="noopener noreferrer"><span class="gsl" aria-hidden="true">文</span><span class="gtx"><b>Grammaire japonaise</b><small>Sur le site Sakura no Bunpō <i aria-hidden="true">↗</i></small></span><span class="gpet" aria-hidden="true">🌸</span></a>');
     unlHint();
