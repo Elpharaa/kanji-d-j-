@@ -4380,6 +4380,14 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
 @media (hover: hover) { .hubcard:hover, #games .djt:hover, .qvt:hover, .ktile:hover, .mode:hover, .wcard:hover { scale: 1.055; translate: 0 -3px; z-index: 6; } }
 .hubcard:active, #games .djt:active, .qvt:active, .ktile:active, .mode:active, .wcard:active { scale: .95; translate: 0 2px; transition-duration: .08s !important; }
 
+/* ===== v228 : bouton Revoir ===== */
+.hubctabtn { transition: scale .28s cubic-bezier(.34, 1.56, .64, 1), translate .25s, filter .2s !important; }
+.hubctabtn .hcplay { animation: rvPulse 1.8s ease-in-out infinite; }
+@keyframes rvPulse { 0%, 100% { scale: 1; } 50% { scale: 1.14; } }
+@media (hover: hover) { .hubctabtn:hover { scale: 1.04; translate: 0 -2px; filter: brightness(1.07); } }
+.hubctabtn:active { scale: .95; transition-duration: .08s !important; }
+@media (prefers-reduced-motion: reduce) { .hubctabtn .hcplay { animation: none; } }
+
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
