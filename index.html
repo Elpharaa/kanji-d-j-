@@ -4375,6 +4375,11 @@ body[data-dir="r"] .vin { --vx: 34px; } body[data-dir="l"] .vin { --vx: -34px; }
 .sgh[data-k]::before, .tk { animation: tkFloat 5s ease-in-out infinite; }
 @keyframes tkFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
 @media (prefers-reduced-motion: reduce) { .clzblank, .btn.primary, .tk, .clzcard, .choice { animation: none !important; } }
+/* ===== v225b : grossissement des tuiles uniquement ===== */
+.hubcard, #games .djt, .qvt, .ktile, .mode, .wcard { transition: scale .28s cubic-bezier(.34, 1.56, .64, 1), translate .28s ease, transform .25s, box-shadow .25s, border-color .2s !important; }
+@media (hover: hover) { .hubcard:hover, #games .djt:hover, .qvt:hover, .ktile:hover, .mode:hover, .wcard:hover { scale: 1.055; translate: 0 -3px; z-index: 6; } }
+.hubcard:active, #games .djt:active, .qvt:active, .ktile:active, .mode:active, .wcard:active { scale: .95; translate: 0 2px; transition-duration: .08s !important; }
+
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
