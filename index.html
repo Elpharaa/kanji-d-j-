@@ -4636,6 +4636,52 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
 .voysteps b { display: block; } .voysteps small { display: block; opacity: .8; font-size: .85rem; }
 .voyhow1 { padding: 8px 12px; border-radius: 12px; background: rgba(255, 211, 110, .3); font-size: .9rem; }
 
+/* ===== v250 : diorama papier + compagnon ===== */
+.voytog { display: flex; gap: 10px; } .voytog button[data-voy^="tog"] { flex: 1; min-width: 0; }
+.voytog .petsw { flex: none; width: 56px; padding: 0; justify-content: center; font-size: 1.5rem; } .voytog .petsw.off { opacity: .5; filter: grayscale(1); }
+.voyd { position: relative; width: 100%; max-width: 520px; margin: 0 auto; border-radius: 26px; overflow: hidden; perspective: 1000px; box-shadow: 0 16px 40px rgba(25, 15, 60, .55); border: 2px solid rgba(255, 211, 110, .55); background: #1d1440; isolation: isolate; }
+.voyd::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 20; opacity: .5; mix-blend-mode: multiply; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/><feColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .25 0 0 0 .38 0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>"); }
+.voyd-in { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .3s ease-out; }
+.voyl { position: absolute; left: 0; width: 100%; will-change: transform; transform-origin: 50% 50%; }
+svg.voyl:not(.voypathL):not(.l-sky) { filter: drop-shadow(0 -1px 0 rgba(255, 255, 255, .3)) drop-shadow(0 6px 0 rgba(0, 0, 0, .16)) drop-shadow(0 14px 14px rgba(0, 0, 0, .3)); }
+.voyl.l-fg { pointer-events: none; z-index: 8; }
+.voyfogL { top: 0; height: 100%; pointer-events: none; opacity: var(--fog, .5); z-index: 3; }
+.voyfogL i { position: absolute; left: -20%; width: 140%; height: 18%; border-radius: 50%; background: radial-gradient(ellipse at center, rgba(255, 255, 255, .85), rgba(255, 255, 255, 0) 68%); filter: blur(10px); animation: voyFog 20s ease-in-out infinite alternate; }
+.voyfogL i:nth-child(1) { top: 22%; } .voyfogL i:nth-child(2) { top: 48%; animation-duration: 26s; animation-direction: alternate-reverse; } .voyfogL i:nth-child(3) { top: 74%; animation-duration: 31s; }
+.voypathL .pp { fill: none; stroke: rgba(40, 25, 70, .35); stroke-width: 15; stroke-linecap: round; vector-effect: non-scaling-stroke; transform: translateY(5px); }
+.voypathL .pd { fill: none; stroke: #fff3d6; stroke-width: 11; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.voypathL .pg { fill: none; stroke: #ffc95a; stroke-width: 7; stroke-linecap: round; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 5px rgba(255, 200, 80, .9)); }
+.voyn { position: absolute; z-index: 5; transform: translate(-50%, -50%); width: 0; height: 0; }
+.voynd { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); width: 58px; height: 58px; border-radius: 50%; border: 3px solid #fff3d6; font-size: 1.8rem; color: #fff; background: radial-gradient(circle at 35% 30%, var(--a1), var(--a2)); box-shadow: 0 5px 0 rgba(0, 0, 0, .25), 0 10px 14px rgba(0, 0, 0, .35); transition: scale .25s cubic-bezier(.34, 1.56, .64, 1); display: grid; place-items: center; padding: 0; }
+.voynd:hover { scale: 1.12; } .voyn.boss .voynd { width: 72px; height: 72px; font-size: 2.3rem; border-color: #ffb3c8; background: radial-gradient(circle at 35% 30%, #e0457f, #4a0f2e); }
+.voyn.done .voynd { background: radial-gradient(circle at 35% 30%, #ff7aa0, #b01c52); color: #fff3d6; box-shadow: 0 0 0 4px #ffd36e, 0 0 18px rgba(255, 190, 80, .8); }
+.voyn.cur .voynd { animation: voyPulse 1.8s ease-in-out infinite; } .voyn.locked .voynd { background: radial-gradient(circle at 35% 30%, #aaa3c4, #6f6890); filter: saturate(.5); }
+.voycl { position: absolute; left: 0; top: 0; width: 98px; transform: translate(-50%, -48%); fill: #fff; pointer-events: none; filter: drop-shadow(0 6px 0 rgba(120, 110, 170, .35)) drop-shadow(0 10px 10px rgba(0, 0, 0, .25)); transition: opacity .8s; z-index: 2; }
+.voyn.boss .voycl { width: 116px; } .voylk { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); text-decoration: none; font-size: 1.3rem; z-index: 3; pointer-events: none; }
+.voynl { position: absolute; top: 0; transform: translateY(-50%); width: 158px; padding: 6px 10px; border-radius: 10px; background: #fff7e6; color: #2c2452; box-shadow: 0 4px 0 rgba(0, 0, 0, .18), 0 8px 12px rgba(0, 0, 0, .25); display: grid; gap: 1px; line-height: 1.15; z-index: 4; pointer-events: none; }
+.voynl .voyi { pointer-events: auto; } .voynl b { font-size: .8rem; } .voynl small { font-size: .7rem; color: #4b3d84; }
+.voyn.r .voynl { left: 48px; } .voyn.l .voynl { right: 48px; text-align: right; } .voyn.boss.r .voynl { left: 58px; } .voyn.boss.l .voynl { right: 58px; }
+.voyn.locked .voynl { opacity: .8; }
+.voyknt { position: absolute; z-index: 7; width: 34px; height: 46px; transform: translate(-50%, calc(-100% - 18px)); pointer-events: none; transition: left .12s linear, top .12s linear; }
+.voyknt svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 3px 0 rgba(0, 0, 0, .3)); animation: kBob 2.2s ease-in-out infinite; } .voyknt.walk svg { animation-duration: .45s; }
+.voyknt .ks { position: absolute; left: 4px; right: 4px; bottom: -6px; height: 8px; border-radius: 50%; background: rgba(0, 0, 0, .35); filter: blur(2px); }
+@keyframes kBob { 50% { transform: translateY(-3px); } }
+#kdWisp { position: fixed; left: 0; top: 0; width: 34px; height: 34px; pointer-events: none; z-index: 75; opacity: 0; transition: opacity .5s; will-change: transform; }
+#kdWisp.on { opacity: 1; } #kdWisp .wb { position: absolute; inset: 0; transform-origin: center; }
+#kdWisp .wo { position: absolute; inset: 5px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #fffbd8, #ffc95a 55%, #ff9a3c); box-shadow: 0 0 14px 5px rgba(255, 190, 80, .75), 0 0 34px 12px rgba(255, 150, 60, .35); display: flex; justify-content: center; align-items: center; gap: 5px; }
+#kdWisp .we { width: 3px; height: 6px; border-radius: 50%; background: #3a2308; animation: wBlink 4.2s infinite; } #kdWisp .we + .we { animation-delay: .02s; }
+@keyframes wBlink { 0%, 94%, 100% { scale: 1; } 96% { scale: 1 .1; } }
+#kdWisp .ww { position: absolute; top: 4px; width: 14px; height: 20px; border-radius: 80% 20% 80% 20%; background: rgba(255, 255, 255, .55); box-shadow: 0 0 6px rgba(255, 255, 255, .6); }
+#kdWisp .ww.l { left: -6px; transform-origin: 100% 60%; animation: wFlapL .22s ease-in-out infinite alternate; } #kdWisp .ww.r { right: -6px; transform: scaleX(-1); transform-origin: 100% 60%; animation: wFlapR .22s ease-in-out infinite alternate; }
+@keyframes wFlapL { from { rotate: -22deg; } to { rotate: 18deg; } } @keyframes wFlapR { from { rotate: 22deg; } to { rotate: -18deg; } }
+#kdWisp.hop .wb { animation: wHop .55s cubic-bezier(.3, 1.6, .5, 1); } @keyframes wHop { 40% { transform: translateY(-22px) scale(1.2); } }
+#kdWisp.big .wb { animation: wBig 1s ease-in-out; } @keyframes wBig { 20% { transform: translateY(-30px) scale(1.7) rotate(0); } 60% { transform: translateY(-10px) scale(1.5) rotate(360deg); } }
+#kdWisp.sad .wb { animation: wSad .55s; } #kdWisp.sad .wo { background: radial-gradient(circle at 40% 35%, #e8c8c0, #b8625a 60%, #7a2a3a); box-shadow: 0 0 10px 3px rgba(200, 70, 80, .55); } @keyframes wSad { 15% { transform: translateX(-7px); } 35% { transform: translateX(7px); } 55% { transform: translateX(-5px); } 75% { transform: translateX(3px) translateY(6px); } }
+#kdWisp[data-m="hint"] .wo { animation: wGlow .9s ease-in-out infinite alternate; } @keyframes wGlow { to { box-shadow: 0 0 22px 9px rgba(255, 200, 90, .95), 0 0 52px 20px rgba(255, 150, 60, .5); } }
+#kdWisp[data-m="think"] .wb { scale: .9; }
+.wsp { position: fixed; z-index: 74; width: 6px; height: 6px; margin: -3px; border-radius: 50%; background: #ffe08a; box-shadow: 0 0 8px #ffb84a; pointer-events: none; opacity: 0; } .wsp.go { animation: wSp .8s ease-out forwards; } @keyframes wSp { 0% { opacity: .95; transform: translate(0, 0) scale(1); } 100% { opacity: 0; transform: translate(var(--dx, 0), var(--dy, 0)) scale(.2); } }
+@media (prefers-reduced-motion: reduce) { #kdWisp, .wsp { display: none !important; } .voyfogL i, .voyn.cur .voynd, .voyknt svg { animation: none !important; } }
+
 </style>
 
 <div id="animebg" aria-hidden="true"><svg class="sky" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice">
@@ -24770,17 +24816,90 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
       return '<button type="button" class="voyreg' + (l === voy.lv ? ' on' : '') + (o ? '' : ' lk') + (d ? ' dn' : '') + '" data-voy="reg:' + l + '"><span class="jp">' + R.glyph + '</span><b>' + R.lv + '</b>' + (d ? '<i class="jp">印</i>' : o ? '' : '<u>🔒</u>') + '</button>';
     }).join('') + '</div>';
   }
+  /* ===== v250 : carte-monde en papier découpé (diorama) ===== */
+  function voyBez(i, t) {
+    var a = voy.pts[i], b = voy.pts[i + 1] || a, my = (a.y + b.y) / 2, u = 1 - t;
+    return { x: u * u * u * a.x + 3 * u * u * t * a.x + 3 * u * t * t * b.x + t * t * t * b.x, y: u * u * u * a.y + 3 * u * u * t * my + 3 * u * t * t * my + t * t * t * b.y };
+  }
+  function voyRidge(base, amp, seed, stepX, H, trees) {
+    var d = 'M-20 ' + (H + 200), pts = [], x, y, tr = '';
+    for (x = -20; x <= 420; x += stepX) { y = base - amp * (0.5 + 0.5 * Math.sin(x * 0.021 + seed)) - ((x * seed * 7) % 13); pts.push([x, y]); d += ' L' + x + ' ' + y.toFixed(1); }
+    d += ' L420 ' + (H + 200) + 'Z';
+    if (trees) pts.forEach(function (p, k) { if (k % 2) return; var h = 14 + (k * 5) % 9; tr += '<path d="M' + p[0] + ' ' + (p[1] - h) + ' L' + (p[0] - 6) + ' ' + (p[1] + 2) + ' L' + (p[0] + 6) + ' ' + (p[1] + 2) + 'Z"/>'; });
+    return { d: d, tr: tr };
+  }
+  function voyLayer(cls, f, z, H, inner) { return '<svg class="voyl ' + cls + '" data-f="' + f + '" data-z="' + z + '" viewBox="0 -200 400 ' + (H + 400) + '" preserveAspectRatio="none" style="top:' + (-200 / H * 100).toFixed(2) + '%;height:' + ((H + 400) / H * 100).toFixed(2) + '%" aria-hidden="true">' + inner + '</svg>'; }
+  function voyDioramaHTML(R, st) {
+    var n = R.chapters.length + 1, step = 96, y0 = 120, H = y0 + (n - 1) * step + 95, ri = VOY_ORDER.indexOf(voy.lv), i, pts = [];
+    for (i = 0; i < n; i++) pts.push({ x: i === n - 1 ? 200 : (i % 2 ? 285 : 115) + ((i * 37) % 24 - 12), y: y0 + i * step });
+    voy.pts = pts; voy.H = H;
+    var d = 'M' + pts[0].x + ' ' + pts[0].y, infos = [], cur = -1, ratioA = 0, ratioP = 0;
+    for (i = 0; i < n - 1; i++) { var my = (pts[i].y + pts[i + 1].y) / 2; d += ' C' + pts[i].x + ' ' + my + ' ' + pts[i + 1].x + ' ' + my + ' ' + pts[i + 1].x + ' ' + pts[i + 1].y; }
+    for (i = 0; i < n; i++) { var f = voyInfo(i); infos.push(f); if (f.open && !f.done && cur < 0) cur = i; if (i < n - 1) { ratioA += f.acq; ratioP += f.pool.length; } }
+    if (cur < 0) cur = n - 1;
+    voy.cur = cur;
+    var ratio = ratioA / Math.max(1, ratioP), fog = Math.max(0.05, 0.78 - ratio * 1.7), frac = cur / (n - 1);
+    var far = voyRidge(0.22 * H, 62 + ri * 17, 1.3, 28, H, false), mid = voyRidge(0.43 * H, 52, 2.1, 30, H, true), near = voyRidge(0.66 * H, 48, 3.7, 32, H, true), gr = voyRidge(0.88 * H, 34, 5.3, 36, H, true);
+    var sk = '<defs><linearGradient id="dsk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + R.sky[0] + '"/><stop offset=".5" stop-color="' + R.sky[1] + '"/><stop offset="1" stop-color="' + R.sky[2] + '"/></linearGradient></defs><rect x="0" y="-200" width="400" height="' + (H + 400) + '" fill="url(#dsk)"/><circle cx="312" cy="78" r="46" fill="' + R.moon + '" opacity=".3"/><circle cx="312" cy="78" r="32" fill="' + R.moon + '"/>';
+    var leaf = function (x, y, a, c) { return '<path transform="translate(' + x + ' ' + y + ') rotate(' + a + ') scale(.7)" d="M0 0 C18 -26 58 -26 78 0 C58 20 18 20 0 0Z" fill="' + c + '"/>'; };
+    var lc = 'color-mix(in srgb,' + R.pal[Math.min(ri, R.pal.length - 1)][1] + ' 35%,' + R.mt[2] + ')', fgL = '';
+    [0.1, 0.34, 0.58, 0.82].forEach(function (p, k) { var y = p * H; fgL += leaf(-14, y, -18 + k * 9, lc) + leaf(-6, y + 18, 14 - k * 6, lc) + '<path d="M-20 ' + y + ' Q10 ' + (y + 30) + ' 18 ' + (y + 70) + '" stroke="' + lc + '" stroke-width="3" fill="none"/>' + leaf(414, y + 40, 198 + k * 8, lc) + leaf(406, y + 60, 166 - k * 7, lc); });
+    var h = '<div class="voyd" style="aspect-ratio:400/' + H + ';--fog:' + fog.toFixed(2) + '" data-cur="' + cur + '"><div class="voyd-in">';
+    h += voyLayer('l-sky', 0.55, -140, H, sk);
+    h += voyLayer('l-far', 0.42, -110, H, '<path d="' + far.d + '" style="fill:' + R.mt[0] + '"/>');
+    h += voyLayer('l-mid', 0.3, -75, H, '<path d="' + mid.d + '" style="fill:' + R.mt[1] + '"/><g style="fill:color-mix(in srgb,' + R.mt[1] + ' 70%,#000)">' + mid.tr + '</g>');
+    h += '<div class="voyl voyfogL" data-f="0.22" data-z="-50"><i></i><i></i><i></i></div>';
+    h += voyLayer('l-near', 0.16, -35, H, '<path d="' + near.d + '" style="fill:color-mix(in srgb,' + R.mt[2] + ' 85%,' + R.mt[1] + ')"/><g style="fill:color-mix(in srgb,' + R.mt[2] + ' 70%,#000)">' + near.tr + '</g>');
+    h += voyLayer('l-gr', 0.08, -15, H, '<path d="' + gr.d + '" style="fill:' + R.mt[2] + '"/><g style="fill:color-mix(in srgb,' + R.mt[2] + ' 60%,#000)">' + gr.tr + '</g>');
+    h += '<svg class="voyl voypathL" data-f="0" data-z="0" viewBox="0 0 400 ' + H + '" preserveAspectRatio="none" style="top:0;height:100%" aria-hidden="true"><path d="' + d + '" class="pp"/><path d="' + d + '" class="pd"/><path d="' + d + '" pathLength="1" class="pg" stroke-dasharray="' + frac.toFixed(3) + ' 1"/></svg>';
+    for (i = 0; i < n; i++) {
+      var f2 = infos[i], c = f2.c, boss = i === n - 1, pct = f2.acq / Math.max(1, f2.pool.length), cl = f2.done ? 0 : !f2.open ? 0.96 : 0.62 * (1 - pct), side = pts[i].x < 200 ? 'r' : 'l';
+      h += '<div class="voyn ' + (f2.done ? 'done' : f2.open ? 'open' : 'locked') + (i === cur ? ' cur' : '') + (boss ? ' boss' : '') + ' ' + side + '" style="left:' + (pts[i].x / 4).toFixed(2) + '%;top:' + (pts[i].y / H * 100).toFixed(2) + '%;' + voyAcc(i) + '"><button type="button" class="voynd jp" data-voy="ch:' + i + '" aria-label="' + (boss ? 'Boss' : 'Chapitre ' + (i + 1)) + ' : ' + esc(c.t) + (f2.open || f2.done ? '' : ' (verrouillé)') + '">' + (f2.done ? '印' : esc(c.g)) + '</button>' +
+        '<svg class="voycl" viewBox="0 0 80 50" style="opacity:' + cl.toFixed(2) + '" aria-hidden="true"><path d="M14 40 C2 40 0 24 14 22 C14 8 36 4 42 16 C50 6 70 12 66 28 C80 30 78 42 64 42Z"/></svg>' + (f2.open || f2.done ? '' : '<u class="voylk" aria-hidden="true">🔒</u>') +
+        '<span class="voynl"><b>' + (boss ? 'Boss · ' : (i + 1) + '. ') + esc(c.t) + '</b><small>' + f2.acq + ' / ' + f2.pool.length + ' mots ' + voyI() + '</small></span></div>';
+    }
+    var p0 = voyBez(0, 0);
+    h += '<div class="voyknt" style="left:' + (p0.x / 4).toFixed(2) + '%;top:' + (p0.y / H * 100).toFixed(2) + '%" aria-hidden="true"><i class="ks"></i><svg viewBox="0 0 30 40"><path d="M6 22 L24 22 L27 38 L3 38Z" fill="#6a4aa8"/><rect x="9" y="20" width="12" height="15" rx="3" fill="#cfd6ea"/><circle cx="15" cy="13" r="8" fill="#e6ecf8"/><rect x="8" y="12" width="14" height="3" fill="#2a1f55"/><path d="M15 5 Q22 -1 27 8 Q20 6 15 8Z" fill="#e0457f"/><path d="M24 25 L27 11 L29 25Z" fill="#ffd36e"/></svg></div>';
+    h += voyLayer('l-fg', -0.28, 70, H, fgL);
+    return h + '</div></div><p class="voyhint">Fais défiler : le chevalier avance sur le chemin. Les nuages se lèvent quand tu acquiers des mots.</p>';
+  }
+  var voyDio = { rx: 0, ry: 0, tick: 0, ready: false };
+  function voyTick() {
+    voyDio.tick = 0;
+    var d = document.querySelector('.voyd'); if (!d) return;
+    var r = d.getBoundingClientRect(), vh = window.innerHeight, rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var sy = Math.max(-r.height / 2, Math.min(r.height / 2, (r.top + r.height / 2) - vh / 2));
+    d.querySelectorAll('.voyl').forEach(function (l) {
+      var f = +l.getAttribute('data-f'), z = +l.getAttribute('data-z'), ty = rm ? 0 : Math.max(-160, Math.min(160, -sy * f));
+      l.style.transform = rm ? 'none' : 'translateZ(' + z + 'px) translateY(' + ty.toFixed(1) + 'px) scale(' + (1 - z / 1000).toFixed(3) + ')';
+    });
+    var cur = +d.getAttribute('data-cur') || 0, q = rm ? 1 : Math.max(0, Math.min(1, (vh * 0.9 - r.top) / (r.height * 0.55))), u = cur * q, i = Math.min(Math.floor(u), Math.max(0, cur - 1)), p = cur === 0 ? voyBez(0, 0) : voyBez(i, Math.min(1, u - i)), k = d.querySelector('.voyknt');
+    if (k && voy.pts) { k.style.left = (p.x / 4).toFixed(2) + '%'; k.style.top = (p.y / voy.H * 100).toFixed(2) + '%'; k.classList.add('walk'); clearTimeout(voyDio.wt); voyDio.wt = setTimeout(function () { k.classList.remove('walk'); }, 220); }
+  }
+  function voyTickReq() { if (!voyDio.tick) voyDio.tick = requestAnimationFrame(voyTick); }
+  function voyTilt(rx, ry) { var d = document.querySelector('.voyd'); if (d) { d.style.setProperty('--rx', rx.toFixed(2) + 'deg'); d.style.setProperty('--ry', ry.toFixed(2) + 'deg'); } }
+  function voyBind() {
+    var d = document.querySelector('.voyd'); if (!d) return;
+    if (!voyDio.ready) {
+      voyDio.ready = true;
+      window.addEventListener('scroll', voyTickReq, { passive: true }); window.addEventListener('resize', voyTickReq);
+      document.addEventListener('pointermove', function (e) {
+        if (e.pointerType !== 'mouse') return; var dd = document.querySelector('.voyd'); if (!dd) return; var r = dd.getBoundingClientRect();
+        if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) { voyTilt(0, 0); return; }
+        voyTilt(-((e.clientY - r.top) / r.height - 0.5) * 5, ((e.clientX - r.left) / r.width - 0.5) * 9);
+      }, { passive: true });
+      window.addEventListener('deviceorientation', function (e) { if (!voyDio.gyro || e.gamma == null) return; voyTilt(-Math.max(-25, Math.min(25, (e.beta || 50) - 50)) / 25 * 4, Math.max(-25, Math.min(25, e.gamma)) / 25 * 7); });
+    }
+    d.addEventListener('pointerdown', function () {
+      if (voyDio.gyroAsked) return; voyDio.gyroAsked = true;
+      try { if (window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission === 'function') DeviceOrientationEvent.requestPermission().then(function (r) { voyDio.gyro = r === 'granted'; }).catch(function () {}); else if (window.DeviceOrientationEvent) voyDio.gyro = true; } catch (e) {}
+    }, { once: true });
+    voyTick();
+  }
   function voyMapHTML() {
     var R = VR(), st = voySt(), tot = R.chapters.length + 1, seals = 0, i;
     for (i = 0; i < tot; i++) if (st.seals[i]) seals++;
-    var h = voyRegs() + voyHero(R, seals, tot) + '<div class="panel voylore"><span class="jp" aria-hidden="true">❝</span>' + esc(R.lore) + '</div><div class="voypath">', cur = -1;
-    for (i = 0; i < tot; i++) { var q = voyInfo(i); if (q.open && !q.done && cur < 0) cur = i; }
-    for (i = 0; i < tot; i++) {
-      var f = voyInfo(i), c = f.c, boss = i === R.chapters.length, pct = Math.round(f.acq / Math.max(1, f.pool.length) * 100);
-      h += '<button type="button" style="' + voyAcc(i) + '" class="voych' + (f.done ? ' done' : f.open ? ' open' : ' locked') + (i === cur ? ' cur' : '') + (boss ? ' boss' : '') + (i % 2 ? ' r' : '') + '" data-voy="ch:' + i + '"><span class="voynode jp">' + (f.done ? '印' : f.open ? esc(c.g) : '<em>' + esc(c.g) + '</em>') + (f.open || f.done ? '' : '<u aria-hidden="true">🔒</u>') + '</span><span class="voytx"><small class="voyk">' + (boss ? 'Boss final' : 'Chapitre ' + (i + 1)) + (i === cur ? ' · à toi !' : '') + '</small><b>' + esc(c.t) + '</b><span class="voybar"><i style="width:' + pct + '%"></i></span><small>' + f.acq + ' / ' + f.pool.length + ' mots acquis ' + voyI() + (f.done ? ' · sceau obtenu' : '') + '</small>' + (!f.open ? '<small class="voywhy">' + esc(f.why) + '</small>' : '') + '</span></button>';
-      if (i < tot - 1) h += voyConn(i, f.done);
-    }
-    h += '</div>';
+    var h = voyRegs() + voyHero(R, seals, tot) + '<div class="panel voylore"><span class="jp" aria-hidden="true">❝</span>' + esc(R.lore) + '</div>' + voyDioramaHTML(R, st);
     var k = VOY_ORDER.indexOf(voy.lv), nx = VOY[VOY_ORDER[k + 1]];
     if (voyRegDone(voy.lv) && nx) h += '<div class="voynext"><div class="voynx jp" aria-hidden="true">' + nx.glyph + '</div><b>Région suivante débloquée</b><small>' + nx.lv + ' · ' + esc(nx.name) + '</small><button type="button" class="btn primary voygo" data-voy="reg:' + VOY_ORDER[k + 1] + '">Partir vers ' + nx.lv + ' ›</button></div>';
     else if (!nx && voyRegDone(voy.lv)) h += '<div class="voynext final"><div class="voynx jp" aria-hidden="true">印</div><b>Tous les Sceaux de Langue sont réunis</b><small>Le Grand Souffle s\'est apaisé. Le chevalier peut enfin se reposer.</small></div>';
@@ -24819,13 +24938,13 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
     return h + '<div class="row"><button type="button" class="btn primary voygo" data-voy="' + (win ? 'map' : 'start') + '">' + (win ? 'Retour à la carte' : '⚔ Retenter') + '</button>' + (win ? '' : '<button type="button" class="btn" data-voy="map">Carte</button>') + '</div></div>';
   }
   function voyToggle(onJ) {
-    return '<div class="voytog" role="tablist"><button type="button" role="tab" aria-selected="' + !onJ + '" data-voy="tog:cours"><span class="jp" aria-hidden="true">冒</span><span><b>Aventure</b><small>Ton cours</small></span></button><button type="button" role="tab" aria-selected="' + !!onJ + '" data-voy="tog:jlpt"><span class="jp" aria-hidden="true">旅</span><span><b>Voyage JLPT</b><small>De N5 à N1</small></span></button></div>';
+    return '<div class="voytog" role="tablist"><button type="button" role="tab" aria-selected="' + !onJ + '" data-voy="tog:cours"><span class="jp" aria-hidden="true">冒</span><span><b>Aventure</b><small>Ton cours</small></span></button><button type="button" role="tab" aria-selected="' + !!onJ + '" data-voy="tog:jlpt"><span class="jp" aria-hidden="true">旅</span><span><b>Voyage JLPT</b><small>De N5 à N1</small></span></button><button type="button" class="petsw' + (S && S.pet === false ? ' off' : '') + '" data-voy="pet" aria-label="Compagnon lumineux" title="Compagnon lumineux (on / off)">🏮</button></div>';
   }
   function voyRender() {
     var host = $('storyBody'); if (!host) return;
     if (!VOY[voy.lv] || !voyRegOpen(voy.lv)) voy.lv = 'n5';
     var body = voy.view === 'run' ? (voy.run.done ? voyEndHTML() : voyRunHTML()) : voy.view === 'chap' ? voyChapHTML() : voyMapHTML();
-    host.onclick = null; host.classList.add('voyon'); host.innerHTML = voyToggle(true) + '<div class="voywrap">' + body + '</div>';
+    host.onclick = null; host.classList.add('voyon'); host.innerHTML = voyToggle(true) + '<div class="voywrap">' + body + '</div>'; if (voy.view === 'map') voyBind();
   }
   var _renderStory0 = renderStory;
   renderStory = function () {
@@ -24889,6 +25008,7 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
     var b = e.target.closest ? e.target.closest('[data-voy]') : null; if (!b || !user || !S) return;
     var a = b.getAttribute('data-voy'), p = a.split(':'), cmd = p[0], arg = p[1];
     if (cmd === 'info') { e.preventDefault(); e.stopPropagation(); openModal('Comment acquérir un mot ?', voyInfoHTML(), 'voymodal'); return; }
+    if (cmd === 'pet') { S.pet = S.pet === false; persist(); document.querySelectorAll('.petsw').forEach(function (x) { x.classList.toggle('off', S.pet === false); }); if (S.pet !== false) setTimeout(function () { try { kdWisp.react('ok'); } catch (e2) {} }, 80); return; }
     if (cmd === 'tog') { S.voyOn = arg === 'jlpt'; persist(); voy.view = 'map'; renderStory(); return; }
     if (cmd === 'reg') {
       if (!voyRegOpen(arg)) { var k = VOY_ORDER.indexOf(arg); toast('🔒 Vaincs d\'abord le boss de la région ' + VOY_ORDER[k - 1].toUpperCase()); return; }
@@ -24904,6 +25024,67 @@ body .nav .tab .niw .ni:not(.navav).navhid { display: none; }
       var r2 = voy.run; if (!r2) return; r2.i++; r2.ans = null; if (r2.i >= r2.qs.length) voyFinish(); voyRender(); window.scrollTo(0, 0);
     }
   });
+
+  /* ===== v250 : compagnon lumineux (Aventure uniquement) ===== */
+  var kdWisp = (function () {
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches, el = null, trail = [], ti = 0;
+    var x = -100, y = -100, tx = 0, ty = 0, px = 0, py = 0, last = 0, moved = 0, lastSpark = 0, streak = 0, started = false, mode = 'follow';
+    function build() {
+      el = document.createElement('div'); el.id = 'kdWisp'; el.setAttribute('aria-hidden', 'true');
+      el.innerHTML = '<div class="wb"><i class="ww l"></i><i class="ww r"></i><i class="wo"><b class="we"></b><b class="we"></b></i></div>';
+      document.body.appendChild(el);
+      for (var i = 0; i < 10; i++) { var s = document.createElement('i'); s.className = 'wsp'; document.body.appendChild(s); trail.push(s); }
+      px = tx = x = innerWidth * 0.78; py = ty = y = innerHeight * 0.55;
+    }
+    function active() { if (reduce || !S || S.pet === false) return false; var v = document.getElementById('vStory'); return !!(v && !v.hidden && v.offsetParent !== null); }
+    function spark(sx, sy, n, big) {
+      for (var k = 0; k < n; k++) {
+        var s = trail[ti++ % trail.length], a = Math.random() * 6.28, d = (big ? 30 : 14) + Math.random() * (big ? 40 : 18);
+        s.style.cssText = 'left:' + sx + 'px;top:' + sy + 'px;--dx:' + (Math.cos(a) * d).toFixed(0) + 'px;--dy:' + (Math.sin(a) * d - 8).toFixed(0) + 'px';
+        s.classList.remove('go'); void s.offsetWidth; s.classList.add('go');
+      }
+    }
+    function target(t) {
+      var idle = t - moved, card = document.querySelector('#vStory .knqcard,#vStory .clzcard,#vStory .qcard'), hint = null, r;
+      if (card && card.offsetParent !== null && idle > 2500 && idle < 9000) { r = card.getBoundingClientRect(); if (r.bottom > 0 && r.top < innerHeight) { mode = 'think'; return [r.right - 26, r.top + 18]; } }
+      if (idle > 6000) {
+        hint = document.querySelector('#vStory .voyn.cur .voynd, #vStory .voych.cur, #vStory .voygo, #vStory .btn.primary');
+        if (hint && hint.offsetParent !== null) { r = hint.getBoundingClientRect(); if (r.bottom > 40 && r.top < innerHeight - 40) { mode = 'hint'; return [r.left + r.width / 2 + Math.cos(t / 500) * 16, r.top - 26 + Math.sin(t / 380) * 6]; } }
+      }
+      mode = 'follow'; return [px + 28, py - 32];
+    }
+    function frame(t) {
+      requestAnimationFrame(frame);
+      if (!active()) { if (el) el.classList.remove('on'); return; }
+      if (!el) build();
+      el.classList.add('on'); el.setAttribute('data-m', mode);
+      var dt = Math.min(64, t - (last || t)); last = t;
+      var tg = target(t); tx = Math.max(16, Math.min(innerWidth - 16, tg[0])); ty = Math.max(70, Math.min(innerHeight - 90, tg[1]));
+      var k = 1 - Math.exp(-dt / (mode === 'follow' ? 140 : 220)), ox = x, oy = y;
+      x += (tx - x) * k; y += (ty - y) * k;
+      var bob = Math.sin(t / 420) * 4, sp = Math.hypot(x - ox, y - oy);
+      el.style.transform = 'translate3d(' + (x - 17).toFixed(1) + 'px,' + (y - 17 + bob).toFixed(1) + 'px,0)';
+      if (sp > 1.4 && t - lastSpark > 90) { lastSpark = t; spark(x, y + bob, 1, false); }
+    }
+    function react(kind) {
+      if (!el || !active()) return;
+      var c = null;
+      if (kind === 'ok') { streak++; c = streak % 5 === 0 ? 'big' : 'hop'; }
+      else if (kind === 'bad' || kind === 'hurt' || kind === 'lose') { streak = 0; c = 'sad'; }
+      else if (kind === 'win') c = 'big';
+      if (!c) return;
+      el.classList.remove('hop', 'sad', 'big'); void el.offsetWidth; el.classList.add(c);
+      if (c !== 'sad') spark(x, y, c === 'big' ? 12 : 6, c === 'big');
+      clearTimeout(react.t); react.t = setTimeout(function () { el.classList.remove('hop', 'sad', 'big'); }, c === 'big' ? 1100 : 650);
+    }
+    function point(e) { px = e.clientX; py = e.clientY; moved = performance.now(); }
+    document.addEventListener('pointermove', point, { passive: true }); document.addEventListener('pointerdown', point, { passive: true });
+    window.addEventListener('scroll', function () { moved = Math.max(moved, performance.now() - 2000); }, { passive: true });
+    px = innerWidth * 0.78; py = innerHeight * 0.6; moved = performance.now();
+    requestAnimationFrame(frame);
+    return { react: react, spark: function () { if (el) spark(x, y, 8, true); } };
+  })();
+  (function () { var prev = sfx; sfx = function (kind) { try { kdWisp.react(kind); } catch (e) {} return prev.apply(this, arguments); }; })();
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
