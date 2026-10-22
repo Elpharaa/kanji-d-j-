@@ -4772,6 +4772,14 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
 .gnsp { position: fixed; z-index: 99979; pointer-events: none; font-style: normal; font-size: .9rem; will-change: transform, opacity; }
 .gnsp.xp { color: #ffd1e6; text-shadow: 0 0 6px #ff7fb0; } .gnsp.co { color: #ffe27a; text-shadow: 0 0 6px #ffb000; }
 #kdCombo { display: none !important; }
+/* v267 : bouton furigana dans la carte des phrases uniquement */
+#btnFuriTog { display: none !important; }
+body .status #btnFuriTog { display: none !important; }
+.clzcard { position: relative; }
+.clzfbtn { position: absolute; top: 10px; left: 10px; width: 38px; height: 38px; border-radius: 50%; border: 2px solid #e0c27a; background: #fff6dc; color: #8a5a00; display: grid; place-items: center; cursor: pointer; padding: 0; font-size: 1.05rem; font-weight: 800; box-shadow: 0 2px 6px rgba(42, 28, 60, .18); transition: transform .15s, background .2s; }
+.clzfbtn:hover { transform: scale(1.08); }
+.clzfbtn.on { background: linear-gradient(135deg, #ffcf5a, #f29b2e); color: #3a2400; border-color: #f29b2e; box-shadow: 0 0 12px rgba(255, 190, 70, .65); }
+.clzfbtn:focus-visible { outline: 3px solid #7a4ad8; outline-offset: 2px; }
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -22284,7 +22292,7 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
     var q = clz.q, it = q.it, md = S && S.clzMode === 'input' ? 'input' : 'mcq', h = '';
     h += '<div class="grp djbar"><button type="button" class="btn djback" data-clz="stop">‹ Arrêter</button><h3 class="sgh" data-k="文"><span>Phrases à trou</span></h3></div>';
     h += '<p class="small muted" style="margin:6px 0 2px;text-align:center">Phrase ' + (clz.i + 1) + ' / ' + clz.items.length + '</p><div class="knqbar"><u style="width:' + Math.round(clz.i / clz.items.length * 100) + '%"></u></div>';
-    h += '<div class="knqcard qcard clzcard' + (clz.ans === 1 ? ' clzok' : (clz.ans === 0 || (clz.retried && clz.ans === null)) ? ' clzko' : '') + '"><span class="clzreg ' + (clzPolite(it.full) ? 'poli' : 'neutre') + '" title="Registre de la phrase">' + (clzPolite(it.full) ? '丁寧 Phrase polie' : '普通 Phrase neutre') + '</span><p class="prompt">Complète la phrase avec le bon mot</p>' + clzSentenceHTML(q, clz.ans !== null) + '<p class="clzfr">' + frHL(it.fr, it.w) + '</p><p class="clzhint">☝ Touche un mot de la phrase pour voir sa lecture, son sens, son niveau et ses tracés</p></div>';
+    h += '<div class="knqcard qcard clzcard' + (clz.ans === 1 ? ' clzok' : (clz.ans === 0 || (clz.retried && clz.ans === null)) ? ' clzko' : '') + '"><span class="clzreg ' + (clzPolite(it.full) ? 'poli' : 'neutre') + '" title="Registre de la phrase">' + (clzPolite(it.full) ? '丁寧 Phrase polie' : '普通 Phrase neutre') + '</span><button type="button" class="clzfbtn' + (S && S.furiSess ? ' on' : '') + '" data-clzfuri="1" aria-pressed="' + (S && S.furiSess ? 'true' : 'false') + '" title="Afficher ou masquer les furigana"><span class="jp">ふ</span></button><p class="prompt">Complète la phrase avec le bon mot</p>' + clzSentenceHTML(q, clz.ans !== null) + '<p class="clzfr">' + frHL(it.fr, it.w) + '</p><p class="clzhint">☝ Touche un mot de la phrase pour voir sa lecture, son sens, son niveau et ses tracés</p></div>';
     if (clz.ans === null) {
       if (md === 'mcq') {
         if (clz.retried) h += '<p class="clzretry">Presque ! <b>Seconde chance</b> : si tu trouves, tu gagnes la moitié des points.</p>';
@@ -23884,6 +23892,12 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
     if (S.furiSess) { furRun(); toast('Furigana affichés pendant les révisions.'); }
     else { try { furUnwrap(); } catch (er) {} toast('Furigana masqués.'); }
   });
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-clzfuri]') : null; if (!b) return;
+    e.preventDefault(); e.stopPropagation();
+    var h = document.getElementById('btnFuriTog'); if (h) h.click();
+    b.classList.toggle('on', furOnSess()); b.setAttribute('aria-pressed', furOnSess() ? 'true' : 'false');
+  }, true);
   setInterval(function () { furTogSync(); if (furOnSess()) { furInit(); } }, 1500);
 
   /* ---- saisie automatique : romaji -> hiragana ; MAJUSCULES -> katakana ---- */
