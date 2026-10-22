@@ -4780,6 +4780,9 @@ body .status #btnFuriTog { display: none !important; }
 .clzfbtn:hover { transform: scale(1.08); }
 .clzfbtn.on { background: linear-gradient(135deg, #ffcf5a, #f29b2e); color: #3a2400; border-color: #f29b2e; box-shadow: 0 0 12px rgba(255, 190, 70, .65); }
 .clzfbtn:focus-visible { outline: 3px solid #7a4ad8; outline-offset: 2px; }
+/* v268 : boutons Suivant / Retour toujours visibles dans le choix niveau-theme-kanjis */
+.askbox .asknav { position: sticky; bottom: 0; z-index: 5; padding: 10px 0 8px; margin-top: 8px; background: linear-gradient(180deg, rgba(255, 246, 224, 0), #fff6e0 28%); }
+.askbox .asknav .btn.primary { box-shadow: 0 4px 14px rgba(42, 28, 60, .28); }
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -21131,6 +21134,7 @@ body .status #btnFuriTog { display: none !important; }
   document.addEventListener('click', function (e) {
     var b = e.target.closest ? e.target.closest('[data-gsstep]') : null; if (!b || !user) return;
     gsStep = +b.getAttribute('data-gsstep'); askRefresh(b.getAttribute('data-gspx'));
+    try { var ab = document.querySelector('.askbox') || document.querySelector('.asksum'); if (ab && ab.scrollIntoView) ab.scrollIntoView({ block: 'nearest' }); } catch (er) {}
   });
   document.addEventListener('change', function (e) {
     var t = e.target; if (!t || !user || t.id !== 'gsKind') return;
