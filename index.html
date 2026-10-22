@@ -25272,7 +25272,7 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
       R.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); });
       R.style.visibility = 'visible'; R.style.opacity = '1'; KW.busy = true; window.__kdNoVT = true;
       m.haze.style.opacity = '0';
-      var hin = m.haze.animate([{ opacity: 0 }, { opacity: .97 }], { duration: 480, easing: 'ease-in-out', fill: 'forwards' });
+      var hin = m.haze.animate([{ opacity: 0 }, { opacity: .97 }], { duration: 260, easing: 'ease-in-out', fill: 'forwards' });
       m.pets.forEach(function (p, i) {
         var y = rnd() * H, s = .55 + rnd() * 1.2, du = 1500 + rnd() * 900, am = 30 + rnd() * 90, ph = rnd() * 6.28, rot = rnd() * 200, vr = 260 + rnd() * 420, big = i % 9 === 0, x0 = -160, x1 = W + 180;
         if (big) s *= 2.6;
@@ -25283,9 +25283,9 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
       });
       function fadeOut() {
         if (id !== wjob) return;
-        var out = m.haze.animate([{ opacity: .97 }, { opacity: 0 }], { duration: 520, easing: 'ease-in-out', fill: 'forwards' });
-        setTimeout(function () { if (id !== wjob) return; KW.busy = false; if (KW.q) { var q = KW.q; KW.q = null; q(); } }, 380);
-        setTimeout(function () { if (id !== wjob) return; var o = R.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 450, fill: 'forwards' }); o.finished.then(function () { if (id !== wjob) return; R.style.visibility = 'hidden'; window.__kdNoVT = false; R.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); }); }); }, 560);
+        var out = m.haze.animate([{ opacity: .97 }, { opacity: 0 }], { duration: 300, easing: 'ease-in-out', fill: 'forwards' });
+        setTimeout(function () { if (id !== wjob) return; KW.busy = false; if (KW.q) { var q = KW.q; KW.q = null; q(); } }, 200);
+        setTimeout(function () { if (id !== wjob) return; var o = R.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 300, fill: 'forwards' }); o.finished.then(function () { if (id !== wjob) return; R.style.visibility = 'hidden'; window.__kdNoVT = false; R.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); }); }); }, 300);
       }
       hin.finished.then(function () {
         if (id !== wjob) return; var t1 = performance.now(), last = t1, good = 0, done = false;
@@ -25293,7 +25293,7 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
         (function wait(now) {
           if (id !== wjob || done) return; var dt = now - last; last = now;
           good = dt < 40 ? good + 1 : 0;
-          if ((good >= 4 && now - t1 > 350) || now - t1 > 1400) { done = true; setTimeout(fadeOut, 120); return; }
+          if ((good >= 3 && now - t1 > 120) || now - t1 > 1200) { done = true; setTimeout(fadeOut, 40); return; }
           requestAnimationFrame(wait);
         })(t1);
       });
