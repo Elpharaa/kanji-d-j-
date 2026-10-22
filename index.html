@@ -4763,32 +4763,6 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
 #kdStorm { position: fixed; inset: 0; z-index: 99990; pointer-events: none; visibility: hidden; overflow: hidden; }
 #kdStorm .sth { position: absolute; inset: 0; opacity: 0; background: radial-gradient(60% 50% at 50% 50%, rgba(255, 140, 190, .38), transparent 70%), linear-gradient(100deg, #301452, #5c2a72 55%, #78285f); }
 #kdStorm .stp { position: absolute; left: 0; top: 0; width: 22px; height: 28px; margin: -14px 0 0 -11px; border-radius: 80% 8% 80% 8%; background: linear-gradient(150deg, #fff6fa, #ffb1cd 55%, #e0457f); opacity: 0; will-change: transform, opacity; }
-/* ===== v259 : hall en essaim de pétales ===== */
-.hubgrid { align-items: start !important; gap: 14px 14px; }
-.hubgrid > .hubcard { border-radius: 14px 58px 14px 58px !important; rotate: -.9deg; }
-.hubgrid > .hubcard:nth-child(even) { border-radius: 58px 14px 58px 14px !important; rotate: .9deg; }
-.hubgrid > .hubcard.big { border-radius: 18px 96px 18px 96px !important; rotate: 0deg; }
-.hubgrid > .hubcard.sm5:nth-child(even), .hubgrid > .hubcard.sm4:nth-child(even), .hubgrid > .hubcard.sm3:nth-child(even), .hubgrid > .hubcard.sm2:nth-child(even) { margin-top: 26px; }
-.hubgrid > .hubcard.sm5:nth-child(odd):not(.big), .hubgrid > .hubcard.sm4:nth-child(odd):not(.big) { margin-bottom: 0; }
-.hubgrid > .gramlink { border-radius: 40px 14px 40px 14px !important; margin-top: 4px; }
-.hubmore { border-radius: 14px 58px 14px 58px !important; }
-.hubcard::before { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0; background: radial-gradient(120% 90% at 100% 0%, rgba(255, 170, 200, .22), transparent 55%); }
-@media (min-width: 768px) {
-  .hubgrid { grid-template-columns: repeat(6, 1fr) !important; gap: 18px 18px !important; }
-  .hubgrid > .hubcard.big { grid-column: 1 / span 6; }
-  .hubgrid > .hubcard.sm5 { grid-column: span 2; }
-  .hubgrid > .hubcard.sm5:nth-child(3) { margin-top: 28px; } .hubgrid > .hubcard.sm5:nth-child(5), .hubgrid > .hubcard.sm5:nth-child(6) { grid-column: span 3; } .hubgrid > .hubcard.sm5:nth-child(6) { margin-top: 28px !important; }
-  .hubgrid > .hubcard.sm4:nth-child(4) { grid-column: span 3; }
-  .hubgrid > .hubcard.olwide { grid-column: span 3 !important; }
-  .hubgrid > .hubcard.sm4 { grid-column: span 3; }
-  .hubgrid > .gramlink { grid-column: span 3; }
-}
-@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
-  html:not(.lite) .hubgrid > .hubcard:not(.big) { animation: kdRise .42s cubic-bezier(.2, .8, .25, 1) both, kdSway 7s ease-in-out .6s infinite; }
-  html:not(.lite) .hubgrid > .hubcard:nth-child(3n) { animation-duration: .42s, 8.5s; }
-  html:not(.lite) .hubgrid > .hubcard:nth-child(3n+1) { animation-duration: .42s, 6.2s; }
-}
-@keyframes kdSway { 0%, 100% { translate: 0 0; } 50% { translate: 0 -6px; } }
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
