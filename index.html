@@ -4760,10 +4760,9 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
   body .status button.romtog[aria-pressed="true"] { background: #e8c46a !important; color: #2a1d00 !important; }
   body .status .coinpill, body .status .sstat { flex: none; font-size: .8rem; }
 }
-#kdStorm { position: fixed; inset: 0; z-index: 99990; pointer-events: none; visibility: hidden; overflow: hidden; contain: strict; }
-#kdStorm .sth { position: absolute; inset: 0; opacity: 0; will-change: opacity; background: radial-gradient(60% 50% at 50% 50%, rgba(255, 140, 190, .38), transparent 70%), linear-gradient(100deg, #301452, #5c2a72 55%, #78285f); }
-#kdStorm .sth::after { content: '\685c'; position: absolute; inset: 0; display: grid; place-items: center; font: 900 min(40vh, 40vw)/1 "Noto Serif JP", "Hiragino Mincho ProN", serif; color: rgba(255, 217, 232, .85); }
-#kdStorm .stp { position: absolute; left: 0; top: 0; width: 22px; height: 28px; margin: -14px 0 0 -11px; border-radius: 80% 8% 80% 8%; background: linear-gradient(150deg, #fff6fa, #ffb1cd 55%, #e0457f); box-shadow: 0 0 8px rgba(255, 140, 190, .5); opacity: 0; will-change: transform, opacity; }
+#kdStorm { position: fixed; inset: 0; z-index: 99990; pointer-events: none; visibility: hidden; overflow: hidden; }
+#kdStorm .sth { position: absolute; inset: 0; opacity: 0; background: radial-gradient(60% 50% at 50% 50%, rgba(255, 140, 190, .38), transparent 70%), linear-gradient(100deg, #301452, #5c2a72 55%, #78285f); }
+#kdStorm .stp { position: absolute; left: 0; top: 0; width: 22px; height: 28px; margin: -14px 0 0 -11px; border-radius: 80% 8% 80% 8%; background: linear-gradient(150deg, #fff6fa, #ffb1cd 55%, #e0457f); opacity: 0; will-change: transform, opacity; }
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -13109,7 +13108,7 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
     } catch (e) {}
   }
   function go(tab) {
-    var vt = document.startViewTransition && user && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+    var vt = document.startViewTransition && !window.__kdNoVT && user && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
     if (!vt) { goRaw(tab); return; }
     try {
       var root = document.documentElement; root.classList.add('vt');
@@ -25269,21 +25268,35 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
     }
     function kwRun(dir, swap) {
       if (RM.matches || MOB.matches) { swap(); return; }
-      var m = stormBuild(), W = window.innerWidth, H = window.innerHeight, id = ++wjob, TS = 700, TR = 1500, TEND = 2400, sgn = dir > 0 ? -1 : 1;
-      m.root.style.visibility = 'visible'; KW.busy = true;
-      m.root.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); });
-      m.haze.animate([{ opacity: 0 }, { opacity: .97, offset: .3, easing: 'ease-in-out' }, { opacity: .97, offset: .44 }, { opacity: 0, offset: .85, easing: 'ease-in-out' }, { opacity: 0 }], { duration: 2000, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' });
+      var m = stormBuild(), W = window.innerWidth, H = window.innerHeight, id = ++wjob, sgn = dir > 0 ? -1 : 1, R = m.root, ease1 = 'cubic-bezier(.4,0,.2,1)';
+      R.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); });
+      R.style.visibility = 'visible'; R.style.opacity = '1'; KW.busy = true; window.__kdNoVT = true;
+      m.haze.style.opacity = '0';
+      var hin = m.haze.animate([{ opacity: 0 }, { opacity: .97 }], { duration: 480, easing: 'ease-in-out', fill: 'forwards' });
       m.pets.forEach(function (p, i) {
-        var y = rnd() * H, s = .55 + rnd() * 1.2, early = rnd() < .3, dl = early ? rnd() * 150 : rnd() * 1000, du = 900 + rnd() * 600, am = 30 + rnd() * 90, x0 = early ? rnd() * W * .55 : -140, x1 = W + 160, ph = rnd() * 6.28, rot = rnd() * 200, vr = 260 + rnd() * 420, big = i % 9 === 0;
+        var y = rnd() * H, s = .55 + rnd() * 1.2, du = 1500 + rnd() * 900, am = 30 + rnd() * 90, ph = rnd() * 6.28, rot = rnd() * 200, vr = 260 + rnd() * 420, big = i % 9 === 0, x0 = -160, x1 = W + 180;
         if (big) s *= 2.6;
         function f(o) { var yy = y + Math.sin(ph + o * 6.5) * am - o * 40, xx = x0 + o * (x1 - x0); if (sgn > 0) xx = W - xx; return 'translate3d(' + xx.toFixed(0) + 'px,' + yy.toFixed(0) + 'px,0) rotate(' + (rot + vr * o).toFixed(0) + 'deg) scale(' + s.toFixed(2) + ')'; }
-        var kf = [0, .14, .3, .46, .62, .78, .92, 1].map(function (o) { return { transform: f(o), opacity: o === 0 ? 0 : o < .14 ? 1 : o >= .92 ? (o === 1 ? 0 : .8) : big ? .3 : 1, offset: o, easing: 'ease-in-out' }; });
-        kf[1].opacity = big ? .3 : 1;
-        p.animate(kf, { duration: du, delay: dl, easing: 'linear', fill: 'both' });
+        var kf = [0, .1, .25, .4, .55, .7, .85, .94, 1].map(function (o) { return { transform: f(o), opacity: (o === 0 || o === 1) ? 0 : o < .1 || o > .94 ? .5 : (big ? .3 : 1), offset: o, easing: 'ease-in-out' }; });
+        kf[1].opacity = big ? .3 : 1; kf[7].opacity = big ? .3 : 1;
+        p.animate(kf, { duration: du, delay: -rnd() * du, iterations: Infinity, easing: 'linear' });
       });
-      setTimeout(function () { if (id !== wjob) return; try { swap(); } catch (e) {} }, TS);
-      setTimeout(function () { if (id !== wjob) return; KW.busy = false; if (KW.q) { var q = KW.q; KW.q = null; q(); } }, TR);
-      setTimeout(function () { if (id !== wjob) return; m.root.style.visibility = 'hidden'; m.root.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); }); }, TEND);
+      function fadeOut() {
+        if (id !== wjob) return;
+        var out = m.haze.animate([{ opacity: .97 }, { opacity: 0 }], { duration: 520, easing: 'ease-in-out', fill: 'forwards' });
+        setTimeout(function () { if (id !== wjob) return; KW.busy = false; if (KW.q) { var q = KW.q; KW.q = null; q(); } }, 380);
+        setTimeout(function () { if (id !== wjob) return; var o = R.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 450, fill: 'forwards' }); o.finished.then(function () { if (id !== wjob) return; R.style.visibility = 'hidden'; window.__kdNoVT = false; R.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); }); }); }, 560);
+      }
+      hin.finished.then(function () {
+        if (id !== wjob) return; var t1 = performance.now(), last = t1, good = 0, done = false;
+        try { swap(); } catch (e) {}
+        (function wait(now) {
+          if (id !== wjob || done) return; var dt = now - last; last = now;
+          good = dt < 40 ? good + 1 : 0;
+          if ((good >= 4 && now - t1 > 350) || now - t1 > 1400) { done = true; setTimeout(fadeOut, 120); return; }
+          requestAnimationFrame(wait);
+        })(t1);
+      });
     }
     function tabIdx(t) { return ORDER.indexOf(t.getAttribute('data-tab')); }
     function curIdx() { var c = document.querySelector('.nav .tab[aria-current="page"]'); return c ? ORDER.indexOf(c.getAttribute('data-tab')) : -1; }
