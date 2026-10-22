@@ -25404,15 +25404,16 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
   /* ===== v261 : palette sonore « Dōjō sakura » (WebAudio, aucun fichier) ===== */
   (function () {
     var live = null, bus = null, noiseBuf = {}, last = {}, suppress = false, sup2 = 0;
-    var F = { D5: 587.33, E5: 659.25, F5s: 739.99, A5: 880, B5: 987.77, D6: 1174.66, F6s: 1479.98, A6: 1760, B6: 1975.53, D7: 2349.32 };
+    var F = { D5: 293.66, E5: 329.63, F5s: 370, A5: 440, B5: 493.88, D6: 587.33, F6s: 739.99, A6: 880, B6: 987.77, D7: 1174.66 };
     function ir(ctx) { var n = Math.floor(ctx.sampleRate * .32), b = ctx.createBuffer(2, n, ctx.sampleRate), c, i, d; for (c = 0; c < 2; c++) { d = b.getChannelData(c); for (i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 3.2); } return b; }
     function noise(ctx) { var k = ctx.sampleRate; if (noiseBuf[k]) return noiseBuf[k]; var n = Math.floor(k * .5), b = ctx.createBuffer(1, n, k), d = b.getChannelData(0), i; for (i = 0; i < n; i++) d[i] = Math.random() * 2 - 1; return (noiseBuf[k] = b); }
     function mkBus(ctx) {
-      var out = ctx.createGain(); out.gain.value = 1.8;
+      var out = ctx.createGain(); out.gain.value = 1.7;
+      var tone = ctx.createBiquadFilter(); tone.type = 'lowpass'; tone.frequency.value = 3800; tone.Q.value = .5; out.connect(tone);
       var comp = ctx.createDynamicsCompressor(); comp.threshold.value = -14; comp.ratio.value = 6; comp.attack.value = .003; comp.release.value = .12;
       var wet = ctx.createGain(); wet.gain.value = .2; var cv = ctx.createConvolver(); cv.buffer = ir(ctx);
       var dry = ctx.createGain(); dry.gain.value = 1;
-      out.connect(dry); dry.connect(comp); out.connect(cv); cv.connect(wet); wet.connect(comp); comp.connect(ctx.destination);
+      tone.connect(dry); dry.connect(comp); tone.connect(cv); cv.connect(wet); wet.connect(comp); comp.connect(ctx.destination);
       return out;
     }
     function env(ctx, t, a, d, v, to) { var g = ctx.createGain(); g.gain.setValueAtTime(.0001, t); g.gain.linearRampToValueAtTime(v, t + a); g.gain.exponentialRampToValueAtTime(.0001, t + a + d); g.connect(to); return g; }
@@ -25431,15 +25432,15 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
       var o = ctx.createOscillator(), lp = ctx.createBiquadFilter(), g = env(ctx, t, .003, d, v, B); o.type = 'triangle'; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + d); lp.type = 'lowpass'; lp.frequency.value = 900; o.connect(lp); lp.connect(g); o.start(t); o.stop(t + d + .03);
     }
     var S = {
-      hover: function (c, B, t, r) { bell(c, B, t, F.D7 * r, .07, .09, .6); air(c, B, t, .045, 5000, 7000, .02, 2); },
-      click: function (c, B, t, r) { drop(c, B, t, 900 * r, 1700 * r, .075, .16); bell(c, B, t + .035, F.A5 * r, .1, .13); bell(c, B, t + .075, F.D6 * r, .12, .12); },
-      open: function (c, B, t, r) { air(c, B, t, .22, 900, 4200, .1, 1.1); bell(c, B, t + .05, F.A5 * r, .12, .07); bell(c, B, t + .11, F.D6 * r, .12, .07); bell(c, B, t + .17, F.F6s * r, .16, .06); },
-      close: function (c, B, t, r) { air(c, B, t, .16, 3200, 800, .09, 1.1); bell(c, B, t + .04, F.D5 * r, .16, .11); },
-      tab: function (c, B, t, r, o) { var dir = o && o.dir < 0 ? -1 : 1; air(c, B, t, .12, dir > 0 ? 900 : 4200, dir > 0 ? 4800 : 1000, .12, 3); bell(c, B, t + .075, (dir > 0 ? F.F6s : F.B5) * r, .1, .09, 1.5); },
+      hover: function (c, B, t, r) { bell(c, B, t, F.D7 * r, .07, .09, .6); air(c, B, t, .045, 2800, 3800, .02, 2); },
+      click: function (c, B, t, r) { drop(c, B, t, 520 * r, 980 * r, .08, .2); bell(c, B, t + .035, F.A5 * r, .1, .13); bell(c, B, t + .075, F.D6 * r, .12, .12); },
+      open: function (c, B, t, r) { air(c, B, t, .22, 500, 2400, .11, 1.1); bell(c, B, t + .05, F.A5 * r, .12, .07); bell(c, B, t + .11, F.D6 * r, .12, .07); bell(c, B, t + .17, F.F6s * r, .16, .06); },
+      close: function (c, B, t, r) { air(c, B, t, .16, 1900, 500, .1, 1.1); bell(c, B, t + .04, F.D5 * r, .16, .11); },
+      tab: function (c, B, t, r, o) { var dir = o && o.dir < 0 ? -1 : 1; air(c, B, t, .12, dir > 0 ? 600 : 2600, dir > 0 ? 2900 : 650, .13, 3); bell(c, B, t + .075, (dir > 0 ? F.F6s : F.B5) * r, .1, .09, 1.5); },
       notify: function (c, B, t, r) { bell(c, B, t, F.A5 * r, .16, .13); bell(c, B, t + .1, F.D6 * r, .2, .13); },
-      success: function (c, B, t, r) { bell(c, B, t, F.D6 * r, .14, .13); bell(c, B, t + .07, F.F6s * r, .14, .13); bell(c, B, t + .14, F.A6 * r, .2, .14); air(c, B, t + .14, .14, 6000, 9000, .018, 2); bell(c, B, t + .2, F.D7 * r, .12, .05, .6); },
+      success: function (c, B, t, r) { bell(c, B, t, F.D6 * r, .14, .13); bell(c, B, t + .07, F.F6s * r, .14, .13); bell(c, B, t + .14, F.A6 * r, .2, .14); air(c, B, t + .14, .14, 3200, 4800, .02, 2); bell(c, B, t + .2, F.D7 * r, .12, .05, .6); },
       ok: function (c, B, t, r) { bell(c, B, t, F.A5 * r, .1, .12); bell(c, B, t + .07, F.D6 * r, .16, .13); },
-      error: function (c, B, t, r) { knock(c, B, t, 230 * r, 140 * r, .13, .32); knock(c, B, t + .02, 340 * r, 220 * r, .1, .14); }
+      error: function (c, B, t, r) { knock(c, B, t, 190 * r, 115 * r, .13, .34); knock(c, B, t + .02, 280 * r, 180 * r, .1, .14); }
     };
     function ctxLive() {
       var AC = window.AudioContext || window.webkitAudioContext; if (!AC) return null;
