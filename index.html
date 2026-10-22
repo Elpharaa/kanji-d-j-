@@ -22225,10 +22225,20 @@ body .status #btnFuriTog { display: none !important; }
   }
   function clzSplit(w) {
     var mot = w.mot, e = exOf(mot); if (!e || !e.full) return null;
-    var key = mot.replace(/^[〜～]/, ''), full = e.full, at = full.indexOf(key), len = key.length;
+    var key = mot.replace(/^[〜～]/, ''), full = e.full, len = key.length;
+    function findAt(f, t) {   // préfère l'occurrence qui n'est pas au milieu d'un autre mot en kanji (ex. 話 dans 電話)
+      var i = f.indexOf(t), first = i, KJ = /[㐀-鿿]/;
+      while (i >= 0) {
+        var bef = i > 0 ? f.charAt(i - 1) : '', aft = f.charAt(i + t.length);
+        if (!(KJ.test(bef) && KJ.test(t.charAt(0))) && !(KJ.test(aft) && KJ.test(t.charAt(t.length - 1)))) return i;
+        i = f.indexOf(t, i + 1);
+      }
+      return first;
+    }
+    var at = findAt(full, key);
     if (at < 0 && key.length >= 2 && /[ぁ-ん]$/.test(key)) {   // forme conjuguée : on masque le radical (食べる → 食べ…)
       var st = /する$/.test(key) ? key.slice(0, -2) : key.slice(0, -1);
-      if (st.length >= (/[㐀-鿿]/.test(st) ? 1 : 2)) { at = full.indexOf(st); len = st.length; }
+      if (st.length >= (/[㐀-鿿]/.test(st) ? 1 : 2)) { at = findAt(full, st); len = st.length; }
     }
     if (at < 0) return null;
     return { w: w, pre: full.slice(0, at), hit: full.slice(at, at + len), post: full.slice(at + len), fr: e.fr || '', full: full };
