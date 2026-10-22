@@ -25263,18 +25263,18 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
     var STM = null;
     function stormBuild() {
       if (STM) return STM;
-      var r = document.createElement('div'); r.id = 'kdStorm'; r.setAttribute('aria-hidden', 'true'); var n = isLite() ? 38 : 80, h = '<i class="sth"></i>', i;
+      var r = document.createElement('div'); r.id = 'kdStorm'; r.setAttribute('aria-hidden', 'true'); var n = isLite() ? 50 : 120, h = '<i class="sth"></i>', i;
       for (i = 0; i < n; i++) h += '<b class="stp"></b>';
       r.innerHTML = h; document.body.appendChild(r); STM = { root: r, haze: r.firstChild, pets: Array.prototype.slice.call(r.querySelectorAll('.stp')) }; return STM;
     }
     function kwRun(dir, swap) {
       if (RM.matches || MOB.matches) { swap(); return; }
-      var m = stormBuild(), W = window.innerWidth, H = window.innerHeight, id = ++wjob, TS = 470, TR = 1050, TEND = 1900, sgn = dir > 0 ? -1 : 1;
+      var m = stormBuild(), W = window.innerWidth, H = window.innerHeight, id = ++wjob, TS = 700, TR = 1500, TEND = 2400, sgn = dir > 0 ? -1 : 1;
       m.root.style.visibility = 'visible'; KW.busy = true;
       m.root.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); });
-      m.haze.animate([{ opacity: 0 }, { opacity: .97, offset: .3, easing: 'ease-in-out' }, { opacity: .97, offset: .42 }, { opacity: 0, offset: .85, easing: 'ease-in-out' }, { opacity: 0 }], { duration: 1500, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' });
+      m.haze.animate([{ opacity: 0 }, { opacity: .97, offset: .3, easing: 'ease-in-out' }, { opacity: .97, offset: .44 }, { opacity: 0, offset: .85, easing: 'ease-in-out' }, { opacity: 0 }], { duration: 2000, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' });
       m.pets.forEach(function (p, i) {
-        var y = rnd() * H, s = .55 + rnd() * 1.2, dl = (y / H) * 240 + rnd() * 200, du = 1000 + rnd() * 500, am = 30 + rnd() * 90, x0 = -140, x1 = W + 160, ph = rnd() * 6.28, rot = rnd() * 200, vr = 260 + rnd() * 420, big = i % 9 === 0;
+        var y = rnd() * H, s = .55 + rnd() * 1.2, early = rnd() < .3, dl = early ? rnd() * 150 : rnd() * 1000, du = 900 + rnd() * 600, am = 30 + rnd() * 90, x0 = early ? rnd() * W * .55 : -140, x1 = W + 160, ph = rnd() * 6.28, rot = rnd() * 200, vr = 260 + rnd() * 420, big = i % 9 === 0;
         if (big) s *= 2.6;
         function f(o) { var yy = y + Math.sin(ph + o * 6.5) * am - o * 40, xx = x0 + o * (x1 - x0); if (sgn > 0) xx = W - xx; return 'translate3d(' + xx.toFixed(0) + 'px,' + yy.toFixed(0) + 'px,0) rotate(' + (rot + vr * o).toFixed(0) + 'deg) scale(' + s.toFixed(2) + ')'; }
         var kf = [0, .14, .3, .46, .62, .78, .92, 1].map(function (o) { return { transform: f(o), opacity: o === 0 ? 0 : o < .14 ? 1 : o >= .92 ? (o === 1 ? 0 : .8) : big ? .3 : 1, offset: o, easing: 'ease-in-out' }; });
