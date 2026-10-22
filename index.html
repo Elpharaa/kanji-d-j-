@@ -4748,6 +4748,18 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
 .kwbar { display: block; width: min(220px, 52vw); height: 2px; margin-top: 10px; background: linear-gradient(90deg, transparent, #ff9cc4, #fff, #ff9cc4, transparent); transform: scaleX(0); transform-origin: 0 50%; animation: kwBar 1.6s 1s cubic-bezier(.3, .6, .2, 1) forwards; }
 @keyframes kwBar { to { transform: scaleX(1); } }
 #kdSplash .kws { z-index: 3; }
+@media (max-width: 560px) {
+  body .status { gap: 6px !important; padding: 0 8px !important; }
+  body .status .slv { flex: 1 1 0 !important; min-width: 0 !important; }
+  body .status .slvl { white-space: nowrap !important; font-size: .7rem !important; overflow: hidden; text-overflow: ellipsis; }
+  body .status button.romtog { flex: none !important; width: 32px !important; min-width: 0 !important; height: 30px !important; min-height: 0 !important; padding: 0 !important; font-size: 0 !important; line-height: 0 !important; display: grid !important; place-items: center; overflow: hidden; }
+  body .status button.romtog > * { display: none !important; }
+  body .status button.romtog { text-indent: -400px !important; white-space: nowrap !important; position: relative; } body .status button.romtog::before { position: absolute; inset: 0; display: grid; place-items: center; text-indent: 0; }
+  body .status #btnFuriTog::after { display: none !important; }
+  #btnRomTog::before { content: 'R'; font: 800 .82rem/1 system-ui, sans-serif; } #btnFuriTog::before { content: '\3075'; font: 800 .95rem/1 "Noto Serif JP", serif; }
+  body .status button.romtog[aria-pressed="true"] { background: #e8c46a !important; color: #2a1d00 !important; }
+  body .status .coinpill, body .status .sstat { flex: none; font-size: .8rem; }
+}
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -22266,7 +22278,7 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
   }
   function clzEndHTML() {
     var tot = clz.items.length, pct = tot ? Math.round(clz.ok / tot * 100) : 0;
-    return '<div class="result"><div class="sprbig win jp" aria-hidden="true">文</div><h3>' + (pct >= 80 ? 'Excellent !' : pct >= 50 ? 'Bien joué !' : 'Continue, ça vient !') + '</h3><p>' + clz.ok + ' bonne' + (clz.ok > 1 ? 's' : '') + ' réponse' + (clz.ok > 1 ? 's' : '') + ' sur ' + tot + '.' +
+    return '<div class="result"><div class="sprbig win jp" aria-hidden="true">文</div><h3>' + (pct >= 80 ? 'Excellent !' : pct >= 50 ? 'Bien joué !' : 'Continue, ça vient !') + '</h3><p>' + clz.ok + ' bonne' + (clz.ok > 1 ? 's' : '') + ' réponse' + (clz.ok > 1 ? 's' : '') + ' sur ' + tot + '.' + (clz.xp ? '<br><b>+' + clz.xp + ' XP</b>' : '') +
       (clz.miss.length ? '<br><small>À revoir : ' + clz.miss.map(function (m) { return '<span class="jp">' + esc(m) + '</span>'; }).join(' · ') + '</small>' : '') + '</p><div class="row"><button type="button" class="btn primary" data-clz="start">Rejouer</button><button type="button" class="btn" data-clz="stop">Changer de sélection</button></div></div>';
   }
   function renderClz() {
@@ -22284,7 +22296,7 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
     clz.ans = ok ? 1 : 0; clz.pick = pickIdx; var w = q.it.w;
     if (clz.alt) { sfx(ok ? 'ok' : 'bad'); renderClz(); return; }
     var st = stat(w.key), before = level();
-    skillNote(st, S && S.clzMode === 'input' ? 'ecriture' : 'sens', ok); if (ok) { st.ok++; if (!retryWin) runUp(st); clz.ok++; S.correct = (S.correct || 0) + 1; sfx('ok'); var d = dayKey(), x = S.clzxp && S.clzxp.d === d ? S.clzxp : (S.clzxp = { d: d, n: 0 }), g = Math.min(retryWin ? 3 : 5, 80 - x.n); if (g > 0) { x.n += g; addXp(g); } }
+    skillNote(st, S && S.clzMode === 'input' ? 'ecriture' : 'sens', ok); if (ok) { st.ok++; if (!retryWin) runUp(st); clz.ok++; S.correct = (S.correct || 0) + 1; sfx('ok'); var d = dayKey(), x = S.clzxp && S.clzxp.d === d ? S.clzxp : (S.clzxp = { d: d, n: 0 }), g = Math.min(retryWin ? 4 : 8, 200 - x.n); if (g > 0) { x.n += g; clz.xp = (clz.xp || 0) + g; addXp(g); try { if (typeof announce === 'function') announce('+' + g + ' XP'); } catch (e) {} } }
     else { st.ko++; st.run = 0; errLog(w.key, 'Phrases à trou'); if (clz.miss.indexOf(w.mot) < 0) clz.miss.push(w.mot); sfx('bad'); }
     try { srsUpdate(w.key, ok); } catch (e) {}
     persist(); renderClz();
@@ -22294,7 +22306,7 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
     var a = b.getAttribute('data-clz');
     if (a === 'start') {
       var all = clzItems(); if (!all.length) return;
-      clz.all = all; clz.items = shuffle(all.slice()).slice(0, 10); clz.i = 0; clz.ok = 0; clz.miss = []; clz.view = 'quiz'; clzNext(); renderClz(); window.scrollTo(0, 0);
+      clz.all = all; clz.items = shuffle(all.slice()).slice(0, 10); clz.i = 0; clz.ok = 0; clz.xp = 0; clz.miss = []; clz.view = 'quiz'; clzNext(); renderClz(); window.scrollTo(0, 0);
     } else if (a === 'stop') { clz.view = 'setup'; renderClz(); }
     else if (a === 'pick') { var i = +b.getAttribute('data-i'); clzAnswer(clz.q.opts[i].mot === clz.q.it.w.mot, i); }
     else if (a === 'skip') { clz.skipNow = true; clzAnswer(false, -1); }
@@ -25245,40 +25257,31 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
     }
     function kwRun(dir, swap) {
       if (RM.matches) { swap(); return; }
-      var cv = kwBuild(), ctx = cv.getContext('2d'), sp = mkSprites(), W = window.innerWidth, H = window.innerHeight, lite = isLite(), sk = H * .25, id = ++wjob;
+      var cv = kwBuild(), ctx = cv.getContext('2d'), sp = mkSprites(), W = window.innerWidth, H = window.innerHeight, lite = isLite(), id = ++wjob;
       fxSize(cv); cv.style.visibility = 'visible'; KW.busy = true;
-      var nb = lite ? 11 : 22, np = lite ? 36 : 84, T1 = 230, T2 = 310, T3 = 700, TE = 1150, bl = [], pt = [], i, swapped = false, released = false, t0 = null, SW = W + sk + 40;
-      var X = function (v) { return dir > 0 ? W - v : v; }, ang = dir > 0 ? Math.PI : 0, tilt = dir > 0 ? .24 : -.24;
-      for (i = 0; i < nb; i++) bl.push({ y: (i + rnd()) / nb * H, off: 20 + rnd() * 240, len: .55 + rnd() * .9, th: .5 + rnd() * .6, dl: rnd() * 50 });
-      for (i = 0; i < np; i++) pt.push({ y: rnd() * H, vx: 160 + rnd() * 460, vy: (rnd() - .5) * 240, r: rnd() * 6, vr: (rnd() - .5) * 12, s: .3 + rnd() * .55, dl: rnd() * 200, ph: rnd() * 6, jx: (rnd() - .5) * 90 });
-      function lead(t) { return eo(t / T1) * SW * 1.0; }
-      function tail(t) { return ease((t - T2) / (T3 - T2)) * SW; }
+      var np = lite ? 70 : 150, nb = lite ? 4 : 8, TS = 470, TR = 1000, TE = 1300, pt = [], bg = [], i, swapped = false, released = false, t0 = null;
+      var X = function (v) { return dir > 0 ? W - v : v; };
+      for (i = 0; i < np; i++) { var y = rnd() * H; pt.push({ y: y, dl: (y / H) * 260 + rnd() * 160, dur: 700 + rnd() * 500, s: .5 + rnd() * 1.1, ph: rnd() * 6.28, amp: 20 + rnd() * 70, r: rnd() * 6, vr: (rnd() - .5) * 14, f: rnd() * .5 }); }
+      for (i = 0; i < nb; i++) bg.push({ y: rnd() * H, dl: rnd() * 200, dur: 900 + rnd() * 300, s: 2.6 + rnd() * 2.4, ph: rnd() * 6.28, r: rnd() * 6 });
+      function draw(p, t, big) {
+        var dt = t - p.dl; if (dt < 0) return; var u = dt / p.dur; if (u > 1) return;
+        var v = -120 + u * (W + 360), y = p.y + Math.sin(p.ph + u * 7) * (big ? 40 : p.amp) - u * 60 * (p.f - .25), al = big ? .22 * Math.sin(u * Math.PI) : Math.min(1, u * 6) * Math.min(1, (1 - u) * 5);
+        dr(ctx, sp.p, X(v), y, p.r + (big ? 1 : p.vr) * dt / 1000 * (big ? 1.2 : 1), p.s * (.85 + .25 * Math.sin(p.ph + dt * .006)), p.s * (.6 + .5 * Math.abs(Math.sin(p.ph + dt * .005))), al);
+      }
       function frame(now) {
-        if (id !== wjob) return; if (t0 === null) t0 = now; var t = now - t0, k = FXd, e, j, b, p, dt;
+        if (id !== wjob) return; if (t0 === null) t0 = now; var t = now - t0, k = FXd, j, a;
         ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.clearRect(0, 0, cv.width, cv.height);
-        if (t < T1) {
-          e = lead(t); ctx.setTransform(k, 0, 0, k, 0, 0); ctx.fillStyle = '#1d1239'; veilPoly(ctx, W, H, dir, -sk - 20, e, sk); ctx.fill();
-          ctx.fillStyle = 'rgba(224,69,127,.16)'; veilPoly(ctx, W, H, dir, e - 150, e, sk); ctx.fill();
-          rim(ctx, W, H, dir, e, sk);
-          for (j = 0; j < bl.length; j++) { b = bl[j]; dr(ctx, sp.b, X(e - sk * b.y / H + b.off * (.4 + t / T1)), b.y, ang + tilt, b.len * 1.1, b.th, 1); }
-        } else if (t < T2) {
-          if (!swapped) { swapped = true; try { swap(); } catch (er) {} }
-          var q = (t - T1) / (T2 - T1); ctx.setTransform(k, 0, 0, k, 0, 0); ctx.fillStyle = '#1d1239'; ctx.fillRect(0, 0, W, H);
-          var gx = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, Math.max(W, H) * .6); gx.addColorStop(0, 'rgba(255,120,175,' + (.35 * q).toFixed(3) + ')'); gx.addColorStop(1, 'rgba(255,120,175,0)'); ctx.fillStyle = gx; ctx.fillRect(0, 0, W, H);
-          ctx.globalAlpha = Math.min(1, q * 1.6); ctx.fillStyle = '#ffd9e8'; ctx.font = '900 ' + Math.round(Math.min(W, H) * .42) + 'px "Noto Serif JP","Hiragino Mincho ProN",serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('桜', W / 2, H / 2);
-          var sx0 = X(-20), sx1 = X(W + 20), sy0 = H * (.15 + .1 * dir), sy1 = H * (.85 - .1 * dir); ctx.globalAlpha = 1; ctx.strokeStyle = '#fff'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(sx0, sy0); ctx.lineTo(sx0 + (sx1 - sx0) * Math.min(1, q * 1.5), sy0 + (sy1 - sy0) * Math.min(1, q * 1.5)); ctx.stroke();
-        } else {
-          e = tail(t); ctx.setTransform(k, 0, 0, k, 0, 0);
-          if (t < T3) { ctx.fillStyle = '#1d1239'; veilPoly(ctx, W, H, dir, e, SW + 40, sk); ctx.fill(); ctx.fillStyle = 'rgba(224,69,127,.18)'; veilPoly(ctx, W, H, dir, e, e + 130, sk); ctx.fill(); rim(ctx, W, H, dir, e, sk); }
-          for (j = 0; j < bl.length; j++) { b = bl[j]; var bv = e - sk * b.y / H - b.off * .5 - 40, ba = 1 - Math.max(0, (t - T2 - 200) / 260); if (ba > 0 && bv > -260 && bv < W + 100) dr(ctx, sp.b, X(bv), b.y, ang + tilt, b.len, b.th, ba); }
-          for (j = 0; j < pt.length; j++) {
-            p = pt[j]; var ts = T2 + p.dl * .9; dt = t - ts; if (dt < 0) continue;
-            var v0 = tail(ts) - sk * p.y / H + p.jx, al = Math.min(1, dt / 70) * Math.max(0, 1 - (dt - 380) / 480); if (al <= 0) continue;
-            dr(ctx, sp.p, X(v0 + p.vx * dt / 1000), p.y + p.vy * dt / 1000 + Math.sin(p.ph + dt * .008) * 20, p.r + p.vr * dt / 1000, p.s, p.s, al);
-          }
-          if (t >= T3 && !released) { released = true; KW.busy = false; if (KW.q) { var qf = KW.q; KW.q = null; qf(); } }
+        a = t < TS ? ease(t / TS) : t < TS + 80 ? 1 : Math.max(0, 1 - ease((t - TS - 80) / (TR - TS - 80)));
+        if (a > 0) {
+          ctx.setTransform(k, 0, 0, k, 0, 0); var g = ctx.createLinearGradient(X(0), 0, X(W), 0); g.addColorStop(0, 'rgba(48,20,82,' + (a * .96).toFixed(3) + ')'); g.addColorStop(1, 'rgba(120,40,100,' + (a * .9).toFixed(3) + ')'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+          var rg = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, Math.max(W, H) * .55); rg.addColorStop(0, 'rgba(255,140,190,' + (a * .35).toFixed(3) + ')'); rg.addColorStop(1, 'rgba(255,140,190,0)'); ctx.fillStyle = rg; ctx.fillRect(0, 0, W, H);
+          if (a > .55) { ctx.globalAlpha = Math.min(1, (a - .55) * 2.2); ctx.fillStyle = '#ffd9e8'; ctx.font = '900 ' + Math.round(Math.min(W, H) * .4) + 'px "Noto Serif JP","Hiragino Mincho ProN",serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('桜', W / 2, H / 2); ctx.globalAlpha = 1; }
         }
-        if (t < TE && id === wjob) requestAnimationFrame(frame); else if (id === wjob) { cv.style.visibility = 'hidden'; ctx.clearRect(0, 0, cv.width, cv.height); if (!released) { released = true; KW.busy = false; } }
+        if (t >= TS && !swapped) { swapped = true; try { swap(); } catch (er) {} }
+        for (j = 0; j < bg.length; j++) draw(bg[j], t, true);
+        for (j = 0; j < pt.length; j++) draw(pt[j], t, false);
+        if (t >= TR && !released) { released = true; KW.busy = false; if (KW.q) { var qf = KW.q; KW.q = null; qf(); } }
+        if (t < TE) requestAnimationFrame(frame); else { cv.style.visibility = 'hidden'; ctx.clearRect(0, 0, cv.width, cv.height); if (!released) { released = true; KW.busy = false; } }
       }
       requestAnimationFrame(frame);
     }
