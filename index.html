@@ -4760,6 +4760,10 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
   body .status button.romtog[aria-pressed="true"] { background: #e8c46a !important; color: #2a1d00 !important; }
   body .status .coinpill, body .status .sstat { flex: none; font-size: .8rem; }
 }
+#kdStorm { position: fixed; inset: 0; z-index: 99990; pointer-events: none; visibility: hidden; overflow: hidden; contain: strict; }
+#kdStorm .sth { position: absolute; inset: 0; opacity: 0; will-change: opacity; background: radial-gradient(60% 50% at 50% 50%, rgba(255, 140, 190, .38), transparent 70%), linear-gradient(100deg, #301452, #5c2a72 55%, #78285f); }
+#kdStorm .sth::after { content: '\685c'; position: absolute; inset: 0; display: grid; place-items: center; font: 900 min(40vh, 40vw)/1 "Noto Serif JP", "Hiragino Mincho ProN", serif; color: rgba(255, 217, 232, .85); }
+#kdStorm .stp { position: absolute; left: 0; top: 0; width: 22px; height: 28px; margin: -14px 0 0 -11px; border-radius: 80% 8% 80% 8%; background: linear-gradient(150deg, #fff6fa, #ffb1cd 55%, #e0457f); box-shadow: 0 0 8px rgba(255, 140, 190, .5); opacity: 0; will-change: transform, opacity; }
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -25219,6 +25223,7 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
   /* ===== v252 : transitions katana · sakura · eau, écran de démarrage, menu radial ===== */
   (function () {
     var RM = window.matchMedia('(prefers-reduced-motion: reduce)'), MQ = window.matchMedia('(max-width: 767px)'), ORDER = ['hub', 'story', 'home', 'clz', 'prog', 'profil'];
+    var MOB = window.matchMedia('(max-width: 767px), (pointer: coarse)');
     var KW = { busy: false, root: null, q: null, pass: false }, SK = ' skewX(-14deg)';
     function X(v) { return 'translate3d(' + v + 'vw,0,0)' + SK; }
     function petalsHTML(n, cls) { var h = ''; for (var i = 0; i < n; i++) h += '<i class="kwpt ' + (cls || '') + '" style="left:' + ((i * 37 + 11) % 100) + '%;top:' + ((i * 23 + 9) % 90) + '%;--s:' + (0.7 + (i % 4) * 0.22).toFixed(2) + '"></i>'; return h; }
@@ -25255,40 +25260,35 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
       ctx.setTransform(k, 0, 0, k, 0, 0);
       for (i = 0; i < 3; i++) { ctx.globalAlpha = al[i]; ctx.strokeStyle = cs[i]; ctx.lineWidth = ws[i]; ctx.beginPath(); ctx.moveTo(X(e), 0); ctx.lineTo(X(e - sk), H); ctx.stroke(); }
     }
+    var STM = null;
+    function stormBuild() {
+      if (STM) return STM;
+      var r = document.createElement('div'); r.id = 'kdStorm'; r.setAttribute('aria-hidden', 'true'); var n = isLite() ? 38 : 80, h = '<i class="sth"></i>', i;
+      for (i = 0; i < n; i++) h += '<b class="stp"></b>';
+      r.innerHTML = h; document.body.appendChild(r); STM = { root: r, haze: r.firstChild, pets: Array.prototype.slice.call(r.querySelectorAll('.stp')) }; return STM;
+    }
     function kwRun(dir, swap) {
-      if (RM.matches) { swap(); return; }
-      var cv = kwBuild(), ctx = cv.getContext('2d'), sp = mkSprites(), W = window.innerWidth, H = window.innerHeight, lite = isLite(), id = ++wjob;
-      fxSize(cv); cv.style.visibility = 'visible'; KW.busy = true;
-      var np = lite ? 70 : 150, nb = lite ? 4 : 8, TS = 470, TR = 1000, TE = 1300, pt = [], bg = [], i, swapped = false, released = false, t0 = null;
-      var X = function (v) { return dir > 0 ? W - v : v; };
-      for (i = 0; i < np; i++) { var y = rnd() * H; pt.push({ y: y, dl: (y / H) * 260 + rnd() * 160, dur: 700 + rnd() * 500, s: .5 + rnd() * 1.1, ph: rnd() * 6.28, amp: 20 + rnd() * 70, r: rnd() * 6, vr: (rnd() - .5) * 14, f: rnd() * .5 }); }
-      for (i = 0; i < nb; i++) bg.push({ y: rnd() * H, dl: rnd() * 200, dur: 900 + rnd() * 300, s: 2.6 + rnd() * 2.4, ph: rnd() * 6.28, r: rnd() * 6 });
-      function draw(p, t, big) {
-        var dt = t - p.dl; if (dt < 0) return; var u = dt / p.dur; if (u > 1) return;
-        var v = -120 + u * (W + 360), y = p.y + Math.sin(p.ph + u * 7) * (big ? 40 : p.amp) - u * 60 * (p.f - .25), al = big ? .22 * Math.sin(u * Math.PI) : Math.min(1, u * 6) * Math.min(1, (1 - u) * 5);
-        dr(ctx, sp.p, X(v), y, p.r + (big ? 1 : p.vr) * dt / 1000 * (big ? 1.2 : 1), p.s * (.85 + .25 * Math.sin(p.ph + dt * .006)), p.s * (.6 + .5 * Math.abs(Math.sin(p.ph + dt * .005))), al);
-      }
-      function frame(now) {
-        if (id !== wjob) return; if (t0 === null) t0 = now; var t = now - t0, k = FXd, j, a;
-        ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.clearRect(0, 0, cv.width, cv.height);
-        a = t < TS ? ease(t / TS) : t < TS + 80 ? 1 : Math.max(0, 1 - ease((t - TS - 80) / (TR - TS - 80)));
-        if (a > 0) {
-          ctx.setTransform(k, 0, 0, k, 0, 0); var g = ctx.createLinearGradient(X(0), 0, X(W), 0); g.addColorStop(0, 'rgba(48,20,82,' + (a * .96).toFixed(3) + ')'); g.addColorStop(1, 'rgba(120,40,100,' + (a * .9).toFixed(3) + ')'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-          var rg = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, Math.max(W, H) * .55); rg.addColorStop(0, 'rgba(255,140,190,' + (a * .35).toFixed(3) + ')'); rg.addColorStop(1, 'rgba(255,140,190,0)'); ctx.fillStyle = rg; ctx.fillRect(0, 0, W, H);
-          if (a > .55) { ctx.globalAlpha = Math.min(1, (a - .55) * 2.2); ctx.fillStyle = '#ffd9e8'; ctx.font = '900 ' + Math.round(Math.min(W, H) * .4) + 'px "Noto Serif JP","Hiragino Mincho ProN",serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('桜', W / 2, H / 2); ctx.globalAlpha = 1; }
-        }
-        if (t >= TS && !swapped) { swapped = true; try { swap(); } catch (er) {} }
-        for (j = 0; j < bg.length; j++) draw(bg[j], t, true);
-        for (j = 0; j < pt.length; j++) draw(pt[j], t, false);
-        if (t >= TR && !released) { released = true; KW.busy = false; if (KW.q) { var qf = KW.q; KW.q = null; qf(); } }
-        if (t < TE) requestAnimationFrame(frame); else { cv.style.visibility = 'hidden'; ctx.clearRect(0, 0, cv.width, cv.height); if (!released) { released = true; KW.busy = false; } }
-      }
-      requestAnimationFrame(frame);
+      if (RM.matches || MOB.matches) { swap(); return; }
+      var m = stormBuild(), W = window.innerWidth, H = window.innerHeight, id = ++wjob, TS = 470, TR = 1050, TEND = 1900, sgn = dir > 0 ? -1 : 1;
+      m.root.style.visibility = 'visible'; KW.busy = true;
+      m.root.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); });
+      m.haze.animate([{ opacity: 0 }, { opacity: .97, offset: .3, easing: 'ease-in-out' }, { opacity: .97, offset: .42 }, { opacity: 0, offset: .85, easing: 'ease-in-out' }, { opacity: 0 }], { duration: 1500, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' });
+      m.pets.forEach(function (p, i) {
+        var y = rnd() * H, s = .55 + rnd() * 1.2, dl = (y / H) * 240 + rnd() * 200, du = 1000 + rnd() * 500, am = 30 + rnd() * 90, x0 = -140, x1 = W + 160, ph = rnd() * 6.28, rot = rnd() * 200, vr = 260 + rnd() * 420, big = i % 9 === 0;
+        if (big) s *= 2.6;
+        function f(o) { var yy = y + Math.sin(ph + o * 6.5) * am - o * 40, xx = x0 + o * (x1 - x0); if (sgn > 0) xx = W - xx; return 'translate3d(' + xx.toFixed(0) + 'px,' + yy.toFixed(0) + 'px,0) rotate(' + (rot + vr * o).toFixed(0) + 'deg) scale(' + s.toFixed(2) + ')'; }
+        var kf = [0, .14, .3, .46, .62, .78, .92, 1].map(function (o) { return { transform: f(o), opacity: o === 0 ? 0 : o < .14 ? 1 : o >= .92 ? (o === 1 ? 0 : .8) : big ? .3 : 1, offset: o, easing: 'ease-in-out' }; });
+        kf[1].opacity = big ? .3 : 1;
+        p.animate(kf, { duration: du, delay: dl, easing: 'linear', fill: 'both' });
+      });
+      setTimeout(function () { if (id !== wjob) return; try { swap(); } catch (e) {} }, TS);
+      setTimeout(function () { if (id !== wjob) return; KW.busy = false; if (KW.q) { var q = KW.q; KW.q = null; q(); } }, TR);
+      setTimeout(function () { if (id !== wjob) return; m.root.style.visibility = 'hidden'; m.root.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); }); }, TEND);
     }
     function tabIdx(t) { return ORDER.indexOf(t.getAttribute('data-tab')); }
     function curIdx() { var c = document.querySelector('.nav .tab[aria-current="page"]'); return c ? ORDER.indexOf(c.getAttribute('data-tab')) : -1; }
     document.addEventListener('click', function (e) {
-      if (KW.pass || !user || RM.matches) return;
+      if (KW.pass || !user || RM.matches || MOB.matches) return;
       var t = e.target.closest ? e.target.closest('.nav .tab, [data-go]') : null; if (!t) return;
       var isTab = t.classList.contains('tab'), dir = 1;
       if (isTab) { if (t.getAttribute('aria-current') === 'page') return; var a = curIdx(), b = tabIdx(t); dir = b >= a ? 1 : -1; }
