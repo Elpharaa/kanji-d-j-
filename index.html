@@ -18269,17 +18269,25 @@ body .status #btnFuriTog { display: none !important; }
     var lv = p && CURSUS[p.lv] ? p.lv : curLv();
     var wk = p && p.wk !== 'all' && lvWeeks(lv).indexOf(+p.wk) >= 0 ? +p.wk : 'all';
     var kind = p && ['all', 'vocab', 'kanji'].indexOf(p.kind) >= 0 ? p.kind : 'all';
-    return { lv: lv, wk: wk, kind: kind };
+    var jl = p && p.jl && JL_LV.some(function (l) { return l[0] === p.jl; }) ? p.jl : '';
+    if (jl) wk = 'all';
+    return { lv: lv, wk: wk, kind: kind, jl: jl };
+  }
+  function jlLabel(jl) { return jl === 'q' ? 'Vie quotidienne' : 'JLPT ' + jl.toUpperCase(); }
+  function progJlKanjis(jl) {
+    var seen = {}, o = [];
+    jlFlashWords(jl).forEach(function (w) { (w.kanjis || []).forEach(function (c) { if (!seen[c] && (KMAP[c] || JK[c])) { seen[c] = 1; o.push(jlKObj(c)); } }); });
+    return o;
   }
   function mpProg() { return progClean(mp && mp.v ? mp.v.prog : null); }
-  function progWords(p) { return WORDS.filter(function (w) { return p.wk === 'all' ? wkLevel(w.wk) === p.lv : w.wk === p.wk; }); }
-  function progKanjis(p) { return KANJI_DATA.filter(function (k) { return p.wk === 'all' ? wkLevel(k.wk) === p.lv : k.wk === p.wk; }); }
+  function progWords(p) { if (p.jl) return jlFlashWords(p.jl); return WORDS.filter(function (w) { return p.wk === 'all' ? wkLevel(w.wk) === p.lv : w.wk === p.wk; }); }
+  function progKanjis(p) { if (p.jl) return progJlKanjis(p.jl); return KANJI_DATA.filter(function (k) { return p.wk === 'all' ? wkLevel(k.wk) === p.lv : k.wk === p.wk; }); }
   function progWkLabel(wk) {
     var n = wkNum(wk), t = wk < 100 ? MP_WKNAME[wk] : (L1_TITLES[wk] || {}).title;
     return 'Semaine ' + n + (t ? ' ' + t : '');
   }
-  function progShort(p) { return CURSUS[p.lv].tag + (p.wk === 'all' ? ' · toutes les semaines' : ' · S' + wkNum(p.wk)); }
-  function progLong(p) { return CURSUS[p.lv].tag + ' · ' + (p.wk === 'all' ? 'Toutes les semaines' : progWkLabel(p.wk)); }
+  function progShort(p) { if (p.jl) return jlLabel(p.jl); return CURSUS[p.lv].tag + (p.wk === 'all' ? ' · toutes les semaines' : ' · S' + wkNum(p.wk)); }
+  function progLong(p) { if (p.jl) return jlLabel(p.jl) + ' · tout le niveau'; return CURSUS[p.lv].tag + ' · ' + (p.wk === 'all' ? 'Toutes les semaines' : progWkLabel(p.wk)); }
   function progKindLabel(k) { return { all: 'Mélange complet', vocab: 'Vocabulaire uniquement', kanji: 'Kanjis uniquement' }[k]; }
   function progProblem(p, mode) {
     var w = progWords(p).length, k = progKanjis(p).length;
@@ -18306,9 +18314,10 @@ body .status #btnFuriTog { display: none !important; }
     var seg = function (key, list, cur) {
       return '<div class="mpseg" role="group">' + list.map(function (x) { return '<button type="button" class="mpb" data-mpp="' + key + ':' + x[0] + '" data-mppfx="' + pfx + '" aria-pressed="' + (String(cur) === String(x[0])) + '">' + esc(x[1]) + '</button>'; }).join('') + '</div>';
     };
-    return '<div class="mpprogpick"><label class="mplabel">Programme · niveau</label>' + seg('lv', ['L0', 'L0S2', 'L1', 'L1S2', 'L2'].map(function (id) { return [id, CURSUS[id].tag]; }), p.lv) +
-      '<label class="mplabel" for="mppWk' + pfx + '">Semaine</label><select class="mpselect" id="mppWk' + pfx + '" data-mppsel="wk" data-mppfx="' + pfx + '"><option value="all"' + (p.wk === 'all' ? ' selected' : '') + '>Toutes les semaines ' + esc(CURSUS[p.lv].tag) + '</option>' +
-      weeks.map(function (wk) { return '<option value="' + wk + '"' + (p.wk === wk ? ' selected' : '') + '>' + esc(progWkLabel(wk)) + '</option>'; }).join('') + '</select>' +
+    return '<div class="mpprogpick"><label class="mplabel">Programme · niveau</label>' + seg('lv', ['L0', 'L0S2', 'L1', 'L1S2', 'L2'].map(function (id) { return [id, CURSUS[id].tag]; }), p.jl ? '' : p.lv) +
+      '<label class="mplabel">JLPT et vie quotidienne</label>' + seg('jl', JL_LV.map(function (l) { return [l[0], l[0] === 'q' ? 'Quotidien' : l[0].toUpperCase()]; }), p.jl || '') +
+      (p.jl ? '<p class="small muted" style="margin:6px 0">Tout le niveau ' + esc(jlLabel(p.jl)) + ' : vocabulaire et kanjis du JLPT.</p>' : '<label class="mplabel" for="mppWk' + pfx + '">Semaine</label><select class="mpselect" id="mppWk' + pfx + '" data-mppsel="wk" data-mppfx="' + pfx + '"><option value="all"' + (p.wk === 'all' ? ' selected' : '') + '>Toutes les semaines ' + esc(CURSUS[p.lv].tag) + '</option>' +
+      weeks.map(function (wk) { return '<option value="' + wk + '"' + (p.wk === wk ? ' selected' : '') + '>' + esc(progWkLabel(wk)) + '</option>'; }).join('') + '</select>') +
       '<label class="mplabel">Contenu</label>' + seg('kind', MP_KINDS, p.kind) + '</div>';
   }
   function progSet(pfx, key, val) {
@@ -18316,7 +18325,8 @@ body .status #btnFuriTog { display: none !important; }
     if (pfx === 'menu') p = mpMenuProg = progClean(mpMenuProg);
     else if (mp && mp.host && mp.v.phase === 'wait') p = mp.v.prog = progClean(mp.v.prog);
     else return;
-    if (key === 'lv') { p.lv = val; p.wk = 'all'; }
+    if (key === 'lv') { p.lv = val; p.wk = 'all'; p.jl = ''; }
+    else if (key === 'jl') { p.jl = val; p.wk = 'all'; }
     else if (key === 'wk') p.wk = val === 'all' ? 'all' : +val;
     else if (key === 'kind') p.kind = val;
     if (pfx === 'wait') { hostSync(); }
