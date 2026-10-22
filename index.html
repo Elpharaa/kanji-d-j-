@@ -4771,6 +4771,7 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
 .gnpop span { font-size: .78rem; letter-spacing: .08em; opacity: .9; }
 .gnsp { position: fixed; z-index: 99979; pointer-events: none; font-style: normal; font-size: .9rem; will-change: transform, opacity; }
 .gnsp.xp { color: #ffd1e6; text-shadow: 0 0 6px #ff7fb0; } .gnsp.co { color: #ffe27a; text-shadow: 0 0 6px #ffb000; }
+#kdCombo { display: none !important; }
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -24613,35 +24614,6 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
       })(t0);
     }
     new MutationObserver(function () { if (v.hidden) return; setTimeout(function () { up(document.getElementById('lvl')); up(document.getElementById('xpText')); }, 120); }).observe(v, { attributes: true, attributeFilter: ['hidden'] });
-  })();
-
-  /* ===== v236 : pastille de série, accrochée à la carte de question ===== */
-  (function () {
-    var cb = document.createElement('div'); cb.id = 'kdCombo'; cb.setAttribute('aria-hidden', 'true');
-    cb.innerHTML = '<span class="kcf">🔥</span><span class="kcn">0</span><span class="kcb"><i></i><i></i><i></i><i></i><i></i></span>';
-    document.body.appendChild(cb);
-    var combo = 0, idle = 0;
-    function card() { var c = document.querySelector('.clzcard,.knqcard,#stage .qcard,.qcard'); return c && c.offsetParent !== null ? c : null; }
-    function place() {
-      var c = card(); if (!c) return false; var r = c.getBoundingClientRect(); cb.style.top = Math.max(60, r.top - 12) + 'px'; cb.style.right = Math.max(8, window.innerWidth - r.right + 10) + 'px'; return true;
-    }
-    function paint(kind) {
-      cb.querySelector('.kcn').textContent = '×' + combo;
-      cb.querySelectorAll('.kcb i').forEach(function (i, k) { i.classList.toggle('f', combo > 0 && (combo % 5 === 0 || k < combo % 5)); });
-      cb.classList.toggle('big', combo >= 10); cb.classList.toggle('on', combo >= 2 && place());
-      cb.classList.remove('pop', 'lost'); void cb.offsetWidth;
-      if (kind === 'ok' && combo >= 2) cb.classList.add('pop');
-    }
-    var prev = sfx;
-    sfx = function (kind, force) {
-      if (kind === 'ok') { combo++; paint('ok'); }
-      else if (kind === 'bad' || kind === 'hurt') { if (combo >= 2) { cb.classList.add('on', 'lost'); place(); setTimeout(function () { cb.classList.remove('on', 'lost'); }, 700); } combo = 0; }
-      return prev.apply(this, arguments);
-    };
-    setInterval(function () {
-      if (!card()) { idle++; if (idle > 3) { combo = 0; cb.classList.remove('on'); } } else { idle = 0; if (combo >= 2) place(); }
-    }, 400);
-    window.addEventListener('scroll', function () { if (combo >= 2) place(); }, { passive: true });
   })();
 
   /* ===== v237 : l'onglet Profil montre la photo de profil ===== */
