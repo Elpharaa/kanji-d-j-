@@ -25502,20 +25502,20 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
       var dx = t ? t.x - o.x : 0, dy = t ? t.y - o.y : -60, off = kind === 'xp' ? -34 : 34;
       var a = el.animate([
         { transform: 'translate(-50%,-50%) translateX(' + off + 'px) scale(.3)', opacity: 0 },
-        { transform: 'translate(-50%,-50%) translateX(' + off + 'px) translateY(-26px) scale(1.18)', opacity: 1, offset: .22 },
-        { transform: 'translate(-50%,-50%) translateX(' + off + 'px) translateY(-40px) scale(1)', opacity: 1, offset: .55 },
+        { transform: 'translate(-50%,-50%) translateX(' + off + 'px) translateY(-26px) scale(1.18)', opacity: 1, offset: .2 },
+        { transform: 'translate(-50%,-50%) translateX(' + off + 'px) translateY(-40px) scale(1)', opacity: 1, offset: .68 },
         { transform: 'translate(-50%,-50%) translate(' + dx + 'px,' + dy + 'px) scale(.4)', opacity: .15 }
-      ], { duration: 1150, delay: delay || 0, easing: 'cubic-bezier(.32,.7,.3,1)', fill: 'both' });
+      ], { duration: 2400, delay: delay || 0, easing: 'cubic-bezier(.32,.7,.3,1)', fill: 'both' });
       if (!lite) {
         for (var i = 0; i < 6; i++) {
           var s = document.createElement('i'); s.className = 'gnsp ' + kind; s.textContent = '✦'; s.style.left = (o.x + off) + 'px'; s.style.top = (o.y - 20) + 'px'; document.body.appendChild(s);
           var ang = i / 6 * Math.PI * 2 + .4, d = 34 + (i % 3) * 14;
-          s.animate([{ transform: 'translate(-50%,-50%) scale(.2)', opacity: 0 }, { transform: 'translate(calc(-50% + ' + Math.cos(ang) * d * .6 + 'px), calc(-50% + ' + Math.sin(ang) * d * .6 + 'px)) scale(1)', opacity: 1, offset: .35 }, { transform: 'translate(calc(-50% + ' + Math.cos(ang) * d + 'px), calc(-50% + ' + Math.sin(ang) * d + 'px)) scale(.3)', opacity: 0 }], { duration: 620, delay: (delay || 0) + 80, easing: 'ease-out', fill: 'both' }).finished.then(function (n) { return function () { n.remove(); }; }(s), function () {});
+          s.animate([{ transform: 'translate(-50%,-50%) scale(.2)', opacity: 0 }, { transform: 'translate(calc(-50% + ' + Math.cos(ang) * d * .6 + 'px), calc(-50% + ' + Math.sin(ang) * d * .6 + 'px)) scale(1)', opacity: 1, offset: .35 }, { transform: 'translate(calc(-50% + ' + Math.cos(ang) * d + 'px), calc(-50% + ' + Math.sin(ang) * d + 'px)) scale(.3)', opacity: 0 }], { duration: 1200, delay: (delay || 0) + 120, easing: 'ease-out', fill: 'both' }).finished.then(function (n) { return function () { n.remove(); }; }(s), function () {});
         }
       }
       a.finished.then(function () {
         el.remove();
-        if (t && t.e && t.e.animate) t.e.animate([{ filter: 'brightness(1)', transform: 'scale(1)' }, { filter: 'brightness(1.8)', transform: 'scale(1.1)', offset: .35 }, { filter: 'brightness(1)', transform: 'scale(1)' }], { duration: 420, easing: 'ease-out' });
+        if (t && t.e && t.e.animate) t.e.animate([{ filter: 'brightness(1)', transform: 'scale(1)' }, { filter: 'brightness(1.8)', transform: 'scale(1.1)', offset: .35 }, { filter: 'brightness(1)', transform: 'scale(1)' }], { duration: 700, easing: 'ease-out' });
       }, function () { el.remove(); });
     }
     function flush() {
@@ -25523,7 +25523,7 @@ body .nav { -webkit-touch-callout: none; user-select: none; }
       if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       if (document.hidden) return;
       if (xp > 0) pop('xp', xp, 0);
-      if (co > 0) pop('co', co, xp > 0 ? 220 : 0);
+      if (co > 0) pop('co', co, xp > 0 ? 600 : 0);
     }
     var _rb = renderBars;
     renderBars = function () {
