@@ -22218,10 +22218,23 @@ body .status #btnFuriTog { display: none !important; }
             i += len; done = true;
           }
         }
-        if (!done) { out += esc(c); i++; }
+        if (!done) {
+          var fb = furiFallback(c, a[i - 1], a[i + 1]);
+          out += fb ? '<ruby>' + esc(c) + '<rt>' + esc(fb) + '</rt></ruby>' : esc(c); i++;
+        }
       } else { out += esc(c); i++; }
     }
     return out;
+  }
+  // kanji sans entrée dans le lexique : lecture la plus probable (ON si collé à un autre kanji, sinon KUN)
+  function furiFallback(c, prev, next) {
+    var k = (typeof KMAP !== 'undefined' && KMAP[c]) || ((typeof JK !== 'undefined' && JK[c]) ? jlKObj(c) : null), KJ = /[㐀-鿿々]/;
+    if (!k) return '';
+    var comp = (prev && KJ.test(prev)) || (next && KJ.test(next)), r = '';
+    function clean(x) { return toHira(String(x || '').replace(/\(.*\)/g, '').split('.')[0].replace(/[\-\s]/g, '')); }
+    if (!comp && k.kun && k.kun.length) r = clean(k.kun[0]);
+    if (!r && k.on && k.on.length) r = clean(k.on[0]);
+    return /^[ぁ-ゟー]+$/.test(r) ? r : '';
   }
   function clzSplit(w) {
     var mot = w.mot, e = exOf(mot); if (!e || !e.full) return null;
