@@ -22291,7 +22291,7 @@ body .status #btnFuriTog { display: none !important; }
     var gl = raw.split(/[;,()]|\bou\b/).map(function (g) { return g.replace(/^\s*(se |s'|être |le |la |les |l'|un |une |des |de |d')\s*/, '').trim(); }).filter(function (g) { return g.length >= 2; });
     gl.sort(function (a, b) { return b.length - a.length; });
     var i, g, at, len, re, m;
-    function mk(a, b) { return esc(txt.slice(0, a)) + '<mark class="frhl">' + esc(txt.slice(a, b)) + '</mark>' + esc(txt.slice(b)); }
+    function mk(a, b) { var el = txt.slice(0, a).match(/(^|[^A-Za-zÀ-ÿ])((?:[jJlLdDmMtTsSnNcC]|[qQ]u)['’])$/); if (el) a -= el[2].length; return esc(txt.slice(0, a)) + '<mark class="frhl">' + esc(txt.slice(a, b)) + '</mark>' + esc(txt.slice(b)); }
     var fx = FRX[w.mot]; if (fx) { at = low.indexOf(fx.toLowerCase()); if (at >= 0) return mk(at, at + fx.length); }
     for (i = 0; i < gl.length; i++) { g = gl[i]; at = low.indexOf(g); if (at >= 0 && (at === 0 || !/[a-zà-ÿ]/.test(low.charAt(at - 1)))) return mk(at, at + g.length); }
     // formes irrégulières (boire → bois, aller → vais…)
