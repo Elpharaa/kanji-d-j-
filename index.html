@@ -22198,7 +22198,9 @@ body .status #btnFuriTog { display: none !important; }
       if (/する$/.test(m) && m.length > 2) { var n = m.slice(0, -2), nr = r.slice(0, -2); if (nr && !d[n]) d[n] = nr; }
     }
     WORDS.forEach(function (w) { add(w.mot, w.lecture); });
+    Object.keys(KMAP).forEach(function (c) { (KMAP[c].words || []).forEach(function (x) { add(x[0], x[1]); }); });
     Object.keys(QVW).forEach(function (k) { var v = QVW[k]; add(v.jp, v.kana); });
+    [['江戸', 'えど'], ['見守る', 'みまもる'], ['夜空', 'よぞら'], ['大雨', 'おおあめ'], ['古本屋', 'ふるほんや'], ['寿司屋', 'すしや'], ['寺子屋', 'てらこや'], ['国旗', 'こっき'], ['中断', 'ちゅうだん'], ['二つ', 'ふたつ'], ['何時', 'なんじ'], ['大会', 'たいかい'], ['仙台', 'せんだい'], ['私一人', 'わたしひとり']].forEach(function (x) { d[x[0]] = x[1]; if (/[ぁ-ん]$/.test(x[0])) { var st = x[0].slice(0, -1); d[st] = x[1].slice(0, -1); } });
     Object.keys(KMAP).forEach(function (c) { var k = KMAP[c]; if (k.kun && k.kun.length === 1 && (!k.on || !k.on.length)) { var kr = String(k.kun[0]).replace(/\(.*\)/, '').replace(/[.\-]/g, ''); if (kr && !d[c]) d[c] = toHira(kr); } });
     return (CLZ_FD = d);
   }
@@ -22210,6 +22212,7 @@ body .status #btnFuriTog { display: none !important; }
         var done = false, len;
         for (len = Math.min(8, a.length - i); len >= 1 && !done; len--) {
           var sub = a.slice(i, i + len).join(''), r = fd[sub];
+          if (len === 1) r = furiCtx(c, a[i - 1], a[i + 1], r);
           if (r) {
             var sa = Array.from(sub), ra = Array.from(r);
             while (sa.length > 1 && ra.length > 1 && /[ぁ-ん]/.test(sa[sa.length - 1]) && sa[sa.length - 1] === ra[ra.length - 1]) { sa.pop(); ra.pop(); }
@@ -22225,6 +22228,25 @@ body .status #btnFuriTog { display: none !important; }
       } else { out += esc(c); i++; }
     }
     return out;
+  }
+  // lecture d'un kanji isolé selon son entourage : heures (六時 = ろくじ), compteurs, kanji collé à un autre kanji (lecture ON)
+  var FURI_NUM = '一二三四五六七八九十百千万何';
+  function furiCtx(c, prev, next, r) {
+    var KJ = /[㐀-鿿々]/, num = FURI_NUM.indexOf(c) >= 0, pnum = prev && FURI_NUM.indexOf(prev) >= 0;
+    if (c === '時' && pnum) return 'じ';
+    if (c === '人' && pnum && prev !== '一' && prev !== '二') return 'にん';
+    if (next === '時') { if (c === '四') return 'よ'; if (c === '七') return 'しち'; if (c === '九') return 'く'; if (c === '何') return 'なん'; }
+    if (num || !KJ.test(c)) return r;
+    if (c === '屋' && prev && KJ.test(prev)) return 'や';
+    var tail = prev && KJ.test(prev) && (!next || /[はがをにでのともへやから、。！？「」）]/.test(next)) && '雨川山花犬町人店水寺金木口手目耳足道空海魚鳥肉物'.indexOf(c) < 0;
+    if (((next && KJ.test(next)) || tail) && '私彼'.indexOf(c) < 0) {
+      var k = (typeof KMAP !== 'undefined' && KMAP[c]) || ((typeof JK !== 'undefined' && JK[c]) ? jlKObj(c) : null);
+      if (k && k.on && k.on.length) {
+        var ons = k.on.map(function (x) { return toHira(String(x).replace(/\(.*\)/g, '').split('.')[0].replace(/[\-\s]/g, '')); });
+        if (!r || ons.indexOf(r) < 0) return ons[0] || r;
+      }
+    }
+    return r;
   }
   // kanji sans entrée dans le lexique : lecture la plus probable (ON si collé à un autre kanji, sinon KUN)
   function furiFallback(c, prev, next) {
