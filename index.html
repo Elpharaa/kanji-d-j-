@@ -4849,6 +4849,23 @@ body.lvpon{overflow:hidden}
 .as2adv{display:flex;flex-direction:column;gap:6px;padding-top:2px}
 #clzHost .gsblock>.gscount,.askbox .cs-cap{display:none}
 .as2l{margin:6px 0 0;font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#4c3975}
+/* v282 : images de cartes */
+.cdart .cdimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.admcat{margin:6px 0;border:1px solid rgba(0,0,0,.15);border-radius:10px;padding:2px 8px}
+.admcat>summary{cursor:pointer;font-weight:800;padding:8px 2px}
+#cdCrop{position:fixed;inset:0;z-index:9600;display:flex;align-items:center;justify-content:center;padding:12px;background:rgba(24,16,46,.94);overflow-y:auto}
+#cdCrop[hidden]{display:none}
+.cdcbox{width:100%;max-width:560px;background:#fbf4e3;color:#1f1830;border:3px solid #1f1830;border-radius:18px;padding:14px;box-shadow:0 10px 0 rgba(0,0,0,.3)}
+.cdch{margin:0 0 10px;font-size:1.1rem}
+.cdcmain{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:flex-start}
+.cdcstage{width:300px;max-width:100%}
+.cdcstage canvas{width:100%;aspect-ratio:1/1;display:block;border-radius:12px;border:3px solid #1f1830;touch-action:none;cursor:grab;background:#222233}
+.cdchint{margin:6px 0 0;font-size:.78rem;opacity:.7;text-align:center}
+.cdcprev{width:150px}
+.cdcprev .cdcard{max-width:150px}
+.cdcctl{display:flex;gap:10px;align-items:center;margin:12px 0}.cdcctl input{flex:1}
+.cdcfoot{display:flex;gap:10px;justify-content:flex-end}
+body.cdcropon{overflow:hidden}
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -19719,6 +19736,8 @@ body.lvpon{overflow:hidden}
   };
   var CD_BOARD = { allard: '師', matsumoto: '話', maeda: '漢字', takemoto: '笑', pitlou: '史', baba: '訳', amek: '文法' };
   function cdArt(id) {
+    var ua = (typeof ASSETS !== 'undefined' && ASSETS) ? ASSETS['card_' + id] : '';
+    if (ua) return '<img class="cdimg" src="' + esc(ua) + '" alt="" decoding="async" draggable="false">';
     var c = CARD_BY[id], k = c[1], bg = CD_BG[k] || CD_BG.obj, inner;
     var defs = '<defs><linearGradient id="cb_' + id + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + bg[0] + '"/><stop offset="1" stop-color="' + bg[1] + '"/></linearGradient><radialGradient id="cg_' + id + '" cx=".5" cy=".42" r=".6"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>';
     var scene = '<rect width="100" height="100" fill="url(#cb_' + id + ')"/>';
@@ -19860,7 +19879,7 @@ body.lvpon{overflow:hidden}
   }
   function cardZoomHTML(id) {
     var inV = cardFavOf(S).indexOf(id) >= 0;
-    return '<div class="cdzoom"><button type="button" class="btn lsm" data-card="back">‹ Retour</button><div class="cdbigwrap">' + cdCard(id, { big: true, count: true }) + '</div>' + (cardS().owned[id] ? '<button type="button" class="btn ' + (inV ? '' : 'primary') + '" data-card="fav:' + id + '" style="width:100%;margin-top:10px">' + (inV ? '★ Exposée sur mon profil · retirer' : '☆ Exposer sur mon profil') + '</button>' : '') + '</div>';
+    return '<div class="cdzoom"><button type="button" class="btn lsm" data-card="back">‹ Retour</button><div class="cdbigwrap">' + cdCard(id, { big: true, count: true }) + '</div>' + (cardS().owned[id] ? '<button type="button" class="btn ' + (inV ? '' : 'primary') + '" data-card="fav:' + id + '" style="width:100%;margin-top:10px">' + (inV ? '★ Exposée sur mon profil · retirer' : '☆ Exposer sur mon profil') + '</button>' : '') + (isAdmin() ? '<button type="button" class="btn" data-admincard="' + id + '" style="width:100%;margin-top:8px">📷 Image de la carte (admin)</button>' : '') + '</div>';
   }
   var cardOpenSec = null;
   function cardColHTML() {
@@ -26045,6 +26064,110 @@ body.lvpon{overflow:hidden}
     else if (k === 'sem') lvpFinish(lvp.year === 'L0' ? (v === '1' ? 'L0' : 'L0S2') : (v === '1' ? 'L1' : 'L1S2'), { lille: 1, year: lvp.year });
     else if (k === 'lv') lvpFinish(v, null);
   });
+
+  /* ===== v282 : images de cartes (compte Elphara) avec recadrage ===== */
+  var admCardOpen = {}, cdcrop = null;
+  var CD_KINDS = ['prof', 'fac', 'jp', 'hist', 'obj', 'cuis', 'trad', 'art', 'sport', 'lieu', 'nat', 'kami', 'folk'];
+  var CD_KNAMES = { prof: 'Professeurs', fac: 'Vie de la fac', jp: 'Japon', hist: 'Histoire', obj: 'Objets', cuis: 'Cuisine', trad: 'Traditions', art: 'Arts', sport: 'Budō et sport', lieu: 'Lieux', nat: 'Nature et fêtes', kami: 'Kami (dieux)', folk: 'Folklore' };
+  function adminCardsHTML() {
+    var h = '<h4 class="admh">Cartes : illustrations</h4><p class="small muted">Ton image remplace le dessin de la carte pour tous les joueurs. Tu la cadres avant d\'enregistrer. Les images sont téléchargées par les joueurs : commence par les cartes qui comptent le plus. Tu peux aussi toucher une carte de ton classeur, puis « Image de la carte ».</p>';
+    CD_KINDS.forEach(function (k) {
+      var list = CARDS.filter(function (c) { return c[1] === k; }); if (!list.length) return;
+      var n = list.filter(function (c) { return ASSETS['card_' + c[0]]; }).length;
+      h += '<details class="admcat" data-cdk="' + k + '"' + (admCardOpen[k] ? ' open' : '') + '><summary>' + esc(CD_KNAMES[k] || k) + ' (' + list.length + ')' + (n ? ' · ' + n + ' image' + (n > 1 ? 's' : '') : '') + '</summary>' + list.map(function (c) {
+        var a = ASSETS['card_' + c[0]];
+        return '<div class="admrow"><span class="admth">' + (a ? '<img src="' + esc(a) + '" alt="">' : '·') + '</span><b>' + esc(c[2]) + ' <small>' + esc(CARD_RAR[c[3]].n) + '</small></b><button type="button" class="btn" data-admincard="' + c[0] + '" aria-label="Image de ' + esc(c[2]) + '">📷 ' + (a ? 'Changer' : 'Importer') + '</button>' + (a ? '<button type="button" class="btn" data-admindel="card_' + c[0] + '" aria-label="Retirer l\'image">✕</button>' : '') + '</div>';
+      }).join('') + '</details>';
+    });
+    return h;
+  }
+  var _adminPanel0 = adminPanel;
+  adminPanel = function () { _adminPanel0(); if (isAdmin() && $('adminBody')) $('adminBody').insertAdjacentHTML('beforeend', adminCardsHTML()); };
+  document.addEventListener('toggle', function (e) { var d = e.target; if (d && d.classList && d.classList.contains('admcat')) admCardOpen[d.getAttribute('data-cdk')] = d.open; }, true);
+  function cdcDraw() {
+    var c = cdcrop; if (!c) return;
+    [$('cdcCv'), c.cv2].forEach(function (cv) {
+      if (!cv) return; var g = cv.getContext('2d'), P = cv.width; g.fillStyle = '#222233'; g.fillRect(0, 0, P, P); if (!c.img) return;
+      var k = c.base * c.z; g.drawImage(c.img, P / 2 - c.cx * k, P / 2 - c.cy * k, c.img.width * k, c.img.height * k);
+    });
+  }
+  function cdcClamp() {
+    var c = cdcrop, k = c.base * c.z, h = 150 / k, W = c.img.width, H = c.img.height;
+    c.cx = Math.max(h, Math.min(W - h, c.cx)); c.cy = Math.max(h, Math.min(H - h, c.cy));
+  }
+  function cdcPickFile() {
+    var inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'image/*';
+    inp.onchange = function () {
+      var f = inp.files && inp.files[0]; if (!f || !cdcrop) return;
+      var img = new Image(), url = URL.createObjectURL(f);
+      img.onload = function () {
+        var c = cdcrop; if (!c) return;
+        var m = Math.max(img.width, img.height), cv = document.createElement('canvas');
+        if (m > 1600) { var sc = 1600 / m; cv.width = Math.round(img.width * sc); cv.height = Math.round(img.height * sc); cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height); c.img = cv; } else c.img = img;
+        URL.revokeObjectURL(url);
+        c.base = 300 / Math.min(c.img.width, c.img.height); c.z = 1; c.cx = c.img.width / 2; c.cy = c.img.height / 2;
+        var z = $('cdcZ'); z.disabled = false; z.value = 1; document.querySelector('#cdCrop [data-cdc=save]').disabled = false;
+        cdcDraw();
+      };
+      img.onerror = function () { toast('Image illisible.'); };
+      img.src = url;
+    };
+    inp.click();
+  }
+  function cdCropOpen(id) {
+    if (!isAdmin() || !CARD_BY[id]) return;
+    var d = $('cdCrop'); if (!d) { d = document.createElement('div'); d.id = 'cdCrop'; d.setAttribute('role', 'dialog'); d.setAttribute('aria-modal', 'true'); document.body.appendChild(d); }
+    cdcrop = { id: id, img: null, z: 1, cx: 0, cy: 0, base: 1, cv2: null };
+    d.hidden = false; document.body.classList.add('cdcropon');
+    var tmp = document.createElement('div'); tmp.innerHTML = cdCard(id, { big: true });
+    var art = tmp.querySelector('.cdart'), old = art && art.querySelector('.cdsvg,.cdimg');
+    var cv2 = document.createElement('canvas'); cv2.width = 300; cv2.height = 300; cv2.className = 'cdimg'; if (old) old.parentNode.replaceChild(cv2, old); cdcrop.cv2 = cv2;
+    d.innerHTML = '<div class="cdcbox"><h3 class="cdch">Image : ' + esc(CARD_BY[id][2]) + '</h3><div class="cdcmain"><div class="cdcstage"><canvas id="cdcCv" width="300" height="300"></canvas><p class="cdchint">Glisse pour déplacer, pince ou curseur pour zoomer</p></div><div class="cdcprev" id="cdcPrev"></div></div>' +
+      '<div class="cdcctl"><button type="button" class="btn" data-cdc="file">📷 Choisir une image</button><input type="range" id="cdcZ" min="1" max="4" step="0.01" value="1" disabled aria-label="Zoom"></div>' +
+      '<div class="cdcfoot"><button type="button" class="btn" data-cdc="cancel">Annuler</button><button type="button" class="btn primary" data-cdc="save" disabled>Enregistrer</button></div></div>';
+    $('cdcPrev').appendChild(tmp.firstChild); cdcDraw();
+    cdcPickFile();
+  }
+  function cdcClose() { var d = $('cdCrop'); if (d) d.hidden = true; document.body.classList.remove('cdcropon'); cdcrop = null; }
+  function cdcSave() {
+    var c = cdcrop; if (!c || !c.img) return;
+    var N = 360, q = 0.82, d = '';
+    function render(n) { var o = document.createElement('canvas'); o.width = n; o.height = n; var g = o.getContext('2d'), k = c.base * c.z * n / 300; g.fillStyle = '#fff'; g.fillRect(0, 0, n, n); g.drawImage(c.img, n / 2 - c.cx * k, n / 2 - c.cy * k, c.img.width * k, c.img.height * k); return o; }
+    var o = render(N); d = o.toDataURL('image/jpeg', q);
+    while (d.length > 60000 && q > 0.4) { q -= 0.08; d = o.toDataURL('image/jpeg', q); }
+    if (d.length > 60000) { N = 280; o = render(N); d = o.toDataURL('image/jpeg', 0.6); }
+    var id = c.id; cdcClose(); adminSave('card_' + id, d);
+    setTimeout(function () { var w = document.querySelector('.cdzoom .cdbigwrap'); if (w) w.innerHTML = cdCard(id, { big: true, count: true }); }, 400);
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-admincard]') : null;
+    if (b && isAdmin()) { e.stopPropagation(); e.preventDefault(); cdCropOpen(b.getAttribute('data-admincard')); return; }
+    var c = e.target.closest ? e.target.closest('#cdCrop [data-cdc]') : null; if (!c) return;
+    var a = c.getAttribute('data-cdc');
+    if (a === 'file') cdcPickFile(); else if (a === 'cancel') cdcClose(); else if (a === 'save') cdcSave();
+  }, true);
+  document.addEventListener('input', function (e) { if (e.target && e.target.id === 'cdcZ' && cdcrop && cdcrop.img) { cdcrop.z = +e.target.value; cdcClamp(); cdcDraw(); } });
+  (function () {
+    var pts = {}, last = null;
+    function cv() { return $('cdcCv'); }
+    document.addEventListener('pointerdown', function (e) { if (!cdcrop || e.target !== cv()) return; e.preventDefault(); try { e.target.setPointerCapture(e.pointerId); } catch (er) {} pts[e.pointerId] = [e.clientX, e.clientY]; last = null; });
+    document.addEventListener('pointermove', function (e) {
+      if (!cdcrop || !cdcrop.img || !pts[e.pointerId]) return;
+      var ids = Object.keys(pts), r = cv().getBoundingClientRect(), ratio = 300 / r.width, k = cdcrop.base * cdcrop.z;
+      if (ids.length >= 2) {
+        var p2 = ids.filter(function (i) { return +i !== e.pointerId; })[0], a = pts[e.pointerId], b = pts[p2], d0 = Math.hypot(a[0] - b[0], a[1] - b[1]);
+        pts[e.pointerId] = [e.clientX, e.clientY]; var d1 = Math.hypot(e.clientX - b[0], e.clientY - b[1]);
+        if (d0 > 0) { cdcrop.z = Math.max(1, Math.min(4, cdcrop.z * d1 / d0)); $('cdcZ').value = cdcrop.z; }
+      } else {
+        var o = pts[e.pointerId]; cdcrop.cx -= (e.clientX - o[0]) * ratio / k; cdcrop.cy -= (e.clientY - o[1]) * ratio / k; pts[e.pointerId] = [e.clientX, e.clientY];
+      }
+      cdcClamp(); cdcDraw();
+    });
+    function up(e) { delete pts[e.pointerId]; }
+    document.addEventListener('pointerup', up); document.addEventListener('pointercancel', up);
+    document.addEventListener('wheel', function (e) { if (!cdcrop || !cdcrop.img || e.target !== cv()) return; e.preventDefault(); cdcrop.z = Math.max(1, Math.min(4, cdcrop.z * (e.deltaY < 0 ? 1.08 : 0.926))); $('cdcZ').value = cdcrop.z; cdcClamp(); cdcDraw(); }, { passive: false });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && cdcrop) cdcClose(); });
+  })();
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
