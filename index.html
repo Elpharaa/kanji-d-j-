@@ -4799,6 +4799,11 @@ body .status #btnFuriTog { display: none !important; }
 .cmpcard { text-align: center; padding: 18px 14px; } .cmpbigk { font-size: 5rem; line-height: 1.1; color: #2c2452; } .cmpeqbig { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 2px; margin: 8px 0; } .cmpeqbig .cmpeq b { font-size: 2.4rem; } .cmpeqbig .cmpeq small { font-size: .78rem; }
 .cmpoc { font-size: 1.7rem; } .cmpfb { text-align: center; } .cmpfb.ok { background: #e4f3e2; } .cmpfb.ko { background: #fbe4e4; }
 @media (max-width: 560px) { .cmpbig { font-size: 3.4rem; } .cmpbigk { font-size: 4.2rem; } }
+/* v278 : exercice à trous, indices clavier, explication d'erreur */
+.kbhint{display:none}
+@media (hover:hover) and (pointer:fine){.kbhint{display:inline-block;margin-left:8px;padding:0 6px;border:1px solid currentColor;border-radius:5px;font:700 .7rem/1.5 inherit;opacity:.6;vertical-align:middle}}
+.clzwhy{margin:6px 0 0;font-size:.9rem;line-height:1.4;font-weight:500;text-align:left}
+.clzghost{white-space:nowrap;font-weight:800;color:#2c2452;background:#fff6dc;border:2px solid #e8b84a;border-radius:10px;padding:2px 10px;box-shadow:0 6px 16px rgba(0,0,0,.3)}
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -22221,8 +22226,9 @@ body .status #btnFuriTog { display: none !important; }
     Object.keys(KMAP).forEach(function (c) { var k = KMAP[c]; if (k.kun && k.kun.length === 1 && (!k.on || !k.on.length)) { var kr = String(k.kun[0]).replace(/\(.*\)/, '').replace(/[.\-]/g, ''); if (kr && !d[c]) d[c] = toHira(kr); } });
     return (CLZ_FD = d);
   }
+  function furKnSet() { return (S && S.clzAdapt && typeof clz !== 'undefined' && clz.view === 'quiz' && clz.known && $('vClz') && !$('vClz').hidden) ? clz.known : null; }
   function furiHTML(text, skipFrom, skipTo) {
-    var fd = clzFD(), out = '', i = 0, a = Array.from(String(text));
+    var fd = clzFD(), out = '', i = 0, a = Array.from(String(text)), furKn = furKnSet();
     while (i < a.length) {
       var c = a[i];
       if (/[㐀-鿿]/.test(c)) {
@@ -22230,6 +22236,7 @@ body .status #btnFuriTog { display: none !important; }
         for (len = Math.min(8, a.length - i); len >= 1 && !done; len--) {
           var sub = a.slice(i, i + len).join(''), r = fd[sub];
           if (len === 1) r = furiCtx(c, a[i - 1], a[i + 1], r);
+          if (r && furKn && Array.from(sub).every(function (ch) { return !/[㐀-鿿]/.test(ch) || furKn[ch]; })) { out += esc(sub); i += len; done = true; continue; }
           if (r) {
             var sa = Array.from(sub), ra = Array.from(r);
             while (sa.length > 1 && ra.length > 1 && /[ぁ-ん]/.test(sa[sa.length - 1]) && sa[sa.length - 1] === ra[ra.length - 1]) { sa.pop(); ra.pop(); }
@@ -22239,7 +22246,7 @@ body .status #btnFuriTog { display: none !important; }
           }
         }
         if (!done) {
-          var fb = furiFallback(c, a[i - 1], a[i + 1]);
+          var fb = furKn && furKn[c] ? '' : furiFallback(c, a[i - 1], a[i + 1]);
           out += fb ? '<ruby>' + esc(c) + '<rt>' + esc(fb) + '</rt></ruby>' : esc(c); i++;
         }
       } else { out += esc(c); i++; }
@@ -22353,11 +22360,12 @@ body .status #btnFuriTog { display: none !important; }
       '<div class="panel clzpanel"><div id="gsHost">' + scopeBlockHTML() + '</div>' +
       '<p class="gscount clzcount">' + (items.length ? '<b>' + items.length + ' phrase' + (items.length > 1 ? 's' : '') + '</b> disponible' + (items.length > 1 ? 's' : '') + ' pour cette sélection <small>(sur ' + tot + ' mot' + (tot > 1 ? 's' : '') + ')</small>' : '<b>Aucune phrase</b> pour cette sélection pour l\'instant. Choisis un autre niveau ou une autre semaine.') + '</p>' +
       '<label class="seenopt"><input type="checkbox" id="clzFuri"' + (on ? ' checked' : '') + '><span>Afficher les <b>furigana</b> <small>(lecture au-dessus des kanjis)</small></span></label>' +
+      '<label class="seenopt"><input type="checkbox" id="clzAdapt"' + (S && S.clzAdapt ? ' checked' : '') + '><span>Furigana <b>adaptatifs</b> <small>(seulement sur les kanjis que tu ne maîtrises pas encore)</small></span></label>' +
       '<label class="kindopt">Façon de répondre<select id="clzMode" aria-label="Façon de répondre"><option value="mcq"' + (md === 'mcq' ? ' selected' : '') + '>Choisir parmi 4 mots</option><option value="input"' + (md === 'input' ? ' selected' : '') + '>Écrire le mot au clavier</option></select></label>' +
       '<button type="button" class="btn primary clzgo" data-clz="start"' + (items.length ? '' : ' disabled') + '>▶ Commencer (' + Math.min(10, items.length) + ' phrases)</button></div>';
   }
   function clzSentenceHTML(q, filled) {
-    var f = S && S.clzFuri, it = q.it, mid = filled ? '<mark class="clzfill" data-wtok="' + esc(wlookup(it.hit) ? it.hit : it.w.mot) + '" tabindex="0" role="button">' + (f ? furiHTML(it.hit) : esc(it.hit)) + '</mark>' : '<span class="clzblank" style="min-width:' + Math.max(3.4, Array.from(it.hit).length * 1.15 + 1.4).toFixed(1) + 'em"></span>';
+    var f = S && S.clzFuri, it = q.it, mid = filled ? '<mark class="clzfill" data-wtok="' + esc(wlookup(it.hit) ? it.hit : it.w.mot) + '" tabindex="0" role="button">' + (f ? furiHTML(it.hit) : esc(it.hit)) + '</mark>' : '<span class="clzblank" style="min-width:' + Math.max(2.4, Array.from(it.hit).length * 1.0 + 0.9).toFixed(1) + 'em"></span>';
     var post = String(it.post || ''), pm = post.match(/^[はがをにでともへの]/), glue = pm ? pm[0] : '';
     return '<p class="clzjp jp">' + wtokHTML(it.pre, f, true) + '<wbr><span class="clznb">' + mid + esc(glue) + '</span>' + wtokHTML(post.slice(glue.length), f, true) + '</p>';
   }
@@ -22373,12 +22381,27 @@ body .status #btnFuriTog { display: none !important; }
     var it = clz.items[clz.i]; if (!it) return;
     var opts = shuffle([it.w].concat(clzDistractors(it)));
     clz.q = { it: it, opts: opts }; clz.ans = null; clz.alt = false; clz.retried = false; clz.dead = [];
+    clz.known = clzKnown();
+  }
+  function clzKnown() {
+    var k = {}; if (!S || !S.stats) return k;
+    WORDS.forEach(function (w) { var st = S.stats[w.key]; if (st && st.ok >= 2 && st.ok > st.ko) Array.from(w.mot).forEach(function (ch) { if (/[㐀-鿿]/.test(ch)) k[ch] = 1; }); });
+    return k;
+  }
+  /* v278 : pourquoi ce mot ? indice tiré de ce qui suit le trou */
+  function clzWhy(it) {
+    var p = String(it.post || ''), g = '';
+    if (/^(から|まで|より|[はがをにでともへの])/.test(p)) { var m = p.match(/^(から|まで|より|[はがをにでともへの])/)[1]; g = 'Après le trou vient 「' + m + '」 : on attend ici un nom (ou un groupe nominal), pas une forme verbale.'; }
+    else if (/^(です|でした|だ|だった|でしょう)/.test(p)) g = 'La phrase finit par 「' + p.match(/^(です|でした|だっ?た?|でしょう)/)[1] + '」 : on attend un nom ou un adjectif en な.';
+    else if (/^(ます|ました|ません|ましょう|ている|ていた|て|た|ない|なかった|たい|ば)/.test(p)) g = 'Après le trou vient 「' + p.match(/^(ましょう|ました|ません|ます|ている|ていた|なかった|ない|たい|て|た|ば)/)[1] + '」 : il faut un verbe, dont la fin se rattache au radical.';
+    else if (/^[いく]/.test(p) && /い$/.test(it.w.mot)) g = 'La terminaison 「' + p.charAt(0) + '」 qui suit signale un adjectif en い.';
+    return g;
   }
   function clzQuizHTML() {
     var q = clz.q, it = q.it, md = S && S.clzMode === 'input' ? 'input' : 'mcq', h = '';
     h += '<div class="grp djbar"><button type="button" class="btn djback" data-clz="stop">‹ Arrêter</button><h3 class="sgh" data-k="文"><span>Phrases à trou</span></h3></div>';
     h += '<p class="small muted" style="margin:6px 0 2px;text-align:center">Phrase ' + (clz.i + 1) + ' / ' + clz.items.length + '</p><div class="knqbar"><u style="width:' + Math.round(clz.i / clz.items.length * 100) + '%"></u></div>';
-    h += '<div class="knqcard qcard clzcard' + (clz.ans === 1 ? ' clzok' : (clz.ans === 0 || (clz.retried && clz.ans === null)) ? ' clzko' : '') + '"><span class="clzreg ' + (clzPolite(it.full) ? 'poli' : 'neutre') + '" title="Registre de la phrase">' + (clzPolite(it.full) ? '丁寧 Phrase polie' : '普通 Phrase neutre') + '</span><button type="button" class="clzfbtn' + (S && S.furiSess ? ' on' : '') + '" data-clzfuri="1" aria-pressed="' + (S && S.furiSess ? 'true' : 'false') + '" title="Afficher ou masquer les furigana"><span class="jp">ふ</span></button><p class="prompt">Complète la phrase avec le bon mot</p>' + clzSentenceHTML(q, clz.ans !== null) + '<p class="clzfr">' + frHL(it.fr, it.w) + '</p><p class="clzhint">☝ Touche un mot de la phrase pour voir sa lecture, son sens, son niveau et ses tracés</p></div>';
+    h += '<div class="knqcard qcard clzcard' + (clz.ans === 1 ? ' clzok' : (clz.ans === 0 || (clz.retried && clz.ans === null)) ? ' clzko' : '') + '"><span class="clzreg ' + (clzPolite(it.full) ? 'poli' : 'neutre') + '" title="Registre de la phrase">' + (clzPolite(it.full) ? '丁寧 Phrase polie' : '普通 Phrase neutre') + '</span><button type="button" class="clzfbtn' + (S && S.furiSess ? ' on' : '') + '" data-clzfuri="1" aria-pressed="' + (S && S.furiSess ? 'true' : 'false') + '" title="Afficher ou masquer les furigana (touche F)"><span class="jp">ふ</span></button><p class="prompt">' + (it.replay ? '🔁 Revue de ton erreur : retrouve le mot' : 'Complète la phrase avec le bon mot') + '</p>' + clzSentenceHTML(q, clz.ans !== null) + '<p class="clzfr">' + frHL(it.fr, it.w) + '</p><p class="clzhint">☝ Touche un mot de la phrase pour voir sa lecture, son sens, son niveau et ses tracés</p></div>';
     if (clz.ans === null) {
       if (md === 'mcq') {
         if (clz.retried) h += '<p class="clzretry">Presque ! <b>Seconde chance</b> : si tu trouves, tu gagnes la moitié des points.</p>';
@@ -22386,27 +22409,68 @@ body .status #btnFuriTog { display: none !important; }
       } else {
         h += '<form class="answer" id="clzForm" autocomplete="off"><label class="prompt" for="clzAns" style="text-align:left">Le mot qui manque (kanji ou kana), en forme neutre du dictionnaire</label><input type="text" id="clzAns" data-ime="1" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="ex. 日本 / にほん"><button class="btn primary" type="submit">Valider</button></form>';
       }
-      h += '<div class="skiprow"><button class="btn skipq" type="button" data-clz="skip">🤷 Je ne sais pas</button></div>';
+      h += '<div class="skiprow"><button class="btn skipq" type="button" data-clz="skip">🤷 Je ne sais pas<kbd class="kbhint">S</kbd></button></div>';
     } else {
       var ok = clz.ans === 1, w = it.w;
       h += '<div class="choices">' + (md === 'mcq' ? q.opts.map(function (o, i) { var c = 'choice'; if (o.mot === w.mot) c += ' good'; else if (clz.pick === i) c += ' bad'; return '<button type="button" class="' + c + '" disabled><span class="key">' + (i + 1) + '</span><span class="jp">' + esc(o.mot) + '</span></button>'; }).join('') : '') + '</div>';
-      h += '<div class="fb ' + (ok ? 'good' : 'bad') + '"><b>' + (ok ? 'Bonne réponse !' : 'Raté. Le mot était : ' + esc(w.mot)) + '</b><span class="jp">' + esc(w.mot) + '</span> · ' + esc(w.lecture || '') + ' · ' + esc(w.sens) + '<div class="aids"><button type="button" class="aidbtn" data-clz="say">🔊 Écouter la phrase</button></div>' + '' + '</div>';
+      h += '<div class="fb ' + (ok ? 'good' : 'bad') + '"><b>' + (ok ? 'Bonne réponse !' : 'Raté. Le mot était : ' + esc(w.mot)) + '</b><span class="jp">' + esc(w.mot) + '</span> · ' + esc(w.lecture || '') + ' · ' + esc(w.sens) + (!ok ? clzWhyHTML(it, q) : '') + '<div class="aids"><button type="button" class="aidbtn" data-clz="say">🔊 Écouter la phrase<kbd class="kbhint">L</kbd></button></div>' + '' + '</div>';
       if (clz.alt) h += '<p class="small muted" style="text-align:center">Phrase bonus : pas de points pour celle-ci.</p>';
       if (clzAltList(clz.items[clz.i]).length) h += '<div style="text-align:center;margin-top:10px"><button type="button" class="btn" data-clz="alt">🔁 Étudier une autre phrase avec ce mot</button></div>';
-      h += '<div style="text-align:center;margin-top:10px"><button type="button" class="btn primary" data-clz="next">' + (clz.i + 1 >= clz.items.length ? 'Voir le résultat' : 'Suivant') + '</button></div>';
+      h += '<div style="text-align:center;margin-top:10px"><button type="button" class="btn primary" data-clz="next">' + (clz.i + 1 >= clz.items.length ? 'Voir le résultat' : 'Suivant') + '<kbd class="kbhint">⏎</kbd></button></div>';
     }
     return h;
   }
+  function clzWhyHTML(it, q) {
+    var h = '', g = clzWhy(it), pk = (clz.pick >= 0 && q.opts[clz.pick] && q.opts[clz.pick].mot !== it.w.mot) ? q.opts[clz.pick] : null;
+    if (pk) h += '<p class="clzwhy">Tu avais choisi <span class="jp">' + esc(pk.mot) + '</span> (' + esc(pk.sens) + ') : ça ne correspond pas au sens de la phrase.</p>';
+    if (g) h += '<p class="clzwhy">' + esc(g) + '</p>';
+    h += '<p class="clzwhy">🔁 Cette phrase reviendra dans quelques questions.</p>';
+    return h;
+  }
   function clzEndHTML() {
-    var tot = clz.items.length, pct = tot ? Math.round(clz.ok / tot * 100) : 0;
+    var tot = clz.items.filter(function (x) { return !x.replay; }).length, pct = tot ? Math.round(clz.ok / tot * 100) : 0;
     return '<div class="result"><div class="sprbig win jp" aria-hidden="true">文</div><h3>' + (pct >= 80 ? 'Excellent !' : pct >= 50 ? 'Bien joué !' : 'Continue, ça vient !') + '</h3><p>' + clz.ok + ' bonne' + (clz.ok > 1 ? 's' : '') + ' réponse' + (clz.ok > 1 ? 's' : '') + ' sur ' + tot + '.' + (clz.xp ? '<br><b>+' + clz.xp + ' XP</b>' : '') +
-      (clz.miss.length ? '<br><small>À revoir : ' + clz.miss.map(function (m) { return '<span class="jp">' + esc(m) + '</span>'; }).join(' · ') + '</small>' : '') + '</p><div class="row"><button type="button" class="btn primary" data-clz="start">Rejouer</button><button type="button" class="btn" data-clz="stop">Changer de sélection</button></div></div>';
+      (clz.rescued ? '<br><small>🔁 ' + clz.rescued + ' erreur' + (clz.rescued > 1 ? 's' : '') + ' rattrapée' + (clz.rescued > 1 ? 's' : '') + ' pendant la séance</small>' : '') + (clz.miss.length ? '<br><small>À revoir : ' + clz.miss.map(function (m) { return '<span class="jp">' + esc(m) + '</span>'; }).join(' · ') + '</small>' : '') + '</p><div class="row"><button type="button" class="btn primary" data-clz="start">Rejouer</button><button type="button" class="btn" data-clz="stop">Changer de sélection</button></div></div>';
   }
   function renderClz() {
     var h = $('clzHost'); if (!h) return;
     h.innerHTML = clz.view === 'quiz' ? clzQuizHTML() : clz.view === 'end' ? '<div class="grp djbar"><h3 class="sgh" data-k="文"><span>Phrases à trou</span></h3></div>' + clzEndHTML() : clzSetupHTML();
     var a = $('clzAns'); if (a && clz.view === 'quiz' && clz.ans === null) { try { a.focus({ preventScroll: true }); } catch (e) {} }
+    if (clz.view === 'quiz' && clz.ans !== null) clzFly();
   }
+  /* v278 : le mot choisi glisse dans le trou */
+  function clzFly() {
+    try {
+      if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var g = document.querySelector('#clzHost .choice.good'), m = document.querySelector('#clzHost .clzfill');
+      if (!g || !m || !m.animate) return;
+      var a = g.getBoundingClientRect(), b = m.getBoundingClientRect(); if (!a.width || !b.width) return;
+      var gh = document.createElement('div'), cs = getComputedStyle(m);
+      gh.className = 'clzghost jp'; gh.textContent = (g.querySelector('.jp') || g).textContent.replace(/\s+/g, ' ').trim().split(' ')[0];
+      gh.style.cssText = 'position:fixed;left:' + (a.left + a.width / 2) + 'px;top:' + (a.top + a.height / 2) + 'px;font-size:' + cs.fontSize + ';z-index:60;pointer-events:none;transform-origin:center;';
+      document.body.appendChild(gh); m.style.animation = 'none'; m.style.visibility = 'hidden';
+      var dx = (b.left + b.width / 2) - (a.left + a.width / 2), dy = (b.top + b.height / 2) - (a.top + a.height / 2);
+      var done = function () { if (gh.parentNode) gh.parentNode.removeChild(gh); m.style.visibility = ''; };
+      var an = gh.animate([{ transform: 'translate(-50%,-50%) scale(.9)', opacity: .9 }, { transform: 'translate(calc(-50% + ' + dx * .5 + 'px),calc(-50% + ' + (dy * .5 - 24) + 'px)) scale(1.25)', opacity: 1, offset: .55 }, { transform: 'translate(calc(-50% + ' + dx + 'px),calc(-50% + ' + dy + 'px)) scale(1)', opacity: 1 }], { duration: 460, easing: 'cubic-bezier(.3,.7,.3,1)', fill: 'forwards' });
+      an.onfinish = function () { done(); try { m.animate([{ transform: 'scale(1.18)' }, { transform: 'scale(1)' }], { duration: 220, easing: 'ease-out' }); } catch (e) {} };
+      setTimeout(done, 800);
+    } catch (e) {}
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey || e.metaKey || e.altKey || e.repeat || typeof clz === 'undefined' || clz.view !== 'quiz' || !$('vClz') || $('vClz').hidden || !user || !S) return;
+    var t = e.target, typing = t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable), k = e.key, btn;
+    function press(sel) { var x = document.querySelector('#clzHost ' + sel); if (x && !x.disabled) { e.preventDefault(); x.click(); return true; } return false; }
+    if (clz.ans === null) {
+      if (typing) return;
+      if (k >= '1' && k <= '4') press('.choice[data-i="' + (+k - 1) + '"]');
+      else if (k === 's' || k === 'S') press('[data-clz="skip"]');
+      else if (k === 'f' || k === 'F') press('.clzfbtn');
+    } else {
+      if ((k === 'Enter' || k === ' ') && !(t && t.tagName === 'BUTTON')) press('[data-clz="next"]');
+      else if (!typing && (k === 'l' || k === 'L')) press('[data-clz="say"]');
+      else if (!typing && (k === 'f' || k === 'F')) press('.clzfbtn');
+    }
+  });
   function clzPolite(t) { return /(です|ます|ました|ません|でした|ましょう|ください|でしょう|ございます)[かね]?[。？?！!」ょ]*$/.test(String(t || '').replace(/\s+/g, '')); }
   function clzAnswer(ok, pickIdx) {
     var q = clz.q; if (!q || clz.ans !== null) return;
@@ -22416,6 +22480,8 @@ body .status #btnFuriTog { display: none !important; }
     clz.skipNow = false; var retryWin = !!clz.retried && ok;
     clz.ans = ok ? 1 : 0; clz.pick = pickIdx; var w = q.it.w;
     if (clz.alt) { sfx(ok ? 'ok' : 'bad'); renderClz(); return; }
+    if (q.it.replay) { if (ok) { clz.rescued = (clz.rescued || 0) + 1; sfx('ok'); } else sfx('bad'); try { srsUpdate(w.key, ok); } catch (e) {} renderClz(); return; }
+    if (!ok) { var pos = Math.min(clz.items.length, clz.i + 1 + 3 + Math.floor(Math.random() * 3)); clz.items.splice(pos, 0, Object.assign({}, q.it, { replay: true })); }
     var st = stat(w.key), before = level();
     skillNote(st, S && S.clzMode === 'input' ? 'ecriture' : 'sens', ok); if (ok) { st.ok++; if (!retryWin) runUp(st); clz.ok++; S.correct = (S.correct || 0) + 1; sfx('ok'); var d = dayKey(), x = S.clzxp && S.clzxp.d === d ? S.clzxp : (S.clzxp = { d: d, n: 0 }), g = Math.min(retryWin ? 4 : 8, 200 - x.n); if (g > 0) { x.n += g; clz.xp = (clz.xp || 0) + g; addXp(g); } }
     else { st.ko++; st.run = 0; errLog(w.key, 'Phrases à trou'); if (clz.miss.indexOf(w.mot) < 0) clz.miss.push(w.mot); sfx('bad'); }
@@ -22427,7 +22493,7 @@ body .status #btnFuriTog { display: none !important; }
     var a = b.getAttribute('data-clz');
     if (a === 'start') {
       var all = clzItems(); if (!all.length) return;
-      clz.all = all; clz.items = shuffle(all.slice()).slice(0, 10); clz.i = 0; clz.ok = 0; clz.xp = 0; clz.miss = []; clz.view = 'quiz'; clzNext(); renderClz(); window.scrollTo(0, 0);
+      clz.all = all; clz.items = shuffle(all.slice()).slice(0, 10); clz.i = 0; clz.ok = 0; clz.xp = 0; clz.miss = []; clz.rescued = 0; clz.view = 'quiz'; clzNext(); renderClz(); window.scrollTo(0, 0);
     } else if (a === 'stop') { clz.view = 'setup'; renderClz(); }
     else if (a === 'pick') { var i = +b.getAttribute('data-i'); clzAnswer(clz.q.opts[i].mot === clz.q.it.w.mot, i); }
     else if (a === 'skip') { clz.skipNow = true; clzAnswer(false, -1); }
@@ -22442,6 +22508,7 @@ body .status #btnFuriTog { display: none !important; }
   document.addEventListener('change', function (e) {
     var t = e.target; if (!t || !S) return;
     if (t.id === 'clzFuri') { S.clzFuri = !!t.checked; persist(); }
+    else if (t.id === 'clzAdapt') { S.clzAdapt = !!t.checked; persist(); }
     else if (t.id === 'clzMode') { S.clzMode = t.value === 'input' ? 'input' : 'mcq'; persist(); }
     else if (t.id === 'gsLv' || t.id === 'gsWk') setTimeout(function () { if ($('vClz') && !$('vClz').hidden) renderClz(); }, 0);
   });
