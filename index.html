@@ -4804,6 +4804,20 @@ body .status #btnFuriTog { display: none !important; }
 @media (hover:hover) and (pointer:fine){.kbhint{display:inline-block;margin-left:8px;padding:0 6px;border:1px solid currentColor;border-radius:5px;font:700 .7rem/1.5 inherit;opacity:.6;vertical-align:middle}}
 .clzwhy{margin:6px 0 0;font-size:.9rem;line-height:1.4;font-weight:500;text-align:left}
 .clzghost{white-space:nowrap;font-weight:800;color:#2c2452;background:#fff6dc;border:2px solid #e8b84a;border-radius:10px;padding:2px 10px;box-shadow:0 6px 16px rgba(0,0,0,.3)}
+/* v279 : choix du niveau */
+#lvPick{position:fixed;inset:0;z-index:9500;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(24,16,46,.93);overflow-y:auto}
+#lvPick[hidden]{display:none}
+.lvpbox{width:100%;max-width:440px;background:#fbf4e3;color:#1f1830;border:3px solid #1f1830;border-radius:22px;padding:18px 16px 12px;box-shadow:0 10px 0 rgba(0,0,0,.3);text-align:center}
+.lvpm{width:84px;height:84px;margin:-54px auto 4px}.lvpm .mascot,.lvpm svg{width:84px;height:84px;display:block}
+.lvph{margin:4px 0 4px;font-size:1.3rem;font-family:'Noto Serif JP',serif}
+.lvpp{margin:0 0 12px;font-size:.92rem;opacity:.8}
+.lvpopts{display:grid;gap:9px}
+.lvpo{display:block;width:100%;text-align:left;padding:12px 14px;border-radius:14px;border:2px solid #1f1830;background:#fff;color:#1f1830;font:inherit;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.25);min-height:56px}
+.lvpo b{display:block;font-size:1rem}.lvpo small{display:block;font-size:.8rem;opacity:.75;margin-top:2px}.lvpo i{font-style:normal;font-weight:700;color:#b42a5d}
+.lvpo:hover,.lvpo:focus-visible{background:#fff1c8;border-color:#b42a5d;outline:0}
+.lvpfoot{display:flex;justify-content:space-between;margin-top:10px}
+.lvpl{background:none;border:0;font:inherit;font-size:.88rem;color:#4b3d84;text-decoration:underline;cursor:pointer;padding:8px}
+body.lvpon{overflow:hidden}
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -16916,7 +16930,7 @@ body .status #btnFuriTog { display: none !important; }
 
     unlSync();
     var cards = [
-      ['home', '学', 'study', 'Dojo · Réviser', words ? mastered + '/' + words + ' mots maîtrisés' + (errCount() ? ' · ' + errCount() + ' à corriger' : '') : 'Flashcards, jeux et examen blanc'],
+      ['home', '学', 'study', 'Dojo · Réviser', words ? mastered + '/' + words + ' mots maîtrisés · ' + CURSUS[lv].tag + (errCount() ? ' · ' + errCount() + ' à corriger' : '') : 'Flashcards, jeux et examen blanc'],
       ['story', '旅', 'quest', 'Aventure', L.tag + ' · ' + (chs.length ? done + '/' + chs.length + ' chapitres' : '')],
       ['cards', '札', 'cards', 'Classeur de cartes', cardCount() + '/' + CARDS.length + ' cartes' + (cardFreeReady() ? ' · 🎁 booster gratuit !' : ' · ouvre des boosters')],
       ['bazar', '店', 'shop', 'Boutique', ((freeReady() || cardFreeReady()) ? '🎁 Cadeau du jour à ouvrir !' : coinsOf() + ' pièces · tous les achats')],
@@ -20813,20 +20827,12 @@ body .status #btnFuriTog { display: none !important; }
      VISITE GUIDÉE INTERACTIVE (projecteur + flèche + Asahi) et GUIDE illustré
      ===================================================================== */
   var COACH = [
-    { c: 1, go: 'hub', t: 'Bienvenue au Dōjō !', say: 'Moi c\'est Asahi ! Je vais te montrer du doigt chaque endroit important. Ça prend une minute, promis.' },
-    { go: 'hub', sel: '#userbox .slv', t: 'Ton niveau et ton XP', say: 'Ici : ton niveau et ta barre d\'XP. Chaque bonne réponse la remplit. En montant de niveau, tu débloques des récompenses, comme la bannière de profil.' },
-    { go: 'hub', sel: '#hdrCoins', t: 'Tes pièces', say: 'Ce sont tes pièces. Tu en gagnes en jouant et avec les cadeaux du jour. Touche-les pour ouvrir la Boutique.' },
-    { go: 'hub', sel: '#hubGrid .hubcard:nth-child(1)', t: 'L\'aventure', say: 'Une histoire en chapitres, avec des boss. Tu choisis ton histoire (L0 S1, L0 S2, L1 S1, L1 S2 ou L2 S3) en haut de la page.' },
-    { go: 'hub', sel: '#hubGrid .hubcard:nth-child(2)', t: 'Réviser : le cœur de l\'appli', say: 'C\'est ici que tu révises : flashcards, mini-jeux, examen blanc. La pastille « à revoir » compte les mots qui t\'attendent aujourd\'hui. Un mot est maîtrisé après 3 bonnes réponses d\'affilée.' },
-    { go: 'hub', sel: '#hubGrid .hubcard:nth-child(3)', t: 'Les salons', say: 'Défie tes camarades en duel et vois qui est en ligne. Il faut être connecté à internet.' },
-    { go: 'hub', sel: '#hubGrid .hubcard:nth-child(4)', t: 'Le classeur de cartes', say: 'Un booster gratuit chaque jour ! Les cartes de culture japonaise se rangent par rareté, avec une petite fiche pour apprendre.' },
-    { go: 'hub', sel: '#hubGrid .hubcard:nth-child(5)', t: 'Boutique', say: 'Dépense tes pièces : animaux, katanas, décors, cadres de profil… Un cadeau t\'attend chaque jour.' },
-    { go: 'hub', sel: '#hubTiles', t: 'Le menu « Plus »', say: 'Le classement, tes statistiques et le guide sont rangés ici.' },
-    { go: 'hub', sel: '#nav', t: 'Le menu du bas', say: 'Accueil, Aventure, Dojo (révisions), Base et Profil : tu y accèdes à tout moment.' },
-    { go: 'profil', sel: '#custPanel', t: 'Personnalise ton profil', say: 'Photo, bannière, cadre et titre se règlent ici. Les autres élèves les voient sur ta fiche.' },
-    { go: 'profil', sel: '#cdVit', t: 'Ta vitrine de cartes', say: 'Choisis 3 cartes à exposer sur ton profil, pour montrer ta collection.' },
-    { go: 'profil', sel: '#passPanel', t: 'La Voie du Dōjō', say: 'Des paliers de récompenses qui se débloquent avec ton XP. Touche un palier prêt pour le récupérer.' },
-    { c: 1, go: 'hub', t: 'À toi de jouer !', say: 'Voilà le tour du propriétaire. Pour commencer, touche le Dojo et lance une partie. Le guide se trouve dans « Plus » si tu as un doute !' }
+    { c: 1, go: 'hub', t: 'Bienvenue au Dōjō !', say: 'Moi c\'est Asahi ! Je te montre l\'essentiel, ça prend 30 secondes.' },
+    { go: 'hub', sel: '#userbox .slv', t: 'Ton niveau, ton XP et tes pièces', say: 'Chaque bonne réponse remplit ta barre d\'XP et te fait monter de niveau. Tu gagnes aussi des pièces (en haut à droite), à dépenser dans la Boutique.' },
+    { go: 'hub', sel: '#hubGrid .hubcard:nth-child(2)', t: 'Réviser : le cœur de l\'appli', say: 'C\'est ici que tu révises : flashcards, mini-jeux, examen blanc. Un mot est maîtrisé après 3 bonnes réponses d\'affilée.' },
+    { go: 'hub', sel: '#hubGrid .hubcard:nth-child(1)', t: 'L\'aventure', say: 'Une histoire en chapitres, avec des boss. Elle suit le niveau que tu as choisi ; tu peux le changer en haut de la page.' },
+    { go: 'hub', sel: '#nav', t: 'Le menu du bas', say: 'Accueil, Aventure, Dojo, Base et Profil. Dans « Plus » : classement, statistiques et guide. La Boutique, le classeur de cartes et les salons sont sur l\'accueil.' },
+    { c: 1, go: 'hub', t: 'À toi de jouer !', say: 'Pour commencer, touche le Dojo et lance une partie. Le guide, et le choix de ton niveau, se trouvent dans « Plus ».' }
   ];
   var coachI = 0, coachEl = null, coachTimer = 0;
   function coachBuild() {
@@ -20894,6 +20900,7 @@ body .status #btnFuriTog { display: none !important; }
     if (!user || !S || S.tour || window.__noTour) return;
     var seen = false; try { seen = !!localStorage.getItem('kd.tour.' + user.id); } catch (e) {}
     if (seen || (S.xp || 0) > 400) { tourMark(); return; }
+    if (!S.lvChosen) { lvPickOpen(function () { setTimeout(tourOpen, 350); }); return; }
     tourOpen();
   }
   window.addEventListener('resize', function () { coachPlace(); });
@@ -20938,7 +20945,7 @@ body .status #btnFuriTog { display: none !important; }
     return '<div class="gdgrid">' + G.map(function (it) {
       if (it.length === 1) return '<div class="gdh">' + esc(it[0]) + '</div>';
       return '<section class="gdrow"><span class="gdsl" aria-hidden="true">' + it[0] + '</span><div><h4>' + esc(it[1]) + '</h4><p>' + esc(it[2]) + '</p>' + (it[3] ? '<div class="gdc">' + it[3].map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('') + '</div>' : '') + '</div></section>';
-    }).join('') + '<div class="gdfoot"><button type="button" class="btn primary" data-tour="replay">▶ Lancer la visite guidée</button><a class="btn" href="https://discord.gg/fHxsuRBBHW" target="_blank" rel="noopener noreferrer">💬 Serveur Discord</a></div></div>';
+    }).join('') + '<div class="gdfoot"><button type="button" class="btn primary" data-tour="replay">▶ Lancer la visite guidée</button><button type="button" class="btn" data-tour="level">🎯 Choisir mon niveau</button><a class="btn" href="https://discord.gg/fHxsuRBBHW" target="_blank" rel="noopener noreferrer">💬 Serveur Discord</a></div></div>';
   }
   function guideOpen() { openModal('Comment ça marche ?', guideHTML(), 'wide guidemodal'); }
   document.addEventListener('click', function (e) {
@@ -20954,6 +20961,7 @@ body .status #btnFuriTog { display: none !important; }
     if (g && user) { guideOpen(); return; }
     var b = e.target.closest ? e.target.closest('[data-tour]') : null; if (!b || !user) return;
     if (b.getAttribute('data-tour') === 'replay') tourOpen();
+    else if (b.getAttribute('data-tour') === 'level') { try { closeModal(); } catch (er) {} lvPickOpen(); }
   });
   document.addEventListener('click', function (e) {
     var s = e.target.closest ? e.target.closest('[data-stats]') : null;
@@ -25947,6 +25955,53 @@ body .status #btnFuriTog { display: none !important; }
     });
     window.__kdCmp = { build: cmpBuild, items: buildItems, usable: usable, html: html, reset: function () { cmp.game = null; cmp.fam = null; } };
   })();
+
+  /* ===== v279 : choix du niveau à l'arrivée (étudiant de Lille ou autonome) ===== */
+  var lvp = { step: 'who', hist: [], done: null, who: '', year: '' };
+  var LVP_AUTO = [
+    ['L0', 'Je débute', 'Je ne connais presque aucun kanji'],
+    ['L0S2', 'J\'ai des bases', 'Hiragana, katakana et les premiers kanji'],
+    ['L1', 'Je me débrouille', 'Environ une année d\'études du japonais'],
+    ['L2', 'Niveau avancé', 'Le contenu le plus avancé de l\'appli']
+  ];
+  function lvpEl() { return document.getElementById('lvPick'); }
+  function lvPickOpen(done) {
+    lvp = { step: 'who', hist: [], done: done || null, who: '', year: '' };
+    var d = lvpEl(); if (!d) { d = document.createElement('div'); d.id = 'lvPick'; d.setAttribute('role', 'dialog'); d.setAttribute('aria-modal', 'true'); d.setAttribute('aria-label', 'Choix du niveau'); document.body.appendChild(d); }
+    d.hidden = false; document.body.classList.add('lvpon'); lvpRender();
+  }
+  function lvpOpt(k, b, small) { return '<button type="button" class="lvpo" data-lvp="' + k + '"><b>' + b + '</b>' + (small ? '<small>' + small + '</small>' : '') + '</button>'; }
+  function lvpRender() {
+    var d = lvpEl(); if (!d) return; var t = '', p = '', o = '', mo = new Date().getMonth(), s1 = mo >= 8 || mo === 0;
+    if (lvp.step === 'who') { t = 'Bienvenue ! Qui es-tu ?'; p = 'Je règle l\'appli sur ton niveau, tu pourras le changer plus tard.'; o = lvpOpt('who:lille', 'Étudiant à l\'université de Lille', 'Je règle tout sur ton année et ton semestre') + lvpOpt('who:auto', 'J\'apprends de mon côté', 'Tu choisis ton niveau de japonais'); }
+    else if (lvp.step === 'year') { t = 'Quelle est ton année ?'; p = 'Université de Lille, cours de japonais.'; o = lvpOpt('year:L0', 'L1 débutant', 'Première année, tu débutes en japonais') + lvpOpt('year:L1', 'L1', 'Première année, avec déjà des bases') + lvpOpt('year:L2', 'L2', 'Deuxième année (semestre 3)') + lvpOpt('year:L3', 'L3 ou plus', 'Je te mets sur le contenu le plus avancé'); }
+    else if (lvp.step === 'sem') { t = 'Quel semestre ?'; p = (lvp.year === 'L0' ? 'L1 débutant' : 'L1') + '.'; o = lvpOpt('sem:1', 'Semestre 1', 'De septembre à janvier' + (s1 ? ' · en ce moment' : '')) + lvpOpt('sem:2', 'Semestre 2', 'De janvier à mai' + (s1 ? '' : ' · en ce moment')); }
+    else { t = 'Quel est ton niveau de japonais ?'; p = 'Choisis ce qui te ressemble le plus.'; o = LVP_AUTO.map(function (a) { return lvpOpt('lv:' + a[0], a[1], a[2] + ' · <i>' + CURSUS[a[0]].tag + '</i>'); }).join(''); }
+    d.innerHTML = '<div class="lvpbox"><div class="lvpm">' + mascotHTML() + '</div><h2 class="lvph">' + t + '</h2><p class="lvpp">' + p + '</p><div class="lvpopts">' + o + '</div><div class="lvpfoot">' + (lvp.hist.length ? '<button type="button" class="lvpl" data-lvp="back">‹ Retour</button>' : '<span></span>') + '<button type="button" class="lvpl" data-lvp="skip">Passer</button></div></div>';
+  }
+  function lvpFinish(lv, extra) {
+    if (!CURSUS[lv]) lv = 'L2';
+    if (S) { S.lvChosen = 1; S.student = extra && extra.lille ? 'lille' : ''; S.lilleYear = extra && extra.year || ''; setCursus(lv); persist(); }
+    var d = lvpEl(); if (d) d.hidden = true; document.body.classList.remove('lvpon');
+    try { renderHub(); } catch (e) {}
+    toast('Niveau réglé : ' + CURSUS[lv].name + ' · ' + CURSUS[lv].sem);
+    var cb = lvp.done; lvp.done = null; if (cb) cb();
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('#lvPick [data-lvp]') : null; if (!b || !S) return;
+    var a = b.getAttribute('data-lvp'), k = a.split(':')[0], v = a.split(':')[1];
+    if (a === 'back') { lvp.step = lvp.hist.pop() || 'who'; lvpRender(); return; }
+    if (a === 'skip') { lvpFinish(curLv(), null); return; }
+    lvp.hist.push(lvp.step);
+    if (k === 'who') { lvp.who = v; lvp.step = v === 'lille' ? 'year' : 'lv'; lvpRender(); }
+    else if (k === 'year') {
+      lvp.year = v;
+      if (v === 'L0' || v === 'L1') { lvp.step = 'sem'; lvpRender(); }
+      else lvpFinish('L2', { lille: 1, year: v });
+    }
+    else if (k === 'sem') lvpFinish(lvp.year === 'L0' ? (v === '1' ? 'L0' : 'L0S2') : (v === '1' ? 'L1' : 'L1S2'), { lille: 1, year: lvp.year });
+    else if (k === 'lv') lvpFinish(v, null);
+  });
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
