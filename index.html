@@ -3266,6 +3266,7 @@ body.coaching{overflow:hidden}
 .passacc{margin:10px 0}
 #cdBinder,#onlinePanel{display:none!important}
 #games>.archtip,#games>.djgrid,#games>.djbar{grid-column:1/-1;width:100%}
+#games>#cmpHost{grid-column:1/-1;width:100%;min-width:0;box-sizing:border-box}
 .djt .gtx{width:100%;box-sizing:border-box}
 .djt .gtx b,.djt .gtx small{color:#ffffff!important;text-shadow:0 1px 3px rgba(0,0,0,.7)}
 .djt .g{width:auto;height:auto;background:none;border:0;position:absolute}
@@ -14534,7 +14535,7 @@ body .status #btnFuriTog { display: none !important; }
       var bt = bestText(id);
       return '<button class="mode gamecard djt" type="button" data-game="' + id + '" aria-label="' + esc(c.name) + '"><span class="tk" aria-hidden="true">' + c.g + '</span><span class="gtx"><b>' + esc(c.name) + '</b>' + (bt ? '<small>' + esc(bt) + '</small>' : '') + '</span></button>';
     }
-    $('games').innerHTML = djGamesHTML(FLASH_ORDER.map(card).join(''), card('kread') + card('ksens') + card('kstudy'), '<h4 class="mjh"><span aria-hidden="true">✍️</span> Écrit</h4>' + GAME_ORDER.map(card).join('') + djTile('nb') + '<h4 class="mjh"><span aria-hidden="true">🎤</span> Oral</h4>' + listenTiles() + djTile('lire') + djTile('cuis'));
+    $('games').innerHTML = djGamesHTML(FLASH_ORDER.map(card).join(''), card('kread') + card('ksens') + card('kstudy') + djTile('comp'), '<h4 class="mjh"><span aria-hidden="true">✍️</span> Écrit</h4>' + GAME_ORDER.map(card).join('') + djTile('nb') + '<h4 class="mjh"><span aria-hidden="true">🎤</span> Oral</h4>' + listenTiles() + djTile('lire') + djTile('cuis'));
     $('badges').innerHTML = BADGES.map(badgeCardHTML).join('');
     var empty = false;
     $('homeNote').hidden = !empty;
@@ -21499,6 +21500,7 @@ body .status #btnFuriTog { display: none !important; }
     fur: { k: '炉', t: 'Fourneau', art: '', d: '', tip: 'Le fourneau, c\'est pour les mots qui te résistent vraiment. Mets-en jusqu\'à 8 depuis le carnet d\'erreurs, ouvre leur fiche mémo, puis fais-les cuire : à 6 de chaleur, le mot est forgé !' },
     prog: { k: '進', t: 'Ma progression', art: '', d: 'Mots et kanjis acquis, niveau par niveau', tip: '' },
     bonus: { k: '楽', t: 'Vocabulaire bonus', art: '', d: 'Onomatopées, mots familiers, oral, entre amis', tip: 'Ici, le japonais vivant : onomatopées, mots familiers, contractions de l\'oral et expressions entre amis proches. Touche un mot pour voir sa fiche, puis fais le quiz.' },
+    comp: { k: '構', t: 'Composants', art: '', d: 'Apprends les kanjis par leurs morceaux : familles et mini-jeux', tip: 'Un kanji est un assemblage de morceaux plus simples. Découvre les familles de composants (氵 eau, 木 bois…), puis entraîne-toi avec trois mini-jeux.' },
     err: { k: '復', t: 'Carnet d\'erreurs', art: '', d: '', tip: 'Ici, tout ce que tu rates. Revois-le avant qu\'il ne s\'efface de ta mémoire.' }
   };
   function tipSeen(key) { return !!(S && S.tips && S.tips[key]); }
@@ -21526,7 +21528,7 @@ body .status #btnFuriTog { display: none !important; }
     }
     return '<button class="mode gamecard djt" type="button" data-djsub="' + sub + '">' + chip + '<span class="tk" aria-hidden="true">' + i.k + '</span><span class="gtx"><b>' + i.t + '</b><small>' + esc(d) + '</small></span></button>';
   }
-  function djBackHTML(sub) { var oral = sub === 'lire' || sub === 'cuis' || sub === 'nb', fu = sub === 'fur'; return '<div class="grp djbar"><button type="button" class="btn djback" data-djsub="' + (oral ? 'mini' : fu ? 'err' : '') + '">‹ ' + (oral ? 'Mini-jeux' : fu ? 'Carnet d\'erreurs' : 'Dojo') + '</button><h3 class="sgh" data-k="' + DJ_INFO[sub].k + '"><span>' + DJ_INFO[sub].t + '</span></h3></div>'; }
+  function djBackHTML(sub) { var oral = sub === 'lire' || sub === 'cuis' || sub === 'nb', fu = sub === 'fur', cp = sub === 'comp'; return '<div class="grp djbar"><button type="button" class="btn djback" data-djsub="' + (oral ? 'mini' : fu ? 'err' : cp ? 'kanji' : '') + '">‹ ' + (oral ? 'Mini-jeux' : fu ? 'Carnet d\'erreurs' : cp ? 'Kanjis' : 'Dojo') + '</button><h3 class="sgh" data-k="' + DJ_INFO[sub].k + '"><span>' + DJ_INFO[sub].t + '</span></h3></div>'; }
   var LISTEN_GAMES = [['ecoute', '聴', 'Écoute', 'Entends le mot, retrouve-le parmi 4'], ['dictee', '写', 'Dictée', 'Écris ce que tu entends'], ['petales', '花', 'Pétales', 'Touche le bon pétale avant la rivière']];
   function listenTiles() {
     return LISTEN_GAMES.map(function (g) {
@@ -22453,6 +22455,7 @@ body .status #btnFuriTog { display: none !important; }
     if (djSub === 'fur') return djBackHTML('fur') + tipHTML('dj_fur', DJ_INFO.fur.tip) + '<div id="furHost">' + furInner() + '</div>';
     if (djSub === 'rad' || djSub === 'cuis' || djSub === 'lire' || djSub === 'nb') return djBackHTML(djSub) + tipHTML('dj_' + djSub, DJ_INFO[djSub].tip) + '<div id="lrnHost">' + lrnInner() + '</div>';
     if (djSub === 'daily' || djSub === 'jlpt') return qvHTML();
+    if (djSub === 'comp') return djBackHTML('comp') + tipHTML('dj_comp', DJ_INFO.comp.tip) + '<div id="cmpHost">' + (window.__kdCmp ? window.__kdCmp.html() : '') + '</div>';
     return djBackHTML(djSub) + tipHTML('dj_' + djSub, DJ_INFO[djSub].tip) + (djSub === 'flash' ? fl : djSub === 'kanji' ? kj : mj + gameAchHTML());
   }
   document.addEventListener('click', function (e) {
@@ -25683,7 +25686,9 @@ body .status #btnFuriTog { display: none !important; }
         return !q || o.c === q || o.m.toLowerCase().indexOf(q) >= 0;
       }).sort(function (a, b) { return b.ks.length - a.ks.length; });
     }
+    function inDojo() { return typeof djSub !== 'undefined' && djSub === 'comp'; }
     function seg() {
+      if (inDojo()) return '';
       return '<div class="seg" role="tablist" aria-label="Affichage"><button type="button" role="tab" data-view="kanji" aria-selected="false">Kanjis</button><button type="button" role="tab" data-view="mots" aria-selected="false">Mots</button><button type="button" role="tab" data-view="comp" aria-selected="true">Composants</button></div>';
     }
     function libHTML() {
@@ -25805,10 +25810,10 @@ body .status #btnFuriTog { display: none !important; }
       if (g.ans !== null) st = i === it.good ? ' good' : (i === g.pick ? ' bad' : '');
       return '<button type="button" class="choice' + st + '"' + (g.ans !== null ? ' disabled' : '') + ' data-cmp="pick:' + i + '"><span class="key">' + (i + 1) + '</span><span>' + inner + '</span></button>';
     }
+    function html() { return cmp.game ? gameHTML() : (cmp.fam ? famHTML(cmp.fam) : libHTML()); }
     function render() {
-      var host = $('kanjiBody'); if (!host) return;
-      var h = cmp.game ? gameHTML() : (cmp.fam ? famHTML(cmp.fam) : libHTML());
-      host.innerHTML = h;
+      var host = inDojo() ? $('cmpHost') : $('kanjiBody'); if (!host) return;
+      host.innerHTML = html();
       window.scrollTo(0, 0);
     }
     function pick(i) {
@@ -25841,7 +25846,7 @@ body .status #btnFuriTog { display: none !important; }
       return r;
     };
     document.addEventListener('click', function (e) {
-      var b = e.target.closest ? e.target.closest('#kanjiBody [data-cmp]') : null; if (!b) return;
+      var b = e.target.closest ? e.target.closest('#kanjiBody [data-cmp],#cmpHost [data-cmp]') : null; if (!b) return;
       var a = b.getAttribute('data-cmp'), p = a.split(':');
       e.stopPropagation();
       if (p[0] === 'lib') { cmp.game = null; cmp.fam = null; render(); }
@@ -25863,7 +25868,16 @@ body .status #btnFuriTog { display: none !important; }
       if (e.key >= '1' && e.key <= '4') pick(+e.key - 1);
       else if (e.key === 'Enter' && cmp.game.ans !== null) next();
     });
-    window.__kdCmp = { build: cmpBuild, items: buildItems, usable: usable };
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('#cmpHost [data-gok]') : null; if (!b) return;
+      e.stopPropagation(); cmp.fam = cmp.fam; openKanji(b.getAttribute('data-gok'));
+    }, true);
+    document.addEventListener('keydown', function (e) {
+      if (!cmp.game || !inDojo() || !$('cmpHost')) return;
+      if (e.key >= '1' && e.key <= '4') pick(+e.key - 1);
+      else if (e.key === 'Enter' && cmp.game.ans !== null) next();
+    });
+    window.__kdCmp = { build: cmpBuild, items: buildItems, usable: usable, html: html, reset: function () { cmp.game = null; cmp.fam = null; } };
   })();
 
   backend.init().then(function (u) {
