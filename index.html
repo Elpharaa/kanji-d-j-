@@ -4837,6 +4837,18 @@ body.lvpon{overflow:hidden}
 #hubGrid>.hubcard.hv3 .htx b{font-size:.95rem}
 #hubGrid>.hubcard.hv3 .htx small{font-size:.7rem;white-space:normal;overflow:visible;text-overflow:clip;line-height:1.25}
 #hubGrid>.hubcard.gramlink{grid-column:1/-1!important;min-height:0;opacity:.92}
+/* v281 : sélection du niveau simplifiée */
+.asksum2{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;background:#fffaf0;border:2px solid #e0b64a}
+.as2tx{flex:1;min-width:0;display:flex;flex-direction:column}
+.as2tx i{font-style:normal;font-size:.6rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#4c3975}
+.as2tx b{font-size:.98rem;color:#1f1830}
+.as2tx span{font-size:.78rem;color:#4b3d84;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.asksum2 .as2btn{flex:0 0 auto;padding:9px 14px;min-height:40px}
+.askq.as2q{padding-left:12px}.askq.as2q::before{left:18px}
+.as2tog{align-self:flex-start;font-size:.84rem}
+.as2adv{display:flex;flex-direction:column;gap:6px;padding-top:2px}
+#clzHost .gsblock>.gscount,.askbox .cs-cap{display:none}
+.as2l{margin:6px 0 0;font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#4c3975}
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -19137,7 +19149,7 @@ body.lvpon{overflow:hidden}
   var __mq = 0;
   function mascotHTML() { var q = ++__mq; return ('<span class="mascot" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><linearGradient id="arh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6f4fc"/><stop offset="1" stop-color="#cdc8e2"/></linearGradient><linearGradient id="arf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbdcbc"/><stop offset="1" stop-color="#eebf94"/></linearGradient><linearGradient id="arr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4b3d84"/><stop offset="1" stop-color="#2a2150"/></linearGradient></defs><g stroke-linejoin="round" stroke-linecap="round"><ellipse cx="50" cy="98" rx="26" ry="2.6" fill="#000" opacity=".18"/><path d="M18 94L34 72" stroke="#1f1830" stroke-width="3.6"/><circle cx="35" cy="71" r="2.6" fill="#e8c46a" stroke="#1f1830" stroke-width="1"/><path d="M58 15Q84 8 87 36Q89 52 80 62Q82 42 72 30Q66 22 58 24z" fill="url(#arh)" stroke="#a79fc8" stroke-width="1"/><path d="M25 100Q25 76 40 68L50 76L60 68Q75 76 75 100z" fill="url(#arr)" stroke="#1f1830" stroke-width="1.4"/><path d="M43 66L50 86L57 66z" fill="#fff4dc" stroke="#d0587f" stroke-width="1.2"/><path d="M27 87Q50 94 73 87L73 92Q50 99 27 92z" fill="#d0587f" stroke="#1f1830" stroke-width="1"/><g fill="#f4b6c8"><circle cx="34" cy="79" r="1.7"/><circle cx="66" cy="78" r="1.7"/><circle cx="31" cy="97" r="1.5"/><circle cx="69" cy="96" r="1.5"/><circle cx="38" cy="73" r="1.2"/></g><path d="M31 77Q25 86 25 94" stroke="url(#arr)" stroke-width="9" fill="none"/><circle cx="25" cy="96" r="4.4" fill="#f3c9a2" stroke="#1f1830" stroke-width="1"/><g class="arwave"><path d="M70 77Q85 79 87 60" stroke="url(#arr)" stroke-width="9" fill="none"/><path d="M83 62L91 62" stroke="#fff4dc" stroke-width="3"/><circle cx="87" cy="55" r="4.6" fill="#f3c9a2" stroke="#1f1830" stroke-width="1"/></g><path d="M44 58H56V69Q50 73 44 69z" fill="#e6b88c"/><ellipse cx="50" cy="45" rx="19.5" ry="22" fill="url(#arf)" stroke="#1f1830" stroke-width="1.2"/><circle cx="30.5" cy="49" r="2.6" fill="#f3c9a2" stroke="#1f1830" stroke-width="1"/><circle cx="30.5" cy="52.5" r="1.4" fill="#e8c46a"/><path d="M30 44Q26 20 48 17Q72 15 71 41Q65 27 52 28Q40 30 37 41Q34 46 30 44z" fill="url(#arh)" stroke="#a79fc8" stroke-width="1"/><path d="M30 40Q25 52 30 62Q31 51 35 44z" fill="url(#arh)" stroke="#a79fc8" stroke-width="1"/><ellipse cx="57" cy="14" rx="6" ry="4.6" fill="url(#arh)" stroke="#a79fc8" stroke-width="1"/><path d="M53 17L61 17" stroke="#d0587f" stroke-width="2.4"/><g class="arblink"><ellipse cx="41" cy="46.5" rx="4.4" ry="2.7" fill="#fff" stroke="#1f1830" stroke-width=".8"/><ellipse cx="59" cy="46.5" rx="4.4" ry="2.7" fill="#fff" stroke="#1f1830" stroke-width=".8"/><circle cx="41.4" cy="46.6" r="2.3" fill="#2d7a94"/><circle cx="59.4" cy="46.6" r="2.3" fill="#2d7a94"/><circle cx="41.4" cy="46.6" r="1" fill="#10121c"/><circle cx="59.4" cy="46.6" r="1" fill="#10121c"/><circle cx="42.2" cy="45.9" r=".7" fill="#fff"/><circle cx="60.2" cy="45.9" r=".7" fill="#fff"/><path d="M36 45.4Q41 42 46 45.2" stroke="#1f1830" stroke-width="2.2" fill="none"/><path d="M54 45.2Q59 42 64 45.4" stroke="#1f1830" stroke-width="2.2" fill="none"/></g><path d="M35 40L46 41.6" stroke="#6d6a86" stroke-width="2"/><path d="M54 40.4L65 38" stroke="#6d6a86" stroke-width="2"/><path d="M50 48Q48.4 52.5 50.8 53.4" stroke="#b5835d" stroke-width="1.2" fill="none"/><path d="M63 49L66 58" stroke="#d98a80" stroke-width="1.3" fill="none"/><path d="M38 59Q50 72 62 59Q58 66 50 68Q42 66 38 59z" fill="#bdb6d4" opacity=".4"/><g fill="#8f88ab" opacity=".75"><circle cx="43" cy="63" r=".6"/><circle cx="46" cy="65" r=".6"/><circle cx="50" cy="66" r=".6"/><circle cx="54" cy="65" r=".6"/><circle cx="57" cy="63" r=".6"/><circle cx="48" cy="63" r=".6"/><circle cx="52" cy="63.4" r=".6"/></g><path d="M44.5 58.6Q50.5 61.6 57 56.8" stroke="#8b4a3a" stroke-width="1.5" fill="none"/><path d="M10 28q3-4 6-1q-2 4-6 1z" fill="#f4b6c8"/><path d="M90 74q3-4 6-1q-2 4-6 1z" fill="#f4b6c8"/></g></svg></span>').replace(/id="(arh|arf|arr)"/g, 'id="$1' + q + '"').replace(/url\(#(arh|arf|arr)\)/g, 'url(#$1' + q + ')'); }
   function gameIntro(id) {
-    var c = GAMES[id], d = INTRO[id]; gsKMode = id === 'kstudy' || id === 'kread' || id === 'ksens'; gsKind = id === 'kstudy' || id === 'kread'; gsFlashCtx = /^flash/.test(id); gsStep = 1; gsKOpen = false;
+    var c = GAMES[id], d = INTRO[id]; gsKMode = id === 'kstudy' || id === 'kread' || id === 'ksens'; gsKind = id === 'kstudy' || id === 'kread'; gsFlashCtx = /^flash/.test(id); gsStep = 0; gsAdv = false; gsKOpen = false;
     if (!c || !d) { startGame(id); return; }
     var b = typeof bestText === 'function' ? bestText(id) : '';
     var art = (typeof GAME_ART !== 'undefined' && GAME_ART[id]) || '';
@@ -21065,7 +21077,7 @@ body.lvpon{overflow:hidden}
     return '<p class="muted small" style="margin:0 0 10px">Réponds à Asahi, une question à la fois.</p>' + askHTML('dy', false) +
       (gsStep === 0 ? '<p class="dyinfo">' + info + '</p><div class="row" style="margin-top:12px"><button type="button" class="btn primary" data-dylaunch="1">▶ Lancer la révision</button><button type="button" class="btn" data-dyclose="1">Annuler</button></div>' : '<div class="row" style="margin-top:12px"><button type="button" class="btn" data-dyclose="1">Annuler</button></div>');
   }
-  function dailyMenu() { gsStep = 1; openModal('Révision du jour', dailyMenuHTML(), 'gimodal dymodal'); }
+  function dailyMenu() { gsStep = 0; gsAdv = false; openModal('Révision du jour', dailyMenuHTML(), 'gimodal dymodal'); }
   document.addEventListener('click', function (e) {
     var b = e.target.closest ? e.target.closest('[data-daily],[data-dylaunch],[data-dyclose]') : null; if (!b || !user) return;
     if (b.hasAttribute('data-daily')) { dailyMenu(); return; }
@@ -21075,7 +21087,7 @@ body.lvpon{overflow:hidden}
   });
   document.addEventListener('change', function (e) {
     var t = e.target; if (!t || !user || (t.id !== 'dyLv' && t.id !== 'dyWk')) return;
-    if (t.id === 'dyLv') setCursus(t.value); else { S.weekSel = t.value; persist(); }
+    if (t.id === 'dyLv') { setCursus(t.value); gsStep = 0; gsAdv = false; } else { S.weekSel = t.value; persist(); }
     $('appModalBody').innerHTML = dailyMenuHTML(); renderHub();
   });
 
@@ -21135,7 +21147,7 @@ body.lvpon{overflow:hidden}
   var gsKMode = false, gsKind = false, gsFlashCtx = false;
   function readKind() { var v = S && S.readKind; return v === 'on' || v === 'kun' ? v : 'both'; }
   /* Asahi pose une question à la fois (niveau, semaine, kanjis) avec un menu déroulant ; 0 = résumé */
-  var gsStep = 1;
+  var gsStep = 0, gsAdv = false;
   function askSel(id, label, opts, cur) {
     var gl = [], gm = {}; opts.forEach(function (o) { var g = o[2] || ''; if (!(g in gm)) { gm[g] = []; gl.push(g); } gm[g].push(o); });
     return '<select class="wksel asksel" id="' + id + '" aria-label="' + esc(label) + '">' + gl.map(function (g) {
@@ -21145,35 +21157,36 @@ body.lvpon{overflow:hidden}
   }
   function askHTML(px, withK) {
     var sel = weekSel(), lv = curLv(), wks = lvWeeks(), ks = kSelList(), jl = px === 'gs' && S.flJl ? S.flJl : '', last = withK ? 3 : 2, st = gsStep;
-    if (st > last) st = 0;
+    if (st > 1) st = 0;
     var lvName = jl ? (jl === 'q' ? 'Vie quotidienne' : 'JLPT ' + jl.toUpperCase()) : CURSUS[lv].tag + ' · ' + CURSUS[lv].sem;
     var wkName = sel === 'all' ? 'toutes les semaines' : 'Semaine ' + wkNum(+sel) + ((L1_TITLES[+sel] || {}).title ? ' · ' + L1_TITLES[+sel].title : (+sel < 100 && MP_WKNAME[+sel] ? ' · ' + MP_WKNAME[+sel] : ''));
     var kName = ks.length ? ks.length + ' kanji' + (ks.length > 1 ? 's' : '') + ' choisi' + (ks.length > 1 ? 's' : '') : 'tous les kanjis';
-    function nav(back, next, nextLabel) {
-      return '<div class="asknav">' + (back ? '<button type="button" class="btn" data-gsstep="' + back + '" data-gspx="' + px + '">‹ Retour</button>' : '') +
-        '<button type="button" class="btn primary" data-gsstep="' + next + '" data-gspx="' + px + '">' + nextLabel + '</button></div>' +
-        (st > 0 ? '<button type="button" class="asklink" data-gsstep="0" data-gspx="' + px + '">Garder mes choix actuels</button>' : '');
-    }
     if (st === 0) {
-      return '<div class="asksum"><span><i>Niveau</i><b>' + esc(lvName) + '</b></span>' + (jl ? '<span><i>Thème</i><b>' + esc(jlTh() ? jlTh().name : 'tous les thèmes') + '</b></span>' : '<span><i>Semaine</i><b>' + esc(wkName) + '</b></span>') + (withK ? '<span><i>Kanjis</i><b>' + esc(kName) + '</b></span>' : '') +
-        '<button type="button" class="gsksm" data-gsstep="1" data-gspx="' + px + '">Modifier</button></div>';
+      var sub = jl ? (jlTh() ? jlTh().name : 'tous les thèmes') : wkName;
+      return '<div class="asksum2"><div class="as2tx"><i>Niveau</i><b>' + esc(lvName) + '</b><span>' + esc(sub) + (withK && ks.length ? ' · ' + esc(kName) : '') + '</span></div>' +
+        '<button type="button" class="gsksm as2btn" data-gsstep="1" data-gspx="' + px + '">Modifier</button></div>';
     }
-    var q = '<div class="askq"><span class="askn">' + st + '/' + last + '</span>', body = '';
-    if (st === 1) {
-      body = q + 'Quel niveau veux-tu travailler ?</div>' + askSel(px + 'Lv', 'Année et semestre', ['L0', 'L0S2', 'L1', 'L1S2', 'L2'].map(function (id) { return [id, CURSUS[id].tag + ' · ' + CURSUS[id].sem, 'Cours']; }).concat(px === 'gs' ? JL_LV.map(function (l) { return ['J:' + l[0], l[0] === 'q' ? 'Vie quotidienne (hors cours)' : 'JLPT ' + l[1], 'JLPT et quotidien']; }) : []), jl ? 'J:' + jl : lv) + nav(0, 2, 'Suivant ›');
-    } else if (st === 2) {
-      body = jl ? (q + 'Quel thème ?</div>' + askSel(px + 'Th', 'Thème à réviser', [['', 'Tous les thèmes']].concat(QV.filter(function (t) { return !t.virt && t.lv === jl; }).map(function (t) { return [t.id, t.name]; })), S.flTh || '') + nav(1, withK ? 3 : 0, withK ? 'Suivant ›' : 'Terminé ✓')) : q + 'Quelle semaine ?</div>' + askSel(px + 'Wk', 'Semaine à réviser', [['all', 'Toutes les semaines']].concat(wks.map(function (wk) {
+    var q = '<div class="askq as2q">Quel niveau veux-tu travailler ?</div>', adv = '';
+    var levelSel = askSel(px + 'Lv', 'Année et semestre', ['L0', 'L0S2', 'L1', 'L1S2', 'L2'].map(function (id) { return [id, CURSUS[id].tag + ' · ' + CURSUS[id].sem, 'Cours']; }).concat(px === 'gs' ? JL_LV.map(function (l) { return ['J:' + l[0], l[0] === 'q' ? 'Vie quotidienne (hors cours)' : 'JLPT ' + l[1], 'JLPT et quotidien']; }) : []), jl ? 'J:' + jl : lv);
+    if (gsAdv) {
+      adv = '<div class="as2adv">';
+      if (jl) adv += '<p class="as2l">Thème</p>' + askSel(px + 'Th', 'Thème à réviser', [['', 'Tous les thèmes']].concat(QV.filter(function (t) { return !t.virt && t.lv === jl; }).map(function (t) { return [t.id, t.name]; })), S.flTh || '');
+      else adv += '<p class="as2l">Semaine</p>' + askSel(px + 'Wk', 'Semaine à réviser', [['all', 'Toutes les semaines']].concat(wks.map(function (wk) {
         var t = wk < 100 ? MP_WKNAME[wk] : (L1_TITLES[wk] || {}).title; return [String(wk), 'Semaine ' + wkNum(wk) + (t ? ' · ' + t : '')];
-      })), sel) + nav(1, withK ? 3 : 0, withK ? 'Suivant ›' : 'Terminé ✓');
-    } else {
-      var list = jl ? jlKanjiList().map(function (c) { return { k: c }; }) : weekKanjis(sel === 'all' ? 'all' : +sel), panel = '';
-      if (gsKOpen) {
-        panel = '<div class="gskpanel"><div class="gskbar"><button type="button" class="gsksm" data-gsk="all">Tout cocher</button><button type="button" class="gsksm" data-gsk="none">Effacer</button><span>Touche les kanjis à travailler</span></div>' + (list.length ? '' : '<p class="muted small">Aucun kanji dans cette sélection (mots en kana).</p>') + '<div class="gskgrid">' +
-          list.map(function (k) { return '<button type="button" class="gskc' + (ks.indexOf(k.k) >= 0 ? ' on' : '') + '" data-gsk="k" data-k="' + esc(k.k) + '" aria-pressed="' + (ks.indexOf(k.k) >= 0) + '">' + esc(k.k) + '</button>'; }).join('') + '</div></div>';
+      })), sel);
+      if (withK) {
+        var list = jl ? jlKanjiList().map(function (c) { return { k: c }; }) : weekKanjis(sel === 'all' ? 'all' : +sel), panel = '';
+        if (gsKOpen) {
+          panel = '<div class="gskpanel"><div class="gskbar"><button type="button" class="gsksm" data-gsk="all">Tout cocher</button><button type="button" class="gsksm" data-gsk="none">Effacer</button><span>Touche les kanjis à travailler</span></div>' + (list.length ? '' : '<p class="muted small">Aucun kanji dans cette sélection (mots en kana).</p>') + '<div class="gskgrid">' +
+            list.map(function (k) { return '<button type="button" class="gskc' + (ks.indexOf(k.k) >= 0 ? ' on' : '') + '" data-gsk="k" data-k="' + esc(k.k) + '" aria-pressed="' + (ks.indexOf(k.k) >= 0) + '">' + esc(k.k) + '</button>'; }).join('') + '</div></div>';
+        }
+        adv += '<p class="as2l">Kanjis</p>' + askSel('gsKm', 'Choix des kanjis', [['all', 'Tous les kanjis de la sélection'], ['pick', 'Je choisis moi-même…']], gsKOpen || ks.length ? 'pick' : 'all') + panel;
       }
-      body = q + 'Quels kanjis ?</div>' + askSel('gsKm', 'Choix des kanjis', [['all', 'Tous les kanjis de la sélection'], ['pick', 'Je choisis moi-même…']], gsKOpen || ks.length ? 'pick' : 'all') + panel + nav(2, 0, 'Terminé ✓');
+      adv += '</div>';
     }
-    return '<div class="askbox">' + body + '</div>';
+    var lbl = gsAdv ? 'Masquer les options avancées ▴' : 'Options avancées : ' + (jl ? 'thème' : 'semaine') + (withK ? ', kanjis' : '') + ' ▾';
+    return '<div class="askbox">' + q + levelSel + '<button type="button" class="asklink as2tog" data-gsadv="1" data-gspx="' + px + '">' + lbl + '</button>' + adv +
+      '<div class="asknav"><button type="button" class="btn primary" data-gsstep="0" data-gspx="' + px + '">Terminé ✓</button></div></div>';
   }
   function seenOptHTML(px) {
     if (S && S.flJl) return '';
@@ -21184,7 +21197,7 @@ body.lvpon{overflow:hidden}
     var n = playPool().length, ks = kSelList(), s = weekSel(), list = weekKanjis(s === 'all' ? 'all' : +s);
     if (gsKMode) n = (ks.length ? ks.length : list.length);
     var count = '<p class="gscount">' + (n ? (gsKMode ? '<b>' + n + ' kanji' + (n > 1 ? 's' : '') + '</b> dans cette sélection' : '<b>' + n + ' mot' + (n > 1 ? 's' : '') + '</b> dans cette sélection' + (ks.length ? ' (mots contenant ' + ks.length + ' kanji' + (ks.length > 1 ? 's' : '') + ')' : '')) : 'Aucun mot ici pour l\'instant : choisis un autre niveau.') + '</p>';
-    return '<div class="gsblock">' + askHTML('gs', true) + (gsKind ? '<label class="kindopt">Lectures à travailler<select id="gsKind" aria-label="Lectures à travailler">' + [['both', 'ON et KUN'], ['on', 'Seulement les lectures ON (katakana)'], ['kun', 'Seulement les lectures KUN (hiragana)']].map(function (o) { return '<option value="' + o[0] + '"' + (readKind() === o[0] ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') + '</select></label>' : '') + (gsFlashCtx ? seenOptHTML('gs') : '') + (gsStep === 0 || gsStep > 3 ? count : '') + '</div>';
+    return '<div class="gsblock">' + askHTML('gs', true) + (gsKind ? '<label class="kindopt">Lectures à travailler<select id="gsKind" aria-label="Lectures à travailler">' + [['both', 'ON et KUN'], ['on', 'Seulement les lectures ON (katakana)'], ['kun', 'Seulement les lectures KUN (hiragana)']].map(function (o) { return '<option value="' + o[0] + '"' + (readKind() === o[0] ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') + '</select></label>' : '') + (gsFlashCtx ? seenOptHTML('gs') : '') + (gsStep === 0 ? count : '') + '</div>';
   }
   document.addEventListener('change', function (e) {
     var b = e.target && e.target.matches && e.target.matches('[data-seenonly]') ? e.target : null; if (!b || !user) return;
@@ -21196,8 +21209,12 @@ body.lvpon{overflow:hidden}
     var host = document.getElementById('gsHost'); if (host) host.innerHTML = scopeBlockHTML();
   }
   document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-gsadv]') : null; if (!b || !user) return;
+    gsAdv = !gsAdv; askRefresh(b.getAttribute('data-gspx'));
+  });
+  document.addEventListener('click', function (e) {
     var b = e.target.closest ? e.target.closest('[data-gsstep]') : null; if (!b || !user) return;
-    gsStep = +b.getAttribute('data-gsstep'); askRefresh(b.getAttribute('data-gspx'));
+    gsStep = +b.getAttribute('data-gsstep'); if (gsStep === 1) gsAdv = !!(weekSel() !== 'all' || kSelList().length || (S && S.flTh)); askRefresh(b.getAttribute('data-gspx'));
     try { var ab = document.querySelector('.askbox') || document.querySelector('.asksum'); if (ab && ab.scrollIntoView) ab.scrollIntoView({ block: 'nearest' }); } catch (er) {}
   });
   document.addEventListener('change', function (e) {
@@ -21221,6 +21238,7 @@ body.lvpon{overflow:hidden}
     var t = e.target; if (!t || !user || (t.id !== 'gsLv' && t.id !== 'gsWk' && t.id !== 'gsTh')) return;
     if (t.id === 'gsLv') { S.flTh = ''; if (t.value.indexOf('J:') === 0) { S.flJl = t.value.slice(2); } else { S.flJl = ''; setCursus(t.value); } } else if (t.id === 'gsTh') { S.flTh = t.value; persist(); } else { S.weekSel = t.value; persist(); }
     S.kSel = []; S.kSelJ = []; persist();
+    if (t.id === 'gsLv') { gsStep = 0; gsAdv = false; }
     var host = document.getElementById('gsHost'); if (host) host.innerHTML = scopeBlockHTML();
     if (!$('vHome').hidden) renderHome(); else if (!$('vHub').hidden) renderHub();
   });
