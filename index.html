@@ -3266,7 +3266,8 @@ body.coaching{overflow:hidden}
 .passacc{margin:10px 0}
 #cdBinder,#onlinePanel{display:none!important}
 #games>.archtip,#games>.djgrid,#games>.djbar{grid-column:1/-1;width:100%}
-#games>#cmpHost{grid-column:1/-1;width:100%;min-width:0;box-sizing:border-box}
+#games>:not(.mode){grid-column:1/-1;min-width:0;box-sizing:border-box}
+#games>.knbar,#games>.knqcard,#games>.choices,#games>.fb,#games>.result{width:100%}
 .djt .gtx{width:100%;box-sizing:border-box}
 .djt .gtx b,.djt .gtx small{color:#ffffff!important;text-shadow:0 1px 3px rgba(0,0,0,.7)}
 .djt .g{width:auto;height:auto;background:none;border:0;position:absolute}
