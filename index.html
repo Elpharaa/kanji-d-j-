@@ -4866,6 +4866,28 @@ body.lvpon{overflow:hidden}
 .cdcctl{display:flex;gap:10px;align-items:center;margin:12px 0}.cdcctl input{flex:1}
 .cdcfoot{display:flex;gap:10px;justify-content:flex-end}
 body.cdcropon{overflow:hidden}
+/* v284 : progression visible dans les phrases */
+.clzprog{margin:8px 0 2px;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.6);border:2px solid rgba(75,61,132,.25);display:grid;grid-template-columns:auto 1fr auto;gap:4px 10px;align-items:center;text-align:left}
+.clzprog .cpl{font-size:.72rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#4b3d84}
+.clzprog .cpd{display:flex;gap:6px}
+.clzprog .cpd i{width:18px;height:18px;border-radius:50%;border:2px solid #b8aad2;background:#fff}
+.clzprog .cpd i.on{background:linear-gradient(135deg,#ffd24a,#e8a23a);border-color:#b97a12}
+.clzprog .cpd i.new{animation:cpPop .6s cubic-bezier(.3,1.6,.5,1)}
+.clzprog .cpt{font-weight:800;color:#1f1830}
+.clzprog .cpn{grid-column:1/-1;margin:0;font-size:.86rem;font-weight:600;color:#2c2452}
+.clzprog .cpxp{display:inline-block;margin-left:6px;padding:0 8px;border-radius:99px;background:#2f7a4a;color:#fff;font-size:.78rem;font-weight:800}
+.clzprog .cpxp.cap{background:#8a8f98}
+.clzprog.mast{background:linear-gradient(135deg,#fff3c4,#ffe08a);border-color:#e0a21a;box-shadow:0 0 18px rgba(255,200,70,.6)}
+.clzprog.mast .cpn{font-size:1rem;font-weight:800;color:#6b3f00}
+.clzchip{display:inline-flex;align-items:center;gap:8px;margin:8px auto 0;padding:5px 12px;border-radius:99px;background:#fff;border:2px solid #b8aad2;font-size:.82rem;font-weight:700;color:#2c2452}
+.clzchip .cpd{display:inline-flex;gap:4px}.clzchip .cpd i{width:13px;height:13px;border-radius:50%;border:2px solid #b8aad2;background:#fff}
+.clzchip .cpd i.on{background:linear-gradient(135deg,#ffd24a,#e8a23a);border-color:#b97a12}.clzchip .cpd i.new{animation:cpPop .6s cubic-bezier(.3,1.6,.5,1)}
+.clzchip em{font-style:normal;background:#2f7a4a;color:#fff;border-radius:99px;padding:0 7px;font-size:.74rem}
+.clzchip.mast{background:linear-gradient(135deg,#fff3c4,#ffe08a);border-color:#e0a21a;box-shadow:0 0 14px rgba(255,200,70,.6);color:#6b3f00}
+.clzchip.ko{border-color:#c1245a}
+.clzcard{text-align:center}
+@keyframes cpPop{0%{transform:scale(.3)}60%{transform:scale(1.5)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.clzprog .cpd i.new{animation:none}}
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -22450,7 +22472,7 @@ body.cdcropon{overflow:hidden}
   function clzNext() {
     var it = clz.items[clz.i]; if (!it) return;
     var opts = shuffle([it.w].concat(clzDistractors(it)));
-    clz.q = { it: it, opts: opts }; clz.ans = null; clz.alt = false; clz.retried = false; clz.dead = [];
+    clz.q = { it: it, opts: opts }; clz.ans = null; clz.alt = false; clz.retried = false; clz.dead = []; clz.fbp = null;
     clz.known = clzKnown();
   }
   function clzKnown() {
@@ -22471,7 +22493,7 @@ body.cdcropon{overflow:hidden}
     var q = clz.q, it = q.it, md = S && S.clzMode === 'input' ? 'input' : 'mcq', h = '';
     h += '<div class="grp djbar"><button type="button" class="btn djback" data-clz="stop">‹ Arrêter</button><h3 class="sgh" data-k="文"><span>Phrases à trou</span></h3></div>';
     h += '<p class="small muted" style="margin:6px 0 2px;text-align:center">Phrase ' + (clz.i + 1) + ' / ' + clz.items.length + '</p><div class="knqbar"><u style="width:' + Math.round(clz.i / clz.items.length * 100) + '%"></u></div>';
-    h += '<div class="knqcard qcard clzcard' + (clz.ans === 1 ? ' clzok' : (clz.ans === 0 || (clz.retried && clz.ans === null)) ? ' clzko' : '') + '"><span class="clzreg ' + (clzPolite(it.full) ? 'poli' : 'neutre') + '" title="Registre de la phrase">' + (clzPolite(it.full) ? '丁寧 Phrase polie' : '普通 Phrase neutre') + '</span><button type="button" class="clzfbtn' + (S && S.furiSess ? ' on' : '') + '" data-clzfuri="1" aria-pressed="' + (S && S.furiSess ? 'true' : 'false') + '" title="Afficher ou masquer les furigana (touche F)"><span class="jp">ふ</span></button><p class="prompt">' + (it.replay ? '🔁 Revue de ton erreur : retrouve le mot' : 'Complète la phrase avec le bon mot') + '</p>' + clzSentenceHTML(q, clz.ans !== null) + '<p class="clzfr">' + frHL(it.fr, it.w) + '</p><p class="clzhint">☝ Touche un mot de la phrase pour voir sa lecture, son sens, son niveau et ses tracés</p></div>';
+    h += '<div class="knqcard qcard clzcard' + (clz.ans === 1 ? ' clzok' : (clz.ans === 0 || (clz.retried && clz.ans === null)) ? ' clzko' : '') + '"><span class="clzreg ' + (clzPolite(it.full) ? 'poli' : 'neutre') + '" title="Registre de la phrase">' + (clzPolite(it.full) ? '丁寧 Phrase polie' : '普通 Phrase neutre') + '</span><button type="button" class="clzfbtn' + (S && S.furiSess ? ' on' : '') + '" data-clzfuri="1" aria-pressed="' + (S && S.furiSess ? 'true' : 'false') + '" title="Afficher ou masquer les furigana (touche F)"><span class="jp">ふ</span></button><p class="prompt">' + (it.replay ? '🔁 Revue de ton erreur : retrouve le mot' : 'Complète la phrase avec le bon mot') + '</p>' + clzSentenceHTML(q, clz.ans !== null) + '<p class="clzfr">' + frHL(it.fr, it.w) + '</p>' + (clz.ans !== null ? clzChipHTML() : '') + '<p class="clzhint">☝ Touche un mot de la phrase pour voir sa lecture, son sens, son niveau et ses tracés</p></div>';
     if (clz.ans === null) {
       if (md === 'mcq') {
         if (clz.retried) h += '<p class="clzretry">Presque ! <b>Seconde chance</b> : si tu trouves, tu gagnes la moitié des points.</p>';
@@ -22483,12 +22505,30 @@ body.cdcropon{overflow:hidden}
     } else {
       var ok = clz.ans === 1, w = it.w;
       h += '<div class="choices">' + (md === 'mcq' ? q.opts.map(function (o, i) { var c = 'choice'; if (o.mot === w.mot) c += ' good'; else if (clz.pick === i) c += ' bad'; return '<button type="button" class="' + c + '" disabled><span class="key">' + (i + 1) + '</span><span class="jp">' + esc(o.mot) + '</span></button>'; }).join('') : '') + '</div>';
-      h += '<div class="fb ' + (ok ? 'good' : 'bad') + '"><b>' + (ok ? 'Bonne réponse !' : 'Raté. Le mot était : ' + esc(w.mot)) + '</b><span class="jp">' + esc(w.mot) + '</span> · ' + esc(w.lecture || '') + ' · ' + esc(w.sens) + (!ok ? clzWhyHTML(it, q) : '') + '<div class="aids"><button type="button" class="aidbtn" data-clz="say">🔊 Écouter la phrase<kbd class="kbhint">L</kbd></button></div>' + '' + '</div>';
+      h += '<div class="fb ' + (ok ? 'good' : 'bad') + '"><b>' + (ok ? 'Bonne réponse !' : 'Raté. Le mot était : ' + esc(w.mot)) + '</b><span class="jp">' + esc(w.mot) + '</span> · ' + esc(w.lecture || '') + ' · ' + esc(w.sens) + (!ok ? clzWhyHTML(it, q) : '') + clzProgHTML() + '<div class="aids"><button type="button" class="aidbtn" data-clz="say">🔊 Écouter la phrase<kbd class="kbhint">L</kbd></button></div>' + '' + '</div>';
       if (clz.alt) h += '<p class="small muted" style="text-align:center">Phrase bonus : pas de points pour celle-ci.</p>';
       if (clzAltList(clz.items[clz.i]).length) h += '<div style="text-align:center;margin-top:10px"><button type="button" class="btn" data-clz="alt">🔁 Étudier une autre phrase avec ce mot</button></div>';
       h += '<div style="text-align:center;margin-top:10px"><button type="button" class="btn primary" data-clz="next">' + (clz.i + 1 >= clz.items.length ? 'Voir le résultat' : 'Suivant') + '<kbd class="kbhint">⏎</kbd></button></div>';
     }
     return h;
+  }
+  function clzChipHTML() {
+    var p = clz.fbp; if (!p || clz.alt) return '';
+    var dots = '', i; for (i = 0; i < MASTER_RUN; i++) dots += '<i class="' + (i < p.run ? 'on' : '') + (i === p.run - 1 && !p.ko ? ' new' : '') + '"></i>';
+    var tag = p.newM ? '⭐ Mot maîtrisé !' : p.ko ? 'Série remise à zéro' : p.retry ? '2e chance : sans progression' : p.pend ? 'À confirmer demain' : 'Le mot progresse';
+    return '<div class="clzchip' + (p.newM ? ' mast' : '') + (p.ko ? ' ko' : '') + '"><span class="cpd">' + dots + '</span><b>' + Math.min(p.run, MASTER_RUN) + '/' + MASTER_RUN + '</b><span>' + tag + '</span>' + (p.gain ? '<em>+' + p.gain + ' XP</em>' : '') + '</div>';
+  }
+  function clzProgHTML() {
+    var p = clz.fbp; if (!p || clz.alt) return '';
+    var dots = '', i; for (i = 0; i < MASTER_RUN; i++) dots += '<i class="' + (i < p.run ? 'on' : '') + (i === p.run - 1 && !p.ko ? ' new' : '') + '"></i>';
+    var note = '';
+    if (p.ko) note = p.rep ? 'Pas encore : on la retravaillera.' : 'La série de ce mot repart à zéro.';
+    else if (p.newM) note = '⭐ Mot maîtrisé !';
+    else if (p.retry) note = 'Réussi à la 2e chance : la série du mot ne progresse pas.';
+    else if (p.pend) note = 'Encore une bonne réponse demain pour maîtriser ce mot (il se retient mieux sur deux jours).';
+    else note = p.rep ? 'Rattrapé ! Le mot reprend sa progression.' : 'Le mot progresse.';
+    var xp = p.gain ? ' <span class="cpxp">+' + p.gain + ' XP</span>' : (p.capped ? ' <span class="cpxp cap">plafond d\'XP du jour atteint pour les phrases</span>' : '');
+    return '<div class="clzprog' + (p.newM ? ' mast' : '') + '"><span class="cpl">Maîtrise du mot</span><span class="cpd">' + dots + '</span><span class="cpt">' + Math.min(p.run, MASTER_RUN) + ' / ' + MASTER_RUN + '</span><p class="cpn">' + note + xp + '</p></div>';
   }
   function clzWhyHTML(it, q) {
     var h = '', g = clzWhy(it), pk = (clz.pick >= 0 && q.opts[clz.pick] && q.opts[clz.pick].mot !== it.w.mot) ? q.opts[clz.pick] : null;
@@ -22500,7 +22540,7 @@ body.cdcropon{overflow:hidden}
   function clzEndHTML() {
     var tot = clz.items.filter(function (x) { return !x.replay; }).length, pct = tot ? Math.round(clz.ok / tot * 100) : 0;
     return '<div class="result"><div class="sprbig win jp" aria-hidden="true">文</div><h3>' + (pct >= 80 ? 'Excellent !' : pct >= 50 ? 'Bien joué !' : 'Continue, ça vient !') + '</h3><p>' + clz.ok + ' bonne' + (clz.ok > 1 ? 's' : '') + ' réponse' + (clz.ok > 1 ? 's' : '') + ' sur ' + tot + '.' + (clz.xp ? '<br><b>+' + clz.xp + ' XP</b>' : '') +
-      (clz.rescued ? '<br><small>🔁 ' + clz.rescued + ' erreur' + (clz.rescued > 1 ? 's' : '') + ' rattrapée' + (clz.rescued > 1 ? 's' : '') + ' pendant la séance</small>' : '') + (clz.miss.length ? '<br><small>À revoir : ' + clz.miss.map(function (m) { return '<span class="jp">' + esc(m) + '</span>'; }).join(' · ') + '</small>' : '') + '</p><div class="row"><button type="button" class="btn primary" data-clz="start">Rejouer</button><button type="button" class="btn" data-clz="stop">Changer de sélection</button></div></div>';
+      (clz.newM && clz.newM.length ? '<br><b>⭐ ' + clz.newM.length + ' mot' + (clz.newM.length > 1 ? 's' : '') + ' maîtrisé' + (clz.newM.length > 1 ? 's' : '') + '</b> : ' + clz.newM.map(function (m) { return '<span class="jp">' + esc(m) + '</span>'; }).join(' · ') : '') + (clz.adv ? '<br><small>' + clz.adv + ' mot' + (clz.adv > 1 ? 's ont' : ' a') + ' avancé dans la série de maîtrise</small>' : '') + (clz.rescued ? '<br><small>🔁 ' + clz.rescued + ' erreur' + (clz.rescued > 1 ? 's' : '') + ' rattrapée' + (clz.rescued > 1 ? 's' : '') + ' pendant la séance</small>' : '') + (clz.miss.length ? '<br><small>À revoir : ' + clz.miss.map(function (m) { return '<span class="jp">' + esc(m) + '</span>'; }).join(' · ') + '</small>' : '') + '</p><div class="row"><button type="button" class="btn primary" data-clz="start">Rejouer</button><button type="button" class="btn" data-clz="stop">Changer de sélection</button></div></div>';
   }
   function renderClz() {
     var h = $('clzHost'); if (!h) return;
@@ -22550,11 +22590,23 @@ body.cdcropon{overflow:hidden}
     clz.skipNow = false; var retryWin = !!clz.retried && ok;
     clz.ans = ok ? 1 : 0; clz.pick = pickIdx; var w = q.it.w;
     if (clz.alt) { sfx(ok ? 'ok' : 'bad'); renderClz(); return; }
-    if (q.it.replay) { if (ok) { clz.rescued = (clz.rescued || 0) + 1; sfx('ok'); } else sfx('bad'); try { srsUpdate(w.key, ok); } catch (e) {} renderClz(); return; }
+    if (q.it.replay) {
+      var rs = stat(w.key); skillNote(rs, S && S.clzMode === 'input' ? 'ecriture' : 'sens', ok);
+      if (ok) { var rwm = rs.run >= MASTER_RUN; rs.ok++; runUp(rs); clz.rescued = (clz.rescued || 0) + 1; sfx('ok'); clz.fbp = { run: rs.run, pend: !!rs.pend, newM: !rwm && rs.run >= MASTER_RUN, rep: true }; if (clz.fbp.newM) { clz.newM.push(w.mot); try { coopHit(true); } catch (e) {} } else if (rs.run > 0) clz.adv = (clz.adv || 0) + 1; }
+      else { sfx('bad'); clz.fbp = { run: rs.run, rep: true, ko: true }; }
+      try { srsUpdate(w.key, ok); } catch (e) {} persist(); renderClz(); return;
+    }
     if (!ok) { var pos = Math.min(clz.items.length, clz.i + 1 + 3 + Math.floor(Math.random() * 3)); clz.items.splice(pos, 0, Object.assign({}, q.it, { replay: true })); }
     var st = stat(w.key), before = level();
-    skillNote(st, S && S.clzMode === 'input' ? 'ecriture' : 'sens', ok); if (ok) { st.ok++; if (!retryWin) runUp(st); clz.ok++; S.correct = (S.correct || 0) + 1; sfx('ok'); var d = dayKey(), x = S.clzxp && S.clzxp.d === d ? S.clzxp : (S.clzxp = { d: d, n: 0 }), g = Math.min(retryWin ? 4 : 8, 200 - x.n); if (g > 0) { x.n += g; clz.xp = (clz.xp || 0) + g; addXp(g); } }
-    else { st.ko++; st.run = 0; errLog(w.key, 'Phrases à trou'); if (clz.miss.indexOf(w.mot) < 0) clz.miss.push(w.mot); sfx('bad'); }
+    skillNote(st, S && S.clzMode === 'input' ? 'ecriture' : 'sens', ok);
+    if (ok) {
+      var wasM = st.run >= MASTER_RUN; st.ok++; if (!retryWin) runUp(st); clz.ok++; S.correct = (S.correct || 0) + 1; sfx('ok');
+      var d = dayKey(), x = S.clzxp && S.clzxp.d === d ? S.clzxp : (S.clzxp = { d: d, n: 0 }), g = Math.min(retryWin ? 4 : 8, 200 - x.n); if (g > 0) { x.n += g; clz.xp = (clz.xp || 0) + g; addXp(g); }
+      var nm = !wasM && st.run >= MASTER_RUN;
+      clz.fbp = { run: st.run, pend: !!st.pend, newM: nm, retry: retryWin, gain: Math.max(0, g), capped: g <= 0 };
+      if (nm) { clz.newM.push(w.mot); try { coopHit(true); } catch (e) {} } else if (!retryWin && st.run > 0) clz.adv = (clz.adv || 0) + 1;
+    }
+    else { st.ko++; st.run = 0; errLog(w.key, 'Phrases à trou'); if (clz.miss.indexOf(w.mot) < 0) clz.miss.push(w.mot); sfx('bad'); clz.fbp = { run: 0, ko: true }; }
     try { srsUpdate(w.key, ok); } catch (e) {}
     persist(); renderClz();
   }
@@ -22563,7 +22615,7 @@ body.cdcropon{overflow:hidden}
     var a = b.getAttribute('data-clz');
     if (a === 'start') {
       var all = clzItems(); if (!all.length) return;
-      clz.all = all; clz.items = shuffle(all.slice()).slice(0, 10); clz.i = 0; clz.ok = 0; clz.xp = 0; clz.miss = []; clz.rescued = 0; clz.view = 'quiz'; clzNext(); renderClz(); window.scrollTo(0, 0);
+      clz.all = all; clz.items = shuffle(all.slice()).slice(0, 10); clz.i = 0; clz.ok = 0; clz.xp = 0; clz.miss = []; clz.rescued = 0; clz.newM = []; clz.adv = 0; clz.view = 'quiz'; clzNext(); renderClz(); window.scrollTo(0, 0);
     } else if (a === 'stop') { clz.view = 'setup'; renderClz(); }
     else if (a === 'pick') { var i = +b.getAttribute('data-i'); clzAnswer(clz.q.opts[i].mot === clz.q.it.w.mot, i); }
     else if (a === 'skip') { clz.skipNow = true; clzAnswer(false, -1); }
