@@ -22499,7 +22499,7 @@ body.cdcropon{overflow:hidden}
         if (clz.retried) h += '<p class="clzretry">Presque ! <b>Seconde chance</b> : si tu trouves, tu gagnes la moitié des points.</p>';
         h += '<div class="choices">' + q.opts.map(function (o, i) { var dead = (clz.dead || []).indexOf(i) >= 0; return '<button type="button" class="choice' + (dead ? ' bad' : '') + '"' + (dead ? ' disabled' : '') + ' data-clz="pick" data-i="' + i + '"><span class="key">' + (i + 1) + '</span><span class="jp">' + esc(o.mot) + (S && S.clzFuri && /[㐀-鿿]/.test(o.mot) ? ' <small class="muted">' + esc(o.lecture) + '</small>' : '') + '</span></button>'; }).join('') + '</div>';
       } else {
-        h += '<form class="answer" id="clzForm" autocomplete="off"><label class="prompt" for="clzAns" style="text-align:left">Le mot qui manque (kanji ou kana), en forme neutre du dictionnaire</label><input type="text" id="clzAns" data-ime="1" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="ex. 日本 / にほん"><button class="btn primary" type="submit">Valider</button></form>';
+        h += '<form class="answer" id="clzForm" autocomplete="off"><label class="prompt" for="clzAns" style="text-align:left">Le mot qui manque (kanji ou kana). Tu peux écrire le mot en entier, ou seulement la partie cachée.</label><input type="text" id="clzAns" data-ime="1" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="ex. 日本 / にほん"><button class="btn primary" type="submit">Valider</button></form>';
       }
       h += '<div class="skiprow"><button class="btn skipq" type="button" data-clz="skip">🤷 Je ne sais pas<kbd class="kbhint">S</kbd></button></div>';
     } else {
@@ -22581,6 +22581,15 @@ body.cdcropon{overflow:hidden}
       else if (!typing && (k === 'f' || k === 'F')) press('.clzfbtn');
     }
   });
+  /* formes acceptées en saisie : le mot en entier, sa lecture, et la partie cachée dans la phrase (radical) avec sa lecture */
+  function clzAccept(it) {
+    var w = it.w, out = [], lec = String(w.lecture || ''), mot = String(w.mot || '').replace(/^[〜～]/, ''), hit = String(it.hit || '');
+    function add(t) { var n = toHira(normJP(t)); if (n && out.indexOf(n) < 0) out.push(n); }
+    add(w.mot); add(mot); add(lec); add(hit);
+    var cut = Array.from(mot).length - Array.from(hit).length;
+    if (cut > 0 && hit) { var la = Array.from(lec.replace(/[〜～]/g, '')); if (la.length > cut) add(la.slice(0, la.length - cut).join('')); }
+    return out;
+  }
   function clzPolite(t) { return /(です|ます|ました|ません|でした|ましょう|ください|でしょう|ございます)[かね]?[。？?！!」ょ]*$/.test(String(t || '').replace(/\s+/g, '')); }
   function clzAnswer(ok, pickIdx) {
     var q = clz.q; if (!q || clz.ans !== null) return;
@@ -22624,8 +22633,8 @@ body.cdcropon{overflow:hidden}
   });
   document.addEventListener('submit', function (e) {
     if (!e.target || e.target.id !== 'clzForm') return; e.preventDefault();
-    var v = ($('clzAns').value || ''), w = clz.q.it.w, n = toHira(normJP(v)); if (!n) return;
-    clzAnswer(n === toHira(normJP(w.mot)) || n === toHira(normJP(w.lecture || '')), -1);
+    var v = ($('clzAns').value || ''), n = toHira(normJP(v)); if (!n) return;
+    clzAnswer(clzAccept(clz.q.it).indexOf(n) >= 0, -1);
   });
   document.addEventListener('change', function (e) {
     var t = e.target; if (!t || !S) return;
