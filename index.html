@@ -5162,7 +5162,7 @@ body.cdcropon{overflow:hidden}
     <div id="codeHost"></div>
     <div class="logrow" style="grid-column:1/-1;display:none !important" hidden><button type="button" class="btn logbtn" id="btnLogout3">⎋ Se déconnecter</button></div>
     <div class="panel setlink"><p class="small muted" hidden style="display:none !important">Photo, bannière, cadre, titre et effet de pseudo se règlent maintenant depuis ton profil.</p><button class="btn primary" type="button" data-go="profil" data-cust="photo" hidden style="display:none !important"><span class="bi" aria-hidden="true">飾</span> Personnaliser mon profil</button></div>
-    <details class="acc setacc" id="adminAcc" hidden><summary><span class="aico" aria-hidden="true">絵</span>Atelier d'images (admin)</summary><div class="accbody" id="adminBody"></div></details>
+    <details class="acc setacc" id="adminAcc" hidden><summary><span class="aico" aria-hidden="true">絵</span>Atelier des cartes (admin)</summary><div class="accbody" id="adminBody"></div></details>
     <details class="acc setacc"><summary><span class="aico" aria-hidden="true">音</span>Contenu et sons</summary><div class="accbody">
       <p id="contentInfo"></p>
       <p class="small muted">Vocabulaire fixé sur le polycopié du cours (L2 S3, Lexique et idéogrammes, Junko CHABOT BABA, 2023-2024) ; niveau L1 débutant : fascicules « Lexique et idéogrammes » L1D débutants, 2024-2025. Toute la promotion révise la même liste.</p>
@@ -26070,7 +26070,7 @@ body.cdcropon{overflow:hidden}
   var CD_KINDS = ['prof', 'fac', 'jp', 'hist', 'obj', 'cuis', 'trad', 'art', 'sport', 'lieu', 'nat', 'kami', 'folk'];
   var CD_KNAMES = { prof: 'Professeurs', fac: 'Vie de la fac', jp: 'Japon', hist: 'Histoire', obj: 'Objets', cuis: 'Cuisine', trad: 'Traditions', art: 'Arts', sport: 'Budō et sport', lieu: 'Lieux', nat: 'Nature et fêtes', kami: 'Kami (dieux)', folk: 'Folklore' };
   function adminCardsHTML() {
-    var h = '<h4 class="admh">Cartes : illustrations</h4><p class="small muted">Ton image remplace le dessin de la carte pour tous les joueurs. Tu la cadres avant d\'enregistrer. Les images sont téléchargées par les joueurs : commence par les cartes qui comptent le plus. Tu peux aussi toucher une carte de ton classeur, puis « Image de la carte ».</p>';
+    var h = '<p class="small muted">Ton image remplace le dessin de la carte pour tous les joueurs. Tu la cadres avant d\'enregistrer. Les images sont téléchargées par les joueurs : commence par les cartes qui comptent le plus. Tu peux aussi toucher une carte de ton classeur, puis « Image de la carte ».</p>';
     CD_KINDS.forEach(function (k) {
       var list = CARDS.filter(function (c) { return c[1] === k; }); if (!list.length) return;
       var n = list.filter(function (c) { return ASSETS['card_' + c[0]]; }).length;
@@ -26082,7 +26082,7 @@ body.cdcropon{overflow:hidden}
     return h;
   }
   var _adminPanel0 = adminPanel;
-  adminPanel = function () { _adminPanel0(); if (isAdmin() && $('adminBody')) $('adminBody').insertAdjacentHTML('beforeend', adminCardsHTML()); };
+  adminPanel = function () { _adminPanel0(); var det = $('adminAcc'); if (!det || !isAdmin() || !$('adminBody')) return; $('adminBody').innerHTML = adminCardsHTML(); };
   document.addEventListener('toggle', function (e) { var d = e.target; if (d && d.classList && d.classList.contains('admcat')) admCardOpen[d.getAttribute('data-cdk')] = d.open; }, true);
   function cdcDraw() {
     var c = cdcrop; if (!c) return;
