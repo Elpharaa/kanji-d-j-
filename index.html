@@ -22610,7 +22610,7 @@ body.cdcropon{overflow:hidden}
     skillNote(st, S && S.clzMode === 'input' ? 'ecriture' : 'sens', ok);
     if (ok) {
       var wasM = st.run >= MASTER_RUN; st.ok++; if (!retryWin) runUp(st); clz.ok++; S.correct = (S.correct || 0) + 1; sfx('ok');
-      var d = dayKey(), x = S.clzxp && S.clzxp.d === d ? S.clzxp : (S.clzxp = { d: d, n: 0 }), g = Math.min(retryWin ? 4 : 8, 200 - x.n); if (g > 0) { x.n += g; clz.xp = (clz.xp || 0) + g; addXp(g); }
+      var d = dayKey(), x = S.clzxp && S.clzxp.d === d ? S.clzxp : (S.clzxp = { d: d, n: 0 }), g = retryWin ? 4 : 8; x.n += g; clz.xp = (clz.xp || 0) + g; addXp(g);
       var nm = !wasM && st.run >= MASTER_RUN;
       clz.fbp = { run: st.run, pend: !!st.pend, newM: nm, retry: retryWin, gain: Math.max(0, g), capped: g <= 0 };
       if (nm) { clz.newM.push(w.mot); try { coopHit(true); } catch (e) {} } else if (!retryWin && st.run > 0) clz.adv = (clz.adv || 0) + 1;
