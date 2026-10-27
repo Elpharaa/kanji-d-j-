@@ -17267,7 +17267,7 @@ body.tbopen { overflow: hidden; }
   }
   // Rayons liés à la Base : cachés tant que la Base n'est pas débloquée (niveau 5)
   var SHOP_BASE = { pet: 1, deco: 1, pav: 1, house: 1 };
-  function shopCats() { var ok = unlOn('base'); return SHOPCATS.filter(function (c) { return c[0] !== 'card' && (ok || !SHOP_BASE[c[0]]); }); }
+  function shopCats() { var ok = unlOn('base'); return SHOPCATS.filter(function (c) { return c[0] !== 'card' && c[0] !== 'deco' && (ok || !SHOP_BASE[c[0]]); }); }
   function shopHome() {
     var tile = function (c, cls) {
       return '<button type="button" class="stile ' + (cls || '') + ' k-' + c[0] + '" data-shoptab="' + c[0] + '"><span class="stseal" aria-hidden="true">' + c[1] + '</span><span class="sttx"><b>' + esc(c[2]) + '</b><small>' + esc(c[0] === 'loot' && freeReady() ? '🎁 Coffre gratuit disponible !' : c[0] === 'card' && cardFreeReady() ? '🎁 Booster gratuit disponible !' : c[3]) + '</small></span><span class="stct">' + esc(shopCount(c[0])) + '</span></button>';
