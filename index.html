@@ -5051,11 +5051,13 @@ body.tbopen { overflow: hidden; }
   background-position: var(--gc, left 8px top 8px), var(--gc, left 8px top 8px), 0 0, 0 0 !important;
   background-size: 16px 1.5px, 1.5px 16px, auto, auto !important;
   background-repeat: no-repeat, no-repeat, repeat, repeat !important; }
-.app :is(.hubcard, #games .djt)::before { rotate: var(--br, 0deg); scale: var(--bsc, 1); }
-.app :is(.hubcard:nth-child(4n+1), #games .djt:nth-of-type(4n+1)) { --gc: left 8px top 8px; --l1: #fffaf7; --l2: #fbe8ef; --l3: #efe4f7; --tp: 0 100%; --t1: rgba(176, 140, 214, .2); --br: 0deg; --bsc: 1; }
-.app :is(.hubcard:nth-child(4n+2), #games .djt:nth-of-type(4n+2)) { --gc: right 8px bottom 8px; --l1: #fbf8ff; --l2: #eadff7; --l3: #f6e3ef; --tp: 100% 100%; --t1: rgba(150, 120, 205, .22); --br: -16deg; --bsc: 1.18; }
-.app :is(.hubcard:nth-child(4n+3), #games .djt:nth-of-type(4n+3)) { --gc: left 8px bottom 8px; --l1: #fffcf3; --l2: #fbeed9; --l3: #f8e2ee; --tp: 100% 0; --t1: rgba(224, 178, 96, .2); --br: 20deg; --bsc: .82; }
-.app :is(.hubcard:nth-child(4n+4), #games .djt:nth-of-type(4n+4)) { --gc: right 8px top 8px; --l1: #fdf7fb; --l2: #f5e0ee; --l3: #e4dcf6; --tp: 0 0; --t1: rgba(236, 132, 168, .18); --br: 9deg; --bsc: 1.28; }
+.app :is(.hubcard:not(.gramlink), #games .djt)::before { rotate: var(--br, 0deg); scale: var(--bsc, 1); transform-origin: 50% 0 !important; background-position: var(--bx, right -6px) top -4px !important;
+  -webkit-mask-image: linear-gradient(225deg, #000 55%, transparent 100%), linear-gradient(180deg, #000 18%, transparent 46%) !important; mask-image: linear-gradient(225deg, #000 55%, transparent 100%), linear-gradient(180deg, #000 18%, transparent 46%) !important;
+  -webkit-mask-composite: source-in; mask-composite: intersect; }
+.app :is(.hubcard:nth-child(4n+1), #games .djt:nth-of-type(4n+1)) { --gc: left 8px top 8px; --l1: #fffaf7; --l2: #fbe8ef; --l3: #efe4f7; --tp: 0 100%; --t1: rgba(176, 140, 214, .2); --br: 0deg; --bsc: 1; --bx: right -6px; }
+.app :is(.hubcard:nth-child(4n+2), #games .djt:nth-of-type(4n+2)) { --gc: right 8px bottom 8px; --l1: #fbf8ff; --l2: #eadff7; --l3: #f6e3ef; --tp: 100% 100%; --t1: rgba(150, 120, 205, .22); --br: -8deg; --bsc: .9; --bx: left 44%; }
+.app :is(.hubcard:nth-child(4n+3), #games .djt:nth-of-type(4n+3)) { --gc: left 8px bottom 8px; --l1: #fffcf3; --l2: #fbeed9; --l3: #f8e2ee; --tp: 100% 0; --t1: rgba(224, 178, 96, .2); --br: 12deg; --bsc: .8; --bx: right 22px; }
+.app :is(.hubcard:nth-child(4n+4), #games .djt:nth-of-type(4n+4)) { --gc: right 8px top 8px; --l1: #fdf7fb; --l2: #f5e0ee; --l3: #e4dcf6; --tp: 0 0; --t1: rgba(236, 132, 168, .18); --br: 5deg; --bsc: .95; --bx: left 56%; }
 
 </style>
 
