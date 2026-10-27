@@ -16561,7 +16561,7 @@ body.tbopen { overflow: hidden; }
     }
     if (more) html += '<div class="panel"><p class="small muted">' + more + ' résultat(s) de plus : précise ta recherche ou choisis une liste plus courte.</p></div>';
     host.innerHTML = html || '<div class="panel"><p>Aucun résultat' + (searching ? ' pour « ' + esc(q) + ' »' : '') + '.</p></div>';
-    var si = $('seenInfo'); if (si) si.textContent = 'Fiches du cours ouvertes : ' + Object.keys(S.seen).length + '/' + KANJI_DATA.length + '.';
+    var si = $('seenInfo'); if (si) si.textContent = 'Fiches ouvertes : ' + Object.keys(S.seen).length + '/' + klSeenTot() + '.';
   }
   function kListFor(kind, key) {
     if (kind === 'kanji') {
@@ -17157,7 +17157,7 @@ body.tbopen { overflow: hidden; }
     var cards = [
       ['home', '学', 'study', 'Dojo · Réviser', words ? mastered + '/' + words + ' mots maîtrisés · ' + CURSUS[lv].tag + (errCount() ? ' · ' + errCount() + ' à corriger' : '') : 'Flashcards, jeux et examen blanc'],
       ['story', '旅', 'quest', 'Aventure', L.tag + ' · ' + (chs.length ? done + '/' + chs.length + ' chapitres' : '')],
-      ['kanji', '漢', 'kanji', 'Fiches kanji', Object.keys(S.seen || {}).length + ' / ' + KANJI_DATA.length + ' vues'],
+      ['kanji', '漢', 'kanji', 'Fiches kanji', Object.keys(S.seen || {}).length + ' / ' + klSeenTot() + ' vues'],
       ['online', '盟', 'online', 'Mode en ligne', 'Raid du jour · clans · duels'],
       ['cards', '札', 'cards', 'Classeur de cartes', cardCount() + '/' + CARDS.length + ' cartes' + (cardFreeReady() ? ' · 🎁 booster gratuit !' : ' · ouvre des boosters')],
       ['bazar', '店', 'shop', 'Boutique', ((freeReady() || cardFreeReady()) ? '🎁 Cadeau du jour à ouvrir !' : coinsOf() + ' pièces · tous les achats')]
@@ -17249,9 +17249,9 @@ body.tbopen { overflow: hidden; }
   });
   function openKCard(i) {
     var c = kcards[i]; if (!c) return;
-    if (c.k && KMAP[c.k] && !S.seen[c.k]) {
+    if (c.k && (KMAP[c.k] || JK[c.k]) && !S.seen[c.k]) {
       S.seen[c.k] = 1; checkBadges(); persist();
-      var si = $('seenInfo'); if (si) si.textContent = 'Fiches ouvertes : ' + Object.keys(S.seen).length + '/' + KANJI_DATA.length + '.';
+      var si = $('seenInfo'); if (si) si.textContent = 'Fiches ouvertes : ' + Object.keys(S.seen).length + '/' + klSeenTot() + '.';
     }
     openModal(c.title, '<div class="kbody inmodal">' + (c.k ? strokeBlock(c.k) : '') + (typeof c.body === 'function' ? c.body() : c.body) + '</div>', 'kmodal');
   }
@@ -23828,7 +23828,7 @@ body.tbopen { overflow: hidden; }
     var d = e.target;
     if (d && d.open && d.getAttribute && d.getAttribute('data-k') && !S.seen[d.getAttribute('data-k')]) {
       S.seen[d.getAttribute('data-k')] = 1; checkBadges(); persist();
-      var si = $('seenInfo'); if (si) si.textContent = 'Fiches ouvertes : ' + Object.keys(S.seen).length + '/' + KANJI_DATA.length + '.';
+      var si = $('seenInfo'); if (si) si.textContent = 'Fiches ouvertes : ' + Object.keys(S.seen).length + '/' + klSeenTot() + '.';
     }
   }, true);
 
@@ -27204,6 +27204,7 @@ body.tbopen { overflow: hidden; }
     } else kv.list = t.getAttribute('data-kls');
     kv.q = ''; renderKanji();
   });
+  function klSeenTot() { var n = KANJI_DATA.length; Object.keys(JK).forEach(function (c) { if (!KMAP[c]) n++; }); return n; }
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
