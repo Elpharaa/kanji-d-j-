@@ -4957,6 +4957,9 @@ body.cdcropon{overflow:hidden}
   .kglist { grid-template-columns: 1fr; }
   .kgvr { grid-template-columns: .8fr 1.45fr 1.25fr; gap: 6px; padding: 8px; }
 }
+.klbox{margin:6px 0 4px}.klbox .cs-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.klbox .cs-tab{min-height:46px;text-align:center;justify-content:center;font-size:1rem}
+.klbox .klsub{margin:10px 0 6px;font-size:.78rem;font-weight:800;opacity:.7;text-transform:uppercase;letter-spacing:.06em}
+.klbox .cs-chip{min-height:40px;padding:4px 12px;font-size:.9rem}
 
 /* v292 : Tableau de tracé */
 #tbHost { width: 100%; max-width: 760px; margin: 0 auto; }
@@ -16406,7 +16409,7 @@ body.tbopen { overflow: hidden; }
       var wk = p[2] === 'all' ? 'all' : +p[2];
       KANJI_DATA.forEach(function (k) { if (wkLevel(k.wk) === p[1] && (wk === 'all' || k.wk === wk)) K.push(k.k); });
       WORDS.forEach(function (w) { if (wkLevel(w.wk) === p[1] && (wk === 'all' || w.wk === wk)) W.push(w); });
-    } else {
+    } else if (p[0] === 'K') { kgFiche(p[1], K, W); } else {
       K = jlBuild()[p[1]].slice(); var seen2 = {};
       jlWords(p[1]).forEach(function (w) { var kk = w.jp + '|' + w.kana; if (!seen2[kk]) { seen2[kk] = 1; W.push(w); } });
     }
@@ -16414,7 +16417,8 @@ body.tbopen { overflow: hidden; }
   }
   function kListLabel() {
     var p = kListNow().split(':');
-    if (p[0] === 'J') return 'JLPT ' + p[1].toUpperCase();
+    if (p[0] === 'K') { var kgg = KG_GROUPS.filter(function (g) { return g.id === p[1]; })[0]; return 'Keigo · ' + (kgg ? kgg.name.replace(/^Keigo · /, '') : ''); }
+    if (p[0] === 'J') return p[1] === 'q' ? 'Vie quotidienne' : 'JLPT ' + p[1].toUpperCase();
     return CURSUS[p[1]].tag + (p[2] === 'all' ? '' : ' · semaine ' + wkNum(+p[2]));
   }
   function jkInfo(c) { var j = JK[c]; return j ? { sens: j[0], on: j[1], kun: j[2], n: j[3] } : null; }
@@ -27166,6 +27170,39 @@ body.tbopen { overflow: hidden; }
     if (e.key === 'Escape') { tbClose(); e.preventDefault(); }
     else if (e.key === 'ArrowRight') { tbShowK(1); e.preventDefault(); }
     else if (e.key === 'ArrowLeft') { tbShowK(-1); e.preventDefault(); }
+  });
+  /* ===== v296b. Fiches kanjis : sélecteur Cours / JLPT / Keigo puis sous-parties ===== */
+  var klLast = {};
+  function klCat() { return kListNow().charAt(0); }
+  function kgFiche(id, K, W) {
+    var t = QV.filter(function (x) { return x.id === id; })[0], seen = {}; if (!t) return;
+    t.w.forEach(function (w) { W.push(w); Array.from(w.jp).forEach(function (c) { if (!seen[c] && (KMAP[c] || JK[c])) { seen[c] = 1; K.push(c); } }); });
+  }
+  function kListSelHTML() {
+    var cur = kListNow(), p = cur.split(':'), cat = p[0], h = '';
+    h += '<div class="cs-tabs klpick" role="tablist" aria-label="Catégorie">' + [['C', 'Cours'], ['J', 'JLPT'], ['K', 'Keigo']].map(function (c) {
+      return '<button type="button" role="tab" class="cs-tab' + (cat === c[0] ? ' on' : '') + '" data-klt="' + c[0] + '" aria-selected="' + (cat === c[0]) + '">' + c[1] + '</button>';
+    }).join('') + '</div>';
+    function chip(v, t, on) { return '<button type="button" role="option" class="cs-chip' + (on ? ' on' : '') + '" data-kls="' + esc(v) + '" aria-selected="' + on + '">' + esc(t) + '</button>'; }
+    if (cat === 'C') {
+      h += '<p class="as2l klsub">Semestre</p><div class="cs-chips">' + Object.keys(CURSUS).map(function (id) { return chip('C:' + id + ':all', CURSUS[id].tag, p[1] === id); }).join('') + '</div>';
+      h += '<p class="as2l klsub">Semaine</p><div class="cs-chips">' + chip('C:' + p[1] + ':all', 'Toutes', p[2] === 'all') + lvWeeks(p[1]).map(function (wk) { return chip('C:' + p[1] + ':' + wk, 'S' + wkNum(wk), p[2] === String(wk)); }).join('') + '</div>';
+    } else if (cat === 'J') {
+      h += '<p class="as2l klsub">Niveau</p><div class="cs-chips">' + JL_LV.map(function (l) { return chip('J:' + l[0], l[0] === 'q' ? 'Vie quotidienne' : l[0].toUpperCase(), p[1] === l[0]); }).join('') + '</div>';
+    } else {
+      h += '<p class="as2l klsub">Thème</p><div class="cs-chips">' + KG_GROUPS.map(function (g) { return chip('K:' + g.id, g.name.replace(/^Keigo · /, '').replace(/^./, function (m) { return m.toUpperCase(); }), p[1] === g.id); }).join('') + '</div>';
+    }
+    return '<div class="klbox">' + h + '<div class="cs-cap">Choix actuel : <b>' + esc(kListLabel()) + '</b></div></div>';
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target.closest('[data-klt],[data-kls]') : null; if (!t || !$('kanjiBody') || !$('kanjiBody').contains(t)) return;
+    e.preventDefault();
+    if (t.hasAttribute('data-klt')) {
+      var c = t.getAttribute('data-klt'); if (c === klCat()) return;
+      klLast[klCat()] = kv.list;
+      kv.list = klLast[c] || (c === 'C' ? 'C:' + curLv() + ':all' : c === 'J' ? 'J:n5' : 'K:kg_all');
+    } else kv.list = t.getAttribute('data-kls');
+    kv.q = ''; renderKanji();
   });
 
   backend.init().then(function (u) {
