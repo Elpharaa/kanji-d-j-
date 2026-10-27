@@ -4888,6 +4888,76 @@ body.cdcropon{overflow:hidden}
 .clzcard{text-align:center}
 @keyframes cpPop{0%{transform:scale(.3)}60%{transform:scale(1.5)}100%{transform:scale(1)}}
 @media (prefers-reduced-motion:reduce){.clzprog .cpd i.new{animation:none}}
+/* v287 : Keigo & expressions */
+#kgHost { width: 100%; max-width: 760px; margin: 0 auto; }
+.kgintro { margin: 4px 2px 10px; line-height: 1.5; }
+.kgbig { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; padding: 12px 14px; margin: 0 0 6px; border-radius: 12px; border: 1px solid var(--line); background: linear-gradient(135deg, color-mix(in srgb, var(--gold) 20%, var(--surface)), var(--surface)); color: var(--fg); cursor: pointer; font: inherit; }
+.kgbig b { display: block; font-size: 1.02rem; }
+.kgbig small { display: block; color: var(--muted); margin-top: 2px; line-height: 1.35; }
+.kgbig .kgbk { flex: 0 0 auto; font-size: 1.9rem; line-height: 1; color: var(--torii); }
+.kgbig.sm { padding: 9px 12px; margin: 12px 0 0; }
+.kgbig.sm .kgbk { font-size: 1.4rem; }
+.kgh { margin: 18px 2px 8px; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 800; }
+.kglist { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.kgth { display: flex; align-items: center; gap: 10px; text-align: left; padding: 10px 12px; min-height: 64px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; font: inherit; min-width: 0; }
+.kgth:hover, .kgth:focus-visible { border-color: var(--gold); }
+.kgk { flex: 0 0 auto; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; background: color-mix(in srgb, var(--gold) 22%, var(--surface)); color: var(--torii); font-size: 1.35rem; font-weight: 800; }
+.kgk.big { width: 54px; height: 54px; font-size: 1.9rem; border-radius: 14px; }
+.kgtx { display: block; min-width: 0; flex: 1 1 0; }
+.kgtx b { display: block; font-size: .93rem; line-height: 1.25; }
+.kgtx small { display: block; color: var(--muted); font-size: .76rem; line-height: 1.3; margin-top: 1px; }
+.kgbar { display: block; height: 5px; border-radius: 4px; background: color-mix(in srgb, var(--muted) 22%, transparent); margin-top: 6px; overflow: hidden; text-decoration: none; }
+.kgbar i { display: block; height: 100%; background: linear-gradient(90deg, var(--gold), var(--torii)); border-radius: 4px; }
+.kgg .kgk { font-size: 1.2rem; }
+.kgfh { display: flex; align-items: center; gap: 12px; margin: 6px 0 10px; }
+.kgfh h3 { margin: 0; font-size: 1.15rem; }
+.kgfh small { color: var(--muted); }
+.kgsec { margin: 14px 0; }
+.kgsec h4 { margin: 0 0 8px; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 800; }
+.kgexs { display: grid; gap: 6px; }
+.kgex { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); }
+.kgex.done { border-color: color-mix(in srgb, var(--good) 55%, var(--line)); }
+.kgex > div { flex: 1 1 0; min-width: 0; }
+.kgex b.jp { font-size: 1.02rem; }
+.kgrd { color: var(--muted); font-size: .82rem; margin-left: 8px; }
+.kgfr { display: block; color: var(--muted); font-size: .84rem; line-height: 1.35; margin-top: 2px; }
+.kgok { font-style: normal; color: var(--good); font-weight: 800; }
+.kgsay { flex: 0 0 auto; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--bg); cursor: pointer; font-size: 1rem; }
+.kgrule { padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); margin-bottom: 8px; }
+.kgrule > b { display: block; margin-bottom: 4px; }
+.kgrule p { margin: 0; line-height: 1.5; font-size: .92rem; }
+.kgrx { margin-top: 8px; padding: 7px 10px; border-left: 3px solid var(--gold); background: color-mix(in srgb, var(--gold) 10%, transparent); border-radius: 0 8px 8px 0; }
+.kgrx .jp { display: block; font-size: 1rem; }
+.kgrx small { color: var(--muted); }
+.kgnotes { margin: 0; padding-left: 18px; line-height: 1.5; font-size: .9rem; color: var(--muted); }
+.kgact { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 6px; }
+.kgact .btn { flex: 1 1 200px; }
+.kgleg { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 6px 0 10px; }
+.kgleg > div { padding: 8px 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); font-size: .86rem; }
+.kgleg b { display: block; }
+.kgleg small { color: var(--muted); }
+.kgvt { display: grid; gap: 4px; }
+.kgvr { display: grid; grid-template-columns: .8fr 1.45fr 1.25fr; gap: 8px; align-items: center; padding: 8px 10px; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); }
+.kgvr.head { background: none; border: none; font-size: .74rem; color: var(--muted); font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding-bottom: 0; }
+.kgvn b { display: block; font-size: .95rem; }
+.kgvn small { color: var(--muted); font-size: .72rem; line-height: 1.25; display: block; }
+.kgvh em, .kgvm em { display: block; font-style: normal; font-size: .84rem; line-height: 1.35; }
+.kgvh em { color: var(--torii); }
+.kgvm em { color: var(--accent); }
+.kgvh i, .kgvm i { color: var(--muted); font-style: normal; }
+.kgvx { margin: -2px 6px 4px; font-size: .78rem; color: var(--bad); }
+.kgq .kgprompt { line-height: 1.5; }
+.kgbigjp { font-size: 1.5rem; }
+.kgsent { margin-top: 8px; font-size: 1.35rem; }
+.kgchips { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
+.kgchip { border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 999px; padding: 6px 12px; font: inherit; font-size: .85rem; cursor: pointer; min-height: 36px; }
+.kgchip.on { background: color-mix(in srgb, var(--gold) 30%, var(--surface)); border-color: var(--gold); font-weight: 800; }
+.clzsrc { margin-bottom: 8px; }
+@media (max-width: 480px) {
+  .kglist { grid-template-columns: 1fr; }
+  .kgvr { grid-template-columns: .8fr 1.45fr 1.25fr; gap: 6px; padding: 8px; }
+}
+
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -21617,6 +21687,7 @@ body.cdcropon{overflow:hidden}
     var i = DJ_INFO[sub], art = sub === 'err' ? DJ_ERR_ART : sub === 'daily' ? QV_ART : (GAME_ART[i.art] || ''), d = i.d, chip = '';
     if (sub === 'daily' || sub === 'jlpt') { var tq = qvTotals(sub), nth = QV.filter(function (t) { return !t.virt && (sub === 'jlpt' ? t.lv !== 'q' : t.lv === 'q'); }).length; d = nth + ' thèmes · ' + tq[0] + '/' + tq[1] + ' mots acquis'; }
     if (sub === 'bonus') d = BONUS.reduce(function (n, c) { return n + c.items.length; }, 0) + ' mots : onomatopées, familier, oral, amis';
+    if (sub === 'kg') d = kgSummary();
     if (sub === 'kana') d = knProgressAll() + ' / ' + knTotalAll() + ' kana maîtrisés';
     if (sub === 'fur') { var fc = furCount(); d = fc ? fc + ' mot' + (fc > 1 ? 's' : '') + ' en cuisson · ' + (S.furDone || 0) + ' forgé' + ((S.furDone || 0) > 1 ? 's' : '') : 'Les mots qui te résistent, cuits jusqu\'à être retenus'; if (fc) chip = '<span class="djchip fur" role="img" aria-label="' + fc + ' au fourneau">' + fc + '</span>'; }
     if (sub === 'err') {
@@ -22646,10 +22717,11 @@ body.cdcropon{overflow:hidden}
   function djGamesHTML(fl, kj, mj) {
     document.body.classList.toggle('qvon', djSub === 'daily' || djSub === 'jlpt');
     if (!djSub) return tipHTML('dojo', 'Voici ton Dojo ! Touche une carte pour t\'entraîner : <b>Flashcards</b> pour revoir tes mots, <b>Kanjis</b>, <b>Mini-jeux</b>, ton <b>Carnet d\'erreurs</b>, ou du <b>vocabulaire du quotidien</b> ou le <b>JLPT</b>.') +
-      '<div class="djgrid">' + ['flash', 'kana', 'kanji', 'mini', 'err', 'daily', 'jlpt', 'bonus', 'rad'].map(djTile).join('') + '</div>';
+      '<div class="djgrid">' + ['flash', 'kana', 'kanji', 'mini', 'kg', 'err', 'daily', 'jlpt', 'bonus', 'rad'].map(djTile).join('') + '</div>';
     if (djSub === 'err') return '';
     if (djSub === 'prog') return djBackHTML('prog') + '<div id="pgHost">' + progInner() + '</div>';
     if (djSub === 'bonus') return djBackHTML('bonus') + tipHTML('dj_bonus', DJ_INFO.bonus.tip) + '<div id="bonusHost">' + bonusInner() + '</div>';
+    if (djSub === 'kg') return djBackHTML('kg') + tipHTML('dj_kg', DJ_INFO.kg.tip) + '<div id="kgHost">' + kgInner() + '</div>';
     if (djSub === 'kana') return djBackHTML('kana') + tipHTML('dj_kana', DJ_INFO.kana.tip) + '<div id="kanaHost">' + knInner() + '</div>';
     if (djSub === 'fur') return djBackHTML('fur') + tipHTML('dj_fur', DJ_INFO.fur.tip) + '<div id="furHost">' + furInner() + '</div>';
     if (djSub === 'rad' || djSub === 'cuis' || djSub === 'lire' || djSub === 'nb') return djBackHTML(djSub) + tipHTML('dj_' + djSub, DJ_INFO[djSub].tip) + '<div id="lrnHost">' + lrnInner() + '</div>';
@@ -26229,6 +26301,353 @@ body.cdcropon{overflow:hidden}
     document.addEventListener('wheel', function (e) { if (!cdcrop || !cdcrop.img || e.target !== cv()) return; e.preventDefault(); cdcrop.z = Math.max(1, Math.min(4, cdcrop.z * (e.deltaY < 0 ? 1.08 : 0.926))); $('cdcZ').value = cdcrop.z; cdcClamp(); cdcDraw(); }, { passive: false });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && cdcrop) cdcClose(); });
   })();
+
+
+  /* ================= v287 : Keigo & expressions (fascicule L2 S3) ================= */
+  var KG_RAW = "T|visite|1|訪|Rendre visite|Unité 1 · Thème 1|Ici, on entre chez quelqu'un ou on parle à un supérieur : cherche la formule de politesse ou la forme honorifique (sonkeigo), pour ce que fait l'autre personne.\nE|ごめんください|ごめんください|Il y a quelqu'un ? (à l'entrée d'une maison)\nE|お邪魔します|おじゃまします|Excusez-moi de vous déranger (en entrant chez quelqu'un)\nE|失礼します|しつれいします|Excusez-moi (en entrant, en sortant, en prenant congé)\nE|失礼いたします|しつれいいたします|Même sens, plus humble et plus formel\nE|どうぞお入りください|どうぞおはいりください|Entrez, je vous en prie\nE|お上がりください|おあがりください|Montez, entrez dans la maison, je vous en prie\nE|おかけください|おかけください|Asseyez-vous, je vous en prie\nE|ご注意ください|ごちゅういください|Veuillez faire attention\nE|つまらないものですが|つまらないものですが|Ce n'est pas grand-chose, mais… (en offrant un cadeau)\nE|恐れ入ります|おそれいります|Vous êtes trop aimable (en recevant un cadeau)\nE|お口に合いますかどうか|おくちにあいますかどうか|Je ne sais pas si cela sera à votre goût\nR|Demande polie : お＋renyō＋ください|Verbes godan et ichidan : <b>お<\/b> + base renyō + <b>ください<\/b> (話す → お話しください). Verbes en する : <b>ご<\/b> + mot en kanji + <b>ください<\/b> (注意する → ご注意ください).|どうぞお入りください。|Entrez, je vous en prie.\nR|Sonkeigo : お＋renyō＋になります|On parle de l'<b>autre<\/b> (le supérieur) : <b>お<\/b> + base renyō + <b>になります<\/b> (書く → お書きになります). Pas pour les verbes en する, ni pour les verbes qui ont une forme spéciale (voir le tableau des verbes).|この教科書は鈴木先生がお書きになりました。|Ce manuel a été écrit par le professeur Suzuki.\nR|Passif honorifique|Base mizen + <b>れる／られる<\/b> (読む → 読まれます). Un peu moins formel, très courant à l'oral. Impossible avec ください. Attention : la même forme sert aussi au passif ordinaire.|課長、今朝の新聞、読まれましたか。|Chef, avez-vous lu le journal ce matin ?\nN|失礼します et 失礼いたします : いたします est la version humble de します, donc plus formelle.\nN|Le tableau des verbes spéciaux (「食べる → 召し上がる」) est à connaître par cœur : ouvre « Tableaux des verbes ».\nC|ごめんください|ごめんください|Il y a quelqu'un ?|玄関で「[[ごめんください]]」と言いました。|À l'entrée, j'ai dit « Il y a quelqu'un ? ».\nC|お邪魔します|おじゃまします|Excusez-moi de vous déranger|部屋に入るとき、「[[お邪魔します]]」と言います。|En entrant dans la pièce, on dit « Excusez-moi de vous déranger ».\nC|お邪魔します|おじゃまします|Excusez-moi de vous déranger|「[[お邪魔します]]。」「どうぞ、お上がりください。」|« Excusez-moi de vous déranger. » « Je vous en prie, entrez. »\nC|失礼します|しつれいします|Excusez-moi (en entrant, en partant)|先生の部屋を出るとき、「[[失礼します]]」と言いました。|En sortant du bureau du professeur, j'ai dit « Excusez-moi ».\nC|失礼いたします|しつれいいたします|Excusez-moi (plus humble)|もう八時ですので、そろそろ[[失礼いたします]]。|Il est déjà huit heures, je vais prendre congé.\nC|お入りください|おはいりください|Entrez, je vous en prie|「どうぞ[[お入りください]]。」と先生が言いました。|Le professeur a dit : « Entrez, je vous en prie. »\nC|お上がりください|おあがりください|Entrez, je vous en prie|靴をぬいで、こちらへ[[お上がりください]]。|Enlevez vos chaussures et entrez par ici, je vous en prie.\nC|おかけください|おかけください|Asseyez-vous, je vous en prie|こちらのソファに[[おかけください]]。|Asseyez-vous sur ce canapé, je vous en prie.\nC|ご注意ください|ごちゅういください|Veuillez faire attention|足元に[[ご注意ください]]。|Faites attention à vos pieds, s'il vous plaît.\nC|つまらないものですが|つまらないものですが|Ce n'est pas grand-chose, mais…|「あの、これ、[[つまらないものですが]]……。」|« Tenez, ce n'est pas grand-chose, mais… »\nC|恐れ入ります|おそれいります|Vous êtes trop aimable|「ごていねいに[[恐れ入ります]]。」|« Vous êtes vraiment trop aimable. »\nC|お口に合います|おくちにあいます|être à votre goût|「[[お口に合います]]かどうか……。」|« Je ne sais pas si cela sera à votre goût… »\nC|お書きになりました|おかきになりました|a écrit (honorifique)|この教科書は鈴木先生が[[お書きになりました]]。|Ce manuel a été écrit par le professeur Suzuki.\nC|お読みになりました|およみになりました|a lu (honorifique)|社長、今朝の新聞を[[お読みになりました]]か。|Monsieur le directeur, avez-vous lu le journal ce matin ?\nC|読まれました|よまれました|a lu (passif honorifique)|課長、今朝の新聞、[[読まれました]]か。|Chef, avez-vous lu le journal ce matin ?\nC|召し上がります|めしあがります|manger (honorifique)|先生は朝ごはんに何を[[召し上がります]]か。|Qu'est-ce que le professeur mange au petit-déjeuner ?\nC|ご覧になりました|ごらんになりました|a regardé (honorifique)|先生はこの映画を[[ご覧になりました]]か。|Professeur, avez-vous vu ce film ?\nC|いらっしゃいます|いらっしゃいます|aller, venir, être (honorifique)|社長は明日、会社に[[いらっしゃいます]]か。|Le directeur sera-t-il à l'entreprise demain ?\nC|おっしゃいました|おっしゃいました|a dit (honorifique)|先生は何と[[おっしゃいました]]か。|Qu'a dit le professeur ?\nC|なさいます|なさいます|faire (honorifique)|先生は週末、何を[[なさいます]]か。|Que fait le professeur le week-end ?\nC|くださいました|くださいました|a donné (honorifique)|先生が私に本を[[くださいました]]。|Le professeur m'a donné un livre.\nC|お休みになります|おやすみになります|dormir (honorifique)|社長は毎晩、何時に[[お休みになります]]か。|À quelle heure le directeur se couche-t-il chaque soir ?\nC|ご存知です|ごぞんじです|savoir (honorifique)|先生はこの店を[[ご存知です]]か。|Professeur, connaissez-vous ce magasin ?\nC|お住まいです|おすまいです|habiter (honorifique)|先生はどちらに[[お住まいです]]か。|Où le professeur habite-t-il ?\nC|でいらっしゃいます|でいらっしゃいます|être (honorifique)|こちらが山田先生[[でいらっしゃいます]]。|Voici le professeur Yamada.\nT|saluer|1|挨|Saluer|Unité 1 · Thème 2|Si c'est <b>toi<\/b> (ou ton groupe) qui agis devant un supérieur, c'est la forme modeste (kenjōgo). Si c'est le supérieur qui agit, c'est la forme honorifique (sonkeigo).\nE|お早うございます|おはようございます|Bonjour (le matin, poli)\nE|お先に失礼します|おさきにしつれいします|Excusez-moi de partir avant vous\nE|お疲れさまです|おつかれさまです|Merci pour votre travail (salut entre collègues)\nE|こちらこそ|こちらこそ|Moi de même, c'est moi qui vous remercie\nE|どういたしまして|どういたしまして|Je vous en prie\nE|いい天気ですね|いいてんきですね|Il fait beau, n'est-ce pas ?\nE|お気をつけて|おきをつけて|Faites attention à vous, bonne route\nE|それではまた|それではまた|À bientôt\nE|お目にかかります|おめにかかります|Je vous verrai, je vous rencontrerai (modeste)\nR|Kenjōgo : お＋renyō＋します|On parle de <b>soi<\/b> ou de son groupe : <b>お<\/b> + base renyō + <b>します<\/b> (持つ → お持ちします). Verbes en する : <b>ご<\/b> + mot en kanji + <b>します<\/b> (説明する → ご説明します). 「私が」 est souvent omis. Avec un supérieur, on n'emploie pas ～てあげます.|社長、荷物は私がお持ちします。|Monsieur le directeur, je porte vos bagages.\nR|Verbes modestes spéciaux|Certains verbes ont leur propre forme modeste : 食べる → <b>いただきます<\/b> (et non ✕お食べします), 見る → <b>拝見します<\/b> (et non ✕お見します). Voir le tableau des verbes.|先生からペンをいただきました。|J'ai reçu un stylo du professeur.\nN|Si un supérieur te dit « おはよう », ne réponds jamais pareil : dis おはようございます.\nN|Dans les salutations formelles, on évite les particules finales よ et ね.\nC|お早うございます|おはようございます|Bonjour (poli)|朝、先生に「[[お早うございます]]」と言いました。|Le matin, j'ai dit « Bonjour » au professeur.\nC|お先に失礼します|おさきにしつれいします|Excusez-moi de partir avant vous|「それでは、[[お先に失礼します]]。」「お疲れさまです。」|« Eh bien, je pars avant vous. » « Merci pour votre travail. »\nC|お疲れさまです|おつかれさまです|Merci pour votre travail|「お先に失礼します。」「[[お疲れさまです]]。」|« Je pars avant vous. » « Merci pour votre travail. »\nC|こちらこそ|こちらこそ|Moi de même|「ありがとうございます。」「[[こちらこそ]]。」|« Merci beaucoup. » « C'est moi qui vous remercie. »\nC|どういたしまして|どういたしまして|Je vous en prie|「ありがとうございました。」「[[どういたしまして]]。」|« Merci beaucoup. » « Je vous en prie. »\nC|お気をつけて|おきをつけて|Faites attention à vous|「失礼します。」「[[お気をつけて]]。」|« Au revoir. » « Bonne route. »\nC|お持ちします|おもちします|porter (modeste)|社長、そのかばんは私が[[お持ちします]]。|Monsieur le directeur, je porte ce sac.\nC|ご説明します|ごせつめいします|expliquer (modeste)|新しいパソコンの使い方を私が[[ご説明します]]。|Je vais vous expliquer comment utiliser le nouvel ordinateur.\nC|お手伝いします|おてつだいします|aider (modeste)|忙しそうですね。私が[[お手伝いします]]。|Vous avez l'air occupé. Je vais vous aider.\nC|拝見しました|はいけんしました|a regardé (modeste)|先生がお送りくださった資料を[[拝見しました]]。|J'ai lu les documents que vous m'avez envoyés, professeur.\nC|いただきます|いただきます|manger, recevoir (modeste)|ありがとうございます。それでは、[[いただきます]]。|Merci beaucoup. Alors, je vais goûter.\nC|いただきました|いただきました|a reçu (modeste)|先生からペンを[[いただきました]]。|J'ai reçu un stylo du professeur.\nC|お会いしました|おあいしました|a rencontré (modeste)|昨日、駅で先生に[[お会いしました]]。|Hier, j'ai rencontré le professeur à la gare.\nC|お目にかかります|おめにかかります|Je vous verrai (modeste)|それでは、また明日[[お目にかかります]]。|Eh bien, je vous verrai demain.\nC|伺います|うかがいます|aller, demander (modeste)|明日、先生のお宅に[[伺います]]。|Demain, je me rendrai chez le professeur.\nC|参ります|まいります|aller, venir (modeste)|すぐに[[参ります]]。|J'arrive tout de suite.\nC|おります|おります|être (modeste)|私は今、会社に[[おります]]。|Je suis actuellement à l'entreprise.\nC|申します|もうします|dire, m'appeler (modeste)|私は山田と[[申します]]。|Je m'appelle Yamada.\nC|申し上げます|もうしあげます|dire (modeste)|私の意見を[[申し上げます]]。|Je vais vous donner mon avis.\nC|存じております|ぞんじております|savoir (modeste)|先生のお名前は[[存じております]]。|Je connais le nom du professeur.\nC|さしあげます|さしあげます|donner (modeste)|先生に国のおみやげを[[さしあげます]]。|Je donne à mon professeur un souvenir de mon pays.\nC|ございます|ございます|il y a (modeste)|こちらにメニューが[[ございます]]。|Voici la carte.\nC|でございます|でございます|être (modeste)|こちらが会議室[[でございます]]。|Voici la salle de réunion.\nC|致します|いたします|faire (modeste)|どうぞよろしくお願い[[致します]]。|Je vous prie de bien vouloir m'accorder votre bienveillance.\nT|inviter|1|誘|Inviter|Unité 1 · Thème 3|Pour inviter un supérieur, on reste indirect : on demande son avis (「～いかがでしょうか」), on formule la demande sous forme de question ou de souhait (「～いただきたいんですが」).\nE|今、よろしいですか|いま、よろしいですか|Vous avez un instant ?\nE|今、お時間いただけますか|いま、おじかんいただけますか|Pourrais-je avoir un peu de votre temps ?\nE|何かご予定ありますか|なにかごよていありますか|Avez-vous quelque chose de prévu ?\nE|ご都合はいかがでしょうか|ごつごうはいかがでしょうか|Cela vous conviendrait-il ?\nE|ぜひ来ていただきたいんですが|ぜひきていただきたいんですが|J'aimerais beaucoup que vous veniez…\nE|ご出席いただけないかと思いまして|ごしゅっせきいただけないかとおもいまして|Je me demandais si vous pourriez venir…\nE|よろしかったら|よろしかったら|Si cela vous convient\nE|いらっしゃいませんか|いらっしゃいませんか|Voudriez-vous venir ?\nE|もしご都合がよろしければ|もしごつごうがよろしければ|Si cela vous convient\nE|ご心配なく|ごしんぱいなく|Ne vous inquiétez pas\nE|ご遠慮なく|ごえんりょなく|Ne vous gênez pas\nE|お気遣いなく|おきづかいなく|Ne vous donnez pas ce mal\nE|おかまいなく|おかまいなく|Ne vous dérangez pas pour moi\nE|お返事をお待ちしております|おへんじをおまちしております|J'attends votre réponse\nE|楽しみにしております|たのしみにしております|J'ai hâte (modeste)\nR|Inviter poliment|<b>～ていただきたいんですが<\/b> (souhait), <b>～ていただけないかと思いまして<\/b> (question indirecte, la fin de la phrase est seulement suggérée), <b>よろしかったら／よろしければ<\/b> (よろしい + たら／ば). Plus la demande est indirecte (interronégation, でしょうか, かと思う), plus elle est polie.|部長にもぜひ来ていただきたいんですが……。|Monsieur le directeur, j'aimerais beaucoup que vous veniez aussi…\nR|Forme durative modeste|Forme modeste en て + <b>おります<\/b> (おります = forme modeste de います) : 待つ → お待ちする → お待ちして → <b>お待ちしております<\/b>.|お返事をお待ちしております。|J'attends votre réponse.\nR|Rassurer après un refus|<b>ご心配なく／ご遠慮なく／お気遣いなく／おかまいなく<\/b> : la forme en なく est ici très formelle (ce n'est pas du familier). Possible avec un nombre limité de verbes.|どうぞご遠慮なく。|Je vous en prie, ne vous gênez pas.\nN|いただけますか est la version plus polie de もらえますか (forme potentielle).\nN|まして est la forme en て de ます : on ne la trouve qu'à l'oral. 「と思いまして」 donne une phrase volontairement inachevée.\nC|ご予定|ごよてい|(votre) programme|日曜日は、何か[[ご予定]]ありますか。|Avez-vous quelque chose de prévu dimanche ?\nC|ご都合|ごつごう|(vos) disponibilités|来週の火曜日、小林さんの[[ご都合]]はいかがでしょうか。|Mardi prochain, cela vous conviendrait-il, Madame Kobayashi ?\nC|いかがでしょうか|いかがでしょうか|Qu'en pensez-vous ?|よろしければ、部長も[[いかがでしょうか]]。|Si cela vous convient, Monsieur le directeur, cela vous tenterait-il aussi ?\nC|よろしいですか|よろしいですか|Cela vous convient ?|部長、すみません。今、[[よろしいですか]]。|Monsieur le directeur, excusez-moi, avez-vous un instant ?\nC|お時間いただけますか|おじかんいただけますか|Pourrais-je avoir votre temps ?|部長、今、[[お時間いただけますか]]。|Monsieur le directeur, pourrais-je avoir un peu de votre temps ?\nC|いただきたいんですが|いただきたいんですが|J'aimerais que vous…|部長にもぜひ来て[[いただきたいんですが]]……。|J'aimerais beaucoup que vous veniez aussi, Monsieur le directeur…\nC|いただけないかと思いまして|いただけないかとおもいまして|Je me demandais si vous pourriez…|部長にもご出席[[いただけないかと思いまして]]……。|Je me demandais si vous pourriez assister à la réunion, Monsieur le directeur…\nC|よろしかったら|よろしかったら|Si cela vous convient|[[よろしかったら]]、部長もいらっしゃいませんか。|Si cela vous convient, Monsieur le directeur, voudriez-vous venir aussi ?\nC|いらっしゃいませんか|いらっしゃいませんか|Voudriez-vous venir ?|よろしかったら、部長も[[いらっしゃいませんか]]。|Si cela vous convient, Monsieur le directeur, voudriez-vous venir aussi ?\nC|ご都合がよろしければ|ごつごうがよろしければ|si cela vous convient|もし[[ご都合がよろしければ]]、部長もいかがかと思いまして……。|Si cela vous convient, je me disais que cela pourrait aussi vous tenter, Monsieur le directeur…\nC|ご遠慮なく|ごえんりょなく|ne vous gênez pas|「私も行っていいでしょうか。」「もちろん。どうぞ[[ご遠慮なく]]。」|« Puis-je venir aussi ? » « Bien sûr. Ne vous gênez pas. »\nC|お気遣いなく|おきづかいなく|ne vous donnez pas ce mal|「飲み物を買って行きましょうか。」「私が用意しますから、[[お気遣いなく]]。」|« Voulez-vous que j'apporte des boissons ? » « Je m'en occupe, ne vous donnez pas ce mal. »\nC|ご心配なく|ごしんぱいなく|ne vous inquiétez pas|「[[ご心配なく]]。私がやっておきます。」|« Ne vous inquiétez pas. Je m'en occupe. »\nC|おかまいなく|おかまいなく|ne vous dérangez pas|「どうぞ[[おかまいなく]]。」|« Je vous en prie, ne vous dérangez pas pour moi. »\nC|お待ちしております|おまちしております|J'attends (modeste)|ご連絡を[[お待ちしております]]。|J'attends de vos nouvelles.\nC|楽しみにしております|たのしみにしております|J'ai hâte (modeste)|当日お会いできるのを[[楽しみにしております]]。|J'ai hâte de vous rencontrer le jour même.\nC|研究しております|けんきゅうしております|j'étudie (modeste)|大学で日本映画を[[研究しております]]。|J'étudie le cinéma japonais à l'université.\nC|お好き|おすき|aimer (honorifique)|コーヒーは[[お好き]]でしょうか。|Aimez-vous le café ?\nT|demander|1|願|Demander|Unité 1 · Thème 4|Pour demander un service, on prépare le terrain (「あの、ちょっとよろしいでしょうか」), on explique la situation (「～のですが」), puis on demande avec ていただけませんか.\nE|あの、ちょっとよろしいでしょうか|あの、ちょっとよろしいでしょうか|Excusez-moi, auriez-vous un instant ?\nE|今、お忙しいでしょうか|いま、おいそがしいでしょうか|Êtes-vous occupé en ce moment ?\nE|お時間いただいてもよろしいでしょうか|おじかんいただいてもよろしいでしょうか|Puis-je vous prendre un peu de temps ?\nE|～たいのですが|たいのですが|J'aimerais… (annonce une demande)\nE|実は～のですが|じつは～のですが|En fait… (explique la situation)\nE|～ていただけませんか|ていただけませんか|Pourriez-vous… ?\nE|お送りいただけませんか|おおくりいただけませんか|Pourriez-vous m'envoyer… ? (plus soigné)\nE|～ていただけないかと思いまして|ていただけないかとおもいまして|Je me demandais si vous pourriez…\nE|～ていただけるとありがたいんですが|ていただけるとありがたいんですが|Je vous serais reconnaissant de…\nR|Demander : ～ていただけませんか|Verbe en て + <b>いただく<\/b> à la forme potentielle interronégative (送る → 送っていただけませんか). Plus châtié : forme honorifique (<b>お送りいただけませんか<\/b>, <b>ご紹介いただけませんか<\/b>). Équivalent ordinaire : ～てもらえませんか.|この予告編のDVDを1枚お送りいただけませんか。|Pourriez-vous m'envoyer un exemplaire du DVD de cette bande-annonce ?\nR|Réitérer une demande|(demande) + <b>ていただけないかと思いまして<\/b>, ou (demande) + <b>ていただけると＋ありがたい＋んですが<\/b>.|日本語訳をつけていただけるとありがたいんですが。|Je vous serais reconnaissant de joindre une traduction japonaise.\nR|Introduire une demande|<b>のです＋が<\/b> explicatif, souvent après ～たい ou une négation, annonce une demande sans la dire en entier.|実は使い方がよく分からないのですが……。|En fait, je ne comprends pas bien comment l'utiliser…\nN|Remarque : le préfixe お se met devant un adjectif (お忙しい) ou un nom (お時間).\nC|よろしいでしょうか|よろしいでしょうか|Cela vous convient-il ?|あの、ちょっと[[よろしいでしょうか]]。|Excusez-moi, auriez-vous un instant ?\nC|お忙しい|おいそがしい|occupé (honorifique)|今、[[お忙しい]]でしょうか。|Êtes-vous occupé en ce moment ?\nC|お時間|おじかん|(votre) temps|[[お時間]]いただいてもよろしいでしょうか。|Puis-je vous prendre un peu de votre temps ?\nC|検討したいのですが|けんとうしたいのですが|J'aimerais examiner…|持ち帰って会社の者と[[検討したいのですが]]。|J'aimerais l'emporter et l'examiner avec mes collègues.\nC|分からないのですが|わからないのですが|je ne comprends pas…|実は使い方がよく[[分からないのですが]]……。|En fait, je ne comprends pas bien comment l'utiliser…\nC|つけていただけませんか|つけていただけませんか|Pourriez-vous ajouter… ?|日本語の翻訳を[[つけていただけませんか]]。|Pourriez-vous joindre une traduction japonaise ?\nC|お送りいただけませんか|おおくりいただけませんか|Pourriez-vous m'envoyer… ?|このDVDを一枚[[お送りいただけませんか]]。|Pourriez-vous m'envoyer un exemplaire de ce DVD ?\nC|とっていただけませんか|とっていただけませんか|Pourriez-vous prendre… ?|田中さんに連絡を[[とっていただけませんか]]。|Pourriez-vous contacter Monsieur Tanaka ?\nC|ご紹介いただけませんか|ごしょうかいいただけませんか|Pourriez-vous présenter… ?|新製品について[[ご紹介いただけませんか]]。|Pourriez-vous nous présenter le nouveau produit ?\nC|いただけないかと思いまして|いただけないかとおもいまして|Je me demandais si vous pourriez…|日本語訳をつけて[[いただけないかと思いまして]]……。|Je me demandais si vous pourriez joindre une traduction japonaise…\nC|ありがたいんですが|ありがたいんですが|Je vous serais reconnaissant…|日本語訳をつけていただけると[[ありがたいんですが]]……。|Je vous serais reconnaissant de joindre une traduction japonaise…\nC|もらえませんか|もらえませんか|Pourriez-vous… ? (ordinaire)|すみませんが、ちょっと説明して[[もらえませんか]]。|Excusez-moi, pourriez-vous m'expliquer un peu ?\nC|申し訳ないんですが|もうしわけないんですが|Je suis désolé, mais…|[[申し訳ないんですが]]、もう一度説明していただけませんか。|Je suis désolé, mais pourriez-vous m'expliquer encore une fois ?\nT|refuser|1|断|Refuser|Unité 1 · Thème 5|Un refus poli reste vague : on donne une raison, on laisse la phrase en suspens (「～まして……」), puis on s'excuse et on propose une autre occasion.\nE|すみません、今はちょっと……|すみません、いまはちょっと……|Désolé, pas maintenant… (refus suggéré)\nE|今夜はちょっと……|こんやはちょっと……|Ce soir, ce n'est pas possible…\nE|残念ながら今回は伺えないんです|ざんねんながらこんかいはうかがえないんです|Hélas, je ne pourrai pas venir cette fois\nE|約束がありまして|やくそくがありまして|J'ai un engagement…\nE|苦手でして|にがてでして|Ce n'est pas mon fort…\nE|お役に立てなくて、申し訳ありません|おやくにたてなくて、もうしわけありません|Je suis désolé de ne pas pouvoir vous aider\nE|せっかくお誘いくださいましたのに|せっかくおさそいくださいましたのに|Alors que vous m'aviez si gentiment invité…\nE|また次の機会にお誘いください|またつぎのきかいにおさそいください|Invitez-moi une prochaine fois\nE|ご一緒させてください|ごいっしょさせてください|Laissez-moi vous accompagner\nR|Refuser sans dire non|Le refus est seulement suggéré : par la cause de l'indisponibilité (「お客様が待っていらっしゃるので……」) ou par un impératif (「10時までに書類を送らなければならないんです」). Quand on décline une invitation, on utilise souvent <b>～まして／でして<\/b>.|すみません、お酒はちょっと苦手でして……。|Désolé, l'alcool n'est pas vraiment mon fort…\nR|S'excuser|Une formule d'excuse (申し訳ありません, すみません) est précédée de la forme en <b>て<\/b>, jamais de から ni de ので : <b>お役に立てなくて<\/b>、申し訳ありません.|お役に立てなくて、申し訳ありません。|Je suis désolé de ne pas pouvoir vous aider.\nN|待っていらっしゃる : honorifique, car le client mérite le respect, mais à la forme neutre, car il est dans une proposition qui précède ので.\nC|ちょっと|ちょっと|un peu (refus poli)|「これから一緒に食事はどう。」「あー……すみません。今夜は[[ちょっと]]……。」|« On va dîner ensemble ? » « Euh… désolé. Ce soir, ce n'est pas possible… »\nC|伺えない|うかがえない|ne pas pouvoir aller (modeste)|残念ながら今回は[[伺えない]]んです。|Hélas, je ne pourrai pas venir cette fois.\nC|約束がありまして|やくそくがありまして|j'ai un engagement|今夜は友人と会う[[約束がありまして]]……。|Ce soir, j'ai rendez-vous avec un ami…\nC|苦手でして|にがてでして|Ce n'est pas mon fort|すみません。お酒はちょっと[[苦手でして]]……。|Désolé. L'alcool n'est pas vraiment mon fort…\nC|先約がございまして|せんやくがございまして|j'ai déjà un engagement|大変申し訳ないんですが、その日は[[先約がございまして]]……。|Je suis vraiment désolé, mais ce jour-là, j'ai déjà un engagement…\nC|でして|でして|c'est que… (explication)|その日は午後三時から会議[[でして]]……。|Ce jour-là, j'ai une réunion à partir de 15 heures…\nC|待っていらっしゃる|まっていらっしゃる|attendre (honorifique)|今、ロビーでお客様が[[待っていらっしゃる]]ので……。|En ce moment, un client attend dans le hall…\nC|お役に立てなくて|おやくにたてなくて|ne pas pouvoir aider|[[お役に立てなくて]]、申し訳ありません。|Je suis désolé de ne pas pouvoir vous aider.\nC|せっかく|せっかく|alors que vous aviez pris la peine|[[せっかく]]お誘いくださいましたのに……。|Alors que vous aviez pris la peine de m'inviter…\nC|次の機会|つぎのきかい|la prochaine occasion|今回は伺えないんですが、また[[次の機会]]にお誘いください。|Je ne pourrai pas venir cette fois, mais invitez-moi une prochaine fois.\nC|ご一緒させてください|ごいっしょさせてください|laissez-moi vous accompagner|今度は[[ご一緒させてください]]。|La prochaine fois, laissez-moi vous accompagner.\nT|aide|1|助|Proposer son aide|Unité 1 · Thème 6|Proposer son aide, c'est une action de <b>toi<\/b> : forme modeste. Demander la permission de faire quelque chose, c'est le factitif + いただく (させていただく).\nE|お荷物をお持ちしましょうか|おにもつをおもちしましょうか|Puis-je porter vos bagages ?\nE|資料をお送りいたしましょうか|しりょうをおおくりいたしましょうか|Voulez-vous que je vous envoie les documents ?\nE|私からご連絡いたしましょうか|わたしからごれんらくいたしましょうか|Voulez-vous que je le contacte ?\nE|用意させていただきます|よういさせていただきます|Permettez-moi de préparer…\nE|使わせていただきたいんですが|つかわせていただきたいんですが|J'aimerais pouvoir utiliser…\nE|早めに帰らせていただけませんか|はやめにかえらせていただけませんか|Puis-je rentrer plus tôt ?\nE|使わせていただいてもよろしいでしょうか|つかわせていただいてもよろしいでしょうか|Me permettriez-vous d'utiliser… ?\nE|担当させてください|たんとうさせてください|Laissez-moi m'en charger\nE|ごちそうをさせてください|ごちそうをさせてください|Laissez-moi vous inviter\nR|Offre modeste|<b>お<\/b>＋renyō＋<b>しましょうか／いたしましょうか<\/b> ; <b>ご<\/b>＋mot en kanji＋<b>しましょうか／いたしましょうか<\/b>. いたす est plus poli que する.|お荷物をお持ちしましょうか。|Puis-je porter vos bagages ?\nR|Factitif + いただく|Verbe au factitif (～[さ]せる) + <b>いただく<\/b> : 使う → 使わせる → <b>使わせていただく<\/b>. On demande la permission de faire quelque chose.|このパソコンを使わせていただいてもよろしいでしょうか。|Me permettriez-vous d'utiliser cet ordinateur ?\nR|Insister : させてください|Factitif en て + ください : する → させる → させて → <b>させてください<\/b>. Demande avec insistance la permission de faire quelque chose.|今夜は私にごちそうをさせてください。|Ce soir, laissez-moi vous offrir le repas.\nC|お持ちしましょうか|おもちしましょうか|Puis-je porter ? (modeste)|重そうですね。お荷物を[[お持ちしましょうか]]。|Cela a l'air lourd. Puis-je porter vos bagages ?\nC|お送りいたしましょうか|おおくりいたしましょうか|Voulez-vous que j'envoie ?|新製品の資料を[[お送りいたしましょうか]]。|Voulez-vous que je vous envoie la documentation sur le nouveau produit ?\nC|ご連絡いたしましょうか|ごれんらくいたしましょうか|Voulez-vous que je contacte ?|加藤さんには私から[[ご連絡いたしましょうか]]。|Voulez-vous que je contacte moi-même Monsieur Kato ?\nC|用意させていただきます|よういさせていただきます|Permettez-moi de préparer|会議の日は昼食を[[用意させていただきます]]。|Le jour de la réunion, permettez-moi de préparer le déjeuner.\nC|使わせていただきたい|つかわせていただきたい|J'aimerais utiliser|今日の午後、会議室を[[使わせていただきたい]]んですが。|J'aimerais utiliser la salle de réunion cet après-midi.\nC|帰らせていただけませんか|かえらせていただけませんか|Puis-je rentrer ?|今日は申し訳ないんですが、早めに[[帰らせていただけませんか]]。|Je suis désolé, mais puis-je rentrer plus tôt aujourd'hui ?\nC|使わせていただいても|つかわせていただいても|Me permettriez-vous d'utiliser|このパソコンを[[使わせていただいても]]よろしいでしょうか。|Me permettriez-vous d'utiliser cet ordinateur ?\nC|担当させてください|たんとうさせてください|Laissez-moi m'en charger|今度の仕事は私に[[担当させてください]]。|Laissez-moi m'occuper du prochain travail.\nC|させてください|させてください|Laissez-moi…|今夜は私にごちそうを[[させてください]]。|Ce soir, laissez-moi vous offrir le repas.\nC|質問させていただいても|しつもんさせていただいても|Puis-je poser…|一つ[[質問させていただいても]]よろしいでしょうか。|Puis-je poser une question ?\nC|休ませて|やすませて|Laissez-moi me reposer|すみません。病院に行きますので、明日、[[休ませて]]いただけませんか。|Excusez-moi, je vais à l'hôpital : puis-je prendre ma journée demain ?\nC|考えさせて|かんがえさせて|Laissez-moi réfléchir|大事なお話しですから、ゆっくり[[考えさせて]]ください。|C'est une affaire importante : laissez-moi réfléchir tranquillement une journée.\nT|oral1|2|話|Expressions orales de base|Unité 2 · Thème 1|Écoute le ton de la scène : la particule finale ou l'interjection dépend de ce que veut faire celui qui parle (confirmer, informer, hésiter, s'étonner…).\nE|ね|ね|Confirmer, rappeler ses impressions\nE|よ|よ|Informer, insister sur quelque chose que l'autre ne sait pas\nE|よね|よね|Vérifier ou confirmer\nE|か|か|Question, proposition, réaffirmation\nE|の|の|Question orale ou explication d'une situation\nE|って|って|Remplace le と de citation à l'oral\nE|あのう|あのう|Interpeller poliment, formuler une adresse\nE|ねえ|ねえ|Interpeller (familier)\nE|ほら|ほら|Attirer l'attention avec insistance\nE|あれ？|あれ？|Surprise ou doute\nE|さあ|さあ|Embarras : on ne sait pas répondre / « allons-y »\nE|まあ|まあ|Satisfaction relative, ou surprise\nE|うーん|うーん|Réfléchir\nE|へー|へー|Admiration, « ah bon ! »\nE|なるほど|なるほど|Je vois, approbation\nE|ふーん|ふーん|Étonnement, « ah, tiens »\nE|かなあ|かなあ|Se poser une question\nR|ね, よ, よね|<b>ね<\/b> : le locuteur indique, confirme ou rappelle ses impressions. <b>よ<\/b> : il informe l'autre de quelque chose qu'il ne sait pas. <b>よね<\/b> : on peut les combiner pour vérifier ou confirmer.|ここのバス、よく遅れるんだよね。|Les bus d'ici sont souvent en retard, tu sais.\nR|か et の|<b>か<\/b> sert à poser une question ou à proposer (撮ろうか), <b>の<\/b> est une particule interrogative utilisée seulement à l'oral. <b>んだ／んです<\/b> sont les formes contractées de のだ／のです explicatifs.|A：これはどこに置けばいいの？ B：その辺に置いてくれる？|« Où dois-je mettre ça ? » « Mets-le par là. »\nR|Citation orale : って|À l'oral, <b>って<\/b> remplace le と de citation (「帰りたいって思ってました」). Il remplace aussi ～という et ～と言われている.|天気予報では晴れるって言ってたよ。|Le bulletin météo a dit qu'il ferait beau.\nN|Les interjections changent de sens avec l'intonation : le contexte de la conversation te dit laquelle choisir.\nC|だよ|だよ|informer, insister|「触っちゃだめ[[だよ]]、危ないから。」|« Ne touche pas, c'est dangereux ! »\nC|よね|よね|vérifier, confirmer|「今日、雨が降るんだ[[よね]]。」「うん。そうらしいね。」|« Il pleut aujourd'hui, c'est ça ? » « Oui, il paraît. »\nC|足りないか|たりないか|ne suffit pas ? (question)|「三千円じゃ、[[足りないか]]。」「足りないよ。五千円用意したほうがいいよ。」|« 3000 yens, ce n'est pas assez ? » « Non. Prends plutôt 5000 yens. »\nC|いいの|いいの|(question orale)|これはどこに置けば[[いいの]]？|Où est-ce que je dois mettre ça ?\nC|んだ|んだ|c'est que… (explication orale)|すごく面白い[[んだ]]よ。日本文化の本。|C'est vraiment intéressant ! C'est un livre sur la culture japonaise.\nC|って|って|citation orale|毎日国に帰りたい[[って]]思ってました。|Je pensais que je voulais rentrer au pays tous les jours.\nC|あのう|あのう|Excusez-moi (interpeller)|[[あのう]]、ちょっとお願いがあるんですが。|Excusez-moi, j'aurais un petit service à vous demander.\nC|ねえ|ねえ|dis, écoute (familier)|[[ねえ]]、このくつ、どう？|Dis, comment tu trouves ces chaussures ?\nC|ほら|ほら|tiens, regarde !|[[ほら]]、気をつけて。人にぶつかるよ。|Regarde, fais attention ! Tu vas heurter quelqu'un.\nC|あれ|あれ|tiens ? (surprise)|[[あれ]]？ここにかぎ、なかった？|Tiens ? Il n'y avait pas une clé ici ?\nC|さあ|さあ|euh… (je ne sais pas)|「ホンダっていう女の人、知ってる？」「[[さあ]]……。知らないです。」|« Tu connais une femme qui s'appelle Honda ? » « Euh… Non, je ne la connais pas. »\nC|まあ|まあ|disons que… (satisfaction relative)|「どうして、その部屋にしたの？」「[[まあ]]、駅から近かったし、部屋もきれいだったから。」|« Pourquoi as-tu choisi cette chambre ? » « Disons que c'était près de la gare et que la chambre était jolie. »\nC|うーん|うーん|hmm… (réfléchir)|「ここに自転車をとめてもいいのかなあ。」「[[うーん]]、どうだろう。」|« Je me demande si on peut garer son vélo ici. » « Hmm, je ne sais pas. »\nC|へー|へー|ah bon ! (admiration)|「ここは昔、海だったんだよ。」「[[へー]]、知らなかった。」|« Ici, c'était la mer autrefois. » « Ah bon ! Je ne savais pas. »\nC|なるほど|なるほど|je vois|「彼女、結婚して名前が変わったんだよ。」「[[なるほど]]。そういうことか。」|« Elle s'est mariée et elle a changé de nom. » « Je vois, c'est donc ça. »\nC|ふーん|ふーん|ah, tiens|「レジ袋も石油からできてるんだよ。」「[[ふーん]]。そうなんだ。」|« Les sacs de caisse sont aussi faits à partir de pétrole. » « Ah, tiens. Je ne savais pas. »\nC|かなあ|かなあ|je me demande si…|明日は晴れる[[かなあ]]。|Je me demande s'il fera beau demain.\nT|oral2|2|縮|Contractions de l'oral|Unité 2 · Thème 2|À l'oral, on raccourcit : ている → てる, ておく → とく, てしまう → ちゃう. Reconnais la forme contractée, ou le mot qui exprime « vient de », « est en train de ».\nE|～てる|てる|ている contracté (action en cours, état)\nE|～とく|とく|ておく contracté (faire à l'avance)\nE|～ちゃう／～じゃう|ちゃう／じゃう|てしまう／でしまう contracté (accomplissement)\nE|～のに|のに|Regret, insatisfaction, surprise\nE|～ところ|ところ|sur le point de / en train de / vient de\nE|～ばかり|ばかり|Vient de faire (durée très courte)\nR|Contractions|ている → <b>てる<\/b> (食べていない → 食べてない). ておく → <b>とく<\/b> (伝えておく → 伝えとく). てしまう → <b>ちゃう<\/b>, でしまう → <b>じゃう<\/b> (食べてしまう → 食べちゃう, 飲んでしまう → 飲んじゃう). ちゃう ne dit pas le regret en soi : c'est le contexte (けど, のに) qui le marque.|あーあ、日本、負けちゃった。|Zut, le Japon a perdu.\nR|ところ et ばかり|Forme simple + <b>ところ<\/b> : sur le point de. Forme en ている + <b>ところ<\/b> : en train de. Forme passée + <b>ところ<\/b> : vient de. <b>ばかり<\/b> insiste sur la durée très courte, souvent pour expliquer pourquoi quelque chose n'est pas possible.|ううん。私も今来たところ。|Non, moi aussi je viens d'arriver.\nC|見てる|みてる|regarder (en cours)|「何[[見てる]]の？」「これ？旅行のパンフレット。」|« Qu'est-ce que tu regardes ? » « Ça ? Une brochure de voyage. »\nC|知ってる|しってる|savoir|「この写真の人、[[知ってる]]？」「知ってるよ。サッカー選手でしょ。」|« Tu connais la personne sur cette photo ? » « Oui, c'est un joueur de football, non ? »\nC|戻しといて|もどしといて|remets (à l'avance)|読んだ本は元の場所に[[戻しといて]]ね。|Remets les livres que tu as lus à leur place.\nC|話しとく|はなしとく|je vais lui en parler|田中さんにはぼくから[[話しとく]]よ。|Je préviendrai Tanaka de ma part.\nC|食べちゃう|たべちゃう|manger (complètement)|これ、残っても捨てるだけだから、[[食べちゃう]]ね。|S'il en reste, on le jettera de toute façon : je le mange.\nC|やっちゃおう|やっちゃおう|finissons-le|あと少しだから、[[やっちゃおう]]よ。|Il n'en reste plus beaucoup : finissons-le !\nC|負けちゃった|まけちゃった|a perdu (regret)|あーあ、日本、[[負けちゃった]]。|Zut, le Japon a perdu.\nC|飲んじゃった|のんじゃった|a tout bu|ジュースを全部[[飲んじゃった]]。|J'ai bu tout le jus.\nC|のに|のに|alors que… (regret)|ずっとメールしてる[[のに]]、返事が来ないんです。|Je lui écris sans arrêt, et pourtant il ne répond pas.\nC|ところ|ところ|sur le point de|これから電車に乗る[[ところ]]だから、また後で電話するね。|Je vais monter dans le train, je te rappelle plus tard.\nC|考えてるところ|かんがえてるところ|en train de réfléchir|ちょっと待ってよ。今、[[考えてるところ]]なんだから。|Attends un peu ! Je suis justement en train de réfléchir.\nC|来たところ|きたところ|vient d'arriver|「ごめん、待った？」「ううん。私もちょうど[[来たところ]]。」|« Désolé, tu as attendu ? » « Non, moi aussi je viens d'arriver. »\nC|ばかり|ばかり|vient de (peu de temps)|プリンター、買った[[ばかり]]なのに、もう壊れたの？|Tu viens d'acheter l'imprimante et elle est déjà cassée ?\nC|着いたばかり|ついたばかり|vient d'arriver|けさ空港に[[着いたばかり]]で、まだどこにも行ってないんです。|Je viens d'arriver à l'aéroport ce matin, je ne suis encore allé nulle part.\nT|oral3|2|要|Obligation, condition, conseil|Unité 2 · Thème 3|L'oral raccourcit aussi l'obligation (「～なきゃ」) et utilise たら, と, ば pour une condition, un conseil ou une demande.\nE|～ないと|ないと|Obligation (ないといけない abrégé)\nE|～なきゃ|なきゃ|Obligation (なければならない abrégé)\nE|～なくちゃ|なくちゃ|Obligation (なくてはいけない abrégé)\nE|～たら|たら|Condition pour une demande, un conseil\nE|～たらいい／～ばいい|たらいい／ばいい|Conseil : « il suffit de… »\nE|～てもいい？|てもいい？|Demande de permission\nE|～でもいい|でもいい|« ... ça ira aussi »\nR|Obligation à l'oral|Base mizen + <b>ないと<\/b> (しないといけない), + <b>なきゃ<\/b> (飲まなければならない), + <b>なくちゃ<\/b> (行かなくてはいけない). On les emploie souvent pour s'encourager soi-même ou pour exhorter quelqu'un.|あ、薬、飲まなきゃ。|Ah, il faut que je prenne mon médicament.\nR|Condition, conseil, permission|<b>～たら<\/b> pour une demande ou un conseil (「駅に着いたら電話してね」), <b>～ばいい／～たらいい／～といい<\/b> pour conseiller, <b>～てもいい<\/b> pour demander la permission. Un nom + <b>で(も)いい<\/b> : « ça ira aussi ».|返事は明日でもいい？|La réponse pour demain, ça irait ?\nC|しないと|しないと|il faut faire|通訳を目指すなら、いろんなことを勉強[[しないと]]。|Si tu veux devenir interprète, il faut étudier beaucoup de choses.\nC|飲まなきゃ|のまなきゃ|il faut boire|あ、薬、[[飲まなきゃ]]。|Ah, il faut que je prenne mon médicament.\nC|行かなくちゃ|いかなくちゃ|il faut que j'y aille|五時からアルバイトだから、もう[[行かなくちゃ]]。|Mon petit boulot commence à 17 heures, il faut que j'y aille.\nC|着いたら|ついたら|quand tu arriveras|駅に[[着いたら]]電話してね。|Appelle-moi quand tu arriveras à la gare.\nC|空いたら|あいたら|quand tu seras libre|手が[[空いたら]]、ちょっと手伝ってくれない？|Quand tu auras un moment, tu peux m'aider un peu ?\nC|暑かったら|あつかったら|s'il fait chaud|[[暑かったら]]、エアコンをつけてくださいね。|S'il fait chaud, allumez la climatisation.\nC|曲がったらいい|まがったらいい|il suffit de tourner|そこを右に[[曲がったらいい]]んじゃない？|Il suffit de tourner à droite là-bas, non ?\nC|横になると|よこになると|si tu t'allonges|少し[[横になると]]いいですよ。|Ça vous ferait du bien de vous allonger un peu.\nC|出せばいい|だせばいい|il suffit de remettre|この書類はどこに[[出せばいい]]んでしょうか。|Où dois-je remettre ce document ?\nC|飲んでいい|のんでいい|puis-je boire ?|これ、[[飲んでいい]]の？|Je peux boire ça ?\nC|待ってもらってもいい|まってもらってもいい|tu peux attendre ?|悪いけど、十分くらい[[待ってもらってもいい]]？|Désolé, tu peux attendre une dizaine de minutes ?\nC|明日でも|あしたでも|demain aussi, ça va|返事は[[明日でも]]いい？|La réponse pour demain, ça va ?\nC|ちょっとで|ちょっとで|même un peu, ça suffit|[[ちょっとで]]いいから、手伝ってくれない？|Même un petit peu, ça suffit : tu peux m'aider ?\nT|reg|2|敬|Varier les registres|Unité 2 · Thème 4|Le même message n'a pas la même forme entre amis (familier), avec des gens qu'on ne connaît pas (ます／です) ou avec un supérieur (honorifique et modeste).\nE|お早うございます／お早う|おはようございます／おはよう|Bonjour : poli / familier\nE|じゃ、お先に！|じゃ、おさきに！|Je pars avant ! (familier)\nE|すみませんが|すみませんが|Excusez-moi, mais… (courant et poli)\nE|恐れ入りますが|おそれいりますが|Excusez-moi, mais… (très poli)\nE|悪いんだけど|わるいんだけど|Désolé, mais… (familier)\nE|よかったら／よろしかったら|よかったら／よろしかったら|Si tu veux (familier) / Si cela vous convient (poli)\nE|～てくれない？|てくれない？|Tu peux… ? (familier)\nE|～てもらえませんか|てもらえませんか|Pourriez-vous… ? (courant)\nE|～いただけませんか|いただけませんか|Pourriez-vous… ? (poli)\nE|非常に／すごく|ひじょうに／すごく|très : formel / courant\nE|しかし／でも|しかし／でも|mais : formel / courant\nE|なぜ／なんで|なぜ／なんで|pourquoi : formel / courant\nE|ようだ・らしい／みたいだ|ようだ・らしい／みたいだ|il semble : formel / courant\nR|Trois registres|Familier (ね, あのね, 悪いんだけど, ～てくれない？), courant poli (ます／です : ～てもらえませんか), poli châtié (humble et honorifique : ～いただけませんか, ～いただけないかと思いまして, 恐れ入りますが). <b>あのー<\/b> et <b>よかったら<\/b> se disent dans les trois registres.|すみませんが、写真を撮っていただけませんか。|Excusez-moi, pourriez-vous prendre une photo ?\nR|Langage formel et courant|À l'écrit et dans les discours : 非常に, 多く, 少し, やはり, さまざまな, 述べる, 行う, しかし, なぜ, など, ようだ. À l'oral : すごく, いっぱい, ちょっと, やっぱり, いろいろな, しゃべる, やる, でも, なんで, なんか, みたいだ.|この計画は非常に難しい。|Ce projet est très difficile.\nC|じゃ、お先に|じゃ、おさきに|je pars avant (familier)|「[[じゃ、お先に]]！」「お疲れ様。」|« Bon, je file ! » « Merci pour ton travail. »\nC|すみませんが|すみませんが|Excusez-moi, mais…|[[すみませんが]]、写真を撮っていただけませんか。|Excusez-moi, pourriez-vous prendre une photo ?\nC|恐れ入りますが|おそれいりますが|Excusez-moi, mais… (très poli)|[[恐れ入りますが]]、お名前を教えていただけますか。|Excusez-moi, pourriez-vous me dire votre nom ?\nC|悪いんだけど|わるいんだけど|Désolé, mais… (familier)|[[悪いんだけど]]、ちょっと手伝ってくれない？|Désolé, mais tu peux m'aider un peu ?\nC|くれない|くれない|Tu peux… ? (familier)|悪いけど、この荷物、運んで[[くれない]]？|Désolé, tu peux porter ce paquet ?\nC|もらえませんか|もらえませんか|Pourriez-vous… ? (courant)|すみません、これを見せて[[もらえませんか]]。|Excusez-moi, pourriez-vous me montrer ceci ?\nC|非常に|ひじょうに|très (formel)|この計画は[[非常に]]難しい。|Ce projet est très difficile.\nC|少しずつ|すこしずつ|peu à peu (formel)|言葉は[[少しずつ]]変化している。|Les mots évoluent peu à peu.\nC|やはり|やはり|finalement (formel)|[[やはり]]実験は成功しなかった。|Finalement, l'expérience n'a pas réussi.\nC|さまざまな|さまざまな|divers (formel)|[[さまざまな]]考え方がある。|Il y a diverses façons de penser.\nC|行われた|おこなわれた|a eu lieu (formel)|大統領選挙は七月に[[行われた]]。|L'élection présidentielle a eu lieu en juillet.\nC|しかし|しかし|mais (formel)|これは難しい。[[しかし]]、挑戦しよう。|C'est difficile. Mais relevons le défi.\nC|なぜ|なぜ|pourquoi (formel)|[[なぜ]]我々は働くのだろうか。|Pourquoi travaillons-nous ?\nC|なんで|なんで|pourquoi (courant)|[[なんで]]昨日は来なかったの？|Pourquoi n'es-tu pas venu hier ?\nC|みたいだ|みたいだ|il semble (courant)|彼の言葉は真実じゃない[[みたいだ]]。|Ce qu'il dit ne semble pas vrai.\nC|いっぱい|いっぱい|beaucoup (courant)|この食品はビタミンCが[[いっぱい]]入っている。|Cet aliment contient plein de vitamine C.\nT|rapp|3|引|Rapporter un discours|Unité 3 · Thème 1|On rapporte une information : source sûre (ということだ), généralité (と言われている), info douteuse (とか), formel (という) ou oral (って).\nE|～ということだ／～とのことだ|ということだ／とのことだ|On dit que… (source indiquée)\nE|～によると／～によれば／～では|によると／によれば／では|Selon… (source)\nE|～と言われている|といわれている|On dit que… (généralité)\nE|～とか|とか|Il paraît que… (information incertaine)\nE|～という|という|On dit que… (formel, écrit)\nE|～って|って|Il paraît que… (oral)\nR|Source sûre|Forme neutre + <b>ということだ／とのことだ<\/b>, avec une source : ～によれば, ～によると, ～では. <b>とのことだ<\/b> est fréquent quand la source est une tierce personne. À l'oral : っていうことだ.|さっき川村さんから電話がありました。今日は会社に戻れないとのことです。|Monsieur Kawamura a appelé : il ne pourra pas revenir à l'entreprise aujourd'hui.\nR|Généralité, incertain, formel, oral|<b>と言われている<\/b> (généralité) ; <b>とか<\/b> (information incertaine, contrairement à だそうだ) ; <b>という<\/b> (comme だそうだ mais plus formel) ; <b>って<\/b> (oral, remplace un と de citation et peut remplacer と言われている).|納豆は体にいいと言われている。|On dit que le nattō est bon pour la santé.\nC|ということです|ということです|on dit que…|市のお知らせによれば、この道路は来週から工事が始まる[[ということです]]。|Selon l'avis de la mairie, les travaux de cette route commencent la semaine prochaine.\nC|とのことです|とのことです|on me dit que…|さっき川村さんから電話がありました。今日は会社に戻れない[[とのことです]]。|Monsieur Kawamura a appelé : il ne pourra pas revenir à l'entreprise aujourd'hui.\nC|によると|によると|selon|メール[[によると]]、林さんは来週はとてもいそがしいとのことです。|Selon le mail, Monsieur Hayashi sera très occupé la semaine prochaine.\nC|によれば|によれば|selon|市のお知らせ[[によれば]]、この道路は来週から工事が始まるということです。|Selon l'avis de la mairie, les travaux de cette route commencent la semaine prochaine.\nC|では|では|selon (source)|店の人の話[[では]]、この地方の米はとてもおいしいということだ。|D'après le commerçant, le riz de cette région est très bon.\nC|と言われている|といわれている|on dit que (généralité)|納豆は体にいい[[と言われている]]。|On dit que le nattō est bon pour la santé.\nC|とか|とか|il paraît que (incertain)|来月また出張だ[[とか]]。今度はどちらに行かれるんですか。|Il paraît que vous repartez en voyage d'affaires le mois prochain. Où allez-vous cette fois ?\nC|という|という|on dit que (formel)|この辺りは昔、広い野原だった[[という]]。|On dit que cette région était autrefois une grande plaine.\nC|って|って|il a dit que… (oral)|小川さん、今日は休む[[って]]言ってたよ。|Ogawa a dit qu'il ne viendrait pas aujourd'hui.\nC|んだって|んだって|il paraît que… (oral)|駅前にタイ料理のレストランができた[[んだって]]。行って見ようよ。|Il paraît qu'un restaurant thaïlandais a ouvert devant la gare. Allons-y !\nT|defi|3|定|Définir et expliquer|Unité 3 · Thème 2|Le mot qui précède est un nom ou une proposition mise en avant : on le définit (とは), on réagit (といえば), on évoque ce qu'il fait penser (というと), on insiste (といったら).\nE|～とは／～というのは／～って|とは／というのは／って|Définir un mot (formel → oral)\nE|～というものは|というものは|Décrire un élément mis en avant\nE|～ということは|ということは|Le fait que… signifie que…\nE|～といえば|といえば|À propos de… (rebondir)\nE|～というと／～といったら|というと／といったら|Quand on dit… (ce que cela évoque)\nE|～となると|となると|Quand il s'agit de… / dans le cas où…\nE|～といったら|といったら|Quant à… (insister sur l'ampleur)\nR|Définir|Nom + <b>とは／というのは／って<\/b> (って = oral uniquement). La phrase finit souvent par ～ことだ.|デジカメってデジタルカメラのことだよ。|« Dejikame », c'est l'abréviation d'« appareil photo numérique ».\nR|Rebondir|<b>～といえば<\/b> : « à propos de… », on enchaîne sur un autre sujet. <b>～というと<\/b> : ce que le mot évoque, ou pour préciser le sens d'un mot de l'interlocuteur. <b>～となると<\/b> : « quand il s'agit de… ». <b>～といったら<\/b> : insister sur l'ampleur. Tous ne s'emploient qu'avec un nom.|ハワイといえば、さち子さんが来月ハワイで結婚式をするんだそうですよ。|À propos d'Hawaï, Sachiko va se marier là-bas le mois prochain.\nN|「～ということは」 : le locuteur n'a pas une connaissance directe de ce qu'il présente. 離婚したことは事実だ (il l'a appris directement) / 離婚したということは事実だ (indirectement).\nC|とは|とは|« X », c'est…|「増悪」[[とは]]医学用語で、症状がもっと悪くなることである。|« Zōaku » est un terme médical qui désigne l'aggravation des symptômes.\nC|というのは|というのは|« X », c'est…|「帰化」[[というのは]]、希望してその国の国民になることです。|La « naturalisation », c'est devenir citoyen d'un pays à sa demande.\nC|って|って|« X », c'est… (oral)|デジカメ[[って]]デジタルカメラのことだよ。|« Dejikame », c'est « digital camera ».\nC|というものは|というものは|ce qu'on appelle…|何歳になっても、試験[[というものは]]いやなものだ。|Quel que soit l'âge, un examen reste désagréable.\nC|ということは|ということは|le fait que…|彼が真面目に日本語を勉強していない[[ということは]]、日本で仕事をする気がないのだ。|S'il n'étudie pas sérieusement le japonais, c'est qu'il n'a pas l'intention de travailler au Japon.\nC|といえば|といえば|à propos de…|ハワイ[[といえば]]、さち子さんが来月ハワイで結婚式をするんだそうですよ。|À propos d'Hawaï, Sachiko va se marier là-bas le mois prochain.\nC|というと|というと|quand on dit… (ce que cela évoque)|「神田[[というと]]、あの古本屋がたくさんある町ですか。」|« Kanda… c'est ce quartier avec plein de librairies d'occasion ? »\nC|となると|となると|quand il s'agit de…|佐藤さんは、好きな歌手のこと[[となると]]話が止まらない。|Dès qu'il s'agit de son chanteur préféré, Monsieur Sato ne s'arrête plus de parler.\nC|といったら|といったら|quant à… (insister)|締め切り前の仕事の忙しさ[[といったら]]、君には想像もできないと思うよ。|Tu ne peux pas t'imaginer à quel point on est occupé juste avant une échéance.\nT|enum|3|列|Énumérer|Unité 3 · Thème 3|On donne des exemples : sans épuiser la liste (とか, やら), pour étayer un avis (にしても…にしても), en hésitant entre deux formulations (というか) ou à partir d'une catégorie (といった).\nE|～とか～とか|とか～とか|Énumération non exhaustive\nE|～やら～やら|やら～やら|Énumération d'objets ou d'activités (descriptif)\nE|～にしても～にしても|にしても～にしても|Que ce soit A ou B… (avis)\nE|～にしろ～にしろ／～にせよ～にせよ|にしろ～にしろ／にせよ～にせよ|Que ce soit A ou B… (plus soutenu)\nE|～というか～というか|というか～というか|Disons A, ou plutôt B… (sans trancher)\nE|～といった～|といった|… comme A, B, C (liste d'exemples)\nR|Énumérer|<b>～とか～とか<\/b> (non exhaustif) ; <b>～やら～やら<\/b> (descriptif, souvent des sentiments mêlés) ; <b>～にしても／にしろ／にせよ<\/b> + même verbe ou nom (deux exemples pour étayer un avis) ; <b>～というか～というか<\/b> (deux formulations sans trancher) ; nom + <b>といった<\/b> + nom (liste d'exemples d'une catégorie).|娘の結婚式の日は、うれしいやら寂しいやら複雑な気持ちだった。|Le jour du mariage de ma fille, j'étais à la fois heureux et triste, c'était compliqué.\nC|とか|とか|ou encore… (énumération)|暑い日は、水[[とか]]ジュースとか、冷たいものばかり飲んでしまう。|Quand il fait chaud, je ne bois que des choses fraîches, de l'eau, du jus…\nC|やら|やら|tantôt… tantôt… (énumération)|勝ったチームの選手たちは、泣き出す[[やら]]飛び上がるやらさまざまに喜びを表した。|Les joueurs de l'équipe victorieuse ont exprimé leur joie de mille façons : ils pleuraient, ils sautaient…\nC|うれしいやら|うれしいやら|à la fois content et…|娘の結婚式の日は、[[うれしいやら]]寂しいやら複雑な気持ちだった。|Le jour du mariage de ma fille, j'étais à la fois heureux et triste.\nC|にしても|にしても|que ce soit… ou…|野菜[[にしても]]魚にしても、料理の材料は新鮮さが第一です。|Que ce soit les légumes ou le poisson, la fraîcheur des ingrédients est primordiale.\nC|にしろ|にしろ|que ce soit… ou…|テレビ[[にしろ]]新聞にしろ、ニュースには主観が入ってはいけない。|Que ce soit à la télévision ou dans les journaux, l'information ne doit pas être subjective.\nC|にせよ|にせよ|que ce soit… ou…|与党[[にせよ]]野党にせよ、リーダーは責任が重い。|Qu'il soit de la majorité ou de l'opposition, un dirigeant porte une lourde responsabilité.\nC|というか|というか|disons… ou plutôt…|あの子は元気がいい[[というか]]落ち着きがないというか、静かにじっとしていない子です。|Cet enfant est plein d'énergie, ou plutôt agité : il ne reste jamais tranquille.\nC|といった|といった|comme (liste d'exemples)|わたしはケーキ、ポテトチップス、ハンバーガー[[といった]]カロリーの高いものが大好きなんです。|J'adore les choses très caloriques comme les gâteaux, les chips et les hamburgers.";
+  var KG = (function () {
+    var th = [], cur = null, by = {};
+    KG_RAW.split('\n').forEach(function (l) {
+      if (!l) return; var p = l.split('|'), t = p[0];
+      if (t === 'T') { cur = { id: p[1], u: +p[2], k: p[3], t: p[4], sub: p[5], why: p[6], E: [], R: [], N: [], C: [] }; th.push(cur); by[cur.id] = cur; }
+      else if (!cur) return;
+      else if (t === 'E') cur.E.push({ jp: p[1], rd: p[2], fr: p[3], key: 'kg:' + p[1], th: cur.id });
+      else if (t === 'R') cur.R.push({ h: p[1], b: p[2], jp: p[3] || '', fr: p[4] || '' });
+      else if (t === 'N') cur.N.push(p[1]);
+      else if (t === 'C') { var s = p[4], m = s.match(/\[\[(.+?)\]\]/); if (m) cur.C.push({ hit: p[1], rd: p[2], sens: p[3], pre: s.slice(0, m.index), post: s.slice(m.index + m[0].length), fr: p[5], th: cur.id }); }
+    });
+    return { list: th, by: by };
+  })();
+  /* [neutre, lecture, sens, [honorifique], [modeste], [formes fausses]] */
+  var KG_VERBS = [
+    ['行きます', 'いきます', 'aller', ['いらっしゃいます', 'おいでになります'], ['参ります', '伺います'], []],
+    ['来ます', 'きます', 'venir', ['いらっしゃいます', 'おいでになります'], ['参ります', '伺います'], []],
+    ['います', 'います', 'être (animé)', ['いらっしゃいます'], ['おります'], []],
+    ['言います', 'いいます', 'dire', ['おっしゃいます'], ['申します', '申し上げます'], []],
+    ['見ます', 'みます', 'regarder, voir', ['ご覧になります'], ['拝見します'], ['お見になります', 'お見します']],
+    ['食べます', 'たべます', 'manger', ['召し上がります'], ['いただきます'], ['お食べになります', 'お食べします']],
+    ['飲みます', 'のみます', 'boire', ['召し上がります'], ['いただきます'], ['お飲みになります']],
+    ['知っています', 'しっています', 'savoir, connaître', ['ご存知です'], ['存じております', '存じ上げております'], []],
+    ['します', 'します', 'faire', ['なさいます'], ['致します'], ['おしになります', 'おします']],
+    ['くれます', 'くれます', 'donner (à moi)', ['くださいます'], [], []],
+    ['あげます', 'あげます', 'donner', [], ['さしあげます'], []],
+    ['もらいます', 'もらいます', 'recevoir', [], ['いただきます'], []],
+    ['寝ます', 'ねます', 'dormir', ['お休みになります'], [], []],
+    ['着ます', 'きます', 'porter (un vêtement)', ['お召しになります'], [], []],
+    ['住んでいます', 'すんでいます', 'habiter', ['お住まいです'], [], []],
+    ['死にました', 'しにました', 'est mort', ['お亡くなりになりました'], [], []],
+    ['会います', 'あいます', 'rencontrer', [], ['お会いします', 'お目にかかります'], []],
+    ['聞きます', 'ききます', 'demander, écouter', [], ['お聞きします', '伺います'], []],
+    ['あります', 'あります', 'il y a, avoir', [], ['ございます'], []],
+    ['～です', 'です', 'être (copule)', ['～でいらっしゃいます'], ['～でございます'], []],
+    ['～ています', 'ています', 'être en train de (forme durative)', ['～ていらっしゃいます'], ['～ております'], []]
+  ];
+  /* du plus familier (0) au plus poli : [contexte, [phrases, du plus familier au plus poli]] */
+  var KG_LADDER = [
+    ['Demander un service', ['この資料、見せてくれない？', 'この資料、見せてもらえませんか。', 'この資料、見せていただけませんか。', 'この資料、見せていただけないかと思いまして……。']],
+    ['Inviter quelqu\'un', ['一緒に来ない？', '一緒に来ませんか。', 'よろしかったら、一緒にいらっしゃいませんか。', 'もしご都合がよろしければ、ご一緒にいかがかと思いまして……。']],
+    ['Proposer de porter un sac', ['そのかばん、持とうか？', 'そのかばん、持ちましょうか。', 'そのかばん、お持ちしましょうか。', 'そのかばん、お持ちいたしましょうか。']],
+    ['Prendre congé au travail', ['じゃ、お先に！', 'お先に失礼します。', 'お先に失礼いたします。']],
+    ['Attirer l\'attention', ['ねえ、ちょっと。', 'あのー、すみません。', 'すみませんが、', '恐れ入りますが、']],
+    ['Dire bonjour le matin', ['おはよう。', 'おはようございます。']]
+  ];
+  var KG_CV = [   /* [verbe, lecture, sens, base, types]  c = ください, r = になります, s = します, b = しましょうか ; ご = verbes en する */
+    ['持つ', 'もつ', 'porter', 'お持ち', 'o', 'crsb'], ['書く', 'かく', 'écrire', 'お書き', 'o', 'crsb'], ['読む', 'よむ', 'lire', 'お読み', 'o', 'crsb'],
+    ['話す', 'はなす', 'parler', 'お話し', 'o', 'crsb'], ['入る', 'はいる', 'entrer', 'お入り', 'o', 'cr'], ['待つ', 'まつ', 'attendre', 'お待ち', 'o', 'crsb'],
+    ['使う', 'つかう', 'utiliser', 'お使い', 'o', 'crsb'], ['送る', 'おくる', 'envoyer', 'お送り', 'o', 'crsb'], ['呼ぶ', 'よぶ', 'appeler', 'お呼び', 'o', 'crsb'],
+    ['貸す', 'かす', 'prêter', 'お貸し', 'o', 'crsb'], ['教える', 'おしえる', 'enseigner, indiquer', 'お教え', 'o', 'crsb'], ['伝える', 'つたえる', 'transmettre', 'お伝え', 'o', 'crsb'],
+    ['見せる', 'みせる', 'montrer', 'お見せ', 'o', 'crsb'], ['説明する', 'せつめいする', 'expliquer', 'ご説明', 'g', 'csb'], ['紹介する', 'しょうかいする', 'présenter', 'ご紹介', 'g', 'csb'],
+    ['連絡する', 'れんらくする', 'contacter', 'ご連絡', 'g', 'csb'], ['案内する', 'あんないする', 'guider', 'ご案内', 'g', 'csb'], ['確認する', 'かくにんする', 'vérifier', 'ご確認', 'g', 'csb'],
+    ['報告する', 'ほうこくする', 'rapporter, faire un compte rendu', 'ご報告', 'g', 'csb'], ['相談する', 'そうだんする', 'consulter, discuter', 'ご相談', 'g', 'csb']
+  ];
+  var KG_PAT = {
+    c: { s: 'ください', fr: 'Demande polie : « Veuillez… » (à un supérieur)', lab: 'お／ご ＋ ください' },
+    r: { s: 'になります', fr: 'Sonkeigo : c\'est le supérieur qui fait l\'action', lab: 'お ＋ になります' },
+    s: { s: 'します', fr: 'Kenjōgo : c\'est moi qui fais l\'action', lab: 'お／ご ＋ します' },
+    b: { s: 'しましょうか', fr: 'Proposer son aide : « Voulez-vous que je… ? »', lab: 'お／ご ＋ しましょうか' }
+  };
+  function kgRnd(n) { return Math.floor(Math.random() * n); }
+  function kgPick(a) { return a[kgRnd(a.length)]; }
+  function kgKeys(t) {
+    var s = {}; t.E.forEach(function (e) { s[e.key] = 1; }); t.C.forEach(function (c) { s['kg:' + c.hit] = 1; });
+    return Object.keys(s);
+  }
+  function kgProg(t) {
+    var ks = kgKeys(t), d = 0; ks.forEach(function (k) { var st = S && S.stats && S.stats[k]; if (st && st.run >= MASTER_RUN) d++; });
+    return [d, ks.length];
+  }
+  function kgTotals() { var d = 0, n = 0; KG.list.forEach(function (t) { var p = kgProg(t); d += p[0]; n += p[1]; }); return [d, n]; }
+  function kgClzItems(id) {
+    var out = [];
+    KG.list.forEach(function (t) {
+      if (id && id !== 'all' && t.id !== id) return;
+      t.C.forEach(function (c) {
+        var w = c._w || (c._w = { mot: c.hit, lecture: c.rd, sens: c.sens, key: 'kg:' + c.hit, type: '', kg: true, grp: c.th, disp: c.hit, kanjis: [] });
+        out.push({ w: w, pre: c.pre, hit: c.hit, post: c.post, fr: c.fr, full: c.pre + c.hit + c.post, kg: true });
+      });
+    });
+    return out;
+  }
+  function kgAlt(it) {
+    var out = [];
+    kgClzItems('all').forEach(function (x) { if (x.hit === it.hit && x.full !== it.full) out.push(x); });
+    return out;
+  }
+  /* ---- branchement sur « Phrases à trou » ---- */
+  function clzSrc() { return S && S.clzSrc === 'kg' ? 'kg' : 'vocab'; }
+  var _kgClzItems0 = clzItems; clzItems = function () { return clzSrc() === 'kg' ? kgClzItems(S.clzKgT || 'all') : _kgClzItems0(); };
+  var _kgDis0 = clzDistractors;
+  clzDistractors = function (it) {
+    if (!it.w || !it.w.kg) return _kgDis0(it);
+    var pool = clz.all || [], w = it.w, seen = {}, out = []; seen[w.mot] = 1;
+    function ok(x) { return !seen[x.w.mot] && it.full.indexOf(x.w.mot) < 0 && !(w.mot.length > 1 && x.w.mot.length === 1); }
+    var same = shuffle(pool.filter(function (x) { return x.w.grp === w.grp && ok(x); })), other = shuffle(pool.filter(function (x) { return x.w.grp !== w.grp && ok(x); }));
+    same.concat(other).forEach(function (x) { if (out.length < 3 && !seen[x.w.mot]) { seen[x.w.mot] = 1; out.push(x.w); } });
+    return out;
+  };
+  var _kgFr0 = frHL; frHL = function (fr, w) { return w && w.kg ? esc(fr) : _kgFr0(fr, w); };
+  var _kgWhy0 = clzWhy; clzWhy = function (it) { if (it.w && it.w.kg) { var t = KG.by[it.w.grp]; return t ? t.why : ''; } return _kgWhy0(it); };
+  var _kgAlt0 = clzAltList; clzAltList = function (it) { return it.w && it.w.kg ? kgAlt(it) : _kgAlt0(it); };
+  window.__clzAlt = clzAltList;
+  var KG_FD = { '足元': 'あしもと', '鈴木': 'すずき', '山田': 'やまだ', '小林': 'こばやし', '加藤': 'かとう', '佐藤': 'さとう', '川村': 'かわむら', '会議室': 'かいぎしつ', '客様': 'きゃくさま', '気遣い': 'きづかい', '覧': 'らん', '来た': 'きた', '先約': 'せんやく', '新製品': 'しんせいひん', '製品': 'せいひん', '用意': 'ようい', '検討': 'けんとう', '大統領': 'だいとうりょう', '我々': 'われわれ', '増悪': 'ぞうお', '帰化': 'きか', '神田': 'かんだ', '与党': 'よとう', '野党': 'やとう', '主観': 'しゅかん', '新鮮': 'しんせん', '医学用語': 'いがくようご', '用語': 'ようご', '恐れ入ります': 'おそれいります', '恐れ入り': 'おそれいり', '存知': 'ぞんじ', '存じ': 'ぞんじ', '召し上がります': 'めしあがります', '召し上がり': 'めしあがり', '申し上げます': 'もうしあげます', '来て': 'きて', '来ない': 'こない', '来なかった': 'こなかった', '三時': 'さんじ', '五時': 'ごじ', '十分': 'じゅっぷん', '七月': 'しちがつ', '一枚': 'いちまい', '三千円': 'さんぜんえん', '五千円': 'ごせんえん', '早う': 'はよう', '表した': 'あらわした', '表し': 'あらわし' };
+  var _kgFD0 = clzFD, _kgFDdone = false;
+  clzFD = function () {
+    var d = _kgFD0();
+    if (!_kgFDdone) { _kgFDdone = true; Object.keys(KG_FD).forEach(function (k) { d[k] = KG_FD[k]; }); }
+    return d;
+  };
+  var _kgSetup0 = clzSetupHTML;
+  clzSetupHTML = function () {
+    var kgm = clzSrc() === 'kg', seg = '<div class="seg clzsrc" role="tablist" aria-label="Contenu des phrases"><button type="button" role="tab" class="' + (kgm ? '' : 'on') + '" aria-selected="' + (!kgm) + '" data-clzsrc="vocab">Vocabulaire du cours</button><button type="button" role="tab" class="' + (kgm ? 'on' : '') + '" aria-selected="' + kgm + '" data-clzsrc="kg">Expressions · keigo</button></div>';
+    if (!kgm) return _kgSetup0().replace('<div class="panel clzpanel">', '<div class="panel clzpanel">' + seg);
+    gsKMode = false; gsKind = false; gsFlashCtx = false;
+    var cur = S.clzKgT || 'all', items = kgClzItems(cur), on = !!S.clzFuri, md = S.clzMode === 'input' ? 'input' : 'mcq';
+    var chips = '<button type="button" class="kgchip' + (cur === 'all' ? ' on' : '') + '" data-clzkt="all">Tout</button>' + KG.list.map(function (t) { return '<button type="button" class="kgchip' + (cur === t.id ? ' on' : '') + '" data-clzkt="' + t.id + '"><span class="jp">' + t.k + '</span> ' + esc(t.t) + '</button>'; }).join('');
+    return '<div class="grp djbar"><h3 class="sgh" data-k="文"><span>Phrases à trou</span></h3></div>' +
+      '<div class="panel clzpanel">' + seg + '<p class="small muted" style="margin:6px 0 8px">Les expressions de ton fascicule (keigo, oral, discours rapporté) : retrouve celle qui manque dans la phrase.</p><div class="kgchips">' + chips + '</div>' +
+      '<p class="gscount clzcount"><b>' + items.length + ' phrase' + (items.length > 1 ? 's' : '') + '</b> pour cette sélection</p>' +
+      '<label class="seenopt"><input type="checkbox" id="clzFuri"' + (on ? ' checked' : '') + '><span>Afficher les <b>furigana</b> <small>(lecture au-dessus des kanjis)</small></span></label>' +
+      '<label class="seenopt"><input type="checkbox" id="clzAdapt"' + (S.clzAdapt ? ' checked' : '') + '><span>Furigana <b>adaptatifs</b> <small>(seulement sur les kanjis que tu ne maîtrises pas encore)</small></span></label>' +
+      '<label class="kindopt">Façon de répondre<select id="clzMode" aria-label="Façon de répondre"><option value="mcq"' + (md === 'mcq' ? ' selected' : '') + '>Choisir parmi 4 expressions</option><option value="input"' + (md === 'input' ? ' selected' : '') + '>Écrire l\'expression au clavier</option></select></label>' +
+      '<button type="button" class="btn primary clzgo" data-clz="start"' + (items.length ? '' : ' disabled') + '>▶ Commencer (' + Math.min(10, items.length) + ' phrases)</button></div>';
+  };
+  document.addEventListener('click', function (e) {
+    if (!user || !S) return;
+    var a = e.target.closest ? e.target.closest('[data-clzsrc]') : null;
+    if (a) { S.clzSrc = a.getAttribute('data-clzsrc') === 'kg' ? 'kg' : 'vocab'; persist(); renderClz(); return; }
+    var c = e.target.closest ? e.target.closest('[data-clzkt]') : null;
+    if (c) { S.clzKgT = c.getAttribute('data-clzkt'); persist(); renderClz(); }
+  });
+
+  /* ---- section Keigo du Dojo ---- */
+  var kgv = { view: 'home', id: null, g: null, th: 'all', items: [], i: 0, ok: 0, xp: 0, newM: 0, q: null, ans: null, pick: -1 };
+  var KG_GAMES = [
+    ['verbs', '🔠', 'Verbes spéciaux', 'Forme honorifique ou modeste d\'un verbe, et inversement'],
+    ['who', '👤', 'Qui fait l\'action ?', 'Le supérieur ou moi : choisis la bonne forme'],
+    ['build', '🧩', 'Construire la forme', 'お／ご＋ください, になります, します…'],
+    ['expr', '🎯', 'Quelle expression ?', 'La bonne formule pour la situation'],
+    ['reg', '📊', 'Quel niveau de politesse ?', 'Du plus familier au plus poli']
+  ];
+  var KG_GNAME = { verbs: 'Verbes spéciaux', who: 'Qui fait l\'action ?', build: 'Construire la forme', expr: 'Quelle expression ?', reg: 'Quel niveau de politesse ?' };
+  function kgSummary() { var t = kgTotals(); return KG.list.length + ' thèmes · ' + t[0] + '/' + t[1] + ' expressions acquises'; }
+  function kgBack(to, lab) { return '<div class="grp djbar"><button type="button" class="btn djback" data-kg="' + to + '">‹ ' + lab + '</button></div>'; }
+  function kgHome() {
+    var h = '<p class="small muted kgintro">Les expressions du respect et de la modestie, l\'oral et le discours rapporté : le contenu de ton fascicule de grammaire L2 S3. Lis la fiche d\'un thème, puis entraîne-toi.</p>';
+    h += '<button type="button" class="kgbig" data-kg="verbs"><span class="jp kgbk">敬</span><span><b>Tableaux des verbes</b><small>Honorifique (sonkeigo) et modeste (kenjōgo) : à connaître par cœur</small></span></button>';
+    [[1, 'Unité 1 · Respect et modestie'], [2, 'Unité 2 · Oral et registres de langue'], [3, 'Unité 3 · Rapport au discours']].forEach(function (u) {
+      h += '<h4 class="kgh">' + u[1] + '</h4><div class="kglist">';
+      KG.list.filter(function (t) { return t.u === u[0]; }).forEach(function (t) {
+        var p = kgProg(t), pc = p[1] ? Math.round(p[0] / p[1] * 100) : 0;
+        h += '<button type="button" class="kgth" data-kg="th" data-id="' + t.id + '"><span class="jp kgk">' + t.k + '</span><span class="kgtx"><b>' + esc(t.t) + '</b><small>' + p[0] + ' / ' + p[1] + ' acquises</small><u class="kgbar"><i style="width:' + pc + '%"></i></u></span></button>';
+      });
+      h += '</div>';
+    });
+    h += '<h4 class="kgh">S\'entraîner</h4><div class="kglist">';
+    KG_GAMES.forEach(function (g) { h += '<button type="button" class="kgth kgg" data-kg="game" data-g="' + g[0] + '"><span class="kgk">' + g[1] + '</span><span class="kgtx"><b>' + g[2] + '</b><small>' + g[3] + '</small></span></button>'; });
+    h += '<button type="button" class="kgth kgg" data-kg="clz" data-id="all"><span class="kgk">✍️</span><span class="kgtx"><b>Phrases à trou</b><small>Retrouve l\'expression qui manque dans la phrase</small></span></button></div>';
+    return h;
+  }
+  function kgSay(t) { try { if (typeof aidSpeak === 'function') aidSpeak(String(t).replace(/[～]/g, ''), 0.85); } catch (e) {} }
+  function kgFiche(id) {
+    var t = KG.by[id]; if (!t) return kgHome();
+    var h = kgBack('home', 'Keigo') + '<div class="kgfh"><span class="jp kgk big">' + t.k + '</span><div><h3>' + esc(t.t) + '</h3><small>' + esc(t.sub) + '</small></div></div>';
+    h += '<section class="kgsec"><h4>À mémoriser</h4><div class="kgexs">';
+    t.E.forEach(function (e) {
+      var st = S && S.stats && S.stats[e.key], dn = st && st.run >= MASTER_RUN;
+      h += '<div class="kgex' + (dn ? ' done' : '') + '"><button type="button" class="kgsay" data-kg="say" data-t="' + esc(e.jp) + '" aria-label="Écouter ' + esc(e.jp) + '">🔊</button><div><b class="jp">' + esc(e.jp) + '</b><span class="jp kgrd">' + esc(e.rd) + '</span><span class="kgfr">' + esc(e.fr) + '</span></div>' + (dn ? '<i class="kgok" title="Acquise">✓</i>' : '') + '</div>';
+    });
+    h += '</div></section>';
+    if (t.R.length) {
+      h += '<section class="kgsec"><h4>Constructions</h4>';
+      t.R.forEach(function (r) { h += '<div class="kgrule"><b>' + esc(r.h) + '</b><p>' + r.b + '</p>' + (r.jp ? '<div class="kgrx"><span class="jp">' + esc(r.jp) + '</span><small>' + esc(r.fr) + '</small></div>' : '') + '</div>'; });
+      h += '</section>';
+    }
+    if (t.N.length) h += '<section class="kgsec"><h4>À noter</h4><ul class="kgnotes">' + t.N.map(function (n) { return '<li>' + esc(n) + '</li>'; }).join('') + '</ul></section>';
+    if (t.id === 'visite' || t.id === 'saluer') h += '<button type="button" class="kgbig sm" data-kg="verbs"><span class="jp kgbk">敬</span><span><b>Voir le tableau des verbes spéciaux</b></span></button>';
+    h += '<div class="knact kgact"><button type="button" class="btn primary" data-kg="clz" data-id="' + t.id + '">✍️ Phrases à trou (' + t.C.length + ')</button><button type="button" class="btn" data-kg="game" data-g="expr" data-id="' + t.id + '">🎯 Quiz du thème</button></div>';
+    return h;
+  }
+  function kgVerbsPage() {
+    var h = kgBack('home', 'Keigo') + '<div class="kgfh"><span class="jp kgk big">敬</span><div><h3>Tableaux des verbes</h3><small>À connaître impérativement</small></div></div>';
+    h += '<div class="kgleg"><div><b>尊敬語 sonkeigo</b><small>pour l\'<u>autre</u> : ton supérieur, ton client</small></div><div><b>謙譲語 kenjōgo</b><small>pour <u>moi</u> ou mon groupe</small></div></div>';
+    h += '<div class="kgvt"><div class="kgvr head"><span>Forme en ます</span><span>Honorifique</span><span>Modeste</span></div>';
+    KG_VERBS.forEach(function (v) {
+      h += '<div class="kgvr"><span class="kgvn"><b class="jp">' + esc(v[0]) + '</b><small>' + esc(v[2]) + '</small></span><span class="jp kgvh">' + (v[3].length ? v[3].map(function (x) { return '<em>' + esc(x) + '</em>'; }).join('') : '<i>—</i>') + '</span><span class="jp kgvm">' + (v[4].length ? v[4].map(function (x) { return '<em>' + esc(x) + '</em>'; }).join('') : '<i>—</i>') + '</span></div>';
+      if (v[5].length) h += '<div class="kgvx">✕ ' + v[5].map(esc).join('　✕ ') + '</div>';
+    });
+    h += '</div><p class="small muted">です et ています ne sont pas des verbes : le premier est le prédicat de la phrase, le second la forme durative.</p>';
+    h += '<div class="knact kgact"><button type="button" class="btn primary" data-kg="game" data-g="verbs">🔠 S\'entraîner sur ces verbes</button><button type="button" class="btn" data-kg="game" data-g="who">👤 Qui fait l\'action ?</button></div>';
+    return h;
+  }
+  /* ---- fabrique de questions ---- */
+  function kgOpts(correct, wrong) {   /* correct : {t, jp}, wrong : [{t, jp}] */
+    var seen = {}, w = [], i; seen[correct.t] = 1;
+    wrong.forEach(function (x) { if (x && x.t && !seen[x.t]) { seen[x.t] = 1; w.push(x); } });
+    var list = shuffle([correct].concat(w.slice(0, 3)));
+    return { opts: list, ci: list.indexOf(correct) };
+  }
+  function kgVerbLine(v) { return '<span class="jp">' + esc(v[0]) + '</span> (' + esc(v[2]) + ') → honorifique : <b class="jp">' + (v[3].map(esc).join(' / ') || '—') + '</b> · modeste : <b class="jp">' + (v[4].map(esc).join(' / ') || '—') + '</b>'; }
+  function kgQVerbs() {
+    var V = KG_VERBS, v = kgPick(V), kinds = []; if (v[3].length) kinds.push(3); if (v[4].length) kinds.push(4);
+    var kd = kgPick(kinds), name = kd === 3 ? 'honorifique (sonkeigo)' : 'modeste (kenjōgo)';
+    if (Math.random() < 0.65) {
+      var ok = kgPick(v[kd]), wrong = [];
+      (kd === 3 ? v[4] : v[3]).forEach(function (x) { wrong.push({ t: x, jp: 1 }); });
+      v[5].forEach(function (x) { wrong.push({ t: x, jp: 1 }); });
+      wrong.push({ t: v[0].replace(/^～/, ''), jp: 1 });
+      shuffle(V).forEach(function (x) { if (x !== v) x[kd].forEach(function (f) { if (v[kd].indexOf(f) < 0) wrong.push({ t: f, jp: 1 }); }); });
+      var o = kgOpts({ t: ok, jp: 1 }, wrong.filter(function (x) { return v[kd].indexOf(x.t) < 0; }).slice(0, 3));
+      return { p: 'Forme <b>' + name + '</b> de <span class="jp kgbigjp">' + esc(v[0]) + '</span> <small>(' + esc(v[2]) + ')</small>', o: o, ex: kgVerbLine(v), say: ok };
+    }
+    var f = kgPick(v[kd]), valid = V.filter(function (x) { return x[kd].indexOf(f) >= 0; });
+    var pool = V.filter(function (x) { return valid.indexOf(x) < 0 && x[0] !== v[0]; });
+    var o2 = kgOpts({ t: v[0] + ' (' + v[2] + ')', jp: 1 }, shuffle(pool).slice(0, 3).map(function (x) { return { t: x[0] + ' (' + x[2] + ')', jp: 1 }; }));
+    return { p: '<span class="jp kgbigjp">' + esc(f) + '</span> est la forme <b>' + name + '</b> de…', o: o2, ex: kgVerbLine(v), say: f };
+  }
+  var KG_SUP = ['先生', '部長', '社長', 'お客様', '山田先生', '課長'];
+  function kgQWho() {
+    var V = KG_VERBS.filter(function (v) { return v[3].length && v[4].length && /ます$/.test(v[3][0]) && /ます$/.test(v[4][0]) && v[0].indexOf('～') < 0 && v[0] !== '知っています'; });
+    var v = kgPick(V), sup = Math.random() < 0.5, subj = sup ? kgPick(KG_SUP) : kgPick(['私', '私']);
+    var ok = sup ? v[3][0] : v[4][0], trap = sup ? v[4][0] : v[3][0];
+    var wrong = [{ t: trap, jp: 1 }, { t: v[0], jp: 1 }];
+    if (v[5].length) wrong.push({ t: kgPick(v[5]), jp: 1 });
+    shuffle(V).forEach(function (x) { if (x !== v) { var f = (sup ? x[3] : x[4])[0]; if (f !== ok) wrong.push({ t: f, jp: 1 }); } });
+    var o = kgOpts({ t: ok, jp: 1 }, wrong);
+    return {
+      p: 'Choisis la forme qui convient <small>(' + esc(v[2]) + ')</small><div class="kgsent jp">' + subj + 'が＿＿＿。</div>', o: o,
+      ex: sup ? '<span class="jp">' + subj + '</span> est un supérieur : on utilise le <b>sonkeigo</b> <b class="jp">' + esc(ok) + '</b>.' : '<b>Moi</b>, je parle de ma propre action : on utilise le <b>kenjōgo</b> <b class="jp">' + esc(ok) + '</b>.', say: subj + 'が' + ok
+    };
+  }
+  function kgForm(v, t, wrongPrefix) {
+    var base = v[3], suf = KG_PAT[t].s;
+    if (wrongPrefix) base = (v[4] === 'o' ? 'ご' : 'お') + base.slice(1);
+    return base + suf;
+  }
+  function kgQBuild() {
+    var v = kgPick(KG_CV), t = kgPick(v[5].split('')), P = KG_PAT[t], ok = kgForm(v, t);
+    var wrong = [];
+    v[5].split('').forEach(function (x) { if (x !== t) wrong.push({ t: kgForm(v, x), jp: 1 }); });
+    wrong.push({ t: kgForm(v, t, true), jp: 1 });
+    wrong = shuffle(wrong);
+    if (wrong.length < 3) { var x2 = kgPick(v[5].split('')); wrong.push({ t: kgForm(v, x2, true), jp: 1 }); }
+    var o = kgOpts({ t: ok, jp: 1 }, wrong), what = { c: 'Demande polie « Veuillez… »', r: 'Sonkeigo (le supérieur agit)', s: 'Kenjōgo (je fais)', b: 'Je propose mon aide : « Voulez-vous que je… ? »' }[t];
+    return { p: '<small>' + what + '</small><br><span class="jp kgbigjp">' + esc(v[0]) + '</span> <small>(' + esc(v[2]) + ')</small>', o: o, ex: '<b>' + P.lab + '</b> : ' + (v[4] === 'o' ? 'お' : 'ご') + ' + ' + (v[4] === 'o' ? 'base renyō' : 'mot en kanji') + ' → <b class="jp">' + esc(ok) + '</b>. ' + P.fr + '.', say: ok };
+  }
+  function kgQExpr() {
+    var pool = [];
+    KG.list.forEach(function (t) { if (kgv.th === 'all' || kgv.th === t.id) t.E.forEach(function (e) { pool.push(e); }); });
+    var all = []; KG.list.forEach(function (t) { t.E.forEach(function (e) { all.push(e); }); });
+    var e = kgPick(pool), same = all.filter(function (x) { return x.th === e.th && x.jp !== e.jp; }), rest = all.filter(function (x) { return x.th !== e.th; });
+    var dist = shuffle(same).slice(0, 2).concat(shuffle(rest).slice(0, 4));
+    var dir = Math.random() < 0.55;
+    if (dir) {
+      var o = kgOpts({ t: e.jp, jp: 1 }, dist.map(function (x) { return { t: x.jp, jp: 1 }; }));
+      return { p: 'Que dire pour : <b>« ' + esc(e.fr) + ' »</b> ?', o: o, ex: '<b class="jp">' + esc(e.jp) + '</b> <span class="jp">(' + esc(e.rd) + ')</span> : ' + esc(e.fr), say: e.jp, e: e };
+    }
+    var o2 = kgOpts({ t: e.fr, jp: 0 }, dist.map(function (x) { return { t: x.fr, jp: 0 }; }));
+    return { p: 'Que signifie <span class="jp kgbigjp">' + esc(e.jp) + '</span> ?', o: o2, ex: '<b class="jp">' + esc(e.jp) + '</b> <span class="jp">(' + esc(e.rd) + ')</span> : ' + esc(e.fr), say: e.jp, e: e };
+  }
+  function kgQReg() {
+    var L = kgPick(KG_LADDER), n = L[1].length, top = Math.random() < 0.7;
+    var lv = top ? n - 1 : 0, ok = L[1][lv];
+    var q = top ? 'Avec ton <b>directeur</b>, laquelle est la plus polie ?' : 'Entre <b>amis</b>, laquelle est la plus naturelle ?';
+    var wrong = L[1].filter(function (x, i) { return i !== lv; }).map(function (x) { return { t: x, jp: 1 }; });
+    var o = kgOpts({ t: ok, jp: 1 }, wrong);
+    var lab = ['familier', 'courant (です／ます)', 'poli', 'très poli'];
+    var lines = L[1].map(function (x, i) { return '<span class="jp">' + esc(x) + '</span> <small>' + (n === 4 ? lab[i] : n === 3 ? ['familier', 'courant', 'poli'][i] : ['familier', 'poli'][i]) + '</small>'; }).join('<br>');
+    return { p: '<small>' + esc(L[0]) + '</small><br>' + q, o: o, ex: lines, say: ok };
+  }
+  function kgNew(g) {
+    kgv.g = g; kgv.th = kgv.th || 'all'; kgv.items = []; kgv.i = 0; kgv.ok = 0; kgv.xp = 0; kgv.newM = 0; kgv.ans = null; kgv.pick = -1;
+    var N = g === 'reg' ? 8 : 10, fn = { verbs: kgQVerbs, who: kgQWho, build: kgQBuild, expr: kgQExpr, reg: kgQReg }[g], used = {};
+    for (var tries = 0; kgv.items.length < N && tries < 80; tries++) { var q = fn(), sig = q.p; if (used[sig]) continue; used[sig] = 1; kgv.items.push(q); }
+    kgv.q = kgv.items[0]; kgv.view = 'quiz';
+  }
+  function kgQuizHTML() {
+    var q = kgv.q, n = kgv.items.length, h = '<div class="grp djbar"><button type="button" class="btn djback" data-kg="stop">‹ Arrêter</button><h3 class="sgh" data-k="敬"><span>' + esc(KG_GNAME[kgv.g]) + '</span></h3></div>';
+    h += '<p class="small muted" style="margin:6px 0 2px;text-align:center">Question ' + (kgv.i + 1) + ' / ' + n + '</p><div class="knqbar"><u style="width:' + Math.round(kgv.i / n * 100) + '%"></u></div>';
+    h += '<div class="knqcard qcard kgq' + (kgv.ans === 1 ? ' clzok' : kgv.ans === 0 ? ' clzko' : '') + '"><p class="prompt kgprompt">' + q.p + '</p>';
+    h += '<div class="choices">' + q.o.opts.map(function (o, i) {
+      var c = 'choice'; if (kgv.ans !== null) { if (i === q.o.ci) c += ' good'; else if (i === kgv.pick) c += ' bad'; }
+      return '<button type="button" class="' + c + '"' + (kgv.ans !== null ? ' disabled' : '') + ' data-kg="pick" data-i="' + i + '"><span class="key">' + (i + 1) + '</span><span class="' + (o.jp ? 'jp' : '') + '">' + esc(o.t) + '</span></button>';
+    }).join('') + '</div>';
+    if (kgv.ans !== null) {
+      h += '<div class="fb ' + (kgv.ans ? 'good' : 'bad') + '"><b>' + (kgv.ans ? 'Bonne réponse !' : 'Pas tout à fait.') + '</b>' + q.ex + (q.say ? '<div class="aids"><button type="button" class="aidbtn" data-kg="say" data-t="' + esc(q.say) + '">🔊 Écouter<kbd class="kbhint">L</kbd></button></div>' : '') + '</div>';
+      h += '<div style="text-align:center;margin-top:10px"><button type="button" class="btn primary" data-kg="next">' + (kgv.i + 1 >= n ? 'Voir le résultat' : 'Suivant') + '<kbd class="kbhint">⏎</kbd></button></div>';
+    }
+    return h + '</div>';
+  }
+  function kgEndHTML() {
+    var n = kgv.items.length, pct = n ? Math.round(kgv.ok / n * 100) : 0;
+    return '<div class="grp djbar"><h3 class="sgh" data-k="敬"><span>' + esc(KG_GNAME[kgv.g]) + '</span></h3></div><div class="result"><div class="sprbig win jp" aria-hidden="true">敬</div><h3>' + (pct >= 80 ? 'Excellent !' : pct >= 50 ? 'Bien joué !' : 'Continue, ça vient !') + '</h3><p>' + kgv.ok + ' bonne' + (kgv.ok > 1 ? 's' : '') + ' réponse' + (kgv.ok > 1 ? 's' : '') + ' sur ' + n + '.' + (kgv.xp ? '<br><b>+' + kgv.xp + ' XP</b>' : '') + (kgv.newM ? '<br><b>⭐ ' + kgv.newM + ' expression' + (kgv.newM > 1 ? 's' : '') + ' acquise' + (kgv.newM > 1 ? 's' : '') + '</b>' : '') + '</p><div class="knact kgact"><button type="button" class="btn primary" data-kg="again">Rejouer</button><button type="button" class="btn" data-kg="home">Retour au Keigo</button></div></div>';
+  }
+  function kgInner() {
+    if (kgv.view === 'quiz' && kgv.q) return kgQuizHTML();
+    if (kgv.view === 'end') return kgEndHTML();
+    if (kgv.view === 'fiche') return kgFiche(kgv.id);
+    if (kgv.view === 'verbs') return kgVerbsPage();
+    return kgHome();
+  }
+  function kgRender() { var h = $('kgHost'); if (h) { h.innerHTML = kgInner(); } }
+  function kgAnswer(i) {
+    if (kgv.ans !== null || !kgv.q) return;
+    var q = kgv.q, ok = i === q.o.ci; kgv.pick = i; kgv.ans = ok ? 1 : 0;
+    if (q.e) {
+      var st = stat(q.e.key); skillNote(st, 'sens', ok);
+      if (ok) { var was = st.run >= MASTER_RUN; st.ok++; runUp(st); if (!was && st.run >= MASTER_RUN) kgv.newM++; } else { st.ko++; st.run = 0; }
+    }
+    if (ok) { kgv.ok++; kgv.xp += 5; S.correct = (S.correct || 0) + 1; sfx('ok'); try { addXp(5); } catch (e) {} } else sfx('bad');
+    persist(); kgRender();
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-kg]') : null; if (!b || !user || !S) return;
+    var a = b.getAttribute('data-kg');
+    if (a === 'home') { kgv.view = 'home'; kgRender(); window.scrollTo(0, 0); }
+    else if (a === 'th') { kgv.view = 'fiche'; kgv.id = b.getAttribute('data-id'); kgRender(); window.scrollTo(0, 0); }
+    else if (a === 'verbs') { kgv.view = 'verbs'; kgRender(); window.scrollTo(0, 0); }
+    else if (a === 'game') { kgv.th = b.getAttribute('data-id') || 'all'; kgNew(b.getAttribute('data-g')); kgRender(); window.scrollTo(0, 0); }
+    else if (a === 'again') { kgNew(kgv.g); kgRender(); window.scrollTo(0, 0); }
+    else if (a === 'stop') { kgv.view = 'home'; kgRender(); }
+    else if (a === 'pick') kgAnswer(+b.getAttribute('data-i'));
+    else if (a === 'say') kgSay(b.getAttribute('data-t'));
+    else if (a === 'next') {
+      kgv.i++; kgv.ans = null; kgv.pick = -1;
+      if (kgv.i >= kgv.items.length) { kgv.view = 'end'; try { streakTick(1); } catch (er) {} persist(); } else kgv.q = kgv.items[kgv.i];
+      kgRender(); window.scrollTo(0, 0);
+    }
+    else if (a === 'clz') { S.clzSrc = 'kg'; S.clzKgT = b.getAttribute('data-id') || 'all'; persist(); go('clz'); }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey || e.metaKey || e.altKey || e.repeat || kgv.view !== 'quiz' || !$('kgHost') || !user || !S) return;
+    var t = e.target; if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT')) return;
+    var k = e.key, x;
+    function press(sel) { x = document.querySelector('#kgHost ' + sel); if (x && !x.disabled) { e.preventDefault(); x.click(); } }
+    if (kgv.ans === null) { if (k >= '1' && k <= '4') press('.choice[data-i="' + (+k - 1) + '"]'); }
+    else if (k === 'Enter' || k === ' ') { if (!(t && t.tagName === 'BUTTON')) press('[data-kg="next"]'); }
+    else if (k === 'l' || k === 'L') press('[data-kg="say"]');
+  });
+  DJ_INFO.kg = { k: '敬', t: 'Keigo', art: '', d: '', tip: 'Le keigo, c\'est le langage du respect et de la modestie. Ouvre un thème pour lire la fiche du fascicule, apprends le tableau des verbes, puis entraîne-toi avec les jeux et les phrases à trou.' };
+  document.addEventListener('click', function (e) { var b = e.target.closest ? e.target.closest('[data-djsub="kg"]') : null; if (b) kgv.view = 'home'; }, true);
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
