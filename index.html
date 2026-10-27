@@ -4972,7 +4972,7 @@ body.tbopen { overflow: hidden; }
 .tbsn b { display: block; font-size: clamp(1.15rem, 4.6vw, 1.7rem); line-height: 1.2; color: #ffe9b0; }
 .tbsn small { display: block; font-size: .7rem; opacity: .6; margin-top: 2px; }
 .tbnav { flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(240,185,116,.55); background: rgba(255,255,255,.08); color: #ffe9b0; font-size: 1.5rem; line-height: 1; cursor: pointer; }
-.tbmid { flex: 1 1 0; min-height: 0; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 8px; }
+.tbmid { flex: 1 1 0; min-height: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 8px; }
 .tbside { flex: 0 0 auto; width: 54px; padding: 10px 0; border-radius: 14px; border: 1px solid rgba(240,185,116,.55); background: rgba(255,255,255,.08); color: #ffe9b0; cursor: pointer; font: inherit; display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .tbside b { font-size: 1.5rem; line-height: 1; }
 .tbside small { font-size: .72rem; opacity: .8; }
@@ -27061,7 +27061,7 @@ body.tbopen { overflow: hidden; }
     var ov = document.getElementById('tbOv'); if (!ov) return;
     var top = ov.querySelector('.tbtop'), sens = ov.querySelector('.tbsens'), bar = ov.querySelector('.tbbar'), mid = document.getElementById('tbMid');
     var sideW = ov.querySelector('.tbside').offsetWidth, pad = 4, bd0 = document.getElementById('tbBoard'), bw = 2 * (parseInt(getComputedStyle(bd0).borderLeftWidth, 10) || 0);
-    var aw = ov.clientWidth - 2 * sideW - 2 * pad - 24 - bw, ah = ov.clientHeight - top.offsetHeight - sens.offsetHeight - bar.offsetHeight - 2 * pad - 24 - bw;
+    var pn0 = 0, aw = ov.clientWidth - 2 * sideW - 2 * pad - 24 - bw, pn = document.getElementById('tbPen'), ah = ov.clientHeight - top.offsetHeight - sens.offsetHeight - bar.offsetHeight - (pn && !pn.hidden ? pn.offsetHeight + 4 : 0) - 2 * pad - 24 - bw;
     var size = Math.max(160, Math.floor(Math.min(aw, ah)));
     var bd = document.getElementById('tbBoard'); bd.style.width = size + 'px'; bd.style.height = size + 'px';
     var cv = document.getElementById('tbCv'), dpr = Math.min(2.5, window.devicePixelRatio || 1);
@@ -27120,6 +27120,7 @@ body.tbopen { overflow: hidden; }
     var pp = document.getElementById('tbPen'); if (!pp || pp.hidden) return; var cur = penCur();
     pp.innerHTML = '<div class="tbprow">' + PENS.map(function (p) { var o = penOwn(p[0]); return '<button type="button" class="tbchip' + (cur.pen === p[0] ? ' on' : '') + (o ? '' : ' lock') + '" data-tbp="' + p[0] + '">' + (o ? '' : '🔒 ') + esc(p[1]) + '</button>'; }).join('') + '</div>' +
       '<div class="tbprow">' + INKS.map(function (k) { var o = penOwn(k[0]), c = k[3], bg = c === 'rainbow' ? 'conic-gradient(#e33,#ec3,#3c5,#3ae,#a3e,#e33)' : typeof c === 'string' ? c : 'linear-gradient(90deg,' + c.join(',') + ')'; return '<button type="button" class="tbink' + (cur.ink === k[0] ? ' on' : '') + (o ? '' : ' lock') + '" data-tbp="' + k[0] + '" aria-label="' + esc(k[1]) + '" title="' + esc(k[1]) + '" style="background:' + bg + '">' + (o ? '' : '🔒') + '</button>'; }).join('') + '<button type="button" class="tbchip" data-tb="shop">🛒 Boutique</button></div>';
+    tbLayout();
   }
   document.addEventListener('click', function (e) {
     var b = e.target.closest ? e.target.closest('[data-tbp]') : null; if (!b || !tbv.open || !S) return;
