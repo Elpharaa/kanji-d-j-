@@ -24696,7 +24696,7 @@ body.cdcropon{overflow:hidden}
       var c = e.target.closest ? e.target.closest('.cs-chip,.cs-tab') : null; if (!c) return;
       var box = c.closest('.cs-box'); if (!box || !box.__sel) return;
       e.preventDefault();
-      if (c.classList.contains('cs-tab')) { box.dataset.cg = c.getAttribute('data-csg'); csPaint(box); return; }
+      if (c.classList.contains('cs-tab')) { if (c.textContent === 'Keigo' && box.__sel.value.indexOf('K:') !== 0) { box.__sel.value = 'K:kg_all'; box.__sel.dispatchEvent(new Event('change', { bubbles: true })); if (!(box.isConnected && box.__sel.isConnected)) return; } box.dataset.cg = c.getAttribute('data-csg'); csPaint(box); return; }
       var sel = box.__sel, v = c.getAttribute('data-csv');
       if (sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event('change', { bubbles: true })); }
       if (box.isConnected && sel.isConnected) { box.removeAttribute('data-cg'); csPaint(box); }
