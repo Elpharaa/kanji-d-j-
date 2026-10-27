@@ -4958,6 +4958,62 @@ body.cdcropon{overflow:hidden}
   .kgvr { grid-template-columns: .8fr 1.45fr 1.25fr; gap: 6px; padding: 8px; }
 }
 
+/* v292 : Tableau de tracé */
+#tbHost { width: 100%; max-width: 760px; margin: 0 auto; }
+.tbpanel .tbgo { width: 100%; margin-top: 8px; }
+body.tbopen { overflow: hidden; }
+.tbov { position: fixed; inset: 0; z-index: 9000; display: flex; flex-direction: column; background: radial-gradient(120% 90% at 50% 0%, #4d3b78 0%, #2a1f4a 55%, #171126 100%); color: #f7efdc; touch-action: manipulation; }
+.tbtop { display: flex; align-items: center; gap: 10px; padding: 10px 12px 4px; }
+.tbx { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(247,239,220,.35); background: rgba(255,255,255,.08); color: inherit; font-size: 1.1rem; cursor: pointer; }
+.tbcnt { font-weight: 800; letter-spacing: .04em; }
+.tbstk { margin-left: auto; font-size: .82rem; opacity: .75; }
+.tbsens { display: flex; align-items: center; gap: 8px; margin: 4px 12px 0; padding: 8px 10px; border-radius: 14px; background: rgba(255,255,255,.1); border: 1px solid rgba(240,185,116,.45); touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.tbsn { flex: 1 1 0; min-width: 0; text-align: center; }
+.tbsn b { display: block; font-size: clamp(1.15rem, 4.6vw, 1.7rem); line-height: 1.2; color: #ffe9b0; }
+.tbsn small { display: block; font-size: .7rem; opacity: .6; margin-top: 2px; }
+.tbnav { flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(240,185,116,.55); background: rgba(255,255,255,.08); color: #ffe9b0; font-size: 1.5rem; line-height: 1; cursor: pointer; }
+.tbmid { flex: 1 1 0; min-height: 0; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 8px; }
+.tbside { flex: 0 0 auto; width: 54px; padding: 10px 0; border-radius: 14px; border: 1px solid rgba(240,185,116,.55); background: rgba(255,255,255,.08); color: #ffe9b0; cursor: pointer; font: inherit; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.tbside b { font-size: 1.5rem; line-height: 1; }
+.tbside small { font-size: .72rem; opacity: .8; }
+.tbside.on { background: #f0b974; color: #2a1f4a; border-color: #ffe9b0; }
+.tbside.none { opacity: .45; }
+.tbboard { position: relative; background: #fffdf8; border-radius: 10px; border: 8px solid #7a5a3a; box-shadow: 0 0 0 2px #c9a46b, 0 10px 30px rgba(0,0,0,.5), inset 0 0 22px rgba(120,90,50,.12); box-sizing: content-box; overflow: hidden; }
+.tbgrid { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.tbgrid path { fill: none; stroke: rgba(80,60,130,.22); stroke-width: .6; stroke-dasharray: 2.5 2.5; vector-effect: non-scaling-stroke; }
+.tbgrid path.d { stroke: rgba(80,60,130,.1); }
+.tbghost { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; line-height: 1; color: rgba(60,40,120,.2); font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif; pointer-events: none; }
+.tbghost.on { display: flex; }
+.tbcv { position: absolute; left: 0; top: 0; touch-action: none; cursor: crosshair; }
+.tbord { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.tbop { fill: none; stroke: #d0587f; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: .85; }
+.tbop.go { stroke-dashoffset: 0; transition: stroke-dashoffset .55s ease-in-out; }
+.tbon { opacity: 0; }
+.tbon.go { opacity: 1; transition: opacity .15s; }
+.tbon circle { fill: #d0587f; stroke: #fff; stroke-width: .8; }
+.tbon text { fill: #fff; font-size: 5.4px; font-weight: 800; font-family: system-ui, sans-serif; }
+.tbrd { position: absolute; top: 6px; bottom: 6px; display: flex; align-items: flex-start; gap: 6px; pointer-events: none; }
+.tbrd.l { left: 6px; flex-direction: row; }
+.tbrd.r { right: 6px; flex-direction: row-reverse; }
+.tbrd span { writing-mode: vertical-rl; text-orientation: upright; padding: 8px 4px; border-radius: 999px; font-size: clamp(.8rem, 3.2vw, 1.05rem); font-weight: 800; letter-spacing: .06em; color: #fff; white-space: nowrap; padding-block: 10px 12px; block-size: max-content; flex: 0 0 auto; }
+.tbrd.l span { background: rgba(122,74,200,.88); }
+.tbrd.r span { background: rgba(208,88,127,.9); }
+.tbrd span.none { writing-mode: horizontal-tb; block-size: auto; padding: 4px 8px; text-orientation: mixed; letter-spacing: 0; font-size: .7rem; font-weight: 600; background: rgba(0,0,0,.35); }
+.tbbar { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 6px 12px calc(12px + env(safe-area-inset-bottom, 0px)); }
+.tbb { display: inline-flex; align-items: center; gap: 6px; padding: 10px 14px; min-height: 44px; border-radius: 12px; border: 1px solid rgba(240,185,116,.55); background: rgba(255,255,255,.1); color: #ffe9b0; font: inherit; font-weight: 700; font-size: .9rem; cursor: pointer; }
+.tbb span { font-size: 1.1rem; }
+.tbb.on { background: #f0b974; color: #2a1f4a; }
+.tbb:disabled { opacity: .4; cursor: not-allowed; }
+.tbb.sm { padding: 10px 11px; }
+@media (max-width: 480px) {
+  .tbside { width: 40px; border-radius: 12px; }
+  .tbside b { font-size: 1.3rem; }
+  .tbmid { gap: 5px; padding: 8px 4px; }
+  .tbboard { border-width: 5px; }
+  .tbb { padding: 9px 10px; font-size: .82rem; }
+}
+@media (prefers-reduced-motion: reduce) { .tbop.go { transition: none; } }
+
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -16609,6 +16665,7 @@ body.cdcropon{overflow:hidden}
   function ago(t) { var m = Math.floor((Date.now() - t) / 60000); if (m < 1) return "à l'instant"; if (m < 60) return 'il y a ' + m + ' min'; var h = Math.floor(m / 60); if (h < 24) return 'il y a ' + h + ' h'; var d = Math.floor(h / 24); return 'il y a ' + d + (d > 1 ? ' jours' : ' jour'); }
   /* ---- Annonces du dōjō : à modifier ici, puis republier index.html (la plus récente en premier) ---- */
   var ANNOUNCES = [
+    { id: 'a3', date: '2026-10-27', icon: '書', title: 'Nouveau : le Tableau de tracé', text: 'Dans le Dojo, la tuile « Tableau » : choisis tes kanjis, vois le sens, trace de mémoire sur un grand tableau blanc, puis aide-toi des lectures on / kun, du kanji en modèle ou de l\'ordre des traits.' },
     { id: 'a2', date: '2026-10-27', icon: '敬', title: 'Le keigo arrive dans le Dōjō !', text: 'Nouvelle tuile « Keigo » : fiches de cours, tableaux de verbes, 5 jeux d\'entraînement et des phrases à trou. Les mots keigo sont aussi dans les flashcards et les mini-jeux (onglet « Keigo » du choix de niveau).' },
     { id: 'a1', date: '2026-10-12', icon: '💬', title: 'Un retour, une idée, un bug ?', text: 'Tu as des remarques sur l\'appli ? Écris-moi sur Discord, je lis tout.', copy: 'elphara.', copyLabel: 'Discord : elphara.' }
   ];
@@ -21656,6 +21713,7 @@ body.cdcropon{overflow:hidden}
     if (!on) { var t = $(v === 'cust' ? 'custPanel' : v === 'vit' ? 'cdBinder' : v === 'pass' ? 'passPanel' : 'badges'); if (t && t.scrollIntoView) setTimeout(function () { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 30); }
   });
   var DJ_INFO = {
+    tb: { k: '書', t: 'Tableau', art: '', d: 'Un grand tableau pour t\'entraîner à tracer les kanjis', tip: 'Choisis tes kanjis, puis ouvre le tableau : tu vois le sens, tu traces le kanji de mémoire, et tu peux t\'aider des lectures on / kun, du kanji en modèle ou de l\'ordre des traits. Glisse sur le sens pour changer de kanji.' },
     flash: { k: '札', t: 'Flashcards', art: 'flashfr', d: 'Revois tes mots, les plus urgents d\'abord', tip: 'Les flashcards te montrent d\'abord les mots à revoir. Note-toi honnêtement : c\'est comme ça que tu progresses vite !' },
     kanji: { k: '漢', t: 'Kanjis', art: 'kread', d: 'Lectures, sens et fiches à étudier', tip: 'Entraîne-toi sur les lectures et le sens des kanjis, ou ouvre « Étudier » pour apprendre une fiche.' },
     mini: { k: '遊', t: 'Mini-jeux', art: 'sprint', d: 'Écrit et oral : sprint, écoute, karaoké, cuisine…', tip: 'Des jeux courts pour réviser en s\'amusant. Les jeux « Écrit » se jouent au clavier ou en QCM, les jeux « Oral » avec ton oreille et ta voix. Essaie l\'examen blanc avant un contrôle !' },
@@ -22718,11 +22776,12 @@ body.cdcropon{overflow:hidden}
   function djGamesHTML(fl, kj, mj) {
     document.body.classList.toggle('qvon', djSub === 'daily' || djSub === 'jlpt');
     if (!djSub) return tipHTML('dojo', 'Voici ton Dojo ! Touche une carte pour t\'entraîner : <b>Flashcards</b> pour revoir tes mots, <b>Kanjis</b>, <b>Mini-jeux</b>, ton <b>Carnet d\'erreurs</b>, ou du <b>vocabulaire du quotidien</b> ou le <b>JLPT</b>.') +
-      '<div class="djgrid">' + ['flash', 'kana', 'kanji', 'mini', 'kg', 'err', 'daily', 'jlpt', 'bonus', 'rad'].map(djTile).join('') + '</div>';
+      '<div class="djgrid">' + ['flash', 'kana', 'kanji', 'tb', 'mini', 'kg', 'err', 'daily', 'jlpt', 'bonus', 'rad'].map(djTile).join('') + '</div>';
     if (djSub === 'err') return '';
     if (djSub === 'prog') return djBackHTML('prog') + '<div id="pgHost">' + progInner() + '</div>';
     if (djSub === 'bonus') return djBackHTML('bonus') + tipHTML('dj_bonus', DJ_INFO.bonus.tip) + '<div id="bonusHost">' + bonusInner() + '</div>';
     if (djSub === 'kg') return djBackHTML('kg') + tipHTML('dj_kg', DJ_INFO.kg.tip) + '<div id="kgHost">' + kgInner() + '</div>';
+    if (djSub === 'tb') return djBackHTML('tb') + tipHTML('dj_tb', DJ_INFO.tb.tip) + '<div id="tbHost">' + tbInner() + '</div>';
     if (djSub === 'kana') return djBackHTML('kana') + tipHTML('dj_kana', DJ_INFO.kana.tip) + '<div id="kanaHost">' + knInner() + '</div>';
     if (djSub === 'fur') return djBackHTML('fur') + tipHTML('dj_fur', DJ_INFO.fur.tip) + '<div id="furHost">' + furInner() + '</div>';
     if (djSub === 'rad' || djSub === 'cuis' || djSub === 'lire' || djSub === 'nb') return djBackHTML(djSub) + tipHTML('dj_' + djSub, DJ_INFO[djSub].tip) + '<div id="lrnHost">' + lrnInner() + '</div>';
@@ -26658,6 +26717,159 @@ body.cdcropon{overflow:hidden}
   });
   DJ_INFO.kg = { k: '敬', t: 'Keigo', art: '', d: '', tip: 'Le keigo, c\'est le langage du respect et de la modestie. Ouvre un thème pour lire la fiche du fascicule, apprends le tableau des verbes, puis entraîne-toi avec les jeux et les phrases à trou.' };
   document.addEventListener('click', function (e) { var b = e.target.closest ? e.target.closest('[data-djsub="kg"]') : null; if (b) kgv.view = 'home'; }, true);
+  /* =====================================================================
+     v292 : Tableau de tracé — un grand tableau blanc, le sens du kanji au-dessus, lectures on / kun sur les côtés
+     ===================================================================== */
+  var tbv = { list: [], i: 0, ink: {}, show: false, order: false, on: false, kun: false, timers: [], cur: null, open: false, sx: null };
+  function tbPoolList() {
+    var l = []; try { l = kStudyPool('mix') || []; } catch (e) { l = []; }
+    return l.filter(function (k) { return k && k.k && k.sens; });
+  }
+  function tbInner() {
+    gsKMode = true; gsKind = false; gsFlashCtx = false;
+    var n = tbPoolList().length;
+    return '<div class="panel tbpanel"><div id="gsHost">' + scopeBlockHTML() + '</div>' +
+      '<button type="button" class="btn primary tbgo" data-tb="open"' + (n ? '' : ' disabled') + '>✍ Ouvrir le tableau</button></div>';
+  }
+  function tbRefreshCount() {
+    var b = document.querySelector('.tbgo'); if (b) b.disabled = !tbPoolList().length;
+  }
+  ['change', 'click'].forEach(function (ev) { document.addEventListener(ev, function () { setTimeout(tbRefreshCount, 40); }); });
+  document.addEventListener('click', function (e) { var b = e.target.closest ? e.target.closest('[data-djsub="tb"]') : null; if (b) { gsStep = 0; gsAdv = false; gsKOpen = false; } }, true);
+
+  function tbShuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function tbOpen() {
+    var l = tbPoolList(); if (!l.length) { toast('Aucun kanji dans cette sélection.'); return; }
+    tbv.list = tbShuffle(l); tbv.i = 0; tbv.ink = {}; tbv.open = true;
+    var old = document.getElementById('tbOv'); if (old) old.parentNode.removeChild(old);
+    var ov = document.createElement('div'); ov.id = 'tbOv'; ov.className = 'tbov'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-label', 'Tableau de tracé');
+    ov.innerHTML =
+      '<div class="tbtop"><button type="button" class="tbx" data-tb="close" aria-label="Fermer le tableau">✕</button><span class="tbcnt" id="tbCnt"></span><span class="tbstk" id="tbStk"></span></div>' +
+      '<div class="tbsens" id="tbSens"><button type="button" class="tbnav" data-tb="prev" aria-label="Kanji précédent">‹</button><div class="tbsn"><b id="tbSn"></b><small>glisse pour changer de kanji</small></div><button type="button" class="tbnav" data-tb="next" aria-label="Kanji suivant">›</button></div>' +
+      '<div class="tbmid" id="tbMid">' +
+        '<button type="button" class="tbside" data-tb="on" id="tbBtnOn" aria-pressed="false"><b>音</b><small>On</small></button>' +
+        '<div class="tbboard" id="tbBoard">' +
+          '<svg class="tbgrid" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M50 0V100M0 50H100"/><path class="d" d="M0 0L100 100M100 0L0 100"/></svg>' +
+          '<div class="tbghost" id="tbGhost" aria-hidden="true"></div>' +
+          '<canvas class="tbcv" id="tbCv" aria-label="Zone de tracé"></canvas>' +
+          '<svg class="tbord" id="tbOrd" viewBox="0 0 109 109" aria-hidden="true"></svg>' +
+          '<div class="tbrd l" id="tbRdOn" aria-live="polite"></div><div class="tbrd r" id="tbRdKun" aria-live="polite"></div>' +
+        '</div>' +
+        '<button type="button" class="tbside" data-tb="kun" id="tbBtnKun" aria-pressed="false"><b>訓</b><small>Kun</small></button>' +
+      '</div>' +
+      '<div class="tbbar"><button type="button" class="tbb" data-tb="show" id="tbBtnShow" aria-pressed="false"><span aria-hidden="true">字</span>Afficher le kanji</button>' +
+        '<button type="button" class="tbb" data-tb="order" id="tbBtnOrd" aria-pressed="false"><span aria-hidden="true">①</span>Ordre des traits</button>' +
+        '<button type="button" class="tbb sm" data-tb="undo" aria-label="Annuler le dernier trait"><span aria-hidden="true">↶</span>Annuler</button>' +
+        '<button type="button" class="tbb sm" data-tb="clear" aria-label="Effacer le tableau"><span aria-hidden="true">🧽</span>Effacer</button></div>';
+    document.body.appendChild(ov); document.body.classList.add('tbopen');
+    tbPointer(); tbLayout(); tbShowK(0);
+    var x = ov.querySelector('.tbx'); if (x) x.focus();
+  }
+  function tbClose() {
+    tbv.open = false; tbStopAnim();
+    var ov = document.getElementById('tbOv'); if (ov && ov.parentNode) ov.parentNode.removeChild(ov);
+    document.body.classList.remove('tbopen');
+  }
+  function tbStopAnim() { tbv.timers.forEach(clearTimeout); tbv.timers = []; }
+  function tbLayout() {
+    var ov = document.getElementById('tbOv'); if (!ov) return;
+    var top = ov.querySelector('.tbtop'), sens = ov.querySelector('.tbsens'), bar = ov.querySelector('.tbbar'), mid = document.getElementById('tbMid');
+    var sideW = ov.querySelector('.tbside').offsetWidth, pad = 4, bd0 = document.getElementById('tbBoard'), bw = 2 * (parseInt(getComputedStyle(bd0).borderLeftWidth, 10) || 0);
+    var aw = ov.clientWidth - 2 * sideW - 2 * pad - 24 - bw, ah = ov.clientHeight - top.offsetHeight - sens.offsetHeight - bar.offsetHeight - 2 * pad - 24 - bw;
+    var size = Math.max(160, Math.floor(Math.min(aw, ah)));
+    var bd = document.getElementById('tbBoard'); bd.style.width = size + 'px'; bd.style.height = size + 'px';
+    var cv = document.getElementById('tbCv'), dpr = Math.min(2.5, window.devicePixelRatio || 1);
+    cv.width = Math.round(size * dpr); cv.height = Math.round(size * dpr); cv.style.width = size + 'px'; cv.style.height = size + 'px';
+    var g = document.getElementById('tbGhost'); g.style.fontSize = Math.round(size * 0.78) + 'px';
+    mid.style.setProperty('--tbs', size + 'px');
+    tbRedraw();
+  }
+  window.addEventListener('resize', function () { if (tbv.open) tbLayout(); });
+  window.addEventListener('orientationchange', function () { if (tbv.open) setTimeout(tbLayout, 200); });
+
+  function tbRedraw() {
+    var cv = document.getElementById('tbCv'); if (!cv) return;
+    var ctx = cv.getContext('2d'), W = cv.width, strokes = tbv.ink[tbv.i] || [];
+    ctx.clearRect(0, 0, W, cv.height);
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#1c1632'; ctx.fillStyle = '#1c1632'; ctx.lineWidth = Math.max(3, W * 0.032);
+    strokes.forEach(function (s) {
+      if (!s.length) return;
+      if (s.length < 3) { ctx.beginPath(); ctx.arc(s[0][0] * W, s[0][1] * W, ctx.lineWidth / 2, 0, 7); ctx.fill(); return; }
+      ctx.beginPath(); ctx.moveTo(s[0][0] * W, s[0][1] * W);
+      for (var i = 1; i < s.length - 1; i++) { var mx = (s[i][0] + s[i + 1][0]) / 2 * W, my = (s[i][1] + s[i + 1][1]) / 2 * W; ctx.quadraticCurveTo(s[i][0] * W, s[i][1] * W, mx, my); }
+      var l = s[s.length - 1]; ctx.lineTo(l[0] * W, l[1] * W); ctx.stroke();
+    });
+  }
+  function tbPointer() {
+    var cv = document.getElementById('tbCv'), cur = null;
+    function pt(e) { var r = cv.getBoundingClientRect(); return [Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), Math.min(1, Math.max(0, (e.clientY - r.top) / r.height))]; }
+    cv.addEventListener('pointerdown', function (e) {
+      if (e.button > 0) return; e.preventDefault();
+      try { cv.setPointerCapture(e.pointerId); } catch (x) {}
+      (tbv.ink[tbv.i] = tbv.ink[tbv.i] || []).push(cur = [pt(e)]); tbRedraw(); tbStk();
+    });
+    cv.addEventListener('pointermove', function (e) {
+      if (!cur) return; e.preventDefault();
+      var evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e]; if (!evs.length) evs = [e];
+      evs.forEach(function (ev) { var p = pt(ev), l = cur[cur.length - 1]; if (Math.abs(p[0] - l[0]) + Math.abs(p[1] - l[1]) > 0.003) cur.push(p); });
+      tbRedraw();
+    });
+    function end() { cur = null; }
+    cv.addEventListener('pointerup', end); cv.addEventListener('pointercancel', end); cv.addEventListener('lostpointercapture', end);
+    var sn = document.getElementById('tbSens');
+    sn.addEventListener('pointerdown', function (e) { if (e.target.closest && e.target.closest('button')) return; tbv.sx = e.clientX; });
+    sn.addEventListener('pointerup', function (e) { if (tbv.sx == null) return; var dx = e.clientX - tbv.sx; tbv.sx = null; if (dx > 40) tbShowK(1); else if (dx < -40) tbShowK(-1); });
+    sn.addEventListener('pointercancel', function () { tbv.sx = null; });
+  }
+  function tbStk() { var s = document.getElementById('tbStk'); if (s) { var n = (tbv.ink[tbv.i] || []).length; s.textContent = n ? n + ' trait' + (n > 1 ? 's' : '') + ' tracé' + (n > 1 ? 's' : '') : ''; } }
+  function tbReads(a, kun) { return (a || []).map(function (r) { return '<span>' + esc(String(r).replace(/\(/g, '・').replace(/\)/g, '')) + '</span>'; }).join(''); }
+  function tbShowK(d) {
+    var n = tbv.list.length; tbv.i = (tbv.i + d + n) % n; tbStopAnim();
+    tbv.show = false; tbv.order = false; tbv.on = false; tbv.kun = false;
+    var k = tbv.list[tbv.i], st = typeof STROKES === 'object' && STROKES[k.k];
+    document.getElementById('tbSn').textContent = k.sens;
+    document.getElementById('tbCnt').textContent = (tbv.i + 1) + ' / ' + n;
+    document.getElementById('tbGhost').textContent = k.k; document.getElementById('tbGhost').classList.remove('on');
+    document.getElementById('tbOrd').innerHTML = '';
+    document.getElementById('tbRdOn').innerHTML = ''; document.getElementById('tbRdKun').innerHTML = '';
+    ['tbBtnOn', 'tbBtnKun', 'tbBtnShow', 'tbBtnOrd'].forEach(function (id) { var b = document.getElementById(id); b.classList.remove('on'); b.setAttribute('aria-pressed', 'false'); });
+    var ob = document.getElementById('tbBtnOrd'); ob.disabled = !st; ob.title = st ? '' : 'Ordre des traits indisponible pour ce kanji';
+    document.getElementById('tbBtnOn').classList.toggle('none', !(k.on && k.on.length)); document.getElementById('tbBtnKun').classList.toggle('none', !(k.kun && k.kun.length));
+    tbRedraw(); tbStk();
+  }
+  function tbSet(id, on) { var b = document.getElementById(id); if (b) { b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); } }
+  function tbOrder(on) {
+    var k = tbv.list[tbv.i], st = STROKES[k.k], svg = document.getElementById('tbOrd'); tbStopAnim(); svg.innerHTML = ''; tbv.order = on; tbSet('tbBtnOrd', on);
+    var lab = document.getElementById('tbBtnOrd'); lab.lastChild.nodeValue = on ? 'Masquer l’ordre' : 'Ordre des traits';
+    if (!on || !st) return;
+    st.forEach(function (d, i) {
+      var p = swEl('path', { d: d, pathLength: '1', class: 'tbop' }); svg.appendChild(p);
+      var s0 = swStart(d), g = swEl('g', { class: 'tbon', transform: 'translate(' + s0[0] + ',' + s0[1] + ')' });
+      g.appendChild(swEl('circle', { r: '4.6' })); var t = swEl('text', { y: '1.9', 'text-anchor': 'middle' }); t.textContent = String(i + 1); g.appendChild(t); svg.appendChild(g);
+      tbv.timers.push(setTimeout(function () { p.classList.add('go'); g.classList.add('go'); }, 120 + i * 620));
+    });
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-tb]') : null; if (!b) return;
+    var a = b.getAttribute('data-tb'), k = tbv.list[tbv.i];
+    if (a === 'open') { if (!user) return; tbOpen(); return; }
+    if (!tbv.open) return;
+    if (a === 'close') tbClose();
+    else if (a === 'next') tbShowK(1);
+    else if (a === 'prev') tbShowK(-1);
+    else if (a === 'on') { tbv.on = !tbv.on; tbSet('tbBtnOn', tbv.on); document.getElementById('tbRdOn').innerHTML = tbv.on ? (tbReads(k.on) || '<span class="none">aucune lecture on</span>') : ''; }
+    else if (a === 'kun') { tbv.kun = !tbv.kun; tbSet('tbBtnKun', tbv.kun); document.getElementById('tbRdKun').innerHTML = tbv.kun ? (tbReads(k.kun) || '<span class="none">aucune lecture kun</span>') : ''; }
+    else if (a === 'show') { tbv.show = !tbv.show; tbSet('tbBtnShow', tbv.show); document.getElementById('tbGhost').classList.toggle('on', tbv.show); }
+    else if (a === 'order') tbOrder(!tbv.order);
+    else if (a === 'undo') { var s = tbv.ink[tbv.i]; if (s && s.length) { s.pop(); tbRedraw(); tbStk(); } }
+    else if (a === 'clear') { tbv.ink[tbv.i] = []; tbRedraw(); tbStk(); }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (!tbv.open) return;
+    if (e.key === 'Escape') { tbClose(); e.preventDefault(); }
+    else if (e.key === 'ArrowRight') { tbShowK(1); e.preventDefault(); }
+    else if (e.key === 'ArrowLeft') { tbShowK(-1); e.preventDefault(); }
+  });
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
