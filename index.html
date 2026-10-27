@@ -16609,6 +16609,7 @@ body.cdcropon{overflow:hidden}
   function ago(t) { var m = Math.floor((Date.now() - t) / 60000); if (m < 1) return "à l'instant"; if (m < 60) return 'il y a ' + m + ' min'; var h = Math.floor(m / 60); if (h < 24) return 'il y a ' + h + ' h'; var d = Math.floor(h / 24); return 'il y a ' + d + (d > 1 ? ' jours' : ' jour'); }
   /* ---- Annonces du dōjō : à modifier ici, puis republier index.html (la plus récente en premier) ---- */
   var ANNOUNCES = [
+    { id: 'a2', date: '2026-10-27', icon: '敬', title: 'Le keigo arrive dans le Dōjō !', text: 'Nouvelle tuile « Keigo » : fiches de cours, tableaux de verbes, 5 jeux d\'entraînement et des phrases à trou. Les mots keigo sont aussi dans les flashcards et les mini-jeux (onglet « Keigo » du choix de niveau).' },
     { id: 'a1', date: '2026-10-12', icon: '💬', title: 'Un retour, une idée, un bug ?', text: 'Tu as des remarques sur l\'appli ? Écris-moi sur Discord, je lis tout.', copy: 'elphara.', copyLabel: 'Discord : elphara.' }
   ];
   var anncSeen = (function () { try { return JSON.parse(localStorage.getItem('kd.annc.seen') || '[]'); } catch (e) { return []; } })();
