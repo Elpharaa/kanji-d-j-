@@ -16409,7 +16409,7 @@ body.tbopen { overflow: hidden; }
       var wk = p[2] === 'all' ? 'all' : +p[2];
       KANJI_DATA.forEach(function (k) { if (wkLevel(k.wk) === p[1] && (wk === 'all' || k.wk === wk)) K.push(k.k); });
       WORDS.forEach(function (w) { if (wkLevel(w.wk) === p[1] && (wk === 'all' || w.wk === wk)) W.push(w); });
-    } else if (p[0] === 'K') { kgFiche(p[1], K, W); } else {
+    } else if (p[0] === 'K') { klKgFiche(p[1], K, W); } else {
       K = jlBuild()[p[1]].slice(); var seen2 = {};
       jlWords(p[1]).forEach(function (w) { var kk = w.jp + '|' + w.kana; if (!seen2[kk]) { seen2[kk] = 1; W.push(w); } });
     }
@@ -27174,7 +27174,7 @@ body.tbopen { overflow: hidden; }
   /* ===== v296b. Fiches kanjis : sélecteur Cours / JLPT / Keigo puis sous-parties ===== */
   var klLast = {};
   function klCat() { return kListNow().charAt(0); }
-  function kgFiche(id, K, W) {
+  function klKgFiche(id, K, W) {
     var t = QV.filter(function (x) { return x.id === id; })[0], seen = {}; if (!t) return;
     t.w.forEach(function (w) { W.push(w); Array.from(w.jp).forEach(function (c) { if (!seen[c] && (KMAP[c] || JK[c])) { seen[c] = 1; K.push(c); } }); });
   }
