@@ -13431,7 +13431,7 @@ body.cdcropon{overflow:hidden}
   /* ---- JLPT : choix du thème et des kanjis comme pour le cours ---- */
   function jlTh() { if (!S || !S.flJl || !S.flTh) return null; var t = typeof qvTheme === 'function' ? qvTheme(S.flTh) : null; return t && t.lv === S.flJl ? t : null; }
   function jlWordsSel(noK) {
-    var all = jlFlashWords(S.flJl), th = jlTh();
+    var th = jlTh(), all = th && th.id.indexOf('kg_') === 0 ? th.w.map(function (x) { return jlAdapt(x); }) : jlFlashWords(S.flJl);
     if (th) { var ok = {}; th.w.forEach(function (w) { ok[w.key] = 1; }); all = all.filter(function (a) { return ok[a.key]; }); }
     if (!noK) { var ks = kSelList(); if (ks.length) { var f = all.filter(function (a) { return a.kanjis.some(function (c) { return ks.indexOf(c) >= 0; }); }); if (f.length) return f; } }
     return all;
@@ -14203,7 +14203,7 @@ body.cdcropon{overflow:hidden}
   }
   function jlFlashWords(lv) {
     if (JLFW[lv]) return JLFW[lv]; var o = [];
-    QV.forEach(function (t) { if (t.virt || t.lv !== lv) return; t.w.forEach(function (w) { o.push(jlAdapt(w)); }); });
+    QV.forEach(function (t) { if (t.virt || t.lv !== lv || t.id.indexOf('kg_') === 0) return; t.w.forEach(function (w) { o.push(jlAdapt(w)); }); });
     return (JLFW[lv] = o);
   }
   // Mots JLPT / vie quotidienne déjà travaillés (pour « à revoir » et le carnet d'erreurs)
@@ -21269,7 +21269,7 @@ body.cdcropon{overflow:hidden}
   function askHTML(px, withK) {
     var sel = weekSel(), lv = curLv(), wks = lvWeeks(), ks = kSelList(), jl = px === 'gs' && S.flJl ? S.flJl : '', last = withK ? 3 : 2, st = gsStep;
     if (st > 1) st = 0;
-    var lvName = jl ? (jl === 'q' ? 'Vie quotidienne' : 'JLPT ' + jl.toUpperCase()) : CURSUS[lv].tag + ' · ' + CURSUS[lv].sem;
+    var kgm = jl === 'q' && /^kg_/.test(S.flTh || ''), lvName = kgm ? 'Keigo' : jl ? (jl === 'q' ? 'Vie quotidienne' : 'JLPT ' + jl.toUpperCase()) : CURSUS[lv].tag + ' · ' + CURSUS[lv].sem;
     var wkName = sel === 'all' ? 'toutes les semaines' : 'Semaine ' + wkNum(+sel) + ((L1_TITLES[+sel] || {}).title ? ' · ' + L1_TITLES[+sel].title : (+sel < 100 && MP_WKNAME[+sel] ? ' · ' + MP_WKNAME[+sel] : ''));
     var kName = ks.length ? ks.length + ' kanji' + (ks.length > 1 ? 's' : '') + ' choisi' + (ks.length > 1 ? 's' : '') : 'tous les kanjis';
     if (st === 0) {
@@ -21278,10 +21278,10 @@ body.cdcropon{overflow:hidden}
         '<button type="button" class="gsksm as2btn" data-gsstep="1" data-gspx="' + px + '">Modifier</button></div>';
     }
     var q = '<div class="askq as2q">Quel niveau veux-tu travailler ?</div>', adv = '';
-    var levelSel = askSel(px + 'Lv', 'Année et semestre', ['L0', 'L0S2', 'L1', 'L1S2', 'L2'].map(function (id) { return [id, CURSUS[id].tag + ' · ' + CURSUS[id].sem, 'Cours']; }).concat(px === 'gs' ? JL_LV.map(function (l) { return ['J:' + l[0], l[0] === 'q' ? 'Vie quotidienne (hors cours)' : 'JLPT ' + l[1], 'JLPT et quotidien']; }) : []), jl ? 'J:' + jl : lv);
+    var levelSel = askSel(px + 'Lv', 'Année et semestre', ['L0', 'L0S2', 'L1', 'L1S2', 'L2'].map(function (id) { return [id, CURSUS[id].tag + ' · ' + CURSUS[id].sem, 'Cours']; }).concat(px === 'gs' ? JL_LV.map(function (l) { return ['J:' + l[0], l[0] === 'q' ? 'Vie quotidienne (hors cours)' : 'JLPT ' + l[1], 'JLPT']; }).concat(KG_GROUPS.map(function (g) { return ['K:' + g.id, g.name, 'Keigo']; })) : []), kgm ? 'K:' + S.flTh : jl ? 'J:' + jl : lv);
     if (gsAdv) {
       adv = '<div class="as2adv">';
-      if (jl) adv += '<p class="as2l">Thème</p>' + askSel(px + 'Th', 'Thème à réviser', [['', 'Tous les thèmes']].concat(QV.filter(function (t) { return !t.virt && t.lv === jl; }).map(function (t) { return [t.id, t.name]; })), S.flTh || '');
+      if (kgm) adv += ''; else if (jl) adv += '<p class="as2l">Thème</p>' + askSel(px + 'Th', 'Thème à réviser', [['', 'Tous les thèmes']].concat(QV.filter(function (t) { return !t.virt && t.lv === jl && t.id.indexOf('kg_') !== 0; }).map(function (t) { return [t.id, t.name]; })), S.flTh || '');
       else adv += '<p class="as2l">Semaine</p>' + askSel(px + 'Wk', 'Semaine à réviser', [['all', 'Toutes les semaines']].concat(wks.map(function (wk) {
         var t = wk < 100 ? MP_WKNAME[wk] : (L1_TITLES[wk] || {}).title; return [String(wk), 'Semaine ' + wkNum(wk) + (t ? ' · ' + t : '')];
       })), sel);
@@ -21296,7 +21296,7 @@ body.cdcropon{overflow:hidden}
       adv += '</div>';
     }
     var lbl = gsAdv ? 'Masquer les options avancées ▴' : 'Options avancées : ' + (jl ? 'thème' : 'semaine') + (withK ? ', kanjis' : '') + ' ▾';
-    return '<div class="askbox">' + q + levelSel + '<button type="button" class="asklink as2tog" data-gsadv="1" data-gspx="' + px + '">' + lbl + '</button>' + adv +
+    return '<div class="askbox">' + q + levelSel + (kgm && !withK ? '' : '<button type="button" class="asklink as2tog" data-gsadv="1" data-gspx="' + px + '">' + lbl + '</button>') + adv +
       '<div class="asknav"><button type="button" class="btn primary" data-gsstep="0" data-gspx="' + px + '">Terminé ✓</button></div></div>';
   }
   function seenOptHTML(px) {
@@ -21347,7 +21347,7 @@ body.cdcropon{overflow:hidden}
   });
   document.addEventListener('change', function (e) {
     var t = e.target; if (!t || !user || (t.id !== 'gsLv' && t.id !== 'gsWk' && t.id !== 'gsTh')) return;
-    if (t.id === 'gsLv') { S.flTh = ''; if (t.value.indexOf('J:') === 0) { S.flJl = t.value.slice(2); } else { S.flJl = ''; setCursus(t.value); } } else if (t.id === 'gsTh') { S.flTh = t.value; persist(); } else { S.weekSel = t.value; persist(); }
+    if (t.id === 'gsLv') { S.flTh = ''; if (t.value.indexOf('K:') === 0) { S.flJl = 'q'; S.flTh = t.value.slice(2); } else if (t.value.indexOf('J:') === 0) { S.flJl = t.value.slice(2); } else { S.flJl = ''; setCursus(t.value); } } else if (t.id === 'gsTh') { S.flTh = t.value; persist(); } else { S.weekSel = t.value; persist(); }
     S.kSel = []; S.kSelJ = []; persist();
     if (t.id === 'gsLv') { gsStep = 0; gsAdv = false; }
     var host = document.getElementById('gsHost'); if (host) host.innerHTML = scopeBlockHTML();
@@ -26319,6 +26319,7 @@ body.cdcropon{overflow:hidden}
     return { list: th, by: by };
   })();
   /* v288 : les mots et expressions du keigo rejoignent « Vie quotidienne » (flashcards, jeux, phrases à trou) */
+  var KG_GROUPS = [];
   (function () {
     var groups = [
       ['kg_visite', '訪', 'Keigo · visite et salutations', 'Entrer chez quelqu\'un, saluer un supérieur, verbes honorifiques et modestes', ['visite', 'saluer']],
@@ -26328,6 +26329,7 @@ body.cdcropon{overflow:hidden}
       ['kg_discours', '引', 'Discours rapporté et expressions', 'Rapporter, définir, énumérer', ['rapp', 'defi', 'enum']]
     ];
     var SKIP = { 'だよ': 1, 'よね': 1, '足りないか': 1, 'いいの': 1, 'んだ': 1, 'って': 1, 'ね': 1, 'くれない': 1, 'もらえませんか': 1, 'にしても': 1, 'にしろ': 1, 'にせよ': 1, 'ちょっとで': 1, '明日でも': 1 };
+    KG_GROUPS = groups.map(function (g) { return { id: g[0], name: g[2], th: g[4] }; });
     var qi = -1; QV.forEach(function (t, i) { if (t.id === 'q_all') qi = i; });
     var made = [];
     groups.forEach(function (g) {
@@ -26340,7 +26342,10 @@ body.cdcropon{overflow:hidden}
       g[4].forEach(function (id) { var t = KG.by[id]; t.E.forEach(function (e) { add(e.jp, e.rd, e.fr); }); t.C.forEach(function (c) { add(c.hit, c.rd, c.sens); if (!EXS[c.hit]) EXS[c.hit] = [c.pre + c.hit + c.post, c.fr]; }); });
       made.push(th);
     });
-    if (qi >= 0) { QV.splice.apply(QV, [qi, 0].concat(made)); var qa = QV[qi + made.length]; made.forEach(function (t) { qa.w = qa.w.concat(t.w); }); } else made.forEach(function (t) { QV.push(t); });
+    var allw = []; made.forEach(function (t) { allw = allw.concat(t.w); });
+    made.push({ id: 'kg_all', k: '敬', name: 'Tout le keigo', note: 'Tous les mots et expressions du fascicule', w: allw, lv: 'q', virt: 1, hid: 1 });
+    KG_GROUPS.unshift({ id: 'kg_all', name: 'Tout le keigo', th: null });
+    if (qi >= 0) QV.splice.apply(QV, [qi, 0].concat(made)); else made.forEach(function (t) { QV.push(t); });
   })();
   /* [neutre, lecture, sens, [honorifique], [modeste], [formes fausses]] */
   var KG_VERBS = [
@@ -26401,10 +26406,12 @@ body.cdcropon{overflow:hidden}
     return [d, ks.length];
   }
   function kgTotals() { var d = 0, n = 0; KG.list.forEach(function (t) { var p = kgProg(t); d += p[0]; n += p[1]; }); return [d, n]; }
-  function kgClzItems(id) {
+  function kgGroupOfTheme(tid) { var g = KG_GROUPS.filter(function (x) { return x.th && x.th.indexOf(tid) >= 0; })[0]; return g ? g.id : 'kg_all'; }
+  function kgThemesOf(gid) { var g = KG_GROUPS.filter(function (x) { return x.id === gid; })[0]; return g && g.th ? g.th : null; }
+  function kgClzItems(ids) {
     var out = [];
     KG.list.forEach(function (t) {
-      if (id && id !== 'all' && t.id !== id) return;
+      if (ids && ids.indexOf(t.id) < 0) return;
       t.C.forEach(function (c) {
         var w = c._w || (c._w = { mot: c.hit, lecture: c.rd, sens: c.sens, key: 'kg:' + c.hit, type: '', kg: true, grp: c.th, disp: c.hit, kanjis: [] });
         out.push({ w: w, pre: c.pre, hit: c.hit, post: c.post, fr: c.fr, full: c.pre + c.hit + c.post, kg: true });
@@ -26418,8 +26425,8 @@ body.cdcropon{overflow:hidden}
     return out;
   }
   /* ---- branchement sur « Phrases à trou » ---- */
-  function clzSrc() { return S && S.clzSrc === 'kg' ? 'kg' : 'vocab'; }
-  var _kgClzItems0 = clzItems; clzItems = function () { return clzSrc() === 'kg' ? kgClzItems(S.clzKgT || 'all') : _kgClzItems0(); };
+  function clzSrc() { return S && S.flJl === 'q' && /^kg_/.test(S.flTh || '') ? 'kg' : 'vocab'; }
+  var _kgClzItems0 = clzItems; clzItems = function () { return clzSrc() === 'kg' ? kgClzItems(kgThemesOf(S.flTh)) : _kgClzItems0(); };
   var _kgDis0 = clzDistractors;
   clzDistractors = function (it) {
     if (!it.w || !it.w.kg) return _kgDis0(it);
@@ -26440,29 +26447,6 @@ body.cdcropon{overflow:hidden}
     if (!_kgFDdone) { _kgFDdone = true; Object.keys(KG_FD).forEach(function (k) { d[k] = KG_FD[k]; }); }
     return d;
   };
-  var _kgSetup0 = clzSetupHTML;
-  clzSetupHTML = function () {
-    var kgm = clzSrc() === 'kg', seg = '<div class="seg clzsrc" role="tablist" aria-label="Contenu des phrases"><button type="button" role="tab" class="' + (kgm ? '' : 'on') + '" aria-selected="' + (!kgm) + '" data-clzsrc="vocab">Vocabulaire du cours</button><button type="button" role="tab" class="' + (kgm ? 'on' : '') + '" aria-selected="' + kgm + '" data-clzsrc="kg">Expressions · keigo</button></div>';
-    if (!kgm) return _kgSetup0().replace('<div class="panel clzpanel">', '<div class="panel clzpanel">' + seg);
-    gsKMode = false; gsKind = false; gsFlashCtx = false;
-    var cur = S.clzKgT || 'all', items = kgClzItems(cur), on = !!S.clzFuri, md = S.clzMode === 'input' ? 'input' : 'mcq';
-    var chips = '<button type="button" class="kgchip' + (cur === 'all' ? ' on' : '') + '" data-clzkt="all">Tout</button>' + KG.list.map(function (t) { return '<button type="button" class="kgchip' + (cur === t.id ? ' on' : '') + '" data-clzkt="' + t.id + '"><span class="jp">' + t.k + '</span> ' + esc(t.t) + '</button>'; }).join('');
-    return '<div class="grp djbar"><h3 class="sgh" data-k="文"><span>Phrases à trou</span></h3></div>' +
-      '<div class="panel clzpanel">' + seg + '<p class="small muted" style="margin:6px 0 8px">Les expressions de ton fascicule (keigo, oral, discours rapporté) : retrouve celle qui manque dans la phrase.</p><div class="kgchips">' + chips + '</div>' +
-      '<p class="gscount clzcount"><b>' + items.length + ' phrase' + (items.length > 1 ? 's' : '') + '</b> pour cette sélection</p>' +
-      '<label class="seenopt"><input type="checkbox" id="clzFuri"' + (on ? ' checked' : '') + '><span>Afficher les <b>furigana</b> <small>(lecture au-dessus des kanjis)</small></span></label>' +
-      '<label class="seenopt"><input type="checkbox" id="clzAdapt"' + (S.clzAdapt ? ' checked' : '') + '><span>Furigana <b>adaptatifs</b> <small>(seulement sur les kanjis que tu ne maîtrises pas encore)</small></span></label>' +
-      '<label class="kindopt">Façon de répondre<select id="clzMode" aria-label="Façon de répondre"><option value="mcq"' + (md === 'mcq' ? ' selected' : '') + '>Choisir parmi 4 expressions</option><option value="input"' + (md === 'input' ? ' selected' : '') + '>Écrire l\'expression au clavier</option></select></label>' +
-      '<button type="button" class="btn primary clzgo" data-clz="start"' + (items.length ? '' : ' disabled') + '>▶ Commencer (' + Math.min(10, items.length) + ' phrases)</button></div>';
-  };
-  document.addEventListener('click', function (e) {
-    if (!user || !S) return;
-    var a = e.target.closest ? e.target.closest('[data-clzsrc]') : null;
-    if (a) { S.clzSrc = a.getAttribute('data-clzsrc') === 'kg' ? 'kg' : 'vocab'; persist(); renderClz(); return; }
-    var c = e.target.closest ? e.target.closest('[data-clzkt]') : null;
-    if (c) { S.clzKgT = c.getAttribute('data-clzkt'); persist(); renderClz(); }
-  });
-
   /* ---- section Keigo du Dojo ---- */
   var kgv = { view: 'home', id: null, g: null, th: 'all', items: [], i: 0, ok: 0, xp: 0, newM: 0, q: null, ans: null, pick: -1 };
   var KG_GAMES = [
@@ -26486,7 +26470,7 @@ body.cdcropon{overflow:hidden}
       });
       h += '</div>';
     });
-    h += '<p class="small muted kgintro" style="margin-top:14px">💡 Les mots du keigo sont aussi dans les <b>Flashcards</b>, les <b>Mini-jeux</b> et les <b>Phrases à trou</b> : choisis « JLPT et quotidien », puis un thème « Keigo » ou « Oral et registres ».</p>';
+    h += '<p class="small muted kgintro" style="margin-top:14px">💡 Les mots du keigo sont aussi dans les <b>Flashcards</b>, les <b>Mini-jeux</b> et les <b>Phrases à trou</b> : choisis l\'onglet « Keigo » dans « Quel niveau veux-tu travailler ? ».</p>';
     h += '<h4 class="kgh">S\'entraîner</h4><div class="kglist">';
     KG_GAMES.forEach(function (g) { h += '<button type="button" class="kgth kgg" data-kg="game" data-g="' + g[0] + '"><span class="kgk">' + g[1] + '</span><span class="kgtx"><b>' + g[2] + '</b><small>' + g[3] + '</small></span></button>'; });
     h += '<button type="button" class="kgth kgg" data-kg="clz" data-id="all"><span class="kgk">✍️</span><span class="kgtx"><b>Phrases à trou</b><small>Retrouve l\'expression qui manque dans la phrase</small></span></button></div>';
@@ -26660,7 +26644,7 @@ body.cdcropon{overflow:hidden}
       if (kgv.i >= kgv.items.length) { kgv.view = 'end'; try { streakTick(1); } catch (er) {} persist(); } else kgv.q = kgv.items[kgv.i];
       kgRender(); window.scrollTo(0, 0);
     }
-    else if (a === 'clz') { S.clzSrc = 'kg'; S.clzKgT = b.getAttribute('data-id') || 'all'; persist(); go('clz'); }
+    else if (a === 'clz') { var cid = b.getAttribute('data-id'); S.flJl = 'q'; S.flTh = cid && cid !== 'all' ? kgGroupOfTheme(cid) : 'kg_all'; S.kSel = []; S.kSelJ = []; persist(); go('clz'); }
   });
   document.addEventListener('keydown', function (e) {
     if (e.ctrlKey || e.metaKey || e.altKey || e.repeat || kgv.view !== 'quiz' || !$('kgHost') || !user || !S) return;
