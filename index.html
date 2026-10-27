@@ -26318,6 +26318,30 @@ body.cdcropon{overflow:hidden}
     });
     return { list: th, by: by };
   })();
+  /* v288 : les mots et expressions du keigo rejoignent « Vie quotidienne » (flashcards, jeux, phrases à trou) */
+  (function () {
+    var groups = [
+      ['kg_visite', '訪', 'Keigo · visite et salutations', 'Entrer chez quelqu\'un, saluer un supérieur, verbes honorifiques et modestes', ['visite', 'saluer']],
+      ['kg_inviter', '誘', 'Keigo · inviter et demander', 'Inviter et demander poliment un service', ['inviter', 'demander']],
+      ['kg_refuser', '断', 'Keigo · refuser et aider', 'Refuser sans froisser, proposer son aide', ['refuser', 'aide']],
+      ['kg_oral', '話', 'Oral et registres de langue', 'Interjections, contractions de l\'oral, registres', ['oral1', 'oral2', 'oral3', 'reg']],
+      ['kg_discours', '引', 'Discours rapporté et expressions', 'Rapporter, définir, énumérer', ['rapp', 'defi', 'enum']]
+    ];
+    var SKIP = { 'だよ': 1, 'よね': 1, '足りないか': 1, 'いいの': 1, 'んだ': 1, 'って': 1, 'ね': 1, 'くれない': 1, 'もらえませんか': 1, 'にしても': 1, 'にしろ': 1, 'にせよ': 1, 'ちょっとで': 1, '明日でも': 1 };
+    var qi = -1; QV.forEach(function (t, i) { if (t.id === 'q_all') qi = i; });
+    var made = [];
+    groups.forEach(function (g) {
+      var th = { id: g[0], k: g[1], name: g[2], note: g[3], w: [], lv: 'q' };
+      function add(jp, rd, fr) {
+        if (!jp || jp.length < 2 || /[／・…、～？！]/.test(jp) || SKIP[jp] || !/^[ぁ-んァ-ヶー]+$/.test(rd)) return;
+        var key = 'q:' + jp; if (QVW[key]) return;
+        var w = { jp: jp, kana: rd, fr: fr, key: key, th: th.id }; th.w.push(w); QVW[key] = w;
+      }
+      g[4].forEach(function (id) { var t = KG.by[id]; t.E.forEach(function (e) { add(e.jp, e.rd, e.fr); }); t.C.forEach(function (c) { add(c.hit, c.rd, c.sens); if (!EXS[c.hit]) EXS[c.hit] = [c.pre + c.hit + c.post, c.fr]; }); });
+      made.push(th);
+    });
+    if (qi >= 0) { QV.splice.apply(QV, [qi, 0].concat(made)); var qa = QV[qi + made.length]; made.forEach(function (t) { qa.w = qa.w.concat(t.w); }); } else made.forEach(function (t) { QV.push(t); });
+  })();
   /* [neutre, lecture, sens, [honorifique], [modeste], [formes fausses]] */
   var KG_VERBS = [
     ['行きます', 'いきます', 'aller', ['いらっしゃいます', 'おいでになります'], ['参ります', '伺います'], []],
@@ -26462,6 +26486,7 @@ body.cdcropon{overflow:hidden}
       });
       h += '</div>';
     });
+    h += '<p class="small muted kgintro" style="margin-top:14px">💡 Les mots du keigo sont aussi dans les <b>Flashcards</b>, les <b>Mini-jeux</b> et les <b>Phrases à trou</b> : choisis « JLPT et quotidien », puis un thème « Keigo » ou « Oral et registres ».</p>';
     h += '<h4 class="kgh">S\'entraîner</h4><div class="kglist">';
     KG_GAMES.forEach(function (g) { h += '<button type="button" class="kgth kgg" data-kg="game" data-g="' + g[0] + '"><span class="kgk">' + g[1] + '</span><span class="kgtx"><b>' + g[2] + '</b><small>' + g[3] + '</small></span></button>'; });
     h += '<button type="button" class="kgth kgg" data-kg="clz" data-id="all"><span class="kgk">✍️</span><span class="kgtx"><b>Phrases à trou</b><small>Retrouve l\'expression qui manque dans la phrase</small></span></button></div>';
