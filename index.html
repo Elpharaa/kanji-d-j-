@@ -13475,6 +13475,7 @@ body.tbopen { overflow: hidden; }
     window.scrollTo(0, 0);
     try { var ve = $(view); if (ve && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) { ve.classList.remove('vin'); void ve.offsetWidth; ve.classList.add('vin'); document.body.classList.add('casc'); clearTimeout(show._c); show._c = setTimeout(function () { document.body.classList.remove('casc'); }, 900); } } catch (e) {}
     if (typeof pushStatus === 'function') pushStatus();
+    try { navNote(view); } catch (e) {}
   }
   var kdLoadT = null;
   function kdLoad(ms) {
@@ -27361,6 +27362,40 @@ body.tbopen { overflow: hidden; }
       '<i class="pmoon" aria-hidden="true"></i>' + scn + branch +
       '<div class="pwater" aria-hidden="true">' + shimmer + torii + koi('k1', false) + koi('k2', true) + koi('k3', false) + lotus('l1') + lotus('l2') + '</div>' + petals;
   }
+  /* ===== v313. Bouton retour du téléphone / navigateur : revient à l'écran précédent au lieu de quitter l'appli ===== */
+  var navStack = [], navIgnore = false, navLastExit = 0;
+  function navKey(view) {
+    return view === 'vHub' ? 'hub' : view === 'vHome' ? (djSub === 'prog' ? 'prog' : 'home') : view === 'vStory' ? (storyTab === 'base' ? 'base' : 'story') : view === 'vProfil' ? 'profil' : view === 'vBoard' ? 'board' : view === 'vSettings' ? 'settings' : view === 'vKanji' ? 'kanji' : view === 'vClz' ? 'clz' : view === 'vOnline' ? 'online' : view === 'vMulti' ? 'multi' : '';
+  }
+  function navNote(view) {
+    var k = navKey(view); if (!k) return;
+    if (navStack[navStack.length - 1] !== k) { navStack.push(k); if (navStack.length > 30) navStack.shift(); }
+  }
+  function navBack() {
+    var m = $('appModal'); if (m && !m.hidden) { closeModal(); return true; }
+    var views = ['vHome', 'vStory', 'vKanji', 'vOnline', 'vSession', 'vSettings', 'vBoard', 'vMulti', 'vProfil', 'vClz', 'vHub'], cur = null;
+    views.forEach(function (id) { var e = $(id); if (e && !e.hidden) cur = e; });
+    if (cur && cur.id !== 'vHub') {
+      var sel = ['#btnQuit', '.djback', '.shopback', '.vback', '.wldback', '.railback', '[data-fc="quit"]'], i, el;
+      for (i = 0; i < sel.length; i++) { var all = cur.querySelectorAll(sel[i]); el = all.length ? all[all.length - 1] : null; if (el && el.offsetParent !== null && !el.disabled) { el.click(); return true; } }
+    }
+    if (navStack.length > 1) { navStack.pop(); var k = navStack[navStack.length - 1]; go(k); return true; }
+    if (cur && cur.id !== 'vHub') { go('hub'); return true; }
+    return false;
+  }
+  (function () {
+    try { history.replaceState({ kd: 1 }, ''); history.pushState({ kd: 2 }, ''); } catch (e) { return; }
+    window.addEventListener('popstate', function () {
+      if (navIgnore) { navIgnore = false; return; }
+      try {
+        if (!user) { navIgnore = true; history.back(); return; }
+        if (navBack()) { history.pushState({ kd: 2 }, ''); return; }
+        var now = Date.now();
+        if (now - navLastExit < 2400) { navIgnore = true; history.back(); return; }
+        navLastExit = now; toast('Appuie encore sur retour pour quitter'); history.pushState({ kd: 2 }, '');
+      } catch (er) { /* ignore */ }
+    });
+  })();
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
