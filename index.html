@@ -5156,6 +5156,34 @@ body.tbopen { overflow: hidden; }
 @keyframes stkn{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
 .stk:not(.play) .a{stroke-dashoffset:0}.stk:not(.play) .sn{opacity:1}
 @media (prefers-reduced-motion:reduce){.stk .a{stroke-dashoffset:0;animation:none!important}.stk .sn{opacity:1;animation:none!important}}
+/* v318 dictionnaire */
+.dcbar{margin:4px 0 6px}
+.dcq{width:100%;box-sizing:border-box;min-height:46px;padding:10px 14px;border-radius:14px;border:2px solid #4b3d84;background:#fffaf7;font:inherit;font-size:1rem;color:#2c2452}
+.dcq:focus{outline:3px solid rgba(208,88,127,.35);outline-offset:1px}
+.dcrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0}
+.dcsel{flex:1;min-width:0;min-height:40px;padding:6px 10px;border-radius:12px;border:1.5px solid #b6a8e0;background:#fffaf7;font:inherit;color:#2c2452}.dcss{flex:0 0 auto}
+.dclist{display:flex;flex-direction:column;gap:7px}
+.dcr{display:grid;grid-template-columns:minmax(84px,34%) 1fr;grid-template-areas:"jp fr" "jp bs";column-gap:10px;row-gap:3px;text-align:left;width:100%;padding:9px 12px;border-radius:14px;border:1.5px solid rgba(75,61,132,.35);background:linear-gradient(#fffdfa,#faf3ff);color:#2c2452;font:inherit;cursor:pointer;align-items:center}
+.dcr:active{transform:translateY(1px)}
+.dcjp{grid-area:jp;font-size:1.25rem;font-weight:700;display:flex;flex-direction:column;word-break:break-all}
+.dcrd{font-size:.68rem;font-weight:500;color:#6f629a}
+.dcfr{grid-area:fr;font-size:.9rem;line-height:1.25}.dcvia{color:#a63a60;font-size:.78rem}
+.dcbs{grid-area:bs;display:flex;gap:4px;flex-wrap:wrap}
+.dcb{font-size:.62rem;font-weight:700;padding:1px 7px;border-radius:999px;background:#efe8fb;color:#4b3d84;border:1px solid rgba(75,61,132,.25)}
+.dcb.dct{background:#fdeef3;color:#a63a60;border-color:rgba(208,88,127,.35)}.dcb.dcl{background:#fff3d6;color:#8a5a00;border-color:rgba(200,150,40,.4)}.dcb.dcc{background:#e8f5ec;color:#2e6b3c;border-color:rgba(46,140,60,.3)}
+.dcmore{width:100%;margin-top:10px}.dccount{margin:8px 0 6px}.dcempty{text-align:center;color:#6f629a;padding:20px 8px}
+.dcd .dcdh{display:flex;flex-direction:column;align-items:center;gap:2px;margin:4px 0 8px}.dcbig{font-size:2.4rem;font-weight:800;line-height:1.1}.dcdrd{font-size:1.1rem;color:#6f629a}
+.dcdfr{text-align:center;font-size:1.05rem;margin:4px 0}.dcd .dcbs{justify-content:center;margin-bottom:8px}
+.dcex{margin:12px 0;padding:10px 12px;border-radius:12px;background:#fffaf0;border:1px solid rgba(200,150,40,.35)}.dcexj{font-size:1.05rem;line-height:2}
+.dckj{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}.dckb{min-width:44px;min-height:44px;font-size:1.3rem;border-radius:12px;border:2px solid #4b3d84;background:#fffaf7;color:#2c2452;cursor:pointer}
+.dch4{margin:16px 0 4px;font-size:1rem}.dch4 small{font-weight:400;color:#6f629a}
+.dcg{margin:10px 0 4px;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#a63a60}
+.dcf{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.dcfr2{display:flex;flex-direction:column;gap:1px;padding:6px 9px;border-radius:10px;background:#faf5ff;border:1px solid rgba(75,61,132,.18)}
+.dcfl{font-size:.64rem;color:#6f629a}.dcfv{font-size:1.02rem;font-weight:700;display:flex;flex-direction:column}.dcfv small{font-size:.66rem;font-weight:500;color:#6f629a}
+@media (max-width:360px){.dcf{grid-template-columns:1fr}}
+.dcrow{background:rgba(255,250,247,.9);padding:8px 10px;border-radius:14px;border:1.5px solid rgba(75,61,132,.25)}.dcrow label{color:#2c2452;font-weight:700}
+.dcbar+.as2l,#dcHost .as2l{background:rgba(255,250,247,.9);display:inline-block;padding:1px 10px;border-radius:999px;color:#2c2452}
 
 </style>
 
@@ -21898,6 +21926,7 @@ body.tbopen { overflow: hidden; }
     var i = DJ_INFO[sub], art = sub === 'err' ? DJ_ERR_ART : sub === 'daily' ? QV_ART : (GAME_ART[i.art] || ''), d = i.d, chip = '';
     if (sub === 'daily' || sub === 'jlpt') { var tq = qvTotals(sub), nth = QV.filter(function (t) { return !t.virt && (sub === 'jlpt' ? t.lv !== 'q' : t.lv === 'q'); }).length; d = nth + ' thèmes · ' + tq[0] + '/' + tq[1] + ' mots acquis'; }
     if (sub === 'bonus') d = BONUS.reduce(function (n, c) { return n + c.items.length; }, 0) + ' mots : onomatopées, familier, oral, amis';
+    if (sub === 'dico') d = dcCount().toLocaleString('fr-FR') + ' mots · verbes conjugués · expressions';
     if (sub === 'kg') d = kgSummary();
     if (sub === 'kana') d = knProgressAll() + ' / ' + knTotalAll() + ' kana maîtrisés';
     if (sub === 'fur') { var fc = furCount(); d = fc ? fc + ' mot' + (fc > 1 ? 's' : '') + ' en cuisson · ' + (S.furDone || 0) + ' forgé' + ((S.furDone || 0) > 1 ? 's' : '') : 'Les mots qui te résistent, cuits jusqu\'à être retenus'; if (fc) chip = '<span class="djchip fur" role="img" aria-label="' + fc + ' au fourneau">' + fc + '</span>'; }
@@ -22931,12 +22960,13 @@ body.tbopen { overflow: hidden; }
   function djGamesHTML(fl, kj, mj) {
     document.body.classList.toggle('qvon', djSub === 'daily' || djSub === 'jlpt');
     if (!djSub) return tipHTML('dojo', 'Voici ton Dojo ! Touche une carte pour t\'entraîner : <b>Flashcards</b> pour revoir tes mots, <b>Kanjis</b>, <b>Mini-jeux</b>, ton <b>Carnet d\'erreurs</b>, ou du <b>vocabulaire du quotidien</b> ou le <b>JLPT</b>.') +
-      '<div class="djgrid">' + ['flash', 'kana', 'kanji', 'tb', 'mini', 'kg', 'err', 'daily', 'jlpt', 'bonus', 'rad'].map(djTile).join('') + '</div>';
+      '<div class="djgrid">' + ['flash', 'kana', 'kanji', 'dico', 'tb', 'mini', 'kg', 'err', 'daily', 'jlpt', 'bonus', 'rad'].map(djTile).join('') + '</div>';
     if (djSub === 'err') return '';
     if (djSub === 'prog') return djBackHTML('prog') + '<div id="pgHost">' + progInner() + '</div>';
     if (djSub === 'bonus') return djBackHTML('bonus') + tipHTML('dj_bonus', DJ_INFO.bonus.tip) + '<div id="bonusHost">' + bonusInner() + '</div>';
     if (djSub === 'kg') return djBackHTML('kg') + tipHTML('dj_kg', DJ_INFO.kg.tip) + '<div id="kgHost">' + kgInner() + '</div>';
     if (djSub === 'tb') return djBackHTML('tb') + tipHTML('dj_tb', DJ_INFO.tb.tip) + '<div id="tbHost">' + tbInner() + '</div>';
+    if (djSub === 'dico') return djBackHTML('dico') + tipHTML('dj_dico', DJ_INFO.dico.tip) + '<div id="dcHost">' + dcInner() + '</div>';
     if (djSub === 'kana') return djBackHTML('kana') + tipHTML('dj_kana', DJ_INFO.kana.tip) + '<div id="kanaHost">' + knInner() + '</div>';
     if (djSub === 'fur') return djBackHTML('fur') + tipHTML('dj_fur', DJ_INFO.fur.tip) + '<div id="furHost">' + furInner() + '</div>';
     if (djSub === 'rad' || djSub === 'cuis' || djSub === 'lire' || djSub === 'nb') return djBackHTML(djSub) + tipHTML('dj_' + djSub, DJ_INFO[djSub].tip) + '<div id="lrnHost">' + lrnInner() + '</div>';
@@ -27508,6 +27538,240 @@ body.tbopen { overflow: hidden; }
     var grid = '<rect class="gb" x="1" y="1" width="107" height="107" rx="6"/><path class="gl" d="M54.5 2V107M2 54.5H107"/><path class="gl gd" d="M2 2L107 107M107 2L2 107"/>';
     return '<div class="stk play"><svg viewBox="0 0 109 109" role="img" aria-label="Ordre des traits de ' + esc(k) + '">' + grid + g + p + nums + '</svg><div class="stkb"><span class="small muted"><b>' + a.length + '</b> trait' + (a.length > 1 ? 's' : '') + ' · ordre d\'écriture</span><button type="button" class="stkr" data-stk="1">▶ Rejouer</button></div></div>';
   }
+  /* ===== v318. Dictionnaire : tous les mots, verbes conjugués, adjectifs, expressions ; filtres niveau / thème / type ===== */
+  var DC = null, dc = { q: '', t: 'all', lv: 'all', th: '', n: 60, sort: 'lv' };
+  var DC_LVN = { n5: 'N5', n4: 'N4', n3: 'N3', n2: 'N2', n1: 'N1', q: 'Quotidien', c: 'Cours', b: 'Bonus' };
+  var DC_TN = { v: 'Verbe', ai: 'Adj. en い', an: 'Adj. en な', e: 'Expression', o: 'Mot' };
+  var DC_GODAN_RU = ['帰る', '返る', '入る', '要る', '切る', '知る', '走る', '減る', '握る', '散る', '喋る', '蹴る', '参る', '限る', '焦る', '滑る', '湿る', '混じる', '照る', '練る', '捻る', '陥る', '遮る', '翻る', '覆る', '蘇る', '茂る', '嘲る', '罵る', '契る', '煎る', '炒る', 'かえる', 'はいる', 'しゃべる', 'へる', 'ける', 'いらっしゃる', 'くださる', 'なさる', 'おっしゃる', 'ござる'];
+  var DC_AI = '高 安 大き 小さ 新し 古 長 短 多 少な 近 遠 早 速 遅 重 軽 強 弱 広 狭 暑 寒 熱 冷た 暖か 涼し 暗 明る 白 黒 赤 青 丸 甘 辛 苦 酸っぱ 汚 若 偉 怖 痛 眠 忙し 楽し 嬉し 悲し 難し 易し 優し 厳し 美味し 面白 悪 良 太 細 深 浅 低 硬 固 柔らか 臭 温 濃 薄 賢 凄 鋭 鈍 幼 緩 険 醜 眩し 貧し 珍し 恐ろし 詳し 正し 親し 激し 羨まし 懐かし 欲し 若 黄色 眠た 気持ち悪 可愛 恥ずかし 寂し 淋し 美し 素晴らし 細か 汚'.split(' ');
+  var DC_NAI = ['きれい', '綺麗', 'きらい', '嫌い', '大嫌い', 'ゆうめい', 'おしゃれ'];
+  function dcNorm(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+  function dcIsStemI(c) { return 'いきしちにひみりぎじびぴ'.indexOf(c) >= 0 || 'えけせてねへめれげぜでべぺ'.indexOf(c) >= 0; }
+  function dcVerbType(e) {
+    var j = e.jp, k = e.kana || e.jp;
+    if (/する$/.test(j)) return 'suru';
+    if (j === '来る' || j === 'くる' || /[一-鿿]来る$/.test(j)) return 'kuru';
+    if (/^(ある|有る)$/.test(j)) return 'aru';
+    if (/(いらっしゃる|くださる|なさる|おっしゃる|ござる)$/.test(k)) return 'honor';
+    if (/(行く|いく)$/.test(j)) return 'iku';
+    if (/る$/.test(j) && k.length >= 2 && dcIsStemI(k.charAt(k.length - 2))) {
+      var g = DC_GODAN_RU.some(function (x) { return /[一-鿿]/.test(x.charAt(0)) ? j.slice(-x.length) === x : j === x; });
+      return g ? 'godan' : 'ichi';
+    }
+    return 'godan';
+  }
+  function dcLooksVerb(e) {
+    var j = e.jp, k = e.kana;
+    if (!/[うくぐすつぬぶむる]$/.test(j) || !/[うくぐすつぬぶむる]$/.test(k || '')) return false;
+    if (/[、。！？\s]/.test(j) || j.length > 9) return false;
+    if (j.length < 2 && !/[一-鿿]/.test(j)) return false;
+    if (/^[ァ-ヶー]+$/.test(j)) return false;
+    var f = String(e.fr || '').replace(/^\(.*?\)\s*/, '').toLowerCase().split(/[,;]/)[0].trim();
+    if (/(^|[^t])tre$|bre$|cre$|gre$|ître$/.test(f.split(' ')[0]) && !/(mettre|naître|être|paraître|connaître|battre|permettre|promettre|soumettre|transmettre)$/.test(f.split(' ')[0])) return false;
+    if (!/^(se |s'|s’)?[a-zàâçéèêëîïôûùüœ'’-]+(er|ir|re|oir|ïr|ire)(\s|$)/.test(f) && !/^(être|avoir|aller|faire|voir|dire|pouvoir|vouloir|savoir|devoir|prendre|mettre|venir|tenir|boire|lire|écrire|rire|vivre|suivre|battre|croire|fuir|offrir|ouvrir|courir|mourir|plaire|naître)/.test(f)) return false;
+    return true;
+  }
+  var DC_ROW = { 'う': 'わいえお', 'く': 'かきけこ', 'ぐ': 'がぎげご', 'す': 'さしせそ', 'つ': 'たちてと', 'ぬ': 'なにねの', 'ぶ': 'ばびべぼ', 'む': 'まみめも', 'る': 'らりれろ' };
+  var DC_TE = { 'う': 'って', 'つ': 'って', 'る': 'って', 'む': 'んで', 'ぶ': 'んで', 'ぬ': 'んで', 'く': 'いて', 'ぐ': 'いで', 'す': 'して' };
+  var DC_TA = { 'って': 'った', 'んで': 'んだ', 'いて': 'いた', 'いで': 'いだ', 'して': 'した' };
+  // renvoie la liste [[étiquette, forme, groupe]] pour la chaîne s (kanji ou kana) du type vt
+  function dcVerbForms(s, vt) {
+    var F = [], last = s.slice(-1), st = s.slice(0, -1), r, te, ta, a, i, e, o;
+    function add(g, l, f) { F.push([g, l, f]); }
+    if (vt === 'suru') { var p = s.slice(0, -2); return dcVerbForms('する', 'x').map(function (x) { return [x[0], x[1], p + x[2]]; }); }
+    if (vt === 'x') { // する
+      add('Base', 'Dictionnaire', 'する'); add('Poli', 'Poli (ます)', 'します'); add('Poli', 'Poli négatif', 'しません'); add('Poli', 'Poli passé', 'しました'); add('Poli', 'Poli passé négatif', 'しませんでした');
+      add('Courant', 'Négatif', 'しない'); add('Courant', 'Passé', 'した'); add('Courant', 'Passé négatif', 'しなかった'); add('Liaison', 'Forme en て', 'して'); add('Liaison', 'Forme en て négative', 'しないで');
+      add('Autres', 'Conditionnel ば', 'すれば'); add('Autres', 'Conditionnel たら', 'したら'); add('Autres', 'Potentiel', 'できる'); add('Autres', 'Passif', 'される'); add('Autres', 'Causatif', 'させる'); add('Autres', 'Volontaire (しよう)', 'しよう'); add('Autres', 'Impératif', 'しろ'); add('Autres', 'Désir (たい)', 'したい'); add('Autres', 'En cours (ている)', 'している'); return F;
+    }
+    if (vt === 'kuru') {
+      var pk = s.replace(/(来る|くる)$/, ''), k1 = /来/.test(s);
+      var K = k1 ? ['来', '来', '来'] : ['き', 'こ', 'く'];
+      var mp = function (x) { return pk + x; };
+      add('Base', 'Dictionnaire', mp(k1 ? '来る' : 'くる')); add('Poli', 'Poli (ます)', mp(K[0] + 'ます')); add('Poli', 'Poli négatif', mp(K[0] + 'ません')); add('Poli', 'Poli passé', mp(K[0] + 'ました')); add('Poli', 'Poli passé négatif', mp(K[0] + 'ませんでした'));
+      add('Courant', 'Négatif', mp(k1 ? '来ない' : 'こない')); add('Courant', 'Passé', mp(K[0] + 'た')); add('Courant', 'Passé négatif', mp(k1 ? '来なかった' : 'こなかった')); add('Liaison', 'Forme en て', mp(K[0] + 'て')); add('Liaison', 'Forme en て négative', mp(k1 ? '来ないで' : 'こないで'));
+      add('Autres', 'Conditionnel ば', mp(k1 ? '来れば' : 'くれば')); add('Autres', 'Conditionnel たら', mp(K[0] + 'たら')); add('Autres', 'Potentiel', mp(k1 ? '来られる' : 'こられる')); add('Autres', 'Passif', mp(k1 ? '来られる' : 'こられる')); add('Autres', 'Causatif', mp(k1 ? '来させる' : 'こさせる')); add('Autres', 'Volontaire', mp(k1 ? '来よう' : 'こよう')); add('Autres', 'Impératif', mp(k1 ? '来い' : 'こい')); add('Autres', 'Désir (たい)', mp(K[0] + 'たい')); add('Autres', 'En cours (ている)', mp(K[0] + 'ている')); return F;
+    }
+    var ichi = vt === 'ichi', stem, neg, ti, tu;
+    if (ichi) { stem = st; a = st; i = st; e = st; o = st; te = 'て'; ta = 'た'; }
+    else {
+      r = DC_ROW[last]; if (!r) return null; a = st + r.charAt(0); i = st + r.charAt(1); e = st + r.charAt(2); o = st + r.charAt(3);
+      te = DC_TE[last]; if (vt === 'iku') te = 'って'; ta = DC_TA[te];
+      if (vt === 'honor') i = st + 'い';
+    }
+    var base = s;
+    var neg1 = ichi ? st + 'ない' : (last === 'う' ? st + 'わない' : a + 'ない');
+    if (vt === 'aru') neg1 = (st.replace(/[あ有]$/, '') || '') + 'ない';
+    var negp = neg1.replace(/ない$/, 'なかった');
+    var tform = ichi ? st + 'て' : (last === 'う' || last === 'つ' || last === 'る') ? st + 'って' : (last === 'む' || last === 'ぶ' || last === 'ぬ') ? st + 'んで' : last === 'く' ? st + (vt === 'iku' ? 'って' : 'いて') : last === 'ぐ' ? st + 'いで' : st + 'して';
+    var taform = tform.replace(/て$/, 'た').replace(/で$/, 'だ');
+    var ik = ichi ? i : i;
+    add('Base', 'Dictionnaire', base);
+    add('Poli', 'Poli (ます)', ik + 'ます'); add('Poli', 'Poli négatif', ik + 'ません'); add('Poli', 'Poli passé', ik + 'ました'); add('Poli', 'Poli passé négatif', ik + 'ませんでした');
+    add('Courant', 'Négatif', neg1); add('Courant', 'Passé', taform); add('Courant', 'Passé négatif', negp);
+    add('Liaison', 'Forme en て', tform); add('Liaison', 'Forme en て négative', neg1.replace(/い$/, 'いで'));
+    add('Autres', 'Conditionnel ば', ichi ? st + 'れば' : e + 'ば'); add('Autres', 'Conditionnel たら', taform + 'ら');
+    add('Autres', 'Potentiel', ichi ? st + 'られる' : e + 'る'); add('Autres', 'Passif', ichi ? st + 'られる' : (last === 'う' ? st + 'われる' : a + 'れる'));
+    add('Autres', 'Causatif', ichi ? st + 'させる' : (last === 'う' ? st + 'わせる' : a + 'せる'));
+    add('Autres', 'Volontaire (〜よう)', ichi ? st + 'よう' : o + 'う'); add('Autres', 'Impératif', ichi ? st + 'ろ' : (vt === 'honor' ? st + 'い' : e));
+    add('Autres', 'Désir (たい)', ik + 'たい'); add('Autres', 'En cours (ている)', tform + 'いる');
+    if (vt === 'aru') F = F.filter(function (x) { return !/Potentiel|Impératif|Passif|Causatif|Volontaire|Désir|En cours/.test(x[1]); });
+    return F;
+  }
+  function dcAdjForms(s, t) {
+    var F = [], st;
+    function add(g, l, f) { F.push([g, l, f]); }
+    if (t === 'ai') {
+      var yoi = /^(いい|良い|よい)$/.test(s) || /(いい|良い)$/.test(s) && /^(いい|良い)$/.test(s.slice(-2)); st = s.slice(0, -1);
+      if (s === 'いい') st = 'よ'; else if (/いい$/.test(s)) st = s.slice(0, -2) + 'よ'; else if (/良い$/.test(s)) st = s.slice(0, -2) + '良';
+      add('Base', 'Dictionnaire', s); add('Courant', 'Négatif', st + 'くない'); add('Courant', 'Passé', st + 'かった'); add('Courant', 'Passé négatif', st + 'くなかった');
+      add('Poli', 'Poli (です)', s + 'です'); add('Poli', 'Poli négatif', st + 'くないです'); add('Poli', 'Poli passé', st + 'かったです');
+      add('Liaison', 'Forme en て', st + 'くて'); add('Liaison', 'Adverbe (く)', st + 'く'); add('Autres', 'Conditionnel ば', st + 'ければ'); add('Autres', 'Conditionnel たら', st + 'かったら'); add('Autres', 'Semble (〜そう)', (s === 'いい' ? 'よさ' : st) + 'そう'); add('Autres', 'Nom (〜さ)', st + 'さ');
+    } else {
+      add('Base', 'Dictionnaire', s); add('Courant', 'Présent (だ)', s + 'だ'); add('Courant', 'Négatif', s + 'じゃない'); add('Courant', 'Passé', s + 'だった'); add('Courant', 'Passé négatif', s + 'じゃなかった');
+      add('Poli', 'Poli (です)', s + 'です'); add('Poli', 'Poli négatif', s + 'ではありません'); add('Poli', 'Poli passé', s + 'でした');
+      add('Liaison', 'Forme en て', s + 'で'); add('Liaison', 'Adverbe (に)', s + 'に'); add('Liaison', 'Devant un nom (な)', s + 'な + nom'); add('Autres', 'Conditionnel なら', s + 'なら'); add('Autres', 'Conditionnel たら', s + 'だったら');
+    }
+    return F;
+  }
+  function dcBuild() {
+    if (DC) return DC;
+    var L = wlex().d, th = {}, i = 0, A = [];
+    Object.keys(QVW).forEach(function (k) { var v = QVW[k]; if (v.th && !th[v.jp]) th[v.jp] = v.th; });
+    var tn = {}; QV.forEach(function (t) { tn[t.id] = t; });
+    Object.keys(L).forEach(function (jp) {
+      var c = L[jp], e = { jp: c.jp, kana: c.kana || (/^[ぁ-ゖァ-ヶー]+$/.test(c.jp) ? c.jp : ''), fr: c.fr, tag: c.tag, srcs: c.srcs || [], i: i++ };
+      var lv = ''; if (c.lvl === 'N5') lv = 'n5'; else if (c.lvl === 'N4') lv = 'n4'; else if (c.lvl === 'N3') lv = 'n3'; else if (c.lvl === 'N2') lv = 'n2'; else if (c.lvl === 'N1') lv = 'n1'; else if (c.lvl === 'Vie quotidienne') lv = 'q';
+      e.lv = lv; e.th = th[c.jp] || '';
+      e.isC = e.srcs.some(function (s) { return /^Cours/.test(s); }); e.isB = c.lvl === 'Bonus' || e.srcs.indexOf('Vocabulaire bonus') >= 0 || !!c.tag && /^(ono|fam|cont|ami|wri)$/.test(c.tag);
+      var th0 = e.th, isKg = /^kg_/.test(th0), isExprTh = /(salut|expr|politesse|discours|oral)/.test(th0) || isKg || /^(n5_salut)/.test(th0);
+      var adjTh = /adj|adv/.test(th0), advTh = /adv/.test(th0);
+      var t = 'o';
+      if (/[、。！？\s]/.test(e.jp) || (isExprTh && !dcLooksVerb(e) && e.jp.length >= 3) || (/(ます|ません|ました|ください|ましょう|ですか|ですね|ですよ|でした|ございます|ありません)$/.test(e.jp) && !(e.jp.length <= 3 && dcLooksVerb(e))) || e.jp.length >= 7 && /^[ぁ-ゖ一-鿿]+$/.test(e.jp) && /[ぁ-ゖ]$/.test(e.jp) && !dcLooksVerb(e) && !/い$/.test(e.jp)) t = 'e';
+      else if (dcLooksVerb(e) && (/verbe/.test(th0) || !adjTh || /[一-鿿]/.test(e.jp.charAt(0)))) t = 'v';
+      else if (/する$/.test(e.jp) && e.jp.length > 2 && /^[一-鿿ァ-ヶー]+する$/.test(e.jp)) t = 'v';
+      else if (adjTh && !advTh && /い$/.test(e.jp) && !/^(.*)(きれい|嫌い|きらい)$/.test(e.jp) && DC_NAI.indexOf(e.jp) < 0 && e.jp.length >= 2) t = 'ai';
+      else if (adjTh && !advTh && /^[一-鿿]+$/.test(e.jp) || adjTh && !advTh && /(か|的|そう)$/.test(e.jp) && !/(に|く|と|り)$/.test(e.jp)) t = 'an';
+      else if (/い$/.test(e.jp) && DC_NAI.indexOf(e.jp) < 0 && !/verbe/.test(th0) && (DC_AI.indexOf(e.jp.slice(0, -1)) >= 0 || /(しい|っぽい)$/.test(e.jp) || (e.jp.length >= 3 && e.jp === e.kana && /^[ぁ-ゖ]+い$/.test(e.jp) && /(か|さ|た|な|き|ろ|ず|ぼ|く|ら|つ|む|げ|し|だ)い$/.test(e.jp) && !e.isExprTh))) t = 'ai';
+      else if (/^(こんにちは|こんばんは|おはよう|ありがとう|さようなら|すみません|ごめん|はじめまして|いただきます|ごちそうさま|ただいま|おかえり)/.test(e.jp)) t = 'e';
+      e.t = t;
+      if (t === 'v' && !/^[ァ-ヶー]+$/.test(e.jp)) { e.vt = /する$/.test(e.jp) && e.jp.length > 2 ? 'suru' : dcVerbType({ jp: e.jp, kana: e.kana }); }
+      e.s = dcNorm(e.jp + ' ' + e.kana + ' ' + (e.kana ? toRomaji(e.kana) : '') + ' ' + e.fr + ' ' + e.th);
+      A.push(e);
+    });
+    var rk = { n5: 0, n4: 1, n3: 2, n2: 3, n1: 4, q: 5 };
+    A.sort(function (a, b) { var x = a.lv ? rk[a.lv] : 6, y = b.lv ? rk[b.lv] : 6; return x - y || a.i - b.i; });
+    A.forEach(function (e, n) { e.i = n; });
+    DC = { all: A, idx: null };
+    return DC;
+  }
+  function dcForms(e) {
+    if (e._f !== undefined) return e._f;
+    var f = null;
+    try {
+      if (e.t === 'v' && e.vt) { var j = dcVerbForms(e.jp, e.vt === 'suru' ? 'suru' : e.vt === 'kuru' ? 'kuru' : e.vt), k = e.kana && e.kana !== e.jp ? dcVerbForms(e.kana, e.vt === 'suru' ? 'suru' : e.vt === 'kuru' ? 'kuru' : e.vt) : null; f = j ? j.map(function (x, n) { return [x[0], x[1], x[2], k ? k[n][2] : '']; }) : null; }
+      else if (e.t === 'ai' || e.t === 'an') { var j2 = dcAdjForms(e.jp, e.t), k2 = e.kana && e.kana !== e.jp ? dcAdjForms(e.kana, e.t) : null; f = j2.map(function (x, n) { return [x[0], x[1], x[2], k2 ? k2[n][2] : '']; }); }
+    } catch (err) { f = null; }
+    e._f = f; return f;
+  }
+  function dcFormIndex() {
+    var D = dcBuild(); if (D.idx) return D.idx; var m = {};
+    D.all.forEach(function (e) { var f = dcForms(e); if (!f) return; f.forEach(function (x) { [x[2], x[3]].forEach(function (s) { s = (s || '').replace(/ \+ nom$/, ''); if (s && s !== e.jp && s !== e.kana) (m[s] = m[s] || []).push([e, x[1]]); }); }); });
+    D.idx = m; return m;
+  }
+  function dcMatches() {
+    var D = dcBuild(), q = dcNorm(dc.q.trim()), qr = q ? dcNorm(toRomaji(dc.q.trim())) : '', out = [], forms = null;
+    var all = D.all.filter(function (e) {
+      if (dc.t !== 'all' && (dc.t === 'a' ? !(e.t === 'ai' || e.t === 'an') : e.t !== dc.t)) return false;
+      if (dc.lv !== 'all') { if (dc.lv === 'c') { if (!e.isC) return false; } else if (dc.lv === 'b') { if (!e.isB) return false; } else if (e.lv !== dc.lv) return false; }
+      if (dc.th && e.th !== dc.th) return false;
+      return true;
+    });
+    if (q) {
+      var hits = all.filter(function (e) { return e.s.indexOf(q) >= 0 || (qr && qr !== q && e.s.indexOf(qr) >= 0); });
+      // les mots dont le début correspond d'abord
+      var qf = dcNorm(dc.q.trim()); function frank(e) { var f = dcNorm(e.fr).split(/[,;]/)[0].trim(); return f === qf || f === 'se ' + qf ? 0 : f.indexOf(qf) === 0 ? 1 : 2; }
+      hits.sort(function (a, b) { var fa = frank(a), fb = frank(b); if (fa !== fb) return fa - fb; var x = (a.jp === dc.q.trim() || a.kana === dc.q.trim()) ? 0 : (a.jp.indexOf(dc.q.trim()) === 0 || a.kana.indexOf(dc.q.trim()) === 0) ? 1 : 2, y = (b.jp === dc.q.trim() || b.kana === dc.q.trim()) ? 0 : (b.jp.indexOf(dc.q.trim()) === 0 || b.kana.indexOf(dc.q.trim()) === 0) ? 1 : 2; return x - y; });
+      // forme conjuguée : on retrouve le verbe / l'adjectif de départ
+      if (/[ぁ-ゖ一-鿿ァ-ヶ]/.test(dc.q)) { var ix = dcFormIndex()[dc.q.trim()]; if (ix) { var ok = {}; ix.forEach(function (p) { if (all.indexOf(p[0]) >= 0 && !ok[p[0].i]) { ok[p[0].i] = 1; p[0].via = p[1]; hits.unshift(p[0]); } }); } }
+      return hits.filter(function (e, i, a) { return a.indexOf(e) === i; });
+    }
+    if (dc.sort === 'kana') all = all.slice().sort(function (a, b) { var x = a.kana || a.jp, y = b.kana || b.jp; return x < y ? -1 : x > y ? 1 : 0; });
+    return all;
+  }
+  function dcCount() { return dcBuild().all.length; }
+  function dcBadges(e) {
+    var b = '<span class="dcb dct">' + DC_TN[e.t] + '</span>';
+    if (e.lv) b += '<span class="dcb dcl">' + (e.lv === 'q' ? 'Quotidien' : e.lv.toUpperCase()) + '</span>';
+    if (e.isC) b += '<span class="dcb dcc">Cours</span>';
+    return b;
+  }
+  function dcRow(e) {
+    var rd = e.kana && e.kana !== e.jp ? '<small class="dcrd">' + esc(e.kana) + '</small>' : '';
+    return '<button type="button" class="dcr" data-dc="open:' + e.i + '"><span class="dcjp jp">' + esc(e.jp) + rd + '</span><span class="dcfr">' + esc(e.fr) + (e.via ? ' <em class="dcvia">· ' + esc(e.via) + '</em>' : '') + '</span><span class="dcbs">' + dcBadges(e) + '</span></button>';
+  }
+  function dcListHTML() {
+    var m = dcMatches(), n = Math.min(m.length, dc.n);
+    var h = '<p class="dccount small muted">' + m.length.toLocaleString('fr-FR') + ' mot' + (m.length > 1 ? 's' : '') + (dc.q ? ' pour « ' + esc(dc.q) + ' »' : '') + '</p>';
+    if (!m.length) return h + '<p class="dcempty">Aucun mot ne correspond. Essaie le kana, le romaji ou le français, ou retire un filtre.</p>';
+    h += '<div class="dclist">' + m.slice(0, n).map(dcRow).join('') + '</div>';
+    if (m.length > n) h += '<button type="button" class="btn dcmore" data-dc="more">Afficher plus (' + (m.length - n).toLocaleString('fr-FR') + ' restants)</button>';
+    m.forEach(function (e) { e.via = ''; });
+    return h;
+  }
+  function dcThemeOpts() {
+    var D = dcBuild(), seen = {}, groups = {};
+    QV.forEach(function (t) { if (t.virt) return; if (dc.lv !== 'all' && dc.lv !== 'c' && dc.lv !== 'b' && t.lv !== dc.lv) return; var g = /^kg_/.test(t.id) ? 'Keigo et oral' : t.lv === 'q' ? 'Vie quotidienne' : 'JLPT ' + t.lv.toUpperCase(); (groups[g] = groups[g] || []).push(t); });
+    var h = '<option value="">Tous les thèmes</option>';
+    Object.keys(groups).forEach(function (g) { h += '<optgroup label="' + esc(g) + '">' + groups[g].map(function (t) { return '<option value="' + esc(t.id) + '"' + (dc.th === t.id ? ' selected' : '') + '>' + esc(t.name) + ' (' + t.w.length + ')</option>'; }).join('') + '</optgroup>'; });
+    return h;
+  }
+  function dcInner() {
+    dcBuild();
+    function chip(k, v, t, on) { return '<button type="button" class="cs-chip' + (on ? ' on' : '') + '" data-dc="' + k + ':' + v + '" aria-pressed="' + on + '">' + t + '</button>'; }
+    var h = '<div class="dcbar"><input id="dcQ" class="dcq" type="search" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Chercher : 食べる, たべる, taberu, manger…" value="' + esc(dc.q) + '" aria-label="Rechercher un mot"></div>';
+    h += '<p class="as2l klsub">Type</p><div class="cs-chips">' + [['all', 'Tous'], ['v', 'Verbes'], ['a', 'Adjectifs'], ['e', 'Expressions'], ['o', 'Autres mots']].map(function (x) { return chip('t', x[0], x[1], dc.t === x[0]); }).join('') + '</div>';
+    h += '<p class="as2l klsub">Niveau</p><div class="cs-chips">' + [['all', 'Tous'], ['n5', 'N5'], ['n4', 'N4'], ['n3', 'N3'], ['n2', 'N2'], ['n1', 'N1'], ['q', 'Quotidien'], ['c', 'Cours'], ['b', 'Bonus']].map(function (x) { return chip('lv', x[0], x[1], dc.lv === x[0]); }).join('') + '</div>';
+    h += '<div class="dcrow"><label class="small muted" for="dcTh">Thème</label><select id="dcTh" class="dcsel">' + dcThemeOpts() + '</select>' + (dc.q ? '' : '<label class="small muted" for="dcSort">Tri</label><select id="dcSort" class="dcsel dcss"><option value="lv"' + (dc.sort === 'lv' ? ' selected' : '') + '>Niveau</option><option value="kana"' + (dc.sort === 'kana' ? ' selected' : '') + '>あいうえお</option></select>') + '</div>';
+    return h + '<div id="dcList">' + dcListHTML() + '</div>';
+  }
+  function dcRefreshList() { var l = document.getElementById('dcList'); if (l) l.innerHTML = dcListHTML(); }
+  function dcRefreshAll() { var host = document.getElementById('dcHost'); if (host) { var had = document.activeElement && document.activeElement.id === 'dcQ'; host.innerHTML = dcInner(); } }
+  function dcOpen(i) {
+    var e = dcBuild().all[i]; if (!e) return;
+    var ex = null; try { ex = exOf(e.jp); } catch (x) {}
+    var h = '<div class="kbody inmodal dcd"><div class="dcdh"><span class="dcbig jp">' + esc(e.jp) + '</span>' + (e.kana && e.kana !== e.jp ? '<span class="dcdrd jp">' + esc(e.kana) + '</span>' : '') + (e.kana ? '<span class="dcrom small muted">' + esc(toRomaji(e.kana)) + '</span>' : '') + '</div>';
+    h += '<p class="dcdfr"><b>' + esc(e.fr) + '</b></p><div class="dcbs">' + dcBadges(e) + (e.th ? '<span class="dcb">' + esc((QV.filter(function (t) { return t.id === e.th; })[0] || {}).name || '') + '</span>' : '') + '</div>';
+    h += '<div class="knact"><button type="button" class="btn" data-dc="say:' + e.i + '">🔊 Écouter</button></div>';
+    if (ex && ex.full) h += '<div class="dcex"><p class="small muted">Exemple</p><p class="jp dcexj">' + (typeof furiHTML === 'function' ? furiHTML(ex.full) : esc(ex.full)) + '</p><p class="small">' + esc(ex.fr || '') + '</p></div>';
+    var ks = Array.from(e.jp).filter(function (c) { return KMAP[c] || (typeof JK !== 'undefined' && JK && JK[c]); }).filter(function (c, i, a) { return a.indexOf(c) === i; });
+    if (ks.length) h += '<p class="small muted" style="margin-top:10px">Kanji de ce mot</p><div class="dckj">' + ks.map(function (c) { return '<button type="button" class="dckb jp" data-dc="kanji:' + esc(c) + '">' + esc(c) + '</button>'; }).join('') + '</div>';
+    var F = dcForms(e);
+    if (F) {
+      var ttl = e.t === 'v' ? ({ ichi: 'Verbe du 2e groupe (ichidan)', godan: 'Verbe du 1er groupe (godan)', suru: 'Verbe en する', kuru: 'Verbe irrégulier 来る', aru: 'Verbe ある', iku: 'Verbe 行く (て : 行って)', honor: 'Verbe honorifique (ます : いらっしゃいます)' }[e.vt] || 'Verbe') : e.t === 'ai' ? 'Adjectif en い' : 'Adjectif en な';
+      h += '<h4 class="dch4">Conjugaison <small>· ' + ttl + '</small></h4>';
+      var cur = ''; F.forEach(function (x) { if (x[0] !== cur) { if (cur) h += '</div>'; cur = x[0]; h += '<p class="dcg">' + esc(x[0]) + '</p><div class="dcf">'; } h += '<div class="dcfr2"><span class="dcfl">' + esc(x[1]) + '</span><span class="dcfv jp">' + esc(x[2]) + (x[3] ? '<small>' + esc(x[3]) + '</small>' : '') + '</span></div>'; });
+      h += '</div>';
+    }
+    h += '</div>';
+    openModal(e.jp, h, 'kmodal');
+  }
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest ? ev.target.closest('[data-dc]') : null; if (!b) return;
+    var p = b.getAttribute('data-dc'), k = p.split(':')[0], v = p.slice(k.length + 1);
+    if (k === 'open') dcOpen(+v);
+    else if (k === 'say') { var e = dcBuild().all[+v]; if (e && typeof aidSpeak === 'function') aidSpeak(e.kana || e.jp, 0.85); }
+    else if (k === 'kanji') { closeModal(); openKanji(v); }
+    else if (k === 'more') { dc.n += 60; dcRefreshList(); }
+    else if (k === 't' || k === 'lv') { dc[k] = v; dc.n = 60; if (k === 'lv') dc.th = ''; dcRefreshAll(); }
+  });
+  document.addEventListener('input', function (ev) { if (ev.target && ev.target.id === 'dcQ') { dc.q = ev.target.value; dc.n = 60; clearTimeout(dc._t); dc._t = setTimeout(function () { dcRefreshList(); }, 160); } });
+  document.addEventListener('change', function (ev) {
+    if (!ev.target) return;
+    if (ev.target.id === 'dcTh') { dc.th = ev.target.value; dc.n = 60; dcRefreshList(); }
+    else if (ev.target.id === 'dcSort') { dc.sort = ev.target.value; dc.n = 60; dcRefreshList(); }
+  });
+  DJ_INFO.dico = { k: '辞', t: 'Dictionnaire', art: '', d: '', tip: 'Tous les mots de l\'appli au même endroit : cherche en japonais, en kana, en romaji ou en français. Filtre par type, niveau JLPT ou thème. Touche un mot pour voir sa fiche, et la conjugaison complète des verbes et des adjectifs.' };
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
