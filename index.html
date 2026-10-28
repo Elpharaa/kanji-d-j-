@@ -21400,7 +21400,8 @@ body.tbopen { overflow: hidden; }
   function renderHubTiles() {
     var host = $('hubTiles'), gh = $('hubGuide'); if (!host || !S) return;
     var seen = Object.keys(S.seen || {}).length;
-    host.innerHTML = '<button type="button" class="hubmore" data-more="1"><span class="hmk" aria-hidden="true">他</span><span class="hmtx"><b>Plus</b><small>Classement · Statistiques</small></span><span class="hmchips" aria-hidden="true"><i>順</i><i>統</i><i>問</i></span></button>';
+    host.innerHTML = ''; /* tuile « Plus » retirée de l'accueil (v324) */
+    var _hm0 = '<button type="button" class="hubmore" data-more="1"><span class="hmk" aria-hidden="true">他</span><span class="hmtx"><b>Plus</b><small>Classement · Statistiques</small></span><span class="hmchips" aria-hidden="true"><i>順</i><i>統</i><i>問</i></span></button>';
     if (gh) gh.innerHTML = '';
   }
   function moreHTML() {
