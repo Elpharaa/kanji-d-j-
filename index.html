@@ -28505,7 +28505,11 @@ body.tbopen { overflow: hidden; }
     if (!r.yk || r.yk.d !== rpgDay()) r.yk = { d: rpgDay(), z: {} };
     return r;
   }
-  function chName(id) { var n = (typeof ASSETS === 'object' && ASSETS['pn_' + id]); return n ? String(n) : (RPG_CH[id] ? RPG_CH[id].n : id); }
+  /* la table site_assets n'accepte que des « data:image/… » : le nom est stocké sous cette forme */
+  var RPG_NP = 'data:image/x-name,';
+  function chNameEnc(v) { return RPG_NP + encodeURIComponent(v); }
+  function chNameRaw(id) { var n = (typeof ASSETS === 'object' && ASSETS['pn_' + id]); if (!n) return ''; n = String(n); if (n.indexOf(RPG_NP) === 0) { try { return decodeURIComponent(n.slice(RPG_NP.length)); } catch (e) { return ''; } } return n; }
+  function chName(id) { return chNameRaw(id) || (RPG_CH[id] ? RPG_CH[id].n : id); }
   function chSvg(id) {
     var c = RPG_CH[id] || { col: '#888', bg: '#eee', hair: '#333' };
     var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="' + c.bg + '"/><path d="M10 64c0-15 10-23 22-23s22 8 22 23z" fill="' + c.col + '"/><circle cx="32" cy="28" r="12.5" fill="#f6d9b8"/><path d="M18.5 28c-1-13 6-18 13.500-18s14.500 5 13.500 18c-3-6-8-8-13.500-8s-10.500 2-13.500 8z" fill="' + c.hair + '"/>' + (c.horn ? '<path d="M20 15l-4-8 9 5zM44 15l4-8-9 5z" fill="#f2ead2"/>' : '') + '<circle cx="27" cy="31" r="1.7" fill="#2a2140"/><circle cx="37" cy="31" r="1.7" fill="#2a2140"/><path d="M29 36q3 2.200 6 0" stroke="#b3544f" fill="none" stroke-width="1.400" stroke-linecap="round"/></svg>';
@@ -28981,7 +28985,7 @@ body.tbopen { overflow: hidden; }
     if (body.contains(document.activeElement) && document.activeElement.tagName === 'INPUT') return;
     body.innerHTML = '<p class="small muted">Chaque personnage du mode Histoire peut recevoir une image et un nom de ton choix. Les réglages sont enregistrés pour tous les joueurs. Sans image, un dessin par défaut est utilisé ; sans nom, le nom d\'origine.</p>' +
       Object.keys(RPG_CH).map(function (id) {
-        var hasI = !!ASSETS['pi_' + id], nm = ASSETS['pn_' + id] || '';
+        var hasI = !!ASSETS['pi_' + id], nm = chNameRaw(id);
         return '<div class="admrow rpgadm"><span class="admth"><img src="' + esc(chSrc(id)) + '" alt=""></span><span class="rpgadn"><b>' + esc(chName(id)) + '</b><small>' + esc(RPG_CH[id].role) + '</small>' +
           '<span class="rpgadi"><input type="text" maxlength="24" value="' + esc(nm) + '" placeholder="' + esc(RPG_CH[id].n) + '" data-rpgnm="' + id + '" aria-label="Nom du personnage"><button type="button" class="btn" data-rpgsave="' + id + '">OK</button></span></span>' +
           '<span class="rpgadb"><button type="button" class="btn" data-adminimg="pi_' + id + '" aria-label="Image">📷</button>' + (hasI ? '<button type="button" class="btn" data-admindel="pi_' + id + '" aria-label="Retirer l\'image">✕</button>' : '') + '</span></div>';
@@ -28990,8 +28994,8 @@ body.tbopen { overflow: hidden; }
   document.addEventListener('click', function (e) {
     var b = e.target.closest ? e.target.closest('[data-rpgsave]') : null; if (!b || !isAdmin()) return;
     var id = b.getAttribute('data-rpgsave'), inp = document.querySelector('[data-rpgnm="' + id + '"]'), v = inp ? inp.value.trim().slice(0, 24) : '';
-    var p = v ? backend.assetSave('pn_' + id, v, user.id) : backend.assetDelete('pn_' + id);
-    p.then(function () { if (v) ASSETS['pn_' + id] = v; else delete ASSETS['pn_' + id]; assetsStore(); assetsAt = 0; toast(v ? 'Nom enregistré.' : 'Nom d\'origine rétabli.'); if (inp) inp.blur(); rpgAdmin(); }).catch(function (er) { toast('Échec : ' + ((er && er.message) || er)); });
+    var p = v ? backend.assetSave('pn_' + id, chNameEnc(v), user.id) : backend.assetDelete('pn_' + id);
+    p.then(function () { if (v) ASSETS['pn_' + id] = chNameEnc(v); else delete ASSETS['pn_' + id]; assetsStore(); assetsAt = 0; toast(v ? 'Nom enregistré.' : 'Nom d\'origine rétabli.'); if (inp) inp.blur(); rpgAdmin(); }).catch(function (er) { toast('Échec : ' + ((er && er.message) || er)); });
   });
 
   backend.init().then(function (u) {
