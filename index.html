@@ -27384,18 +27384,22 @@ body.tbopen { overflow: hidden; }
     return false;
   }
   (function () {
-    /* Chrome ignore à l'appui sur « retour » les entrées d'historique créées sans geste de l'utilisateur : on en crée donc une à chaque toucher si besoin */
-    function arm() { try { if (!(history.state && history.state.kd === 2)) history.pushState({ kd: 2 }, ''); } catch (e) { /* ignore */ } }
-    try { history.replaceState({ kd: 1 }, ''); } catch (e) { return; }
-    ['pointerdown', 'touchstart', 'keydown', 'click'].forEach(function (ev) { document.addEventListener(ev, arm, { capture: true, passive: true }); });
+    /* Chrome ignore les entrées d'historique créées sans geste de l'utilisateur et chaque « retour » en consomme une :
+       on en garde donc quelques-unes d'avance (créées au toucher), pour que plusieurs retours de suite restent dans l'appli */
+    var armT = 0;
+    function depth() { return (history.state && history.state.kd) || 0; }
+    function arm() { var n = Date.now(); if (n - armT < 250) return; armT = n; try { var d = depth(); if (d < 4) history.pushState({ kd: d + 1 }, ''); } catch (e) { /* ignore */ } }
+    try { history.replaceState({ kd: 0 }, ''); } catch (e) { return; }
+    ['pointerdown', 'keydown'].forEach(function (ev) { document.addEventListener(ev, arm, { capture: true, passive: true }); });
     window.addEventListener('popstate', function () {
       if (navIgnore) { navIgnore = false; return; }
       try {
-        if (!user) { navIgnore = true; history.back(); return; }
-        if (navBack()) { history.pushState({ kd: 2 }, ''); return; }
+        var d = depth();
+        if (!user) { navIgnore = true; history.go(-(d + 1)); return; }
+        if (navBack()) { if (d < 1) history.pushState({ kd: 1 }, ''); return; }
         var now = Date.now();
-        if (now - navLastExit < 2400) { navIgnore = true; history.back(); return; }
-        navLastExit = now; toast('Appuie encore sur retour pour quitter'); history.pushState({ kd: 2 }, '');
+        if (now - navLastExit < 2400) { navIgnore = true; history.go(-(d + 1)); return; }
+        navLastExit = now; toast('Appuie encore sur retour pour quitter'); if (d < 1) history.pushState({ kd: 1 }, '');
       } catch (er) { /* ignore */ }
     });
   })();
