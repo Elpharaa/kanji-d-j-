@@ -5184,6 +5184,7 @@ body.tbopen { overflow: hidden; }
 @media (max-width:360px){.dcf{grid-template-columns:1fr}}
 .dcrow{background:rgba(255,250,247,.9);padding:8px 10px;border-radius:14px;border:1.5px solid rgba(75,61,132,.25)}.dcrow label{color:#2c2452;font-weight:700}
 .dcbar+.as2l,#dcHost .as2l{background:rgba(255,250,247,.9);display:inline-block;padding:1px 10px;border-radius:999px;color:#2c2452}
+.dicolink{text-align:left;font:inherit;cursor:pointer;width:100%;box-sizing:border-box}
 
 </style>
 
@@ -17318,6 +17319,7 @@ body.tbopen { overflow: hidden; }
       var tier = c[0] === 'home' ? 1 : (c[0] === 'cards' || c[0] === 'bazar') ? 3 : 2, span = tier === 3 ? 6 / g3 : 6 / g2;
       return '<button type="button" data-hub="' + c[0] + '" class="hubcard' + (tier === 1 ? ' wide big' : ' hv' + tier) + '"' + (tier > 1 ? ' style="grid-column:span ' + span + '!important"' : '') + ' ' + (c[0] === 'bazar' ? 'data-bazar="1"' : c[0] === 'cards' ? 'data-cdalbum="1"' : 'data-go="' + (c[0] === 'online' ? 'multi' : c[0]) + '"') + '>' + hubArtFor(c) + adminBtns('hub_' + c[0]) + (c[0] === 'home' && errCount() ? '<span class="hchip" role="img" aria-label="' + errCount() + ' à corriger" title="' + errCount() + ' à corriger">' + errCount() + '</span>' : '') + '<span class="hseal" aria-hidden="true">' + c[1] + '</span><span class="htx"><b>' + c[3] + '</b><small>' + esc(c[4]) + '</small>' + (c[0] === 'home' ? hubDojoExtra(words, mastered) : '') + '</span></button>';
     }).join('');
+    $('hubGrid').insertAdjacentHTML('beforeend', dcHubTile());
     $('hubGrid').insertAdjacentHTML('beforeend', '<a class="hubcard gramlink" href="' + GRAM_URL + '" target="_blank" rel="noopener noreferrer"><span class="gsl" aria-hidden="true">文</span><span class="gtx"><b>Grammaire japonaise</b><small>Sur le site Sakura no Bunpō <i aria-hidden="true">↗</i></small></span><span class="gpet" aria-hidden="true">🌸</span></a>');
     unlHint();
     if (typeof renderHubTiles === 'function') renderHubTiles();
@@ -27772,6 +27774,11 @@ body.tbopen { overflow: hidden; }
     else if (ev.target.id === 'dcSort') { dc.sort = ev.target.value; dc.n = 60; dcRefreshList(); }
   });
   DJ_INFO.dico = { k: '辞', t: 'Dictionnaire', art: '', d: '', tip: 'Tous les mots de l\'appli au même endroit : cherche en japonais, en kana, en romaji ou en français. Filtre par type, niveau JLPT ou thème. Touche un mot pour voir sa fiche, et la conjugaison complète des verbes et des adjectifs.' };
+  function dcHubTile() { return '<button type="button" class="hubcard gramlink dicolink" data-hubdico="1"><span class="gsl" aria-hidden="true">辞</span><span class="gtx"><b>Dictionnaire</b><small>' + dcCount().toLocaleString('fr-FR') + ' mots · verbes conjugués · expressions</small></span><span class="gpet" aria-hidden="true">📖</span></button>'; }
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest ? ev.target.closest('[data-hubdico]') : null; if (!b || !user) return;
+    goRaw('home'); djSub = 'dico'; renderHome(); window.scrollTo(0, 0);
+  });
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
