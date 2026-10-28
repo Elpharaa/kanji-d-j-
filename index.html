@@ -27384,7 +27384,10 @@ body.tbopen { overflow: hidden; }
     return false;
   }
   (function () {
-    try { history.replaceState({ kd: 1 }, ''); history.pushState({ kd: 2 }, ''); } catch (e) { return; }
+    /* Chrome ignore à l'appui sur « retour » les entrées d'historique créées sans geste de l'utilisateur : on en crée donc une à chaque toucher si besoin */
+    function arm() { try { if (!(history.state && history.state.kd === 2)) history.pushState({ kd: 2 }, ''); } catch (e) { /* ignore */ } }
+    try { history.replaceState({ kd: 1 }, ''); } catch (e) { return; }
+    ['pointerdown', 'touchstart', 'keydown', 'click'].forEach(function (ev) { document.addEventListener(ev, arm, { capture: true, passive: true }); });
     window.addEventListener('popstate', function () {
       if (navIgnore) { navIgnore = false; return; }
       try {
