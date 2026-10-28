@@ -23930,7 +23930,7 @@ body.tbopen { overflow: hidden; }
   var QV_LV = [['all', 'Tous les thèmes'], ['q', 'Vie quotidienne'], ['n5', 'JLPT N5'], ['n4', 'JLPT N4'], ['n3', 'JLPT N3'], ['n2', 'JLPT N2'], ['n1', 'JLPT N1']];
   var qv = { th: '', mode: 'learn', dir: 'jp', q: null, lv: 'all', ex: null };
   var QV_ART = '<svg viewBox="0 0 320 78" class="gart" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="qvbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e98a3a"/><stop offset="1" stop-color="#b3461e"/></linearGradient></defs><rect width="320" height="78" fill="url(#qvbg)"/><g opacity=".95"><path d="M196 44L232 16L268 44Z" fill="#3a2210" stroke="#2a1c14" stroke-width="2" stroke-linejoin="round"/><rect x="204" y="44" width="56" height="30" fill="#fbf0d8" stroke="#2a1c14" stroke-width="2"/><rect x="214" y="52" width="14" height="22" fill="#8a4a1a" stroke="#2a1c14" stroke-width="1.5"/><rect x="236" y="52" width="16" height="12" fill="#ffd978" stroke="#2a1c14" stroke-width="1.5"/><path d="M236 58H252M244 52V64" stroke="#2a1c14" stroke-width="1"/></g><g stroke="#2a1c14" stroke-width="2" stroke-linejoin="round"><ellipse cx="120" cy="58" rx="24" ry="9" fill="#e8d8b8"/><path d="M98 36H142L138 58Q120 66 102 58Z" fill="#fbf4e3"/><path d="M142 42Q158 42 156 52Q154 58 140 56" fill="none"/><path d="M110 28Q106 20 112 16M122 28Q118 18 124 12" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".8"/></g><text x="30" y="52" font-size="30" fill="#fff6e0" font-family="serif" font-weight="900" opacity=".9">日常</text></svg>';
-  function qvStatOf(k) { return (S.qv && S.qv[k]) || null; }
+  function qvStatOf(k) { return qvBest(k); }
   function qvStatus(w) { var s = qvStatOf(w.key); if (!s || !(s.ok || s.ko)) return ''; return mst(s) ? 'ok' : (stale(s) || s.ko > 0 ? 'warn' : 'mid'); }
   function qvMasteredN(t) { return t.w.filter(function (w) { return qvStatus(w) === 'ok'; }).length; }
   function qvTotals(sc) { var m = 0, n = 0; QV.forEach(function (t) { if (t.virt) return; if (sc === 'jlpt' ? t.lv === 'q' : sc === 'daily' ? t.lv !== 'q' : false) return; m += qvMasteredN(t); n += t.w.length; }); return [m, n]; }
@@ -24936,7 +24936,7 @@ body.tbopen { overflow: hidden; }
       });
     }
     WORDS.forEach(function (w) { add(w.mot, S.stats && S.stats[w.key]); });
-    Object.keys(QVW).forEach(function (k) { add(QVW[k].jp, S.qv && S.qv[k]); });
+    Object.keys(QVW).forEach(function (k) { add(QVW[k].jp, qvBest(k)); });
     Object.keys(best).forEach(function (k) { var c = k.charAt(0), e = I[c] || (I[c] = { t: 0, m: 0, a: 0 }); e.t++; if (best[k] === 'ok') e.m++; if (best[k] !== 'new') e.a++; });
     return I;
   }
@@ -24955,7 +24955,7 @@ body.tbopen { overflow: hidden; }
       });
     } else {
       PG_JL.forEach(function (lv) {
-        var it = Object.keys(QVW).filter(function (k) { return k.split(':')[0] === lv; }).map(function (k) { var w = QVW[k], st = S.qv && S.qv[k]; return { a: w.jp, b: w.kana === w.jp ? '' : w.kana, c: w.fr, s: pgWst(st), ko: st ? st.ko || 0 : 0 }; });
+        var it = Object.keys(QVW).filter(function (k) { return k.split(':')[0] === lv; }).map(function (k) { var w = QVW[k], st = qvBest(k); return { a: w.jp, b: w.kana === w.jp ? '' : w.kana, c: w.fr, s: pgWst(st), ko: st ? st.ko || 0 : 0 }; });
         G.push({ id: lv, name: lv === 'q' ? 'Vie quotidienne' : 'JLPT ' + lv.toUpperCase(), items: it });
       });
     }
@@ -25013,7 +25013,7 @@ body.tbopen { overflow: hidden; }
     h += '<p class="qvtop"><b>' + tot.ok + '</b> / ' + all + (PG.tab === 'mots' ? ' mots' : ' kanjis') + ' acquis · ' + tot.mid + ' en cours · ' + (tot.old ? '<span class="pgold">' + tot.old + ' à revoir</span> · ' : '') + tot.new + ' à découvrir</p>';
     h += '<div class="pglist">' + G.map(function (g) {
       var c = pgCount(g.items), n = g.items.length || 1, op = PG.open === g.id;
-      return '<div class="pglv' + (op ? ' open' : '') + '"><button type="button" class="pghead" data-pgopen="' + g.id + '" aria-expanded="' + op + '"><span class="pgname">' + esc(g.name) + '</span><span class="pgnum"><b>' + c.ok + '</b>/' + g.items.length + ' · ' + Math.round(c.ok / n * 100) + ' %</span>' +
+      return '<div class="pglv' + (op ? ' open' : '') + '"><button type="button" class="pghead" data-pgopen="' + g.id + '" aria-expanded="' + op + '"><span class="pgname">' + esc(g.name) + '</span><span class="pgnum"><b>' + c.ok + '</b>/' + g.items.length + ' · ' + (c.ok && c.ok / n < 0.01 ? '<1' : Math.round(c.ok / n * 100)) + ' %</span>' +
         '<span class="stmix pgbar" role="img" aria-label="Acquis ' + c.ok + ', en cours ' + c.mid + ', à découvrir ' + c.new + '"><i class="m" style="width:' + (c.ok / n * 100) + '%"></i><i class="o" style="width:' + (c.old / n * 100) + '%"></i><i class="p" style="width:' + (c.mid / n * 100) + '%"></i><i class="n" style="width:' + (c.new / n * 100) + '%"></i></span></button>' + (op ? pgDetail(g) : '') + '</div>';
     }).join('') + '</div>';
     h += '<p class="small muted pgnote">' + (PG.tab === 'mots' ? 'Un mot est <b>acquis</b> après 3 bonnes réponses d\'affilée réparties sur <b>au moins 2 jours</b>, <b>en cours</b> dès que tu l\'as essayé. Un mot acquis que tu n\'as pas revu depuis <b>21 jours</b> repasse <b>à revoir</b> : une bonne réponse suffit à le retrouver.' : 'Un kanji est <b>acquis</b> quand tu le réussis 3 fois de suite, ou quand 2 mots qui le contiennent sont acquis. Il est <b>en cours</b> dès que tu as ouvert sa fiche ou essayé un mot ou un jeu avec lui. Son niveau est celui du premier vocabulaire qui l\'utilise.') + '</p>';
@@ -25298,7 +25298,7 @@ body.tbopen { overflow: hidden; }
     QV.forEach(function (t) { if (th.indexOf(t.id) >= 0) t.w.forEach(function (w) { if (!seen[w.key]) { seen[w.key] = 1; out.push(w); } }); });
     return out;
   }
-  function voyAcq(pool) { var n = 0; pool.forEach(function (w) { if (mst(S.qv && S.qv[w.key])) n++; }); return n; }
+  function voyAcq(pool) { var n = 0; pool.forEach(function (w) { if (mst(qvBest(w.key))) n++; }); return n; }
   function voyChap(i) { var R = VR(); return i >= R.chapters.length ? R.boss : R.chapters[i]; }
   function voyAcc(i) { var a = VR().pal[i] || VR().pal[0]; return '--a1:' + a[0] + ';--a2:' + a[1]; }
   function voyInfo(i) {
@@ -27238,6 +27238,13 @@ body.tbopen { overflow: hidden; }
     kv.q = ''; renderKanji();
   });
   function klSeenTot() { var n = KANJI_DATA.length; Object.keys(JK).forEach(function (c) { if (!KMAP[c]) n++; }); return n; }
+  /* v308 : la maîtrise d'un mot JLPT peut être enregistrée par les phrases à trou (S.stats) ou par les jeux du Dojo (S.qv) : on lit la plus avancée */
+  function qvBest(k) {
+    var a = S.stats && S.stats[k], b = S.qv && S.qv[k]; if (!a) return b || null; if (!b) return a;
+    var sa = mst(a) ? 2 : (a.run || 0) > 0 ? 1 : 0, sb = mst(b) ? 2 : (b.run || 0) > 0 ? 1 : 0;
+    if (sa !== sb) return sa > sb ? a : b;
+    return ((a.ok || 0) + (a.ko || 0)) >= ((b.ok || 0) + (b.ko || 0)) ? a : b;
+  }
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
