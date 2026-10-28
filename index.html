@@ -5238,6 +5238,63 @@ body.tbopen { overflow: hidden; }
 .djsc{flex:none;font-size:1.5rem;transition:transform .2s}.djsec[open]>summary .djsc{transform:rotate(90deg)}
 .djsec>.djgrid{margin:10px 0 6px}
 .djsec>summary:active{transform:translateY(1px)}
+#storyBody.rpgon{display:block!important}
+#storyBody.rpgon>*{grid-column:auto!important;grid-row:auto!important;position:static!important;max-height:none!important;height:auto!important}
+.rpg{display:flex;flex-direction:column;gap:10px;max-width:640px;margin:0 auto}
+.rpghud{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:15px}
+.rpghearts{letter-spacing:1px}
+.rpgmapw{position:relative;border-radius:16px;overflow:hidden;border:3px solid #2a1a50;box-shadow:0 6px 18px rgba(40,20,90,.35);background:#222;line-height:0;touch-action:manipulation}
+#rpgCv{width:100%;height:auto;display:block;image-rendering:auto;cursor:pointer}
+.rpg.btl .rpgmapw,.rpg.btl .rpgpad,.rpg.btl .rpgjournal{display:none}
+.rpg.talk .rpgpad{display:none}
+.rpgpad{display:flex;justify-content:center;padding:2px 0}
+.rpgpad .dp{display:grid;grid-template-columns:repeat(3,58px);grid-template-rows:repeat(3,52px);gap:6px;user-select:none;-webkit-user-select:none}
+.rpgpad .dp button{border:2px solid #2a1a50;background:linear-gradient(#fff,#e7e0fb);color:#2a1a50;border-radius:14px;font-size:20px;font-weight:800;touch-action:none;box-shadow:0 3px 0 #2a1a50}
+.rpgpad .dp button:active{transform:translateY(2px);box-shadow:0 1px 0 #2a1a50}
+.rpgpad [data-rpgd=u]{grid-column:2;grid-row:1}.rpgpad [data-rpgd=l]{grid-column:1;grid-row:2}.rpgpad [data-rpgd=r]{grid-column:3;grid-row:2}.rpgpad [data-rpgd=d]{grid-column:2;grid-row:3}
+.rpgpad .ab{grid-column:2;grid-row:2;background:linear-gradient(#ffd96a,#f0a92a);border-radius:50%;font-size:18px}
+.rpgdlg{border:3px solid #2a1a50;border-radius:16px;background:#fffdf6;color:#2a1a50;padding:12px;box-shadow:0 6px 18px rgba(40,20,90,.25)}
+.rpgdbox{display:flex;gap:12px;align-items:flex-start}
+.rpgpt{width:64px;height:64px;border-radius:14px;object-fit:cover;border:2px solid #2a1a50;flex:none;background:#fff}
+.rpgpt.foe{width:84px;height:84px}
+.rpgdb{flex:1;min-width:0}
+.rpgdn{display:block;font-size:14px;color:#6b4bd6;margin-bottom:2px}
+.rpgdt{margin:0;font-size:16px;line-height:1.5}
+.rpgch{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;margin-top:10px}
+.rpgch .btn{flex:1 1 auto}
+.rpgtext{margin:8px 0;padding:10px 12px;background:#fff;border:1px solid #d9cfee;border-radius:12px;max-height:46vh;overflow:auto;line-height:1.9}
+.rpgtext h4{margin:0 0 6px}.rpgtext p{margin:4px 0}
+.rpgrw{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 0}
+.rpgchip{padding:3px 12px;border-radius:99px;background:rgba(124,92,255,.16);font-weight:700;font-size:14px}.rpgchip.gold{background:rgba(240,180,41,.25);color:#9a6a00}
+.rpgsc{font-size:28px;font-weight:800;margin:6px 0 0;color:#3a8a4a}.rpgsc.lose{color:#c0444a}
+.rpgbt{display:flex;flex-direction:column;gap:8px}
+.rpgbth{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.rpgfoe{display:flex;gap:12px;align-items:center}
+.rpgmon{width:84px;height:84px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#a98cff,#5a34c8);display:grid;place-items:center;color:#fff3c4;font-size:44px;font-weight:800;box-shadow:0 6px 0 rgba(0,0,0,.18);animation:rpgbob 1.6s ease-in-out infinite}
+@keyframes rpgbob{50%{transform:translateY(-5px)}}
+.rpghpw{flex:1}.rpghp{height:12px;border-radius:99px;background:#e6dff8;overflow:hidden;border:2px solid #2a1a50}.rpghp i{display:block;height:100%;background:linear-gradient(90deg,#ff6b6b,#ff9f43);transition:width .35s}
+.rpgql{margin:0;font-size:13px;color:#6b5a99;font-weight:700}
+.rpgqp{font-size:26px;text-align:center;padding:10px 6px;background:#fff;border:1px solid #d9cfee;border-radius:12px;line-height:1.7}
+.rpgqp .rpgk{display:block;font-size:14px;color:#6b5a99;font-weight:500}
+.rpgqp .rpgfr{font-size:22px;font-weight:700}
+.rpgo{display:grid;grid-template-columns:1fr;gap:8px}
+.rpgopt{text-align:left;padding:10px 14px;border-radius:12px;border:2px solid #2a1a50;background:#fff;color:#2a1a50;font-size:17px;box-shadow:0 3px 0 #2a1a50;line-height:1.5}
+.rpgopt small{display:block;font-size:12px;color:#6b5a99}
+.rpgopt:active:not(:disabled){transform:translateY(2px);box-shadow:0 1px 0 #2a1a50}
+.rpgopt.ok{background:#d8f5de;border-color:#2f8f46}.rpgopt.ko{background:#fde0e0;border-color:#c0444a}
+.rpgfb{display:flex;flex-direction:column;gap:6px;padding:10px;border-radius:12px;background:#f3eefc;color:#2a1a50}
+.rpgjournal{color:inherit}
+.rpgzone{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px}
+.rpgchip2{flex:1 0 auto;min-width:56px;display:flex;flex-direction:column;align-items:center;padding:6px 8px;border-radius:12px;border:2px solid rgba(124,92,255,.35);background:transparent;color:inherit}
+.rpgchip2.on{background:rgba(124,92,255,.22);border-color:#7c5cff}.rpgchip2:disabled{opacity:.45}.rpgchip2 small{font-size:10px;opacity:.7}
+.rpgjt{margin:6px 0}.rpgjt small{font-weight:500;opacity:.7;font-size:12px}
+.rpgquests{list-style:none;margin:6px 0;padding:0;display:grid;gap:4px}
+.rpgquests li{display:flex;gap:8px;align-items:center;font-size:14px}.rpgquests li.ok{opacity:.65;text-decoration:line-through}
+.rpgadm{align-items:flex-start}.rpgadn{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}.rpgadn small{opacity:.65}
+.rpgadi{display:flex;gap:6px}.rpgadi input{flex:1;min-width:0;padding:6px 8px;border-radius:8px;border:1px solid rgba(124,92,255,.4);background:transparent;color:inherit}
+.rpgadb{display:flex;gap:4px}
+.rpgadm .admth img{width:100%;height:100%;object-fit:cover}
+.rpgagain{border:1px dashed #b9a8e8;border-radius:12px;padding:6px 10px;background:#fff}.rpgagain summary{cursor:pointer;font-weight:700;color:#6b4bd6}
 
 </style>
 
@@ -5535,6 +5592,7 @@ body.tbopen { overflow: hidden; }
     <div id="codeHost"></div>
     <div class="logrow" style="grid-column:1/-1;display:none !important" hidden><button type="button" class="btn logbtn" id="btnLogout3">⎋ Se déconnecter</button></div>
     <div class="panel setlink"><p class="small muted" hidden style="display:none !important">Photo, bannière, cadre, titre et effet de pseudo se règlent maintenant depuis ton profil.</p><button class="btn primary" type="button" data-go="profil" data-cust="photo" hidden style="display:none !important"><span class="bi" aria-hidden="true">飾</span> Personnaliser mon profil</button></div>
+    <details class="acc setacc" id="rpgAcc" hidden><summary><span class="aico" aria-hidden="true">演</span>Personnages du mode Histoire (admin)</summary><div class="accbody" id="rpgAdminBody"></div></details>
     <details class="acc setacc" id="adminAcc" hidden><summary><span class="aico" aria-hidden="true">絵</span>Atelier des cartes (admin)</summary><div class="accbody" id="adminBody"></div></details>
     <details class="acc setacc"><summary><span class="aico" aria-hidden="true">音</span>Contenu et sons</summary><div class="accbody">
       <p id="contentInfo"></p>
@@ -14699,7 +14757,8 @@ body.tbopen { overflow: hidden; }
 
   function renderStory() {
     var host = $('storyBody');
-    if (storyTab === 'base') { renderBase(); return; }
+    if (storyTab === 'base') { host.classList.remove('rpgon'); renderBase(); return; }
+    if (typeof rpgRender === 'function') { rpgRender(host); return; }
     if (arStage === 'castle') { setVox(false); host.onclick = null; host.innerHTML = storyNav() + castleHTML(); bindStoryNav(host); return; }
     if (!lvChapters().length) {
       setVox(false);
@@ -24449,6 +24508,7 @@ body.tbopen { overflow: hidden; }
     return out;
   }
   function adminPanel() {
+    try { rpgAdmin(); } catch (e) { /* ignore */ }
     var det = $('adminAcc'); if (!det) return;
     if (!isAdmin()) { det.hidden = true; return; }
     det.hidden = false;
@@ -28398,6 +28458,541 @@ body.tbopen { overflow: hidden; }
     pool.forEach(function (e) { if (out.length >= 6) return; var f = Array.from(e.jp).filter(function (c) { return set[c]; })[0]; if ((seen[f] || 0) >= 2) return; seen[f] = (seen[f] || 0) + 1; out.push(e); });
     RADX[key] = out; return out;
   }
+  /* ===== v329. Mode Histoire RPG : voyage initiatique au Japon (5 zones N5 → N1) ===== */
+  var RPG_Z = [{"map":["TTTTTTTTTETTTTTTTT","T..hh..,,,..S.hh.T","T..hh..,,,....hh.T","T.S....,.,.......T","T......,.,,,,,,..T","~~~~~~~=~~~~~~~~~~","T......,,........T","T.hh...,,..S..hh.T","T.hh...,,,,,..hh.T","T......,..,......T","T.S....,..,...S..T","TTTTTTTTTTTTTTTTTT"],"start":[9,10],"exit":[9,0],"boss":[9,1],"npc":{"sensei":[7,9],"amie":[16,6],"rival":[1,6],"marchand":[5,3],"aub":[12,4]},"yokai":[[2,1],[13,8],[16,1],[3,10]]},{"map":["TTTTTTTTTETTTTTTTT","T.S..pp..,,.pp..ST","T....pp..,,.pp...T","T..S.....,,.....ST","T.hh.,,,,,,,,,.hhT","T.hh.,.........hhT","T....,.SS..##.,..T","T.S..,,,,,,,,,,..T","T....,...~~~.....T","T.hh.,..~~=~~..S.T","T.hh.,,,,,.,,,...T","TTTTTTTTTTTTTTTTTT"],"start":[9,10],"exit":[9,0],"boss":[9,1],"npc":{"sensei":[12,10],"amie":[1,5],"rival":[16,2],"marchand":[3,1],"aub":[14,6]},"yokai":[[4,9],[6,4],[11,4],[16,9]]},{"map":["TTTTTTTTTETTTTTTTT","#hhh.,,,,,,,,.hhh#","#hhh.,......,.hhh#","#....,.hh.hh.,...#","#,,,,,.hh.hh.,,,,#","~~~~~~=~~~~~=~~~~~","~~~~~~=~~~~~=~~~~~","#,,,,,.,..,,.,,,,#","#....,.,.hh,.,...#","#hhh.,.,.hh,.,hhh#","#hhh.,,,,,,,,.hhh#","##################"],"start":[9,10],"exit":[9,0],"boss":[9,1],"npc":{"sensei":[6,10],"amie":[1,4],"rival":[16,4],"marchand":[12,7],"aub":[4,2]},"yokai":[[3,7],[13,2],[16,8],[7,7]]},{"map":["##################","#hhh,,,hh,,,hhh,E#","#hhh,.,hh,.,hhh,,#","#,,,,.,,,,.,,,,,,#","#,hh,.hhh,.hhh,hh#","#,hh,.hhh,.hhh,hh#","#,,,,.,,,,.,,,,,,#","#,hh,.,,,,.,hh,hh#","#,hh,.hh,,.,hh,hh#","#,,,,.hh,,.,,,,,,#","#hhh,,,,,,,,,hhh,#","##################"],"start":[9,10],"exit":[16,1],"boss":[16,2],"npc":{"sensei":[9,7],"amie":[1,3],"rival":[2,9],"marchand":[10,1],"aub":[16,10]},"yokai":[[5,5],[13,6],[4,1],[7,3]]},{"map":["###########E######","##.....,,,.....###","#..##..,,,..##..##","#..##..,.,..##...#","#......,.,.......#","#.S..,,,.,,,..S..#","#....,.....,.....#","#..#.,.~~~.,.#...#","#....,.~=~.,.....#","#.S..,,,=,,,..S..#","#........,.......#","##################"],"start":[9,10],"exit":[11,0],"boss":[11,1],"npc":{"sensei":[11,9],"amie":[1,4],"rival":[16,5],"marchand":[4,8],"aub":[8,5]},"yokai":[[4,1],[16,10],[1,10],[13,6]]}];
+  var RPG_TS = 32;
+  var RPG_CH = {
+    sensei:   { n: 'Hoshino-sensei', col: '#6b4bd6', bg: '#e6defa', hair: '#2a2a3a', role: 'Guide · leçons' },
+    rival:    { n: 'Ren', col: '#e0484f', bg: '#fbdcde', hair: '#d8a02a', role: 'Rival · duels' },
+    amie:     { n: 'Hana', col: '#ee7fb0', bg: '#fde3ef', hair: '#5a3525', role: 'Amie · lectures' },
+    marchand: { n: 'Daichi', col: '#e0a73a', bg: '#fbefd0', hair: '#222222', role: 'Marchand' },
+    aub:      { n: 'Okami-san', col: '#4aa59a', bg: '#d7f1ec', hair: '#8a8a9a', role: 'Aubergiste' },
+    boss1:    { n: 'Kappa Glouton', col: '#3f9d63', bg: '#d4f0de', hair: '#2b6b45', role: 'Boss · Sakura-mura', horn: 1 },
+    boss2:    { n: 'Tengu Gardien', col: '#c8423c', bg: '#f9d8d4', hair: '#3a2a2a', role: 'Boss · Kyôto', horn: 1 },
+    boss3:    { n: 'Tanuki Rusé', col: '#9a6b3c', bg: '#efdcc6', hair: '#5a3a1e', role: 'Boss · Ôsaka', horn: 1 },
+    boss4:    { n: 'Oni Néon', col: '#8a3fd6', bg: '#e8d6fa', hair: '#2a1050', role: 'Boss · Tôkyô', horn: 1 },
+    boss5:    { n: 'Dragon du Fuji', col: '#2f7fc4', bg: '#d4e8f8', hair: '#143a66', role: 'Boss · Mont Fuji', horn: 1 }
+  };
+  [['m1a', 'Kitsune Farceur', '#e08a3c'], ['m1b', 'Karasu Rôdeur', '#4a4a5e'], ['m2a', 'Ombre du Temple', '#6a4aa8'], ['m2b', 'Nekomata', '#b06a8a'], ['m3a', 'Chôchin Hanté', '#d6603c'], ['m3b', 'Kappa Pêcheur', '#3f9d63'], ['m4a', 'Robot Rôdeur', '#4a7fc4'], ['m4b', 'Fantôme Néon', '#c44ab0'], ['m5a', 'Yuki-onna', '#6ab0d8'], ['m5b', 'Petit Dragon', '#2f7fc4']].forEach(function (m, i) {
+    RPG_CH[m[0]] = { n: m[1], col: m[2], bg: '#ece4fa', hair: '#2a1a50', role: 'Méchant · zone ' + (Math.floor(i / 2) + 1), horn: 1 };
+  });
+  var RPG_ROLE = { sensei: 'sensei', rival: 'rival', amie: 'amie', marchand: 'marchand', aub: 'aub' };
+  var RPG_M = [
+    { n: 'Sakura-mura', jp: '桜村', lv: 'n5', sub: 'Le village de départ', g: '#7cc868', g2: '#72be5f', p: '#ecd9a6', w: '#5aa8e0', t: '#2f7d3a', roof: '#c04a4a', wall: '#f6ead0', bg: 'boss1', bossG: '河', bossN: 'le Kappa',
+      intro: ['Bienvenue au Japon ! Tu viens d\'arriver à Sakura-mura (桜村), un petit village au pied des montagnes.', 'Ici, on apprend le japonais en voyageant : parle aux habitants, bats les méchants qui rôdent et affronte le gardien pour ouvrir la route vers Kyôto.'],
+      bossIn: ['Gwa-gwa ! Personne ne passe sans connaître ses mots de base !', 'Dix questions, et pas une de plus. Si tu tiens bon, la route de Kyôto est à toi !'], bossWin: ['Gwa… Tu as de bonnes bases. Le portail est ouvert : cap sur Kyôto !'] },
+    { n: 'Kyôto', jp: '京都', lv: 'n4', sub: 'La ville des temples', g: '#92cf7e', g2: '#88c874', p: '#d8cbb6', w: '#4fa0c8', t: '#3b8a45', roof: '#a8403e', wall: '#f1e3c4', bg: 'boss2', bossG: '天', bossN: 'le Tengu',
+      intro: ['Kyôto (京都), l\'ancienne capitale ! Temples, ruelles de pierre et cerisiers à perte de vue.', 'Les habitants parlent plus vite ici : ouvre grand les oreilles… et les yeux.'],
+      bossIn: ['Hmpf ! Un voyageur qui monte du village ? Voyons si ta langue est aussi solide que tes jambes.', 'Réponds juste, et les portes de la ville s\'ouvriront.'], bossWin: ['Bien joué, voyageur. Ôsaka t\'attend, et sa cuisine aussi !'] },
+    { n: 'Ôsaka', jp: '大阪', lv: 'n3', sub: 'La ville des canaux', g: '#9aa8b8', g2: '#90a0b2', p: '#c9c1b4', w: '#3f86bf', t: '#4b8a58', roof: '#2f5f9c', wall: '#eef0f4', bg: 'boss3', bossG: '狸', bossN: 'le Tanuki',
+      intro: ['Ôsaka (大阪) ! Ici, on rit fort, on mange beaucoup et on parle vite.', 'Les phrases deviennent plus longues : concentre-toi sur le sens général.'],
+      bossIn: ['Ahaha ! Un étudiant ! Tu veux traverser mes canaux ? Prouve que tu comprends vraiment !', 'Dix questions pour te laisser passer. Pas de triche !'], bossWin: ['Mince, tu m\'as eu ! Allez, file vers Tôkyô !'] },
+    { n: 'Tôkyô', jp: '東京', lv: 'n2', sub: 'La capitale lumineuse', g: '#454b74', g2: '#3e4468', p: '#6a709e', w: '#2a4f8f', t: '#3a7a5a', roof: '#d6477e', wall: '#2f3358', bg: 'boss4', bossG: '鬼', bossN: 'l\'Oni', night: 1,
+      intro: ['Tôkyô (東京) ! Néons, gratte-ciel, trains pleins à craquer.', 'Le japonais devient plus abstrait : sens figurés, mots d\'actualité. Tu es prêt(e) ?'],
+      bossIn: ['Grrr ! Les touristes passent, les vrais étudiants restent. Es-tu l\'un d\'eux ?', 'Montre-moi ton niveau avancé !'], bossWin: ['Impressionnant… Le dernier défi t\'attend au sommet du Mont Fuji.'] },
+    { n: 'Mont Fuji', jp: '富士山', lv: 'n1', sub: 'Le sommet', g: '#dbe6f2', g2: '#cfdceb', p: '#a9b6c9', w: '#7fb7e0', t: '#2f5f4a', roof: '#5a6a8a', wall: '#f4f7fb', bg: 'boss5', bossG: '龍', bossN: 'le Dragon', snow: 1,
+      intro: ['Le Mont Fuji (富士山) ! Le dernier chapitre de ton voyage, tout en haut.', 'Ici, tout est N1 : nuances, mots rares, textes denses. Le dragon garde le sommet.'],
+      bossIn: ['Mortel… Tu as traversé tout le pays. Mais le sommet ne se donne pas.', 'Réponds à mes dix questions, et tu seras un vrai voyageur de la langue !'], bossWin: ['…Tu es allé au bout. Le Japon n\'a plus de secret pour toi. Félicitations, voyageur !'] }
+  ];
+  var RPG_YG = ['鬼', '狐', '蛇', '烏', '河', '妖'];
+  var rp = { zone: 0, x: 0, y: 0, fx: 0, fy: 0, dir: 'd', walk: null, path: [], goal: null, mode: 'map', dlg: null, bt: null, raf: 0, t0: 0, over: null };
+  var rpgImgs = {};
+  function rpgDay() { return dayKey(); }
+  function rg() {
+    S.rpg = S.rpg || {};
+    var r = S.rpg;
+    if (!r.done) r.done = {}; if (!r.boss) r.boss = {}; if (r.un === undefined) r.un = 0;
+    if (!r.yk || r.yk.d !== rpgDay()) r.yk = { d: rpgDay(), z: {} };
+    return r;
+  }
+  function chName(id) { var n = (typeof ASSETS === 'object' && ASSETS['pn_' + id]); return n ? String(n) : (RPG_CH[id] ? RPG_CH[id].n : id); }
+  function chSvg(id) {
+    var c = RPG_CH[id] || { col: '#888', bg: '#eee', hair: '#333' };
+    var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="' + c.bg + '"/><path d="M10 64c0-15 10-23 22-23s22 8 22 23z" fill="' + c.col + '"/><circle cx="32" cy="28" r="12.5" fill="#f6d9b8"/><path d="M18.5 28c-1-13 6-18 13.500-18s14.500 5 13.500 18c-3-6-8-8-13.500-8s-10.500 2-13.500 8z" fill="' + c.hair + '"/>' + (c.horn ? '<path d="M20 15l-4-8 9 5zM44 15l4-8-9 5z" fill="#f2ead2"/>' : '') + '<circle cx="27" cy="31" r="1.7" fill="#2a2140"/><circle cx="37" cy="31" r="1.7" fill="#2a2140"/><path d="M29 36q3 2.200 6 0" stroke="#b3544f" fill="none" stroke-width="1.400" stroke-linecap="round"/></svg>';
+    return 'data:image/svg+xml;utf8,' + encodeURIComponent(s);
+  }
+  function chSrc(id) { var a = (typeof ASSETS === 'object') && ASSETS['pi_' + id]; return a || chSvg(id); }
+  function chPortrait(id, cls) { return '<img class="rpgpt ' + (cls || '') + '" src="' + esc(chSrc(id)) + '" alt="">'; }
+  function rpgImg(src) {
+    if (!src) return null;
+    var o = rpgImgs[src];
+    if (!o) { o = rpgImgs[src] = { im: new Image(), ok: false }; o.im.onload = function () { o.ok = true; }; o.im.src = src; }
+    return o.ok ? o.im : null;
+  }
+  /* ---------- données de jeu ---------- */
+  var RPGP = {};
+  function rpgPool(lv) {
+    if (RPGP[lv]) return RPGP[lv];
+    var all = dcBuild().all.filter(function (e) {
+      return e.lv === lv && e.fr && e.jp.length <= 7 && e.fr.length <= 44 && !/[\s、。！？〜…\/()（）]/.test(e.jp);
+    });
+    return (RPGP[lv] = all);
+  }
+  function rpgPoolMix(zi) {
+    var lv = RPG_M[zi].lv, p = rpgPool(lv).slice();
+    if (zi > 0) p = p.concat(rpgPool(RPG_M[zi - 1].lv).slice(0, 40));
+    return p;
+  }
+  function rpgPick(a, n) { var b = a.slice(), o = []; while (o.length < n && b.length) o.push(b.splice(Math.floor(Math.random() * b.length), 1)[0]); return o; }
+  function rpgFr(e) { return String(e.fr).split(/\s*[;；]\s*/)[0].replace(/\s*\(.*?\)\s*$/, ''); }
+  function rpgHasKanji(s) { return /[㐀-鿿]/.test(s); }
+  function rpgJpH(e, small) { return '<b class="jp">' + esc(e.jp) + '</b>' + (small && e.kana && e.kana !== e.jp ? '<small class="jp rpgk">' + esc(e.kana) + '</small>' : ''); }
+  function rpgQ(e, pool, kind) {
+    kind = kind || (rpgHasKanji(e.jp) && e.kana && Math.random() < 0.3 ? 'read' : Math.random() < 0.65 ? 'mean' : 'back');
+    var same = pool.filter(function (x) { return x !== e && x.t === e.t; }), others = same.length >= 8 ? same : pool.filter(function (x) { return x !== e; });
+    var opts = [], seen = {}, correct, i, tries = 0;
+    function key(x) { return kind === 'mean' ? rpgFr(x) : kind === 'back' ? x.jp : x.kana; }
+    correct = key(e); seen[correct] = 1;
+    while (opts.length < 3 && tries++ < 80) {
+      var x = others[Math.floor(Math.random() * others.length)]; if (!x) break;
+      var k = key(x); if (!k || seen[k] || (kind === 'read' && (!x.kana || !rpgHasKanji(x.jp) && false))) continue;
+      seen[k] = 1; opts.push(x);
+    }
+    var all = opts.concat([e]).sort(function () { return Math.random() - 0.5; });
+    var a = all.indexOf(e);
+    var p = kind === 'mean' ? rpgJpH(e, true) : kind === 'back' ? '<span class="rpgfr">' + esc(rpgFr(e)) + '</span>' : rpgJpH({ jp: e.jp }, false);
+    var lab = kind === 'mean' ? 'Que veut dire ce mot ?' : kind === 'back' ? 'Quel est le mot japonais ?' : 'Comment se lit ce mot ?';
+    return { lab: lab, p: p, o: all.map(function (x) { return kind === 'mean' ? '<span>' + esc(rpgFr(x)) + '</span>' : kind === 'back' ? rpgJpH(x, true) : '<b class="jp">' + esc(x.kana) + '</b>'; }), a: a,
+      ex: rpgJpH(e, true) + ' = ' + esc(rpgFr(e)), w: e };
+  }
+  function rpgVocabQs(zi, n, mix) {
+    var pool = mix ? rpgPoolMix(zi) : rpgPool(RPG_M[zi].lv), picks = rpgPick(rpgPool(RPG_M[zi].lv).length >= n ? (mix ? pool : rpgPool(RPG_M[zi].lv)) : pool, n);
+    return picks.map(function (e) { return rpgQ(e, pool); });
+  }
+  function rpgReadQs(zi, n) {
+    var lv = RPG_M[zi].lv, list = RD[lv] || [], r = rg(); r.rdi = r.rdi || {};
+    var idx = (r.rdi[lv] || 0) % list.length, a = list[idx]; r.rdi[lv] = idx + 1;
+    var qs = rpgPick(a.q, Math.min(n, a.q.length)).map(function (q) {
+      var ord = [0, 1, 2, 3].slice(0, q.opts.length).sort(function () { return Math.random() - 0.5; });
+      return { lab: '問題', p: '<span class="jp">' + rdTok(q.q, !!S.rdFuri, 'span') + '</span>', o: ord.map(function (oi) { return '<span class="jp">' + esc(q.opts[oi]) + '</span>'; }), a: ord.indexOf(0), ex: esc(q.ex) };
+    });
+    return { text: a, qs: qs };
+  }
+  /* ---------- récompenses ---------- */
+  function rpgMult() { return 1 + 0.35 * rp.zone; }
+  function rpgGive(xp, coins) {
+    xp = Math.round(xp * rpgMult()); coins = Math.round(coins * rpgMult());
+    try { addXp(xp); } catch (e) { /* ignore */ }
+    S.coins = coinsOf() + coins; S.coinsTotal = (S.coinsTotal || 0) + coins; persist();
+    return '<p class="rpgrw"><span class="rpgchip">+' + xp + ' XP</span>' + (coins ? '<span class="rpgchip gold">+' + coins + ' 🪙</span>' : '') + '</p>';
+  }
+  /* ---------- carte ---------- */
+  function rpgZ() { return RPG_Z[rp.zone]; }
+  function rpgNpcs() {
+    var z = rpgZ(), out = [], r = rg(), k;
+    for (k in z.npc) { if (z.npc[k]) out.push({ role: k, id: RPG_ROLE[k], x: z.npc[k][0], y: z.npc[k][1] }); }
+    if (!r.boss[rp.zone]) out.push({ role: 'boss', id: RPG_M[rp.zone].bg, x: z.boss[0], y: z.boss[1] });
+    return out;
+  }
+  function rpgYokai() {
+    var z = rpgZ(), got = rg().yk.z[rp.zone] || [];
+    return z.yokai.map(function (p, i) { return { i: i, x: p[0], y: p[1], id: 'm' + (rp.zone + 1) + (i % 2 ? 'b' : 'a'), g: RPG_YG[(i + rp.zone) % RPG_YG.length] }; }).filter(function (y) { return got.indexOf(y.i) < 0; });
+  }
+  function rpgTileAt(x, y) { var m = rpgZ().map; return (y < 0 || y >= m.length || x < 0 || x >= m[0].length) ? '#' : m[y].charAt(x); }
+  function rpgNpcAt(x, y) { var l = rpgNpcs(); for (var i = 0; i < l.length; i++) if (l[i].x === x && l[i].y === y) return l[i]; return null; }
+  function rpgWalkable(x, y) { var c = rpgTileAt(x, y); return '.,=nPE'.indexOf(c) >= 0; }
+  function rpgBlocked(x, y) {
+    if (!rpgWalkable(x, y)) return true;
+    if (rpgTileAt(x, y) === 'E' && !rg().boss[rp.zone]) return true;
+    return !!rpgNpcAt(x, y);
+  }
+  function rpgEnter(zi, quiet) {
+    rp.zone = zi; var z = RPG_Z[zi]; rp.x = z.start[0]; rp.y = z.start[1]; rp.fx = rp.x; rp.fy = rp.y; rp.walk = null; rp.path = []; rp.goal = null; rp.dir = 'u';
+    rg().z = zi; persist();
+    if (!quiet) { try { toast(RPG_M[zi].jp + ' · ' + RPG_M[zi].n); } catch (e) { /* ignore */ } }
+  }
+  function rpgBfs(sx, sy, tx, ty, allowEnd) {
+    var W = rpgZ().map[0].length, H = rpgZ().map.length, q = [[sx, sy]], prev = {}, key = function (x, y) { return y * W + x; };
+    prev[key(sx, sy)] = -1;
+    while (q.length) {
+      var c = q.shift(); if (c[0] === tx && c[1] === ty) break;
+      [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(function (d) {
+        var nx = c[0] + d[0], ny = c[1] + d[1]; if (nx < 0 || ny < 0 || nx >= W || ny >= H || prev[key(nx, ny)] !== undefined) return;
+        if (rpgBlocked(nx, ny) && !(allowEnd && nx === tx && ny === ty)) return;
+        prev[key(nx, ny)] = key(c[0], c[1]); q.push([nx, ny]);
+      });
+    }
+    if (prev[key(tx, ty)] === undefined) return null;
+    var path = [], k = key(tx, ty); while (k !== -1 && k !== key(sx, sy)) { path.unshift([k % W, Math.floor(k / W)]); k = prev[k]; }
+    return path;
+  }
+  function rpgStep(dx, dy) {
+    if (rp.mode !== 'map' || rp.walk) return;
+    rp.dir = dx > 0 ? 'r' : dx < 0 ? 'l' : dy > 0 ? 'd' : 'u';
+    var nx = rp.x + dx, ny = rp.y + dy, n = rpgNpcAt(nx, ny);
+    if (n) { rp.path = []; rp.goal = null; rpgInteract(n); return; }
+    if (rpgTileAt(nx, ny) === 'E' && !rg().boss[rp.zone]) { rp.path = []; try { toast('La porte est scellée : bats le gardien !'); } catch (e) { /* ignore */ } return; }
+    if (!rpgWalkable(nx, ny)) { rp.path = []; return; }
+    rp.walk = { sx: rp.x, sy: rp.y, tx: nx, ty: ny, t0: performance.now() };
+  }
+  function rpgArrive() {
+    var w = rp.walk; rp.x = w.tx; rp.y = w.ty; rp.walk = null;
+    var y = rpgYokai().filter(function (q) { return q.x === rp.x && q.y === rp.y; })[0];
+    if (rpgTileAt(rp.x, rp.y) === 'E') { rp.path = []; rpgExit(); return; }
+    if (y) { rp.path = []; rpgFightYokai(y); return; }
+    if (rp.path.length) { var p = rp.path.shift(); rpgStep(p[0] - rp.x, p[1] - rp.y); }
+    else if (rp.goal) { var g = rp.goal; rp.goal = null; if (Math.abs(g.x - rp.x) + Math.abs(g.y - rp.y) === 1) rpgInteract(g.n); }
+  }
+  function rpgTap(tx, ty) {
+    if (rp.mode !== 'map' || rp.walk) return;
+    var n = rpgNpcAt(tx, ty);
+    if (n) {
+      if (Math.abs(n.x - rp.x) + Math.abs(n.y - rp.y) === 1) { rpgInteract(n); return; }
+      var best = null; [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(function (d) { var px = n.x + d[0], py = n.y + d[1]; if (rpgBlocked(px, py)) return; var pa = rpgBfs(rp.x, rp.y, px, py); if (pa && (!best || pa.length < best.p.length)) best = { p: pa, x: px, y: py }; });
+      if (best) { rp.goal = { n: n, x: n.x, y: n.y }; rp.path = best.p; var f = rp.path.shift(); if (f) rpgStep(f[0] - rp.x, f[1] - rp.y); }
+      return;
+    }
+    var p = rpgBfs(rp.x, rp.y, tx, ty, rpgTileAt(tx, ty) === 'E' && rg().boss[rp.zone]);
+    if (p && p.length) { rp.goal = null; rp.path = p; var f2 = rp.path.shift(); rpgStep(f2[0] - rp.x, f2[1] - rp.y); }
+  }
+  function rpgAct() {
+    if (rp.mode !== 'map') return;
+    var d = { u: [0, -1], d: [0, 1], l: [-1, 0], r: [1, 0] }[rp.dir], n = rpgNpcAt(rp.x + d[0], rp.y + d[1]);
+    if (!n) [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(function (v) { if (!n) n = rpgNpcAt(rp.x + v[0], rp.y + v[1]); });
+    if (n) rpgInteract(n);
+  }
+  /* ---------- dessin ---------- */
+  function rpgHash(x, y, k) { var n = ((x * 73856093) ^ (y * 19349663) ^ ((k || 0) * 83492791)) >>> 0; return (n % 1000) / 1000; }
+  function rpgDrawTile(c, ch, x, y, th, t, m, un) {
+    var s = RPG_TS, px = x * s, py = y * s, h = rpgHash(x, y), i;
+    function ground(col) { c.fillStyle = col; c.fillRect(px, py, s, s); }
+    if (ch === '~' || ch === '=') {
+      ground(th.w); c.fillStyle = 'rgba(255,255,255,.22)';
+      for (i = 0; i < 3; i++) { var wx = (px + ((t / 30 + i * 13 + h * 40) % s)) | 0; c.fillRect(px + (wx - px) % s, py + 6 + i * 10, 9, 2); }
+      if (ch === '=') { c.fillStyle = '#9a6a3c'; c.fillRect(px + 3, py, s - 6, s); c.fillStyle = '#7d522a'; for (i = 0; i < 4; i++) c.fillRect(px + 3, py + 3 + i * 8, s - 6, 1.5); c.fillStyle = '#6a4522'; c.fillRect(px + 3, py, 2, s); c.fillRect(px + s - 5, py, 2, s); }
+      return;
+    }
+    ground((ch === ',') ? th.p : ((x + y) % 2 ? th.g : th.g2));
+    if (ch === ',') { c.fillStyle = 'rgba(0,0,0,.07)'; if (h > .4) c.fillRect(px + h * 20, py + 6, 3, 3); if (h < .6) c.fillRect(px + 20 - h * 10, py + 20, 3, 3); }
+    else if (ch === '.' && h > .62) { c.strokeStyle = th.snow ? 'rgba(255,255,255,.7)' : 'rgba(0,0,0,.14)'; c.lineWidth = 1.5; c.beginPath(); c.moveTo(px + 8 + h * 10, py + 22); c.lineTo(px + 8 + h * 10, py + 16); c.moveTo(px + 11 + h * 10, py + 22); c.lineTo(px + 12 + h * 10, py + 17); c.stroke(); }
+    if (ch === 'T' || ch === 'S') {
+      c.fillStyle = 'rgba(0,0,0,.16)'; c.beginPath(); c.ellipse(px + 16, py + 28, 11, 4, 0, 0, 7); c.fill();
+      c.fillStyle = '#6a4a2a'; c.fillRect(px + 14, py + 18, 5, 11);
+      if (th.snow && ch === 'T') { c.fillStyle = th.t; for (i = 0; i < 3; i++) { c.beginPath(); c.moveTo(px + 16, py + 2 + i * 6); c.lineTo(px + 5 - i, py + 14 + i * 5); c.lineTo(px + 27 + i, py + 14 + i * 5); c.fill(); } c.fillStyle = '#fff'; c.fillRect(px + 12, py + 5, 8, 2); }
+      else { c.fillStyle = ch === 'S' ? '#f3a3c4' : th.t; c.beginPath(); c.arc(px + 16, py + 14, 12, 0, 7); c.fill(); c.fillStyle = ch === 'S' ? '#f9c8dc' : 'rgba(255,255,255,.14)'; c.beginPath(); c.arc(px + 12, py + 10, 6, 0, 7); c.fill(); }
+    } else if (ch === 'h' || ch === 'p') {
+      var top = rpgTileAt(x, y - 1) !== ch, left = rpgTileAt(x - 1, y) !== ch;
+      if (top) {
+        c.fillStyle = ch === 'p' ? '#b8302e' : th.roof; c.beginPath(); c.moveTo(px - 1, py + 30); c.lineTo(px + 4, py + 6); c.lineTo(px + s - 4, py + 6); c.lineTo(px + s + 1, py + 30); c.fill();
+        c.fillStyle = 'rgba(0,0,0,.18)'; c.fillRect(px, py + 26, s, 5); c.fillStyle = ch === 'p' ? '#e8c040' : 'rgba(255,255,255,.2)'; c.fillRect(px + 4, py + 6, s - 8, 3);
+      } else {
+        c.fillStyle = th.wall; c.fillRect(px, py, s, s - 2); c.fillStyle = 'rgba(0,0,0,.12)'; c.fillRect(px, py + s - 4, s, 4);
+        if (left) { c.fillStyle = ch === 'p' ? '#b8302e' : '#7a4f2a'; c.fillRect(px + 10, py + 8, 11, s - 10); c.fillStyle = '#e8c040'; c.fillRect(px + 18, py + 18, 2, 2); }
+        else { c.fillStyle = th.night ? '#ffd86a' : '#9fd2ee'; c.fillRect(px + 8, py + 8, 14, 11); c.strokeStyle = '#7a4f2a'; c.lineWidth = 1.5; c.strokeRect(px + 8, py + 8, 14, 11); c.beginPath(); c.moveTo(px + 15, py + 8); c.lineTo(px + 15, py + 19); c.stroke(); }
+      }
+    } else if (ch === '#') {
+      ground(th.night ? '#2a2e52' : th.snow ? '#8a98ae' : '#8f8f9c'); c.fillStyle = 'rgba(255,255,255,.13)'; c.fillRect(px + 2, py + 2, s - 4, 6); c.fillStyle = 'rgba(0,0,0,.18)'; c.fillRect(px, py + s - 6, s, 6);
+      c.strokeStyle = 'rgba(0,0,0,.2)'; c.lineWidth = 1; c.strokeRect(px + .5, py + .5, s - 1, s - 1);
+    } else if (ch === 'E') {
+      c.fillStyle = '#d0332f'; c.fillRect(px + 3, py + 4, 4, s - 4); c.fillRect(px + s - 7, py + 4, 4, s - 4); c.fillRect(px, py + 4, s, 5); c.fillRect(px + 5, py + 12, s - 10, 3);
+      if (un) { var gl = .4 + .3 * Math.sin(t / 250); c.fillStyle = 'rgba(255,230,120,' + gl + ')'; c.fillRect(px + 7, py + 15, s - 14, s - 15); }
+      else { c.fillStyle = 'rgba(40,20,70,.55)'; c.fillRect(px + 7, py + 15, s - 14, s - 15); c.fillStyle = '#f0c040'; c.fillRect(px + 8, py + 20, s - 16, 3); }
+    }
+  }
+  function rpgDrawChar(c, id, cx, cy, ring, r) {
+    var im = rpgImg(chSrc(id)); r = r || 13;
+    c.save(); c.fillStyle = 'rgba(0,0,0,.25)'; c.beginPath(); c.ellipse(cx, cy + r - 1, r * .8, 4, 0, 0, 7); c.fill();
+    c.beginPath(); c.arc(cx, cy, r, 0, 7); c.closePath(); c.fillStyle = '#fff'; c.fill(); c.clip();
+    if (im) { var sc = Math.max(2 * r / im.width, 2 * r / im.height); c.drawImage(im, cx - im.width * sc / 2, cy - im.height * sc / 2, im.width * sc, im.height * sc); }
+    c.restore(); c.beginPath(); c.arc(cx, cy, r, 0, 7); c.lineWidth = 2.5; c.strokeStyle = ring || '#fff'; c.stroke();
+  }
+  function rpgDraw(ts) {
+    var cv = document.getElementById('rpgCv'); if (!cv) return false;
+    var c = cv.getContext('2d'), z = rpgZ(), th = RPG_M[rp.zone], s = RPG_TS, un = !!rg().boss[rp.zone], i;
+    for (var y = 0; y < z.map.length; y++) for (var x = 0; x < z.map[y].length; x++) rpgDrawTile(c, z.map[y].charAt(x), x, y, th, ts, z.map, un);
+    if (th.night) { c.fillStyle = 'rgba(30,20,80,.0)'; c.fillRect(0, 0, cv.width, cv.height); }
+    var ents = [];
+    rpgYokai().forEach(function (q) { ents.push({ y: q.y, f: function () {
+      var cx = q.x * s + 16, cy = q.y * s + 18 + Math.sin(ts / 260 + q.i) * 2;
+      if (ASSETS['pi_' + q.id]) { rpgDrawChar(c, q.id, cx, cy - 2, '#d03a3a', 13); c.fillStyle = '#7a4fd6'; c.beginPath(); c.arc(cx + 11, cy - 14, 5, 0, 7); c.fill(); c.fillStyle = '#fff'; c.font = '800 9px sans-serif'; c.textAlign = 'center'; c.fillText('⚔', cx + 11, cy - 11); return; }
+      c.fillStyle = 'rgba(0,0,0,.22)'; c.beginPath(); c.ellipse(cx, q.y * s + 28, 11, 4, 0, 0, 7); c.fill();
+      c.fillStyle = '#7a4fd6'; c.beginPath(); c.arc(cx, cy, 12, Math.PI, 0); c.lineTo(cx + 12, cy + 8); c.quadraticCurveTo(cx + 6, cy + 13, cx, cy + 8); c.quadraticCurveTo(cx - 6, cy + 13, cx - 12, cy + 8); c.closePath(); c.fill();
+      c.fillStyle = '#fff'; c.fillRect(cx - 6, cy - 5, 4, 5); c.fillRect(cx + 2, cy - 5, 4, 5); c.fillStyle = '#2a1060'; c.fillRect(cx - 4, cy - 3, 2, 3); c.fillRect(cx + 4, cy - 3, 2, 3);
+      c.font = '700 10px sans-serif'; c.textAlign = 'center'; c.fillStyle = '#ffe9a8'; c.fillText(q.g, cx, cy + 8);
+    } }); });
+    rpgNpcs().forEach(function (n) { ents.push({ y: n.y, f: function () {
+      var cx = n.x * s + 16, cy = n.y * s + 15, done = n.role !== 'boss' && n.role !== 'marchand' && n.role !== 'aub' && rg().done['z' + rp.zone + '_' + n.role];
+      rpgDrawChar(c, n.id, cx, cy, n.role === 'boss' ? '#d03a3a' : done ? '#6cc070' : '#ffd24a', n.role === 'boss' ? 14 : 13);
+      if (!done || n.role === 'boss') { var by = n.y * s - 2 + Math.sin(ts / 200 + n.x) * 2; c.fillStyle = n.role === 'boss' ? '#d03a3a' : '#ffd24a'; c.beginPath(); c.arc(cx + 11, by + 3, 6, 0, 7); c.fill(); c.fillStyle = '#2a1a50'; c.font = '800 9px sans-serif'; c.textAlign = 'center'; c.fillText(n.role === 'boss' ? '!!' : (n.role === 'marchand' || n.role === 'aub') ? '…' : '!', cx + 11, by + 6); }
+      else { c.fillStyle = '#4caf58'; c.font = '800 10px sans-serif'; c.textAlign = 'center'; c.fillText('✓', cx + 11, n.y * s + 4); }
+    } }); });
+    var px = rp.x, py = rp.y;
+    if (rp.walk) { var w = rp.walk, k = Math.min(1, (performance.now() - w.t0) / 150); px = w.sx + (w.tx - w.sx) * k; py = w.sy + (w.ty - w.sy) * k; if (k >= 1) { rpgArrive(); px = rp.x; py = rp.y; } }
+    ents.push({ y: py + .01, f: function () { var bob = rp.walk ? Math.abs(Math.sin(ts / 70)) * 2 : 0; rpgDrawChar(c, null, px * s + 16, py * s + 15 - bob, '#7c5cff', 13, true); } });
+    ents.sort(function (a, b) { return a.y - b.y; }).forEach(function (e) { e.f(); });
+    c.font = '800 12px sans-serif'; c.textAlign = 'left'; c.fillStyle = 'rgba(20,10,50,.55)'; c.fillRect(6, 6, 14 + c.measureText(th.jp + ' ' + th.n).width, 20); c.fillStyle = '#fff'; c.fillText(th.jp + ' ' + th.n, 13, 20);
+    return true;
+  }
+  /* le héros : l'avatar du joueur (rpgDrawChar prend un id ; ici id null → avatar) */
+  var _rpgDrawChar0 = rpgDrawChar;
+  rpgDrawChar = function (c, id, cx, cy, ring, r, hero) {
+    if (id === null || hero) {
+      var src = ''; try { src = avatarOf(user.name, user.avatar); } catch (e) { /* ignore */ }
+      var im = rpgImg(src); r = r || 13;
+      c.save(); c.fillStyle = 'rgba(0,0,0,.25)'; c.beginPath(); c.ellipse(cx, cy + r - 1, r * .8, 4, 0, 0, 7); c.fill();
+      c.beginPath(); c.arc(cx, cy, r, 0, 7); c.closePath(); c.fillStyle = '#fff'; c.fill(); c.clip();
+      if (im) { var sc = Math.max(2 * r / im.width, 2 * r / im.height); c.drawImage(im, cx - im.width * sc / 2, cy - im.height * sc / 2, im.width * sc, im.height * sc); }
+      c.restore(); c.beginPath(); c.arc(cx, cy, r, 0, 7); c.lineWidth = 3; c.strokeStyle = ring || '#fff'; c.stroke();
+      return;
+    }
+    _rpgDrawChar0(c, id, cx, cy, ring, r);
+  };
+  function rpgLoop(ts) {
+    rp.raf = 0;
+    if (!document.getElementById('rpgCv') || document.getElementById('vStory').hidden) return;
+    if (rp.mode !== 'battle') rpgDraw(ts);
+    rp.raf = requestAnimationFrame(rpgLoop);
+  }
+  function rpgStartLoop() { if (!rp.raf) rp.raf = requestAnimationFrame(rpgLoop); }
+  /* ---------- interface ---------- */
+  function rpgHearts() { try { regen(); } catch (e) { /* ignore */ } var h = S.hearts || 0, o = ''; for (var i = 0; i < MAX_HEARTS; i++) o += i < h ? '❤️' : '🖤'; return o; }
+  function rpgHud() {
+    var el = document.getElementById('rpgHud'); if (!el) return;
+    el.innerHTML = '<span class="rpghearts" aria-label="Cœurs">' + rpgHearts() + '</span>' + coinHTML(coinsOf());
+  }
+  function rpgDone(k) { return !!rg().done['z' + rp.zone + '_' + k]; }
+  function rpgJournal() {
+    var el = document.getElementById('rpgJournal'); if (!el) return;
+    var r = rg(), zi = rp.zone, m = RPG_M[zi], got = (r.yk.z[zi] || []).length;
+    function row(ok, ic, t) { return '<li class="' + (ok ? 'ok' : '') + '"><span>' + (ok ? '✅' : ic) + '</span>' + t + '</li>'; }
+    var chips = RPG_M.map(function (z, i) { var lk = i > r.un; return '<button type="button" class="rpgchip2' + (i === zi ? ' on' : '') + '" data-rpgz="' + i + '"' + (lk ? ' disabled' : '') + '>' + (lk ? '🔒' : '') + '<b class="jp">' + z.jp + '</b><small>' + z.lv.toUpperCase() + '</small></button>'; }).join('');
+    el.innerHTML = '<div class="rpgzone">' + chips + '</div><h3 class="rpgjt"><span class="jp">' + m.jp + '</span> ' + esc(m.n) + ' <small>· ' + esc(m.sub) + ' · ' + m.lv.toUpperCase() + '</small></h3><ul class="rpgquests">' +
+      row(rpgDone('sensei'), '🎓', 'Leçon de ' + esc(chName('sensei'))) + row(rpgDone('rival'), '⚔️', 'Duel contre ' + esc(chName('rival'))) + row(rpgDone('amie'), '📖', 'Lecture avec ' + esc(chName('amie'))) +
+      row(got >= 4, '👾', 'Méchants du jour : ' + got + '/4') + row(!!r.boss[zi], '🏯', 'Gardien : ' + esc(chName(m.bg))) + '</ul><p class="small muted">Touche la carte pour te déplacer, ou utilise les flèches / la croix. Les méchants reviennent chaque jour.</p>';
+  }
+  function rpgRender(host) {
+    setVox(false); host.onclick = null; host.classList.add('rpgon');
+    var r = rg();
+    if (!rp.init) { rp.init = 1; rpgEnter(Math.min(r.z || 0, r.un), true); }
+    if (rp.zone > r.un) rpgEnter(r.un, true);
+    host.innerHTML = storyNav() + '<div class="rpg' + (rp.mode === 'battle' ? ' btl' : '') + '" id="rpgRoot"><div class="rpghud" id="rpgHud"></div><div class="rpgmapw" id="rpgMapW"><canvas id="rpgCv" width="' + RPG_Z[0].map[0].length * RPG_TS + '" height="' + RPG_Z[0].map.length * RPG_TS + '" aria-label="Carte du jeu"></canvas></div><div id="rpgDlg" class="rpgdlg" hidden></div>' +
+      '<div class="rpgpad" id="rpgPad"><div class="dp"><button type="button" data-rpgd="u" aria-label="Haut">▲</button><button type="button" data-rpgd="l" aria-label="Gauche">◀</button><button type="button" data-rpgd="a" class="ab" aria-label="Parler">A</button><button type="button" data-rpgd="r" aria-label="Droite">▶</button><button type="button" data-rpgd="d" aria-label="Bas">▼</button></div></div>' +
+      '<div class="panel rpgjournal" id="rpgJournal"></div></div>';
+    bindStoryNav(host); rpgHud(); rpgJournal();
+    if (rp.mode === 'talk' && rp.dlg) rpgDlgShow(); else if (rp.mode === 'battle' && rp.bt) rpgBtShow(); else rp.mode = 'map';
+    rpgStartLoop();
+    if (!r.intro) { r.intro = 1; persist(); rpgTalkZone(); }
+  }
+  /* ---------- dialogues ---------- */
+  function rpgSay(id, lines, then, extra) {
+    rp.mode = 'talk'; rp.dlg = { id: id, lines: lines.slice(), i: 0, then: then || null, extra: extra || '', choices: null };
+    rpgDlgShow();
+  }
+  function rpgAsk(id, text, choices) { rp.mode = 'talk'; rp.dlg = { id: id, lines: [text], i: 0, then: null, extra: '', choices: choices }; rpgDlgShow(); }
+  function rpgDlgShow() {
+    var el = document.getElementById('rpgDlg'), root = document.getElementById('rpgRoot'); if (!el || !rp.dlg) return;
+    var d = rp.dlg, last = d.i >= d.lines.length - 1, nm = d.id === null ? (user ? user.name : 'Toi') : chName(d.id);
+    var pt = d.id === null ? '<img class="rpgpt" src="' + esc(avatarOf(user.name, user.avatar)) + '" alt="">' : chPortrait(d.id);
+    var body = '<div class="rpgdb"><b class="rpgdn">' + esc(nm) + '</b><p class="rpgdt">' + (d.html ? d.lines[d.i] : esc(d.lines[d.i])) + '</p>' + (last ? d.extra : '') + '</div>';
+    var acts = last && d.choices ? '<div class="rpgch">' + d.choices.map(function (c, i) { return '<button type="button" class="btn' + (c.p ? ' primary' : '') + '" data-rpgc="' + i + '"' + (c.dis ? ' disabled' : '') + '>' + c.l + '</button>'; }).join('') + '</div>' : '<div class="rpgch"><button type="button" class="btn primary" data-rpgn="1">' + (last && !d.then ? 'Fermer' : '▶') + '</button></div>';
+    el.hidden = false; el.innerHTML = '<div class="rpgdbox">' + pt + body + '</div>' + acts;
+    if (root) root.classList.add('talk');
+    rpgHud();
+  }
+  function rpgDlgClose() { rp.dlg = null; rp.mode = 'map'; var el = document.getElementById('rpgDlg'); if (el) { el.hidden = true; el.innerHTML = ''; } var root = document.getElementById('rpgRoot'); if (root) root.classList.remove('talk'); rpgHud(); rpgJournal(); rpgStartLoop(); }
+  function rpgDlgNext() {
+    var d = rp.dlg; if (!d) return;
+    if (d.i < d.lines.length - 1) { d.i++; rpgDlgShow(); return; }
+    if (d.choices) return;
+    var f = d.then; rpgDlgClose(); if (f) f();
+  }
+  function rpgTalkZone() {
+    var m = RPG_M[rp.zone], lines = m.intro.slice();
+    lines.push(rp.zone === 0 ? 'Je suis ' + chName('sensei') + ', ton guide. Va voir les habitants : ' + chName('rival') + ' (duel), ' + chName('amie') + ' (lecture), et moi (leçon).' : 'Prépare-toi : ' + chName('sensei') + ' est de retour pour t\'aider.');
+    rpgSay('sensei', lines);
+  }
+  /* ---------- PNJ ---------- */
+  function rpgInteract(n) {
+    var zi = rp.zone, r = rg(), m = RPG_M[zi], key = 'z' + zi + '_' + n.role;
+    if (n.role === 'sensei') {
+      if (r.done[key]) return rpgSay('sensei', ['Beau travail ! Continue à explorer : chaque méchant battu te rend plus fort.'], null);
+      return rpgAsk('sensei', 'Prêt pour ta leçon du jour à ' + m.n + ' ? Je te montre 3 mots, puis un petit quiz de 3 questions !', [{ l: 'Oui, allons-y', p: 1, f: rpgLesson }, { l: 'Plus tard', f: rpgDlgClose }]);
+    }
+    if (n.role === 'rival') {
+      if (r.done[key]) return rpgSay('rival', ['Pff… Tu m\'as battu cette fois. Mais je m\'entraîne, on se reverra !'], null);
+      return rpgAsk('rival', 'Hé, voyageur ! Un duel de vocabulaire ? 5 questions : il t\'en faut au moins 4 bonnes pour gagner !', [{ l: '⚔️ Relever le défi', p: 1, f: rpgDuel }, { l: 'Pas maintenant', f: rpgDlgClose }]);
+    }
+    if (n.role === 'amie') {
+      if (r.done[key]) return rpgAsk('amie', 'Merci pour ton aide ! Tu veux lire un autre texte ensemble (sans récompense, juste pour t\'entraîner) ?', [{ l: '📖 Lire un texte', p: 1, f: function () { rpgReading(true); } }, { l: 'Non merci', f: rpgDlgClose }]);
+      return rpgAsk('amie', 'Salut ! J\'ai trouvé un petit texte mais je ne suis pas sûre de bien le comprendre. Tu veux le lire avec moi et répondre aux questions ?', [{ l: '📖 Lire le texte', p: 1, f: function () { rpgReading(false); } }, { l: 'Plus tard', f: rpgDlgClose }]);
+    }
+    if (n.role === 'marchand') return rpgShop();
+    if (n.role === 'aub') return rpgInn();
+    if (n.role === 'boss') return rpgBossTalk();
+  }
+  function rpgShop() {
+    var items = [{ id: 'onigiri', l: '🍙 Onigiri · +1 ❤️', c: 25, h: 1 }, { id: 'mochi', l: '🍡 Mochi · +2 ❤️', c: 45, h: 2 }, { id: 'matcha', l: '🍵 Matcha · cœurs au max', c: 80, h: 99 }];
+    rpgAsk('marchand', 'Bienvenue ! Un en-cas pour reprendre des forces ? (Tu as ' + coinsOf() + ' 🪙)', items.map(function (it) {
+      return { l: it.l + ' — ' + it.c + ' 🪙', dis: coinsOf() < it.c || (S.hearts >= MAX_HEARTS), f: function () {
+        if (coinsOf() < it.c) return; S.coins = coinsOf() - it.c; S.hearts = Math.min(MAX_HEARTS, (S.hearts || 0) + it.h); if (S.hearts >= MAX_HEARTS) S.heartsAt = Date.now(); persist(); sfx('ok'); rpgHud();
+        rpgSay('marchand', ['Merci beaucoup ! Voilà, ' + it.l.split(' ·')[0] + ' pour toi. Reviens quand tu veux !'], null);
+      } };
+    }).concat([{ l: 'Rien pour le moment', f: rpgDlgClose }]));
+  }
+  function rpgInn() {
+    var r = rg(), free = r.innDay !== rpgDay();
+    rpgAsk('aub', free ? 'Bienvenue à l\'auberge ! Le premier repos du jour est offert : cœurs au maximum.' : 'Bienvenue ! Un bon bain et un lit chaud : cœurs au maximum pour 40 🪙.', [
+      { l: free ? '🛏 Se reposer (gratuit)' : '🛏 Se reposer — 40 🪙', p: 1, dis: S.hearts >= MAX_HEARTS || (!free && coinsOf() < 40), f: function () {
+        if (!free) S.coins = coinsOf() - 40; r.innDay = rpgDay(); S.hearts = MAX_HEARTS; S.heartsAt = Date.now(); persist(); sfx('ok'); rpgHud();
+        rpgSay('aub', ['Voilà, comme neuf ! Bonne route, voyageur.'], null);
+      } }, { l: 'Pas besoin', f: rpgDlgClose }]);
+  }
+  function rpgLesson() {
+    var zi = rp.zone, pool = rpgPool(RPG_M[zi].lv), words = rpgPick(pool, 3);
+    var lines = ['Voici 3 mots à retenir :'].concat(words.map(function (e) { return e.jp + (e.kana && e.kana !== e.jp ? '（' + e.kana + '）' : '') + ' = ' + rpgFr(e); }));
+    rpgSay('sensei', lines, function () {
+      rpgBattle({ title: 'Quiz de ' + chName('sensei'), foeId: 'sensei', foeG: null, qs: words.map(function (e) { return rpgQ(e, pool); }), need: 2, kind: 'quiz',
+        win: function () { var k = 'z' + zi + '_sensei', first = !rg().done[k]; rg().done[k] = 1; return { first: first, xp: first ? 14 : 3, coins: first ? 8 : 0, say: ['sensei', ['Excellent ! Tu retiens vite. N\'oublie pas de les revoir dans le Dojo !']] }; },
+        lose: function () { return ['sensei', ['Ce n\'est pas grave. Relis les mots et reviens me voir quand tu veux.']]; } });
+    });
+  }
+  function rpgDuel() {
+    var zi = rp.zone;
+    rpgBattle({ title: 'Duel contre ' + chName('rival'), foeId: 'rival', qs: rpgVocabQs(zi, 5, true), need: 4, kind: 'duel',
+      win: function () { var k = 'z' + zi + '_rival', first = !rg().done[k]; rg().done[k] = 1; return { first: first, xp: first ? 22 : 4, coins: first ? 12 : 1, say: ['rival', ['Tch… bien joué. Tu as gagné cette manche !']] }; },
+      lose: function () { return ['rival', ['Haha ! Entraîne-toi encore un peu, voyageur !']]; } });
+  }
+  function rpgReading(practice) {
+    var zi = rp.zone, data = rpgReadQs(zi, 3), a = data.text;
+    var txt = '<div class="rpgtext"><h4 class="jp">' + rdTok(a.title, !!S.rdFuri, 'span') + '</h4>' + a.paras.map(function (p) { return '<p class="jp">' + rdTok(p, !!S.rdFuri, 'span') + '</p>'; }).join('') + '</div><p class="small muted">Touche un mot pour son sens. Lis tranquillement, puis passe aux questions.</p>';
+    rp.mode = 'talk'; rp.dlg = { id: 'amie', lines: ['Voici le texte :'], i: 0, then: null, extra: txt, choices: [{ l: '読み終わりました ›', p: 1, f: function () {
+      rpgBattle({ title: 'Lecture avec ' + chName('amie'), foeId: 'amie', textHtml: txt, qs: data.qs, need: 2, kind: 'read',
+        win: function () { var k = 'z' + zi + '_amie', first = !rg().done[k] && !practice; if (first) rg().done[k] = 1; return { first: first, xp: first ? 18 : 3, coins: first ? 10 : 0, say: ['amie', ['Merci, j\'ai tout compris grâce à toi !']] }; },
+        lose: function () { return ['amie', ['Hmm, relisons-le encore une fois ensemble plus tard.']]; } });
+    } }] };
+    rpgDlgShow();
+  }
+  function rpgFightYokai(y) {
+    var zi = rp.zone;
+    rpgBattle({ title: chName(y.id) + ' apparaît !', foeG: y.g, foeId: ASSETS['pi_' + y.id] ? y.id : null, qs: rpgVocabQs(zi, 3, false), need: 2, kind: 'yokai',
+      win: function () { var yk = rg().yk; (yk.z[zi] = yk.z[zi] || []).push(y.i); return { first: true, xp: 7, coins: 3, say: null }; },
+      lose: function () { return null; } });
+  }
+  function rpgBossTalk() {
+    var zi = rp.zone, m = RPG_M[zi], r = rg(), need = ['sensei', 'rival', 'amie'].filter(function (k) { return !r.done['z' + zi + '_' + k]; });
+    if (need.length > 1) return rpgSay(m.bg, ['Reviens quand tu auras terminé au moins deux défis de la zone (leçon, duel, lecture). Tu n\'es pas encore prêt !'], null);
+    rpgSay(m.bg, m.bossIn, function () {
+      rpgBattle({ title: 'Boss : ' + chName(m.bg), foeId: m.bg, qs: rpgVocabQs(zi, 10, true), need: 8, kind: 'boss',
+        win: function () { var first = !rg().boss[zi]; rg().boss[zi] = 1; if (zi + 1 > rg().un && zi < 4) rg().un = zi + 1; if (zi === 4) rg().fin = 1; return { first: first, xp: first ? 60 : 5, coins: first ? 40 : 0, say: [m.bg, m.bossWin], after: zi === 4 ? 'fin' : 'open' }; },
+        lose: function () { return [m.bg, ['Pas encore ! Entraîne-toi et reviens me défier.']]; } });
+    });
+  }
+  function rpgExit() {
+    var zi = rp.zone;
+    if (zi >= 4) { rpgSay('sensei', ['Tu as parcouru tout le Japon, du village de Sakura-mura jusqu\'au sommet du Mont Fuji. 🎌', 'Tu es devenu un vrai voyageur de la langue. Continue à t\'entraîner dans le Dojo : le chemin ne s\'arrête jamais !'], function () { rpgEnter(4, true); rpgJournal(); }); return; }
+    rpgEnter(zi + 1); rpgJournal(); rpgTalkZone();
+  }
+  /* ---------- combat ---------- */
+  function rpgBattle(o) {
+    try { regen(); } catch (e) { /* ignore */ }
+    if ((S.hearts || 0) <= 0) { rpgSay('aub', ['Tu n\'as plus de cœurs ! Un cœur revient toutes les 5 minutes. Tu peux aussi acheter un en-cas au marchand ou te reposer à l\'auberge.'], null); return; }
+    rp.mode = 'battle'; rp.bt = { o: o, i: 0, ok: 0, ko: 0, n: o.qs.length, ans: null, done: false };
+    rp.dlg = null; rpgBtShow();
+  }
+  function rpgBtShow() {
+    var el = document.getElementById('rpgDlg'), root = document.getElementById('rpgRoot'); if (!el || !rp.bt) return;
+    var b = rp.bt, o = b.o, q = o.qs[Math.min(b.i, b.n - 1)], hp = Math.max(0, Math.round(100 * (b.n - b.ok) / b.n));
+    root.classList.add('btl'); root.classList.remove('talk'); el.hidden = false;
+    var foe = o.foeId ? chPortrait(o.foeId, 'foe') : '<div class="rpgmon"><span class="jp">' + esc(o.foeG || '妖') + '</span></div>';
+    var h = '<div class="rpgbt"><div class="rpgbth"><b>' + esc(o.title) + '</b><span class="rpghearts" id="rpgBtH">' + rpgHearts() + '</span></div><div class="rpgfoe">' + foe + '<div class="rpghpw"><div class="rpghp"><i style="width:' + hp + '%"></i></div><small>Question ' + Math.min(b.i + 1, b.n) + ' / ' + b.n + '</small></div></div>';
+    if (o.textHtml) h += '<details class="rpgagain"><summary class="jp">📖 本文をもう一度見る</summary>' + o.textHtml + '</details>';
+    h += '<p class="rpgql">' + esc(q.lab) + '</p><div class="rpgqp">' + q.p + '</div><div class="rpgo">' + q.o.map(function (t, i) {
+      var cls = ''; if (b.ans !== null) { if (i === q.a) cls = ' ok'; else if (i === b.ans) cls = ' ko'; }
+      return '<button type="button" class="rpgopt' + cls + '" data-rpga="' + i + '"' + (b.ans !== null ? ' disabled' : '') + '>' + t + '</button>';
+    }).join('') + '</div>';
+    if (b.ans !== null) h += '<div class="rpgfb"><b>' + (b.ans === q.a ? '✓ 正解 !' : '✗ 不正解') + '</b> <span class="small">' + q.ex + '</span><button type="button" class="btn primary" data-rpgnx="1">' + (b.i >= b.n - 1 ? 'Terminer' : 'Suivant ›') + '</button></div>';
+    h += '</div>'; el.innerHTML = h;
+    rpgHud(); window.scrollTo(0, 0);
+  }
+  function rpgBtAnswer(i) {
+    var b = rp.bt; if (!b || b.ans !== null) return; var q = b.o.qs[b.i]; b.ans = i;
+    if (i === q.a) { b.ok++; sfx('ok'); } else { b.ko++; sfx('bad'); loseHeart(); persist(); }
+    rpgBtShow();
+  }
+  function rpgBtNext() {
+    var b = rp.bt; if (!b || b.ans === null) return;
+    var dead = (S.hearts || 0) <= 0, last = b.i >= b.n - 1;
+    if (dead || last) { rpgBtEnd(dead); return; }
+    b.i++; b.ans = null; rpgBtShow();
+  }
+  function rpgBtEnd(dead) {
+    var b = rp.bt, o = b.o, win = !dead && b.ok >= o.need; rp.bt = null; rp.mode = 'talk';
+    var root = document.getElementById('rpgRoot'); if (root) root.classList.remove('btl');
+    var el = document.getElementById('rpgDlg'); if (el) el.hidden = true;
+    var title = win ? '🎉 Victoire !' : dead ? '💔 Tu es à court de cœurs…' : '😅 Pas assez de bonnes réponses';
+    if (win) {
+      var res = o.win(), rw = res.first || res.xp ? rpgGive(res.xp, res.coins) : '';
+      var extra = '<p class="rpgsc">' + b.ok + ' / ' + b.n + '</p>' + rw;
+      var after = function () { if (res.after === 'open') { rpgSay('sensei', ['Le portail est ouvert ! Avance vers le torii pour passer à la zone suivante.'], null); } else if (res.after === 'fin') { rpgSay('sensei', ['Tu as vaincu le gardien du Mont Fuji ! Avance vers le torii pour terminer ton voyage.'], null); } else rpgDlgClose(); };
+      sfx('ok');
+      if (res.say) rpgSay(res.say[0], res.say[1], after, extra); else { rp.dlg = { id: null, lines: ['Méchant vaincu ! (' + b.ok + '/' + b.n + ')'], i: 0, then: after, extra: rw, choices: null }; rpgDlgShow(); }
+    } else {
+      var l = o.lose(), msg = dead ? 'Plus de cœurs ! Repose-toi à l\'auberge ou attends un peu.' : 'Il fallait ' + o.need + ' bonnes réponses sur ' + b.n + '. Réessaie !';
+      if (dead) { rpgEnter(rp.zone, true); }
+      rp.dlg = { id: l ? l[0] : null, lines: [(l ? l[1][0] + ' — ' : '') + msg], i: 0, then: function () { rpgDlgClose(); }, extra: '<p class="rpgsc lose">' + b.ok + ' / ' + b.n + '</p>', choices: null }; rpgDlgShow();
+    }
+    rpgHud(); rpgJournal(); persist();
+  }
+  /* ---------- événements ---------- */
+  var rpgHold = 0;
+  document.addEventListener('click', function (e) {
+    var t = e.target, el = t.closest ? t.closest('[data-rpgn],[data-rpgc],[data-rpga],[data-rpgnx],[data-rpgz]') : null;
+    if (el && document.getElementById('rpgRoot')) {
+      if (el.hasAttribute('data-rpgn')) { rpgDlgNext(); return; }
+      if (el.hasAttribute('data-rpgc')) { var d = rp.dlg; if (d && d.choices) { var c = d.choices[+el.getAttribute('data-rpgc')]; if (c && !c.dis) { var f = c.f; if (f === rpgDlgClose) { rpgDlgClose(); } else { rp.dlg = null; f(); } } } return; }
+      if (el.hasAttribute('data-rpga')) { rpgBtAnswer(+el.getAttribute('data-rpga')); return; }
+      if (el.hasAttribute('data-rpgnx')) { rpgBtNext(); return; }
+      if (el.hasAttribute('data-rpgz')) { if (rp.mode !== 'map') return; var z = +el.getAttribute('data-rpgz'); if (z <= rg().un) { rpgEnter(z); rpgJournal(); rpgTalkZone(); } return; }
+    }
+    var cv = t.closest ? t.closest('#rpgCv') : null;
+    if (cv) {
+      var rc = cv.getBoundingClientRect(), tx = Math.floor((e.clientX - rc.left) / rc.width * (cv.width / RPG_TS)), ty = Math.floor((e.clientY - rc.top) / rc.height * (cv.height / RPG_TS));
+      rpgTap(tx, ty);
+    }
+  });
+  function rpgDirOf(k) { return { u: [0, -1], d: [0, 1], l: [-1, 0], r: [1, 0] }[k]; }
+  document.addEventListener('pointerdown', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-rpgd]') : null; if (!b) return;
+    e.preventDefault(); var k = b.getAttribute('data-rpgd');
+    if (k === 'a') { rpgAct(); return; }
+    var d = rpgDirOf(k); rp.path = []; rpgStep(d[0], d[1]);
+    clearInterval(rpgHold); rpgHold = setInterval(function () { rpgStep(d[0], d[1]); }, 150);
+  });
+  ['pointerup', 'pointerleave', 'pointercancel'].forEach(function (ev) { document.addEventListener(ev, function () { clearInterval(rpgHold); }); });
+  document.addEventListener('keydown', function (e) {
+    if (!document.getElementById('rpgRoot') || document.getElementById('vStory').hidden) return;
+    var tg = e.target && e.target.tagName; if (tg === 'INPUT' || tg === 'TEXTAREA' || tg === 'SELECT') return;
+    var k = e.key, m = { ArrowUp: 'u', w: 'u', z: 'u', ArrowDown: 'd', s: 'd', ArrowLeft: 'l', a: 'l', q: 'l', ArrowRight: 'r', d: 'r' }[k];
+    if (rp.mode === 'map') {
+      if (m) { e.preventDefault(); var d = rpgDirOf(m); rp.path = []; rpgStep(d[0], d[1]); }
+      else if (k === 'Enter' || k === ' ' || k === 'e') { e.preventDefault(); rpgAct(); }
+    } else if (rp.mode === 'talk') {
+      if ((k === 'Enter' || k === ' ') && rp.dlg && !rp.dlg.choices) { e.preventDefault(); rpgDlgNext(); }
+    } else if (rp.mode === 'battle' && rp.bt) {
+      if (/^[1-4]$/.test(k)) rpgBtAnswer(+k - 1);
+      else if ((k === 'Enter' || k === ' ') && rp.bt.ans !== null) { e.preventDefault(); rpgBtNext(); }
+    }
+  });
+  /* ---------- atelier admin : images et noms des personnages ---------- */
+  function rpgAdmin() {
+    var det = document.getElementById('rpgAcc'), body = document.getElementById('rpgAdminBody'); if (!det || !body) return;
+    if (!isAdmin()) { det.hidden = true; return; }
+    det.hidden = false;
+    if (body.contains(document.activeElement) && document.activeElement.tagName === 'INPUT') return;
+    body.innerHTML = '<p class="small muted">Chaque personnage du mode Histoire peut recevoir une image et un nom de ton choix. Les réglages sont enregistrés pour tous les joueurs. Sans image, un dessin par défaut est utilisé ; sans nom, le nom d\'origine.</p>' +
+      Object.keys(RPG_CH).map(function (id) {
+        var hasI = !!ASSETS['pi_' + id], nm = ASSETS['pn_' + id] || '';
+        return '<div class="admrow rpgadm"><span class="admth"><img src="' + esc(chSrc(id)) + '" alt=""></span><span class="rpgadn"><b>' + esc(chName(id)) + '</b><small>' + esc(RPG_CH[id].role) + '</small>' +
+          '<span class="rpgadi"><input type="text" maxlength="24" value="' + esc(nm) + '" placeholder="' + esc(RPG_CH[id].n) + '" data-rpgnm="' + id + '" aria-label="Nom du personnage"><button type="button" class="btn" data-rpgsave="' + id + '">OK</button></span></span>' +
+          '<span class="rpgadb"><button type="button" class="btn" data-adminimg="pi_' + id + '" aria-label="Image">📷</button>' + (hasI ? '<button type="button" class="btn" data-admindel="pi_' + id + '" aria-label="Retirer l\'image">✕</button>' : '') + '</span></div>';
+      }).join('');
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-rpgsave]') : null; if (!b || !isAdmin()) return;
+    var id = b.getAttribute('data-rpgsave'), inp = document.querySelector('[data-rpgnm="' + id + '"]'), v = inp ? inp.value.trim().slice(0, 24) : '';
+    var p = v ? backend.assetSave('pn_' + id, v, user.id) : backend.assetDelete('pn_' + id);
+    p.then(function () { if (v) ASSETS['pn_' + id] = v; else delete ASSETS['pn_' + id]; assetsStore(); assetsAt = 0; toast(v ? 'Nom enregistré.' : 'Nom d\'origine rétabli.'); if (inp) inp.blur(); rpgAdmin(); }).catch(function (er) { toast('Échec : ' + ((er && er.message) || er)); });
+  });
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
