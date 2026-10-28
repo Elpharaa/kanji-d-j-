@@ -5220,6 +5220,16 @@ body.tbopen { overflow: hidden; }
 .rdres{margin:8px 0 2px}.rdexd summary{cursor:pointer;color:#6f629a}
 .rdpaper .wtok,.rdqt .wtok{font:inherit;color:inherit;background:none;border:0;border-bottom:1.5px dotted #a63a60;padding:0;margin:0;cursor:pointer;line-height:inherit;text-indent:0;display:inline}
 .rdopt span.wtok{border-bottom:1.5px dotted #a63a60;cursor:pointer}
+/* v326 sous-parties du Dojo */
+#games>.djsec{grid-column:1/-1;width:100%;margin:8px 0 4px}
+.djsec>summary{list-style:none;display:flex;align-items:center;gap:12px;padding:9px 14px;border-radius:16px;cursor:pointer;color:#fffaf0;border:2px solid #1f1a45;background:linear-gradient(110deg,#2c2452,#4b3d84 70%,#6a4f9c);box-shadow:0 3px 0 #17122f,inset 0 0 0 1px rgba(246,213,142,.45);user-select:none}
+.djsec>summary::-webkit-details-marker{display:none}
+.djsk{flex:none;width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:#fffaf0;color:#a63a60;border:2px solid #f6d58e;font-family:var(--font-brush,inherit);font-size:1.5rem}
+.djst{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}.djst b{font-size:1.02rem;color:#fffaf0}.djst small{font-size:.72rem;color:#e6dcff}
+.djsn{flex:none;min-width:24px;height:24px;border-radius:12px;display:grid;place-items:center;background:rgba(246,213,142,.9);color:#2c2452;font-size:.75rem;font-weight:800}
+.djsc{flex:none;font-size:1.5rem;transition:transform .2s}.djsec[open]>summary .djsc{transform:rotate(90deg)}
+.djsec>.djgrid{margin:10px 0 6px}
+.djsec>summary:active{transform:translateY(1px)}
 
 </style>
 
@@ -22999,7 +23009,7 @@ body.tbopen { overflow: hidden; }
   function djGamesHTML(fl, kj, mj) {
     document.body.classList.toggle('qvon', djSub === 'daily' || djSub === 'jlpt');
     if (!djSub) return tipHTML('dojo', 'Voici ton Dojo ! Touche une carte pour t\'entraîner : <b>Flashcards</b> pour revoir tes mots, <b>Kanjis</b>, <b>Mini-jeux</b>, ton <b>Carnet d\'erreurs</b>, ou du <b>vocabulaire du quotidien</b> ou le <b>JLPT</b>.') +
-      '<div class="djgrid">' + ['flash', 'kana', 'kanji', 'dico', 'lec', 'tb', 'mini', 'kg', 'err', 'daily', 'jlpt', 'bonus', 'rad'].map(djTile).join('') + '</div>';
+      djSections();
     if (djSub === 'err') return '';
     if (djSub === 'prog') return djBackHTML('prog') + '<div id="pgHost">' + progInner() + '</div>';
     if (djSub === 'bonus') return djBackHTML('bonus') + tipHTML('dj_bonus', DJ_INFO.bonus.tip) + '<div id="bonusHost">' + bonusInner() + '</div>';
@@ -27923,6 +27933,24 @@ body.tbopen { overflow: hidden; }
   })();
   function knMnFmt(s) { return esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>'); }
   function knMnHTML(k) { return KN_MN[k] ? '<em class="knmn">💡 ' + knMnFmt(KN_MN[k]) + '</em>' : ''; }
+  /* ===== v326. Dojo : tuiles rangées par sous-parties repliables ===== */
+  var DJ_SECS = [
+    ['rev', '練', 'Réviser et jouer', 'Flashcards, jeux, erreurs à corriger', ['flash', 'mini', 'err']],
+    ['base', '学', 'Apprendre les bases', 'Kana, kanji, clés et tracé', ['kana', 'kanji', 'rad', 'tb']],
+    ['voc', '語', 'Vocabulaire', 'Quotidien, JLPT, bonus et keigo', ['daily', 'jlpt', 'bonus', 'kg']],
+    ['lire', '読', 'Lire et chercher', 'Textes, dictionnaire', ['lec', 'dico']]
+  ];
+  function djSections() {
+    var st = (S && S.djSec) || {};
+    return DJ_SECS.map(function (s) {
+      var open = st[s[0]] !== 0;
+      return '<details class="djsec" data-djsec="' + s[0] + '"' + (open ? ' open' : '') + '><summary><span class="djsk jp" aria-hidden="true">' + s[1] + '</span><span class="djst"><b>' + esc(s[2]) + '</b><small>' + esc(s[3]) + '</small></span><span class="djsn" aria-hidden="true">' + s[4].length + '</span><span class="djsc" aria-hidden="true">›</span></summary><div class="djgrid">' + s[4].map(djTile).join('') + '</div></details>';
+    }).join('');
+  }
+  document.addEventListener('toggle', function (ev) {
+    var d = ev.target; if (!d || !d.getAttribute || !d.classList || !d.classList.contains('djsec') || !S) return;
+    S.djSec = S.djSec || {}; S.djSec[d.getAttribute('data-djsec')] = d.open ? 1 : 0; persist();
+  }, true);
   /* ===== v322. Compréhension écrite (読解) : textes par niveau JLPT, questions et réponses en japonais ===== */
   var RD_RAW = `@n5|日記|わたしの 日曜日|Un journal : lever à 7 h, petit-déjeuner, parc avec un ami, lecture, film le soir.
 今日は日曜日です。朝、七時に起きました。それから、朝ごはんを食べました。パンと卵を食べて、コーヒーを飲みました。
