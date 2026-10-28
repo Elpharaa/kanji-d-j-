@@ -5139,6 +5139,23 @@ body.tbopen { overflow: hidden; }
 #vBoard .mcard.me { border-color: #d9a441; border-left-color: #c1245a; background: linear-gradient(90deg, #fff0cf, #fffaf0); box-shadow: 0 0 0 2px rgba(224, 177, 58, .45), 0 8px 18px rgba(40, 24, 70, .16); }
 #vBoard .mcard .mxp b { color: #4b2f7c; }
 #vBoard .bgate { position: relative; }
+/* v317 : animation des traits */
+.stk svg{background:none;border:0;border-radius:12px;overflow:visible}
+.stk .gb{fill:rgba(255,255,255,.55);stroke:#b6a8e0;stroke-width:1.2}
+.stk .gl{fill:none;stroke:rgba(75,61,132,.2);stroke-width:.8;stroke-dasharray:3 3}
+.stk .gd{stroke:rgba(75,61,132,.1)}
+.stk .g{stroke:#e2daf3;stroke-width:4.2}
+.stk .a{stroke:#2c2452;stroke-width:4.4;stroke-dasharray:var(--L) calc(var(--L) + 10);stroke-dashoffset:calc(var(--L) + 4);opacity:1;animation:none}
+.stk .a:last-child{stroke:#2c2452}
+.stk.play .a{animation:stkd var(--t) cubic-bezier(.45,.05,.4,1) var(--d) both,stkc var(--t) linear var(--d) both}
+@keyframes stkd{from{stroke-dashoffset:calc(var(--L) + 4)}to{stroke-dashoffset:0}}
+@keyframes stkc{0%,70%{stroke:#d0587f}100%{stroke:#2c2452}}
+.stk .sn{opacity:0;pointer-events:none}.stk .sn circle{fill:#fff4f8;stroke:#d0587f;stroke-width:.9}
+.stk .sn text{font:800 5.4px system-ui,sans-serif;fill:#a63a60}
+.stk.play .sn{animation:stkn .3s ease-out var(--d) both}
+@keyframes stkn{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+.stk:not(.play) .a{stroke-dashoffset:0}.stk:not(.play) .sn{opacity:1}
+@media (prefers-reduced-motion:reduce){.stk .a{stroke-dashoffset:0;animation:none!important}.stk .sn{opacity:1;animation:none!important}}
 
 </style>
 
@@ -27464,6 +27481,33 @@ body.tbopen { overflow: hidden; }
       } catch (er) { /* ignore */ }
     });
   })();
+  /* ===== v317. Animation de l'ordre des traits refaite : durée proportionnelle à la longueur, pas de point de départ parasite, numéros, grille propre ===== */
+  var STK_C = {}, STK_SVG = null;
+  function stkMeasure(d) {
+    if (STK_C[d]) return STK_C[d];
+    var r = { L: 40, p0: [54, 54], t: [1, 0] };
+    try {
+      if (!STK_SVG) { STK_SVG = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); STK_SVG.setAttribute('width', '0'); STK_SVG.setAttribute('height', '0'); STK_SVG.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none'; document.body.appendChild(STK_SVG); }
+      var p = document.createElementNS('http://www.w3.org/2000/svg', 'path'); p.setAttribute('d', d); STK_SVG.appendChild(p);
+      var L = p.getTotalLength(), a = p.getPointAtLength(0), b = p.getPointAtLength(Math.min(L, 6)), dx = b.x - a.x, dy = b.y - a.y, n = Math.sqrt(dx * dx + dy * dy) || 1;
+      r = { L: L, p0: [a.x, a.y], t: [dx / n, dy / n] }; STK_SVG.removeChild(p);
+    } catch (e) {}
+    STK_C[d] = r; return r;
+  }
+  function strokeBlock(k) {
+    var a = typeof STROKES === 'object' && STROKES[k]; if (!a) return '';
+    var g = a.map(function (d) { return '<path class="g" d="' + d + '"/>'; }).join(''), p = '', nums = '', t = 0.15;
+    a.forEach(function (d, i) {
+      var m = stkMeasure(d), dur = Math.max(0.32, Math.min(0.95, 0.26 + m.L * 0.0095)), L = Math.round(m.L * 100) / 100;
+      p += '<path class="a" d="' + d + '" style="--L:' + L + ';--d:' + t.toFixed(2) + 's;--t:' + dur.toFixed(2) + 's"/>';
+      var nx = m.p0[0] - m.t[0] * 5.5 - m.t[1] * 3.5, ny = m.p0[1] - m.t[1] * 5.5 + m.t[0] * 3.5;
+      nx = Math.max(6, Math.min(103, nx)); ny = Math.max(6, Math.min(103, ny));
+      nums += '<g class="sn" style="--d:' + t.toFixed(2) + 's;transform-origin:' + nx.toFixed(1) + 'px ' + ny.toFixed(1) + 'px"><circle cx="' + nx.toFixed(1) + '" cy="' + ny.toFixed(1) + '" r="4.3"/><text x="' + nx.toFixed(1) + '" y="' + (ny + 2.5).toFixed(1) + '" text-anchor="middle">' + (i + 1) + '</text></g>';
+      t += dur + 0.22;
+    });
+    var grid = '<rect class="gb" x="1" y="1" width="107" height="107" rx="6"/><path class="gl" d="M54.5 2V107M2 54.5H107"/><path class="gl gd" d="M2 2L107 107M107 2L2 107"/>';
+    return '<div class="stk play"><svg viewBox="0 0 109 109" role="img" aria-label="Ordre des traits de ' + esc(k) + '">' + grid + g + p + nums + '</svg><div class="stkb"><span class="small muted"><b>' + a.length + '</b> trait' + (a.length > 1 ? 's' : '') + ' · ordre d\'écriture</span><button type="button" class="stkr" data-stk="1">▶ Rejouer</button></div></div>';
+  }
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
