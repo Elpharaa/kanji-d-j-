@@ -4969,6 +4969,8 @@ body.cdcropon{overflow:hidden}
 .ktile::after, .kgth::after { content: ''; position: absolute; inset: 3px; border: 1px solid rgba(201, 162, 60, .55); border-radius: 4px; pointer-events: none; }
 .ktile::before, .kgth::before { content: ''; position: absolute; right: -14px; top: -14px; width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle, rgba(236, 132, 168, .32), rgba(236, 132, 168, 0) 68%); pointer-events: none; }
 .ktile .kbig:not(.w), .kgth .kgk { position: relative; background: rgba(107, 84, 160, .09); border: 1px solid rgba(201, 162, 60, .6); border-radius: 8px; padding: 6px 0; box-shadow: inset 0 0 0 2px rgba(255, 250, 235, .7); }
+.kgtool{display:flex;justify-content:flex-end;margin:0 0 8px}.kgtool .cs-chip{min-height:36px;padding:3px 12px;font-size:.85rem}
+#kgHost rt{font-size:.5em;font-weight:600;letter-spacing:0}#kgHost .jp:has(ruby),#kgHost .kgrx:has(ruby){line-height:2.15}
 
 /* v292 : Tableau de tracé */
 #tbHost { width: 100%; max-width: 760px; margin: 0 auto; }
@@ -26996,12 +26998,22 @@ body.tbopen { overflow: hidden; }
     var n = kgv.items.length, pct = n ? Math.round(kgv.ok / n * 100) : 0;
     return '<div class="grp djbar"><h3 class="sgh" data-k="敬"><span>' + esc(KG_GNAME[kgv.g]) + '</span></h3></div><div class="result"><div class="sprbig win jp" aria-hidden="true">敬</div><h3>' + (pct >= 80 ? 'Excellent !' : pct >= 50 ? 'Bien joué !' : 'Continue, ça vient !') + '</h3><p>' + kgv.ok + ' bonne' + (kgv.ok > 1 ? 's' : '') + ' réponse' + (kgv.ok > 1 ? 's' : '') + ' sur ' + n + '.' + (kgv.xp ? '<br><b>+' + kgv.xp + ' XP</b>' : '') + (kgv.newM ? '<br><b>⭐ ' + kgv.newM + ' expression' + (kgv.newM > 1 ? 's' : '') + ' acquise' + (kgv.newM > 1 ? 's' : '') + '</b>' : '') + '</p><div class="knact kgact"><button type="button" class="btn primary" data-kg="again">Rejouer</button><button type="button" class="btn" data-kg="home">Retour au Keigo</button></div></div>';
   }
-  function kgInner() {
+  function kgInner0() {
     if (kgv.view === 'quiz' && kgv.q) return kgQuizHTML();
     if (kgv.view === 'end') return kgEndHTML();
     if (kgv.view === 'fiche') return kgFiche(kgv.id);
     if (kgv.view === 'verbs') return kgVerbsPage();
     return kgHome();
+  }
+  function kgInner() {
+    var on = !!(S && S.kgFuri), html = kgInner0();
+    var tool = '<div class="kgtool"><button type="button" class="cs-chip' + (on ? ' on' : '') + '" data-kg="furi" aria-pressed="' + on + '"><span class="jp">ふ</span> Furigana : ' + (on ? 'oui' : 'non') + '</button></div>';
+    if (!on) return tool + html;
+    var box = document.createElement('div'); box.innerHTML = html;
+    var w = document.createTreeWalker(box, NodeFilter.SHOW_TEXT, null), nodes = [], n;
+    while ((n = w.nextNode())) { if (/[㐀-鿿]/.test(n.nodeValue) && n.parentNode && !(n.parentNode.closest && n.parentNode.closest('.kgk,.kgbk,.sgh,ruby,rt'))) nodes.push(n); }
+    nodes.forEach(function (t) { var sp = document.createElement('span'); sp.innerHTML = furiHTML(t.nodeValue); var fr = document.createDocumentFragment(); while (sp.firstChild) fr.appendChild(sp.firstChild); t.parentNode.replaceChild(fr, t); });
+    return tool + box.innerHTML;
   }
   function kgRender() { var h = $('kgHost'); if (h) { h.innerHTML = kgInner(); } }
   function kgAnswer(i) {
@@ -27017,7 +27029,8 @@ body.tbopen { overflow: hidden; }
   document.addEventListener('click', function (e) {
     var b = e.target.closest ? e.target.closest('[data-kg]') : null; if (!b || !user || !S) return;
     var a = b.getAttribute('data-kg');
-    if (a === 'home') { kgv.view = 'home'; kgRender(); window.scrollTo(0, 0); }
+    if (a === 'furi') { S.kgFuri = !S.kgFuri; persist(); kgRender(); }
+    else if (a === 'home') { kgv.view = 'home'; kgRender(); window.scrollTo(0, 0); }
     else if (a === 'th') { kgv.view = 'fiche'; kgv.id = b.getAttribute('data-id'); kgRender(); window.scrollTo(0, 0); }
     else if (a === 'verbs') { kgv.view = 'verbs'; kgRender(); window.scrollTo(0, 0); }
     else if (a === 'game') { kgv.th = b.getAttribute('data-id') || 'all'; kgNew(b.getAttribute('data-g')); kgRender(); window.scrollTo(0, 0); }
