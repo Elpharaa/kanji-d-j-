@@ -5420,6 +5420,14 @@ body.tbopen { overflow: hidden; }
 .rpg.talk .rpgch .btn{padding-top:7px;padding-bottom:7px;font-size:14px}
 .rpgch .btn[data-rpgn]{text-align:center;padding-left:14px}.rpgch .btn[data-rpgn]::before{display:none}
 
+/* v341 : écran d'aventure agrandi */
+body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
+#storyBody.rpgon{padding-left:0!important;padding-right:0!important}
+.rpg{max-width:820px;border-radius:18px;padding:8px 8px 10px}
+@media (max-width:640px){.rpg{max-width:none;margin-left:-6px;margin-right:-6px;border-radius:16px}}
+.rpgmapw canvas{display:block;width:100%;height:auto}
+#rpgCv{aspect-ratio:auto!important;max-height:none!important}
+
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -25877,6 +25885,7 @@ body.tbopen { overflow: hidden; }
     return h + '<div class="row"><button type="button" class="btn primary voygo" data-voy="' + (win ? 'map' : 'start') + '">' + (win ? 'Retour à la carte' : '⚔ Retenter') + '</button>' + (win ? '' : '<button type="button" class="btn" data-voy="map">Carte</button>') + '</div></div>';
   }
   function voyToggle(onJ) {
+    return '';
     return '<div class="voytog" role="tablist"><button type="button" role="tab" aria-selected="' + !onJ + '" data-voy="tog:cours"><span class="jp" aria-hidden="true">冒</span><span><b>Aventure</b><small>Ton cours</small></span></button><button type="button" role="tab" aria-selected="' + !!onJ + '" data-voy="tog:jlpt"><span class="jp" aria-hidden="true">旅</span><span><b>Voyage JLPT</b><small>De N5 à N1</small></span></button><button type="button" class="petsw' + (S && S.pet === false ? ' off' : '') + '" data-voy="pet" aria-label="Compagnon lumineux" title="Compagnon lumineux (on / off)">🏮</button></div>';
   }
   function voyRender() {
@@ -25888,7 +25897,7 @@ body.tbopen { overflow: hidden; }
   var _renderStory0 = renderStory;
   renderStory = function () {
     var host0 = $('storyBody'); if (host0) host0.classList.remove('voyon');
-    if (S && S.voyOn && storyTab !== 'base') { if (S.voyLv && VOY[S.voyLv] && voy.view === 'map' && !voy.init) { voy.lv = S.voyLv; } voy.init = 1; setVox(false); voyRender(); return; }
+    if (false) { if (S.voyLv && VOY[S.voyLv] && voy.view === 'map' && !voy.init) { voy.lv = S.voyLv; } voy.init = 1; setVox(false); voyRender(); return; }
     _renderStory0();
     try { var host = $('storyBody'); if (host && S && storyTab !== 'base') host.insertAdjacentHTML('afterbegin', voyToggle(false)); } catch (e) {}
   };
@@ -26216,7 +26225,6 @@ body.tbopen { overflow: hidden; }
       { k: '復', t: 'Revoir', fn: function () { if (typeof errOpen === 'function') errOpen(); } },
       { k: '道', t: 'Dojo', tab: 'home' },
       { k: '文', t: 'Phrases', tab: 'clz' },
-      { k: '旅', t: 'Voyage', fn: function () { S.voyOn = true; persist(); var t = nav.querySelector('.tab[data-tab="story"]'); if (t.getAttribute('aria-current') === 'page') renderStory(); else t.click(); } },
       { k: '門', t: 'Accueil', tab: 'hub' }
     ];
     function vib(n) { try { navigator.vibrate && navigator.vibrate(n); } catch (e) {} }
@@ -29348,7 +29356,17 @@ body.tbopen { overflow: hidden; }
     el.innerHTML = '<div class="rpgprog" aria-hidden="true"><i style="width:' + Math.round(100 * stepN / stepT) + '%"></i></div><h3 class="rpgjt"><span class="jp">' + m.jp + '</span> ' + esc(m.n) + '</h3>' +
       '<p class="small"><b>' + esc(rpgScene().label) + '</b></p>' + (rows ? '<ul class="rpgquests">' + rows + '</ul>' : '') + '<p class="small muted">Touche la carte pour te déplacer (ou croix / flèches). Explore, fouille les buissons ✨, parle aux gens et avance sur la route.</p>';
   }
+  function rpgView() {
+    var w = window.innerWidth || 390, h = window.innerHeight || 800, vw, vh;
+    if (w >= 900 && w > h * 1.15) { vw = 15; vh = 10; }
+    else if (h > w) { vw = 9; var cw = Math.min(w - 16, 640); vh = Math.max(9, Math.min(15, Math.floor((h - 445) / (cw / vw)))); }
+    else { vw = 13; vh = 9; }
+    if (vw !== RPG_VW || vh !== RPG_VH) { RPG_VW = vw; RPG_VH = vh; return true; }
+    return false;
+  }
+  window.addEventListener('resize', function () { try { rpgView(); } catch (e) {} });
   function rpgRender(host) {
+    rpgView();
     setVox(false); host.onclick = null; host.classList.add('rpgon');
     var r = rg();
     if (!rp.init) { rp.init = 1; var z = Math.min(r.z || 0, r.un), s = Math.min(r.s || 0, r.ms[z] || 0); rpgGo(z, s, 'in'); if (r.px !== undefined && r.pz === z && r.ps === s) { /* position non restaurée volontairement */ } }
