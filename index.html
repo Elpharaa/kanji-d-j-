@@ -28748,10 +28748,10 @@ body.tbopen { overflow: hidden; }
     cand.forEach(function (e) {
       if (out.length >= n) return;
       var rr = Math.random(), q = null;
-      if (tier >= 4) q = rr < .25 ? rpgQTypeFr(e) : rr < .5 ? rpgQTypeJp(e) : rr < .75 ? rpgQCloze(e) : rpgQSent(e, wide);
-      else if (tier === 3) q = rr < .3 ? rpgQTypeFr(e) : rr < .6 ? rpgQTypeJp(e) : rr < .8 ? rpgQCloze(e) : null;
-      else if (tier === 2) q = rr < .4 ? rpgQTypeFr(e) : rr < .6 ? rpgQSent(e, wide) : null;
-      else if (tier === 1) q = rr < .25 ? rpgQSent(e, wide) : null;
+      if (tier >= 4) q = rr < .3 ? rpgQTypeFr(e) : rr < .6 ? rpgQTypeJp(e) : rpgQCloze(e) || rpgQTypeJp(e);
+      else if (tier === 3) q = rr < .35 ? rpgQTypeFr(e) : rr < .65 ? rpgQTypeJp(e) : rr < .9 ? rpgQCloze(e) : null;
+      else if (tier === 2) q = rr < .4 ? rpgQTypeFr(e) : rr < .75 ? rpgQTypeJp(e) : rr < .85 ? rpgQCloze(e) : null;
+      else if (tier === 1) q = rr < .3 ? rpgQTypeFr(e) : rr < .5 ? rpgQTypeJp(e) : null;
       out.push(q || rpgQ(e, wide, tier === 0 ? (rpgHasKanji(e.jp) && e.kana && Math.random() < .3 ? 'read' : 'mean') : undefined));
     });
     return out;
@@ -28776,7 +28776,7 @@ body.tbopen { overflow: hidden; }
   function rpgGpAt(zi, k) { return Math.max(0, Math.min(1, (rpgFoesBefore(zi) + k) / rpgTotalFoes())); }
   function rpgGpHere() { return rpgGpAt(rp.zone, rpgFoeBase(rp.zone, rp.sc)); }
   function rpgGpBoss(zi) { return Math.min(1, rpgGpAt(zi + 1, 0) + 0.015); }
-  function rpgTierGp(gp) { return gp < 0.10 ? 0 : gp < 0.25 ? 1 : gp < 0.45 ? 2 : gp < 0.70 ? 3 : 4; }
+  function rpgTierGp(gp) { return gp < 0.05 ? 0 : gp < 0.12 ? 1 : gp < 0.30 ? 2 : gp < 0.55 ? 3 : 4; }
   function rpgWin(gp, extra) {
     var A = rpgSorted(), N = A.length, c = Math.max(0, Math.min(1, gp + (rg().ad || 0))) * (N - 1), hw = Math.max(60, Math.round(N * 0.06)), e = extra || 0;
     var lo = Math.max(0, Math.round(c - 0.9 * hw) - e), hi = Math.min(N, Math.max(Math.round(c + 0.5 * hw), lo + 45) + e);
@@ -28873,7 +28873,7 @@ body.tbopen { overflow: hidden; }
   }
   function rpgFoesLeft() { var s = rpgScene(), r = rg(); if (r.cl[rp.zone + '_' + rp.sc]) return 0; var n = 0; s.foes.forEach(function (f, i) { if (!r.yk.k[rpgFoeKey(i)]) n++; }); return n; }
   function rpgLocked() { var s = rpgScene(); return !!(s.boss && !rg().boss[rp.zone]) || rpgFoesLeft() > 0; }
-  function rpgLockMsg() { var n = rpgFoesLeft(); return n > 0 ? 'Des ennemis te barrent la route : il en reste ' + n + ' à vaincre !' : 'Le passage est gardé : il faut vaincre le gardien !'; }
+  function rpgLockMsg() { var n = rpgFoesLeft(); return n > 0 ? 'Des ennemis te barrent la route : il faut les vaincre !' : 'Le passage est gardé : il faut vaincre le gardien !'; }
   /* un ennemi vivant te repère à 2 cases : le combat se lance tout seul */
   function rpgAggro() {
     if (rp.mode !== 'map' || rpgFoesLeft() <= 0) return false;
@@ -29272,11 +29272,15 @@ body.tbopen { overflow: hidden; }
     for (k in r.sr.k) if (k.indexOf(zi + '_') === 0) srch++;
     function row(ok, ic, t) { return '<li class="' + (ok ? 'ok' : '') + '"><span>' + (ok ? '✅' : ic) + '</span>' + t + '</li>'; }
     var stepN = 0; for (var zz = 0; zz < zi; zz++) stepN += RPG_S[zz].length; stepN += rp.sc + 1; var stepT = RPG_S.reduce(function (a, z) { return a + z.length; }, 0);
-    el.innerHTML = '<div class="rpgprog" aria-hidden="true"><i style="width:' + Math.round(100 * stepN / stepT) + '%"></i></div><h3 class="rpgjt"><span class="jp">' + m.jp + '</span> ' + esc(m.n) + ' <small>· ' + esc(m.sub) + '</small></h3>' +
-      '<p class="small"><b>' + esc(rpgScene().label) + '</b></p><ul class="rpgquests">' +
-      row(rpgFoesLeft() === 0, '⚔️', rpgFoesLeft() === 0 ? 'Les ennemis de ce lieu sont vaincus' : 'Il reste ' + rpgFoesLeft() + ' ennemi(s) à vaincre ici <small>(obligatoire pour passer)</small>') + row(kills >= 8, '🗡️', 'Ennemis vaincus dans la région : ' + kills + ' <small>(8 pour défier le gardien)</small>') + row(!!r.boss[zi], '🏯', 'Gardien : ' + esc(chName(m.bg))) +
-      row(rpgDone('sensei'), '🎓', 'Leçon de ' + esc(chName('sensei'))) + row(rpgDone('rival'), '🥋', 'Duel contre ' + esc(chName('rival'))) + row(rpgDone('amie'), '📖', 'Lecture avec ' + esc(chName('amie'))) +
-      row(srch >= 8, '🔎', 'Cachettes fouillées aujourd\'hui : ' + srch) + '</ul><p class="small muted">Touche la carte pour te déplacer (ou croix / flèches). Fouille les buissons ✨, croise les ennemis sur la route, trouve l\'auberge.</p>';
+    var rows = '', seen = r.seen || (r.seen = {});
+    if (rpgFoesLeft() > 0) rows += row(false, '⚔️', 'Des ennemis rôdent par ici…');
+    else if (RPG_S[zi][rp.sc].foes.length) rows += row(true, '⚔️', 'Les ennemis de ce lieu sont vaincus');
+    if (seen['boss' + zi]) rows += row(!!r.boss[zi], '🏯', 'Gardien : ' + esc(chName(m.bg)));
+    if (rpgDone('sensei')) rows += row(true, '🎓', 'Leçon terminée');
+    if (rpgDone('rival')) rows += row(true, '🥋', 'Duel gagné');
+    if (rpgDone('amie')) rows += row(true, '📖', 'Lecture terminée');
+    el.innerHTML = '<div class="rpgprog" aria-hidden="true"><i style="width:' + Math.round(100 * stepN / stepT) + '%"></i></div><h3 class="rpgjt"><span class="jp">' + m.jp + '</span> ' + esc(m.n) + '</h3>' +
+      '<p class="small"><b>' + esc(rpgScene().label) + '</b></p>' + (rows ? '<ul class="rpgquests">' + rows + '</ul>' : '') + '<p class="small muted">Touche la carte pour te déplacer (ou croix / flèches). Explore, fouille les buissons ✨, parle aux gens et avance sur la route.</p>';
   }
   function rpgRender(host) {
     setVox(false); host.onclick = null; host.classList.add('rpgon');
@@ -29443,8 +29447,8 @@ body.tbopen { overflow: hidden; }
     rpgDlgShow();
   }
   function rpgBossTalk() {
-    var zi = rp.zone, m = RPG_M[zi], r = rg(), kills = (r.kills[zi] || []).length;
-    if (kills < 8) return rpgSay(m.bg, [rpgLine(m.bg, 'greet') + ' Tu n\'as vaincu que ' + kills + ' ennemi(s) sur la route : reviens avec au moins 8 victoires !'], null);
+    var zi = rp.zone, m = RPG_M[zi], r = rg(), kills = (r.kills[zi] || []).length; (r.seen = r.seen || {})['boss' + zi] = 1;
+    if (kills < 8) return rpgSay(m.bg, [rpgLine(m.bg, 'greet') + ' Tu n\'es pas encore assez aguerri(e) : bats d\'abord les ennemis qui rôdent sur la route, puis reviens me voir !'], null);
     rpgSay(m.bg, [rpgLine(m.bg, 'intro'), rpgLine(m.bg, 'offer')], function () {
       rpgBattle({ title: 'Gardien : ' + chName(m.bg), foeId: m.bg, qs: rpgMixQs(rpgGpBoss(zi), 12, 4), need: 10, kind: 'boss',
         win: function () { var first = !rg().boss[zi]; rg().boss[zi] = 1; if (zi + 1 > rg().un && zi < 4) rg().un = zi + 1; if (zi === 4) rg().fin = 1; return { first: first, xp: first ? 60 : 5, coins: first ? 40 : 0, say: [m.bg, [rpgLine(m.bg, 'defeat'), m.bossWin]], after: zi === 4 ? 'fin' : 'open' }; },
