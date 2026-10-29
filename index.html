@@ -5380,6 +5380,45 @@ body.tbopen { overflow: hidden; }
 .rphl{display:flex;flex-direction:column;gap:8px}.rphit{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:8px 10px;border:2px solid rgba(124,92,255,.2);border-left-width:6px;border-radius:10px;background:rgba(255,255,255,.5)}
 .rphin{display:flex;flex-direction:column;font-size:14px;min-width:0}.rphin small{opacity:.75}.rphia{display:flex;flex-direction:column;gap:4px}.rphia .btn{padding:4px 10px;font-size:13px;white-space:nowrap}
 .rphft{text-align:center}
+/* ===== v340 : interface façon RPG, monnaie d'aventure ===== */
+.rpg{position:relative;gap:8px;background:linear-gradient(180deg,#2c1a5e 0%,#170d36 100%);border:3px solid #d9a93a;border-radius:22px;padding:10px 10px 12px;box-shadow:inset 0 0 0 2px #4b2e8c,0 12px 30px rgba(20,8,50,.5);color:#f4ecff}
+.rpg::before{content:"◆ ◆ ◆";position:absolute;top:-10px;left:50%;transform:translateX(-50%);color:#d9a93a;background:#2c1a5e;padding:0 10px;font-size:10px;letter-spacing:4px;border-radius:99px;border:2px solid #d9a93a;line-height:14px}
+.rpghud{display:flex;align-items:center;gap:10px;padding:4px 2px 2px;justify-content:flex-start}
+.rpgmed{position:relative;width:58px;height:58px;border-radius:50%;padding:0;border:3px solid #d9a93a;background:#fff;flex:none;box-shadow:0 0 0 2px #4b2e8c,0 4px 10px rgba(0,0,0,.4)}
+.rpgmed img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.rpgmed i{position:absolute;right:-6px;bottom:-6px;background:#d9a93a;color:#2a1a50;font-style:normal;font-weight:900;font-size:12px;min-width:22px;height:22px;border-radius:99px;display:grid;place-items:center;border:2px solid #2c1a5e}
+.rpgmed u{position:absolute;left:-3px;top:-3px;width:14px;height:14px;border-radius:50%;background:#e03a48;border:2px solid #fff;animation:rpgblink 1s steps(2) infinite}
+.rpghm{flex:1;min-width:0}.rpghn{display:flex;gap:8px;align-items:baseline}.rpghn b{color:#fff;font-size:15px}.rpghn span{font-size:12px;color:#c9b8f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rpghud .rpghearts{font-size:14px;line-height:1.25;letter-spacing:0}
+.rpgxpb{height:7px;border-radius:99px;background:rgba(255,255,255,.16);overflow:hidden;margin-top:3px}.rpgxpb i{display:block;height:100%;background:linear-gradient(90deg,#7c5cff,#ffd96a)}
+.rpggoldw{display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.35);border:2px solid #d9a93a;border-radius:99px;padding:3px 12px 3px 4px;color:#ffe08a;font-weight:800;flex:none}
+.rpggoldw i{font-style:normal;background:radial-gradient(circle at 35% 30%,#fff0b5,#d9a93a);color:#6a4400;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:14px;font-weight:900}
+.rpggoldw.lt{background:#fff6dc;color:#7a5200}
+.rpgstage{position:relative}
+.rpgmapw{border:3px solid #d9a93a;box-shadow:0 0 0 2px #4b2e8c}
+.rpg.talk .rpgdlg{position:absolute;left:6px;right:6px;bottom:6px;z-index:6;max-height:94%;overflow:auto;border-radius:16px}
+.rpg.btl .rpgdlg{position:static}
+.rpgjournal{display:none!important}
+.rpgpad{display:flex;justify-content:space-between;align-items:center;padding:4px 6px 0}
+.rpgpad .dp{grid-template-columns:repeat(3,56px);grid-template-rows:repeat(3,50px)}
+.rpgact{position:relative;width:158px;height:124px;flex:none}
+.rpgact .ab{position:absolute;right:0;bottom:0;width:86px;height:86px;border-radius:50%;font-size:30px;font-weight:900;border:3px solid #2a1a50;background:radial-gradient(circle at 35% 30%,#ffe9a0,#f0a92a);color:#2a1a50;box-shadow:0 5px 0 #8a5a00}
+.rpgact .ab:active{transform:translateY(3px);box-shadow:0 2px 0 #8a5a00}
+.rpgact .sb{position:absolute;width:56px;height:56px;border-radius:50%;border:3px solid #d9a93a;background:linear-gradient(#4b2e8c,#2c1a5e);color:#fff;font-size:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;box-shadow:0 4px 0 #170d36}
+.rpgact .sb small{font-size:9px;margin-top:2px;color:#ffe08a;font-weight:700}
+.rpgact .s1{left:0;top:30px}.rpgact .s2{left:56px;top:0}
+.rpgch{flex-direction:column;align-items:stretch;gap:6px}
+.rpgch .btn{text-align:left;position:relative;padding-left:30px}
+.rpgch .btn::before{content:"▶";position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:11px;color:#d9a93a}
+.rpgjm{color:#2a1a50}
+.rpg.talk .rpgdlg{padding:10px 10px 8px}
+.rpg.talk .rpgdbox{gap:12px}
+.rpg.talk .rpgdt{font-size:14.5px;line-height:1.4}
+.rpg.talk .rpgpt{width:54px;height:54px}
+.rpg.talk .rpgdb{padding:16px 12px 9px}
+.rpg.talk .rpgch{margin-top:6px}
+.rpg.talk .rpgch .btn{padding-top:7px;padding-bottom:7px;font-size:14px}
+.rpgch .btn[data-rpgn]{text-align:center;padding-left:14px}.rpgch .btn[data-rpgn]::before{display:none}
 
 </style>
 
@@ -28652,7 +28691,7 @@ body.tbopen { overflow: hidden; }
     S.rpg = S.rpg || {};
     var r = S.rpg;
     if (!r.done) r.done = {}; if (!r.boss) r.boss = {}; if (r.un === undefined) r.un = 0; if (!r.kills) r.kills = {}; if (!r.cl) r.cl = {}; if (!r.ms) r.ms = {}; if (!r.zi) r.zi = {};
-    if (!r.ex) r.ex = {}; if (!r.wk) r.wk = {}; if (r.ad === undefined) r.ad = 0;
+    if (r.gold === undefined) r.gold = 30; if (!r.ex) r.ex = {}; if (!r.wk) r.wk = {}; if (r.ad === undefined) r.ad = 0;
     if (r.v !== 3) { r.v = 3; r.cl = {}; r.ms = {}; r.s = 0; r.yk = null; }
     if (!r.yk || r.yk.d !== rpgDay() || !r.yk.k) r.yk = { d: rpgDay(), k: {} };
     if (!r.sr || r.sr.d !== rpgDay()) r.sr = { d: rpgDay(), k: {} };
@@ -28817,12 +28856,15 @@ body.tbopen { overflow: hidden; }
     return { text: a, qs: qs };
   }
   function rpgMult() { return 1 + 0.35 * rp.zone; }
+  function rpgGold() { return rg().gold || 0; }
+  function rpgAddGold(n) { var r = rg(); r.gold = Math.max(0, (r.gold || 0) + n); }
+  function rpgGoldHTML(n, cls) { return '<span class="rpggoldw' + (cls ? ' ' + cls : '') + '"><i>両</i><b>' + n + '</b></span>'; }
   function rpgGive(xp, coins) {
-    xp = Math.round(xp * rpgMult()); coins = Math.round(coins * rpgMult() * rpgLuckMult());
-    try { addXp(xp); } catch (e) { /* ignore */ }
-    var lvu = rpgHeroXp(xp);
-    S.coins = coinsOf() + coins; S.coinsTotal = (S.coinsTotal || 0) + coins; persist();
-    return '<p class="rpgrw"><span class="rpgchip">+' + xp + ' XP</span>' + (coins ? '<span class="rpgchip gold">+' + coins + ' 🪙</span>' : '') + (lvu ? '<span class="rpgchip lv">⭐ Niveau ' + lvu + ' ! +3 points</span>' : '') + '</p>';
+    xp = Math.round(xp * rpgMult()); coins = Math.round(coins * 3 * rpgMult() * rpgLuckMult());
+    var lv0 = level(); try { addXp(xp); } catch (e) { /* ignore */ }
+    var lvu = level() > lv0 ? level() : 0;
+    rpgAddGold(+(coins)); persist();
+    return '<p class="rpgrw"><span class="rpgchip">+' + xp + ' XP</span>' + (coins ? '<span class="rpgchip gold">+' + coins + ' 両</span>' : '') + (lvu ? '<span class="rpgchip lv">⭐ Niveau ' + lvu + ' ! +3 points</span>' : '') + '</p>';
   }
   /* ---------- scènes et entités ---------- */
   function rpgScene() { return RPG_S[rp.zone][rp.sc]; }
@@ -29285,8 +29327,9 @@ body.tbopen { overflow: hidden; }
   function rpgHearts() { try { regen(); } catch (e) { /* ignore */ } var h = S.hearts || 0, o = ''; for (var i = 0; i < MAX_HEARTS; i++) o += i < h ? '❤️' : '🖤'; return o; }
   function rpgHud() {
     var el = document.getElementById('rpgHud'); if (!el) return;
-    var hh = rpgHero();
-    el.innerHTML = '<span class="rpghearts" aria-label="Cœurs">' + rpgHearts() + '</span><button type="button" class="btn rpghbtn" data-rpghero="1">🛡 Héros · Niv. ' + hh.lv + (hh.pts ? ' <i class="rpgdot2">' + hh.pts + '</i>' : '') + '</button>' + coinHTML(coinsOf());
+    var hh = rpgHero(), need = xpNeed(hh.lv), pct = Math.round(100 * xpInto(S.xp) / need), av = ''; try { av = avatarOf(user.name, user.avatar); } catch (e) { /* ignore */ }
+    el.innerHTML = '<button type="button" class="rpgmed" data-rpghero="1" aria-label="Héros"><img src="' + esc(av) + '" alt=""><i>' + hh.lv + '</i>' + (hh.pts ? '<u></u>' : '') + '</button>' +
+      '<div class="rpghm"><div class="rpghn"><b>' + esc(user ? user.name : 'Héros') + '</b><span>' + esc(rpgScene().label) + '</span></div><div class="rpghearts" aria-label="Cœurs">' + rpgHearts() + '</div><div class="rpgxpb" title="XP d\'aventure"><i style="width:' + pct + '%"></i></div></div>' + rpgGoldHTML(rpgGold());
   }
   function rpgDone(k) { return !!rg().done['z' + rp.zone + '_' + k]; }
   function rpgJournal() {
@@ -29310,9 +29353,9 @@ body.tbopen { overflow: hidden; }
     var r = rg();
     if (!rp.init) { rp.init = 1; var z = Math.min(r.z || 0, r.un), s = Math.min(r.s || 0, r.ms[z] || 0); rpgGo(z, s, 'in'); if (r.px !== undefined && r.pz === z && r.ps === s) { /* position non restaurée volontairement */ } }
     if (rp.zone > r.un) rpgGo(r.un, 0, 'in');
-    host.innerHTML = storyNav() + '<div class="rpg' + (rp.mode === 'battle' ? ' btl' : '') + '" id="rpgRoot"><div class="rpghud" id="rpgHud"></div><div class="rpgmapw" id="rpgMapW"><canvas id="rpgCv" aria-label="Carte du jeu"></canvas></div><div id="rpgDlg" class="rpgdlg" hidden></div>' +
-      '<div class="rpgpad" id="rpgPad"><div class="dp"><button type="button" data-rpgd="u" aria-label="Haut">▲</button><button type="button" data-rpgd="l" aria-label="Gauche">◀</button><button type="button" data-rpgd="a" class="ab" aria-label="Agir">A</button><button type="button" data-rpgd="r" aria-label="Droite">▶</button><button type="button" data-rpgd="d" aria-label="Bas">▼</button></div></div>' +
-      '<div class="panel rpgjournal" id="rpgJournal"></div></div>';
+    host.innerHTML = storyNav() + '<div class="rpg' + (rp.mode === 'battle' ? ' btl' : '') + '" id="rpgRoot"><div class="rpghud" id="rpgHud"></div><div class="rpgstage"><div class="rpgmapw" id="rpgMapW"><canvas id="rpgCv" aria-label="Carte du jeu"></canvas></div><div id="rpgDlg" class="rpgdlg" hidden></div></div>' +
+      '<div class="rpgpad" id="rpgPad"><div class="dp"><button type="button" data-rpgd="u" aria-label="Haut">▲</button><button type="button" data-rpgd="l" aria-label="Gauche">◀</button><button type="button" data-rpgd="r" aria-label="Droite">▶</button><button type="button" data-rpgd="d" aria-label="Bas">▼</button></div><div class="rpgact"><button type="button" data-rpgd="a" class="ab" aria-label="Agir">A</button><button type="button" class="sb s1" data-rpghero="1" aria-label="Héros et équipement">🛡<small>Héros</small></button><button type="button" class="sb s2" data-rpgj="1" aria-label="Journal de voyage">📜<small>Quêtes</small></button></div></div>' +
+      '<div class="rpgjournal" id="rpgJournal" hidden></div></div>';
     bindStoryNav(host); rpgHud(); rpgJournal();
     if (rp.mode === 'talk' && rp.dlg) rpgDlgShow(); else if (rp.mode === 'battle' && rp.bt) rpgBtShow(); else rp.mode = 'map';
     rpgStartLoop();
@@ -29396,7 +29439,7 @@ body.tbopen { overflow: hidden; }
     if (r.sr.k[key]) return rpgSay(null, ['Il n\'y a plus rien ici. Je ferais mieux de continuer.'], null);
     r.sr.k[key] = 1; persist();
     var roll = Math.random(), zi = rp.zone;
-    if (roll < 0.38) { var c = Math.round((3 + Math.random() * 6) * rpgMult() * rpgLuckMult()); S.coins = coinsOf() + c; S.coinsTotal = (S.coinsTotal || 0) + c; persist(); sfx('ok'); rpgSay(null, ['Tu fouilles… et tu trouves une petite bourse !'], null, '<p class="rpgrw"><span class="rpgchip gold">+' + c + ' 🪙</span></p>'); }
+    if (roll < 0.38) { var c = Math.round((3 + Math.random() * 6) * 3 * rpgMult() * rpgLuckMult()); rpgAddGold(+(c)); persist(); sfx('ok'); rpgSay(null, ['Tu fouilles… et tu trouves une petite bourse !'], null, '<p class="rpgrw"><span class="rpgchip gold">+' + c + ' 両</span></p>'); }
     else if (roll < 0.55 && (S.hearts || 0) < MAX_HEARTS) { S.hearts = Math.min(MAX_HEARTS, (S.hearts || 0) + 1); persist(); sfx('ok'); rpgSay(null, ['Une boulette de riz oubliée ! Elle te redonne des forces.'], null, '<p class="rpgrw"><span class="rpgchip">+1 ❤️</span></p>'); }
     else if (roll < 0.75) { var rw = rpgGive(6, 0); sfx('ok'); var w = rpgPick(rpgPoolGp(rpgGpHere()), 1)[0]; rpgSay(null, ['Tu trouves un vieux carnet de vocabulaire' + (w ? ' : « ' + w.jp + ' » = ' + rpgFr(w) : '') + '.'], null, rw); }
     else if (roll < 0.9) { rpgSay(null, ['Rien d\'intéressant… seulement des feuilles et de la poussière.'], null); }
@@ -29429,18 +29472,18 @@ body.tbopen { overflow: hidden; }
   }
   function rpgShop() {
     var items = [{ l: '🍙 Onigiri · +1 ❤️', c: 25, h: 1 }, { l: '🍡 Mochi · +2 ❤️', c: 45, h: 2 }, { l: '🍵 Matcha · cœurs au max', c: 80, h: 99 }];
-    rpgAsk('marchand', rpgLine('marchand', 'greet') + ' (Tu as ' + coinsOf() + ' 🪙)', items.map(function (it) {
-      return { l: it.l + ' — ' + it.c + ' 🪙', dis: coinsOf() < it.c || (S.hearts >= MAX_HEARTS), f: function () {
-        if (coinsOf() < it.c) return; S.coins = coinsOf() - it.c; S.hearts = Math.min(MAX_HEARTS, (S.hearts || 0) + it.h); if (S.hearts >= MAX_HEARTS) S.heartsAt = Date.now(); persist(); sfx('ok'); rpgHud();
+    rpgAsk('marchand', rpgLine('marchand', 'greet') + ' (Tu as ' + rpgGold() + ' 両)', items.map(function (it) {
+      return { l: it.l + ' — ' + it.c + ' 両', dis: rpgGold() < it.c || (S.hearts >= MAX_HEARTS), f: function () {
+        if (rpgGold() < it.c) return; rpgAddGold(-(it.c)); S.hearts = Math.min(MAX_HEARTS, (S.hearts || 0) + it.h); if (S.hearts >= MAX_HEARTS) S.heartsAt = Date.now(); persist(); sfx('ok'); rpgHud();
         rpgSay('marchand', [rpgLine('marchand', 'thanks')], null);
       } };
     }).concat([{ l: '🛡 Équipement (armes, armures…)', p: 1, f: function () { rpgDlgClose(); rpgHeroOpen('shop', true); } }, { l: 'Rien pour le moment', f: rpgDlgClose }]));
   }
   function rpgInn() {
     var r = rg(), free = r.innDay !== rpgDay();
-    rpgAsk('aub', rpgLine('aub', 'greet') + (free ? ' Le premier repos du jour est offert : cœurs au maximum.' : ' Un bon lit pour 40 🪙 : cœurs au maximum.'), [
-      { l: free ? '🛏 Se reposer (gratuit)' : '🛏 Se reposer — 40 🪙', p: 1, dis: S.hearts >= MAX_HEARTS || (!free && coinsOf() < 40), f: function () {
-        if (!free) S.coins = coinsOf() - 40; r.innDay = rpgDay(); S.hearts = MAX_HEARTS; S.heartsAt = Date.now(); persist(); sfx('ok'); rpgHud();
+    rpgAsk('aub', rpgLine('aub', 'greet') + (free ? ' Le premier repos du jour est offert : cœurs au maximum.' : ' Un bon lit pour 40 両 : cœurs au maximum.'), [
+      { l: free ? '🛏 Se reposer (gratuit)' : '🛏 Se reposer — 40 両', p: 1, dis: S.hearts >= MAX_HEARTS || (!free && rpgGold() < 40), f: function () {
+        if (!free) rpgAddGold(-(40)); r.innDay = rpgDay(); S.hearts = MAX_HEARTS; S.heartsAt = Date.now(); persist(); sfx('ok'); rpgHud();
         rpgSay('aub', [rpgLine('aub', 'thanks')], null);
       } }, { l: 'Pas besoin', f: rpgDlgClose }]);
   }
@@ -29676,6 +29719,7 @@ body.tbopen { overflow: hidden; }
   function rpgHero() {
     var r = rg(), h = r.hero;
     if (!h) h = r.hero = { lv: 1, xp: 0, pts: 0, al: { hp: 0, atk: 0, def: 0, luck: 0 }, inv: { w1: 0, a1: 0 }, eq: { w: 'w1', a: 'a1' } };
+    h.lv = level(); h.pts = Math.max(0, 3 * (h.lv - 1) - (h.al.hp + h.al.atk + h.al.def + h.al.luck));
     return h;
   }
   function rpgItemStats(id, up) {
@@ -29700,17 +29744,12 @@ body.tbopen { overflow: hidden; }
   }
   function rpgLuckMult() { return 1 + rpgStats().coin / 100; }
   function rpgHeroNeed(lv) { return 40 + 25 * lv; }
-  function rpgHeroXp(xp) {
-    var h = rpgHero(), up = 0; h.xp += xp;
-    while (h.lv < 40 && h.xp >= rpgHeroNeed(h.lv)) { h.xp -= rpgHeroNeed(h.lv); h.lv++; h.pts += 3; up++; }
-    if (h.lv >= 40) h.xp = 0;
-    return up ? h.lv : 0;
-  }
+  function rpgHeroXp(xp) { return 0; }   /* l'XP d'aventure est l'XP du site : niveau unique */
   function rpgStTxt(s) { var a = []; if (s.atk) a.push('⚔️+' + s.atk); if (s.def) a.push('🛡️+' + s.def); if (s.hp) a.push('❤️+' + s.hp); if (s.luck) a.push('🍀+' + s.luck); return a.join(' ') || '—'; }
   function rpgItHtml(id, up) { var it = RPG_ITM[id]; return '<b style="color:' + RPG_RAR[it.r].c + '">' + esc(it.n) + (up ? ' +' + up : '') + '</b>'; }
   function rpgGrant(id) {
     var h = rpgHero(), it = RPG_ITM[id]; if (!it) return '';
-    if (h.inv[id] !== undefined) { var c = Math.max(15, Math.round((it.p || 150) * 0.4)); S.coins = coinsOf() + c; S.coinsTotal = (S.coinsTotal || 0) + c; persist(); return '<p class="rpgrw"><span class="rpgchip gold">Doublon : ' + esc(it.n) + ' → +' + c + ' 🪙</span></p>'; }
+    if (h.inv[id] !== undefined) { var c = Math.max(15, Math.round((it.p || 150) * 0.4)); rpgAddGold(+(c)); persist(); return '<p class="rpgrw"><span class="rpgchip gold">Doublon : ' + esc(it.n) + ' → +' + c + ' 両</span></p>'; }
     h.inv[id] = 0; if (!h.eq[it.s]) h.eq[it.s] = id; persist(); rpgApplyStats();
     return '<p class="rpgrw"><span class="rpgchip loot" style="border-color:' + RPG_RAR[it.r].c + '">🎁 ' + esc(it.n) + ' <small>(' + RPG_RAR[it.r].n + ')</small></span></p>';
   }
@@ -29729,8 +29768,8 @@ body.tbopen { overflow: hidden; }
   }
   function rpgHeroRefresh() { var b = document.getElementById('appModalBody'); if (b) { var sc = b.scrollTop; b.innerHTML = rpgHeroHTML(); b.scrollTop = sc; } try { rpgHud(); } catch (e) { /* ignore */ } }
   function rpgHeroHTML() {
-    var h = rpgHero(), st = rpgStats(), need = h.lv >= 40 ? 1 : rpgHeroNeed(h.lv), hero = ''; try { hero = avatarOf(user.name, user.avatar); } catch (e) { /* ignore */ }
-    var o = '<div class="rph"><div class="rphh"><img class="rphav" src="' + esc(hero) + '" alt=""><div class="rphhi"><b>' + esc(user ? user.name : 'Héros') + ' · Niv. ' + h.lv + '</b><div class="rphxp"><i style="width:' + (h.lv >= 40 ? 100 : Math.round(100 * h.xp / need)) + '%"></i></div><small>' + (h.lv >= 40 ? 'Niveau maximum' : h.xp + ' / ' + need + ' XP d\'aventure') + '</small></div><span class="rphc">' + coinHTML(coinsOf()) + '</span></div>';
+    var h = rpgHero(), st = rpgStats(), need = xpNeed(h.lv), hero = ''; try { hero = avatarOf(user.name, user.avatar); } catch (e) { /* ignore */ }
+    var o = '<div class="rph"><div class="rphh"><img class="rphav" src="' + esc(hero) + '" alt=""><div class="rphhi"><b>' + esc(user ? user.name : 'Héros') + ' · Niv. ' + h.lv + '</b><div class="rphxp"><i style="width:' + Math.round(100 * xpInto(S.xp) / need) + '%"></i></div><small>' + (xpInto(S.xp) + ' / ' + need + ' XP (la même XP que sur tout le site)') + '</small></div><span class="rphc">' + coinHTML(rpgGold()) + '</span></div>';
     o += '<div class="rpht">' + [['hero', '🛡 Héros'], ['bag', '🎒 Sac'], ['shop', '🏮 Boutique']].filter(function (t) { return t[0] !== 'shop' || rph.shop; }).map(function (t) { return '<button type="button" class="rphtab' + (rph.tab === t[0] ? ' on' : '') + '" data-rph="tab:' + t[0] + '">' + t[1] + '</button>'; }).join('') + '</div>';
     if (rph.tab === 'hero') {
       o += (h.pts ? '<p class="rphpts">⭐ ' + h.pts + ' point' + (h.pts > 1 ? 's' : '') + ' à répartir</p>' : '');
@@ -29740,19 +29779,19 @@ body.tbopen { overflow: hidden; }
         var id = h.eq[s], it = id ? RPG_ITM[id] : null;
         return '<button type="button" class="rphslot" data-rph="sl:' + s + '" style="border-color:' + (it ? RPG_RAR[it.r].c : '#b5acd0') + '"><span class="rphsi">' + RPG_SLOT[s][1] + '</span><span class="rphsn"><small>' + RPG_SLOT[s][0] + '</small>' + (it ? rpgItHtml(id, h.inv[id]) + '<small>' + rpgStTxt(rpgItemStats(id, h.inv[id])) + '</small>' : '<i>Vide</i>') + '</span></button>';
       }).join('') + '</div>';
-      o += '<div class="rphft"><button type="button" class="btn" data-rph="rs"' + (coinsOf() < 50 * h.lv ? ' disabled' : '') + '>↺ Réinitialiser les points (' + (50 * h.lv) + ' 🪙)</button></div>';
+      o += '<div class="rphft"><button type="button" class="btn" data-rph="rs"' + (rpgGold() < 25 * h.lv ? ' disabled' : '') + '>↺ Réinitialiser les points (' + (25 * h.lv) + ' 両)</button></div>';
     } else if (rph.tab === 'bag') {
       o += '<div class="rphf">' + [['all', 'Tout'], ['w', '🗡️'], ['a', '👘'], ['h', '👒'], ['c', '📿']].map(function (f) { return '<button type="button" class="rphtab' + (rph.slot === f[0] ? ' on' : '') + '" data-rph="fl:' + f[0] + '">' + f[1] + '</button>'; }).join('') + '</div>';
       var own = RPG_IT.filter(function (i) { return h.inv[i.id] !== undefined && (rph.slot === 'all' || i.s === rph.slot); });
       o += own.length ? '<div class="rphl">' + own.map(function (i) {
         var up = h.inv[i.id], eq = h.eq[i.s] === i.id, cost = 40 * i.t * (up + 1);
-        return '<div class="rphit" style="border-left-color:' + RPG_RAR[i.r].c + '"><div class="rphin">' + RPG_SLOT[i.s][1] + ' ' + rpgItHtml(i.id, up) + '<small>' + RPG_RAR[i.r].n + ' · ' + rpgStTxt(rpgItemStats(i.id, up)) + '</small></div><div class="rphia"><button type="button" class="btn' + (eq ? '' : ' primary') + '" data-rph="eq:' + i.id + '"' + (eq ? ' disabled' : '') + '>' + (eq ? 'Équipé' : 'Équiper') + '</button><button type="button" class="btn" data-rph="fg:' + i.id + '"' + (up >= 5 || coinsOf() < cost ? ' disabled' : '') + '>' + (up >= 5 ? 'Max' : '🔨 +' + (up + 1) + ' · ' + cost + ' 🪙') + '</button></div></div>';
+        return '<div class="rphit" style="border-left-color:' + RPG_RAR[i.r].c + '"><div class="rphin">' + RPG_SLOT[i.s][1] + ' ' + rpgItHtml(i.id, up) + '<small>' + RPG_RAR[i.r].n + ' · ' + rpgStTxt(rpgItemStats(i.id, up)) + '</small></div><div class="rphia"><button type="button" class="btn' + (eq ? '' : ' primary') + '" data-rph="eq:' + i.id + '"' + (eq ? ' disabled' : '') + '>' + (eq ? 'Équipé' : 'Équiper') + '</button><button type="button" class="btn" data-rph="fg:' + i.id + '"' + (up >= 5 || rpgGold() < cost ? ' disabled' : '') + '>' + (up >= 5 ? 'Max' : '🔨 +' + (up + 1) + ' · ' + cost + ' 両') + '</button></div></div>';
       }).join('') + '</div>' : '<p class="small muted">Aucun objet ici. Ouvre des coffres, bats des ennemis et visite le marchand !</p>';
     } else {
       var zt = Math.min(4, rp.zone + 1), list = RPG_IT.filter(function (i) { return i.p > 0 && i.t <= zt + 1 && h.inv[i.id] === undefined; });
       o += list.length ? '<div class="rphl">' + list.map(function (i) {
         var cur = h.eq[i.s], cs = cur ? rpgItemStats(cur, h.inv[cur]) : null;
-        return '<div class="rphit" style="border-left-color:' + RPG_RAR[i.r].c + '"><div class="rphin">' + RPG_SLOT[i.s][1] + ' ' + rpgItHtml(i.id, 0) + '<small>' + RPG_RAR[i.r].n + ' · ' + rpgStTxt(i.st) + '</small></div><div class="rphia"><button type="button" class="btn primary" data-rph="by:' + i.id + '"' + (coinsOf() < i.p ? ' disabled' : '') + '>' + i.p + ' 🪙</button></div></div>';
+        return '<div class="rphit" style="border-left-color:' + RPG_RAR[i.r].c + '"><div class="rphin">' + RPG_SLOT[i.s][1] + ' ' + rpgItHtml(i.id, 0) + '<small>' + RPG_RAR[i.r].n + ' · ' + rpgStTxt(i.st) + '</small></div><div class="rphia"><button type="button" class="btn primary" data-rph="by:' + i.id + '"' + (rpgGold() < i.p ? ' disabled' : '') + '>' + i.p + ' 両</button></div></div>';
       }).join('') + '</div>' : '<p class="small muted">Tu as déjà tout ce que je vends ici. Reviens plus loin dans ton voyage : j\'aurai de meilleurs objets !</p>';
     }
     return o + '</div>';
@@ -29764,16 +29803,20 @@ body.tbopen { overflow: hidden; }
       if (k === 'tab') { rph.tab = v; }
       else if (k === 'fl') { rph.slot = v; }
       else if (k === 'sl') { rph.tab = 'bag'; rph.slot = v; }
-      else if (k === 'al' && h.pts > 0) { h.al[v]++; h.pts--; persist(); rpgApplyStats(); sfx('tick', true); }
+      else if (k === 'al' && h.pts > 0) { h.al[v]++; persist(); rpgApplyStats(); sfx('tick', true); }
       else if (k === 'eq' && h.inv[v] !== undefined) { h.eq[RPG_ITM[v].s] = v; persist(); rpgApplyStats(); }
-      else if (k === 'fg' && h.inv[v] !== undefined) { var cost = 40 * RPG_ITM[v].t * (h.inv[v] + 1); if (h.inv[v] < 5 && coinsOf() >= cost) { S.coins = coinsOf() - cost; h.inv[v]++; persist(); rpgApplyStats(); sfx('ok', true); } }
-      else if (k === 'by') { var it = RPG_ITM[v]; if (it && h.inv[v] === undefined && coinsOf() >= it.p) { S.coins = coinsOf() - it.p; h.inv[v] = 0; if (!h.eq[it.s]) h.eq[it.s] = v; persist(); rpgApplyStats(); sfx('ok', true); } }
-      else if (k === 'rs') { var c2 = 50 * h.lv, tot = h.al.hp + h.al.atk + h.al.def + h.al.luck; if (tot > 0 && coinsOf() >= c2) { S.coins = coinsOf() - c2; h.pts += tot; h.al = { hp: 0, atk: 0, def: 0, luck: 0 }; persist(); rpgApplyStats(); if ((S.hearts || 0) > MAX_HEARTS) S.hearts = MAX_HEARTS; } }
+      else if (k === 'fg' && h.inv[v] !== undefined) { var cost = 40 * RPG_ITM[v].t * (h.inv[v] + 1); if (h.inv[v] < 5 && rpgGold() >= cost) { rpgAddGold(-(cost)); h.inv[v]++; persist(); rpgApplyStats(); sfx('ok', true); } }
+      else if (k === 'by') { var it = RPG_ITM[v]; if (it && h.inv[v] === undefined && rpgGold() >= it.p) { rpgAddGold(-(it.p)); h.inv[v] = 0; if (!h.eq[it.s]) h.eq[it.s] = v; persist(); rpgApplyStats(); sfx('ok', true); } }
+      else if (k === 'rs') { var c2 = 25 * h.lv, tot = h.al.hp + h.al.atk + h.al.def + h.al.luck; if (tot > 0 && rpgGold() >= c2) { rpgAddGold(-(c2)); h.al = { hp: 0, atk: 0, def: 0, luck: 0 }; persist(); rpgApplyStats(); if ((S.hearts || 0) > MAX_HEARTS) S.hearts = MAX_HEARTS; } }
       var nb2 = 5 + rpgStats().hearts; if (nb2 > ob) { S.hearts = Math.min(nb2, (S.hearts || 0) + nb2 - ob); persist(); }
       rpgHeroRefresh(); return;
     }
     var o = ev.target.closest ? ev.target.closest('[data-rpghero]') : null;
     if (o) rpgHeroOpen('hero', false);
+  });
+  document.addEventListener('click', function (ev) {
+    var o = ev.target.closest ? ev.target.closest('[data-rpgj]') : null; if (!o) return;
+    rpgJournal(); var el = document.getElementById('rpgJournal'); if (el) openModal('Journal de voyage', '<div class="rpgjm">' + el.innerHTML + '</div>', 'kmodal');
   });
 
   backend.init().then(function (u) {
