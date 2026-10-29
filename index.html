@@ -25142,6 +25142,7 @@ body.tbopen { overflow: hidden; }
       if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       var t = e.target.closest ? e.target.closest('button,.mode,.qvt,.ktile,.tab,.cs-chip,[role="button"]') : null;
       if (!t || t.disabled) return;
+      if (t.closest && t.closest('.rpgpad,.rpgmapw')) return;
       var n = Date.now(); if (n - last < 120) return; last = n;
       var r = document.createElement('i'); r.className = 'tapring'; r.setAttribute('aria-hidden', 'true');
       r.style.left = e.clientX + 'px'; r.style.top = e.clientY + 'px'; document.body.appendChild(r);
@@ -25194,6 +25195,7 @@ body.tbopen { overflow: hidden; }
   document.addEventListener('pointerdown', function (e) {
     var t = e.target.closest ? e.target.closest(UI_HOV) : null;
     if (!t || t.disabled || t.getAttribute('aria-disabled') === 'true') return;
+    if (t.closest && t.closest('.rpgpad,.rpgmapw')) return;
     uiSnd(uiKindOf(t));
   }, true);
   (function () {
@@ -25201,7 +25203,7 @@ body.tbopen { overflow: hidden; }
     document.addEventListener('pointerover', function (e) {
       if (e.pointerType !== 'mouse') return;
       var t = e.target.closest ? e.target.closest(UI_HOV) : null;
-      if (!t || t === lastEl || t.disabled) { if (!t) lastEl = null; return; }
+      if (!t || t === lastEl || t.disabled || t.closest('.rpgpad,.rpgmapw')) { if (!t) lastEl = null; return; }
       lastEl = t; uiSnd('hover');
     }, true);
   })();
@@ -26264,12 +26266,12 @@ body.tbopen { overflow: hidden; }
     var CLOSE = '[data-close], [data-mclose], .mclose, .mclose2, .shopback, .backbtn';
     var canHover = window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches;
     if (canHover) document.addEventListener('pointerover', function (e) {
-      if (e.pointerType && e.pointerType !== 'mouse') return; var t = e.target.closest ? e.target.closest(HOVER) : null; if (!t || t.disabled) return;
+      if (e.pointerType && e.pointerType !== 'mouse') return; var t = e.target.closest ? e.target.closest(HOVER) : null; if (!t || t.disabled || t.closest('.rpgpad,.rpgmapw')) return;
       var from = e.relatedTarget && e.relatedTarget.closest ? e.relatedTarget.closest(HOVER) : null; if (from === t) return; play('hover');
     }, true);
     document.addEventListener('pointerdown', function (e) { var t = e.target.closest ? e.target.closest('.nav .tab') : null; if (!t || t.getAttribute('aria-current') === 'page') return; var tabs = Array.prototype.filter.call(document.querySelectorAll('.nav .tab'), function (x) { return !x.hidden; }), cur = tabs.findIndex(function (x) { return x.getAttribute('aria-current') === 'page'; }); play('tab', { dir: tabs.indexOf(t) >= cur ? 1 : -1 }); sup2 = Date.now(); }, true);
     document.addEventListener('click', function (e) {
-      if (!user) return; var t = e.target.closest ? e.target.closest('button, a[href], [role="button"], [data-go], .choice') : null; if (!t || t.disabled) return;
+      if (!user) return; var t = e.target.closest ? e.target.closest('button, a[href], [role="button"], [data-go], .choice') : null; if (!t || t.disabled || t.closest('.rpgpad,.rpgmapw')) return;
       if (t.closest('.nav .tab')) { if (!e.isTrusted && !window.__kdNoVT && Date.now() - sup2 > 400) play('tab', { dir: 1 }); return; }
       suppress = false;
       if (t.matches && (t.matches('[data-clz="start"],[data-dylaunch],[data-qvexgo],[data-voy="start"],#mpStart,.clzgo') || /^\s*(▶|Lancer|Commencer|C.est parti|Jouer)/.test(t.textContent || ''))) { if (!t.disabled) play('ready'); return; }
