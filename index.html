@@ -5427,6 +5427,13 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
 @media (max-width:640px){.rpg{max-width:none;margin-left:-6px;margin-right:-6px;border-radius:16px}}
 .rpgmapw canvas{display:block;width:100%;height:auto}
 #rpgCv{aspect-ratio:auto!important;max-height:none!important}
+/* v342 : monnaie = gemmes */
+.rpggoldw{border-color:#6fd8ff;color:#bff1ff;background:rgba(10,30,70,.55)}
+.rpggoldw i{background:none;width:22px;height:22px;border-radius:0;position:relative}
+.rpggoldw i::before{content:"";position:absolute;inset:0;clip-path:polygon(50% 0,100% 36%,50% 100%,0 36%);background:linear-gradient(135deg,#e9fbff 0%,#5fd0ff 40%,#8a5cff 100%);filter:drop-shadow(0 0 4px rgba(120,210,255,.8))}
+.rpggoldw i::after{content:"";position:absolute;left:25%;top:0;width:50%;height:36%;clip-path:polygon(0 100%,25% 0,75% 0,100% 100%);background:rgba(255,255,255,.55)}
+.rpggoldw.lt{background:#e6f7ff;color:#0b4a78;border-color:#5fb8e6}
+.rpgchip.gold{background:rgba(95,208,255,.22);color:#0b5a8a}
 
 </style>
 
@@ -28866,13 +28873,13 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
   function rpgMult() { return 1 + 0.35 * rp.zone; }
   function rpgGold() { return rg().gold || 0; }
   function rpgAddGold(n) { var r = rg(); r.gold = Math.max(0, (r.gold || 0) + n); }
-  function rpgGoldHTML(n, cls) { return '<span class="rpggoldw' + (cls ? ' ' + cls : '') + '"><i>両</i><b>' + n + '</b></span>'; }
+  function rpgGoldHTML(n, cls) { return '<span class="rpggoldw' + (cls ? ' ' + cls : '') + '"><i></i><b>' + n + '</b></span>'; }
   function rpgGive(xp, coins) {
     xp = Math.round(xp * rpgMult()); coins = Math.round(coins * 3 * rpgMult() * rpgLuckMult());
     var lv0 = level(); try { addXp(xp); } catch (e) { /* ignore */ }
     var lvu = level() > lv0 ? level() : 0;
     rpgAddGold(+(coins)); persist();
-    return '<p class="rpgrw"><span class="rpgchip">+' + xp + ' XP</span>' + (coins ? '<span class="rpgchip gold">+' + coins + ' 両</span>' : '') + (lvu ? '<span class="rpgchip lv">⭐ Niveau ' + lvu + ' ! +3 points</span>' : '') + '</p>';
+    return '<p class="rpgrw"><span class="rpgchip">+' + xp + ' XP</span>' + (coins ? '<span class="rpgchip gold">+' + coins + ' 💎</span>' : '') + (lvu ? '<span class="rpgchip lv">⭐ Niveau ' + lvu + ' ! +3 points</span>' : '') + '</p>';
   }
   /* ---------- scènes et entités ---------- */
   function rpgScene() { return RPG_S[rp.zone][rp.sc]; }
@@ -29457,7 +29464,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
     if (r.sr.k[key]) return rpgSay(null, ['Il n\'y a plus rien ici. Je ferais mieux de continuer.'], null);
     r.sr.k[key] = 1; persist();
     var roll = Math.random(), zi = rp.zone;
-    if (roll < 0.38) { var c = Math.round((3 + Math.random() * 6) * 3 * rpgMult() * rpgLuckMult()); rpgAddGold(+(c)); persist(); sfx('ok'); rpgSay(null, ['Tu fouilles… et tu trouves une petite bourse !'], null, '<p class="rpgrw"><span class="rpgchip gold">+' + c + ' 両</span></p>'); }
+    if (roll < 0.38) { var c = Math.round((3 + Math.random() * 6) * 3 * rpgMult() * rpgLuckMult()); rpgAddGold(+(c)); persist(); sfx('ok'); rpgSay(null, ['Tu fouilles… et tu trouves une petite bourse !'], null, '<p class="rpgrw"><span class="rpgchip gold">+' + c + ' 💎</span></p>'); }
     else if (roll < 0.55 && (S.hearts || 0) < MAX_HEARTS) { S.hearts = Math.min(MAX_HEARTS, (S.hearts || 0) + 1); persist(); sfx('ok'); rpgSay(null, ['Une boulette de riz oubliée ! Elle te redonne des forces.'], null, '<p class="rpgrw"><span class="rpgchip">+1 ❤️</span></p>'); }
     else if (roll < 0.75) { var rw = rpgGive(6, 0); sfx('ok'); var w = rpgPick(rpgPoolGp(rpgGpHere()), 1)[0]; rpgSay(null, ['Tu trouves un vieux carnet de vocabulaire' + (w ? ' : « ' + w.jp + ' » = ' + rpgFr(w) : '') + '.'], null, rw); }
     else if (roll < 0.9) { rpgSay(null, ['Rien d\'intéressant… seulement des feuilles et de la poussière.'], null); }
@@ -29490,8 +29497,8 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
   }
   function rpgShop() {
     var items = [{ l: '🍙 Onigiri · +1 ❤️', c: 25, h: 1 }, { l: '🍡 Mochi · +2 ❤️', c: 45, h: 2 }, { l: '🍵 Matcha · cœurs au max', c: 80, h: 99 }];
-    rpgAsk('marchand', rpgLine('marchand', 'greet') + ' (Tu as ' + rpgGold() + ' 両)', items.map(function (it) {
-      return { l: it.l + ' — ' + it.c + ' 両', dis: rpgGold() < it.c || (S.hearts >= MAX_HEARTS), f: function () {
+    rpgAsk('marchand', rpgLine('marchand', 'greet') + ' (Tu as ' + rpgGold() + ' 💎)', items.map(function (it) {
+      return { l: it.l + ' — ' + it.c + ' 💎', dis: rpgGold() < it.c || (S.hearts >= MAX_HEARTS), f: function () {
         if (rpgGold() < it.c) return; rpgAddGold(-(it.c)); S.hearts = Math.min(MAX_HEARTS, (S.hearts || 0) + it.h); if (S.hearts >= MAX_HEARTS) S.heartsAt = Date.now(); persist(); sfx('ok'); rpgHud();
         rpgSay('marchand', [rpgLine('marchand', 'thanks')], null);
       } };
@@ -29499,8 +29506,8 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
   }
   function rpgInn() {
     var r = rg(), free = r.innDay !== rpgDay();
-    rpgAsk('aub', rpgLine('aub', 'greet') + (free ? ' Le premier repos du jour est offert : cœurs au maximum.' : ' Un bon lit pour 40 両 : cœurs au maximum.'), [
-      { l: free ? '🛏 Se reposer (gratuit)' : '🛏 Se reposer — 40 両', p: 1, dis: S.hearts >= MAX_HEARTS || (!free && rpgGold() < 40), f: function () {
+    rpgAsk('aub', rpgLine('aub', 'greet') + (free ? ' Le premier repos du jour est offert : cœurs au maximum.' : ' Un bon lit pour 40 💎 : cœurs au maximum.'), [
+      { l: free ? '🛏 Se reposer (gratuit)' : '🛏 Se reposer — 40 💎', p: 1, dis: S.hearts >= MAX_HEARTS || (!free && rpgGold() < 40), f: function () {
         if (!free) rpgAddGold(-(40)); r.innDay = rpgDay(); S.hearts = MAX_HEARTS; S.heartsAt = Date.now(); persist(); sfx('ok'); rpgHud();
         rpgSay('aub', [rpgLine('aub', 'thanks')], null);
       } }, { l: 'Pas besoin', f: rpgDlgClose }]);
@@ -29767,7 +29774,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
   function rpgItHtml(id, up) { var it = RPG_ITM[id]; return '<b style="color:' + RPG_RAR[it.r].c + '">' + esc(it.n) + (up ? ' +' + up : '') + '</b>'; }
   function rpgGrant(id) {
     var h = rpgHero(), it = RPG_ITM[id]; if (!it) return '';
-    if (h.inv[id] !== undefined) { var c = Math.max(15, Math.round((it.p || 150) * 0.4)); rpgAddGold(+(c)); persist(); return '<p class="rpgrw"><span class="rpgchip gold">Doublon : ' + esc(it.n) + ' → +' + c + ' 両</span></p>'; }
+    if (h.inv[id] !== undefined) { var c = Math.max(15, Math.round((it.p || 150) * 0.4)); rpgAddGold(+(c)); persist(); return '<p class="rpgrw"><span class="rpgchip gold">Doublon : ' + esc(it.n) + ' → +' + c + ' 💎</span></p>'; }
     h.inv[id] = 0; if (!h.eq[it.s]) h.eq[it.s] = id; persist(); rpgApplyStats();
     return '<p class="rpgrw"><span class="rpgchip loot" style="border-color:' + RPG_RAR[it.r].c + '">🎁 ' + esc(it.n) + ' <small>(' + RPG_RAR[it.r].n + ')</small></span></p>';
   }
@@ -29797,19 +29804,19 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
         var id = h.eq[s], it = id ? RPG_ITM[id] : null;
         return '<button type="button" class="rphslot" data-rph="sl:' + s + '" style="border-color:' + (it ? RPG_RAR[it.r].c : '#b5acd0') + '"><span class="rphsi">' + RPG_SLOT[s][1] + '</span><span class="rphsn"><small>' + RPG_SLOT[s][0] + '</small>' + (it ? rpgItHtml(id, h.inv[id]) + '<small>' + rpgStTxt(rpgItemStats(id, h.inv[id])) + '</small>' : '<i>Vide</i>') + '</span></button>';
       }).join('') + '</div>';
-      o += '<div class="rphft"><button type="button" class="btn" data-rph="rs"' + (rpgGold() < 25 * h.lv ? ' disabled' : '') + '>↺ Réinitialiser les points (' + (25 * h.lv) + ' 両)</button></div>';
+      o += '<div class="rphft"><button type="button" class="btn" data-rph="rs"' + (rpgGold() < 25 * h.lv ? ' disabled' : '') + '>↺ Réinitialiser les points (' + (25 * h.lv) + ' 💎)</button></div>';
     } else if (rph.tab === 'bag') {
       o += '<div class="rphf">' + [['all', 'Tout'], ['w', '🗡️'], ['a', '👘'], ['h', '👒'], ['c', '📿']].map(function (f) { return '<button type="button" class="rphtab' + (rph.slot === f[0] ? ' on' : '') + '" data-rph="fl:' + f[0] + '">' + f[1] + '</button>'; }).join('') + '</div>';
       var own = RPG_IT.filter(function (i) { return h.inv[i.id] !== undefined && (rph.slot === 'all' || i.s === rph.slot); });
       o += own.length ? '<div class="rphl">' + own.map(function (i) {
         var up = h.inv[i.id], eq = h.eq[i.s] === i.id, cost = 40 * i.t * (up + 1);
-        return '<div class="rphit" style="border-left-color:' + RPG_RAR[i.r].c + '"><div class="rphin">' + RPG_SLOT[i.s][1] + ' ' + rpgItHtml(i.id, up) + '<small>' + RPG_RAR[i.r].n + ' · ' + rpgStTxt(rpgItemStats(i.id, up)) + '</small></div><div class="rphia"><button type="button" class="btn' + (eq ? '' : ' primary') + '" data-rph="eq:' + i.id + '"' + (eq ? ' disabled' : '') + '>' + (eq ? 'Équipé' : 'Équiper') + '</button><button type="button" class="btn" data-rph="fg:' + i.id + '"' + (up >= 5 || rpgGold() < cost ? ' disabled' : '') + '>' + (up >= 5 ? 'Max' : '🔨 +' + (up + 1) + ' · ' + cost + ' 両') + '</button></div></div>';
+        return '<div class="rphit" style="border-left-color:' + RPG_RAR[i.r].c + '"><div class="rphin">' + RPG_SLOT[i.s][1] + ' ' + rpgItHtml(i.id, up) + '<small>' + RPG_RAR[i.r].n + ' · ' + rpgStTxt(rpgItemStats(i.id, up)) + '</small></div><div class="rphia"><button type="button" class="btn' + (eq ? '' : ' primary') + '" data-rph="eq:' + i.id + '"' + (eq ? ' disabled' : '') + '>' + (eq ? 'Équipé' : 'Équiper') + '</button><button type="button" class="btn" data-rph="fg:' + i.id + '"' + (up >= 5 || rpgGold() < cost ? ' disabled' : '') + '>' + (up >= 5 ? 'Max' : '🔨 +' + (up + 1) + ' · ' + cost + ' 💎') + '</button></div></div>';
       }).join('') + '</div>' : '<p class="small muted">Aucun objet ici. Ouvre des coffres, bats des ennemis et visite le marchand !</p>';
     } else {
       var zt = Math.min(4, rp.zone + 1), list = RPG_IT.filter(function (i) { return i.p > 0 && i.t <= zt + 1 && h.inv[i.id] === undefined; });
       o += list.length ? '<div class="rphl">' + list.map(function (i) {
         var cur = h.eq[i.s], cs = cur ? rpgItemStats(cur, h.inv[cur]) : null;
-        return '<div class="rphit" style="border-left-color:' + RPG_RAR[i.r].c + '"><div class="rphin">' + RPG_SLOT[i.s][1] + ' ' + rpgItHtml(i.id, 0) + '<small>' + RPG_RAR[i.r].n + ' · ' + rpgStTxt(i.st) + '</small></div><div class="rphia"><button type="button" class="btn primary" data-rph="by:' + i.id + '"' + (rpgGold() < i.p ? ' disabled' : '') + '>' + i.p + ' 両</button></div></div>';
+        return '<div class="rphit" style="border-left-color:' + RPG_RAR[i.r].c + '"><div class="rphin">' + RPG_SLOT[i.s][1] + ' ' + rpgItHtml(i.id, 0) + '<small>' + RPG_RAR[i.r].n + ' · ' + rpgStTxt(i.st) + '</small></div><div class="rphia"><button type="button" class="btn primary" data-rph="by:' + i.id + '"' + (rpgGold() < i.p ? ' disabled' : '') + '>' + i.p + ' 💎</button></div></div>';
       }).join('') + '</div>' : '<p class="small muted">Tu as déjà tout ce que je vends ici. Reviens plus loin dans ton voyage : j\'aurai de meilleurs objets !</p>';
     }
     return o + '</div>';
