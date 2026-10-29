@@ -5435,6 +5435,9 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
 .rpggoldw.lt{background:#e6f7ff;color:#0b4a78;border-color:#5fb8e6}
 .rpgchip.gold{background:rgba(95,208,255,.22);color:#0b5a8a}
 
+.rpgwarn{background:#ffe3e0!important;color:#a1262b!important;font-size:12px}
+.rphpw{margin:6px 0;padding:6px 10px;border-radius:10px;background:rgba(95,208,255,.15);font-size:13px}.rphpw.warn{background:#ffe3e0;color:#a1262b}
+
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -29554,7 +29557,8 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
   function rpgBattleGo(o) {
     try { regen(); } catch (e) { /* ignore */ }
     if ((S.hearts || 0) <= 0) { rpgSay('aub', ['Tu n\'as plus de cœurs ! Un cœur revient toutes les 5 minutes. Cherche l\'auberge, ou fouille les cachettes : on y trouve parfois de quoi manger.'], null); return; }
-    rp.mode = 'battle'; rp.bt = { o: o, i: 0, ok: 0, ko: 0, n: o.qs.length, ans: null, fx: '', say: rpgLine(o.foeId, o.friendly ? 'greet' : 'intro'), dealt: 0, dmg: rpgStats().dmg, foeHp: (o.friendly || o.free) ? 0 : o.need * 10, dodged: 0 };
+    rp.mode = 'battle'; rp.bt = { o: o, i: 0, ok: 0, ko: 0, n: o.qs.length, ans: null, fx: '', say: rpgLine(o.foeId, o.friendly ? 'greet' : 'intro'), dealt: 0, dmg: rpgStats().dmg, foeHp: (o.friendly || o.free) ? 0 : o.need * 10, dodged: 0, gap: 0 };
+    var bb = rp.bt; if (bb.foeHp) { bb.gap = rpgGap(o.gp !== undefined ? o.gp : rpgGpHere()); bb.foeHp = Math.min(bb.foeHp * (1 + 0.9 * bb.gap), bb.n * bb.dmg - 0.01); if (bb.gap > 0.6) bb.say = (bb.say || '') + ' 💢'; }
     rp.dlg = null; rpgBtShow();
     var dl = document.getElementById('rpgDlg'); if (dl && dl.scrollIntoView) dl.scrollIntoView({ block: 'start' });
   }
@@ -29563,7 +29567,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
     var b = rp.bt, o = b.o, q = o.qs[Math.min(b.i, b.n - 1)], hp = b.foeHp ? Math.max(0, Math.round(100 * (b.foeHp - b.dealt) / b.foeHp)) : Math.max(0, Math.round(100 * (b.n - b.ok) / b.n));
     root.classList.add('btl'); root.classList.remove('talk'); el.hidden = false;
     var bg = rpgBgUrl(o.biome || rpgScene().biome), hero = ''; try { hero = avatarOf(user.name, user.avatar); } catch (e) { /* ignore */ }
-    var h = '<div class="rpgbt"><div class="rpgbth"><span><b>' + esc(o.title) + '</b> <small class="muted">· Question ' + Math.min(b.i + 1, b.n) + ' / ' + b.n + '</small></span><span class="rpghearts" id="rpgBtH">' + rpgHearts() + '</span></div>';
+    var h = '<div class="rpgbt"><div class="rpgbth"><span><b>' + esc(o.title) + '</b> <small class="muted">· Question ' + Math.min(b.i + 1, b.n) + ' / ' + b.n + '</small></span>' + (b.gap > 0.05 ? '<span class="rpgchip rpgwarn">' + (b.gap > 0.6 ? '☠ Bien trop fort pour toi' : b.gap > 0.3 ? '⚠ Ennemi coriace' : '⚠ Ennemi un peu fort') + '</span>' : '') + '<span class="rpghearts" id="rpgBtH">' + rpgHearts() + '</span></div>';
     h += '<div class="rpgarena" style="background-image:url(&quot;' + esc(bg) + '&quot;)"><div class="rpgsay"><b>' + esc(chName(o.foeId)) + '</b> ' + esc(b.say) + '</div>' +
       '<div class="rpgfoew' + (b.fx === 'hit' ? ' shake' : '') + '"><img class="rpgfoeimg" src="' + esc(chSrc(o.foeId)) + '" alt=""><div class="rpghpw"><div class="rpghp"><i style="width:' + hp + '%"></i></div></div></div>' +
       '<div class="rpgherow' + (b.fx === 'miss' ? ' shake' : '') + '"><img class="rpgheroimg" src="' + esc(hero) + '" alt=""></div></div>';
@@ -29582,7 +29586,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
   function rpgBtAnswer(i) {
     var b = rp.bt; if (!b || b.ans !== null) return; var q = b.o.qs[b.i]; b.ans = i;
     var fr = !!b.o.friendly, id = b.o.foeId;
-    b.dodged = 0; if (i === q.a) { rpgNoteWeak(q, true); b.ok++; b.dealt += b.dmg; b.fx = 'hit'; b.say = rpgLine(id, fr ? 'praise' : 'hit'); sfx('ok'); } else { b.ko++; b.fx = 'miss'; b.say = rpgLine(id, fr ? 'encourage' : 'miss'); sfx('bad'); rpgNoteWeak(q, false); if (!b.o.free) { if (Math.random() * 100 < rpgStats().dodge) b.dodged = 1; else loseHeart(); } persist(); }
+    b.dodged = 0; if (i === q.a) { rpgNoteWeak(q, true); b.ok++; b.dealt += b.dmg; b.fx = 'hit'; b.say = rpgLine(id, fr ? 'praise' : 'hit'); sfx('ok'); } else { b.ko++; b.fx = 'miss'; b.say = rpgLine(id, fr ? 'encourage' : 'miss'); sfx('bad'); rpgNoteWeak(q, false); if (!b.o.free) { if (Math.random() * 100 < rpgStats().dodge) b.dodged = 1; else { loseHeart(); if (b.gap > 0.6) loseHeart(); } } persist(); }
     rpgBtShow();
   }
   function rpgBtNext() {
@@ -29763,6 +29767,10 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
     o.drop = Math.min(30, Math.round(o.luck * 0.8));
     return o;
   }
+  /* v343 : puissance du héros vs puissance recommandée (progression dans l'histoire) */
+  function rpgPower() { var o = rpgStats(); return 5 + o.atk + o.def + 0.8 * o.hp; }
+  function rpgRecPower(gp) { return 5 + 60 * Math.pow(Math.max(0, Math.min(1, gp)), 1.1); }
+  function rpgGap(gp) { return Math.max(0, Math.min(1, 1 - rpgPower() / rpgRecPower(gp))); }
   function rpgApplyStats() {
     if (!S || !S.rpg || !S.rpg.hero) return;
     var nb = 5 + rpgStats().hearts; if (nb !== MAX_HEARTS) { MAX_HEARTS = nb; }
@@ -29794,11 +29802,12 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
   function rpgHeroRefresh() { var b = document.getElementById('appModalBody'); if (b) { var sc = b.scrollTop; b.innerHTML = rpgHeroHTML(); b.scrollTop = sc; } try { rpgHud(); } catch (e) { /* ignore */ } }
   function rpgHeroHTML() {
     var h = rpgHero(), st = rpgStats(), need = xpNeed(h.lv), hero = ''; try { hero = avatarOf(user.name, user.avatar); } catch (e) { /* ignore */ }
-    var o = '<div class="rph"><div class="rphh"><img class="rphav" src="' + esc(hero) + '" alt=""><div class="rphhi"><b>' + esc(user ? user.name : 'Héros') + ' · Niv. ' + h.lv + '</b><div class="rphxp"><i style="width:' + Math.round(100 * xpInto(S.xp) / need) + '%"></i></div><small>' + (xpInto(S.xp) + ' / ' + need + ' XP (la même XP que sur tout le site)') + '</small></div><span class="rphc">' + coinHTML(rpgGold()) + '</span></div>';
+    var o = '<div class="rph"><div class="rphh"><img class="rphav" src="' + esc(hero) + '" alt=""><div class="rphhi"><b>' + esc(user ? user.name : 'Héros') + ' · Niv. ' + h.lv + '</b><div class="rphxp"><i style="width:' + Math.round(100 * xpInto(S.xp) / need) + '%"></i></div><small>' + (xpInto(S.xp) + ' / ' + need + ' XP (la même XP que sur tout le site)') + '</small></div><span class="rphc">' + rpgGoldHTML(rpgGold(), 'lt') + '</span></div>';
     o += '<div class="rpht">' + [['hero', '🛡 Héros'], ['bag', '🎒 Sac'], ['shop', '🏮 Boutique']].filter(function (t) { return t[0] !== 'shop' || rph.shop; }).map(function (t) { return '<button type="button" class="rphtab' + (rph.tab === t[0] ? ' on' : '') + '" data-rph="tab:' + t[0] + '">' + t[1] + '</button>'; }).join('') + '</div>';
     if (rph.tab === 'hero') {
       o += (h.pts ? '<p class="rphpts">⭐ ' + h.pts + ' point' + (h.pts > 1 ? 's' : '') + ' à répartir</p>' : '');
-      var rows = [['hp', '❤️ PV', 'Cœurs max : ' + (5 + st.hearts)], ['atk', '⚔️ Attaque', 'Dégâts : ' + st.dmg.toFixed(1) + ' (10 de base)'], ['def', '🛡️ Défense', 'Esquive d\'un coup : ' + st.dodge + ' %'], ['luck', '🍀 Chance', 'Pièces +' + st.coin + ' % · butin +' + st.drop + ' %']];
+      var rows = [['hp', '❤️ PV', 'Cœurs max : ' + (5 + st.hearts)], ['atk', '⚔️ Attaque', 'Dégâts : ' + st.dmg.toFixed(1) + ' (10 de base)'], ['def', '🛡️ Défense', 'Esquive d\'un coup : ' + st.dodge + ' %'], ['luck', '🍀 Chance', 'Gemmes +' + st.coin + ' % · butin +' + st.drop + ' %']];
+      var gp0 = rpgGpHere(), gap0 = rpgGap(gp0); o += '<p class="rphpw' + (gap0 > 0.05 ? ' warn' : '') + '">⚔ Puissance ' + Math.round(rpgPower()) + ' · conseillée ici : ' + Math.round(rpgRecPower(gp0)) + (gap0 > 0.05 ? ' — les ennemis te résistent : améliore ton équipement et tes stats.' : ' — ton équipement tient la route.') + '</p>';
       o += '<div class="rphst">' + rows.map(function (r) { var eqv = st[r[0]] - h.al[r[0]]; return '<div class="rphrow"><span class="rphn"><b>' + r[1] + '</b> <span class="rphv">' + st[r[0]] + '</span></span><small>' + r[2] + (eqv ? ' · équipement +' + eqv : '') + '</small><button type="button" class="btn rphplus" data-rph="al:' + r[0] + '"' + (h.pts ? '' : ' disabled') + ' aria-label="Ajouter un point">+</button></div>'; }).join('') + '</div>';
       o += '<h4 class="rphh4">Équipement</h4><div class="rphsl">' + ['w', 'a', 'h', 'c'].map(function (s) {
         var id = h.eq[s], it = id ? RPG_ITM[id] : null;
