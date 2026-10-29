@@ -5438,6 +5438,34 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
 .rpgwarn{background:#ffe3e0!important;color:#a1262b!important;font-size:12px}
 .rphpw{margin:6px 0;padding:6px 10px;border-radius:10px;background:rgba(95,208,255,.15);font-size:13px}.rphpw.warn{background:#ffe3e0;color:#a1262b}
 
+/* v345 : quêtes du jour, voie du héros, rencontres */
+#hubQj{margin:0 0 10px}
+.qjcard{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;padding:10px 14px;border-radius:16px;border:3px solid #d9a93a;background:linear-gradient(180deg,#2c1a5e,#170d36);color:#fff7e0;box-shadow:inset 0 0 0 2px #4b2e8c,0 6px 16px rgba(30,10,70,.35)}
+.qjcard.full{border-color:#8be0a0}
+.qjg{width:42px;height:42px;border-radius:50%;border:2px solid #d9a93a;background:#3a2478;display:grid;place-items:center;font-size:22px;flex:none}
+.qjt{flex:1;min-width:0}.qjt b{display:block;font-size:15px}.qjt small{display:block;color:#c9b8f0;font-size:12px}
+.qjd{display:flex;gap:5px}.qjd i{width:12px;height:12px;border-radius:50%;border:2px solid #d9a93a;background:transparent}.qjd i.on{background:#ffd96a;box-shadow:0 0 8px #ffd96a}
+.qjm{color:#2a1a50}.qjm h4{margin:12px 0 6px}
+.qjhero{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;background:#f3eefc}
+.qjhero>div{flex:1;min-width:0}.qjhero small{display:block;color:#5b4a8a}
+.qjhg{width:44px;height:44px;border-radius:50%;border:3px solid;display:grid;place-items:center;font-size:22px;background:#fff;flex:none}
+.qjl{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.qjl li{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border:2px solid #d9cfee;border-radius:12px;background:#fff}
+.qjl li.ok{border-color:#58b86f;background:#effaf1}
+.qjck{width:22px;height:22px;border-radius:6px;border:2px solid #b5acd0;display:grid;place-items:center;color:#2a8a45;font-weight:900;flex:none;margin-top:2px}
+.qjb{height:8px;border-radius:99px;background:#e5def5;margin:5px 0 3px;overflow:hidden}.qjb i{display:block;height:100%;background:linear-gradient(90deg,#7c5cff,#ffd96a)}
+.qjl small{color:#6a5a95}
+.qjbonus{margin:10px 0 0;padding:8px 10px;border-radius:12px;background:#fff6dc;font-weight:700}.qjbonus.ok{background:#e0f7e6}
+.qjintro{margin:0 0 10px}
+.hcopt{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;margin:0 0 8px;padding:10px 12px;border-radius:14px;border:3px solid var(--c);background:#fff}
+.hcopt.on{background:#f3eefc}.hcopt small{display:block;color:#5b4a8a;font-weight:500}
+.hcg{width:46px;height:46px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-size:24px;flex:none}
+.evbox{position:fixed;left:50%;bottom:calc(86px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:3600;width:min(94vw,460px);display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:16px;border:3px solid #d9a93a;background:linear-gradient(180deg,#2c1a5e,#170d36);color:#fff7e0;box-shadow:inset 0 0 0 2px #4b2e8c,0 10px 30px rgba(0,0,0,.5);animation:evin .35s cubic-bezier(.2,1.4,.4,1)}
+@keyframes evin{from{transform:translate(-50%,40px);opacity:0}}
+.evm{font-size:40px;line-height:1;flex:none;filter:drop-shadow(0 3px 0 rgba(0,0,0,.4))}
+.evt{flex:1;min-width:0}.evt b{display:block}.evw{display:block;min-height:1.2em;color:#c9b8f0;font-family:'Courier New',monospace;margin:2px 0 6px}
+.evb{display:flex;gap:6px;flex-wrap:wrap}.evb button{padding:6px 10px;border-radius:10px;border:2px solid #0d0620;background:linear-gradient(#ffe9a0,#f0a92a);color:#2a1a50;font-weight:800;cursor:pointer}.evb button:disabled{opacity:.4}
+
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -29608,6 +29636,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
     var root = document.getElementById('rpgRoot'); if (root) root.classList.remove('btl');
     var el = document.getElementById('rpgDlg'); if (el) el.hidden = true;
     if (win) {
+      try { if (!o.friendly && !o.free) qjNote('adv'); } catch (e) { /* ignore */ }
       var res = o.win(), rw = res.xp ? rpgGive(res.xp, res.coins) : '';
       var extra = '<p class="rpgsc">' + b.ok + ' / ' + b.n + '</p>' + rw + (res.loot || '');
       var after = function () { if (res.after === 'open') rpgSay('sensei', ['Le passage est ouvert ! Avance vers la sortie 🔓 pour continuer.'], null); else if (res.after === 'fin') rpgSay('sensei', ['Tu as vaincu le gardien du Mont Fuji ! Avance vers la sortie pour terminer ton voyage.'], null); else rpgDlgClose(); };
@@ -29772,6 +29801,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
     o.dodge = Math.min(60, Math.round(100 * (1 - Math.exp(-o.def / 20))));
     o.coin = Math.min(100, o.luck * 3);
     o.drop = Math.min(30, Math.round(o.luck * 0.8));
+    if (S && S.hc === 'samourai') { o.hearts = Math.min(11, o.hearts + 1); o.dmg *= 1.1; }
     return o;
   }
   /* v343 : puissance du héros vs puissance recommandée (progression dans l'histoire) */
@@ -29782,7 +29812,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
     if (!S || !S.rpg || !S.rpg.hero) return;
     var nb = 5 + rpgStats().hearts; if (nb !== MAX_HEARTS) { MAX_HEARTS = nb; }
   }
-  function rpgLuckMult() { return 1 + rpgStats().coin / 100; }
+  function rpgLuckMult() { return 1 + rpgStats().coin / 100 + (S && S.hc === 'marchand' ? 0.2 : 0); }
   function rpgHeroNeed(lv) { return 40 + 25 * lv; }
   function rpgHeroXp(xp) { return 0; }   /* l'XP d'aventure est l'XP du site : niveau unique */
   function rpgStTxt(s) { var a = []; if (s.atk) a.push('⚔️+' + s.atk); if (s.def) a.push('🛡️+' + s.def); if (s.hp) a.push('❤️+' + s.hp); if (s.luck) a.push('🍀+' + s.luck); return a.join(' ') || '—'; }
@@ -29859,6 +29889,138 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
     var o = ev.target.closest ? ev.target.closest('[data-rpgj]') : null; if (!o) return;
     rpgJournal(); var el = document.getElementById('rpgJournal'); if (el) openModal('Journal de voyage', '<div class="rpgjm">' + el.innerHTML + '</div>', 'kmodal');
   });
+  /* ===== v345 : voie du héros (classes), quêtes du jour, rencontres aléatoires ===== */
+  var HC = {
+    pinceau: { g: '筆', n: 'Calligraphe', d: '+15 % d\'EXP sur chaque bonne réponse', c: '#7c5cff' },
+    samourai: { g: '剣', n: 'Samouraï', d: 'Aventure : +1 cœur max et +10 % de dégâts', c: '#d4483f' },
+    marchand: { g: '商', n: 'Marchand', d: '+20 % de gemmes d\'aventure et de pièces de quêtes', c: '#d9a93a' }
+  };
+  var QJ_POOL = [
+    { id: 'ok15', t: 'Réponds juste à 15 questions', k: 'ok', goal: 15, xp: 40, co: 15 },
+    { id: 'inp5', t: 'Écris 5 réponses justes au clavier', k: 'inp', goal: 5, xp: 55, co: 20 },
+    { id: 'cmb8', t: 'Enchaîne 8 bonnes réponses d\'affilée', k: 'cmb', goal: 8, xp: 50, co: 20 },
+    { id: 'xp120', t: 'Gagne 120 EXP en révisant', k: 'xp', goal: 120, xp: 40, co: 15 },
+    { id: 'adv1', t: 'Gagne un combat dans l\'aventure', k: 'adv', goal: 1, xp: 60, co: 25 },
+    { id: 'ok30', t: 'Réponds juste à 30 questions', k: 'ok', goal: 30, xp: 80, co: 30 }
+  ];
+  function qjHash(s) { var h = 0, i; for (i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0; return h; }
+  function qjToday() {
+    if (!S) return null; var d = dayKey(), q = S.qj;
+    if (!q || q.d !== d) {
+      var pool = QJ_POOL.slice(), ids = [], h = qjHash(d + (user ? user.name : '')), k;
+      for (k = 0; k < 3; k++) { var j = h % pool.length; ids.push(pool[j].id); pool.splice(j, 1); h = (h >>> 3) + 7 * (k + 1); }
+      q = S.qj = { d: d, ids: ids, p: {}, done: {}, all: 0 };
+    }
+    return q;
+  }
+  function qjDef(id) { return QJ_POOL.filter(function (x) { return x.id === id; })[0]; }
+  function qjCoins(n) { return Math.round(n * (S.hc === 'marchand' ? 1.2 : 1)); }
+  function qjReward(def) {
+    var c = qjCoins(def.co); S.coins = coinsOf() + c; S.coinsTotal = (S.coinsTotal || 0) + c;
+    toast('📜 Quête accomplie : +' + def.xp + ' EXP · +' + c + ' pièces'); sfx('ok');
+    addXp(def.xp);
+  }
+  function qjNote(kind, n) {
+    var q = qjToday(); if (!q) return; n = n === undefined ? 1 : n; var changed = false;
+    q.ids.forEach(function (id) {
+      var def = qjDef(id); if (!def || q.done[id] || def.k !== kind) return;
+      q.p[id] = kind === 'cmb' ? Math.max(q.p[id] || 0, n) : (q.p[id] || 0) + n; changed = true;
+      if (q.p[id] >= def.goal) { q.done[id] = 1; qjReward(def); }
+    });
+    if (!q.all && q.ids.every(function (id) { return q.done[id]; })) {
+      q.all = 1; var c = qjCoins(60); S.coins = coinsOf() + c; S.coinsTotal = (S.coinsTotal || 0) + c;
+      setTimeout(function () { toast('🎁 Les 3 quêtes du jour sont finies : +100 EXP · +' + c + ' pièces'); addXp(100); }, 900);
+    }
+    if (changed) { persist(); qjHubSync(); }
+  }
+  /* ---------- carte sur l'accueil + fenêtre ---------- */
+  function qjHubSync() {
+    var host = document.getElementById('hubQj'); if (!host || !S) return;
+    var q = qjToday(), n = q.ids.filter(function (id) { return q.done[id]; }).length, h = S.hc ? HC[S.hc] : null;
+    host.innerHTML = '<button type="button" class="qjcard' + (n === 3 ? ' full' : '') + '" data-qj="open"><span class="qjg" aria-hidden="true">' + (h ? h.g : '巻') + '</span><span class="qjt"><b>Quêtes du jour</b><small>' + (n === 3 ? 'Toutes accomplies, bravo !' : n + ' / 3 accomplies') + (h ? ' · ' + h.n : '') + '</small></span><span class="qjd">' + [0, 1, 2].map(function (i) { return '<i class="' + (i < n ? 'on' : '') + '"></i>'; }).join('') + '</span></button>';
+  }
+  function qjModalHTML() {
+    var q = qjToday(), h = S.hc ? HC[S.hc] : null, o = '<div class="qjm">';
+    o += '<div class="qjhero"><span class="qjhg" style="border-color:' + (h ? h.c : '#d9a93a') + '">' + (h ? h.g : '?') + '</span><div><b>' + (h ? 'Voie du ' + h.n : 'Aucune voie choisie') + '</b><small>' + (h ? h.d : 'Choisis ta voie pour obtenir un bonus permanent.') + '</small></div><button type="button" class="btn" data-qj="path">' + (h ? 'Changer' : 'Choisir') + '</button></div>';
+    o += '<h4>Aujourd\'hui</h4><ul class="qjl">' + q.ids.map(function (id) {
+      var d = qjDef(id), p = Math.min(d.goal, q.p[id] || 0), ok = !!q.done[id];
+      return '<li class="' + (ok ? 'ok' : '') + '"><span class="qjck">' + (ok ? '✔' : '') + '</span><div><b>' + d.t + '</b><div class="qjb"><i style="width:' + Math.round(100 * p / d.goal) + '%"></i></div><small>' + p + ' / ' + d.goal + ' · +' + d.xp + ' EXP · +' + qjCoins(d.co) + ' pièces</small></div></li>';
+    }).join('') + '</ul><p class="qjbonus' + (q.all ? ' ok' : '') + '">🎁 Les 3 accomplies : +100 EXP et +' + qjCoins(60) + ' pièces' + (q.all ? ' (obtenu)' : '') + '</p>';
+    return o + '<p class="small muted">Les quêtes changent chaque jour.</p></div>';
+  }
+  function qjOpen() { openModal('Quêtes du jour', qjModalHTML(), 'kmodal qjmodal'); }
+  function hcPathHTML(change) {
+    return '<div class="qjm"><p class="qjintro">' + (change ? 'Changer de voie coûte <b>200 pièces</b>.' : 'Avant de continuer, choisis ta <b>voie</b> : un bonus permanent qui te suit partout.') + '</p>' +
+      Object.keys(HC).map(function (k) { var h = HC[k]; return '<button type="button" class="hcopt' + (S.hc === k ? ' on' : '') + '" data-hc="' + k + '" style="--c:' + h.c + '"><span class="hcg">' + h.g + '</span><span><b>' + h.n + '</b><small>' + h.d + '</small></span></button>'; }).join('') + '</div>';
+  }
+  function hcPick(k, paid) {
+    if (!HC[k] || !S) return false;
+    if (S.hc && S.hc !== k) { if (coinsOf() < 200) { toast('Il faut 200 pièces pour changer de voie'); return false; } S.coins = coinsOf() - 200; }
+    S.hc = k; persist(); try { rpgApplyStats(); } catch (e) { /* ignore */ } renderBars(); qjHubSync(); sfx('ok'); return true;
+  }
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest ? ev.target.closest('[data-qj]') : null;
+    if (b) { var a = b.getAttribute('data-qj'); if (a === 'open') qjOpen(); else if (a === 'path') openModal('Ta voie', hcPathHTML(!!S.hc), 'kmodal qjmodal'); return; }
+    var c = ev.target.closest ? ev.target.closest('[data-hc]') : null;
+    if (c && hcPick(c.getAttribute('data-hc'))) { toast('Voie du ' + HC[S.hc].n + ' choisie !'); qjOpen(); }
+  });
+  var _renderHub0 = renderHub;
+  renderHub = function () {
+    _renderHub0.apply(this, arguments);
+    try {
+      var g = document.getElementById('hubGrid'); if (g && !document.getElementById('hubQj')) { var d = document.createElement('div'); d.id = 'hubQj'; g.parentNode.insertBefore(d, g); }
+      qjHubSync(); hcAsk();
+    } catch (e) { /* ignore */ }
+  };
+  var hcAsked = false;
+  function hcAsk() {
+    if (hcAsked || !S || S.hc || !user) return; hcAsked = true;
+    setTimeout(function () {
+      var m = document.getElementById('appModal'), hub = document.getElementById('vHub'), co = document.getElementById('coach');
+      if (S.hc || !hub || hub.hidden || (m && !m.hidden) || document.getElementById('lvlup') || (co && !co.hidden)) { hcAsked = false; return; }
+      openModal('Choisis ta voie', hcPathHTML(false), 'kmodal qjmodal');
+    }, 2500);
+  }
+  /* ---------- hooks : réponses, EXP ---------- */
+  var _applyResult0 = applyResult;
+  applyResult = function (ok, q) {
+    var xp0 = S ? S.xp : 0, r = _applyResult0.apply(this, arguments);
+    try {
+      if (ok) {
+        var d = S.xp - xp0;
+        if (S.hc === 'pinceau' && d > 0) { var ex = Math.max(1, Math.round(d * 0.15)); S.xp += ex; d += ex; }
+        qjNote('ok'); if (q && q.fmt === 'input') qjNote('inp'); if (sess && sess.combo) qjNote('cmb', sess.combo); if (d > 0) qjNote('xp', d);
+        evMaybe();
+      }
+    } catch (e) { /* ignore */ }
+    return r;
+  };
+  /* ---------- rencontres aléatoires ---------- */
+  var EV_MON = [['狸', 'Tanuki farceur'], ['傘', 'Karakasa curieux'], ['狐', 'Kitsune espiègle'], ['蛙', 'Kappa tout petit'], ['灯', 'Chōchin joueur']];
+  var evSince = 0, evOpen = false;
+  function evMaybe() {
+    if (!S || evOpen || document.getElementById('evBox')) return; evSince++;
+    var d = dayKey(), e = S.ev && S.ev.d === d ? S.ev : (S.ev = { d: d, n: 0 });
+    if (e.n >= 3 || evSince < 12 || Math.random() > 0.07) return;
+    e.n++; evSince = 0; persist(); setTimeout(evShow, 900);
+  }
+  function evShow() {
+    if (!S || document.getElementById('evBox') || document.getElementById('lvlup')) return;
+    evOpen = true; var m = EV_MON[Math.floor(Math.random() * EV_MON.length)], cost = 10;
+    var d = document.createElement('div'); d.id = 'evBox'; d.className = 'evbox'; d.setAttribute('role', 'dialog'); d.setAttribute('aria-label', 'Rencontre');
+    d.innerHTML = '<div class="evm" aria-hidden="true">' + m[0] + '</div><div class="evt"><b>Un ' + m[1] + ' sauvage apparaît !</b><small class="evw"></small><div class="evb"><button type="button" data-ev="atk">⚔ Attaquer</button><button type="button" data-ev="item"' + (coinsOf() < cost ? ' disabled' : '') + '>🍙 Offrande · ' + cost + '</button><button type="button" data-ev="run">🏃 Fuir</button></div></div>';
+    document.body.appendChild(d); sfx('ok');
+    var msg = 'Que fais-tu ?', w = d.querySelector('.evw'), i = 0, iv = setInterval(function () { w.textContent = msg.slice(0, ++i); if (i >= msg.length) clearInterval(iv); }, 30);
+    d.addEventListener('click', function (ev) {
+      var b = ev.target.closest('[data-ev]'); if (!b || b.disabled) return; var a = b.getAttribute('data-ev'), t = '', xp = 0, co = 0;
+      if (a === 'atk') { var p = 0.55 + 0.05 * Math.min(8, (sess && sess.combo) || 0) + (S.hc === 'samourai' ? 0.15 : 0); if (Math.random() < p) { xp = 30; co = 20; t = 'Victoire ! +30 EXP · +' + qjCoins(co) + ' pièces'; } else t = 'Il s\'enfuit en riant… rien gagné, rien perdu.'; }
+      else if (a === 'item') { S.coins = coinsOf() - cost; if (Math.random() < 0.85) { xp = 20; co = 25; t = 'Il accepte ton offrande ! +20 EXP · +' + qjCoins(co) + ' pièces'; } else t = 'Il refuse et disparaît.'; }
+      else t = 'Tu t\'éloignes prudemment.';
+      if (co) { var cc = qjCoins(co); S.coins = coinsOf() + cc; S.coinsTotal = (S.coinsTotal || 0) + cc; }
+      d.innerHTML = '<div class="evm" aria-hidden="true">' + (xp ? '✨' : m[0]) + '</div><div class="evt"><b>' + t + '</b></div>'; if (xp) { sfx('ok'); addXp(xp); } else { persist(); renderBars(); }
+      setTimeout(function () { d.remove(); evOpen = false; }, 2200);
+    });
+  }
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
