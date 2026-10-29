@@ -5139,6 +5139,45 @@ body.tbopen { overflow: hidden; }
 #vBoard .mcard.me { border-color: #d9a441; border-left-color: #c1245a; background: linear-gradient(90deg, #fff0cf, #fffaf0); box-shadow: 0 0 0 2px rgba(224, 177, 58, .45), 0 8px 18px rgba(40, 24, 70, .16); }
 #vBoard .mcard .mxp b { color: #4b2f7c; }
 #vBoard .bgate { position: relative; }
+
+/* v348 : top 3 « colonnes d'encre » — sombre, fluide, grandes photos */
+#vBoard #podium.podium{display:grid;grid-template-columns:1fr 1.22fr 1fr;gap:clamp(6px,2vw,22px);align-items:end;padding:30px clamp(8px,2.4vw,30px) 0;border-radius:20px;border:1px solid rgba(217,178,74,.4);position:relative;overflow:hidden;
+  background:radial-gradient(60% 65% at 50% 22%,rgba(255,214,120,.15),transparent 70%),linear-gradient(180deg,#0e0a1f 0%,#171030 62%,#0c0919 100%);box-shadow:0 18px 50px rgba(8,4,24,.5),inset 0 0 0 1px rgba(255,255,255,.04)}
+#vBoard #podium.podium::before,#vBoard #podium.podium::after{display:none}
+#vBoard #podium .plant,#vBoard #podium .scn,#vBoard #podium .bscene{display:none!important}
+#vBoard #podium .pmist{position:absolute;left:-20%;right:-20%;height:62%;pointer-events:none;filter:blur(30px);opacity:.55}
+#vBoard #podium .pmist.m1{bottom:-12%;background:radial-gradient(50% 50% at 30% 50%,rgba(120,90,220,.45),transparent 70%);animation:pmdrift 17s ease-in-out infinite alternate}
+#vBoard #podium .pmist.m2{bottom:4%;background:radial-gradient(45% 45% at 70% 50%,rgba(217,178,74,.26),transparent 70%);animation:pmdrift 23s ease-in-out infinite alternate-reverse}
+@keyframes pmdrift{from{transform:translateX(-7%)}to{transform:translateX(7%)}}
+#vBoard #podium .pod{--pc:#e8c46a;position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0;text-align:center;animation:podin .9s cubic-bezier(.2,.8,.2,1) both}
+#vBoard #podium .pod.silver{--pc:#c4ccdc;animation-delay:.16s}#vBoard #podium .pod.bronze{--pc:#cf9163;animation-delay:.3s}
+@keyframes podin{from{opacity:0;transform:translateY(26px)}}
+#vBoard #podium .podav{position:relative;isolation:isolate;display:grid;place-items:center;margin:0 0 10px}
+#vBoard #podium .podav .rays,#vBoard #podium .podav .spk{display:none}
+#vBoard #podium .podav .av{width:clamp(4.7rem,15.5vw,7.2rem)!important;height:clamp(4.7rem,15.5vw,7.2rem)!important;border:2px solid var(--pc)!important;box-shadow:0 0 0 5px rgba(255,255,255,.04),0 0 34px -4px var(--pc)}
+#vBoard #podium .pod.gold .podav .av{width:clamp(6.2rem,22vw,9.6rem)!important;height:clamp(6.2rem,22vw,9.6rem)!important}
+#vBoard #podium .podav::before{content:"";position:absolute;inset:-9px;border-radius:50%;z-index:-1;border:1px solid color-mix(in srgb,var(--pc) 50%,transparent);box-shadow:none;animation:none}
+#vBoard #podium .podav::after{content:"";position:absolute;inset:-38%;border-radius:50%;z-index:-2;background:radial-gradient(closest-side,color-mix(in srgb,var(--pc) 34%,transparent),transparent);animation:paura 5.5s ease-in-out infinite}
+#vBoard #podium .pod.silver .podav::after{animation-delay:-1.8s}#vBoard #podium .pod.bronze .podav::after{animation-delay:-3.4s}
+@keyframes paura{0%,100%{opacity:.55;transform:scale(.96)}50%{opacity:1;transform:scale(1.04)}}
+#vBoard #podium .pod.gold::before{content:"";position:absolute;left:50%;top:-30%;bottom:0;width:70%;transform:translateX(-50%);background:linear-gradient(180deg,transparent,rgba(255,214,120,.14) 45%,transparent);filter:blur(10px);z-index:-1;pointer-events:none}
+#vBoard #podium .podav .medal,#vBoard #podium .podav svg{transform:scale(.9)}
+#vBoard #podium .podti{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--pc);background:none;border:0;padding:0;opacity:.95}
+#vBoard #podium .podnm{font-size:clamp(.92rem,2.6vw,1.12rem);color:#f6efff;line-height:1.2;overflow-wrap:anywhere;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+#vBoard #podium .pod.me .podnm{color:#ffb3c8}
+#vBoard #podium .podgr{color:#b9aedd}
+#vBoard #podium .podxp{font-size:clamp(1.05rem,3.4vw,1.4rem);font-weight:800;color:var(--pc);letter-spacing:.02em;text-shadow:0 0 18px color-mix(in srgb,var(--pc) 55%,transparent)}
+#vBoard #podium .podxp small{color:#b9aedd;text-shadow:none}
+#vBoard #podium .podbase{position:relative;width:100%;margin-top:8px;border-radius:0;display:grid;place-items:center;overflow:hidden;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--pc) 26%,transparent),transparent 94%);border-top:1px solid color-mix(in srgb,var(--pc) 75%,transparent);box-shadow:none}
+#vBoard #podium .podbase::after{display:none}
+#vBoard #podium .pod.gold .podbase{height:7.6rem}#vBoard #podium .pod.silver .podbase{height:5.6rem}#vBoard #podium .pod.bronze .podbase{height:4.4rem}
+#vBoard #podium .podk{position:absolute;color:var(--pc);opacity:.16;font-size:4.6rem}
+#vBoard #podium .podrank{color:var(--pc);text-shadow:none;font-size:1.25rem;letter-spacing:.08em}
+@media (prefers-reduced-motion:reduce){#vBoard #podium .pmist,#vBoard #podium .pod,#vBoard #podium .podav::after{animation:none!important}}
+
+#vBoard #podium .podbase::before{display:none!important}
+#vBoard #podium .podbase{box-shadow:none}
 /* v317 : animation des traits */
 .stk svg{background:none;border:0;border-radius:12px;overflow:visible}
 .stk .gb{fill:rgba(255,255,255,.55);stroke:#b6a8e0;stroke-width:1.2}
@@ -24074,7 +24113,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
       // Ordre visuel du podium : 2e, 1er, 3e
       var parts = pod.split('<div class="pod ').filter(Boolean).map(function (x) { return '<div class="pod ' + x; });
       if (parts.length >= 3) parts = [parts[1], parts[0], parts[2]]; else if (parts.length === 2) parts = [parts[1], parts[0]];
-      $('podium').innerHTML = boardScene() + '<i class="plant l" aria-hidden="true"></i><i class="plant r" aria-hidden="true"></i>' + parts.join('');
+      $('podium').innerHTML = '<i class="pmist m1" aria-hidden="true"></i><i class="pmist m2" aria-hidden="true"></i>' + parts.join('');
       $('podium').hidden = !parts.length;
       $('boardList').innerHTML = list;
       $('boardInfo').textContent = (mine > 0 ? 'Tu es #' + mine + ' sur ' + res.total + ' joueur' + (res.total > 1 ? 's' : '') + '.' : res.total + ' joueurs.');
