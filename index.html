@@ -13592,6 +13592,8 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
     { id: 'jx27', g: '秀', name: 'Examen d\'excellence', desc: '27/30 ou plus à un Examen blanc JLPT', game: 'Examen JLPT', test: function () { return Math.max(jxBest('n5'), jxBest('n4'), jxBest('n3'), jxBest('n2'), jxBest('n1')) >= 27; }, prog: function () { return [Math.max(jxBest('n5'), jxBest('n4'), jxBest('n3'), jxBest('n2'), jxBest('n1')), 27]; } }
   ];
   GAME_BADGES.forEach(function (b) { b.cat = 'game'; BADGES.push(b); });
+  /* v349 : succès de l'ancien mode Histoire (boss, chapitres, ennemis de l'ancien combat) : plus obtenables */
+  BADGES = BADGES.filter(function (b) { return ['firstboss', 'legend', 'hunter10', 'hunter50', 'kills100', 'boss5', 'boss20'].indexOf(b.id) < 0; });
   function badgeCardHTML(b) {
     var p = S.badges[b.id] ? null : badgeProg(b.id);
     return '<div class="badge' + (S.badges[b.id] ? ' on' : '') + '"><span class="g" aria-hidden="true">' + b.g + '</span><span><b>' + esc(b.name) + '</b><span>' + esc(b.desc) + '</span>' + (p ? '<i class="bprog" aria-hidden="true"><u style="width:' + Math.round(p[0] / p[1] * 100) + '%"></u></i><em class="bpn">' + p[0].toLocaleString('fr-FR') + ' / ' + p[1].toLocaleString('fr-FR') + '</em>' : '') + '</span></div>';
