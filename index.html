@@ -25918,7 +25918,7 @@ body.tbopen { overflow: hidden; }
       px = tx = x = innerWidth * 0.78; py = ty = y = innerHeight * 0.55;
     }
     var actC = false, actT = -1000;
-    function active() { var n = performance.now(); if (n - actT < 280) return actC; actT = n; if (reduce || !S || S.pet === false) return (actC = false); var v = document.getElementById('vStory'); return (actC = !!(v && !v.hidden && !document.hidden)); }
+    function active() { var n = performance.now(); if (n - actT < 280) return actC; actT = n; if (reduce || !S || S.pet === false) return (actC = false); var v = document.getElementById('vStory'); return (actC = !!(v && !v.hidden && !document.hidden && !v.querySelector('.rpg') && !(v.classList && v.classList.contains('rpgon')))); }
     function spark(sx, sy, n, big) {
       for (var k = 0; k < n; k++) {
         var s = trail[ti++ % trail.length], a = Math.random() * 6.28, d = (big ? 30 : 14) + Math.random() * (big ? 40 : 18);
