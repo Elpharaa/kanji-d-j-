@@ -5466,6 +5466,10 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
 .evt{flex:1;min-width:0}.evt b{display:block}.evw{display:block;min-height:1.2em;color:#c9b8f0;font-family:'Courier New',monospace;margin:2px 0 6px}
 .evb{display:flex;gap:6px;flex-wrap:wrap}.evb button{padding:6px 10px;border-radius:10px;border:2px solid #0d0620;background:linear-gradient(#ffe9a0,#f0a92a);color:#2a1a50;font-weight:800;cursor:pointer}.evb button:disabled{opacity:.4}
 
+.rpgact .sb{overflow:visible}.rpgact .sb u.qjn{position:absolute;right:-8px;top:-6px;text-decoration:none;font:800 10px/1 system-ui;padding:3px 5px;border-radius:99px;background:#ffd96a;color:#2a1a50;border:2px solid #2a1a50}.rpgact .sb u.qjn.full{background:#8be0a0}
+.qjjh{margin-top:16px}
+#hubQj{display:none}
+
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -29887,7 +29891,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
   });
   document.addEventListener('click', function (ev) {
     var o = ev.target.closest ? ev.target.closest('[data-rpgj]') : null; if (!o) return;
-    rpgJournal(); var el = document.getElementById('rpgJournal'); if (el) openModal('Journal de voyage', '<div class="rpgjm">' + el.innerHTML + '</div>', 'kmodal');
+    rpgJournal(); var el = document.getElementById('rpgJournal'); if (el) openModal('Quêtes', qjAdvHTML(), 'kmodal qjmodal');
   });
   /* ===== v345 : voie du héros (classes), quêtes du jour, rencontres aléatoires ===== */
   var HC = {
@@ -29935,9 +29939,14 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
   }
   /* ---------- carte sur l'accueil + fenêtre ---------- */
   function qjHubSync() {
-    var host = document.getElementById('hubQj'); if (!host || !S) return;
-    var q = qjToday(), n = q.ids.filter(function (id) { return q.done[id]; }).length, h = S.hc ? HC[S.hc] : null;
-    host.innerHTML = '<button type="button" class="qjcard' + (n === 3 ? ' full' : '') + '" data-qj="open"><span class="qjg" aria-hidden="true">' + (h ? h.g : '巻') + '</span><span class="qjt"><b>Quêtes du jour</b><small>' + (n === 3 ? 'Toutes accomplies, bravo !' : n + ' / 3 accomplies') + (h ? ' · ' + h.n : '') + '</small></span><span class="qjd">' + [0, 1, 2].map(function (i) { return '<i class="' + (i < n ? 'on' : '') + '"></i>'; }).join('') + '</span></button>';
+    if (!S) return; var b = document.querySelector('.rpgact .s2'); if (!b) return;
+    var q = qjToday(), n = q.ids.filter(function (id) { return q.done[id]; }).length, u = b.querySelector('u.qjn');
+    if (!u) { u = document.createElement('u'); u.className = 'qjn'; b.appendChild(u); }
+    u.textContent = n + '/3'; u.classList.toggle('full', n === 3);
+  }
+  function qjAdvHTML() {
+    var el = null; try { rpgJournal(); el = document.getElementById('rpgJournal'); } catch (e) { /* ignore */ }
+    return qjModalHTML() + (el ? '<h4 class="qjjh">Journal de voyage</h4><div class="rpgjm">' + el.innerHTML + '</div>' : '');
   }
   function qjModalHTML() {
     var q = qjToday(), h = S.hc ? HC[S.hc] : null, o = '<div class="qjm">';
@@ -29948,7 +29957,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
     }).join('') + '</ul><p class="qjbonus' + (q.all ? ' ok' : '') + '">🎁 Les 3 accomplies : +100 EXP et +' + qjCoins(60) + ' pièces' + (q.all ? ' (obtenu)' : '') + '</p>';
     return o + '<p class="small muted">Les quêtes changent chaque jour.</p></div>';
   }
-  function qjOpen() { openModal('Quêtes du jour', qjModalHTML(), 'kmodal qjmodal'); }
+  function qjOpen() { openModal('Quêtes', qjAdvHTML(), 'kmodal qjmodal'); }
   function hcPathHTML(change) {
     return '<div class="qjm"><p class="qjintro">' + (change ? 'Changer de voie coûte <b>200 pièces</b>.' : 'Avant de continuer, choisis ta <b>voie</b> : un bonus permanent qui te suit partout.') + '</p>' +
       Object.keys(HC).map(function (k) { var h = HC[k]; return '<button type="button" class="hcopt' + (S.hc === k ? ' on' : '') + '" data-hc="' + k + '" style="--c:' + h.c + '"><span class="hcg">' + h.g + '</span><span><b>' + h.n + '</b><small>' + h.d + '</small></span></button>'; }).join('') + '</div>';
@@ -29964,22 +29973,14 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
     var c = ev.target.closest ? ev.target.closest('[data-hc]') : null;
     if (c && hcPick(c.getAttribute('data-hc'))) { toast('Voie du ' + HC[S.hc].n + ' choisie !'); qjOpen(); }
   });
-  var _renderHub0 = renderHub;
-  renderHub = function () {
-    _renderHub0.apply(this, arguments);
-    try {
-      var g = document.getElementById('hubGrid'); if (g && !document.getElementById('hubQj')) { var d = document.createElement('div'); d.id = 'hubQj'; g.parentNode.insertBefore(d, g); }
-      qjHubSync(); hcAsk();
-    } catch (e) { /* ignore */ }
-  };
   var hcAsked = false;
   function hcAsk() {
     if (hcAsked || !S || S.hc || !user) return; hcAsked = true;
     setTimeout(function () {
-      var m = document.getElementById('appModal'), hub = document.getElementById('vHub'), co = document.getElementById('coach');
-      if (S.hc || !hub || hub.hidden || (m && !m.hidden) || document.getElementById('lvlup') || (co && !co.hidden)) { hcAsked = false; return; }
+      var m = document.getElementById('appModal'), hub = document.getElementById('rpgRoot'), co = document.getElementById('coach');
+      if (S.hc || !hub || (m && !m.hidden) || document.getElementById('lvlup') || (co && !co.hidden)) { hcAsked = false; return; }
       openModal('Choisis ta voie', hcPathHTML(false), 'kmodal qjmodal');
-    }, 2500);
+    }, 1800);
   }
   /* ---------- hooks : réponses, EXP ---------- */
   var _applyResult0 = applyResult;
@@ -30021,6 +30022,8 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
       setTimeout(function () { d.remove(); evOpen = false; }, 2200);
     });
   }
+  var _rpgRender0 = rpgRender;
+  rpgRender = function () { var r = _rpgRender0.apply(this, arguments); try { qjHubSync(); hcAsk(); } catch (e) { /* ignore */ } return r; };
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
