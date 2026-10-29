@@ -5295,6 +5295,26 @@ body.tbopen { overflow: hidden; }
 .rpgadb{display:flex;gap:4px}
 .rpgadm .admth img{width:100%;height:100%;object-fit:cover}
 .rpgagain{border:1px dashed #b9a8e8;border-radius:12px;padding:6px 10px;background:#fff}.rpgagain summary{cursor:pointer;font-weight:700;color:#6b4bd6}
+#rpgCv{aspect-ratio:13/9;max-height:78vh}
+.rpg{max-width:780px}
+.rpgmapw{border-radius:18px}
+.rpgdot{width:30px;height:30px;border-radius:50%;border:2px solid rgba(124,92,255,.5);background:transparent;color:inherit;font-weight:800;font-size:13px}.rpgdot.on{background:#7c5cff;color:#fff;border-color:#7c5cff}.rpgdot:disabled{opacity:.35}
+.rpgscn{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:4px 0 8px}
+.rpgarena{position:relative;height:230px;border-radius:14px;overflow:hidden;background-size:cover;background-position:center;border:2px solid #2a1a50;margin:4px 0}
+.rpgsay{position:absolute;left:10px;right:10px;top:8px;z-index:3;background:rgba(255,253,246,.94);color:#2a1a50;border:2px solid #2a1a50;border-radius:12px;padding:6px 10px;font-size:14px;line-height:1.35;box-shadow:0 3px 0 rgba(0,0,0,.2)}
+.rpgsay b{color:#6b4bd6;margin-right:4px}
+.rpgfoew{position:absolute;right:14px;bottom:10px;width:112px;z-index:2;text-align:center}
+.rpgfoeimg{width:112px;height:112px;object-fit:cover;border-radius:16px;border:3px solid #fff;box-shadow:0 6px 14px rgba(0,0,0,.4);background:#fff}
+.rpgfoew .rpghpw{margin-top:6px}
+.rpgherow{position:absolute;left:14px;bottom:8px;z-index:2}
+.rpgheroimg{width:84px;height:84px;object-fit:cover;border-radius:50%;border:3px solid #7c5cff;box-shadow:0 6px 14px rgba(0,0,0,.4);background:#fff}
+.rpgqn{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);font-size:11px;font-weight:700;color:#fff;background:rgba(20,10,50,.6);padding:1px 8px;border-radius:99px;z-index:3}
+.shake{animation:rpgshk .38s}
+@keyframes rpgshk{20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(4px)}}
+.rpgfoew.shake .rpgfoeimg{filter:brightness(1.5) saturate(1.4)}
+.rpgbgth{background-size:cover;background-position:center;border-radius:10px}
+.rpgadi select{flex:1;min-width:0;padding:6px 8px;border-radius:8px;border:1px solid rgba(124,92,255,.4);background:transparent;color:inherit}
+@media (min-width:700px){.rpgarena{height:300px}.rpgfoew{width:150px}.rpgfoeimg{width:150px;height:150px}.rpgheroimg{width:110px;height:110px}.rpgsay{font-size:16px}}
 
 </style>
 
@@ -28458,61 +28478,105 @@ body.tbopen { overflow: hidden; }
     pool.forEach(function (e) { if (out.length >= 6) return; var f = Array.from(e.jp).filter(function (c) { return set[c]; })[0]; if ((seen[f] || 0) >= 2) return; seen[f] = (seen[f] || 0) + 1; out.push(e); });
     RADX[key] = out; return out;
   }
-  /* ===== v329. Mode Histoire RPG : voyage initiatique au Japon (5 zones N5 → N1) ===== */
-  var RPG_Z = [{"map":["TTTTTTTTTETTTTTTTT","T..hh..,,,..S.hh.T","T..hh..,,,....hh.T","T.S....,.,.......T","T......,.,,,,,,..T","~~~~~~~=~~~~~~~~~~","T......,,........T","T.hh...,,..S..hh.T","T.hh...,,,,,..hh.T","T......,..,......T","T.S....,..,...S..T","TTTTTTTTTTTTTTTTTT"],"start":[9,10],"exit":[9,0],"boss":[9,1],"npc":{"sensei":[7,9],"amie":[16,6],"rival":[1,6],"marchand":[5,3],"aub":[12,4]},"yokai":[[2,1],[13,8],[16,1],[3,10]]},{"map":["TTTTTTTTTETTTTTTTT","T.S..pp..,,.pp..ST","T....pp..,,.pp...T","T..S.....,,.....ST","T.hh.,,,,,,,,,.hhT","T.hh.,.........hhT","T....,.SS..##.,..T","T.S..,,,,,,,,,,..T","T....,...~~~.....T","T.hh.,..~~=~~..S.T","T.hh.,,,,,.,,,...T","TTTTTTTTTTTTTTTTTT"],"start":[9,10],"exit":[9,0],"boss":[9,1],"npc":{"sensei":[12,10],"amie":[1,5],"rival":[16,2],"marchand":[3,1],"aub":[14,6]},"yokai":[[4,9],[6,4],[11,4],[16,9]]},{"map":["TTTTTTTTTETTTTTTTT","#hhh.,,,,,,,,.hhh#","#hhh.,......,.hhh#","#....,.hh.hh.,...#","#,,,,,.hh.hh.,,,,#","~~~~~~=~~~~~=~~~~~","~~~~~~=~~~~~=~~~~~","#,,,,,.,..,,.,,,,#","#....,.,.hh,.,...#","#hhh.,.,.hh,.,hhh#","#hhh.,,,,,,,,.hhh#","##################"],"start":[9,10],"exit":[9,0],"boss":[9,1],"npc":{"sensei":[6,10],"amie":[1,4],"rival":[16,4],"marchand":[12,7],"aub":[4,2]},"yokai":[[3,7],[13,2],[16,8],[7,7]]},{"map":["##################","#hhh,,,hh,,,hhh,E#","#hhh,.,hh,.,hhh,,#","#,,,,.,,,,.,,,,,,#","#,hh,.hhh,.hhh,hh#","#,hh,.hhh,.hhh,hh#","#,,,,.,,,,.,,,,,,#","#,hh,.,,,,.,hh,hh#","#,hh,.hh,,.,hh,hh#","#,,,,.hh,,.,,,,,,#","#hhh,,,,,,,,,hhh,#","##################"],"start":[9,10],"exit":[16,1],"boss":[16,2],"npc":{"sensei":[9,7],"amie":[1,3],"rival":[2,9],"marchand":[10,1],"aub":[16,10]},"yokai":[[5,5],[13,6],[4,1],[7,3]]},{"map":["###########E######","##.....,,,.....###","#..##..,,,..##..##","#..##..,.,..##...#","#......,.,.......#","#.S..,,,.,,,..S..#","#....,.....,.....#","#..#.,.~~~.,.#...#","#....,.~=~.,.....#","#.S..,,,=,,,..S..#","#........,.......#","##################"],"start":[9,10],"exit":[11,0],"boss":[11,1],"npc":{"sensei":[11,9],"amie":[1,4],"rival":[16,5],"marchand":[4,8],"aub":[8,5]},"yokai":[[4,1],[16,10],[1,10],[13,6]]}];
-  var RPG_TS = 32;
+  /* ===== v331. Mode Histoire RPG : voyage au Japon en petites cartes (5 zones x 5 cartes) ===== */
+  var RPG_S = [[{"biome":"mont","label":"Sortie de la montagne","map":["MMMMMMMMMMMMMMM~~MMMMMMMMM","MRTTTTTRTTTTTTT~~.......RM","MTRRRTTTTTTTRTR~~XF......M","MT......TTTRRTT~~..,,,,,,M","M.g..R.........~~..,,,,,,M","M...,,,,,,,,,,,~~.T,,F.,,M","M...,,,,,,,,,,,==,,,,.,,,,","M...,,.....F.,,==,,,,F,,,,","Q,,,,,.........~~..T...TRM","Q,,,,,X...g....~~...XRTTRM","MTRTRTRTRTT....~~TTTTTTTTM","MTRTRRTTTTTTTTT~~TTTTTTTTM","MTRTTTTTRTTTTRR~~RTRTTTTTM","MTTTTTTRTTTTTTR~~TTTRTTTRM","MTRRTTTTTRRTRTT~~RTRTRRRTM","MTTTTTTTTRTTTTR~~TTRRTTTTM","MTRTRTTRTTTTTTT~~TTTTTTTTM","MMMMMMMMMMMMMMM~~MMMMMMMMM"],"inn":false,"enter":[[0,8],[0,9]],"exitc":[[25,6],[25,7]],"enter_side":"L","exit_side":"R","s_in":[1,8],"s_out":[24,6],"cave":true,"npc":{"sensei":[14,10]},"boss":null,"foes":[[8,4]],"search":[[17,2],[20,9],[6,9]]},{"biome":"bambou","label":"Bosquet de bambous","map":["BBBBBBBBBBBBBBBBBBBBBBBBBB","BBRBBBRBBBBBBBBBBBBRBBBBBB","BBRBRBRBBBRBBBBBBBRBBBBBBB","BBB....XBBBRBBBBBB....gBBB","B.g..........RgBB...R.RBBB","B....FBBgB..RR.FBRR.FR..BB",",,,,,,,,,,,,,,,,,,,,,,,,,B",",,,,,,,,,,,,,,,,,,,,,,,,,B","B....Xg...........L.g..,,B","B...g..g.B...g..BX.....,,B","B...RFR...gg..RBB.....,,,,","BBBB..R.BBBBBBRBBBB...,,,,","BBBBBBBBBBRBBBBBBRBBBBRBBB","BBBBBRBBBBBBBBBBBBBBBBRBBB","BRBBRRBBBRBBBBBBBBBBRBBBBB","BBBBRBBBBBBBBRBRBBBBBRBBBB","BBBBBBBBBBBBRBBBBBBBBBRBBB","BBBBBBBBBBBBBBBBBBBBBBBBBB"],"inn":false,"enter":[[0,6],[0,7]],"exitc":[[25,10],[25,11]],"enter_side":"L","exit_side":"R","s_in":[1,6],"s_out":[24,10],"cave":false,"npc":{"amie":[14,4]},"boss":null,"foes":[[9,10],[22,3]],"search":[[7,3],[17,9],[5,8]]},{"biome":"village","label":"Auberge du chemin","map":["TTTTTTTTTTTTTTT,,TTTTTTTTT","TTTTTTT........,,TTTRTRTTT","TTTTX...F..FF.L,,..TTRRTTT","TTT.iiihhT.,,,,,,...TTTTTT","TR..iiihh.L,,,,,,...TTTTTT","TTTf,,,,,..,,.F....TTTTTTT","TTRT.....g.,,.T....gTTTTTT","TRT......g.,,.....TTTTTTTT","TT.T..F..RL,,....TRTTTTTTT","TRTFTT.,,,,,,....TTTTTTTTT",",,,,,,,,,,,,,.F.TTTTRTTTTT",",,,,,,,,,hh.F..TTRTTTTTTTT","TTR.hh.TThh....RTTTTRTTTTT","TTTThhTTT,,fXTTTTTTTTTTRTT","TTTTT,g....FTTTTRRTTTTTRTT","TTTRTTRTRTTTRTTTTTTTTTTTTT","TRTTTTTTRTRTTTRTRTRTTTTTTT","TTTTTTTTTTTTTTTTTTTTTTTTTT"],"inn":true,"enter":[[0,10],[0,11]],"exitc":[[15,0],[16,0]],"enter_side":"L","exit_side":"T","s_in":[1,10],"s_out":[15,1],"cave":false,"npc":{"aub":[4,5],"marchand":[6,5]},"boss":null,"foes":[],"search":[[4,2],[12,13]]},{"biome":"riz","label":"Rizières et rivière","map":["TTTTTTTTTTTTTTT~~TTTTTTTTT","TTTTTTTTTTTTTTT~~TTTTTTTTT","TTTTTTTTTTTTTTT~~....FTTTT","TTTTTTTTTTTTTTT~~.......TT","TTTTTTTTTTTTTT.~~g,,,,,,,T","TTTTTTTTTTTTTTT~~.,,,,,,,,","TTTTTTTTTTTT...~~.,,..,,,,","TTTTTTTTTTT....~~.,,X...TT","TTTTTTTTTT.....~~,,,.T.TTT","TTTTTTTTTT.....~~,,,.....T","TTTTTTTTTTTX...~~,,,.....T","TTTTTTTTTTT...T~~,,,.F...T","TTTTTTTTTTT....~~.,,.....T","TTTTTTTTTTTT...~~,,,.....T","TTTTTTTTTTTT,,.~~,,,T..TTT","TTTTTTTTTTTT,,,==,,.TF.TTT","TTTTTTTTTTTT,,,==,,...TTTT","TTTTTTTTTTTT,,T~~TTTTTTTTT"],"inn":false,"enter":[[12,17],[13,17]],"exitc":[[25,5],[25,6]],"enter_side":"B","exit_side":"R","s_in":[12,16],"s_out":[24,5],"cave":false,"npc":{"rival":[20,12]},"boss":null,"foes":[[14,6],[19,2]],"search":[[11,10],[20,7]]},{"biome":"temple","label":"Torii du gardien","map":["TTTTTTTTTTTTTTTTTTTTTTTTTT","TSTT......STTTSTTTSTTTTTTT","T..........XSSSSTTSSSTSSST","T.g.....L....SSTSTSSSSTTST","T....,,,,,,,,,SSTTTTTTTSST","T....,,,,,,,,,SSTTTSSTTSST","T....,,..g..,,TSTTTSSSTTTT",",,,,,,,.....,,TTSSTSTSTTTT",",,,,,,,..F..,,TTSTSSTTSTTT","TSSL......S.,,.S.TTTTTSTST","TTTSTTTT...S,,.g......TTST","TTTTSTT.....,,,,,,,..g,,,,","TTTTTTS.....,,,,,,,LRL,,,,","TTTSSSTT.......FR,,,,,,,,T","TSSSSTSST.......R,,,,,,,,T","TSSSSTTTTT....F..........T","TTTTSTTSTST..............T","TTTTTTTTTTTTTTTTTTTTTTTTTT"],"inn":false,"enter":[[0,7],[0,8]],"exitc":[[25,11],[25,12]],"enter_side":"L","exit_side":"R","s_in":[1,7],"s_out":[24,11],"cave":false,"npc":{},"boss":[19,10],"foes":[],"search":[[11,2]]}],[{"biome":"ville","label":"Porte de Kyôto","map":["NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNX..NNNNNNNNNNNNNNNN","NNNNNNN.....NNNNX....NNNNN","NNNN.F......NNL..FNN....NN",",,,,,,,,,,,,,,,,,,,,,...NN",",,,,,,,,,,,,,,,,,,,,,.,,,,","NN..L,,,,.FF......L,,,,,,,","NN.NN.FNL..NN....F.,,,,,,N","NNN.NN.NN...NNN...F..F...N","NNNN.....NNNNNNN.F..L....N","NNNNNNNNNNNNNNNNNNN.....NN","NNNNNNNNNNNNNNNNNNN...NNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN"],"inn":false,"enter":[[0,8],[0,9]],"exitc":[[25,9],[25,10]],"enter_side":"L","exit_side":"R","s_in":[1,8],"s_out":[24,9],"cave":false,"npc":{"sensei":[11,12]},"boss":null,"foes":[[19,15]],"search":[[16,6],[7,5]]},{"biome":"erable","label":"Colline aux érables","map":["TTTTTTTTTTTTTT,,TTTTTTTTTT","T..........RTT,,TTTTTTTTTT","T.........F..T,,TRTTTTTTTT","T...,,,,,,,,,,,,..RRTTTTTT","T...,,,,,,,,,,,,g.X.TTTTTT","T...,,,,...Xg.,,...FTTTTTT","T...,,,,g.....,,.FF..TTRTT",",,,,,,,,......,,...F.TTTTT",",,,,,,,,...F..F......TTTTT","TT~~~.g.F...g.X.TT..TTTRTT","TTTT......T.F.F.....TTTTTT","TTTRTTTTTTRTT.gg..TTTRTTTT","TTTTTTTTTTTTTTTRTTTTRTTTTT","TTTTTTTTTTTTTTRRTTTTTTTTTT","TTTTRTTTTTTTTRRTTTTTTTTTTT","TTTTTTTTTTTTTTTTTTTTTTTTTT","TTTTTTTTTTRRTTTTTTTTTTTTTT","TTTTTTTTTTTTTTTTTTTTTTTTTT"],"inn":false,"enter":[[0,7],[0,8]],"exitc":[[14,0],[15,0]],"enter_side":"L","exit_side":"T","s_in":[1,7],"s_out":[14,1],"cave":false,"npc":{"amie":[19,10]},"boss":null,"foes":[[9,10],[5,2]],"search":[[11,5],[18,4],[14,9]]},{"biome":"ville","label":"Ruelle de l'auberge","map":["NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNN...NNNNN","NNNNNNNNNNNNNNNNX.....NNNN","NNNNNNNNNNNNNNNN...iii.NNN","NNNNNNNNNNNNNNNNN..iii.NNN","NNNNNNNNNNNNNNNNNN.,,,NNNN","NNNNNNNNNNNNNNNNNNN....NNN","NNNNNNNNNNNNN.FNNNF...,,,,","NNNNNNNNNN.N.....N.,,,,,,,","NNNNNNNNNN.XF..FL..,,,.,,N","NNNNNNNNNN......N.F,,,.,,N","NNNNNNNNNNNN...L...,,,,,,N","NNNNNNNNNNNNNN....,,,,,,,N","NNNNNNNNNNNNNNN...,,,,NN.N","NNNNNNNNNNNNNNN...,,,,...N","NNNNNNNNNNNNNNNNNN,,NNNNNN"],"inn":true,"enter":[[18,17],[19,17]],"exitc":[[25,9],[25,10]],"enter_side":"B","exit_side":"R","s_in":[18,16],"s_out":[24,9],"cave":false,"npc":{"aub":[19,7],"marchand":[21,7]},"boss":null,"foes":[],"search":[[11,11],[16,4]]},{"biome":"zen","label":"Jardin zen","map":["##########################","#TTT#TRRRRTTTRR###.......#","#TT#R#RRRTTTTRTT#..F.....#","##TRTRTTTTT#~~~RT...,,,,,#","#RRT#TTRR..~~~~~...R,,,,,#","##RRT...R...~~~...T.,,.,,#",",,,,,,,,,,,..F.,,,,,,,,,,,",",,,,,,,,,,,,,,,,,,,,,,,,,,","#T##.....,,,,,,,,TT...F.T#","##TRRF.F...........XRRTR##","##RRTX.F....RT....TT#TT###","#TTTTT..R....RTRRR##TRTTT#","#T#RTT#.#.F..TRRTTTTRTTTR#","#TTTR#RTRTTRT##R#RRTT##RT#","#TTTRTRTTTT#T#R#TT#RTR##T#","#TR##TTT#T#RRRR#T#T#RTTRR#","###TTT#TRTT#RTRTTRTTRTRTR#","##########################"],"inn":false,"enter":[[0,6],[0,7]],"exitc":[[25,6],[25,7]],"enter_side":"L","exit_side":"R","s_in":[1,6],"s_out":[24,6],"cave":false,"npc":{"rival":[12,12]},"boss":null,"foes":[[17,2],[9,4]],"search":[[5,10],[19,9]]},{"biome":"temple","label":"Grand temple","map":["TTTTTTTTTTTTTTTTTTTTTTTTTT","TTTTSTTTSSSTSTSSSSTTSTSTTT","TTSTTTTSTTSSTTSTTTTTSTTTTT","TTTTTTSSSTSSTSS...g..gTTST","TSTTTTTTTTSST.....F....SST","TTTTTTSSTTTTF.T..g..F.F..T","TSSSSSTSS........,,,,,,,,T","TTTTTF....g......,,,,,,,,T","T.........,,,,,,.,,...R,,T","T..g.,,,,,,,,,,,.,,....,,T",",,,,,,,,,,,,..,,T,,...F,,T",",,,,,,,T.T....,,L,,.TT,,,,","TS......T..TT.,,g,,STS,,,,","TTSS.....TT..T,,,,,.TSTTTT","TTTTTSSSTTT...,,,,,.TTTTTT","TTTTSSSTSSTX........TTTTTT","TTTTTTSSSST.........TTSSST","TTTTTTTTTTTTTTTTTTTTTTTTTT"],"inn":false,"enter":[[0,10],[0,11]],"exitc":[[25,11],[25,12]],"enter_side":"L","exit_side":"R","s_in":[1,10],"s_out":[24,11],"cave":false,"npc":{},"boss":[20,9],"foes":[],"search":[[11,15]]}],[{"biome":"port","label":"Port d'Ôsaka","map":["NNNNNNNNNNNNNN~~NNNNNNNNNN","NNRRNNNRNNRCRN~~NNRCNRCRNN","NNRCRNCNNCCNCC~~NNNCCCCNNN","NCCNNNNRNRNNN.~~CCNNNCCNCN","NCNNCNNNNNNR..~~.CC.CCCCCN","NNNCCNNNCNC...~~.....LCNNN","NRNNNCCCC.....~=,,,,,,,,,N",",,,,,,,,,,,...~=,,,,,,,,,,",",,,,,,,,,,,.L.~=,CC...,,,,","NCNCNC...,,,,,==,X....CNCN","NNNCNN..C,,,,,==,.....RNNN","NNCNNRCC....RC==,.....NNCN","NCNNNCX..C....~~C.....NNCN","NCCCRNN.....C.~~.....CNNRN","NCNCNCCNNR..R.~~....NCCCCN","NRNCCRNCRCCCN.~~.C.CNNNCNN","NNRNNNRCRNRNNN~~NNNNCNCNCN","NNNNNNNNNNNNNN~~NNNNNNNNNN"],"inn":false,"enter":[[0,7],[0,8]],"exitc":[[25,7],[25,8]],"enter_side":"L","exit_side":"R","s_in":[1,7],"s_out":[24,7],"cave":false,"npc":{"sensei":[13,15]},"boss":null,"foes":[[11,5]],"search":[[6,12],[17,9]]},{"biome":"marche","label":"Marché couvert","map":["NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNN.....NNNNNNNN","NNNNNNNNX........L...XNNNN","NNNN.....NNNN..,,,,,,,,,,N",",,,,,,,,,,,,,,,,,,,,,,,,,N",",,,,,,,,,,,,,,,,,L..N..,,N","NNNN....k....X.....k...,,N","NNNN......k......k.NNNN,,N","NNNNNNN.......NN.NNNNNN,,N","NNNNNNNNNNNNNNNNNNNNNN,,,,","NNNNNNNNNNNNNNNNNNNNNN,,,,","NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN"],"inn":false,"enter":[[0,6],[0,7]],"exitc":[[25,11],[25,12]],"enter_side":"L","exit_side":"R","s_in":[1,6],"s_out":[24,11],"cave":false,"npc":{"amie":[15,3]},"boss":null,"foes":[[9,10],[18,9]],"search":[[8,4],[21,4],[13,8]]},{"biome":"canal","label":"Canal de l'auberge","map":["NNNNNNNNNN~~NN,,NNNNNNNNNN","NNNNN.....~~..,,NNNNNNNNNN","NNN..LX...~~..,,.NNNNNNNNN","N.......,,==,,,,..NNNNNNNN","N.iii...,,==,,,,..NNNNNNNN","N.iiiL...,=~.LNN..NNNNNNNN","NN,,,...L,=~...N.NNNNNNNNN","NN......,,=~....NNNNNNNNNN","N.....N.,,=~...LNNNNNNNNNN",",,,,,,,,,,~~...NNNNNNNNNNN",",,,,,,,,,,~~...NNNNNNNNNNN","N.L..NN...~~...NNNNNNNNNNN","N...NN....~~F.NNNNNNNNNNNN","NN..F.....~~XNNNNNNNNNNNNN","NNNN......~~NNNNNNNNNNNNNN","NNNNNNNNNN~~NNNNNNNNNNNNNN","NNNNNNNNNN~~NNNNNNNNNNNNNN","NNNNNNNNNN~~NNNNNNNNNNNNNN"],"inn":true,"enter":[[0,9],[0,10]],"exitc":[[14,0],[15,0]],"enter_side":"L","exit_side":"T","s_in":[1,9],"s_out":[14,1],"cave":false,"npc":{"aub":[2,6],"marchand":[4,6]},"boss":null,"foes":[],"search":[[6,2],[12,13]]},{"biome":"canal","label":"Pont des lanternes","map":["NNNNNNNNNN~~NNNNNNNNNNNNNN","NNNNNNNNNN~~NNNNNNNNNNNNNN","NNNNNNNNNN~~NNNNNNNNNNNNNN","NNNNNNNNNN~~NNNNNNNNNNNNNN","NNNNNNNNNN~~N...NNNNNNNNNN","NNNNNNNNNN~~......NNNNNNNN","NNNNN...NN~~F.....NNNNNNNN","NNN......N~~......NNNNNNNN","NNNF...L..~~....NNNNNNNNNN","NNN......N~~NNFNNNNNNNNNNN","NNNNN..XNN~~N...NN.....NNN","NNN......N~~..........,,,,","NNNF.L...N~~N,,,,,,,,.,,,,","NNNN..,,,,==,,,,,,,,,,,,,N","NN..N,,,,,==,,,,..N,,,,,,N","NN...,,,..~~........NX...N","NNN..,,,..~~.............N","NNNNN,,NNN~~NNNNNNNNNNNNNN"],"inn":false,"enter":[[5,17],[6,17]],"exitc":[[25,11],[25,12]],"enter_side":"B","exit_side":"R","s_in":[5,16],"s_out":[24,11],"cave":false,"npc":{"rival":[12,5]},"boss":null,"foes":[[15,14],[3,7]],"search":[[7,10],[21,15]]},{"biome":"chateau","label":"Cour du château","map":["##########################","#TT#T......T###RTTTTTT#TR#","##T.......X.TTT##TTT#T#TT#","#......#.....T##RRTT#TRT##","#....#,,,,,....TTR#R#T#RT#","#T..T.,,,,,.........TR#TT#","#T.RRF,,.,,,,,,,,,....FTT#","##F.R.,,F,,,,,,,,,.L....##",",,,,,,,,...L~~~.,,,,,,,,,#",",,,,,,,,...~~~~~,,,,,,,,,#","###TRT...#..~~~.,,.L..,,,,","#T#TRTT.TF.F....,,.TLT,,,,","#RR#TTRT###T#FR.R...T..#R#","#TT#TR#R##RTTT..R##L.###T#","#TT#TTRRRTTTTTT....#TTTRR#","#T#T#T#T##T#T##TTTTT##TTT#","#TTTRT#T##TT#T#T#T#TTTR###","##########################"],"inn":false,"enter":[[0,8],[0,9]],"exitc":[[25,10],[25,11]],"enter_side":"L","exit_side":"R","s_in":[1,8],"s_out":[24,10],"cave":false,"npc":{},"boss":[19,9],"foes":[],"search":[[10,2]]}],[{"biome":"neon","label":"Gare de Tôkyô","map":["NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN","NN...CNNNNNNNNNNNNNNNNNNNN","NN.....NNNNN....NNNNNNNNNN","N......CNNN....C.NNNNNNNNN","N......CN........NNNNN,,,,","NN....NNNC..,,,,,,..NN,,,,","NNNN.NNNN..C,,,,,,...N.,,N","NNNNNNNNN...,,..,,,,,,,,,N","NNNN.NNN....,,N.,,,,,,,,,N",",,,,,,,,,,,.,,...........N",",,,,,,,,,,,.,,.C.....X..NN","NNNNN....,,,,,......CNNNNN","NNNN.....,,,,,C..NNNNNNNNN","NNNN.C.....L....CNNNNNNNNN","NNNNNX...C......NNNNNNNNNN","NNNNNN.........NNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN"],"inn":false,"enter":[[0,10],[0,11]],"exitc":[[25,5],[25,6]],"enter_side":"L","exit_side":"R","s_in":[1,10],"s_out":[24,5],"cave":false,"npc":{"sensei":[15,15]},"boss":null,"foes":[[11,4]],"search":[[5,15],[21,11]]},{"biome":"neon","label":"Quartier des néons","map":["NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNN...N.NNNN","NNNN...NNNNNNNN.L...LNN.NN","NN.......NNNN.....,,,,,,,N","NN......NNNN......,,,,,,,N","NNN...L.CNN...N...,,...,,N","NNNN...NNNNCX.....,,..,,,,","NNNNL....NNNN...L.,,..,,,,",",,,,,,,..N..N....C,,.C..NN",",,,,,,,,,.NN..NC.L,,.....N","N....,,,,N.......,,,.....N","N......,,,,,,,,,,,,,X....N","N.....X,,,,,,,,,,,,......N","NN.......................N","NN......................NN","NNNNNNNNNNNNNNNNNNNNNNNNNN"],"inn":false,"enter":[[0,10],[0,11]],"exitc":[[25,8],[25,9]],"enter_side":"L","exit_side":"R","s_in":[1,10],"s_out":[24,8],"cave":false,"npc":{"amie":[13,15]},"boss":null,"foes":[[15,4],[6,5]],"search":[[12,8],[20,13],[6,14]]},{"biome":"parc","label":"Parc du soir","map":["TTTTTTTTTTTTTT,,TTTTTTTTTT","TSTTSTTTTS....,,TTTSTTTTST","TTSTSTSTS...F.,,TTTSSSSSTT","TTSiii...T.,,,,,..TSSSSSST","T.giii.S..,,,,,,...TSTTTST","T..,,,..S.,,,.FF...TTSTSTT","T~~~......,,.......STSTSTT","T~~~~.X...,,......TTTTTSTT","T~~~...g..,,.F.TTSSSTSSSST","TTS..FFT..,,STTTSTTSTTTSST",",,,,,,,,,,,,TTTTSSTTTTSTST",",,,,,,,,,,,,SSSTTSTSTSSSST","TT..F,,,..SS.STSSSSTTTSSST","TT...,,,....FSTTSTTTTSSTST","TSS.........TTTTTTTTTSSTST","TTTg.......XTTSTSTSSSTSSTT","TTTTT.....TTSSSTTSTTSTTSTT","TTTTTTTTTTTTTTTTTTTTTTTTTT"],"inn":true,"enter":[[0,10],[0,11]],"exitc":[[14,0],[15,0]],"enter_side":"L","exit_side":"T","s_in":[1,10],"s_out":[14,1],"cave":false,"npc":{"aub":[3,5],"marchand":[5,5]},"boss":null,"foes":[],"search":[[6,7],[11,15]]},{"biome":"neon","label":"Ruelles lumineuses","map":["NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNN...NNNNNNNN","NNNNNNNNNNNNN.......NNNNNN","NNNNNNNNNNNNN.......NNNNNN","NNNNNNNNNNNNNN.....NNNNNNN","NNNNNNNNNNNNNN.CX..NNNNNNN","NNNNNNNNNNNNNNNN.C..NN,,,,","NNNNNNNNNNNNN.NN.L.N..,,,,","NNNNNNNNNNNN..LN,,,,,,N,,N","NNNNNNNNNNNNC..L,,,,,,N,,N","NNNNNNNNNNNNX...,,LN,,,,,N","NNNNNNNNNNNN...N,,.C,,,,,N","NNNNNNNNNNNNN..L,,.......N","NNNNNNNNNNNNN...,,.......N","NNNNNNNNNNNNNNNN,,NNNNNNNN"],"inn":false,"enter":[[16,17],[17,17]],"exitc":[[25,9],[25,10]],"enter_side":"B","exit_side":"R","s_in":[16,16],"s_out":[24,9],"cave":false,"npc":{"rival":[13,5]},"boss":null,"foes":[[22,14],[18,11]],"search":[[16,8],[12,13]]},{"biome":"tour","label":"Pied de la tour","map":["NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNNNNNNNNNNNNNNNNNNNNNNNN","NNNN....NNNNX.NLNNNNNNNNNN","NNN.....L.N...NN.NNNNNNNNN","NNN.......N.......NNNNNNNN","NNN.......NN......NNNNNNNN","NNNNNL..NNNNN....NNNNN,,,,","NNNN.NNN.NNN...NN.....,,,,","NNN..NNN..N............,,N","NN.L...................,,N",",,,,,,,,,,,,,,,,,,,,,,,,,N",",,,,,,,,,,,,,,,,,,,,,,,,,N","N....L..L......N.NN..L...N","NN.............L..N......N","NN................L......N","NNNNN...NNN.....N.......NN","NNNNNNNNNNNNNNNNNNNNNNNNNN"],"inn":false,"enter":[[0,11],[0,12]],"exitc":[[25,7],[25,8]],"enter_side":"L","exit_side":"R","s_in":[1,11],"s_out":[24,7],"cave":false,"npc":{},"boss":[22,11],"foes":[],"search":[[12,3]]}],[{"biome":"neige","label":"Forêt enneigée","map":["MMMMMMMMMMMMMMMMMMMMMMMMMM","MTRTTTTTTRTTTTTTTTTTTTTTTM","MTTTTRTTTTTTTTTTTTTTTRTTTM","MTTTTTTTTTRTRRRTTT...g.TTM","MTTTTTTTTTTTTT..T........M","MTTTTTTTTTTTTT.RT..,,,,,,M",",,,,,,,,,,,TT.....R,,,,,,M",",,,,,,,,,,,..T.....,,..,,M","MTRTTT.X.,,RR......,,..,,M","MTTTT..R.,,,,......,,..,,M","MTTRT....,,,,,,,,,,,,RT,,M","MRTTTT..T..,,,,,,,,,,T,,,,","MTRTTTRR.T.R..g.X.TTTT,,,,","MTTTRTRR..R......RTTTTTTTM","MRTTTRRTRT.gg..RTTRTTTTRRM","MTRTTTTTTTTTTTTTTRTTRTTRTM","MTTTTTTTTTTTTTTRTTTTTRTTTM","MMMMMMMMMMMMMMMMMMMMMMMMMM"],"inn":false,"enter":[[0,6],[0,7]],"exitc":[[25,11],[25,12]],"enter_side":"L","exit_side":"R","s_in":[1,6],"s_out":[24,11],"cave":false,"npc":{"sensei":[10,14]},"boss":null,"foes":[[15,4]],"search":[[7,8],[16,12]]},{"biome":"sentier","label":"Sentier du vent","map":["MMMMMMMMM,,MMMMMMMMMMMMMMM","MR.......,,...TTRTTTRMRTRM","M........,,RR.RRMTTMRTRTRM","M..R,,,,.,,.X..TTRRRTRMMRM","M...,,,,M,,....RMMMTMMMTTM","M.RT,,,,.,,...RMRRRRMRRMMM",",,,,,,,,,,,..g.RMMRRMTRMTM",",,,,,,,,,,,...RTRMTTTMTRRM","M............MRTRMRRTMTRRM","MR..X..RR...XMRRRRMRMTRMRM","MRR........TRTRRTMTMTTMMMM","MRRRT....RMMRRTRRTTMTMTMRM","MTTTRTTTTRMRRTRRTMTRMRTRMM","MTRRRTTMMRMMTTTRMRTMRMTMMM","MRTTRMRMMTMRTTTMRRMTTRRRRM","MTRRRRTMMRMRMTMRMTTMRTTTTM","MMTRTTTTRRRMRRMTRRTMRRRRRM","MMMMMMMMMMMMMMMMMMMMMMMMMM"],"inn":false,"enter":[[0,6],[0,7]],"exitc":[[9,0],[10,0]],"enter_side":"L","exit_side":"T","s_in":[1,6],"s_out":[9,1],"cave":false,"npc":{"amie":[8,11]},"boss":null,"foes":[[14,6],[5,3]],"search":[[4,9],[12,9],[12,3]]},{"biome":"refuge","label":"Refuge de montagne","map":["MMMMMMMMMMMMMMMMMMMMMMMMMM","MTTTTTTTTTTTTTTTTTTTTTTRTM","MTRTTTRTTTRTRTRTTTTTTTTTTM","MTTTTTTTTTTTRTTRTTTTTTTTTM","MTTTTTTTTTTRhhgTT.....TTTM","MTRTTRTTRT..hh.g....RR,,,,","MTTTTTTTRT.f,,...L,,,,,,,,","MTTTTTTTTTT....iii,,,,,,,M","MTTTRT.XTTRR...iii,,.....M","MTTT....g.Thh..,,,,,...R.M","MRTRhh....Thh,,,,,,,..RTTM","MTRThh...TT,,,,,,,,,RTTTTM","MTTRT,f.T....,,..RTTTTRTRM","MTTTRTT.R..X,,,...T.TTTTTM","MTTTTT,,....,,,.....TRTTTM","MTTTTT,,,,,,,,......TTTRTM","MTTTRR,,,,,,,,......TTTTTM","MMMMMM,,MMMMMMMMMMMMMMMMMM"],"inn":true,"enter":[[6,17],[7,17]],"exitc":[[25,5],[25,6]],"enter_side":"B","exit_side":"R","s_in":[6,16],"s_out":[24,5],"cave":false,"npc":{"aub":[15,9],"marchand":[17,9]},"boss":null,"foes":[],"search":[[7,8],[11,13]]},{"biome":"cascade","label":"Cascade gelée","map":["MMMMMMMMMMMMM~~MMMMMMMMMMM","MRTRMRMMMTMMM~~MMRTTRRRMRM","MMTX..MRMMTMT~~RRRMTTMRMMM","M......RMRMRM~~TRMMTMMMRMM","M.......RTRRR~~RRTRRMRRRRM","M...M.M.MRRMM~~MTMRTMRMTMM","MTM.MgM....MM~~MTMMMTTRRRM","M...g...R..R.~~RRTMMRMRTTM","M....,,,,,,,,~~....RMRRTMM","M.g.R,,,,,,,,==,,,,,,.,,,,",",,,,,,,R.g.,,==,,,,,,.,,,,",",,,,,,,......~~.R..,,..,,M","MMM....TR....~~.R..,,,,,,M","MTMMRMMMMMR.g~~.g..,,,,,,M","MMRRRRMMMRMRR~~...ggX....M","MMMRRMMRMRTMR~~M....TR...M","MTMRTMTMTRTMR~~M........RM","MMMMMMMMMMMMM~~MMMMMMMMMMM"],"inn":false,"enter":[[0,10],[0,11]],"exitc":[[25,9],[25,10]],"enter_side":"L","exit_side":"R","s_in":[1,10],"s_out":[24,9],"cave":false,"npc":{"rival":[12,13]},"boss":null,"foes":[[7,4],[16,8]],"search":[[3,2],[20,14]]},{"biome":"sommet","label":"Sommet du Fuji","map":["MMMMMMMMMMMMMMMMMMMMMMMMMM","MMMMRMMMRMMMMMMMMMRMRRMRRM","MRMMRMMMMMMMMRMMRRMRMMRRRM","MRRRMMMMRMMR..X.RMRMMMRMMM","MMMMMRRMMR.......RMRMMMMRM","MRMMRRMMMR.g...g.MMMMMMMRM","MMMMMMMRMM....g.RMRRRMMRMM",",,,,,,,,,MRg....MRMRRRRMMM",",,,,,,,,,.....MMRMM...RMMM","MMR.L.L,,Rg.....RR..R.R..M","MM.....,,...gR....,,,,,,,,","M......,,,,,,,,,,,,,,,,,,,","M......,,,,,,,,,,,,,...R.M","M.......R.........L......M","M............M..g....R.MMM","MMM...R...g.g..MMMRRRMMMRM","MMRRM.........MMMMRRMMRMMM","MMMMMMMMMMMMMMMMMMMMMMMMMM"],"inn":false,"enter":[[0,7],[0,8]],"exitc":[[25,10],[25,11]],"enter_side":"L","exit_side":"R","s_in":[1,7],"s_out":[24,10],"cave":false,"npc":{},"boss":[21,13],"foes":[],"search":[[14,3]]}]];
+  var RPG_VW = 13, RPG_VH = 9, RPG_TS = 44;
   var RPG_CH = {
-    sensei:   { n: 'Hoshino-sensei', col: '#6b4bd6', bg: '#e6defa', hair: '#2a2a3a', role: 'Guide · leçons' },
-    rival:    { n: 'Ren', col: '#e0484f', bg: '#fbdcde', hair: '#d8a02a', role: 'Rival · duels' },
-    amie:     { n: 'Hana', col: '#ee7fb0', bg: '#fde3ef', hair: '#5a3525', role: 'Amie · lectures' },
-    marchand: { n: 'Daichi', col: '#e0a73a', bg: '#fbefd0', hair: '#222222', role: 'Marchand' },
-    aub:      { n: 'Okami-san', col: '#4aa59a', bg: '#d7f1ec', hair: '#8a8a9a', role: 'Aubergiste' },
-    boss1:    { n: 'Kappa Glouton', col: '#3f9d63', bg: '#d4f0de', hair: '#2b6b45', role: 'Boss · Sakura-mura', horn: 1 },
-    boss2:    { n: 'Tengu Gardien', col: '#c8423c', bg: '#f9d8d4', hair: '#3a2a2a', role: 'Boss · Kyôto', horn: 1 },
-    boss3:    { n: 'Tanuki Rusé', col: '#9a6b3c', bg: '#efdcc6', hair: '#5a3a1e', role: 'Boss · Ôsaka', horn: 1 },
-    boss4:    { n: 'Oni Néon', col: '#8a3fd6', bg: '#e8d6fa', hair: '#2a1050', role: 'Boss · Tôkyô', horn: 1 },
-    boss5:    { n: 'Dragon du Fuji', col: '#2f7fc4', bg: '#d4e8f8', hair: '#143a66', role: 'Boss · Mont Fuji', horn: 1 }
+    sensei:   { n: 'Hoshino-sensei', col: '#6b4bd6', bg: '#e6defa', hair: '#2a2a3a', role: 'Guide · leçons', tone: 'calme' },
+    rival:    { n: 'Ren', col: '#e0484f', bg: '#fbdcde', hair: '#d8a02a', role: 'Rival · duels', tone: 'fougueux' },
+    amie:     { n: 'Hana', col: '#ee7fb0', bg: '#fde3ef', hair: '#5a3525', role: 'Amie · lectures', tone: 'amical' },
+    marchand: { n: 'Daichi', col: '#e0a73a', bg: '#fbefd0', hair: '#222222', role: 'Marchand', tone: 'joyeux' },
+    aub:      { n: 'Okami-san', col: '#4aa59a', bg: '#d7f1ec', hair: '#8a8a9a', role: 'Aubergiste', tone: 'joyeux' },
+    boss1:    { n: 'Kappa Glouton', col: '#3f9d63', bg: '#d4f0de', hair: '#2b6b45', role: 'Boss · Sakura-mura', horn: 1, tone: 'altier' },
+    boss2:    { n: 'Tengu Gardien', col: '#c8423c', bg: '#f9d8d4', hair: '#3a2a2a', role: 'Boss · Kyôto', horn: 1, tone: 'altier' },
+    boss3:    { n: 'Tanuki Rusé', col: '#9a6b3c', bg: '#efdcc6', hair: '#5a3a1e', role: 'Boss · Ôsaka', horn: 1, tone: 'altier' },
+    boss4:    { n: 'Oni Néon', col: '#8a3fd6', bg: '#e8d6fa', hair: '#2a1050', role: 'Boss · Tôkyô', horn: 1, tone: 'altier' },
+    boss5:    { n: 'Dragon du Fuji', col: '#2f7fc4', bg: '#d4e8f8', hair: '#143a66', role: 'Boss · Mont Fuji', horn: 1, tone: 'altier' }
   };
   [['m1a', 'Kitsune Farceur', '#e08a3c'], ['m1b', 'Karasu Rôdeur', '#4a4a5e'], ['m2a', 'Ombre du Temple', '#6a4aa8'], ['m2b', 'Nekomata', '#b06a8a'], ['m3a', 'Chôchin Hanté', '#d6603c'], ['m3b', 'Kappa Pêcheur', '#3f9d63'], ['m4a', 'Robot Rôdeur', '#4a7fc4'], ['m4b', 'Fantôme Néon', '#c44ab0'], ['m5a', 'Yuki-onna', '#6ab0d8'], ['m5b', 'Petit Dragon', '#2f7fc4']].forEach(function (m, i) {
-    RPG_CH[m[0]] = { n: m[1], col: m[2], bg: '#ece4fa', hair: '#2a1a50', role: 'Méchant · zone ' + (Math.floor(i / 2) + 1), horn: 1 };
+    RPG_CH[m[0]] = { n: m[1], col: m[2], bg: '#ece4fa', hair: '#2a1a50', role: 'Méchant · zone ' + (Math.floor(i / 2) + 1), horn: 1, tone: 'sombre' };
   });
   var RPG_ROLE = { sensei: 'sensei', rival: 'rival', amie: 'amie', marchand: 'marchand', aub: 'aub' };
   var RPG_M = [
-    { n: 'Sakura-mura', jp: '桜村', lv: 'n5', sub: 'Le village de départ', g: '#7cc868', g2: '#72be5f', p: '#ecd9a6', w: '#5aa8e0', t: '#2f7d3a', roof: '#c04a4a', wall: '#f6ead0', bg: 'boss1', bossG: '河', bossN: 'le Kappa',
-      intro: ['Bienvenue au Japon ! Tu viens d\'arriver à Sakura-mura (桜村), un petit village au pied des montagnes.', 'Ici, on apprend le japonais en voyageant : parle aux habitants, bats les méchants qui rôdent et affronte le gardien pour ouvrir la route vers Kyôto.'],
-      bossIn: ['Gwa-gwa ! Personne ne passe sans connaître ses mots de base !', 'Dix questions, et pas une de plus. Si tu tiens bon, la route de Kyôto est à toi !'], bossWin: ['Gwa… Tu as de bonnes bases. Le portail est ouvert : cap sur Kyôto !'] },
-    { n: 'Kyôto', jp: '京都', lv: 'n4', sub: 'La ville des temples', g: '#92cf7e', g2: '#88c874', p: '#d8cbb6', w: '#4fa0c8', t: '#3b8a45', roof: '#a8403e', wall: '#f1e3c4', bg: 'boss2', bossG: '天', bossN: 'le Tengu',
-      intro: ['Kyôto (京都), l\'ancienne capitale ! Temples, ruelles de pierre et cerisiers à perte de vue.', 'Les habitants parlent plus vite ici : ouvre grand les oreilles… et les yeux.'],
-      bossIn: ['Hmpf ! Un voyageur qui monte du village ? Voyons si ta langue est aussi solide que tes jambes.', 'Réponds juste, et les portes de la ville s\'ouvriront.'], bossWin: ['Bien joué, voyageur. Ôsaka t\'attend, et sa cuisine aussi !'] },
-    { n: 'Ôsaka', jp: '大阪', lv: 'n3', sub: 'La ville des canaux', g: '#9aa8b8', g2: '#90a0b2', p: '#c9c1b4', w: '#3f86bf', t: '#4b8a58', roof: '#2f5f9c', wall: '#eef0f4', bg: 'boss3', bossG: '狸', bossN: 'le Tanuki',
-      intro: ['Ôsaka (大阪) ! Ici, on rit fort, on mange beaucoup et on parle vite.', 'Les phrases deviennent plus longues : concentre-toi sur le sens général.'],
-      bossIn: ['Ahaha ! Un étudiant ! Tu veux traverser mes canaux ? Prouve que tu comprends vraiment !', 'Dix questions pour te laisser passer. Pas de triche !'], bossWin: ['Mince, tu m\'as eu ! Allez, file vers Tôkyô !'] },
-    { n: 'Tôkyô', jp: '東京', lv: 'n2', sub: 'La capitale lumineuse', g: '#454b74', g2: '#3e4468', p: '#6a709e', w: '#2a4f8f', t: '#3a7a5a', roof: '#d6477e', wall: '#2f3358', bg: 'boss4', bossG: '鬼', bossN: 'l\'Oni', night: 1,
-      intro: ['Tôkyô (東京) ! Néons, gratte-ciel, trains pleins à craquer.', 'Le japonais devient plus abstrait : sens figurés, mots d\'actualité. Tu es prêt(e) ?'],
-      bossIn: ['Grrr ! Les touristes passent, les vrais étudiants restent. Es-tu l\'un d\'eux ?', 'Montre-moi ton niveau avancé !'], bossWin: ['Impressionnant… Le dernier défi t\'attend au sommet du Mont Fuji.'] },
-    { n: 'Mont Fuji', jp: '富士山', lv: 'n1', sub: 'Le sommet', g: '#dbe6f2', g2: '#cfdceb', p: '#a9b6c9', w: '#7fb7e0', t: '#2f5f4a', roof: '#5a6a8a', wall: '#f4f7fb', bg: 'boss5', bossG: '龍', bossN: 'le Dragon', snow: 1,
-      intro: ['Le Mont Fuji (富士山) ! Le dernier chapitre de ton voyage, tout en haut.', 'Ici, tout est N1 : nuances, mots rares, textes denses. Le dragon garde le sommet.'],
-      bossIn: ['Mortel… Tu as traversé tout le pays. Mais le sommet ne se donne pas.', 'Réponds à mes dix questions, et tu seras un vrai voyageur de la langue !'], bossWin: ['…Tu es allé au bout. Le Japon n\'a plus de secret pour toi. Félicitations, voyageur !'] }
+    { n: 'Sakura-mura', jp: '桜村', lv: 'n5', sub: 'Du col de la montagne au village', bg: 'boss1', intro: ['Bienvenue au Japon ! Tu sors tout juste de la montagne et le village de Sakura-mura (桜村) n\'est plus très loin.', 'Fouille les alentours, bats les ennemis croisés sur la route, repose-toi à l\'auberge… et le gardien du torii t\'attend au bout du chemin.'], bossWin: 'Le portail du torii est ouvert : la route de Kyôto est libre !' },
+    { n: 'Kyôto', jp: '京都', lv: 'n4', sub: 'La ville des temples', bg: 'boss2', intro: ['Kyôto (京都), l\'ancienne capitale ! Portes de bois, érables rouges et jardins zen.', 'Les gens parlent plus vite ici : ouvre grand les oreilles… et les yeux.'], bossWin: 'Les portes du grand temple s\'ouvrent : cap sur Ôsaka !' },
+    { n: 'Ôsaka', jp: '大阪', lv: 'n3', sub: 'Ports, marchés et canaux', bg: 'boss3', intro: ['Ôsaka (大阪) ! Ici, on rit fort, on mange beaucoup et on parle vite.', 'Les phrases deviennent plus longues : concentre-toi sur le sens général.'], bossWin: 'La cour du château est libre : direction Tôkyô !' },
+    { n: 'Tôkyô', jp: '東京', lv: 'n2', sub: 'La capitale lumineuse', bg: 'boss4', intro: ['Tôkyô (東京) ! Néons, gratte-ciel, trains pleins à craquer.', 'Le japonais devient plus abstrait : sens figurés, mots d\'actualité. Tu es prêt(e) ?'], bossWin: 'Le pied de la tour est dégagé : il reste le Mont Fuji !' },
+    { n: 'Mont Fuji', jp: '富士山', lv: 'n1', sub: 'Jusqu\'au sommet', bg: 'boss5', intro: ['Le Mont Fuji (富士山) ! Le dernier chapitre de ton voyage, tout en haut.', 'Ici, tout est N1 : nuances, mots rares, textes denses.'], bossWin: 'Le sommet est à toi : le voyage est accompli !' }
   ];
+  /* ---------- décors : palettes par biome ---------- */
+  var RPG_B = {
+    mont:   { l: 'Montagne', g: ['#7fae5c', '#76a455', '#88b862'], r: ['#cdb88a', '#bba679'], w: ['#4f9bd4', '#79bde8'], tree: 'pine', cl: ['#8b8794', '#6f6b7a', '#a7a3b0'], sky: ['#8fc6ee', '#e6f3fb'], far: 'mount', gr: 'grass' },
+    bambou: { l: 'Bambouseraie', g: ['#6e9b4e', '#648f46', '#79a656'], r: ['#c9b283', '#b49d6f'], w: ['#4f9bd4', '#79bde8'], tree: 'bamboo', cl: ['#7a8a6a', '#617152', '#92a282'], sky: ['#b5e3c0', '#f1fbe9'], far: 'bamboo', gr: 'grass' },
+    village:{ l: 'Village', g: ['#86bf5f', '#7cb558', '#92c96a'], r: ['#e2cd98', '#cdb781'], w: ['#4f9bd4', '#79bde8'], tree: 'oak', cl: ['#8b8794', '#6f6b7a', '#a7a3b0'], roof: '#c0504a', wall: '#f3e7cc', sky: ['#9fd6f5', '#fdf1d0'], far: 'hills', gr: 'grass' },
+    riz:    { l: 'Rizières', g: ['#8ac762', '#80bc5b', '#98d170'], r: ['#e0cc98', '#cbb67f'], w: ['#4aa3d8', '#7fc4ea'], tree: 'oak', cl: ['#8b8794', '#6f6b7a', '#a7a3b0'], sky: ['#a6dcf7', '#f4f7d8'], far: 'hills', gr: 'grass' },
+    temple: { l: 'Temple', g: ['#bdb89f', '#b2ad94', '#c8c3ab'], r: ['#dcd6c3', '#cac3ad'], w: ['#4f9bd4', '#79bde8'], tree: 'sakura', cl: ['#8b8794', '#6f6b7a', '#a7a3b0'], roof: '#a83a36', wall: '#efe6d2', sky: ['#f5c3d4', '#fdeede'], far: 'temple', gr: 'gravel' },
+    erable: { l: 'Érables', g: ['#b98d4e', '#ae8346', '#c4985a'], r: ['#dcc08e', '#c7ab78'], w: ['#4e93b8', '#7bb8d4'], tree: 'maple', cl: ['#8b8794', '#6f6b7a', '#a7a3b0'], sky: ['#f4bd82', '#fde9c8'], far: 'hills', gr: 'leaf' },
+    zen:    { l: 'Jardin zen', g: ['#e7dfc7', '#ddd4ba', '#efe8d3'], r: ['#cfc6ab', '#bdb398'], w: ['#5aa6b8', '#86c3cf'], tree: 'pine', cl: ['#9a9486', '#7f796c', '#b3ad9f'], wall: '#f2efe6', sky: ['#bcdcf0', '#f7f3e4'], far: 'hills', gr: 'sand' },
+    ville:  { l: 'Ville', g: ['#b5aaa0', '#aaa097', '#c0b6ac'], r: ['#8f867c', '#7d746b'], w: ['#4f8fc4', '#7bb4de'], tree: 'oak', cl: ['#8b8794', '#6f6b7a', '#a7a3b0'], bld: ['#c9a27a', '#b88a66', '#d9b890', '#a8745a'], roof: '#7a4a3c', sky: ['#f1c27d', '#fbe9cc'], far: 'city', gr: 'paving' },
+    port:   { l: 'Port', g: ['#a9987c', '#9d8c71', '#b5a487'], r: ['#8d7c60', '#7a6a50'], w: ['#3f86bf', '#6fb0dc'], tree: 'oak', cl: ['#8b8794', '#6f6b7a', '#a7a3b0'], bld: ['#7c8794', '#667280', '#9aa6b2', '#8a6a5a'], roof: '#4a5a6c', sky: ['#8fc9ec', '#f6efe0'], far: 'sea', gr: 'planks' },
+    marche: { l: 'Marché', g: ['#c9b39a', '#bea890', '#d5c0a6'], r: ['#a89580', '#96836e'], w: ['#4f8fc4', '#7bb4de'], tree: 'oak', cl: ['#8b8794', '#6f6b7a', '#a7a3b0'], bld: ['#d9a45a', '#c98f4a', '#e8bb78', '#b97a46'], roof: '#8a4a30', sky: ['#f4cf9a', '#fdeccf'], far: 'city', gr: 'paving' },
+    canal:  { l: 'Canaux', g: ['#b0b3ae', '#a4a7a2', '#bbbeb9'], r: ['#8c8f8a', '#797c77'], w: ['#3f7fb3', '#68a7d4'], tree: 'oak', cl: ['#8b8794', '#6f6b7a', '#a7a3b0'], bld: ['#c9b79e', '#b9a487', '#d8c8ae', '#a89478'], roof: '#6a5a4a', sky: ['#9ec8e8', '#f9eed6'], far: 'city', gr: 'paving' },
+    chateau:{ l: 'Château', g: ['#b5b0a2', '#aaa597', '#c1bcae'], r: ['#d6d1c3', '#c2bdaf'], w: ['#4e8fb8', '#7cb4d4'], tree: 'pine', cl: ['#9a9486', '#7f796c', '#b3ad9f'], wall: '#e8e4da', roof: '#4f6f8f', sky: ['#a8c8e8', '#f3e8d0'], far: 'castle', gr: 'gravel' },
+    neon:   { l: 'Néons', g: ['#3a3f5e', '#333857', '#434867'], r: ['#565c85', '#4a5077'], w: ['#2a4f8f', '#4a78c0'], tree: 'oak', cl: ['#565c85', '#3f4468', '#6a7098'], bld: ['#2b2f4f', '#363b63', '#232647', '#3d3566'], roof: '#d6477e', sky: ['#1a1240', '#5a2a7e'], far: 'city', night: 1, gr: 'asphalt' },
+    parc:   { l: 'Parc de nuit', g: ['#3f6a52', '#38604b', '#477659'], r: ['#6a6a86', '#585874'], w: ['#2f5f9a', '#5a8fc8'], tree: 'sakura', cl: ['#565c85', '#3f4468', '#6a7098'], roof: '#d6477e', wall: '#e8e0f0', sky: ['#20154a', '#6a3a86'], far: 'city', night: 1, gr: 'grass' },
+    tour:   { l: 'Tour', g: ['#3a3f5e', '#333857', '#434867'], r: ['#565c85', '#4a5077'], w: ['#2a4f8f', '#4a78c0'], tree: 'oak', cl: ['#565c85', '#3f4468', '#6a7098'], bld: ['#2b2f4f', '#363b63', '#232647', '#3d3566'], roof: '#d6477e', sky: ['#120a30', '#4a2a7e'], far: 'city', night: 1, gr: 'asphalt' },
+    neige:  { l: 'Forêt enneigée', g: ['#e6eef6', '#dce6f0', '#f0f6fb'], r: ['#c3d0de', '#b2c1d1'], w: ['#7fb7e0', '#b4d8f0'], tree: 'snowpine', cl: ['#9aa6b8', '#808da2', '#b3bfd0'], sky: ['#b2d0ec', '#f2f7fc'], far: 'mount', snow: 1, gr: 'snow' },
+    sentier:{ l: 'Sentier de neige', g: ['#e1eaf4', '#d6e1ee', '#ecf3fa'], r: ['#bccadb', '#aab9cb'], w: ['#7fb7e0', '#b4d8f0'], tree: 'snowpine', cl: ['#9aa6b8', '#808da2', '#b3bfd0'], sky: ['#a8c8e8', '#eef4fa'], far: 'mount', snow: 1, gr: 'snow' },
+    refuge: { l: 'Refuge', g: ['#e6eef6', '#dce6f0', '#f0f6fb'], r: ['#c3d0de', '#b2c1d1'], w: ['#7fb7e0', '#b4d8f0'], tree: 'snowpine', cl: ['#9aa6b8', '#808da2', '#b3bfd0'], roof: '#7a5a3c', wall: '#e8d9bd', sky: ['#c3d9ee', '#fbeedd'], far: 'mount', snow: 1, gr: 'snow' },
+    cascade:{ l: 'Cascade gelée', g: ['#dde8f2', '#d2dfec', '#e8f1f8'], r: ['#b8c8da', '#a5b6ca'], w: ['#8fd0f0', '#c9ecfb'], tree: 'snowpine', cl: ['#8f9bb0', '#76839a', '#a9b5c8'], sky: ['#9cc4e8', '#e8f2fa'], far: 'mount', snow: 1, gr: 'snow' },
+    sommet: { l: 'Sommet', g: ['#eef3f9', '#e3ebf4', '#f6f9fc'], r: ['#c7d3e1', '#b5c3d4'], w: ['#9fd6f2', '#d3effb'], tree: 'snowpine', cl: ['#a3aec2', '#8894ab', '#bcc6d8'], roof: '#c0504a', sky: ['#7fb0e8', '#f8e6f0'], far: 'mount', snow: 1, gr: 'snow' }
+  };
+  /* ---------- tons de voix ---------- */
+  var RPG_TONES = {
+    calme: { intro: ['Tiens, une rencontre. Voyons ce que tu vaux, {h}.', 'Pas de panique. On va faire ça tranquillement.', 'Mmh, je lisais… mais bon, allons-y.'], hit: ['Pas mal.', 'Tu m\'as eu sur celle-là.', 'Intéressant.'], miss: ['Ce n\'était pas ça. Respire, réfléchis.', 'Raté. Ça arrive, concentre-toi.', 'Hmm, regarde mieux.'], defeat: ['Bien joué, {h}. Je m\'incline.', 'Pas mal du tout. Tu progresses vite.'], victory: ['Ce n\'est pas grave. On recommencera quand tu seras prêt.', 'Un peu de révision et ça ira.'], greet: ['Yo, {h}. Tu arrives à l\'heure… pour une fois.', 'Salut. Beau temps pour apprendre, non ?'], offer: ['Si tu veux, je te montre quelque chose d\'utile.', 'J\'ai de quoi t\'occuper, si tu es partant.'], thanks: ['Bon travail. Continue comme ça.', 'Tu t\'en sors bien.'], praise: ['Exact.', 'Bonne réponse, {h}.'], encourage: ['Pas tout à fait. Réessaie.', 'Ça viendra, ne t\'en fais pas.'] },
+    fougueux: { intro: ['Allez, {h} ! On y va à fond !', 'Je ne vais pas te faire de cadeau !', 'Enfin un adversaire ! Montre-moi tout !'], hit: ['Aïe ! Pas mal !', 'Argh ! Tu cognes fort !', 'Ha ! Je me sens vivant !'], miss: ['Trop facile ! Concentre-toi !', 'Raté ! Encore !', 'Ça ne passera pas comme ça !'], defeat: ['Waouh… tu m\'as battu ! Revanche bientôt !', 'J\'ai tout donné… et tu as gagné.'], victory: ['Ha ! Je gagne cette fois ! Entraîne-toi !', 'On remet ça quand tu veux !'], greet: ['Hé, {h} ! Prêt à te dépasser ?', 'Salut ! Il y a de l\'énergie dans l\'air !'], offer: ['Un défi ? Je suis chaud !', 'J\'ai besoin d\'un partenaire d\'entraînement !'], thanks: ['Génial, on a bien bossé !', 'Tu as du cran, {h} !'], praise: ['Bien vu !', 'Excellent !'], encourage: ['Courage, on continue !', 'Pas grave, relève-toi !'] },
+    amical: { intro: ['Oh, {h} ! Je ne vais pas me retenir, mais bonne chance !', 'Allez, fais de ton mieux, je crois en toi !'], hit: ['Bien joué !', 'Oh, joli coup !'], miss: ['Presque ! Essaie encore.', 'Ce n\'est pas grave, regarde bien.'], defeat: ['Bravo, tu as été super !', 'Tu as gagné, félicitations !'], victory: ['On réessaie ensemble, d\'accord ?', 'Ne te décourage pas !'], greet: ['Salut {h} ! Contente de te voir !', 'Coucou ! Ça avance bien, ton voyage ?'], offer: ['Tu pourrais m\'aider un peu ?', 'J\'ai un petit truc à te proposer.'], thanks: ['Merci beaucoup, c\'était super !', 'Tu es vraiment doué(e), {h} !'], praise: ['Oui, c\'est ça !', 'Bravo !'], encourage: ['Presque ! Tu y es presque.', 'Allez, tu peux le faire.'] },
+    joyeux: { intro: ['Ha ha ! Un adversaire, enfin !', 'Hé, {h} ! Tu veux t\'amuser un peu ?'], hit: ['Aïe, ha ha, bien tapé !', 'Oh là, tu me chatouilles !'], miss: ['Raté ! On rit, on recommence !', 'Houlà, pas celle-là !'], defeat: ['Ha ha ! Tu m\'as eu, bravo !', 'Quel combat ! J\'en redemande !'], victory: ['Ha ha ! Pas de souci, on remet ça !', 'Ne fais pas cette tête, c\'est amusant !'], greet: ['Bienvenue, voyageur ! Installe-toi !', 'Ha ha, {h} ! Quel plaisir !'], offer: ['Tu as l\'air de chercher l\'aventure !', 'J\'ai une proposition pour toi !'], thanks: ['Merci, c\'était vraiment sympa !', 'Ha ha, tu es doué(e) !'], praise: ['Ha ha, exact !', 'Bien joué !'], encourage: ['Raté, mais ça va venir !', 'Pas grave, on rigole !'] },
+    martial: { intro: ['Je ne recule jamais. Montre ta valeur, {h}.', 'Un combat honnête. C\'est tout ce que je demande.', 'Prépare-toi. Je ne retiens pas mes coups.'], hit: ['Belle frappe.', 'Tu as de la force.', 'Hm… je le reconnais.'], miss: ['Ton esprit vacille. Reprends-toi.', 'Trop faible. Recommence.', 'Concentre-toi sur la cible.'], defeat: ['Tu m\'as vaincu. Je le reconnais avec honneur.', 'Un vrai combattant. Je te salue.'], victory: ['Entraîne-toi encore. Reviens plus fort.', 'La défaite enseigne. Retiens la leçon.'], greet: ['Hm. Tu es là, {h}.', 'Je m\'entraîne. Veux-tu te joindre à moi ?'], offer: ['Un duel ? Je suis prêt.', 'Voyons où tu en es.'], thanks: ['Bon effort. Tu as progressé.', 'Respect.'], praise: ['Juste.', 'Bien.'], encourage: ['Encore. Ne baisse pas la garde.', 'Relève-toi.'] },
+    elegant: { intro: ['Ah, {h}. Tout se déroule comme prévu.', 'Joli timing. Voyons si tu mérites mon temps.', 'Je t\'attendais. Ne gâche pas mon plaisir.'], hit: ['Hm, bien joué.', 'Une brèche… intéressante.', 'Tu as de la ressource.'], miss: ['Comme je le pensais.', 'Une erreur de plus. Dommage.', 'Tu t\'égares.'], defeat: ['Fascinant. J\'avais mal calculé.', 'Admirable… cette fois.'], victory: ['Tout est conforme à mes prévisions.', 'Reviens quand tu auras mieux préparé tes réponses.'], greet: ['Bonjour, {h}. Ravi de te voir.', 'Quelle agréable surprise.'], offer: ['J\'ai peut-être quelque chose pour toi.', 'Un petit exercice de l\'esprit ?'], thanks: ['Très bien. Tu sais te montrer utile.', 'Efficace, comme j\'aime.'], praise: ['Précis.', 'C\'est exact.'], encourage: ['Hm, réfléchis davantage.', 'Ce n\'est pas cela.'] },
+    sombre: { intro: ['Hé hé… une nouvelle proie.', 'Tu n\'aurais pas dû venir ici, {h}.', 'Amuse-moi un peu, veux-tu ?'], hit: ['Argh… tu oses ?', 'Grr… ça fait mal.', 'Tu vas me le payer.'], miss: ['Ha ! Pathétique.', 'Encore une erreur… délicieux.', 'Tu trembles ?'], defeat: ['Impossible… je reviendrai.', 'Maudit sois-tu… tu as gagné, cette fois.'], victory: ['Ha ha ! Voilà ce qui arrive aux faibles.', 'Tu n\'es pas de taille.'], greet: ['…Qu\'est-ce que tu veux ?', 'Hm. Tu es encore là.'], offer: ['Si tu insistes…', 'J\'ai quelque chose pour toi. Si tu l\'oses.'], thanks: ['Pas mal… pour un humain.', 'Tu m\'as été utile.'], praise: ['Hmpf. Correct.', 'Pas mal.'], encourage: ['Tu peux faire mieux. Probablement.', 'Raté. Encore.'] },
+    altier: { intro: ['À genoux devant moi, {h}. Ou prouve ta valeur.', 'Tu oses défier celui qui domine ces terres ?', 'Une fourmi qui me tient tête ? Amusant.'], hit: ['Impertinent !', 'Tu m\'as effleuré… une fois.', 'Hmph. Cela suffit.'], miss: ['Comme prévu, tu n\'es pas à la hauteur.', 'Quelle faiblesse.', 'Même pas digne d\'un regard.'], defeat: ['Impossible… moi, vaincu ?', 'Je reconnais ta force… misérable mortel.'], victory: ['Retourne ramper. Ce monde m\'appartient.', 'La faiblesse ne mérite aucune pitié.'], greet: ['Hmph. Que veux-tu, {h} ?', 'Parle vite, mon temps est précieux.'], offer: ['Je daigne te donner une chance.', 'Voyons si tu en vaux la peine.'], thanks: ['Tu as été… acceptable.', 'Je suis satisfait.'], praise: ['Acceptable.', 'Correct.'], encourage: ['Décevant.', 'Fais un effort.'] },
+    noble: { intro: ['Je suis désolé, {h}. Mais je dois te mettre à l\'épreuve.', 'Que la meilleure volonté l\'emporte, voyageur.'], hit: ['Tu es fort…', 'Bien joué, jeune voyageur.'], miss: ['Ne te décourage pas.', 'Prends ton temps, réfléchis.'], defeat: ['Tu as gagné. Je suis fier de toi.', 'Que ton voyage soit heureux.'], victory: ['Pardonne-moi. Repose-toi et reviens.', 'Chaque défaite est une leçon.'], greet: ['Bienvenue, voyageur. Que puis-je pour toi ?', 'Quelle belle journée pour apprendre.'], offer: ['Si tu le souhaites, je peux t\'aider.', 'Je serais heureux de te proposer ceci.'], thanks: ['Merci du fond du cœur.', 'Tu as bon cœur, {h}.'], praise: ['C\'est juste.', 'Très bien.'], encourage: ['Courage, tu y es presque.', 'Essaie encore, doucement.'] },
+    pirate: { intro: ['Gwa ha ha ! Un nouveau venu, {h} !', 'Tu veux passer ? Il faudra me battre !'], hit: ['Ha ha ! Ça pique !', 'Bien tapé, moussaillon !'], miss: ['Ha ha ! Raté, moussaillon !', 'Tu rames, là !'], defeat: ['Gwa ha ! Tu as du cran, je dois l\'admettre !', 'Bien joué, {h} ! Le butin est à toi !'], victory: ['Ha ha ! La mer n\'est pas pour les faibles !', 'Reviens quand tu seras plus solide !'], greet: ['Ho ho ! Un voyageur !', 'Approche, {h} !'], offer: ['Un petit défi entre aventuriers ?', 'J\'ai du boulot pour toi !'], thanks: ['Ha ha, bon travail, moussaillon !', 'Tu as gagné ta part !'], praise: ['Ha ha, bien vu !', 'Exact !'], encourage: ['Allez, rame encore !', 'Raté, mais on ne lâche rien !'] }
+  };
+  var RPG_TONE_NAMES = { calme: 'Calme', fougueux: 'Fougueux', amical: 'Amical', joyeux: 'Joyeux', martial: 'Martial', elegant: 'Rusé / élégant', sombre: 'Sombre', altier: 'Altier / arrogant', noble: 'Noble / doux', pirate: 'Pirate / jovial' };
+  var RPG_TONE_RX = [[/kakashi|shikamaru|nanami|gojo|iruka|sensei/i, 'calme'], [/zoro|akaza|malenia|rengoku|zaraki|kenshin|escanor|ryu|guts|vegeta/i, 'martial'], [/naruto|luffy|goku|natsu|ichigo|tanjiro|deku|izuku|inosuke|asta|gon/i, 'fougueux'], [/sakura|hana|nezuko|hinata|orihime|nami|yui|amie/i, 'amical'], [/meliodas|ban|gintoki|usopp|sanji|killua|marchand|aubergiste|okami/i, 'joyeux'], [/aizen|griffith|kabuto|himiko|lelouch|light|itachi|orochimaru|kurama/i, 'elegant'], [/shigaraki|mahito|sukuna|kurogiri|muzan|dabi|toga|johan|akuma|hisoka/i, 'sombre'], [/kaguya|sephiroth|ganondorf|madara|dio|frieza|freezer|ganon|zeref|thanos/i, 'altier'], [/asgore|toriel|dumbledore|all ?might|gandalf|iroh/i, 'noble'], [/barbe ?noire|blackbeard|teach|shanks|garp|barbe ?blanche|whitebeard/i, 'pirate']];
   var RPG_YG = ['鬼', '狐', '蛇', '烏', '河', '妖'];
-  var rp = { zone: 0, x: 0, y: 0, fx: 0, fy: 0, dir: 'd', walk: null, path: [], goal: null, mode: 'map', dlg: null, bt: null, raf: 0, t0: 0, over: null };
+  var rp = { zone: 0, sc: 0, x: 0, y: 0, cx: 0, cy: 0, dir: 'd', walk: null, path: [], goal: null, mode: 'map', dlg: null, bt: null, raf: 0, init: 0, fade: 0 };
   var rpgImgs = {};
   function rpgDay() { return dayKey(); }
   function rg() {
     S.rpg = S.rpg || {};
     var r = S.rpg;
-    if (!r.done) r.done = {}; if (!r.boss) r.boss = {}; if (r.un === undefined) r.un = 0;
-    if (!r.yk || r.yk.d !== rpgDay()) r.yk = { d: rpgDay(), z: {} };
+    if (!r.done) r.done = {}; if (!r.boss) r.boss = {}; if (r.un === undefined) r.un = 0; if (!r.kills) r.kills = {}; if (!r.ms) r.ms = {}; if (!r.zi) r.zi = {};
+    if (!r.yk || r.yk.d !== rpgDay() || !r.yk.k) r.yk = { d: rpgDay(), k: {} };
+    if (!r.sr || r.sr.d !== rpgDay()) r.sr = { d: rpgDay(), k: {} };
     return r;
   }
-  /* la table site_assets n'accepte que des « data:image/… » : le nom est stocké sous cette forme */
-  var RPG_NP = 'data:image/x-name,';
+  /* ---------- noms, images, ton ---------- */
+  var RPG_NP = 'data:image/x-name,', RPG_TP = 'data:image/x-tone,';
   function chNameEnc(v) { return RPG_NP + encodeURIComponent(v); }
-  function chNameRaw(id) { var n = (typeof ASSETS === 'object' && ASSETS['pn_' + id]); if (!n) return ''; n = String(n); if (n.indexOf(RPG_NP) === 0) { try { return decodeURIComponent(n.slice(RPG_NP.length)); } catch (e) { return ''; } } return n; }
+  function rpgDec(pref, id) { var n = (typeof ASSETS === 'object') && ASSETS[id]; if (!n) return ''; n = String(n); if (n.indexOf(pref) === 0) { try { return decodeURIComponent(n.slice(pref.length)); } catch (e) { return ''; } } return ''; }
+  function chNameRaw(id) { return rpgDec(RPG_NP, 'pn_' + id); }
   function chName(id) { return chNameRaw(id) || (RPG_CH[id] ? RPG_CH[id].n : id); }
+  function chToneSet(id) { return rpgDec(RPG_TP, 'pt_' + id); }
+  function chTone(id) {
+    var t = chToneSet(id); if (t && RPG_TONES[t]) return t;
+    var nm = chNameRaw(id);
+    if (nm) for (var i = 0; i < RPG_TONE_RX.length; i++) if (RPG_TONE_RX[i][0].test(nm)) return RPG_TONE_RX[i][1];
+    return (RPG_CH[id] && RPG_CH[id].tone) || 'calme';
+  }
+  var RPG_LAST = {};
+  function rpgLine(id, ev, extra) {
+    var T = RPG_TONES[chTone(id)] || RPG_TONES.calme, a = T[ev] || T.intro, i = Math.floor(Math.random() * a.length);
+    if (a.length > 1 && RPG_LAST[id + ev] === i) i = (i + 1) % a.length; RPG_LAST[id + ev] = i;
+    var h = (typeof user !== 'undefined' && user && user.name) ? user.name : 'voyageur';
+    return String(a[i]).replace(/\{h\}/g, h).replace(/\{z\}/g, extra || '');
+  }
   function chSvg(id) {
     var c = RPG_CH[id] || { col: '#888', bg: '#eee', hair: '#333' };
-    var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="' + c.bg + '"/><path d="M10 64c0-15 10-23 22-23s22 8 22 23z" fill="' + c.col + '"/><circle cx="32" cy="28" r="12.5" fill="#f6d9b8"/><path d="M18.5 28c-1-13 6-18 13.500-18s14.500 5 13.500 18c-3-6-8-8-13.500-8s-10.500 2-13.500 8z" fill="' + c.hair + '"/>' + (c.horn ? '<path d="M20 15l-4-8 9 5zM44 15l4-8-9 5z" fill="#f2ead2"/>' : '') + '<circle cx="27" cy="31" r="1.7" fill="#2a2140"/><circle cx="37" cy="31" r="1.7" fill="#2a2140"/><path d="M29 36q3 2.200 6 0" stroke="#b3544f" fill="none" stroke-width="1.400" stroke-linecap="round"/></svg>';
+    var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="' + c.bg + '"/><path d="M10 64c0-15 10-23 22-23s22 8 22 23z" fill="' + c.col + '"/><circle cx="32" cy="28" r="12.5" fill="#f6d9b8"/><path d="M18.500 28c-1-13 6-18 13.500-18s14.500 5 13.500 18c-3-6-8-8-13.500-8s-10.500 2-13.500 8z" fill="' + c.hair + '"/>' + (c.horn ? '<path d="M20 15l-4-8 9 5zM44 15l4-8-9 5z" fill="#f2ead2"/>' : '') + '<circle cx="27" cy="31" r="1.700" fill="#2a2140"/><circle cx="37" cy="31" r="1.700" fill="#2a2140"/><path d="M29 36q3 2.200 6 0" stroke="#b3544f" fill="none" stroke-width="1.400" stroke-linecap="round"/></svg>';
     return 'data:image/svg+xml;utf8,' + encodeURIComponent(s);
   }
   function chSrc(id) { var a = (typeof ASSETS === 'object') && ASSETS['pi_' + id]; return a || chSvg(id); }
@@ -28523,20 +28587,13 @@ body.tbopen { overflow: hidden; }
     if (!o) { o = rpgImgs[src] = { im: new Image(), ok: false }; o.im.onload = function () { o.ok = true; }; o.im.src = src; }
     return o.ok ? o.im : null;
   }
-  /* ---------- données de jeu ---------- */
+  /* ---------- questions ---------- */
   var RPGP = {};
   function rpgPool(lv) {
     if (RPGP[lv]) return RPGP[lv];
-    var all = dcBuild().all.filter(function (e) {
-      return e.lv === lv && e.fr && e.jp.length <= 7 && e.fr.length <= 44 && !/[\s、。！？〜…\/()（）]/.test(e.jp);
-    });
-    return (RPGP[lv] = all);
+    return (RPGP[lv] = dcBuild().all.filter(function (e) { return e.lv === lv && e.fr && e.jp.length <= 7 && e.fr.length <= 44 && !/[\s、。！？〜…\/()（）]/.test(e.jp); }));
   }
-  function rpgPoolMix(zi) {
-    var lv = RPG_M[zi].lv, p = rpgPool(lv).slice();
-    if (zi > 0) p = p.concat(rpgPool(RPG_M[zi - 1].lv).slice(0, 40));
-    return p;
-  }
+  function rpgPoolMix(zi) { var p = rpgPool(RPG_M[zi].lv).slice(); if (zi > 0) p = p.concat(rpgPool(RPG_M[zi - 1].lv).slice(0, 40)); return p; }
   function rpgPick(a, n) { var b = a.slice(), o = []; while (o.length < n && b.length) o.push(b.splice(Math.floor(Math.random() * b.length), 1)[0]); return o; }
   function rpgFr(e) { return String(e.fr).split(/\s*[;；]\s*/)[0].replace(/\s*\(.*?\)\s*$/, ''); }
   function rpgHasKanji(s) { return /[㐀-鿿]/.test(s); }
@@ -28544,24 +28601,18 @@ body.tbopen { overflow: hidden; }
   function rpgQ(e, pool, kind) {
     kind = kind || (rpgHasKanji(e.jp) && e.kana && Math.random() < 0.3 ? 'read' : Math.random() < 0.65 ? 'mean' : 'back');
     var same = pool.filter(function (x) { return x !== e && x.t === e.t; }), others = same.length >= 8 ? same : pool.filter(function (x) { return x !== e; });
-    var opts = [], seen = {}, correct, i, tries = 0;
+    var opts = [], seen = {}, correct, tries = 0;
     function key(x) { return kind === 'mean' ? rpgFr(x) : kind === 'back' ? x.jp : x.kana; }
     correct = key(e); seen[correct] = 1;
-    while (opts.length < 3 && tries++ < 80) {
-      var x = others[Math.floor(Math.random() * others.length)]; if (!x) break;
-      var k = key(x); if (!k || seen[k] || (kind === 'read' && (!x.kana || !rpgHasKanji(x.jp) && false))) continue;
-      seen[k] = 1; opts.push(x);
-    }
-    var all = opts.concat([e]).sort(function () { return Math.random() - 0.5; });
-    var a = all.indexOf(e);
+    while (opts.length < 3 && tries++ < 80) { var x = others[Math.floor(Math.random() * others.length)]; if (!x) break; var k = key(x); if (!k || seen[k]) continue; seen[k] = 1; opts.push(x); }
+    var all = opts.concat([e]).sort(function () { return Math.random() - 0.5; }), a = all.indexOf(e);
     var p = kind === 'mean' ? rpgJpH(e, true) : kind === 'back' ? '<span class="rpgfr">' + esc(rpgFr(e)) + '</span>' : rpgJpH({ jp: e.jp }, false);
     var lab = kind === 'mean' ? 'Que veut dire ce mot ?' : kind === 'back' ? 'Quel est le mot japonais ?' : 'Comment se lit ce mot ?';
-    return { lab: lab, p: p, o: all.map(function (x) { return kind === 'mean' ? '<span>' + esc(rpgFr(x)) + '</span>' : kind === 'back' ? rpgJpH(x, true) : '<b class="jp">' + esc(x.kana) + '</b>'; }), a: a,
-      ex: rpgJpH(e, true) + ' = ' + esc(rpgFr(e)), w: e };
+    return { lab: lab, p: p, o: all.map(function (x) { return kind === 'mean' ? '<span>' + esc(rpgFr(x)) + '</span>' : kind === 'back' ? rpgJpH(x, true) : '<b class="jp">' + esc(x.kana) + '</b>'; }), a: a, ex: rpgJpH(e, true) + ' = ' + esc(rpgFr(e)), w: e };
   }
   function rpgVocabQs(zi, n, mix) {
-    var pool = mix ? rpgPoolMix(zi) : rpgPool(RPG_M[zi].lv), picks = rpgPick(rpgPool(RPG_M[zi].lv).length >= n ? (mix ? pool : rpgPool(RPG_M[zi].lv)) : pool, n);
-    return picks.map(function (e) { return rpgQ(e, pool); });
+    var pool = mix ? rpgPoolMix(zi) : rpgPool(RPG_M[zi].lv);
+    return rpgPick(pool, n).map(function (e) { return rpgQ(e, pool); });
   }
   function rpgReadQs(zi, n) {
     var lv = RPG_M[zi].lv, list = RD[lv] || [], r = rg(); r.rdi = r.rdi || {};
@@ -28572,7 +28623,6 @@ body.tbopen { overflow: hidden; }
     });
     return { text: a, qs: qs };
   }
-  /* ---------- récompenses ---------- */
   function rpgMult() { return 1 + 0.35 * rp.zone; }
   function rpgGive(xp, coins) {
     xp = Math.round(xp * rpgMult()); coins = Math.round(coins * rpgMult());
@@ -28580,33 +28630,44 @@ body.tbopen { overflow: hidden; }
     S.coins = coinsOf() + coins; S.coinsTotal = (S.coinsTotal || 0) + coins; persist();
     return '<p class="rpgrw"><span class="rpgchip">+' + xp + ' XP</span>' + (coins ? '<span class="rpgchip gold">+' + coins + ' 🪙</span>' : '') + '</p>';
   }
-  /* ---------- carte ---------- */
-  function rpgZ() { return RPG_Z[rp.zone]; }
-  function rpgNpcs() {
-    var z = rpgZ(), out = [], r = rg(), k;
-    for (k in z.npc) { if (z.npc[k]) out.push({ role: k, id: RPG_ROLE[k], x: z.npc[k][0], y: z.npc[k][1] }); }
-    if (!r.boss[rp.zone]) out.push({ role: 'boss', id: RPG_M[rp.zone].bg, x: z.boss[0], y: z.boss[1] });
+  /* ---------- scènes et entités ---------- */
+  function rpgScene() { return RPG_S[rp.zone][rp.sc]; }
+  function rpgBio() { return RPG_B[rpgScene().biome] || RPG_B.village; }
+  function rpgFoeBase(zi, si) { var n = 0; for (var i = 0; i < si; i++) n += RPG_S[zi][i].foes.length; return n; }
+  function rpgFoeKey(i) { return rp.zone + '_' + rp.sc + '_' + i; }
+  function rpgFoeId(i) { return 'm' + (rp.zone + 1) + ((rpgFoeBase(rp.zone, rp.sc) + i) % 2 ? 'b' : 'a'); }
+  function rpgEntities() {
+    var s = rpgScene(), out = [], r = rg(), k;
+    for (k in s.npc) { if (s.npc[k]) out.push({ kind: 'npc', role: k, id: RPG_ROLE[k], x: s.npc[k][0], y: s.npc[k][1] }); }
+    if (s.boss && !r.boss[rp.zone]) out.push({ kind: 'boss', role: 'boss', id: RPG_M[rp.zone].bg, x: s.boss[0], y: s.boss[1] });
+    s.foes.forEach(function (f, i) { if (!r.yk.k[rpgFoeKey(i)]) out.push({ kind: 'foe', role: 'foe', i: i, id: rpgFoeId(i), x: f[0], y: f[1] }); });
+    s.search.forEach(function (f, i) { out.push({ kind: 'search', role: 'search', i: i, done: !!r.sr.k[rp.zone + '_' + rp.sc + '_' + i], x: f[0], y: f[1] }); });
     return out;
   }
-  function rpgYokai() {
-    var z = rpgZ(), got = rg().yk.z[rp.zone] || [];
-    return z.yokai.map(function (p, i) { return { i: i, x: p[0], y: p[1], id: 'm' + (rp.zone + 1) + (i % 2 ? 'b' : 'a'), g: RPG_YG[(i + rp.zone) % RPG_YG.length] }; }).filter(function (y) { return got.indexOf(y.i) < 0; });
+  function rpgEntAt(x, y) { var l = rpgEntities(); for (var i = 0; i < l.length; i++) if (l[i].x === x && l[i].y === y) return l[i]; return null; }
+  function rpgTileAt(x, y) { var m = rpgScene().map; return (y < 0 || y >= m.length || x < 0 || x >= m[0].length) ? '#' : m[y].charAt(x); }
+  function rpgWalkable(x, y) { return '.,=:Fg'.indexOf(rpgTileAt(x, y)) >= 0; }
+  function rpgExitAt(x, y) {
+    var s = rpgScene(), i;
+    for (i = 0; i < s.exitc.length; i++) if (s.exitc[i][0] === x && s.exitc[i][1] === y) return 'next';
+    if (!s.cave) for (i = 0; i < s.enter.length; i++) if (s.enter[i][0] === x && s.enter[i][1] === y) return 'prev';
+    return null;
   }
-  function rpgTileAt(x, y) { var m = rpgZ().map; return (y < 0 || y >= m.length || x < 0 || x >= m[0].length) ? '#' : m[y].charAt(x); }
-  function rpgNpcAt(x, y) { var l = rpgNpcs(); for (var i = 0; i < l.length; i++) if (l[i].x === x && l[i].y === y) return l[i]; return null; }
-  function rpgWalkable(x, y) { var c = rpgTileAt(x, y); return '.,=nPE'.indexOf(c) >= 0; }
+  function rpgLocked() { var s = rpgScene(); return !!(s.boss && !rg().boss[rp.zone]); }
   function rpgBlocked(x, y) {
     if (!rpgWalkable(x, y)) return true;
-    if (rpgTileAt(x, y) === 'E' && !rg().boss[rp.zone]) return true;
-    return !!rpgNpcAt(x, y);
+    if (rpgExitAt(x, y) === 'next' && rpgLocked()) return true;
+    return !!rpgEntAt(x, y);
   }
-  function rpgEnter(zi, quiet) {
-    rp.zone = zi; var z = RPG_Z[zi]; rp.x = z.start[0]; rp.y = z.start[1]; rp.fx = rp.x; rp.fy = rp.y; rp.walk = null; rp.path = []; rp.goal = null; rp.dir = 'u';
-    rg().z = zi; persist();
-    if (!quiet) { try { toast(RPG_M[zi].jp + ' · ' + RPG_M[zi].n); } catch (e) { /* ignore */ } }
+  function rpgGo(zi, si, from) {
+    rp.zone = zi; rp.sc = si; var s = rpgScene(), p = from === 'out' ? s.s_out : s.s_in;
+    rp.x = p[0]; rp.y = p[1]; rp.walk = null; rp.path = []; rp.goal = null; rp.dir = from === 'out' ? (s.exit_side === 'R' ? 'l' : 'd') : (s.enter_side === 'L' ? 'r' : 'u');
+    rp.cx = Math.min(Math.max(rp.x - RPG_VW / 2 + .5, 0), s.map[0].length - RPG_VW); rp.cy = Math.min(Math.max(rp.y - RPG_VH / 2 + .5, 0), s.map.length - RPG_VH);
+    var r = rg(); r.z = zi; r.s = si; r.ms[zi] = Math.max(r.ms[zi] || 0, si); persist();
+    rp.fade = performance.now();
   }
   function rpgBfs(sx, sy, tx, ty, allowEnd) {
-    var W = rpgZ().map[0].length, H = rpgZ().map.length, q = [[sx, sy]], prev = {}, key = function (x, y) { return y * W + x; };
+    var W = rpgScene().map[0].length, H = rpgScene().map.length, q = [[sx, sy]], prev = {}, key = function (x, y) { return y * W + x; };
     prev[key(sx, sy)] = -1;
     while (q.length) {
       var c = q.shift(); if (c[0] === tx && c[1] === ty) break;
@@ -28623,124 +28684,292 @@ body.tbopen { overflow: hidden; }
   function rpgStep(dx, dy) {
     if (rp.mode !== 'map' || rp.walk) return;
     rp.dir = dx > 0 ? 'r' : dx < 0 ? 'l' : dy > 0 ? 'd' : 'u';
-    var nx = rp.x + dx, ny = rp.y + dy, n = rpgNpcAt(nx, ny);
+    var nx = rp.x + dx, ny = rp.y + dy, n = rpgEntAt(nx, ny);
     if (n) { rp.path = []; rp.goal = null; rpgInteract(n); return; }
-    if (rpgTileAt(nx, ny) === 'E' && !rg().boss[rp.zone]) { rp.path = []; try { toast('La porte est scellée : bats le gardien !'); } catch (e) { /* ignore */ } return; }
+    if (rpgExitAt(nx, ny) === 'next' && rpgLocked()) { rp.path = []; try { toast('Le passage est gardé : il faut vaincre le gardien !'); } catch (e) { /* ignore */ } return; }
     if (!rpgWalkable(nx, ny)) { rp.path = []; return; }
     rp.walk = { sx: rp.x, sy: rp.y, tx: nx, ty: ny, t0: performance.now() };
   }
   function rpgArrive() {
     var w = rp.walk; rp.x = w.tx; rp.y = w.ty; rp.walk = null;
-    var y = rpgYokai().filter(function (q) { return q.x === rp.x && q.y === rp.y; })[0];
-    if (rpgTileAt(rp.x, rp.y) === 'E') { rp.path = []; rpgExit(); return; }
-    if (y) { rp.path = []; rpgFightYokai(y); return; }
+    var ex = rpgExitAt(rp.x, rp.y);
+    if (ex) { rp.path = []; rpgSceneChange(ex); return; }
     if (rp.path.length) { var p = rp.path.shift(); rpgStep(p[0] - rp.x, p[1] - rp.y); }
-    else if (rp.goal) { var g = rp.goal; rp.goal = null; if (Math.abs(g.x - rp.x) + Math.abs(g.y - rp.y) === 1) rpgInteract(g.n); }
+    else if (rp.goal) { var g = rp.goal; rp.goal = null; if (Math.abs(g.x - rp.x) + Math.abs(g.y - rp.y) === 1) { var e2 = rpgEntAt(g.x, g.y); if (e2) rpgInteract(e2); } }
+  }
+  function rpgSceneChange(dir) {
+    var z = rp.zone, s = rp.sc;
+    if (dir === 'prev') { if (s > 0) { rpgGo(z, s - 1, 'out'); rpgSceneIntro(); } return; }
+    if (s < RPG_S[z].length - 1) { rpgGo(z, s + 1, 'in'); rpgSceneIntro(); return; }
+    rpgNextZone();
+  }
+  function rpgSceneIntro() { rpgJournal(); rpgHud(); try { toast(RPG_S[rp.zone][rp.sc].label); } catch (e) { /* ignore */ } }
+  function rpgNextZone() {
+    var zi = rp.zone;
+    if (zi >= 4) { rpgSay('sensei', ['Tu as parcouru tout le Japon, de la sortie de la montagne jusqu\'au sommet du Mont Fuji. 🎌', 'Tu es devenu un vrai voyageur de la langue. Continue à t\'entraîner dans le Dojo : le chemin ne s\'arrête jamais !'], function () { rpgGo(4, 4, 'out'); rpgJournal(); }); return; }
+    rpgGo(zi + 1, 0, 'in'); rpgJournal(); rpgZoneIntro();
+  }
+  function rpgZoneIntro() {
+    var m = RPG_M[rp.zone], r = rg(), lines = m.intro.slice();
+    lines.push(rpgLine('sensei', 'greet'));
+    r.zi[rp.zone] = 1; persist();
+    rpgSay('sensei', lines);
   }
   function rpgTap(tx, ty) {
     if (rp.mode !== 'map' || rp.walk) return;
-    var n = rpgNpcAt(tx, ty);
+    var n = rpgEntAt(tx, ty);
     if (n) {
       if (Math.abs(n.x - rp.x) + Math.abs(n.y - rp.y) === 1) { rpgInteract(n); return; }
-      var best = null; [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(function (d) { var px = n.x + d[0], py = n.y + d[1]; if (rpgBlocked(px, py)) return; var pa = rpgBfs(rp.x, rp.y, px, py); if (pa && (!best || pa.length < best.p.length)) best = { p: pa, x: px, y: py }; });
-      if (best) { rp.goal = { n: n, x: n.x, y: n.y }; rp.path = best.p; var f = rp.path.shift(); if (f) rpgStep(f[0] - rp.x, f[1] - rp.y); }
+      var best = null; [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(function (d) { var px = n.x + d[0], py = n.y + d[1]; if (rpgBlocked(px, py)) return; var pa = rpgBfs(rp.x, rp.y, px, py); if (pa && (!best || pa.length < best.p.length)) best = { p: pa }; });
+      if (best) { rp.goal = { x: n.x, y: n.y }; rp.path = best.p; var f = rp.path.shift(); if (f) rpgStep(f[0] - rp.x, f[1] - rp.y); else if (rp.goal) { rpgInteract(n); } }
       return;
     }
-    var p = rpgBfs(rp.x, rp.y, tx, ty, rpgTileAt(tx, ty) === 'E' && rg().boss[rp.zone]);
+    var p = rpgBfs(rp.x, rp.y, tx, ty, false);
     if (p && p.length) { rp.goal = null; rp.path = p; var f2 = rp.path.shift(); rpgStep(f2[0] - rp.x, f2[1] - rp.y); }
   }
   function rpgAct() {
     if (rp.mode !== 'map') return;
-    var d = { u: [0, -1], d: [0, 1], l: [-1, 0], r: [1, 0] }[rp.dir], n = rpgNpcAt(rp.x + d[0], rp.y + d[1]);
-    if (!n) [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(function (v) { if (!n) n = rpgNpcAt(rp.x + v[0], rp.y + v[1]); });
+    var d = { u: [0, -1], d: [0, 1], l: [-1, 0], r: [1, 0] }[rp.dir], n = rpgEntAt(rp.x + d[0], rp.y + d[1]);
+    if (!n) [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(function (v) { if (!n) n = rpgEntAt(rp.x + v[0], rp.y + v[1]); });
     if (n) rpgInteract(n);
   }
-  /* ---------- dessin ---------- */
+  /* ---------- rendu de la carte ---------- */
   function rpgHash(x, y, k) { var n = ((x * 73856093) ^ (y * 19349663) ^ ((k || 0) * 83492791)) >>> 0; return (n % 1000) / 1000; }
-  function rpgDrawTile(c, ch, x, y, th, t, m, un) {
-    var s = RPG_TS, px = x * s, py = y * s, h = rpgHash(x, y), i;
-    function ground(col) { c.fillStyle = col; c.fillRect(px, py, s, s); }
-    if (ch === '~' || ch === '=') {
-      ground(th.w); c.fillStyle = 'rgba(255,255,255,.22)';
-      for (i = 0; i < 3; i++) { var wx = (px + ((t / 30 + i * 13 + h * 40) % s)) | 0; c.fillRect(px + (wx - px) % s, py + 6 + i * 10, 9, 2); }
-      if (ch === '=') { c.fillStyle = '#9a6a3c'; c.fillRect(px + 3, py, s - 6, s); c.fillStyle = '#7d522a'; for (i = 0; i < 4; i++) c.fillRect(px + 3, py + 3 + i * 8, s - 6, 1.5); c.fillStyle = '#6a4522'; c.fillRect(px + 3, py, 2, s); c.fillRect(px + s - 5, py, 2, s); }
-      return;
-    }
-    ground((ch === ',') ? th.p : ((x + y) % 2 ? th.g : th.g2));
-    if (ch === ',') { c.fillStyle = 'rgba(0,0,0,.07)'; if (h > .4) c.fillRect(px + h * 20, py + 6, 3, 3); if (h < .6) c.fillRect(px + 20 - h * 10, py + 20, 3, 3); }
-    else if (ch === '.' && h > .62) { c.strokeStyle = th.snow ? 'rgba(255,255,255,.7)' : 'rgba(0,0,0,.14)'; c.lineWidth = 1.5; c.beginPath(); c.moveTo(px + 8 + h * 10, py + 22); c.lineTo(px + 8 + h * 10, py + 16); c.moveTo(px + 11 + h * 10, py + 22); c.lineTo(px + 12 + h * 10, py + 17); c.stroke(); }
-    if (ch === 'T' || ch === 'S') {
-      c.fillStyle = 'rgba(0,0,0,.16)'; c.beginPath(); c.ellipse(px + 16, py + 28, 11, 4, 0, 0, 7); c.fill();
-      c.fillStyle = '#6a4a2a'; c.fillRect(px + 14, py + 18, 5, 11);
-      if (th.snow && ch === 'T') { c.fillStyle = th.t; for (i = 0; i < 3; i++) { c.beginPath(); c.moveTo(px + 16, py + 2 + i * 6); c.lineTo(px + 5 - i, py + 14 + i * 5); c.lineTo(px + 27 + i, py + 14 + i * 5); c.fill(); } c.fillStyle = '#fff'; c.fillRect(px + 12, py + 5, 8, 2); }
-      else { c.fillStyle = ch === 'S' ? '#f3a3c4' : th.t; c.beginPath(); c.arc(px + 16, py + 14, 12, 0, 7); c.fill(); c.fillStyle = ch === 'S' ? '#f9c8dc' : 'rgba(255,255,255,.14)'; c.beginPath(); c.arc(px + 12, py + 10, 6, 0, 7); c.fill(); }
-    } else if (ch === 'h' || ch === 'p') {
-      var top = rpgTileAt(x, y - 1) !== ch, left = rpgTileAt(x - 1, y) !== ch;
-      if (top) {
-        c.fillStyle = ch === 'p' ? '#b8302e' : th.roof; c.beginPath(); c.moveTo(px - 1, py + 30); c.lineTo(px + 4, py + 6); c.lineTo(px + s - 4, py + 6); c.lineTo(px + s + 1, py + 30); c.fill();
-        c.fillStyle = 'rgba(0,0,0,.18)'; c.fillRect(px, py + 26, s, 5); c.fillStyle = ch === 'p' ? '#e8c040' : 'rgba(255,255,255,.2)'; c.fillRect(px + 4, py + 6, s - 8, 3);
-      } else {
-        c.fillStyle = th.wall; c.fillRect(px, py, s, s - 2); c.fillStyle = 'rgba(0,0,0,.12)'; c.fillRect(px, py + s - 4, s, 4);
-        if (left) { c.fillStyle = ch === 'p' ? '#b8302e' : '#7a4f2a'; c.fillRect(px + 10, py + 8, 11, s - 10); c.fillStyle = '#e8c040'; c.fillRect(px + 18, py + 18, 2, 2); }
-        else { c.fillStyle = th.night ? '#ffd86a' : '#9fd2ee'; c.fillRect(px + 8, py + 8, 14, 11); c.strokeStyle = '#7a4f2a'; c.lineWidth = 1.5; c.strokeRect(px + 8, py + 8, 14, 11); c.beginPath(); c.moveTo(px + 15, py + 8); c.lineTo(px + 15, py + 19); c.stroke(); }
+  function rpgShade(hex, f) {
+    var n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255;
+    r = Math.max(0, Math.min(255, Math.round(r * f))); g = Math.max(0, Math.min(255, Math.round(g * f))); b = Math.max(0, Math.min(255, Math.round(b * f)));
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
+  }
+  function rpgTree(c, px, py, type, h, B, t) {
+    var s = RPG_TS, cx = px + s / 2, sw = Math.sin(t / 900 + h * 6) * 1.2;
+    c.fillStyle = 'rgba(0,0,0,.2)'; c.beginPath(); c.ellipse(cx, py + s - 5, s * .34, s * .1, 0, 0, 7); c.fill();
+    if (type === 'pine' || type === 'snowpine') {
+      c.fillStyle = '#5a3d24'; c.fillRect(cx - 3, py + s - 14, 6, 11);
+      var col = type === 'snowpine' ? '#2f6a52' : '#2c6b3f';
+      for (var i = 0; i < 3; i++) {
+        var w = 17 - i * 3.5, y0 = py + s - 12 - i * 11;
+        c.fillStyle = i % 2 ? rpgShade(col, 1.12) : col; c.beginPath(); c.moveTo(cx + sw * (i * .3), y0 - 16); c.lineTo(cx - w, y0); c.lineTo(cx + w, y0); c.closePath(); c.fill();
+        if (type === 'snowpine' || B.snow) { c.fillStyle = '#f4f9ff'; c.beginPath(); c.moveTo(cx + sw * (i * .3), y0 - 16); c.lineTo(cx - w * .62, y0 - 6); c.quadraticCurveTo(cx, y0 - 3, cx + w * .62, y0 - 6); c.closePath(); c.fill(); }
       }
-    } else if (ch === '#') {
-      ground(th.night ? '#2a2e52' : th.snow ? '#8a98ae' : '#8f8f9c'); c.fillStyle = 'rgba(255,255,255,.13)'; c.fillRect(px + 2, py + 2, s - 4, 6); c.fillStyle = 'rgba(0,0,0,.18)'; c.fillRect(px, py + s - 6, s, 6);
-      c.strokeStyle = 'rgba(0,0,0,.2)'; c.lineWidth = 1; c.strokeRect(px + .5, py + .5, s - 1, s - 1);
-    } else if (ch === 'E') {
-      c.fillStyle = '#d0332f'; c.fillRect(px + 3, py + 4, 4, s - 4); c.fillRect(px + s - 7, py + 4, 4, s - 4); c.fillRect(px, py + 4, s, 5); c.fillRect(px + 5, py + 12, s - 10, 3);
-      if (un) { var gl = .4 + .3 * Math.sin(t / 250); c.fillStyle = 'rgba(255,230,120,' + gl + ')'; c.fillRect(px + 7, py + 15, s - 14, s - 15); }
-      else { c.fillStyle = 'rgba(40,20,70,.55)'; c.fillRect(px + 7, py + 15, s - 14, s - 15); c.fillStyle = '#f0c040'; c.fillRect(px + 8, py + 20, s - 16, 3); }
+    } else if (type === 'bamboo') {
+      for (var k = 0; k < 3; k++) {
+        var bx = cx - 10 + k * 10 + sw * (k % 2 ? 1 : -1) * .6, top = py - 12 - ((h * 7 + k * 5) % 12);
+        c.fillStyle = k === 1 ? '#7bc15a' : '#5fa648'; c.fillRect(bx - 2.4, top, 4.8, py + s - 4 - top);
+        c.fillStyle = 'rgba(0,0,0,.2)'; for (var j = top + 8; j < py + s - 6; j += 11) c.fillRect(bx - 2.8, j, 5.6, 1.6);
+        c.fillStyle = '#9ad46f'; c.beginPath(); c.ellipse(bx + 6, top + 6, 8, 2.6, -.5, 0, 7); c.fill(); c.beginPath(); c.ellipse(bx - 6, top + 14, 8, 2.6, .5, 0, 7); c.fill();
+      }
+    } else {
+      c.fillStyle = '#6a4a2a'; c.fillRect(cx - 3.5, py + s - 17, 7, 14);
+      var base = type === 'maple' ? ['#c9482c', '#e0732e', '#e89a3c'] : type === 'sakura' ? ['#e98fb2', '#f3b0c8', '#fbd3e0'] : ['#2f8a44', '#3da255', '#58bb6b'];
+      c.fillStyle = base[0]; c.beginPath(); c.arc(cx - 8 + sw * .5, py + s - 24, 13, 0, 7); c.arc(cx + 8 + sw * .5, py + s - 24, 13, 0, 7); c.arc(cx + sw, py + s - 32, 15, 0, 7); c.fill();
+      c.fillStyle = base[1]; c.beginPath(); c.arc(cx - 3 + sw, py + s - 29, 11, 0, 7); c.arc(cx + 8 + sw, py + s - 24, 8, 0, 7); c.fill();
+      c.fillStyle = base[2]; c.beginPath(); c.arc(cx - 6 + sw, py + s - 35, 6, 0, 7); c.arc(cx + 3 + sw, py + s - 31, 4, 0, 7); c.fill();
     }
   }
-  function rpgDrawChar(c, id, cx, cy, ring, r) {
-    var im = rpgImg(chSrc(id)); r = r || 13;
-    c.save(); c.fillStyle = 'rgba(0,0,0,.25)'; c.beginPath(); c.ellipse(cx, cy + r - 1, r * .8, 4, 0, 0, 7); c.fill();
+  function rpgDrawGround(c, x, y, px, py, B, t) {
+    var s = RPG_TS, h = rpgHash(x, y), h2 = rpgHash(x, y, 5), col = B.g[(h * 3) | 0], i;
+    c.fillStyle = col; c.fillRect(px, py, s + .5, s + .5);
+    var gr = B.gr;
+    if (gr === 'grass') {
+      c.fillStyle = rpgShade(col, .9); for (i = 0; i < 4; i++) { var gx = px + 5 + rpgHash(x, y, i) * (s - 10), gy = py + 8 + rpgHash(x, y, i + 9) * (s - 14); c.fillRect(gx, gy, 1.8, 6); c.fillRect(gx + 3, gy + 2, 1.8, 5); }
+      c.fillStyle = rpgShade(col, 1.12); if (h > .5) c.fillRect(px + h * 30, py + h2 * 30, 3, 2);
+    } else if (gr === 'gravel') {
+      c.fillStyle = rpgShade(col, .86); for (i = 0; i < 6; i++) c.fillRect(px + rpgHash(x, y, i) * s, py + rpgHash(x, y, i + 7) * s, 2.5, 2);
+      c.fillStyle = rpgShade(col, 1.1); for (i = 0; i < 4; i++) c.fillRect(px + rpgHash(x, y, i + 20) * s, py + rpgHash(x, y, i + 30) * s, 2, 2);
+    } else if (gr === 'leaf') {
+      for (i = 0; i < 5; i++) { c.fillStyle = ['#c9482c', '#e0732e', '#9a5a2a', '#e8a23c'][(rpgHash(x, y, i + 3) * 4) | 0]; c.fillRect(px + rpgHash(x, y, i) * (s - 4), py + rpgHash(x, y, i + 11) * (s - 4), 4, 3); }
+    } else if (gr === 'sand') {
+      c.strokeStyle = rpgShade(col, .86); c.lineWidth = 1.4; for (i = 0; i < 4; i++) { var ly = py + 6 + i * 10; c.beginPath(); c.moveTo(px, ly); c.quadraticCurveTo(px + s / 2, ly + (i % 2 ? 3 : -3), px + s, ly); c.stroke(); }
+    } else if (gr === 'paving' || gr === 'planks') {
+      c.strokeStyle = rpgShade(col, .82); c.lineWidth = 1.2;
+      if (gr === 'planks') { for (i = 1; i < 4; i++) { c.beginPath(); c.moveTo(px, py + i * s / 4); c.lineTo(px + s, py + i * s / 4); c.stroke(); } c.beginPath(); c.moveTo(px + ((x * 17 + y * 7) % 3) * s / 3 + 6, py); c.lineTo(px + ((x * 17 + y * 7) % 3) * s / 3 + 6, py + s / 4); c.stroke(); }
+      else { c.strokeRect(px + .6, py + .6, s - 1.2, s - 1.2); c.beginPath(); c.moveTo(px + s / 2, py); c.lineTo(px + s / 2, py + s / 2); c.moveTo(px, py + s / 2); c.lineTo(px + s, py + s / 2); c.stroke(); }
+    } else if (gr === 'asphalt') {
+      c.fillStyle = rpgShade(col, 1.12); if (h > .7) { c.fillRect(px + 4, py + s / 2 - 1, 12, 2); c.fillRect(px + s - 16, py + s / 2 - 1, 12, 2); }
+      if (h2 > .88) { var pc = (B.neon || ['#ff4fa0', '#46e0ff'])[(h * 2) | 0]; c.fillStyle = 'rgba(255,255,255,.07)'; c.beginPath(); c.ellipse(px + s / 2, py + s / 2, 12, 6, 0, 0, 7); c.fill(); c.fillStyle = 'rgba(70,224,255,.12)'; c.beginPath(); c.ellipse(px + s / 2 + 3, py + s / 2, 7, 3, 0, 0, 7); c.fill(); }
+    } else if (gr === 'snow') {
+      c.fillStyle = 'rgba(160,190,225,.35)'; c.beginPath(); c.ellipse(px + 10 + h * 20, py + 28, 11, 4, 0, 0, 7); c.fill();
+      c.fillStyle = 'rgba(255,255,255,.9)'; if (h2 > .55) { var sp = .5 + .5 * Math.sin(t / 400 + x * 3 + y); c.globalAlpha = sp; c.fillRect(px + h * 34, py + h2 * 34, 2.4, 2.4); c.globalAlpha = 1; }
+    }
+  }
+  function rpgDrawTile(c, ch, x, y, B, t, m, sx, sy, sel) {
+    var s = RPG_TS, px = sx, py = sy, h = rpgHash(x, y), i;
+    function nb(dx, dy) { var yy = y + dy, xx = x + dx; return (yy < 0 || yy >= m.length || xx < 0 || xx >= m[0].length) ? '#' : m[yy].charAt(xx); }
+    if (ch === '~' || ch === '=') {
+      var grd = c.createLinearGradient(px, py, px, py + s); grd.addColorStop(0, B.w[0]); grd.addColorStop(1, B.w[1]); c.fillStyle = grd; c.fillRect(px, py, s + .5, s + .5);
+      c.strokeStyle = 'rgba(255,255,255,.35)'; c.lineWidth = 1.6;
+      for (i = 0; i < 3; i++) { var ox = (t / 40 + h * 60 + i * 15) % (s + 12) - 6, oy = py + 8 + i * 13; c.beginPath(); c.moveTo(px + ox - 6, oy); c.quadraticCurveTo(px + ox, oy - 2.5, px + ox + 6, oy); c.stroke(); }
+      [[0, -1, 0], [0, 1, 1], [-1, 0, 2], [1, 0, 3]].forEach(function (d) { var n = nb(d[0], d[1]); if (n !== '~' && n !== '=') { c.fillStyle = 'rgba(255,255,255,.55)'; if (d[2] === 0) c.fillRect(px, py, s, 3); else if (d[2] === 1) c.fillRect(px, py + s - 3, s, 3); else if (d[2] === 2) c.fillRect(px, py, 3, s); else c.fillRect(px + s - 3, py, 3, s); } });
+      if (ch === '=') {
+        var horiz = (nb(0, -1) === '~' || nb(0, -1) === '=') && (nb(0, 1) === '~' || nb(0, 1) === '=');
+        c.fillStyle = '#a4743f'; c.fillRect(px, py + (horiz ? 4 : 0), s, horiz ? s - 8 : s);
+        if (!horiz) { c.fillRect(px + 4, py, s - 8, s); c.fillStyle = B.w[0]; c.fillRect(px, py, 4, s); c.fillRect(px + s - 4, py, 4, s); }
+        c.strokeStyle = '#7d5129'; c.lineWidth = 1.6;
+        if (horiz) { for (i = 0; i < 5; i++) { c.beginPath(); c.moveTo(px + i * 10 + 3, py + 4); c.lineTo(px + i * 10 + 3, py + s - 4); c.stroke(); } c.fillStyle = '#6a431f'; c.fillRect(px, py + 2, s, 3); c.fillRect(px, py + s - 5, s, 3); }
+        else { for (i = 0; i < 5; i++) { c.beginPath(); c.moveTo(px + 4, py + i * 10 + 3); c.lineTo(px + s - 4, py + i * 10 + 3); c.stroke(); } c.fillStyle = '#6a431f'; c.fillRect(px + 2, py, 3, s); c.fillRect(px + s - 5, py, 3, s); }
+      }
+      return;
+    }
+    rpgDrawGround(c, x, y, px, py, B, t);
+    if (ch === ',') {
+      c.fillStyle = B.r[0]; c.fillRect(px, py, s + .5, s + .5);
+      c.fillStyle = B.r[1]; for (i = 0; i < 5; i++) c.fillRect(px + rpgHash(x, y, i + 40) * (s - 4), py + rpgHash(x, y, i + 50) * (s - 4), 3, 2.4);
+      var edge = 'rgba(0,0,0,.14)';
+      [[0, -1], [0, 1], [-1, 0], [1, 0]].forEach(function (d, k) { var n = nb(d[0], d[1]); if (n !== ',' && n !== '=' && n !== 'Q') { c.fillStyle = edge; if (k === 0) c.fillRect(px, py, s, 3); else if (k === 1) c.fillRect(px, py + s - 3, s, 3); else if (k === 2) c.fillRect(px, py, 3, s); else c.fillRect(px + s - 3, py, 3, s); } });
+    } else if (ch === 'F') {
+      var cols = B.snow ? ['#9ec8ff', '#ffffff'] : ['#ff7ea8', '#ffd24a', '#ffffff', '#b58cff'];
+      for (i = 0; i < 4; i++) { var fx = px + 6 + rpgHash(x, y, i + 60) * (s - 12), fy = py + 8 + rpgHash(x, y, i + 70) * (s - 14); c.fillStyle = '#3f8a3a'; c.fillRect(fx, fy, 1.4, 6); c.fillStyle = cols[(rpgHash(x, y, i + 80) * cols.length) | 0]; c.beginPath(); c.arc(fx + .7, fy, 3, 0, 7); c.fill(); c.fillStyle = '#ffe9a0'; c.fillRect(fx, fy - .6, 1.4, 1.4); }
+    } else if (ch === 'g') {
+      c.strokeStyle = rpgShade(B.g[0], .72); c.lineWidth = 2.2; for (i = 0; i < 6; i++) { var gx = px + 4 + i * 7, sw = Math.sin(t / 500 + x + i) * 2; c.beginPath(); c.moveTo(gx, py + s - 4); c.quadraticCurveTo(gx + sw, py + s - 16, gx + sw * 1.6, py + s - 24 + (i % 2) * 5); c.stroke(); }
+    } else if (ch === 'T' || ch === 'S' || ch === 'B') {
+      rpgTree(c, px, py, ch === 'B' ? 'bamboo' : ch === 'S' ? 'sakura' : B.tree, h, B, t);
+    } else if (ch === 'R') {
+      c.fillStyle = 'rgba(0,0,0,.22)'; c.beginPath(); c.ellipse(px + s / 2, py + s - 6, s * .38, s * .1, 0, 0, 7); c.fill();
+      var rc0 = B.cl[0]; c.fillStyle = rc0; c.beginPath(); c.moveTo(px + 6, py + s - 7); c.quadraticCurveTo(px + 4, py + 16, px + 16, py + 12); c.quadraticCurveTo(px + 30, py + 8, px + s - 5, py + s - 8); c.closePath(); c.fill();
+      c.fillStyle = B.cl[2]; c.beginPath(); c.moveTo(px + 12, py + 22); c.quadraticCurveTo(px + 14, py + 14, px + 22, py + 14); c.quadraticCurveTo(px + 20, py + 20, px + 12, py + 22); c.fill();
+      c.fillStyle = B.cl[1]; c.fillRect(px + 8, py + s - 12, s - 16, 4);
+      if (B.snow) { c.fillStyle = '#f6fbff'; c.beginPath(); c.moveTo(px + 10, py + 18); c.quadraticCurveTo(px + 22, py + 8, px + 34, py + 18); c.quadraticCurveTo(px + 22, py + 16, px + 10, py + 18); c.fill(); }
+    } else if (ch === 'M') {
+      c.fillStyle = B.cl[1]; c.fillRect(px, py, s + .5, s + .5);
+      c.fillStyle = B.cl[0]; c.beginPath(); c.moveTo(px, py + s); c.lineTo(px, py + 10 + h * 10); c.lineTo(px + s * .4, py + 4 + h * 8); c.lineTo(px + s * .7, py + 12); c.lineTo(px + s, py + 6 + h * 10); c.lineTo(px + s, py + s); c.fill();
+      c.strokeStyle = 'rgba(0,0,0,.2)'; c.lineWidth = 1.4; for (i = 0; i < 3; i++) { c.beginPath(); c.moveTo(px, py + 14 + i * 10); c.lineTo(px + s, py + 12 + i * 10 + h * 4); c.stroke(); }
+      if (nb(0, -1) !== 'M') { c.fillStyle = B.snow ? '#f6fbff' : B.cl[2]; c.fillRect(px, py, s, 7); if (B.snow) { c.beginPath(); c.arc(px + 12, py + 7, 6, 0, 7); c.arc(px + 30, py + 7, 7, 0, 7); c.fill(); } }
+    } else if (ch === 'N') {
+      var bi = (rpgHash(x, y, 3) * B.bld.length) | 0, bc = B.bld[bi];
+      c.fillStyle = bc; c.fillRect(px, py, s + .5, s + .5);
+      c.fillStyle = 'rgba(0,0,0,.18)'; c.fillRect(px, py + s - 4, s, 4); c.fillRect(px + s - 4, py, 4, s);
+      var topEdge = nb(0, -1) !== 'N';
+      if (topEdge) { c.fillStyle = B.roof; c.fillRect(px, py, s, 6); c.fillStyle = 'rgba(255,255,255,.25)'; c.fillRect(px, py, s, 2); }
+      for (var wy = 0; wy < 2; wy++) for (var wx = 0; wx < 3; wx++) {
+        var lit = B.night ? rpgHash(x, y, wx * 3 + wy + 11) > .35 : rpgHash(x, y, wx * 3 + wy + 11) > .8;
+        c.fillStyle = lit ? (B.night ? '#ffe28a' : '#fff2b0') : (B.night ? '#171a35' : 'rgba(120,170,210,.8)'); c.fillRect(px + 5 + wx * 12, py + (topEdge ? 11 : 6) + wy * 14, 8, 9);
+      }
+      if (B.neon && nb(0, 1) !== 'N' && rpgHash(x, y, 7) > .45) { var nc = B.neon[(rpgHash(x, y, 8) * B.neon.length) | 0]; c.fillStyle = 'rgba(255,255,255,.12)'; c.fillRect(px + 2, py + s - 14, s - 4, 10); c.fillStyle = nc; c.shadowColor = nc; c.shadowBlur = 10; c.fillRect(px + 5, py + s - 11, s - 10, 4); c.shadowBlur = 0; }
+      else if (nb(0, 1) !== 'N' && !B.neon) { var ac = ['#d6603c', '#3f8a8a', '#c9a02a', '#a83a3a'][(rpgHash(x, y, 9) * 4) | 0]; c.fillStyle = ac; c.fillRect(px + 3, py + s - 12, s - 6, 8); c.fillStyle = 'rgba(255,255,255,.4)'; for (i = 0; i < 4; i++) c.fillRect(px + 5 + i * 10, py + s - 12, 4, 8); }
+    } else if (ch === 'h') {
+      var top = nb(0, -1) !== 'h', left = nb(-1, 0) !== 'h';
+      if (top) { c.fillStyle = B.roof || '#c0504a'; c.beginPath(); c.moveTo(px - 2, py + s - 3); c.lineTo(px + 5, py + 6); c.lineTo(px + s - 5, py + 6); c.lineTo(px + s + 2, py + s - 3); c.closePath(); c.fill(); c.fillStyle = 'rgba(255,255,255,.2)'; c.fillRect(px + 5, py + 6, s - 10, 3); c.fillStyle = 'rgba(0,0,0,.2)'; c.fillRect(px - 2, py + s - 7, s + 4, 5); c.strokeStyle = 'rgba(0,0,0,.15)'; for (i = 0; i < 4; i++) { c.beginPath(); c.moveTo(px + 6 + i * 9, py + 8); c.lineTo(px + 2 + i * 10, py + s - 6); c.stroke(); } }
+      else { c.fillStyle = B.wall || '#f3e7cc'; c.fillRect(px, py, s + .5, s - 2); c.fillStyle = 'rgba(0,0,0,.12)'; c.fillRect(px, py + s - 6, s, 6); c.fillStyle = '#6a4a2a'; c.fillRect(px, py, 4, s - 2); c.fillRect(px + s - 4, py, 4, s - 2);
+        if (left) { c.fillStyle = '#7a4f2a'; c.fillRect(px + 12, py + 8, 18, s - 10); c.fillStyle = '#e8c040'; c.fillRect(px + 25, py + 24, 3, 3); } else { c.fillStyle = B.night ? '#ffd86a' : '#9fd2ee'; c.fillRect(px + 10, py + 9, 24, 17); c.strokeStyle = '#6a4a2a'; c.lineWidth = 2; c.strokeRect(px + 10, py + 9, 24, 17); c.beginPath(); c.moveTo(px + 22, py + 9); c.lineTo(px + 22, py + 26); c.stroke(); } }
+    } else if (ch === 'i') {
+      var tp = nb(0, -1) !== 'i', lf = nb(-1, 0) !== 'i', rt = nb(1, 0) !== 'i';
+      if (tp) {
+        c.fillStyle = B.roof || '#7a4a3c'; c.beginPath(); c.moveTo(px - (lf ? 4 : 0), py + s - 3); c.lineTo(px + (lf ? 6 : -2), py + 5); c.lineTo(px + s + (rt ? -6 : 2), py + 5); c.lineTo(px + s + (rt ? 4 : 0), py + s - 3); c.closePath(); c.fill();
+        c.fillStyle = 'rgba(255,255,255,.2)'; c.fillRect(px, py + 5, s, 3); c.fillStyle = 'rgba(0,0,0,.2)'; c.fillRect(px - (lf ? 4 : 0), py + s - 7, s + (rt ? 4 : 0) + (lf ? 4 : 0), 5);
+        if (!lf && !rt) { c.fillStyle = '#fff6df'; c.fillRect(px + 8, py + 12, s - 16, 18); c.strokeStyle = '#6a4a2a'; c.lineWidth = 2; c.strokeRect(px + 8, py + 12, s - 16, 18); c.fillStyle = '#b3342f'; c.font = '800 16px sans-serif'; c.textAlign = 'center'; c.fillText('宿', px + s / 2, py + 27); }
+      } else {
+        c.fillStyle = B.wall || '#f3e7cc'; c.fillRect(px, py, s + .5, s - 2); c.fillStyle = '#6a4a2a'; c.fillRect(px, py, 4, s - 2); c.fillRect(px + s - 4, py, 4, s - 2); c.fillStyle = 'rgba(0,0,0,.12)'; c.fillRect(px, py + s - 6, s, 6);
+        if (!lf && !rt) { c.fillStyle = '#2a1a1a'; c.fillRect(px + 8, py + 8, s - 16, s - 10); c.fillStyle = '#2f5fa8'; c.fillRect(px + 6, py + 4, s - 12, 16); c.fillStyle = '#fff'; for (i = 0; i < 3; i++) c.fillRect(px + 9 + i * 10, py + 4, 2, 16); c.fillRect(px + 6, py + 4, s - 12, 2); }
+        else { c.fillStyle = B.night ? '#ffd86a' : '#9fd2ee'; c.fillRect(px + 10, py + 9, 24, 17); c.strokeStyle = '#6a4a2a'; c.lineWidth = 2; c.strokeRect(px + 10, py + 9, 24, 17); }
+        if (lf) { c.fillStyle = '#e03a3a'; c.beginPath(); c.arc(px + 8, py + 10, 6, 0, 7); c.fill(); c.fillStyle = 'rgba(255,220,120,.5)'; c.beginPath(); c.arc(px + 8, py + 10, 10, 0, 7); c.fill(); }
+      }
+    } else if (ch === 'k') {
+      c.fillStyle = '#7a5a3a'; c.fillRect(px + 5, py + 24, s - 10, 14); c.fillStyle = '#9a7650'; c.fillRect(px + 5, py + 24, s - 10, 4);
+      c.fillStyle = ['#ffb04a', '#ff6b6b', '#8fd06a'][(h * 3) | 0]; c.beginPath(); c.arc(px + 14, py + 22, 4, 0, 7); c.arc(px + 22, py + 22, 4, 0, 7); c.arc(px + 30, py + 22, 4, 0, 7); c.fill();
+      for (i = 0; i < 4; i++) { c.fillStyle = i % 2 ? '#fff' : '#d0332f'; c.beginPath(); c.moveTo(px + 3 + i * 9.5, py + 5); c.lineTo(px + 12.5 + i * 9.5, py + 5); c.lineTo(px + 12.5 + i * 9.5, py + 18); c.quadraticCurveTo(px + 8 + i * 9.5, py + 22, px + 3 + i * 9.5, py + 18); c.closePath(); c.fill(); }
+      c.fillStyle = '#6a4a2a'; c.fillRect(px + 3, py + 5, 2, 33); c.fillRect(px + s - 5, py + 5, 2, 33);
+    } else if (ch === 'L') {
+      var glow = (B.night || B.gr === 'gravel' || B.gr === 'sand' ? .5 + .2 * Math.sin(t / 300 + x) : .0);
+      c.fillStyle = 'rgba(0,0,0,.2)'; c.beginPath(); c.ellipse(px + s / 2, py + s - 5, 11, 3.5, 0, 0, 7); c.fill();
+      if (B.gr === 'gravel' || B.gr === 'sand' || B.far === 'temple' || B.far === 'castle') {
+        c.fillStyle = '#9d9aa3'; c.fillRect(px + 12, py + s - 9, 20, 5); c.fillRect(px + 18, py + 17, 8, s - 24); c.fillStyle = '#b3b0ba'; c.fillRect(px + 10, py + 9, 24, 10); c.fillStyle = '#7e7b86'; c.fillRect(px + 8, py + 6, 28, 4);
+        c.fillStyle = 'rgba(255,200,90,' + (.55 + glow * .4) + ')'; c.fillRect(px + 15, py + 11, 14, 6);
+      } else {
+        c.fillStyle = '#5a4a3a'; c.fillRect(px + s / 2 - 2, py + 12, 4, s - 17);
+        c.fillStyle = B.night ? '#ff9a5a' : '#e24a3a'; c.beginPath(); c.ellipse(px + s / 2, py + 14, 8, 10, 0, 0, 7); c.fill(); c.fillStyle = 'rgba(255,230,160,' + (B.night ? .55 : .25) + ')'; c.beginPath(); c.arc(px + s / 2, py + 14, 15, 0, 7); c.fill();
+        c.fillStyle = '#6a2a1a'; c.fillRect(px + s / 2 - 6, py + 5, 12, 3); c.fillRect(px + s / 2 - 6, py + 20, 12, 3);
+      }
+    } else if (ch === 'f') {
+      c.fillStyle = '#8a5f35'; c.fillRect(px + 3, py + 18, 5, 18); c.fillRect(px + s - 8, py + 18, 5, 18); c.fillRect(px + s / 2 - 2.5, py + 18, 5, 18);
+      c.fillStyle = '#a97a47'; c.fillRect(px, py + 20, s, 5); c.fillRect(px, py + 29, s, 5); c.fillStyle = 'rgba(0,0,0,.18)'; c.fillRect(px, py + 25, s, 1.5);
+    } else if (ch === 'C') {
+      if (B.neon) { c.fillStyle = '#2d3358'; c.fillRect(px + 8, py + 4, s - 16, s - 8); c.fillStyle = '#46e0ff'; c.shadowColor = '#46e0ff'; c.shadowBlur = 8; c.fillRect(px + 12, py + 9, s - 24, 18); c.shadowBlur = 0; c.fillStyle = ['#ff4fa0', '#ffd24a', '#8fd06a'][(h * 3) | 0]; for (i = 0; i < 3; i++) c.fillRect(px + 14 + i * 7, py + 12, 5, 4); c.fillStyle = '#171a35'; c.fillRect(px + 14, py + 30, s - 28, 4); }
+      else { c.fillStyle = 'rgba(0,0,0,.2)'; c.beginPath(); c.ellipse(px + s / 2, py + s - 5, 15, 4, 0, 0, 7); c.fill(); c.fillStyle = '#b07c42'; c.fillRect(px + 5, py + 18, 20, 20); c.fillRect(px + 22, py + 10, 17, 17); c.strokeStyle = '#7a5226'; c.lineWidth = 2; c.strokeRect(px + 5, py + 18, 20, 20); c.strokeRect(px + 22, py + 10, 17, 17); c.beginPath(); c.moveTo(px + 5, py + 18); c.lineTo(px + 25, py + 38); c.moveTo(px + 22, py + 10); c.lineTo(px + 39, py + 27); c.stroke(); }
+    } else if (ch === '#') {
+      var zenw = B.wall;
+      c.fillStyle = zenw || B.cl[0]; c.fillRect(px, py + 6, s + .5, s - 6); c.fillStyle = 'rgba(0,0,0,.14)'; c.fillRect(px, py + s - 6, s, 6);
+      c.fillStyle = zenw ? '#6a5a4a' : B.cl[1]; c.fillRect(px - 1, py + 2, s + 2, 7); c.fillStyle = 'rgba(255,255,255,.25)'; c.fillRect(px - 1, py + 2, s + 2, 2);
+      c.strokeStyle = 'rgba(0,0,0,.18)'; c.lineWidth = 1; if (!zenw) { c.beginPath(); c.moveTo(px, py + 22); c.lineTo(px + s, py + 22); c.moveTo(px + 14, py + 9); c.lineTo(px + 14, py + 22); c.moveTo(px + 30, py + 22); c.lineTo(px + 30, py + s); c.stroke(); }
+    } else if (ch === 'Q') {
+      var up = nb(0, -1) === 'Q', dn = nb(0, 1) === 'Q';
+      c.fillStyle = B.cl[1]; c.fillRect(px, py, s + .5, s + .5); c.fillStyle = B.cl[0]; c.fillRect(px, py, s, 6);
+      var cg = c.createLinearGradient(px, py, px + s, py); cg.addColorStop(0, '#0c0818'); cg.addColorStop(1, '#2a1c4a'); c.fillStyle = cg;
+      c.beginPath(); if (dn) { c.moveTo(px + s, py + s); c.lineTo(px + s, py + 14); c.quadraticCurveTo(px + s * .55, py + 6, px, py + 14); c.lineTo(px, py + s); } else { c.moveTo(px, py); c.lineTo(px, py + s - 14); c.quadraticCurveTo(px + s * .55, py + s - 6, px + s, py + s - 14); c.lineTo(px + s, py); } c.closePath(); c.fill();
+      c.fillStyle = 'rgba(255,200,120,.12)'; c.fillRect(px + s * .5, py + 8, s * .5, s - 16);
+    }
+    if (ch === 'X') {
+      var done = sel;
+      if (B.snow) { c.fillStyle = '#e9f2fb'; c.beginPath(); c.ellipse(px + s / 2, py + s - 12, 17, 12, 0, 0, 7); c.fill(); c.fillStyle = 'rgba(160,190,225,.5)'; c.beginPath(); c.ellipse(px + s / 2 + 5, py + s - 8, 10, 5, 0, 0, 7); c.fill(); }
+      else if (B.bld) { c.fillStyle = '#b07c42'; c.fillRect(px + 8, py + 14, s - 16, s - 20); c.strokeStyle = '#7a5226'; c.lineWidth = 2; c.strokeRect(px + 8, py + 14, s - 16, s - 20); c.beginPath(); c.moveTo(px + s / 2, py + 14); c.lineTo(px + s / 2, py + s - 6); c.stroke(); }
+      else { c.fillStyle = rpgShade(B.g[1], .66); c.beginPath(); c.arc(px + 14, py + 28, 11, 0, 7); c.arc(px + 30, py + 28, 11, 0, 7); c.arc(px + 22, py + 20, 12, 0, 7); c.fill(); c.fillStyle = rpgShade(B.g[2], .85); c.beginPath(); c.arc(px + 18, py + 22, 6, 0, 7); c.arc(px + 28, py + 26, 5, 0, 7); c.fill(); }
+      if (!done) { var tw = .5 + .5 * Math.sin(t / 260 + x * 2); c.fillStyle = 'rgba(255,240,150,' + (.5 + tw * .5) + ')'; c.beginPath(); var cx2 = px + s * .7, cy2 = py + 14; c.moveTo(cx2, cy2 - 6 - tw * 2); c.lineTo(cx2 + 2, cy2 - 2); c.lineTo(cx2 + 6 + tw * 2, cy2); c.lineTo(cx2 + 2, cy2 + 2); c.lineTo(cx2, cy2 + 6 + tw * 2); c.lineTo(cx2 - 2, cy2 + 2); c.lineTo(cx2 - 6 - tw * 2, cy2); c.lineTo(cx2 - 2, cy2 - 2); c.closePath(); c.fill(); }
+    }
+  }
+  function rpgFit(cv) {
+    var rc = cv.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2.5), w = Math.max(200, Math.round(rc.width * dpr)), h = Math.round(w * RPG_VH / RPG_VW);
+    if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
+    return w / (RPG_VW * RPG_TS);
+  }
+  function rpgDrawChar(c, id, cx, cy, ring, r, hero) {
+    var src = '';
+    if (hero) { try { src = avatarOf(user.name, user.avatar); } catch (e) { /* ignore */ } } else src = chSrc(id);
+    var im = rpgImg(src);
+    c.save(); c.fillStyle = 'rgba(0,0,0,.28)'; c.beginPath(); c.ellipse(cx, cy + r - 1, r * .85, 5, 0, 0, 7); c.fill();
     c.beginPath(); c.arc(cx, cy, r, 0, 7); c.closePath(); c.fillStyle = '#fff'; c.fill(); c.clip();
     if (im) { var sc = Math.max(2 * r / im.width, 2 * r / im.height); c.drawImage(im, cx - im.width * sc / 2, cy - im.height * sc / 2, im.width * sc, im.height * sc); }
-    c.restore(); c.beginPath(); c.arc(cx, cy, r, 0, 7); c.lineWidth = 2.5; c.strokeStyle = ring || '#fff'; c.stroke();
+    c.restore(); c.beginPath(); c.arc(cx, cy, r, 0, 7); c.lineWidth = 3.4; c.strokeStyle = ring || '#fff'; c.stroke();
   }
   function rpgDraw(ts) {
     var cv = document.getElementById('rpgCv'); if (!cv) return false;
-    var c = cv.getContext('2d'), z = rpgZ(), th = RPG_M[rp.zone], s = RPG_TS, un = !!rg().boss[rp.zone], i;
-    for (var y = 0; y < z.map.length; y++) for (var x = 0; x < z.map[y].length; x++) rpgDrawTile(c, z.map[y].charAt(x), x, y, th, ts, z.map, un);
-    if (th.night) { c.fillStyle = 'rgba(30,20,80,.0)'; c.fillRect(0, 0, cv.width, cv.height); }
-    var ents = [];
-    rpgYokai().forEach(function (q) { ents.push({ y: q.y, f: function () {
-      var cx = q.x * s + 16, cy = q.y * s + 18 + Math.sin(ts / 260 + q.i) * 2;
-      if (ASSETS['pi_' + q.id]) { rpgDrawChar(c, q.id, cx, cy - 2, '#d03a3a', 13); c.fillStyle = '#7a4fd6'; c.beginPath(); c.arc(cx + 11, cy - 14, 5, 0, 7); c.fill(); c.fillStyle = '#fff'; c.font = '800 9px sans-serif'; c.textAlign = 'center'; c.fillText('⚔', cx + 11, cy - 11); return; }
-      c.fillStyle = 'rgba(0,0,0,.22)'; c.beginPath(); c.ellipse(cx, q.y * s + 28, 11, 4, 0, 0, 7); c.fill();
-      c.fillStyle = '#7a4fd6'; c.beginPath(); c.arc(cx, cy, 12, Math.PI, 0); c.lineTo(cx + 12, cy + 8); c.quadraticCurveTo(cx + 6, cy + 13, cx, cy + 8); c.quadraticCurveTo(cx - 6, cy + 13, cx - 12, cy + 8); c.closePath(); c.fill();
-      c.fillStyle = '#fff'; c.fillRect(cx - 6, cy - 5, 4, 5); c.fillRect(cx + 2, cy - 5, 4, 5); c.fillStyle = '#2a1060'; c.fillRect(cx - 4, cy - 3, 2, 3); c.fillRect(cx + 4, cy - 3, 2, 3);
-      c.font = '700 10px sans-serif'; c.textAlign = 'center'; c.fillStyle = '#ffe9a8'; c.fillText(q.g, cx, cy + 8);
-    } }); });
-    rpgNpcs().forEach(function (n) { ents.push({ y: n.y, f: function () {
-      var cx = n.x * s + 16, cy = n.y * s + 15, done = n.role !== 'boss' && n.role !== 'marchand' && n.role !== 'aub' && rg().done['z' + rp.zone + '_' + n.role];
-      rpgDrawChar(c, n.id, cx, cy, n.role === 'boss' ? '#d03a3a' : done ? '#6cc070' : '#ffd24a', n.role === 'boss' ? 14 : 13);
-      if (!done || n.role === 'boss') { var by = n.y * s - 2 + Math.sin(ts / 200 + n.x) * 2; c.fillStyle = n.role === 'boss' ? '#d03a3a' : '#ffd24a'; c.beginPath(); c.arc(cx + 11, by + 3, 6, 0, 7); c.fill(); c.fillStyle = '#2a1a50'; c.font = '800 9px sans-serif'; c.textAlign = 'center'; c.fillText(n.role === 'boss' ? '!!' : (n.role === 'marchand' || n.role === 'aub') ? '…' : '!', cx + 11, by + 6); }
-      else { c.fillStyle = '#4caf58'; c.font = '800 10px sans-serif'; c.textAlign = 'center'; c.fillText('✓', cx + 11, n.y * s + 4); }
-    } }); });
+    var c = cv.getContext('2d'), k = rpgFit(cv), sc = rpgScene(), B = rpgBio(), s = RPG_TS, m = sc.map, MW = m[0].length, MH = m.length, i;
+    c.setTransform(k, 0, 0, k, 0, 0);
+    /* caméra */
     var px = rp.x, py = rp.y;
-    if (rp.walk) { var w = rp.walk, k = Math.min(1, (performance.now() - w.t0) / 150); px = w.sx + (w.tx - w.sx) * k; py = w.sy + (w.ty - w.sy) * k; if (k >= 1) { rpgArrive(); px = rp.x; py = rp.y; } }
-    ents.push({ y: py + .01, f: function () { var bob = rp.walk ? Math.abs(Math.sin(ts / 70)) * 2 : 0; rpgDrawChar(c, null, px * s + 16, py * s + 15 - bob, '#7c5cff', 13, true); } });
-    ents.sort(function (a, b) { return a.y - b.y; }).forEach(function (e) { e.f(); });
-    c.font = '800 12px sans-serif'; c.textAlign = 'left'; c.fillStyle = 'rgba(20,10,50,.55)'; c.fillRect(6, 6, 14 + c.measureText(th.jp + ' ' + th.n).width, 20); c.fillStyle = '#fff'; c.fillText(th.jp + ' ' + th.n, 13, 20);
+    if (rp.walk) { var w = rp.walk, kk = Math.min(1, (performance.now() - w.t0) / 150); px = w.sx + (w.tx - w.sx) * kk; py = w.sy + (w.ty - w.sy) * kk; if (kk >= 1) { rpgArrive(); px = rp.x; py = rp.y; } }
+    var tx = Math.min(Math.max(px - RPG_VW / 2 + .5, 0), MW - RPG_VW), ty = Math.min(Math.max(py - RPG_VH / 2 + .5, 0), MH - RPG_VH);
+    rp.cx += (tx - rp.cx) * .2; rp.cy += (ty - rp.cy) * .2;
+    var ox = rp.cx * s, oy = rp.cy * s, x0 = Math.max(0, Math.floor(rp.cx) - 1), x1 = Math.min(MW - 1, Math.ceil(rp.cx + RPG_VW) + 1), y0 = Math.max(0, Math.floor(rp.cy) - 1), y1 = Math.min(MH - 1, Math.ceil(rp.cy + RPG_VH) + 2);
+    c.fillStyle = B.g[0]; c.fillRect(0, 0, RPG_VW * s, RPG_VH * s);
+    var r = rg(), ents = rpgEntities(), x, y;
+    for (y = y0; y <= y1; y++) for (x = x0; x <= x1; x++) {
+      var ch = m[y].charAt(x), done = false;
+      if (ch === 'X') { var se = ents.filter(function (e) { return e.kind === 'search' && e.x === x && e.y === y; })[0]; done = !!(se && se.done); }
+      rpgDrawTile(c, ch, x, y, B, ts, m, x * s - ox, y * s - oy, done);
+    }
+    /* sorties */
+    var lock = rpgLocked();
+    sc.exitc.forEach(function (e) { rpgDrawExit(c, e, e[0] * s - ox, e[1] * s - oy, 'next', lock, ts, sc.exit_side); });
+    if (!sc.cave) sc.enter.forEach(function (e) { rpgDrawExit(c, e, e[0] * s - ox, e[1] * s - oy, 'prev', false, ts, sc.enter_side); });
+    /* entités */
+    var list = [];
+    ents.forEach(function (n) {
+      if (n.kind === 'search') return;
+      list.push({ y: n.y, f: function () {
+        var cx = n.x * s - ox + s / 2, cy = n.y * s - oy + s / 2 - 2 + (n.kind === 'foe' ? Math.sin(ts / 260 + n.x) * 2 : 0), near = Math.abs(n.x - px) + Math.abs(n.y - py) <= 3;
+        var done = n.kind === 'npc' && n.role !== 'marchand' && n.role !== 'aub' && r.done['z' + rp.zone + '_' + n.role];
+        rpgDrawChar(c, n.id, cx, cy, n.kind === 'boss' ? '#d03a3a' : n.kind === 'foe' ? '#c04aa8' : done ? '#6cc070' : '#ffd24a', n.kind === 'boss' ? 20 : 18);
+        var bx = cx + 15, by = cy - 20 + Math.sin(ts / 200 + n.x) * 2;
+        if (n.kind === 'foe' || n.kind === 'boss') { c.fillStyle = n.kind === 'boss' ? '#d03a3a' : '#7a3fd6'; c.beginPath(); c.arc(bx, by, 8, 0, 7); c.fill(); c.fillStyle = '#fff'; c.font = '800 11px sans-serif'; c.textAlign = 'center'; c.fillText(n.kind === 'boss' ? '!!' : '⚔', bx, by + 4); }
+        else if (!done) { c.fillStyle = '#ffd24a'; c.beginPath(); c.arc(bx, by, 8, 0, 7); c.fill(); c.fillStyle = '#2a1a50'; c.font = '800 11px sans-serif'; c.textAlign = 'center'; c.fillText(n.role === 'marchand' || n.role === 'aub' ? '…' : '!', bx, by + 4); }
+        else { c.fillStyle = '#4caf58'; c.font = '800 13px sans-serif'; c.textAlign = 'center'; c.fillText('✓', bx, by + 4); }
+        if (near) { var nm = chName(n.id); c.font = '700 11px sans-serif'; c.textAlign = 'center'; var tw = c.measureText(nm).width + 12; c.fillStyle = 'rgba(25,12,55,.78)'; c.fillRect(cx - tw / 2, cy + 21, tw, 15); c.fillStyle = '#fff'; c.fillText(nm, cx, cy + 32); }
+      } });
+    });
+    list.push({ y: py + .01, f: function () { var bob = rp.walk ? Math.abs(Math.sin(ts / 70)) * 3 : 0; rpgDrawChar(c, null, px * s - ox + s / 2, py * s - oy + s / 2 - 2 - bob, '#7c5cff', 18, true); } });
+    list.sort(function (a, b) { return a.y - b.y; }).forEach(function (e) { e.f(); });
+    /* bannière */
+    var zone = RPG_M[rp.zone], label = zone.jp + '  ' + sc.label;
+    c.font = '800 14px sans-serif'; c.textAlign = 'left'; var bw = c.measureText(label).width + 20; c.fillStyle = 'rgba(20,10,50,.62)'; c.fillRect(8, 8, bw, 26); c.fillStyle = '#fff'; c.fillText(label, 18, 26);
+    if (B.night) { c.fillStyle = 'rgba(20,10,70,.14)'; c.fillRect(0, 0, RPG_VW * s, RPG_VH * s); }
+    var fa = 1 - Math.min(1, (performance.now() - rp.fade) / 450); if (fa > 0) { c.fillStyle = 'rgba(15,8,40,' + fa + ')'; c.fillRect(0, 0, RPG_VW * s, RPG_VH * s); }
     return true;
   }
-  /* le héros : l'avatar du joueur (rpgDrawChar prend un id ; ici id null → avatar) */
-  var _rpgDrawChar0 = rpgDrawChar;
-  rpgDrawChar = function (c, id, cx, cy, ring, r, hero) {
-    if (id === null || hero) {
-      var src = ''; try { src = avatarOf(user.name, user.avatar); } catch (e) { /* ignore */ }
-      var im = rpgImg(src); r = r || 13;
-      c.save(); c.fillStyle = 'rgba(0,0,0,.25)'; c.beginPath(); c.ellipse(cx, cy + r - 1, r * .8, 4, 0, 0, 7); c.fill();
-      c.beginPath(); c.arc(cx, cy, r, 0, 7); c.closePath(); c.fillStyle = '#fff'; c.fill(); c.clip();
-      if (im) { var sc = Math.max(2 * r / im.width, 2 * r / im.height); c.drawImage(im, cx - im.width * sc / 2, cy - im.height * sc / 2, im.width * sc, im.height * sc); }
-      c.restore(); c.beginPath(); c.arc(cx, cy, r, 0, 7); c.lineWidth = 3; c.strokeStyle = ring || '#fff'; c.stroke();
-      return;
-    }
-    _rpgDrawChar0(c, id, cx, cy, ring, r);
-  };
+  function rpgDrawExit(c, e, sx, sy, kind, locked, t, side) {
+    var s = RPG_TS, cx = sx + s / 2, cy = sy + s / 2, ang = { L: Math.PI, R: 0, T: -Math.PI / 2, B: Math.PI / 2 }[side] || 0;
+    if (kind === 'prev') ang += Math.PI;
+    if (locked) { c.fillStyle = 'rgba(60,20,90,.55)'; c.fillRect(sx, sy, s, s); c.strokeStyle = '#ffd24a'; c.lineWidth = 2; c.strokeRect(sx + 3, sy + 3, s - 6, s - 6); c.fillStyle = '#ffd24a'; c.font = '800 20px sans-serif'; c.textAlign = 'center'; c.fillText('🔒', cx, cy + 7); return; }
+    var pul = .5 + .35 * Math.sin(t / 280); c.save(); c.translate(cx, cy); c.rotate(ang); c.globalAlpha = pul; c.fillStyle = kind === 'next' ? '#ffe46a' : '#fff'; c.beginPath(); c.moveTo(-8, -11); c.lineTo(10, 0); c.lineTo(-8, 11); c.lineTo(-3, 0); c.closePath(); c.fill(); c.restore();
+  }
   function rpgLoop(ts) {
     rp.raf = 0;
     if (!document.getElementById('rpgCv') || document.getElementById('vStory').hidden) return;
@@ -28748,6 +28977,31 @@ body.tbopen { overflow: hidden; }
     rp.raf = requestAnimationFrame(rpgLoop);
   }
   function rpgStartLoop() { if (!rp.raf) rp.raf = requestAnimationFrame(rpgLoop); }
+  /* ---------- fonds de combat ---------- */
+  var RPG_BGC = {};
+  function rpgBgUrl(biome) {
+    var cu = (typeof ASSETS === 'object') && ASSETS['bg_' + biome]; if (cu) return cu;
+    if (RPG_BGC[biome]) return RPG_BGC[biome];
+    var B = RPG_B[biome] || RPG_B.village, cv = document.createElement('canvas'); cv.width = 720; cv.height = 300; var c = cv.getContext('2d'), i, W = 720, H = 300, hz = 190;
+    var g = c.createLinearGradient(0, 0, 0, hz); g.addColorStop(0, B.sky[0]); g.addColorStop(1, B.sky[1]); c.fillStyle = g; c.fillRect(0, 0, W, H);
+    if (B.night) { c.fillStyle = '#fff'; for (i = 0; i < 60; i++) c.fillRect(Math.random() * W, Math.random() * 120, 1.6, 1.6); c.fillStyle = '#fff6d8'; c.beginPath(); c.arc(590, 60, 24, 0, 7); c.fill(); c.fillStyle = B.sky[0]; c.beginPath(); c.arc(600, 54, 22, 0, 7); c.fill(); }
+    else { c.fillStyle = 'rgba(255,255,255,.75)'; c.beginPath(); c.arc(560, 60, 26, 0, 7); c.fill(); c.fillStyle = 'rgba(255,255,255,.5)'; for (i = 0; i < 4; i++) { c.beginPath(); c.ellipse(80 + i * 170, 50 + (i % 2) * 24, 50, 12, 0, 0, 7); c.fill(); } }
+    var far = B.far, fc = B.night ? '#2a2058' : rpgShade(B.sky[0], .78);
+    if (far === 'mount') { c.fillStyle = B.snow ? '#c9d6e8' : '#8fa7c4'; c.beginPath(); c.moveTo(0, hz); c.lineTo(110, 70); c.lineTo(210, 150); c.lineTo(330, 40); c.lineTo(470, 150); c.lineTo(580, 80); c.lineTo(720, 150); c.lineTo(720, hz); c.fill(); c.fillStyle = '#fff'; c.beginPath(); c.moveTo(330, 40); c.lineTo(290, 82); c.lineTo(330, 72); c.lineTo(370, 86); c.closePath(); c.fill(); c.beginPath(); c.moveTo(110, 70); c.lineTo(84, 100); c.lineTo(112, 94); c.lineTo(140, 102); c.closePath(); c.fill(); }
+    else if (far === 'hills') { c.fillStyle = rpgShade(B.g[0], .85); for (i = 0; i < 4; i++) { c.beginPath(); c.arc(60 + i * 200, hz + 40, 120 + (i % 2) * 20, Math.PI, 0); c.fill(); } }
+    else if (far === 'bamboo') { for (i = 0; i < 26; i++) { c.fillStyle = i % 2 ? '#5fa648' : '#7bc15a'; var bx = 10 + i * 28, bt = 30 + (i * 37) % 50; c.fillRect(bx, bt, 6, hz - bt); c.fillStyle = 'rgba(0,0,0,.2)'; for (var j = bt + 12; j < hz; j += 18) c.fillRect(bx - 1, j, 8, 2); } }
+    else if (far === 'temple') { c.fillStyle = '#a83a36'; c.fillRect(300, 80, 120, 110); c.fillStyle = '#6a2a28'; c.beginPath(); c.moveTo(270, 90); c.lineTo(360, 40); c.lineTo(450, 90); c.closePath(); c.fill(); c.fillStyle = '#7a2a28'; c.beginPath(); c.moveTo(290, 135); c.lineTo(360, 100); c.lineTo(430, 135); c.closePath(); c.fill(); c.fillStyle = '#e8c040'; c.fillRect(350, 140, 20, 50); }
+    else if (far === 'castle') { c.fillStyle = '#e8e4da'; c.fillRect(280, 100, 160, 90); c.fillStyle = '#4f6f8f'; for (i = 0; i < 3; i++) { var w2 = 150 - i * 36; c.beginPath(); c.moveTo(360 - w2 / 2 - 10, 100 - i * 30); c.lineTo(360, 70 - i * 30); c.lineTo(360 + w2 / 2 + 10, 100 - i * 30); c.closePath(); c.fill(); c.fillStyle = '#e8e4da'; c.fillRect(360 - w2 / 2 + 8, 100 - i * 30, w2 - 16, 4); c.fillStyle = '#4f6f8f'; } }
+    else if (far === 'sea') { c.fillStyle = B.w[0]; c.fillRect(0, 120, W, 70); c.fillStyle = 'rgba(255,255,255,.4)'; for (i = 0; i < 12; i++) c.fillRect(20 + i * 60, 140 + (i % 3) * 12, 30, 2); c.fillStyle = '#7c8794'; c.fillRect(470, 90, 160, 40); c.fillStyle = '#e2e8ee'; c.fillRect(490, 70, 8, 20); c.fillRect(540, 62, 8, 28); }
+    else if (far === 'city') { for (i = 0; i < 18; i++) { var bw = 34 + (i * 13) % 30, bh = 50 + (i * 47) % 100, bxx = i * 42 - 8; c.fillStyle = B.night ? ['#1d1a44', '#2a2058', '#251c4e'][i % 3] : rpgShade(B.bld ? B.bld[i % B.bld.length] : '#b9a68a', .85); c.fillRect(bxx, hz - bh, bw, bh); if (B.night) { for (var wy = hz - bh + 6; wy < hz - 6; wy += 10) for (var wx = bxx + 5; wx < bxx + bw - 5; wx += 9) { c.fillStyle = Math.random() > .5 ? '#ffe28a' : '#171a35'; c.fillRect(wx, wy, 5, 6); } } } }
+    /* arbres / décor médian */
+    if (B.tree && far !== 'bamboo' && far !== 'city' && far !== 'sea') { for (i = 0; i < 9; i++) { var tx = 20 + i * 82 + (i % 2) * 20, ty = hz - 6; if (B.tree === 'pine' || B.tree === 'snowpine') { c.fillStyle = B.snow ? '#2f6a52' : '#2c6b3f'; for (var q = 0; q < 3; q++) { c.beginPath(); c.moveTo(tx, ty - 60 + q * 14); c.lineTo(tx - 24 + q * 3, ty - 20 + q * 14); c.lineTo(tx + 24 - q * 3, ty - 20 + q * 14); c.fill(); } } else { c.fillStyle = B.tree === 'maple' ? '#c9482c' : B.tree === 'sakura' ? '#e98fb2' : '#2f8a44'; c.beginPath(); c.arc(tx, ty - 34, 30, 0, 7); c.fill(); c.fillStyle = '#6a4a2a'; c.fillRect(tx - 4, ty - 8, 8, 14); } } }
+    var gg = c.createLinearGradient(0, hz, 0, H); gg.addColorStop(0, B.g[0]); gg.addColorStop(1, rpgShade(B.g[1], .8)); c.fillStyle = gg; c.fillRect(0, hz, W, H - hz);
+    if (B.gr === 'paving' || B.gr === 'asphalt' || B.gr === 'planks') { c.strokeStyle = 'rgba(0,0,0,.12)'; c.lineWidth = 1.5; for (i = 0; i < 8; i++) { c.beginPath(); c.moveTo(W / 2 + (i - 4) * 10, hz); c.lineTo((i - 3.5) * 120 + W / 2, H); c.stroke(); } for (i = 1; i < 5; i++) { c.beginPath(); c.moveTo(0, hz + i * i * 6); c.lineTo(W, hz + i * i * 6); c.stroke(); } }
+    else { c.fillStyle = 'rgba(255,255,255,.12)'; for (i = 0; i < 50; i++) c.fillRect(Math.random() * W, hz + Math.random() * (H - hz), 3, 2); }
+    if (B.night) { c.fillStyle = 'rgba(20,10,70,.22)'; c.fillRect(0, 0, W, H); }
+    return (RPG_BGC[biome] = cv.toDataURL('image/jpeg', .82));
+  }
   /* ---------- interface ---------- */
   function rpgHearts() { try { regen(); } catch (e) { /* ignore */ } var h = S.hearts || 0, o = ''; for (var i = 0; i < MAX_HEARTS; i++) o += i < h ? '❤️' : '🖤'; return o; }
   function rpgHud() {
@@ -28757,37 +29011,38 @@ body.tbopen { overflow: hidden; }
   function rpgDone(k) { return !!rg().done['z' + rp.zone + '_' + k]; }
   function rpgJournal() {
     var el = document.getElementById('rpgJournal'); if (!el) return;
-    var r = rg(), zi = rp.zone, m = RPG_M[zi], got = (r.yk.z[zi] || []).length;
+    var r = rg(), zi = rp.zone, m = RPG_M[zi], kills = (r.kills[zi] || []).length, srch = 0, k;
+    for (k in r.sr.k) if (k.indexOf(zi + '_') === 0) srch++;
     function row(ok, ic, t) { return '<li class="' + (ok ? 'ok' : '') + '"><span>' + (ok ? '✅' : ic) + '</span>' + t + '</li>'; }
     var chips = RPG_M.map(function (z, i) { var lk = i > r.un; return '<button type="button" class="rpgchip2' + (i === zi ? ' on' : '') + '" data-rpgz="' + i + '"' + (lk ? ' disabled' : '') + '>' + (lk ? '🔒' : '') + '<b class="jp">' + z.jp + '</b><small>' + z.lv.toUpperCase() + '</small></button>'; }).join('');
-    el.innerHTML = '<div class="rpgzone">' + chips + '</div><h3 class="rpgjt"><span class="jp">' + m.jp + '</span> ' + esc(m.n) + ' <small>· ' + esc(m.sub) + ' · ' + m.lv.toUpperCase() + '</small></h3><ul class="rpgquests">' +
-      row(rpgDone('sensei'), '🎓', 'Leçon de ' + esc(chName('sensei'))) + row(rpgDone('rival'), '⚔️', 'Duel contre ' + esc(chName('rival'))) + row(rpgDone('amie'), '📖', 'Lecture avec ' + esc(chName('amie'))) +
-      row(got >= 4, '👾', 'Méchants du jour : ' + got + '/4') + row(!!r.boss[zi], '🏯', 'Gardien : ' + esc(chName(m.bg))) + '</ul><p class="small muted">Touche la carte pour te déplacer, ou utilise les flèches / la croix. Les méchants reviennent chaque jour.</p>';
+    var reached = r.ms[zi] || 0, dots = RPG_S[zi].map(function (s, i) { return '<button type="button" class="rpgdot' + (i === rp.sc ? ' on' : '') + '" data-rpgs="' + i + '"' + (i > reached ? ' disabled' : '') + ' title="' + esc(s.label) + '">' + (i + 1) + '</button>'; }).join('');
+    el.innerHTML = '<div class="rpgzone">' + chips + '</div><h3 class="rpgjt"><span class="jp">' + m.jp + '</span> ' + esc(m.n) + ' <small>· ' + esc(m.sub) + ' · ' + m.lv.toUpperCase() + '</small></h3>' +
+      '<div class="rpgscn"><span class="small muted">Cartes :</span>' + dots + '<b class="small">' + esc(rpgScene().label) + '</b></div><ul class="rpgquests">' +
+      row(kills >= 4, '⚔️', 'Ennemis vaincus sur la route : ' + kills + '/5 <small>(4 pour défier le gardien)</small>') + row(!!r.boss[zi], '🏯', 'Gardien : ' + esc(chName(m.bg))) +
+      row(rpgDone('sensei'), '🎓', 'Leçon de ' + esc(chName('sensei'))) + row(rpgDone('rival'), '🥋', 'Duel contre ' + esc(chName('rival'))) + row(rpgDone('amie'), '📖', 'Lecture avec ' + esc(chName('amie'))) +
+      row(srch >= 8, '🔎', 'Cachettes fouillées aujourd\'hui : ' + srch) + '</ul><p class="small muted">Touche la carte pour te déplacer (ou croix / flèches). Fouille les buissons ✨, croise les ennemis sur la route, trouve l\'auberge.</p>';
   }
   function rpgRender(host) {
     setVox(false); host.onclick = null; host.classList.add('rpgon');
     var r = rg();
-    if (!rp.init) { rp.init = 1; rpgEnter(Math.min(r.z || 0, r.un), true); }
-    if (rp.zone > r.un) rpgEnter(r.un, true);
-    host.innerHTML = storyNav() + '<div class="rpg' + (rp.mode === 'battle' ? ' btl' : '') + '" id="rpgRoot"><div class="rpghud" id="rpgHud"></div><div class="rpgmapw" id="rpgMapW"><canvas id="rpgCv" width="' + RPG_Z[0].map[0].length * RPG_TS + '" height="' + RPG_Z[0].map.length * RPG_TS + '" aria-label="Carte du jeu"></canvas></div><div id="rpgDlg" class="rpgdlg" hidden></div>' +
-      '<div class="rpgpad" id="rpgPad"><div class="dp"><button type="button" data-rpgd="u" aria-label="Haut">▲</button><button type="button" data-rpgd="l" aria-label="Gauche">◀</button><button type="button" data-rpgd="a" class="ab" aria-label="Parler">A</button><button type="button" data-rpgd="r" aria-label="Droite">▶</button><button type="button" data-rpgd="d" aria-label="Bas">▼</button></div></div>' +
+    if (!rp.init) { rp.init = 1; var z = Math.min(r.z || 0, r.un), s = Math.min(r.s || 0, r.ms[z] || 0); rpgGo(z, s, 'in'); if (r.px !== undefined && r.pz === z && r.ps === s) { /* position non restaurée volontairement */ } }
+    if (rp.zone > r.un) rpgGo(r.un, 0, 'in');
+    host.innerHTML = storyNav() + '<div class="rpg' + (rp.mode === 'battle' ? ' btl' : '') + '" id="rpgRoot"><div class="rpghud" id="rpgHud"></div><div class="rpgmapw" id="rpgMapW"><canvas id="rpgCv" aria-label="Carte du jeu"></canvas></div><div id="rpgDlg" class="rpgdlg" hidden></div>' +
+      '<div class="rpgpad" id="rpgPad"><div class="dp"><button type="button" data-rpgd="u" aria-label="Haut">▲</button><button type="button" data-rpgd="l" aria-label="Gauche">◀</button><button type="button" data-rpgd="a" class="ab" aria-label="Agir">A</button><button type="button" data-rpgd="r" aria-label="Droite">▶</button><button type="button" data-rpgd="d" aria-label="Bas">▼</button></div></div>' +
       '<div class="panel rpgjournal" id="rpgJournal"></div></div>';
     bindStoryNav(host); rpgHud(); rpgJournal();
     if (rp.mode === 'talk' && rp.dlg) rpgDlgShow(); else if (rp.mode === 'battle' && rp.bt) rpgBtShow(); else rp.mode = 'map';
     rpgStartLoop();
-    if (!r.intro) { r.intro = 1; persist(); rpgTalkZone(); }
+    if (!r.zi[rp.zone] && rp.mode === 'map') rpgZoneIntro();
   }
   /* ---------- dialogues ---------- */
-  function rpgSay(id, lines, then, extra) {
-    rp.mode = 'talk'; rp.dlg = { id: id, lines: lines.slice(), i: 0, then: then || null, extra: extra || '', choices: null };
-    rpgDlgShow();
-  }
+  function rpgSay(id, lines, then, extra) { rp.mode = 'talk'; rp.dlg = { id: id, lines: lines.slice(), i: 0, then: then || null, extra: extra || '', choices: null }; rpgDlgShow(); }
   function rpgAsk(id, text, choices) { rp.mode = 'talk'; rp.dlg = { id: id, lines: [text], i: 0, then: null, extra: '', choices: choices }; rpgDlgShow(); }
   function rpgDlgShow() {
     var el = document.getElementById('rpgDlg'), root = document.getElementById('rpgRoot'); if (!el || !rp.dlg) return;
     var d = rp.dlg, last = d.i >= d.lines.length - 1, nm = d.id === null ? (user ? user.name : 'Toi') : chName(d.id);
     var pt = d.id === null ? '<img class="rpgpt" src="' + esc(avatarOf(user.name, user.avatar)) + '" alt="">' : chPortrait(d.id);
-    var body = '<div class="rpgdb"><b class="rpgdn">' + esc(nm) + '</b><p class="rpgdt">' + (d.html ? d.lines[d.i] : esc(d.lines[d.i])) + '</p>' + (last ? d.extra : '') + '</div>';
+    var body = '<div class="rpgdb"><b class="rpgdn">' + esc(nm) + '</b><p class="rpgdt">' + esc(d.lines[d.i]) + '</p>' + (last ? d.extra : '') + '</div>';
     var acts = last && d.choices ? '<div class="rpgch">' + d.choices.map(function (c, i) { return '<button type="button" class="btn' + (c.p ? ' primary' : '') + '" data-rpgc="' + i + '"' + (c.dis ? ' disabled' : '') + '>' + c.l + '</button>'; }).join('') + '</div>' : '<div class="rpgch"><button type="button" class="btn primary" data-rpgn="1">' + (last && !d.then ? 'Fermer' : '▶') + '</button></div>';
     el.hidden = false; el.innerHTML = '<div class="rpgdbox">' + pt + body + '</div>' + acts;
     if (root) root.classList.add('talk');
@@ -28800,105 +29055,115 @@ body.tbopen { overflow: hidden; }
     if (d.choices) return;
     var f = d.then; rpgDlgClose(); if (f) f();
   }
-  function rpgTalkZone() {
-    var m = RPG_M[rp.zone], lines = m.intro.slice();
-    lines.push(rp.zone === 0 ? 'Je suis ' + chName('sensei') + ', ton guide. Va voir les habitants : ' + chName('rival') + ' (duel), ' + chName('amie') + ' (lecture), et moi (leçon).' : 'Prépare-toi : ' + chName('sensei') + ' est de retour pour t\'aider.');
-    rpgSay('sensei', lines);
-  }
-  /* ---------- PNJ ---------- */
+  /* ---------- PNJ, ennemis, fouilles ---------- */
   function rpgInteract(n) {
-    var zi = rp.zone, r = rg(), m = RPG_M[zi], key = 'z' + zi + '_' + n.role;
+    var zi = rp.zone, r = rg(), key = 'z' + zi + '_' + n.role;
+    if (n.kind === 'search') return rpgSearch(n);
+    if (n.kind === 'foe') return rpgFightFoe(n);
     if (n.role === 'sensei') {
-      if (r.done[key]) return rpgSay('sensei', ['Beau travail ! Continue à explorer : chaque méchant battu te rend plus fort.'], null);
-      return rpgAsk('sensei', 'Prêt pour ta leçon du jour à ' + m.n + ' ? Je te montre 3 mots, puis un petit quiz de 3 questions !', [{ l: 'Oui, allons-y', p: 1, f: rpgLesson }, { l: 'Plus tard', f: rpgDlgClose }]);
+      if (r.done[key]) return rpgSay('sensei', [rpgLine('sensei', 'thanks')], null);
+      return rpgAsk('sensei', rpgLine('sensei', 'greet') + ' ' + rpgLine('sensei', 'offer'), [{ l: '🎓 Leçon du jour (3 mots + quiz)', p: 1, f: rpgLesson }, { l: 'Plus tard', f: rpgDlgClose }]);
     }
     if (n.role === 'rival') {
-      if (r.done[key]) return rpgSay('rival', ['Pff… Tu m\'as battu cette fois. Mais je m\'entraîne, on se reverra !'], null);
-      return rpgAsk('rival', 'Hé, voyageur ! Un duel de vocabulaire ? 5 questions : il t\'en faut au moins 4 bonnes pour gagner !', [{ l: '⚔️ Relever le défi', p: 1, f: rpgDuel }, { l: 'Pas maintenant', f: rpgDlgClose }]);
+      if (r.done[key]) return rpgSay('rival', [rpgLine('rival', 'defeat')], null);
+      return rpgAsk('rival', rpgLine('rival', 'greet') + ' ' + rpgLine('rival', 'offer'), [{ l: '🥋 Duel de vocabulaire (5 questions)', p: 1, f: rpgDuel }, { l: 'Pas maintenant', f: rpgDlgClose }]);
     }
     if (n.role === 'amie') {
-      if (r.done[key]) return rpgAsk('amie', 'Merci pour ton aide ! Tu veux lire un autre texte ensemble (sans récompense, juste pour t\'entraîner) ?', [{ l: '📖 Lire un texte', p: 1, f: function () { rpgReading(true); } }, { l: 'Non merci', f: rpgDlgClose }]);
-      return rpgAsk('amie', 'Salut ! J\'ai trouvé un petit texte mais je ne suis pas sûre de bien le comprendre. Tu veux le lire avec moi et répondre aux questions ?', [{ l: '📖 Lire le texte', p: 1, f: function () { rpgReading(false); } }, { l: 'Plus tard', f: rpgDlgClose }]);
+      var again = !!r.done[key];
+      return rpgAsk('amie', again ? rpgLine('amie', 'thanks') + ' Un autre texte, juste pour t\'entraîner ?' : rpgLine('amie', 'greet') + ' ' + rpgLine('amie', 'offer'), [{ l: '📖 Lire un texte et répondre', p: 1, f: function () { rpgReading(again); } }, { l: 'Plus tard', f: rpgDlgClose }]);
     }
     if (n.role === 'marchand') return rpgShop();
     if (n.role === 'aub') return rpgInn();
     if (n.role === 'boss') return rpgBossTalk();
   }
+  function rpgSearch(n) {
+    var r = rg(), key = rp.zone + '_' + rp.sc + '_' + n.i;
+    if (r.sr.k[key]) return rpgSay(null, ['Il n\'y a plus rien ici. Je ferais mieux de continuer.'], null);
+    r.sr.k[key] = 1; persist();
+    var roll = Math.random(), zi = rp.zone;
+    if (roll < 0.38) { var c = Math.round((3 + Math.random() * 6) * rpgMult()); S.coins = coinsOf() + c; S.coinsTotal = (S.coinsTotal || 0) + c; persist(); sfx('ok'); rpgSay(null, ['Tu fouilles… et tu trouves une petite bourse !'], null, '<p class="rpgrw"><span class="rpgchip gold">+' + c + ' 🪙</span></p>'); }
+    else if (roll < 0.55 && (S.hearts || 0) < MAX_HEARTS) { S.hearts = Math.min(MAX_HEARTS, (S.hearts || 0) + 1); persist(); sfx('ok'); rpgSay(null, ['Une boulette de riz oubliée ! Elle te redonne des forces.'], null, '<p class="rpgrw"><span class="rpgchip">+1 ❤️</span></p>'); }
+    else if (roll < 0.75) { var rw = rpgGive(6, 0); sfx('ok'); var w = rpgPick(rpgPool(RPG_M[zi].lv), 1)[0]; rpgSay(null, ['Tu trouves un vieux carnet de vocabulaire' + (w ? ' : « ' + w.jp + ' » = ' + rpgFr(w) : '') + '.'], null, rw); }
+    else if (roll < 0.9) { rpgSay(null, ['Rien d\'intéressant… seulement des feuilles et de la poussière.'], null); }
+    else { var fid = 'm' + (zi + 1) + (Math.random() < .5 ? 'a' : 'b'); rpgSay(null, ['Quelque chose bouge dans la cachette !'], function () { rpgFoeBattle({ id: fid, small: true, key: null }); }); }
+  }
+  function rpgFightFoe(n) { rpgFoeBattle({ id: n.id, small: false, key: rpgFoeKey(n.i) }); }
+  function rpgFoeBattle(o) {
+    var zi = rp.zone;
+    rpgBattle({ title: chName(o.id) + ' te barre la route !', foeId: o.id, qs: rpgVocabQs(zi, o.small ? 2 : 3, false), need: o.small ? 1 : 2, kind: 'foe',
+      win: function () {
+        if (o.key) { var r = rg(); r.yk.k[o.key] = 1; var kk = (r.kills[zi] = r.kills[zi] || []); if (kk.indexOf(o.key) < 0) kk.push(o.key); }
+        return { first: true, xp: o.small ? 4 : 7, coins: o.small ? 2 : 3, say: [o.id, [rpgLine(o.id, 'defeat')]] };
+      }, lose: function () { return [o.id, [rpgLine(o.id, 'victory')]]; } });
+  }
   function rpgShop() {
-    var items = [{ id: 'onigiri', l: '🍙 Onigiri · +1 ❤️', c: 25, h: 1 }, { id: 'mochi', l: '🍡 Mochi · +2 ❤️', c: 45, h: 2 }, { id: 'matcha', l: '🍵 Matcha · cœurs au max', c: 80, h: 99 }];
-    rpgAsk('marchand', 'Bienvenue ! Un en-cas pour reprendre des forces ? (Tu as ' + coinsOf() + ' 🪙)', items.map(function (it) {
+    var items = [{ l: '🍙 Onigiri · +1 ❤️', c: 25, h: 1 }, { l: '🍡 Mochi · +2 ❤️', c: 45, h: 2 }, { l: '🍵 Matcha · cœurs au max', c: 80, h: 99 }];
+    rpgAsk('marchand', rpgLine('marchand', 'greet') + ' (Tu as ' + coinsOf() + ' 🪙)', items.map(function (it) {
       return { l: it.l + ' — ' + it.c + ' 🪙', dis: coinsOf() < it.c || (S.hearts >= MAX_HEARTS), f: function () {
         if (coinsOf() < it.c) return; S.coins = coinsOf() - it.c; S.hearts = Math.min(MAX_HEARTS, (S.hearts || 0) + it.h); if (S.hearts >= MAX_HEARTS) S.heartsAt = Date.now(); persist(); sfx('ok'); rpgHud();
-        rpgSay('marchand', ['Merci beaucoup ! Voilà, ' + it.l.split(' ·')[0] + ' pour toi. Reviens quand tu veux !'], null);
+        rpgSay('marchand', [rpgLine('marchand', 'thanks')], null);
       } };
     }).concat([{ l: 'Rien pour le moment', f: rpgDlgClose }]));
   }
   function rpgInn() {
     var r = rg(), free = r.innDay !== rpgDay();
-    rpgAsk('aub', free ? 'Bienvenue à l\'auberge ! Le premier repos du jour est offert : cœurs au maximum.' : 'Bienvenue ! Un bon bain et un lit chaud : cœurs au maximum pour 40 🪙.', [
+    rpgAsk('aub', rpgLine('aub', 'greet') + (free ? ' Le premier repos du jour est offert : cœurs au maximum.' : ' Un bon lit pour 40 🪙 : cœurs au maximum.'), [
       { l: free ? '🛏 Se reposer (gratuit)' : '🛏 Se reposer — 40 🪙', p: 1, dis: S.hearts >= MAX_HEARTS || (!free && coinsOf() < 40), f: function () {
         if (!free) S.coins = coinsOf() - 40; r.innDay = rpgDay(); S.hearts = MAX_HEARTS; S.heartsAt = Date.now(); persist(); sfx('ok'); rpgHud();
-        rpgSay('aub', ['Voilà, comme neuf ! Bonne route, voyageur.'], null);
+        rpgSay('aub', [rpgLine('aub', 'thanks')], null);
       } }, { l: 'Pas besoin', f: rpgDlgClose }]);
   }
   function rpgLesson() {
     var zi = rp.zone, pool = rpgPool(RPG_M[zi].lv), words = rpgPick(pool, 3);
     var lines = ['Voici 3 mots à retenir :'].concat(words.map(function (e) { return e.jp + (e.kana && e.kana !== e.jp ? '（' + e.kana + '）' : '') + ' = ' + rpgFr(e); }));
     rpgSay('sensei', lines, function () {
-      rpgBattle({ title: 'Quiz de ' + chName('sensei'), foeId: 'sensei', foeG: null, qs: words.map(function (e) { return rpgQ(e, pool); }), need: 2, kind: 'quiz',
-        win: function () { var k = 'z' + zi + '_sensei', first = !rg().done[k]; rg().done[k] = 1; return { first: first, xp: first ? 14 : 3, coins: first ? 8 : 0, say: ['sensei', ['Excellent ! Tu retiens vite. N\'oublie pas de les revoir dans le Dojo !']] }; },
-        lose: function () { return ['sensei', ['Ce n\'est pas grave. Relis les mots et reviens me voir quand tu veux.']]; } });
+      rpgBattle({ title: 'Quiz de ' + chName('sensei'), foeId: 'sensei', friendly: 1, qs: words.map(function (e) { return rpgQ(e, pool); }), need: 2, kind: 'quiz',
+        win: function () { var k = 'z' + zi + '_sensei', first = !rg().done[k]; rg().done[k] = 1; return { first: first, xp: first ? 14 : 3, coins: first ? 8 : 0, say: ['sensei', [rpgLine('sensei', 'thanks')]] }; },
+        lose: function () { return ['sensei', [rpgLine('sensei', 'encourage')]]; } });
     });
   }
   function rpgDuel() {
     var zi = rp.zone;
     rpgBattle({ title: 'Duel contre ' + chName('rival'), foeId: 'rival', qs: rpgVocabQs(zi, 5, true), need: 4, kind: 'duel',
-      win: function () { var k = 'z' + zi + '_rival', first = !rg().done[k]; rg().done[k] = 1; return { first: first, xp: first ? 22 : 4, coins: first ? 12 : 1, say: ['rival', ['Tch… bien joué. Tu as gagné cette manche !']] }; },
-      lose: function () { return ['rival', ['Haha ! Entraîne-toi encore un peu, voyageur !']]; } });
+      win: function () { var k = 'z' + zi + '_rival', first = !rg().done[k]; rg().done[k] = 1; return { first: first, xp: first ? 22 : 4, coins: first ? 12 : 1, say: ['rival', [rpgLine('rival', 'defeat')]] }; },
+      lose: function () { return ['rival', [rpgLine('rival', 'victory')]]; } });
   }
   function rpgReading(practice) {
     var zi = rp.zone, data = rpgReadQs(zi, 3), a = data.text;
     var txt = '<div class="rpgtext"><h4 class="jp">' + rdTok(a.title, !!S.rdFuri, 'span') + '</h4>' + a.paras.map(function (p) { return '<p class="jp">' + rdTok(p, !!S.rdFuri, 'span') + '</p>'; }).join('') + '</div><p class="small muted">Touche un mot pour son sens. Lis tranquillement, puis passe aux questions.</p>';
     rp.mode = 'talk'; rp.dlg = { id: 'amie', lines: ['Voici le texte :'], i: 0, then: null, extra: txt, choices: [{ l: '読み終わりました ›', p: 1, f: function () {
-      rpgBattle({ title: 'Lecture avec ' + chName('amie'), foeId: 'amie', textHtml: txt, qs: data.qs, need: 2, kind: 'read',
-        win: function () { var k = 'z' + zi + '_amie', first = !rg().done[k] && !practice; if (first) rg().done[k] = 1; return { first: first, xp: first ? 18 : 3, coins: first ? 10 : 0, say: ['amie', ['Merci, j\'ai tout compris grâce à toi !']] }; },
-        lose: function () { return ['amie', ['Hmm, relisons-le encore une fois ensemble plus tard.']]; } });
+      rpgBattle({ title: 'Lecture avec ' + chName('amie'), foeId: 'amie', friendly: 1, textHtml: txt, qs: data.qs, need: 2, kind: 'read',
+        win: function () { var k = 'z' + zi + '_amie', first = !rg().done[k] && !practice; if (first) rg().done[k] = 1; return { first: first, xp: first ? 18 : 3, coins: first ? 10 : 0, say: ['amie', [rpgLine('amie', 'thanks')]] }; },
+        lose: function () { return ['amie', [rpgLine('amie', 'encourage')]]; } });
     } }] };
     rpgDlgShow();
   }
-  function rpgFightYokai(y) {
-    var zi = rp.zone;
-    rpgBattle({ title: chName(y.id) + ' apparaît !', foeG: y.g, foeId: ASSETS['pi_' + y.id] ? y.id : null, qs: rpgVocabQs(zi, 3, false), need: 2, kind: 'yokai',
-      win: function () { var yk = rg().yk; (yk.z[zi] = yk.z[zi] || []).push(y.i); return { first: true, xp: 7, coins: 3, say: null }; },
-      lose: function () { return null; } });
-  }
   function rpgBossTalk() {
-    var zi = rp.zone, m = RPG_M[zi], r = rg(), need = ['sensei', 'rival', 'amie'].filter(function (k) { return !r.done['z' + zi + '_' + k]; });
-    if (need.length > 1) return rpgSay(m.bg, ['Reviens quand tu auras terminé au moins deux défis de la zone (leçon, duel, lecture). Tu n\'es pas encore prêt !'], null);
-    rpgSay(m.bg, m.bossIn, function () {
-      rpgBattle({ title: 'Boss : ' + chName(m.bg), foeId: m.bg, qs: rpgVocabQs(zi, 10, true), need: 8, kind: 'boss',
-        win: function () { var first = !rg().boss[zi]; rg().boss[zi] = 1; if (zi + 1 > rg().un && zi < 4) rg().un = zi + 1; if (zi === 4) rg().fin = 1; return { first: first, xp: first ? 60 : 5, coins: first ? 40 : 0, say: [m.bg, m.bossWin], after: zi === 4 ? 'fin' : 'open' }; },
-        lose: function () { return [m.bg, ['Pas encore ! Entraîne-toi et reviens me défier.']]; } });
+    var zi = rp.zone, m = RPG_M[zi], r = rg(), kills = (r.kills[zi] || []).length;
+    if (kills < 4) return rpgSay(m.bg, [rpgLine(m.bg, 'greet') + ' Tu n\'as vaincu que ' + kills + ' ennemi(s) sur la route : reviens avec au moins 4 victoires !'], null);
+    rpgSay(m.bg, [rpgLine(m.bg, 'intro'), rpgLine(m.bg, 'offer')], function () {
+      rpgBattle({ title: 'Gardien : ' + chName(m.bg), foeId: m.bg, qs: rpgVocabQs(zi, 10, true), need: 8, kind: 'boss',
+        win: function () { var first = !rg().boss[zi]; rg().boss[zi] = 1; if (zi + 1 > rg().un && zi < 4) rg().un = zi + 1; if (zi === 4) rg().fin = 1; return { first: first, xp: first ? 60 : 5, coins: first ? 40 : 0, say: [m.bg, [rpgLine(m.bg, 'defeat'), m.bossWin]], after: zi === 4 ? 'fin' : 'open' }; },
+        lose: function () { return [m.bg, [rpgLine(m.bg, 'victory')]]; } });
     });
-  }
-  function rpgExit() {
-    var zi = rp.zone;
-    if (zi >= 4) { rpgSay('sensei', ['Tu as parcouru tout le Japon, du village de Sakura-mura jusqu\'au sommet du Mont Fuji. 🎌', 'Tu es devenu un vrai voyageur de la langue. Continue à t\'entraîner dans le Dojo : le chemin ne s\'arrête jamais !'], function () { rpgEnter(4, true); rpgJournal(); }); return; }
-    rpgEnter(zi + 1); rpgJournal(); rpgTalkZone();
   }
   /* ---------- combat ---------- */
   function rpgBattle(o) {
     try { regen(); } catch (e) { /* ignore */ }
-    if ((S.hearts || 0) <= 0) { rpgSay('aub', ['Tu n\'as plus de cœurs ! Un cœur revient toutes les 5 minutes. Tu peux aussi acheter un en-cas au marchand ou te reposer à l\'auberge.'], null); return; }
-    rp.mode = 'battle'; rp.bt = { o: o, i: 0, ok: 0, ko: 0, n: o.qs.length, ans: null, done: false };
+    if ((S.hearts || 0) <= 0) { rpgSay('aub', ['Tu n\'as plus de cœurs ! Un cœur revient toutes les 5 minutes. Cherche l\'auberge, ou fouille les cachettes : on y trouve parfois de quoi manger.'], null); return; }
+    rp.mode = 'battle'; rp.bt = { o: o, i: 0, ok: 0, ko: 0, n: o.qs.length, ans: null, fx: '', say: rpgLine(o.foeId, o.friendly ? 'greet' : 'intro') };
     rp.dlg = null; rpgBtShow();
+    var dl = document.getElementById('rpgDlg'); if (dl && dl.scrollIntoView) dl.scrollIntoView({ block: 'start' });
   }
   function rpgBtShow() {
     var el = document.getElementById('rpgDlg'), root = document.getElementById('rpgRoot'); if (!el || !rp.bt) return;
     var b = rp.bt, o = b.o, q = o.qs[Math.min(b.i, b.n - 1)], hp = Math.max(0, Math.round(100 * (b.n - b.ok) / b.n));
     root.classList.add('btl'); root.classList.remove('talk'); el.hidden = false;
-    var foe = o.foeId ? chPortrait(o.foeId, 'foe') : '<div class="rpgmon"><span class="jp">' + esc(o.foeG || '妖') + '</span></div>';
-    var h = '<div class="rpgbt"><div class="rpgbth"><b>' + esc(o.title) + '</b><span class="rpghearts" id="rpgBtH">' + rpgHearts() + '</span></div><div class="rpgfoe">' + foe + '<div class="rpghpw"><div class="rpghp"><i style="width:' + hp + '%"></i></div><small>Question ' + Math.min(b.i + 1, b.n) + ' / ' + b.n + '</small></div></div>';
+    var bg = rpgBgUrl(o.biome || rpgScene().biome), hero = ''; try { hero = avatarOf(user.name, user.avatar); } catch (e) { /* ignore */ }
+    var h = '<div class="rpgbt"><div class="rpgbth"><span><b>' + esc(o.title) + '</b> <small class="muted">· Question ' + Math.min(b.i + 1, b.n) + ' / ' + b.n + '</small></span><span class="rpghearts" id="rpgBtH">' + rpgHearts() + '</span></div>';
+    h += '<div class="rpgarena" style="background-image:url(&quot;' + esc(bg) + '&quot;)"><div class="rpgsay"><b>' + esc(chName(o.foeId)) + '</b> ' + esc(b.say) + '</div>' +
+      '<div class="rpgfoew' + (b.fx === 'hit' ? ' shake' : '') + '"><img class="rpgfoeimg" src="' + esc(chSrc(o.foeId)) + '" alt=""><div class="rpghpw"><div class="rpghp"><i style="width:' + hp + '%"></i></div></div></div>' +
+      '<div class="rpgherow' + (b.fx === 'miss' ? ' shake' : '') + '"><img class="rpgheroimg" src="' + esc(hero) + '" alt=""></div></div>';
     if (o.textHtml) h += '<details class="rpgagain"><summary class="jp">📖 本文をもう一度見る</summary>' + o.textHtml + '</details>';
     h += '<p class="rpgql">' + esc(q.lab) + '</p><div class="rpgqp">' + q.p + '</div><div class="rpgo">' + q.o.map(function (t, i) {
       var cls = ''; if (b.ans !== null) { if (i === q.a) cls = ' ok'; else if (i === b.ans) cls = ' ko'; }
@@ -28906,51 +29171,51 @@ body.tbopen { overflow: hidden; }
     }).join('') + '</div>';
     if (b.ans !== null) h += '<div class="rpgfb"><b>' + (b.ans === q.a ? '✓ 正解 !' : '✗ 不正解') + '</b> <span class="small">' + q.ex + '</span><button type="button" class="btn primary" data-rpgnx="1">' + (b.i >= b.n - 1 ? 'Terminer' : 'Suivant ›') + '</button></div>';
     h += '</div>'; el.innerHTML = h;
-    rpgHud(); window.scrollTo(0, 0);
+    rpgHud();
   }
   function rpgBtAnswer(i) {
     var b = rp.bt; if (!b || b.ans !== null) return; var q = b.o.qs[b.i]; b.ans = i;
-    if (i === q.a) { b.ok++; sfx('ok'); } else { b.ko++; sfx('bad'); loseHeart(); persist(); }
+    var fr = !!b.o.friendly, id = b.o.foeId;
+    if (i === q.a) { b.ok++; b.fx = 'hit'; b.say = rpgLine(id, fr ? 'praise' : 'hit'); sfx('ok'); } else { b.ko++; b.fx = 'miss'; b.say = rpgLine(id, fr ? 'encourage' : 'miss'); sfx('bad'); loseHeart(); persist(); }
     rpgBtShow();
   }
   function rpgBtNext() {
     var b = rp.bt; if (!b || b.ans === null) return;
     var dead = (S.hearts || 0) <= 0, last = b.i >= b.n - 1;
     if (dead || last) { rpgBtEnd(dead); return; }
-    b.i++; b.ans = null; rpgBtShow();
+    b.i++; b.ans = null; b.fx = ''; rpgBtShow();
   }
   function rpgBtEnd(dead) {
     var b = rp.bt, o = b.o, win = !dead && b.ok >= o.need; rp.bt = null; rp.mode = 'talk';
     var root = document.getElementById('rpgRoot'); if (root) root.classList.remove('btl');
     var el = document.getElementById('rpgDlg'); if (el) el.hidden = true;
-    var title = win ? '🎉 Victoire !' : dead ? '💔 Tu es à court de cœurs…' : '😅 Pas assez de bonnes réponses';
     if (win) {
-      var res = o.win(), rw = res.first || res.xp ? rpgGive(res.xp, res.coins) : '';
+      var res = o.win(), rw = res.xp ? rpgGive(res.xp, res.coins) : '';
       var extra = '<p class="rpgsc">' + b.ok + ' / ' + b.n + '</p>' + rw;
-      var after = function () { if (res.after === 'open') { rpgSay('sensei', ['Le portail est ouvert ! Avance vers le torii pour passer à la zone suivante.'], null); } else if (res.after === 'fin') { rpgSay('sensei', ['Tu as vaincu le gardien du Mont Fuji ! Avance vers le torii pour terminer ton voyage.'], null); } else rpgDlgClose(); };
-      sfx('ok');
-      if (res.say) rpgSay(res.say[0], res.say[1], after, extra); else { rp.dlg = { id: null, lines: ['Méchant vaincu ! (' + b.ok + '/' + b.n + ')'], i: 0, then: after, extra: rw, choices: null }; rpgDlgShow(); }
+      var after = function () { if (res.after === 'open') rpgSay('sensei', ['Le passage est ouvert ! Avance vers la sortie 🔓 pour continuer.'], null); else if (res.after === 'fin') rpgSay('sensei', ['Tu as vaincu le gardien du Mont Fuji ! Avance vers la sortie pour terminer ton voyage.'], null); else rpgDlgClose(); };
+      sfx('ok'); rpgSay(res.say ? res.say[0] : o.foeId, res.say ? res.say[1] : [rpgLine(o.foeId, 'defeat')], after, extra);
     } else {
-      var l = o.lose(), msg = dead ? 'Plus de cœurs ! Repose-toi à l\'auberge ou attends un peu.' : 'Il fallait ' + o.need + ' bonnes réponses sur ' + b.n + '. Réessaie !';
-      if (dead) { rpgEnter(rp.zone, true); }
-      rp.dlg = { id: l ? l[0] : null, lines: [(l ? l[1][0] + ' — ' : '') + msg], i: 0, then: function () { rpgDlgClose(); }, extra: '<p class="rpgsc lose">' + b.ok + ' / ' + b.n + '</p>', choices: null }; rpgDlgShow();
+      var l = o.lose(), msg = dead ? ' (Plus de cœurs : tu reviens au début de la carte. Repose-toi à l\'auberge ou attends un peu.)' : ' (Il fallait ' + o.need + ' bonnes réponses sur ' + b.n + '.)';
+      if (dead) rpgGo(rp.zone, rp.sc, 'in');
+      rp.dlg = { id: l ? l[0] : o.foeId, lines: [(l ? l[1][0] : 'Pas assez de bonnes réponses.') + msg], i: 0, then: function () { rpgDlgClose(); }, extra: '<p class="rpgsc lose">' + b.ok + ' / ' + b.n + '</p>', choices: null }; rpgDlgShow();
     }
     rpgHud(); rpgJournal(); persist();
   }
   /* ---------- événements ---------- */
   var rpgHold = 0;
   document.addEventListener('click', function (e) {
-    var t = e.target, el = t.closest ? t.closest('[data-rpgn],[data-rpgc],[data-rpga],[data-rpgnx],[data-rpgz]') : null;
+    var t = e.target, el = t.closest ? t.closest('[data-rpgn],[data-rpgc],[data-rpga],[data-rpgnx],[data-rpgz],[data-rpgs]') : null;
     if (el && document.getElementById('rpgRoot')) {
       if (el.hasAttribute('data-rpgn')) { rpgDlgNext(); return; }
       if (el.hasAttribute('data-rpgc')) { var d = rp.dlg; if (d && d.choices) { var c = d.choices[+el.getAttribute('data-rpgc')]; if (c && !c.dis) { var f = c.f; if (f === rpgDlgClose) { rpgDlgClose(); } else { rp.dlg = null; f(); } } } return; }
       if (el.hasAttribute('data-rpga')) { rpgBtAnswer(+el.getAttribute('data-rpga')); return; }
       if (el.hasAttribute('data-rpgnx')) { rpgBtNext(); return; }
-      if (el.hasAttribute('data-rpgz')) { if (rp.mode !== 'map') return; var z = +el.getAttribute('data-rpgz'); if (z <= rg().un) { rpgEnter(z); rpgJournal(); rpgTalkZone(); } return; }
+      if (el.hasAttribute('data-rpgz')) { if (rp.mode !== 'map') return; var z = +el.getAttribute('data-rpgz'); if (z <= rg().un && z !== rp.zone) { rpgGo(z, 0, 'in'); rpgJournal(); rpgZoneIntro(); } return; }
+      if (el.hasAttribute('data-rpgs')) { if (rp.mode !== 'map') return; var si = +el.getAttribute('data-rpgs'); if (si <= (rg().ms[rp.zone] || 0) && si !== rp.sc) { rpgGo(rp.zone, si, 'in'); rpgJournal(); } return; }
     }
     var cv = t.closest ? t.closest('#rpgCv') : null;
     if (cv) {
-      var rc = cv.getBoundingClientRect(), tx = Math.floor((e.clientX - rc.left) / rc.width * (cv.width / RPG_TS)), ty = Math.floor((e.clientY - rc.top) / rc.height * (cv.height / RPG_TS));
+      var rc = cv.getBoundingClientRect(), tx = Math.floor(rp.cx + (e.clientX - rc.left) / rc.width * RPG_VW), ty = Math.floor(rp.cy + (e.clientY - rc.top) / rc.height * RPG_VH);
       rpgTap(tx, ty);
     }
   });
@@ -28977,25 +29242,59 @@ body.tbopen { overflow: hidden; }
       else if ((k === 'Enter' || k === ' ') && rp.bt.ans !== null) { e.preventDefault(); rpgBtNext(); }
     }
   });
-  /* ---------- atelier admin : images et noms des personnages ---------- */
+  /* ---------- atelier admin : personnages, tons, décors de combat ---------- */
+  function rpgBgPick(id) {
+    var inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'image/*';
+    inp.onchange = function () {
+      var f = inp.files && inp.files[0]; if (!f) return;
+      var img = new Image(), url = URL.createObjectURL(f);
+      img.onload = function () {
+        var sc = Math.min(1, 900 / img.width), cv = document.createElement('canvas'); cv.width = Math.max(1, Math.round(img.width * sc)); cv.height = Math.max(1, Math.round(img.height * sc));
+        var cx = cv.getContext('2d'); cx.fillStyle = '#fff'; cx.fillRect(0, 0, cv.width, cv.height); cx.drawImage(img, 0, 0, cv.width, cv.height); URL.revokeObjectURL(url);
+        var q = 0.86, d = cv.toDataURL('image/jpeg', q);
+        while (d.length > 200000 && q > 0.3) { q -= 0.08; d = cv.toDataURL('image/jpeg', q); }
+        if (d.length >= 245000) { toast('Image trop lourde, choisis-en une plus simple.'); return; }
+        adminSave(id, d);
+      };
+      img.onerror = function () { toast('Image illisible.'); };
+      img.src = url;
+    };
+    inp.click();
+  }
   function rpgAdmin() {
     var det = document.getElementById('rpgAcc'), body = document.getElementById('rpgAdminBody'); if (!det || !body) return;
     if (!isAdmin()) { det.hidden = true; return; }
     det.hidden = false;
-    if (body.contains(document.activeElement) && document.activeElement.tagName === 'INPUT') return;
-    body.innerHTML = '<p class="small muted">Chaque personnage du mode Histoire peut recevoir une image et un nom de ton choix. Les réglages sont enregistrés pour tous les joueurs. Sans image, un dessin par défaut est utilisé ; sans nom, le nom d\'origine.</p>' +
-      Object.keys(RPG_CH).map(function (id) {
-        var hasI = !!ASSETS['pi_' + id], nm = chNameRaw(id);
-        return '<div class="admrow rpgadm"><span class="admth"><img src="' + esc(chSrc(id)) + '" alt=""></span><span class="rpgadn"><b>' + esc(chName(id)) + '</b><small>' + esc(RPG_CH[id].role) + '</small>' +
-          '<span class="rpgadi"><input type="text" maxlength="24" value="' + esc(nm) + '" placeholder="' + esc(RPG_CH[id].n) + '" data-rpgnm="' + id + '" aria-label="Nom du personnage"><button type="button" class="btn" data-rpgsave="' + id + '">OK</button></span></span>' +
-          '<span class="rpgadb"><button type="button" class="btn" data-adminimg="pi_' + id + '" aria-label="Image">📷</button>' + (hasI ? '<button type="button" class="btn" data-admindel="pi_' + id + '" aria-label="Retirer l\'image">✕</button>' : '') + '</span></div>';
-      }).join('');
+    var ae = document.activeElement; if (body.contains(ae) && (ae.tagName === 'INPUT' || ae.tagName === 'SELECT')) return;
+    var tones = Object.keys(RPG_TONES);
+    var h = '<p class="small muted">Chaque personnage du mode Histoire peut recevoir une image, un nom et un <b>caractère</b> : ses répliques de combat et de dialogue s\'adaptent au ton choisi (par défaut, le ton est deviné d\'après le nom). Les réglages sont enregistrés pour tous les joueurs.</p>';
+    h += Object.keys(RPG_CH).map(function (id) {
+      var hasI = !!ASSETS['pi_' + id], nm = chNameRaw(id), tn = chToneSet(id), auto = chTone(id);
+      return '<div class="admrow rpgadm"><span class="admth"><img src="' + esc(chSrc(id)) + '" alt=""></span><span class="rpgadn"><b>' + esc(chName(id)) + '</b><small>' + esc(RPG_CH[id].role) + '</small>' +
+        '<span class="rpgadi"><input type="text" maxlength="24" value="' + esc(nm) + '" placeholder="' + esc(RPG_CH[id].n) + '" data-rpgnm="' + id + '" aria-label="Nom du personnage"><button type="button" class="btn" data-rpgsave="' + id + '">OK</button></span>' +
+        '<span class="rpgadi"><select data-rpgtone="' + id + '" aria-label="Caractère"><option value="">Auto (' + esc(RPG_TONE_NAMES[auto]) + ')</option>' + tones.map(function (t) { return '<option value="' + t + '"' + (tn === t ? ' selected' : '') + '>' + esc(RPG_TONE_NAMES[t]) + '</option>'; }).join('') + '</select></span></span>' +
+        '<span class="rpgadb"><button type="button" class="btn" data-adminimg="pi_' + id + '" aria-label="Image">📷</button>' + (hasI ? '<button type="button" class="btn" data-admindel="pi_' + id + '" aria-label="Retirer l\'image">✕</button>' : '') + '</span></div>';
+    }).join('');
+    h += '<h4 class="admh">Décors de combat (fond d\'arène)</h4><p class="small muted">Chaque décor de carte a un fond de combat dessiné automatiquement. Tu peux le remplacer par ta propre image (format large conseillé).</p>';
+    h += Object.keys(RPG_B).map(function (bid) {
+      var has = !!ASSETS['bg_' + bid];
+      return '<div class="admrow rpgadm"><span class="admth rpgbgth" style="background-image:url(&quot;' + esc(rpgBgUrl(bid)) + '&quot;)"></span><span class="rpgadn"><b>' + esc(RPG_B[bid].l) + '</b><small>' + (has ? 'Image personnalisée' : 'Fond automatique') + '</small></span><span class="rpgadb"><button type="button" class="btn" data-rpgbg="bg_' + bid + '" aria-label="Image">📷</button>' + (has ? '<button type="button" class="btn" data-admindel="bg_' + bid + '" aria-label="Retirer">✕</button>' : '') + '</span></div>';
+    }).join('');
+    body.innerHTML = h;
   }
   document.addEventListener('click', function (e) {
-    var b = e.target.closest ? e.target.closest('[data-rpgsave]') : null; if (!b || !isAdmin()) return;
+    if (!isAdmin()) return;
+    var bg = e.target.closest ? e.target.closest('[data-rpgbg]') : null; if (bg) { e.stopPropagation(); e.preventDefault(); rpgBgPick(bg.getAttribute('data-rpgbg')); return; }
+    var b = e.target.closest ? e.target.closest('[data-rpgsave]') : null; if (!b) return;
     var id = b.getAttribute('data-rpgsave'), inp = document.querySelector('[data-rpgnm="' + id + '"]'), v = inp ? inp.value.trim().slice(0, 24) : '';
     var p = v ? backend.assetSave('pn_' + id, chNameEnc(v), user.id) : backend.assetDelete('pn_' + id);
     p.then(function () { if (v) ASSETS['pn_' + id] = chNameEnc(v); else delete ASSETS['pn_' + id]; assetsStore(); assetsAt = 0; toast(v ? 'Nom enregistré.' : 'Nom d\'origine rétabli.'); if (inp) inp.blur(); rpgAdmin(); }).catch(function (er) { toast('Échec : ' + ((er && er.message) || er)); });
+  }, true);
+  document.addEventListener('change', function (e) {
+    var s = e.target.closest ? e.target.closest('[data-rpgtone]') : null; if (!s || !isAdmin()) return;
+    var id = s.getAttribute('data-rpgtone'), v = s.value;
+    var p = v ? backend.assetSave('pt_' + id, RPG_TP + encodeURIComponent(v), user.id) : backend.assetDelete('pt_' + id);
+    p.then(function () { if (v) ASSETS['pt_' + id] = RPG_TP + encodeURIComponent(v); else delete ASSETS['pt_' + id]; assetsStore(); assetsAt = 0; toast('Caractère enregistré.'); s.blur(); rpgAdmin(); }).catch(function (er) { toast('Échec : ' + ((er && er.message) || er)); });
   });
 
   backend.init().then(function (u) {
