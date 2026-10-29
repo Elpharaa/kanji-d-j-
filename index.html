@@ -5316,6 +5316,29 @@ body.tbopen { overflow: hidden; }
 .rpgadi select{flex:1;min-width:0;padding:6px 8px;border-radius:8px;border:1px solid rgba(124,92,255,.4);background:transparent;color:inherit}
 @media (min-width:700px){.rpgarena{height:300px}.rpgfoew{width:150px}.rpgfoeimg{width:150px;height:150px}.rpgheroimg{width:110px;height:110px}.rpgsay{font-size:16px}}
 
+/* ===== v332 : dialogues en bulles de manga ===== */
+.rpgdlg{border:3px solid #1c1236;border-radius:14px;background:radial-gradient(circle,rgba(124,92,255,.20) 1.1px,transparent 1.5px) 0 0/8px 8px,radial-gradient(circle,rgba(240,169,42,.16) 1.1px,transparent 1.5px) 4px 4px/8px 8px,#fffaf0;padding:14px 12px 12px;box-shadow:4px 5px 0 rgba(28,18,54,.35)}
+.rpgdbox{gap:16px;align-items:flex-start}
+.rpgpt{width:68px;height:68px;border-radius:6px;border:3px solid #1c1236;box-shadow:3px 3px 0 #1c1236;transform:rotate(-2deg)}
+.rpgdb{position:relative;background:#fff;color:#1c1236;border:3px solid #1c1236;border-radius:24px 24px 24px 10px/22px 22px 22px 10px;padding:18px 14px 12px;margin-top:8px;animation:rpgpop .22s cubic-bezier(.3,1.5,.5,1) both;transform-origin:0 30px}
+.rpgdb::before{content:"";position:absolute;left:-17px;top:20px;border:9px solid transparent;border-right:15px solid #1c1236;border-left:0}
+.rpgdb::after{content:"";position:absolute;left:-11px;top:22px;border:7px solid transparent;border-right:12px solid #fff;border-left:0}
+.rpgdn{position:absolute;top:-13px;left:14px;margin:0;background:#1c1236;color:#fff;font-size:12px;letter-spacing:.04em;padding:2px 10px;border-radius:4px;transform:rotate(-2deg);font-weight:800}
+.rpgdt{font-size:16px;line-height:1.5;font-weight:600;letter-spacing:.01em}
+.rpgdb.shout{border-width:4px;border-radius:12px 26px 12px 26px;box-shadow:5px 5px 0 #1c1236;transform:rotate(-.7deg);animation:rpgshout .3s cubic-bezier(.3,1.6,.5,1) both}
+.rpgdb.shout .rpgdt{font-weight:800;font-size:17px}
+.rpgdb.shout::after{border-right-color:#fff}
+.rpgdt:after{content:" ▼";font-size:.65em;color:#6b4bd6;animation:rpgblink 1s steps(2) infinite}
+.rpgdb p.rpgdt+*:not(.rpgrw){margin-top:8px}
+@keyframes rpgpop{from{opacity:0;transform:scale(.82)}to{opacity:1;transform:scale(1)}}
+@keyframes rpgshout{from{opacity:0;transform:scale(.7) rotate(-3deg)}to{opacity:1;transform:scale(1) rotate(-.7deg)}}
+@keyframes rpgblink{50%{opacity:0}}
+.rpgsay{background:#fff;border:3px solid #1c1236;border-radius:20px;padding:7px 12px;font-weight:700;box-shadow:3px 3px 0 #1c1236;animation:rpgpop .22s cubic-bezier(.3,1.5,.5,1) both}
+.rpgsay::before{content:"";position:absolute;right:46px;bottom:-17px;border:9px solid transparent;border-top:15px solid #1c1236;border-bottom:0}
+.rpgsay::after{content:"";position:absolute;right:50px;bottom:-11px;border:6px solid transparent;border-top:11px solid #fff;border-bottom:0}
+.rpgsay b{background:#1c1236;color:#fff;padding:1px 7px;border-radius:4px;font-size:12px;margin-right:6px}
+@media (prefers-reduced-motion:reduce){.rpgdb,.rpgsay,.rpgdt:after{animation:none}}
+
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -27803,6 +27826,12 @@ body.tbopen { overflow: hidden; }
     DC = { all: A, idx: null };
     return DC;
   }
+  function dcRomKey(s) { return dcNorm(String(s || '')).replace(/[^a-z]/g, '').replace(/ou/g, 'o').replace(/uu/g, 'u').replace(/aa/g, 'a').replace(/ii/g, 'i').replace(/ee/g, 'e').replace(/oo/g, 'o').replace(/nn/g, 'n'); }
+  function dcRomIndex() {
+    var D = dcBuild(); if (D.ridx) return D.ridx; var m = {};
+    D.all.forEach(function (e) { var f = dcForms(e); if (!f) return; f.forEach(function (x) { var s = (x[3] || x[2] || '').replace(/ \+ nom$/, ''); if (!s || /[a-zA-Z]/.test(s)) return; var k = dcRomKey(toRomaji(s)); if (k) (m[k] = m[k] || []).push([e, x[1]]); }); });
+    D.ridx = m; return m;
+  }
   function dcForms(e) {
     if (e._f !== undefined) return e._f;
     var f = null;
@@ -27832,6 +27861,15 @@ body.tbopen { overflow: hidden; }
       hits.sort(function (a, b) { var fa = frank(a), fb = frank(b); if (fa !== fb) return fa - fb; var x = (a.jp === dc.q.trim() || a.kana === dc.q.trim()) ? 0 : (a.jp.indexOf(dc.q.trim()) === 0 || a.kana.indexOf(dc.q.trim()) === 0) ? 1 : 2, y = (b.jp === dc.q.trim() || b.kana === dc.q.trim()) ? 0 : (b.jp.indexOf(dc.q.trim()) === 0 || b.kana.indexOf(dc.q.trim()) === 0) ? 1 : 2; return x - y; });
       // forme conjuguée : on retrouve le verbe / l'adjectif de départ
       if (/[ぁ-ゖ一-鿿ァ-ヶ]/.test(dc.q)) { var ix = dcFormIndex()[dc.q.trim()]; if (ix) { var ok = {}; ix.forEach(function (p) { if (all.indexOf(p[0]) >= 0 && !ok[p[0].i]) { ok[p[0].i] = 1; p[0].via = p[1]; hits.unshift(p[0]); } }); } }
+      // forme conjuguée tapée en romaji (ikanai, tabemasu, ittekimasu…)
+      var rk = dcRomKey(dc.q);
+      if (rk.length >= 3 && /^[a-z]+$/.test(rk)) {
+        var RI = dcRomIndex(), seenR = {}, extra = [];
+        function addR(list) { list.forEach(function (p) { var e = p[0]; if (all.indexOf(e) < 0 || seenR[e.i]) return; seenR[e.i] = 1; e.via = p[1]; extra.push(e); }); }
+        if (RI[rk]) addR(RI[rk]);
+        if (!extra.length && rk.length >= 4) { var ks = Object.keys(RI).filter(function (k) { return k.indexOf(rk) === 0; }).sort(function (a, b) { return a.length - b.length; }).slice(0, 12); ks.forEach(function (k) { addR(RI[k]); }); }
+        extra.reverse().forEach(function (e) { var ix2 = hits.indexOf(e); if (ix2 >= 0) hits.splice(ix2, 1); hits.unshift(e); });
+      }
       return hits.filter(function (e, i, a) { return a.indexOf(e) === i; });
     }
     if (dc.sort === 'kana') all = all.slice().sort(function (a, b) { var x = a.kana || a.jp, y = b.kana || b.jp; return x < y ? -1 : x > y ? 1 : 0; });
@@ -28549,7 +28587,7 @@ body.tbopen { overflow: hidden; }
   function rg() {
     S.rpg = S.rpg || {};
     var r = S.rpg;
-    if (!r.done) r.done = {}; if (!r.boss) r.boss = {}; if (r.un === undefined) r.un = 0; if (!r.kills) r.kills = {}; if (!r.ms) r.ms = {}; if (!r.zi) r.zi = {};
+    if (!r.done) r.done = {}; if (!r.boss) r.boss = {}; if (r.un === undefined) r.un = 0; if (!r.kills) r.kills = {}; if (!r.cl) r.cl = {}; if (!r.ms) r.ms = {}; if (!r.zi) r.zi = {};
     if (!r.yk || r.yk.d !== rpgDay() || !r.yk.k) r.yk = { d: rpgDay(), k: {} };
     if (!r.sr || r.sr.d !== rpgDay()) r.sr = { d: rpgDay(), k: {} };
     return r;
@@ -28653,7 +28691,17 @@ body.tbopen { overflow: hidden; }
     if (!s.cave) for (i = 0; i < s.enter.length; i++) if (s.enter[i][0] === x && s.enter[i][1] === y) return 'prev';
     return null;
   }
-  function rpgLocked() { var s = rpgScene(); return !!(s.boss && !rg().boss[rp.zone]); }
+  function rpgFoesLeft() { var s = rpgScene(), r = rg(); if (r.cl[rp.zone + '_' + rp.sc]) return 0; var n = 0; s.foes.forEach(function (f, i) { if (!r.yk.k[rpgFoeKey(i)]) n++; }); return n; }
+  function rpgLocked() { var s = rpgScene(); return !!(s.boss && !rg().boss[rp.zone]) || rpgFoesLeft() > 0; }
+  function rpgLockMsg() { var n = rpgFoesLeft(); return n > 0 ? 'Des ennemis te barrent la route : il en reste ' + n + ' à vaincre !' : 'Le passage est gardé : il faut vaincre le gardien !'; }
+  /* un ennemi vivant te repère à 2 cases : le combat se lance tout seul */
+  function rpgAggro() {
+    if (rp.mode !== 'map' || rpgFoesLeft() <= 0) return false;
+    var l = rpgEntities(), s = rpgScene();
+    for (var i = 0; i < l.length; i++) { var n = l[i]; if (n.kind !== 'foe') continue;
+      if (Math.abs(n.x - rp.x) + Math.abs(n.y - rp.y) <= 2 && Math.abs(rp.x - s.s_in[0]) + Math.abs(rp.y - s.s_in[1]) > 2) { rp.path = []; rp.goal = null; rp.walk = null; rpgSpotted(n); return true; } }
+    return false;
+  }
   function rpgBlocked(x, y) {
     if (!rpgWalkable(x, y)) return true;
     if (rpgExitAt(x, y) === 'next' && rpgLocked()) return true;
@@ -28686,7 +28734,7 @@ body.tbopen { overflow: hidden; }
     rp.dir = dx > 0 ? 'r' : dx < 0 ? 'l' : dy > 0 ? 'd' : 'u';
     var nx = rp.x + dx, ny = rp.y + dy, n = rpgEntAt(nx, ny);
     if (n) { rp.path = []; rp.goal = null; rpgInteract(n); return; }
-    if (rpgExitAt(nx, ny) === 'next' && rpgLocked()) { rp.path = []; try { toast('Le passage est gardé : il faut vaincre le gardien !'); } catch (e) { /* ignore */ } return; }
+    if (rpgExitAt(nx, ny) === 'next' && rpgLocked()) { rp.path = []; try { toast(rpgLockMsg()); } catch (e) { /* ignore */ } return; }
     if (!rpgWalkable(nx, ny)) { rp.path = []; return; }
     rp.walk = { sx: rp.x, sy: rp.y, tx: nx, ty: ny, t0: performance.now() };
   }
@@ -28694,6 +28742,7 @@ body.tbopen { overflow: hidden; }
     var w = rp.walk; rp.x = w.tx; rp.y = w.ty; rp.walk = null;
     var ex = rpgExitAt(rp.x, rp.y);
     if (ex) { rp.path = []; rpgSceneChange(ex); return; }
+    if (rpgAggro()) return;
     if (rp.path.length) { var p = rp.path.shift(); rpgStep(p[0] - rp.x, p[1] - rp.y); }
     else if (rp.goal) { var g = rp.goal; rp.goal = null; if (Math.abs(g.x - rp.x) + Math.abs(g.y - rp.y) === 1) { var e2 = rpgEntAt(g.x, g.y); if (e2) rpgInteract(e2); } }
   }
@@ -29018,7 +29067,7 @@ body.tbopen { overflow: hidden; }
     var reached = r.ms[zi] || 0, dots = RPG_S[zi].map(function (s, i) { return '<button type="button" class="rpgdot' + (i === rp.sc ? ' on' : '') + '" data-rpgs="' + i + '"' + (i > reached ? ' disabled' : '') + ' title="' + esc(s.label) + '">' + (i + 1) + '</button>'; }).join('');
     el.innerHTML = '<div class="rpgzone">' + chips + '</div><h3 class="rpgjt"><span class="jp">' + m.jp + '</span> ' + esc(m.n) + ' <small>· ' + esc(m.sub) + ' · ' + m.lv.toUpperCase() + '</small></h3>' +
       '<div class="rpgscn"><span class="small muted">Cartes :</span>' + dots + '<b class="small">' + esc(rpgScene().label) + '</b></div><ul class="rpgquests">' +
-      row(kills >= 4, '⚔️', 'Ennemis vaincus sur la route : ' + kills + '/5 <small>(4 pour défier le gardien)</small>') + row(!!r.boss[zi], '🏯', 'Gardien : ' + esc(chName(m.bg))) +
+      row(rpgFoesLeft() === 0, '⚔️', 'Ennemis de cette carte : ' + (RPG_S[zi][rp.sc].foes.length - rpgFoesLeft()) + '/' + RPG_S[zi][rp.sc].foes.length + ' <small>(à vaincre pour passer)</small>') + row(kills >= 4, '🗡️', 'Ennemis de la zone : ' + kills + '/' + RPG_S[zi].reduce(function (a, x) { return a + x.foes.length; }, 0) + ' <small>(4 pour défier le gardien)</small>') + row(!!r.boss[zi], '🏯', 'Gardien : ' + esc(chName(m.bg))) +
       row(rpgDone('sensei'), '🎓', 'Leçon de ' + esc(chName('sensei'))) + row(rpgDone('rival'), '🥋', 'Duel contre ' + esc(chName('rival'))) + row(rpgDone('amie'), '📖', 'Lecture avec ' + esc(chName('amie'))) +
       row(srch >= 8, '🔎', 'Cachettes fouillées aujourd\'hui : ' + srch) + '</ul><p class="small muted">Touche la carte pour te déplacer (ou croix / flèches). Fouille les buissons ✨, croise les ennemis sur la route, trouve l\'auberge.</p>';
   }
@@ -29042,7 +29091,8 @@ body.tbopen { overflow: hidden; }
     var el = document.getElementById('rpgDlg'), root = document.getElementById('rpgRoot'); if (!el || !rp.dlg) return;
     var d = rp.dlg, last = d.i >= d.lines.length - 1, nm = d.id === null ? (user ? user.name : 'Toi') : chName(d.id);
     var pt = d.id === null ? '<img class="rpgpt" src="' + esc(avatarOf(user.name, user.avatar)) + '" alt="">' : chPortrait(d.id);
-    var body = '<div class="rpgdb"><b class="rpgdn">' + esc(nm) + '</b><p class="rpgdt">' + esc(d.lines[d.i]) + '</p>' + (last ? d.extra : '') + '</div>';
+    var shout = /[!！?？]\s*$/.test(d.lines[d.i]) && d.id !== null ? ' shout' : '';
+    var body = '<div class="rpgdb' + shout + '"><b class="rpgdn">' + esc(nm) + '</b><p class="rpgdt">' + esc(d.lines[d.i]) + '</p>' + (last ? d.extra : '') + '</div>';
     var acts = last && d.choices ? '<div class="rpgch">' + d.choices.map(function (c, i) { return '<button type="button" class="btn' + (c.p ? ' primary' : '') + '" data-rpgc="' + i + '"' + (c.dis ? ' disabled' : '') + '>' + c.l + '</button>'; }).join('') + '</div>' : '<div class="rpgch"><button type="button" class="btn primary" data-rpgn="1">' + (last && !d.then ? 'Fermer' : '▶') + '</button></div>';
     el.hidden = false; el.innerHTML = '<div class="rpgdbox">' + pt + body + '</div>' + acts;
     if (root) root.classList.add('talk');
@@ -29087,13 +29137,16 @@ body.tbopen { overflow: hidden; }
     else if (roll < 0.9) { rpgSay(null, ['Rien d\'intéressant… seulement des feuilles et de la poussière.'], null); }
     else { var fid = 'm' + (zi + 1) + (Math.random() < .5 ? 'a' : 'b'); rpgSay(null, ['Quelque chose bouge dans la cachette !'], function () { rpgFoeBattle({ id: fid, small: true, key: null }); }); }
   }
+  function rpgSpotted(n) {
+    rpgSay(n.id, [rpgLine(n.id, 'intro')], function () { rpgFightFoe(n); });
+  }
   function rpgFightFoe(n) { rpgFoeBattle({ id: n.id, small: false, key: rpgFoeKey(n.i) }); }
   function rpgFoeBattle(o) {
     var zi = rp.zone;
-    rpgBattle({ title: chName(o.id) + ' te barre la route !', foeId: o.id, qs: rpgVocabQs(zi, o.small ? 2 : 3, false), need: o.small ? 1 : 2, kind: 'foe',
+    rpgBattle({ title: chName(o.id) + ' te barre la route !', foeId: o.id, qs: rpgVocabQs(zi, o.small ? 3 : (zi >= 2 ? 6 : 5), !o.small), need: o.small ? 2 : (zi >= 2 ? 5 : 4), kind: 'foe',
       win: function () {
-        if (o.key) { var r = rg(); r.yk.k[o.key] = 1; var kk = (r.kills[zi] = r.kills[zi] || []); if (kk.indexOf(o.key) < 0) kk.push(o.key); }
-        return { first: true, xp: o.small ? 4 : 7, coins: o.small ? 2 : 3, say: [o.id, [rpgLine(o.id, 'defeat')]] };
+        if (o.key) { var r = rg(); r.yk.k[o.key] = 1; var kk = (r.kills[zi] = r.kills[zi] || []); if (kk.indexOf(o.key) < 0) kk.push(o.key); var sc = rpgScene(); if (sc.foes.every(function (f, i) { return r.yk.k[rpgFoeKey(i)]; })) r.cl[zi + '_' + rp.sc] = 1; }
+        return { first: true, xp: o.small ? 5 : 10, coins: o.small ? 2 : 4, say: [o.id, [rpgLine(o.id, 'defeat')]] };
       }, lose: function () { return [o.id, [rpgLine(o.id, 'victory')]]; } });
   }
   function rpgShop() {
@@ -29124,7 +29177,7 @@ body.tbopen { overflow: hidden; }
   }
   function rpgDuel() {
     var zi = rp.zone;
-    rpgBattle({ title: 'Duel contre ' + chName('rival'), foeId: 'rival', qs: rpgVocabQs(zi, 5, true), need: 4, kind: 'duel',
+    rpgBattle({ title: 'Duel contre ' + chName('rival'), foeId: 'rival', qs: rpgVocabQs(zi, 6, true), need: 5, kind: 'duel',
       win: function () { var k = 'z' + zi + '_rival', first = !rg().done[k]; rg().done[k] = 1; return { first: first, xp: first ? 22 : 4, coins: first ? 12 : 1, say: ['rival', [rpgLine('rival', 'defeat')]] }; },
       lose: function () { return ['rival', [rpgLine('rival', 'victory')]]; } });
   }
@@ -29142,7 +29195,7 @@ body.tbopen { overflow: hidden; }
     var zi = rp.zone, m = RPG_M[zi], r = rg(), kills = (r.kills[zi] || []).length;
     if (kills < 4) return rpgSay(m.bg, [rpgLine(m.bg, 'greet') + ' Tu n\'as vaincu que ' + kills + ' ennemi(s) sur la route : reviens avec au moins 4 victoires !'], null);
     rpgSay(m.bg, [rpgLine(m.bg, 'intro'), rpgLine(m.bg, 'offer')], function () {
-      rpgBattle({ title: 'Gardien : ' + chName(m.bg), foeId: m.bg, qs: rpgVocabQs(zi, 10, true), need: 8, kind: 'boss',
+      rpgBattle({ title: 'Gardien : ' + chName(m.bg), foeId: m.bg, qs: rpgVocabQs(zi, 12, true), need: 10, kind: 'boss',
         win: function () { var first = !rg().boss[zi]; rg().boss[zi] = 1; if (zi + 1 > rg().un && zi < 4) rg().un = zi + 1; if (zi === 4) rg().fin = 1; return { first: first, xp: first ? 60 : 5, coins: first ? 40 : 0, say: [m.bg, [rpgLine(m.bg, 'defeat'), m.bossWin]], after: zi === 4 ? 'fin' : 'open' }; },
         lose: function () { return [m.bg, [rpgLine(m.bg, 'victory')]]; } });
     });
