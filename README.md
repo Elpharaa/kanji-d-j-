@@ -11,3 +11,4 @@ Application web de révision du japonais (kanji, vocabulaire, lecture, dictionna
 - Traductions françaises complémentaires rédigées pour l'application.
 
 - Niveaux JLPT des mots : listes communautaires (Tanos) via [elzup/jlpt-word-list](https://github.com/elzup/jlpt-word-list), licence MIT.
+- Accent de hauteur : Kanjium (mifunetoshiro/kanjium), base d'Uros O., licence CC BY-SA 4.0.
