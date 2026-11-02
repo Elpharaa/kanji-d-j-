@@ -5676,6 +5676,17 @@ span.kxcp{cursor:default}
 .pgkh small{opacity:.7;font-weight:400}
 .pgkl .pghead{cursor:default}
 .pgkls{margin-bottom:.8rem}
+/* v370 : mode Kanji du dico */
+.dcmode{display:flex;gap:4px;padding:4px;margin:12px 0 10px;border-radius:999px;background:rgba(75,61,132,.12);border:1.8px solid rgba(75,61,132,.3)}
+.dcmode button{flex:1;min-height:42px;border:0;border-radius:999px;background:transparent;color:#2c2452;font:inherit;font-weight:800;font-size:.98rem;cursor:pointer}
+.dcmode button.on{background:linear-gradient(145deg,#4b3d84,#2c2452);color:#fff4d6;box-shadow:0 0 0 2px rgba(246,213,142,.6)}
+.dcfl{display:block;margin:8px 2px 0;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#a63a60}
+.kfgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(82px,1fr));gap:8px;margin-top:8px}
+.kft{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 4px 8px;border-radius:14px;border:1.8px solid rgba(201,162,74,.6);background:#fffdf8;color:#2c2452;font:inherit;cursor:pointer;transition:transform .12s,box-shadow .2s}
+.kft:active{transform:translateY(1px)}.kft:hover{box-shadow:0 3px 10px rgba(75,61,132,.2)}
+.kfk{font-size:2rem;line-height:1.1}.kfm{font-size:.72rem;color:#5b5280;text-align:center;line-height:1.15;min-height:1.7em}
+.kfb{display:flex;gap:5px;align-items:center;font-size:.66rem;font-weight:800;color:#a63a60}.kfb i{font-style:normal;color:#8a82a8;font-weight:700}
+.kfbook .dcchips{flex-wrap:wrap;overflow:visible}
 
 </style>
 
@@ -31296,7 +31307,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v369', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v370', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -31862,6 +31873,94 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
     }
     else if (k === 'next') { kt.i++; kt.picked = -1; setModalBody(kt.i >= kt.qs.length ? kxTrainEnd() : kxTrainQ()); }
   });
+
+  /* ===== v370 : parcourir les kanji dans le dico (bascule Mots / Kanji + filtres) ===== */
+  var KF = { lv: 'all', g: 'all', s: 'all', sort: 'lvl', n: 120 };
+  var KALL = null;
+  function kfAll() {
+    if (KALL) return KALL;
+    var seen = {}, out = [];
+    Object.keys(KX).concat(typeof KMAP === 'object' ? Object.keys(KMAP) : []).forEach(function (c) { if (seen[c] || Array.from(c).length !== 1) return; seen[c] = 1; var i = kxInfo(c); if (i) out.push(i); });
+    return (KALL = out);
+  }
+  function kfRead(s) { return toHira(String(s || '')).replace(/[()（）]/g, '').replace(/[-.\s]/g, ''); }
+  function kfMatches() {
+    var q = String(dc.q || '').trim(), A = kfAll(), r;
+    if (q && /[㐀-鿿]/.test(q)) {
+      var set = {}; Array.from(q).forEach(function (c) { set[c] = 1; });
+      r = A.filter(function (i) { return set[i.c]; });
+      return r.sort(function (a, b) { return q.indexOf(a.c) - q.indexOf(b.c); });
+    }
+    r = A.filter(function (i) {
+      if (KF.lv !== 'all' && (KF.lv === '0' ? i.jlpt !== 0 : i.jlpt !== +KF.lv)) return false;
+      if (KF.g !== 'all') { var g = i.grade; if (KF.g === 'p' ? !(g >= 1 && g <= 6) : KF.g === 'j' ? g !== 8 : !(g === 0 || g > 8)) return false; }
+      if (KF.s !== 'all') { var n = i.strokes; if (KF.s === 'a' ? n > 5 : KF.s === 'b' ? (n < 6 || n > 10) : KF.s === 'c' ? (n < 11 || n > 15) : n < 16) return false; }
+      return true;
+    });
+    if (q) {
+      var nq = dcNorm(q).trim(), hq = kfRead(toHira(nq)), rq = nq.replace(/[^a-z]/g, '');
+      r = r.filter(function (i) {
+        if (dcNorm(i.sens).indexOf(nq) >= 0) return true;
+        return i.on.concat(i.kun).some(function (x) { var h = kfRead(x); return (hq && /[぀-ゟ]/.test(hq) && h.indexOf(hq) === 0) || (rq && rq.length > 1 && toRomaji(h).replace(/[^a-z]/g, '').indexOf(rq) === 0); });
+      });
+    }
+    var lvKey = function (i) { return i.jlpt ? i.jlpt : 0; };
+    r.sort(function (a, b) {
+      if (KF.sort === 'strokes') return (a.strokes || 99) - (b.strokes || 99) || (a.freq || 9999) - (b.freq || 9999);
+      if (KF.sort === 'freq') return (a.freq || 9999) - (b.freq || 9999);
+      var x = a.jlpt ? 6 - a.jlpt : 9, y = b.jlpt ? 6 - b.jlpt : 9;
+      return x - y || (a.freq || 9999) - (b.freq || 9999);
+    });
+    return r;
+  }
+  function kfListHTML() {
+    var m = kfMatches(), n = Math.min(m.length, KF.n);
+    var h = '<p class="dccount">' + m.length.toLocaleString('fr-FR') + ' kanji' + (dc.q ? ' pour « ' + esc(dc.q) + ' »' : '') + '</p>';
+    if (!m.length) return h + '<div class="dcempty"><span class="dcemk jp">空</span><p>Aucun kanji ne correspond.</p><small>Essaie un kanji, une lecture (kana ou romaji) ou un sens en français, ou retire un filtre.</small></div>';
+    h += '<div class="kfgrid">' + m.slice(0, n).map(function (i) {
+      var s = String(i.sens || '').split(/ ; |[;,]/)[0]; if (s.length > 16) s = s.slice(0, 15) + '…';
+      return '<button type="button" class="kft" data-kx="open:' + esc(i.c) + '"><span class="kfk jp">' + esc(i.c) + '</span><span class="kfm">' + esc(s || '—') + '</span><span class="kfb">' + (i.jlpt ? KXL[i.jlpt] : '') + (i.strokes ? '<i>' + i.strokes + ' tr.</i>' : '') + '</span></button>';
+    }).join('') + '</div>';
+    if (m.length > n) h += '<button type="button" class="btn dcmore" data-kx="kmore">Afficher plus (' + (m.length - n).toLocaleString('fr-FR') + ' restants)</button>';
+    return h;
+  }
+  function kfRow(lbl, key, opts) {
+    return '<span class="dcfl">' + lbl + '</span><div class="dcchips" role="group" aria-label="' + lbl + '">' + opts.map(function (x) { return '<button type="button" class="dcch' + (KF[key] === x[0] ? ' on' : '') + '" data-kx="kf:' + key + ':' + x[0] + '" aria-pressed="' + (KF[key] === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>';
+  }
+  function kfSwitch() {
+    return '<div class="dcmode" role="tablist" aria-label="Mode"><button type="button" role="tab" class="' + (dc.mode !== 'k' ? 'on' : '') + '" data-kx="mode:w">語 Mots</button><button type="button" role="tab" class="' + (dc.mode === 'k' ? 'on' : '') + '" data-kx="mode:k">漢 Kanji</button></div>';
+  }
+  var kfInner0 = dcInner;
+  dcInner = function () {
+    if (dc.mode !== 'k') {
+      return kfInner0().replace('<div class="dcsearch">', kfSwitch() + '<div class="dcsearch">').replace(/<div class="dcchips" role="group" aria-label="(Type|Niveau)">/g, function (m, a) { return '<span class="dcfl">' + a + '</span>' + m; });
+    }
+    var q = dc.q || '', on = KF.lv !== 'all' || KF.g !== 'all' || KF.s !== 'all' || KF.sort !== 'lvl';
+    var h = '<div class="dcbook kfbook' + (q ? ' hasq' : '') + '"><header class="dchead"><span class="dcseal jp" aria-hidden="true">漢</span><div class="dcht"><b>Kanji</b><small>' + kfAll().length.toLocaleString('fr-FR') + ' kanji · sens · lectures · tracé</small></div></header><div class="dcorn" aria-hidden="true"><i></i><s></s><i></i></div>';
+    h += kfSwitch();
+    h += '<div class="dcsearch"><svg class="dcsi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><input id="dcQ" class="dcq" type="search" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="水 · みず · mizu · eau…" value="' + esc(q) + '" aria-label="Rechercher un kanji"><button type="button" class="dcclr" data-dc="clr" aria-label="Effacer la recherche">×</button></div>';
+    h += '<div class="kxtrow"><button type="button" class="dcch kxtr" data-kx="train">🎯 S’entraîner aux kanji</button></div>';
+    h += '<div class="dcfil">' + kfRow('Niveau', 'lv', [['all', 'Tous'], ['5', 'N5'], ['4', 'N4'], ['3', 'N3'], ['2', 'N2'], ['1', 'N1'], ['0', 'Hors JLPT']]);
+    h += kfRow('Classe', 'g', [['all', 'Toutes'], ['p', 'Primaire'], ['j', 'Collège / lycée'], ['o', 'Rares']]);
+    h += kfRow('Nombre de traits', 's', [['all', 'Tous'], ['a', '1–5'], ['b', '6–10'], ['c', '11–15'], ['d', '16+']]);
+    h += kfRow('Trier par', 'sort', [['lvl', 'Niveau'], ['freq', 'Fréquence'], ['strokes', 'Traits']]);
+    if (on) h += '<div class="dcchips"><button type="button" class="dcch rst" data-kx="krst">↺ Effacer les filtres</button></div>';
+    h += '</div><div class="dcbody"><div id="dcList">' + kfListHTML() + '</div></div></div>';
+    return h;
+  };
+  var kfList0 = dcListHTML;
+  dcListHTML = function () { return dc.mode === 'k' ? kfListHTML() : kfList0(); };
+  var kfSug0 = typeof dcSugRender === 'function' ? dcSugRender : null;
+  if (kfSug0) dcSugRender = function () { if (dc.mode === 'k') { var b = document.getElementById('dcSug'); if (b) b.hidden = true; return; } kfSug0(); };
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest ? ev.target.closest('[data-kx]') : null; if (!b) return;
+    var p = b.getAttribute('data-kx'), k = p.split(':')[0], v = p.slice(k.length + 1);
+    if (k === 'mode') { if (dc.mode === (v === 'k' ? 'k' : 'w')) return; dc.mode = v === 'k' ? 'k' : 'w'; dc.q = ''; dc.n = 60; KF.n = 120; dc._anim = true; dcRefreshAll(); }
+    else if (k === 'kf') { var a = v.split(':'); KF[a[0]] = a[1]; KF.n = 120; dc.q = dc.q && /[㐀-鿿]/.test(dc.q) ? '' : dc.q; dcRefreshAll(); }
+    else if (k === 'krst') { KF.lv = 'all'; KF.g = 'all'; KF.s = 'all'; KF.sort = 'lvl'; KF.n = 120; dcRefreshAll(); }
+    else if (k === 'kmore') { KF.n += 120; var l = document.getElementById('dcList'); if (l) l.innerHTML = kfListHTML(); }
+  });
+  document.addEventListener('input', function (ev) { if (ev.target && ev.target.id === 'dcQ' && dc.mode === 'k') KF.n = 120; });
 
   /* ===== v360 : JMdict (EDRDG, CC BY-SA 4.0) — dictionnaire étendu ===== */
   var JM_POSL = { n: 'nom', 'n-adv': 'nom adverbial', 'n-suf': 'nom suffixe', 'n-pref': 'nom préfixe', 'n-t': 'nom temporel', pn: 'pronom', exp: 'expression', int: 'interjection', prt: 'particule', conj: 'conjonction', ctr: 'compteur', num: 'nombre', pref: 'préfixe', suf: 'suffixe', adv: 'adverbe', 'adv-to': 'adverbe', 'adj-i': 'adjectif en い', 'adj-ix': 'adjectif en い', 'adj-na': 'adjectif en な', 'adj-no': 'adjectif en の', 'adj-f': 'adjectif', 'adj-pn': 'adnominal', aux: 'auxiliaire', 'aux-v': 'auxiliaire', 'aux-adj': 'auxiliaire', cop: 'copule', unc: '', vi: 'intransitif', vt: 'transitif', vs: 'nom + する', 'vs-i': 'verbe en する', 'vs-s': 'verbe en する', vk: 'verbe irrégulier', v1: 'verbe ichidan', 'v1-s': 'verbe ichidan', v5aru: 'verbe honorifique', 'v5r-i': 'verbe irrégulier', 'v5k-s': 'verbe irrégulier' };
