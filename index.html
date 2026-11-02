@@ -5556,7 +5556,82 @@ button.dclink{font:inherit;text-align:left;cursor:pointer}
 .wgres{margin-top:2px;padding-top:5px;border-top:1px dashed rgba(180,42,93,.35)}
 .wgpart{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;align-items:baseline}.wgpart .wgh2{margin:0}
 .wgfbn{font-size:.8rem;opacity:.75;margin:2px 0 8px;line-height:1.35}
-#wtip .wgc{margin:8px 0 0;padding:6px 8px;text-align:left;font-size:.85rem}#wtip .wgc .wgh,#wtip .wgc .wgh2{display:none}#wtip .wgc .wgres .wgnt,#wtip .wgc .wgpart{display:none}#wtip .wgc .wgsteps li{grid-template-columns:1.2em auto 1fr}#wtip .wgc .wgnt{font-size:.74rem}
+#wtip .wgc{margin:8px 0 0;padding:6px 8px;text-align:left;font-size:.85rem}#wtip .wgc .wgh,#wtip .wgc .wgh2{display:none}#wtip .wgc .wgres .wgnt,#wtip .wgc .wgpart{display:none}#wtip .wgc .wgsteps li{grid-template-columns:1.2em auto 1fr}#wtip .wgc .wgnt{font-size:.74rem}/* v358 : dictionnaire grimoire */
+.dcbook{position:relative;padding:16px 12px 18px;border-radius:22px;color:#2c2452;border:2px solid #c9a24a;background:radial-gradient(120% 60% at 50% 0%,#fffdf6 0%,#faf1de 60%,#f3e6c8 100%);box-shadow:inset 0 0 0 4px #fff8e8,inset 0 0 0 5px rgba(201,162,74,.65),0 12px 30px rgba(20,12,50,.35)}
+.dcbook::before{content:"";position:absolute;inset:0;border-radius:20px;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(150,110,40,.035) 0 1px,transparent 1px 4px);mix-blend-mode:multiply}
+.dchead{display:flex;align-items:center;gap:12px;position:relative}
+.dcseal{flex:none;width:54px;height:54px;display:grid;place-items:center;font-size:1.9rem;font-weight:800;color:#fff4d6;border-radius:12px;background:linear-gradient(145deg,#c8325f,#8f1f45);border:2px solid #f6d58e;box-shadow:0 3px 0 #5f1230,inset 0 0 0 2px rgba(255,255,255,.18);transform:rotate(-3deg)}
+.dcht b{display:block;font-family:'Noto Serif JP',Georgia,serif;font-size:1.45rem;letter-spacing:.02em;line-height:1.1}
+.dcht small{color:#6f629a;font-size:.78rem}
+.dcorn{display:flex;align-items:center;gap:8px;margin:10px 4px 12px}.dcorn i{flex:1;height:2px;background:linear-gradient(90deg,transparent,#c9a24a)}.dcorn i:last-child{background:linear-gradient(90deg,#c9a24a,transparent)}.dcorn s{width:9px;height:9px;transform:rotate(45deg);background:#c9a24a;box-shadow:0 0 0 3px #faf1de,0 0 0 4px #c9a24a;text-decoration:none}
+.dcsearch{position:relative;z-index:5;display:flex;align-items:center}
+.dcsearch .dcq{margin:0;min-height:56px;padding:12px 44px 12px 48px;font-size:1.1rem;border-radius:18px;border:2.5px solid #4b3d84;background:#fffdf8;box-shadow:inset 0 2px 0 rgba(75,61,132,.08),0 4px 0 #3a2f6b;transition:box-shadow .2s,border-color .2s}
+.dcsearch .dcq:focus{outline:none;border-color:#c9a24a;box-shadow:0 0 0 4px rgba(246,213,142,.55),0 4px 0 #3a2f6b}
+.dcsi{position:absolute;left:15px;width:24px;height:24px;color:#4b3d84;pointer-events:none}
+.dcclr{position:absolute;right:10px;width:34px;height:34px;border-radius:50%;border:0;background:#efe8fb;color:#4b3d84;font-size:1.3rem;line-height:1;cursor:pointer;display:none}
+.dcbook.hasq .dcclr{display:block}
+.dcsug{position:absolute;left:0;right:0;top:calc(100% + 6px);display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:#fffdf8;border:2px solid #c9a24a;box-shadow:0 14px 30px rgba(20,12,50,.4)}
+.dcsug[hidden]{display:none}
+.dcsg{display:flex;align-items:center;gap:12px;text-align:left;padding:9px 14px;border:0;border-bottom:1px solid rgba(201,162,74,.3);background:none;font:inherit;color:#2c2452;cursor:pointer}
+.dcsg:last-child{border-bottom:0}.dcsg:hover,.dcsg:active{background:linear-gradient(90deg,#fff3d0,#fffaf0)}
+.dcsk{flex:none;min-width:2.4em;font-size:1.35rem;font-weight:800}.dcsm{display:flex;flex-direction:column;font-size:.85rem;min-width:0}.dcsm .jp{font-size:.78rem;color:#6f629a}
+.dcsug mark,.dcard mark{background:#ffe19a;color:inherit;border-radius:3px;padding:0 1px}
+.dcrec{display:flex;align-items:center;gap:8px;margin:10px 0 0;font-size:.74rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#a63a60}
+.dcrec .dcchips{margin:0}
+.dcrc{flex:none;min-width:40px;min-height:36px;padding:2px 10px;border-radius:10px;border:1.5px solid rgba(201,162,74,.7);background:#fffaf0;color:#2c2452;font-size:1.05rem;font-weight:700;cursor:pointer}
+.dcfil{display:flex;flex-direction:column;gap:2px;margin-top:10px}
+.dcchips{display:flex;gap:7px;overflow-x:auto;padding:3px 2px 7px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.dcchips::-webkit-scrollbar{display:none}.dcchips.wrap{flex-wrap:wrap;overflow:visible}
+.dcch{flex:none;min-height:38px;padding:6px 14px;border-radius:999px;border:1.8px solid rgba(75,61,132,.45);background:#fffdf8;color:#2c2452;font:inherit;font-size:.88rem;font-weight:700;cursor:pointer;transition:transform .12s,box-shadow .2s,background .2s}
+.dcch:active{transform:translateY(1px)}
+.dcch.on{background:linear-gradient(145deg,#4b3d84,#2c2452);color:#fff4d6;border-color:#c9a24a;box-shadow:0 0 0 2px rgba(246,213,142,.55)}
+.dcch.rst{border-style:dashed;color:#a63a60;border-color:rgba(166,58,96,.6)}.dcch small{opacity:.7}
+.dcwod{position:relative;display:flex;align-items:center;gap:14px;width:100%;margin:6px 0 4px;padding:12px 16px 12px 14px;text-align:left;border-radius:18px;border:2px solid #c9a24a;background:linear-gradient(110deg,#2c2452 0%,#4b3d84 70%,#6a4f9c 100%);color:#fff4d6;font:inherit;cursor:pointer;overflow:hidden;box-shadow:0 5px 0 #1b1640,0 10px 24px rgba(20,12,50,.35);transition:transform .15s,box-shadow .2s}
+.dcwod::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(246,213,142,.35) 50%,transparent 65%);transform:translateX(-120%);transition:transform .7s}
+.dcwod:hover::after,.dcwod:focus-visible::after{transform:translateX(120%)}
+.dcwod:active{transform:translateY(2px);box-shadow:0 2px 0 #1b1640}
+.dcwl{position:absolute;top:7px;right:14px;font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#f6d58e}
+.dcwk{flex:none;font-size:2.5rem;font-weight:800;line-height:1;color:#fff;text-shadow:0 0 18px rgba(246,213,142,.55)}
+.dcwm{display:flex;flex-direction:column;gap:2px;min-width:0}.dcwr{font-size:.95rem;color:#f6d58e}.dcwf{font-size:.95rem}
+.dcbody{display:grid;grid-template-columns:1fr 28px;gap:8px;margin-top:6px;align-items:start}
+.dccount{margin:6px 2px 8px;font-size:.78rem;color:#6f629a;font-weight:700}
+.dclist{display:grid;grid-template-columns:1fr;gap:9px}
+@media (min-width:640px){.dclist{grid-template-columns:1fr 1fr}.dcbody{grid-template-columns:1fr 32px}}
+.dcard{position:relative;overflow:hidden;display:grid;grid-template-columns:76px 1fr 18px;align-items:center;gap:10px;width:100%;padding:9px 10px 9px 8px;text-align:left;border-radius:16px;border:1.8px solid rgba(75,61,132,.35);background:linear-gradient(#fffefb,#fbf4e6);color:#2c2452;font:inherit;cursor:pointer;box-shadow:0 3px 0 rgba(75,61,132,.2);transition:transform .14s,box-shadow .25s,border-color .25s}
+.dcard::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 38%,rgba(246,213,142,.5) 50%,transparent 62%);transform:translateX(-130%);transition:transform .65s ease}
+.dcard:hover,.dcard:focus-visible{border-color:#c9a24a;box-shadow:0 0 0 2px rgba(246,213,142,.7),0 8px 20px rgba(200,150,40,.28)}
+.dcard:hover::after,.dcard:focus-visible::after,.dcard:active::after{transform:translateX(130%)}
+.dcard:active{transform:translateY(2px) scale(.995);border-color:#c9a24a;box-shadow:0 0 0 3px rgba(246,213,142,.85),0 2px 10px rgba(200,150,40,.4)}
+.dcck{display:grid;place-items:center;min-height:62px;border-radius:12px;background:radial-gradient(circle at 50% 40%,#fff 0%,#f6ecff 100%);border:1.5px solid rgba(75,61,132,.2);font-weight:800;line-height:1.1;text-align:center;word-break:break-all;color:#2c2452;box-shadow:inset 0 0 0 2px #fff}
+.dcck.k1{font-size:2.15rem}.dcck.k2{font-size:1.5rem}.dcck.k3{font-size:1.1rem}.dcck.k4{font-size:.9rem}
+.dccm{display:flex;flex-direction:column;gap:2px;min-width:0}
+.dccr{font-size:.82rem;color:#6f629a;font-weight:600}.dccr small{font-size:.68rem;font-weight:500;opacity:.8;margin-left:4px}
+.dccf{font-size:.95rem;font-weight:700;line-height:1.2}
+.dccg{font-size:1.5rem;color:#c9a24a;text-align:center;transition:transform .2s}.dcard:hover .dccg{transform:translateX(3px)}
+.dcard .dcbs{margin-top:2px}
+.dcgh{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin:8px 0 0;scroll-margin-top:90px}
+.dcgh b{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;font-size:1.2rem;color:#fff4d6;background:linear-gradient(145deg,#c8325f,#8f1f45);border:1.5px solid #f6d58e}.dcgh i{flex:1;height:2px;background:linear-gradient(90deg,#c9a24a,transparent)}
+.dcidx{position:sticky;top:84px;display:flex;flex-direction:column;gap:2px;padding:4px 2px;border-radius:14px;background:rgba(255,250,240,.85);border:1.5px solid rgba(201,162,74,.6)}
+.dcidx button{border:0;background:none;color:#4b3d84;font:inherit;font-size:.9rem;font-weight:800;min-height:28px;border-radius:8px;cursor:pointer}.dcidx button:hover,.dcidx button:active{background:#c9a24a;color:#fff}
+.dcbook.hasq .dcidx,.dcbook.hasq .dcwod,.dcbook.hasq .dcrec{display:none}.dcbook.hasq .dcbody{grid-template-columns:1fr}
+.dcempty{text-align:center;padding:26px 10px;color:#6f629a}.dcemk{display:block;font-size:3rem;opacity:.35}.dcempty p{margin:4px 0;font-weight:700;color:#2c2452}
+@media (prefers-reduced-motion:no-preference){.dcard[style*="--i"]{animation:dcIn .45s cubic-bezier(.2,.8,.3,1) both;animation-delay:calc(var(--i) * 38ms)}}
+@keyframes dcIn{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+/* fiche */
+.dcpage .dcfr-frame{position:relative;margin:2px 0 12px;padding:18px 12px 14px;border-radius:18px;border:2px solid #c9a24a;background:radial-gradient(120% 90% at 50% 0%,#fffdf6,#f7ead0);box-shadow:inset 0 0 0 4px #fff8e8,inset 0 0 0 5px rgba(201,162,74,.55)}
+.dcfr-frame i{position:absolute;width:16px;height:16px;border:2.5px solid #c9a24a}.dcfr-frame .c1{top:7px;left:7px;border-right:0;border-bottom:0;border-radius:6px 0 0 0}.dcfr-frame .c2{top:7px;right:7px;border-left:0;border-bottom:0;border-radius:0 6px 0 0}.dcfr-frame .c3{bottom:7px;left:7px;border-right:0;border-top:0;border-radius:0 0 0 6px}.dcfr-frame .c4{bottom:7px;right:7px;border-left:0;border-top:0;border-radius:0 0 6px 0}
+.dcpage .dcdh{align-items:center}.dcpage .dcbig{font-size:3.4rem;text-shadow:0 2px 0 rgba(201,162,74,.5);color:#2c2452}.dcpage .dcbig.k2{font-size:2.5rem}.dcpage .dcbig.k3,.dcpage .dcbig.k4{font-size:1.7rem}
+.dcpage .dcdrd{font-size:1.25rem;color:#a63a60;font-weight:700}.dcrom{font-size:.85rem;color:#6f629a;letter-spacing:.04em}
+.dcsec{margin:14px 0 6px;font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#a63a60;display:flex;align-items:center;gap:8px}.dcsec::after{content:"";flex:1;height:1.5px;background:linear-gradient(90deg,#c9a24a,transparent)}
+.dcstroke{padding:8px 8px 10px;border-radius:16px;background:#fffaf0;border:1.5px solid rgba(201,162,74,.55)}.dcstroke .dcsec{margin-top:4px}
+.dcstabs{display:flex;gap:6px;margin-bottom:4px}.dcstab{min-width:42px;min-height:42px;font-size:1.3rem;border-radius:11px;border:1.8px solid rgba(75,61,132,.4);background:#fffdf8;color:#2c2452;cursor:pointer}.dcstab.on{background:#2c2452;color:#fff4d6;border-color:#c9a24a}
+.dcstroke .swsvg{width:min(100%,240px);border-radius:14px;border:2px solid #c9a24a;box-shadow:0 0 0 4px #fff8e8,0 6px 18px rgba(200,150,40,.25)}
+.dcex{margin:14px 0 4px;padding:10px 12px;border-radius:14px;background:#fffaf0;border:1.5px solid rgba(201,162,74,.5)}.dcex .dcsec{margin-top:0}
+.dcpage .dcfr2{background:#fffaf0;border:1.5px solid rgba(201,162,74,.4)}
+.dcpage .dcg{color:#a63a60}
+.dcthm .dcg{margin:12px 0 4px}
+.dcmodal .dckb{border-color:#c9a24a}
+.dcq::-webkit-search-cancel-button,.dcq::-webkit-search-decoration{-webkit-appearance:none;display:none}
+
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -31166,7 +31241,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v357', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v358', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -31457,6 +31532,142 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   wcOpen = function (tok) {
     var e = wlookup(tok) || (/[㐀-鿿]/.test(tok) ? wfb(tok) : null); if (!e) return;
     openModal('Fiche du mot', wcardHTML(e), 'wfcmodal');
+  };
+
+  /* ===== v358 : refonte visuelle du dictionnaire (grimoire) ===== */
+  var DC_ROWS = [['あ', 'ぁあぃいぅうぇえぉお'], ['か', 'かがきぎくぐけげこご'], ['さ', 'さざしじすずせぜそぞ'], ['た', 'ただちぢっつづてでとど'], ['な', 'なにぬねの'], ['は', 'はばぱひびぴふぶぷへべぺほぼぽ'], ['ま', 'まみむめも'], ['や', 'ゃやゅゆょよ'], ['ら', 'らりるれろ'], ['わ', 'ゎわゐゑをん']];
+  function dcRowOf(e) {
+    var s = toHira(e.kana || e.jp || ''), c = s.charAt(0); if (c === 'ー') c = s.charAt(1) || c;
+    for (var i = 0; i < DC_ROWS.length; i++) if (DC_ROWS[i][1].indexOf(c) >= 0) return DC_ROWS[i][0];
+    return '＃';
+  }
+  function dcKey(e) { return toHira(e.kana || e.jp || ''); }
+  function dcSizeCls(jp) { var n = Array.from(jp).length; return n <= 2 ? 'k1' : n <= 4 ? 'k2' : n <= 7 ? 'k3' : 'k4'; }
+  function dcHL(text, q) {
+    text = String(text || ''); var nq = dcNorm(q || '').trim(); if (!nq) return esc(text);
+    var nt = dcNorm(text), k = nt.indexOf(nq); if (k < 0 || nt.length !== text.length) return esc(text);
+    return esc(text.slice(0, k)) + '<mark>' + esc(text.slice(k, k + nq.length)) + '</mark>' + esc(text.slice(k + nq.length));
+  }
+  function dcRecent() { return ((S && S.dcRecent) || []).slice(0, 8); }
+  function dcByJp(jp) { var A = dcBuild().all; for (var i = 0; i < A.length; i++) if (A[i].jp === jp) return A[i]; return null; }
+  function dcWod() {
+    var D = dcBuild(); if (D.wod) return D.wod;
+    var pool = D.all.filter(function (e) { return (e.lv === 'n5' || e.lv === 'n4' || e.lv === 'q' || e.isC) && e.kana && e.fr && e.fr.length < 50 && e.jp.length <= 4 && /[㐀-鿿]/.test(e.jp) && !/[、。\s]/.test(e.jp); });
+    if (!pool.length) return null;
+    var day = Math.floor(Date.now() / 864e5); D.wod = pool[(day * 7919) % pool.length]; return D.wod;
+  }
+  function dcFilterOn() { return dc.t !== 'all' || dc.lv !== 'all' || !!dc.th; }
+  function dcCard(e, n, anim) {
+    var rd = e.kana && e.kana !== e.jp ? esc(e.kana) + ' <small>' + esc(toRomaji(e.kana)) + '</small>' : (e.kana ? '<small>' + esc(toRomaji(e.kana)) + '</small>' : '');
+    return '<button type="button" class="dcard" data-dc="open:' + e.i + '"' + (anim ? ' style="--i:' + Math.min(n, 14) + '"' : '') + '><span class="dcck jp ' + dcSizeCls(e.jp) + '">' + esc(e.jp) + '</span><span class="dccm"><span class="dccr jp">' + rd + '</span><span class="dccf">' + esc(e.fr) + (e.via ? ' <em class="dcvia">· ' + esc(e.via) + '</em>' : '') + '</span><span class="dcbs">' + dcBadges(e) + '</span></span><span class="dccg" aria-hidden="true">›</span></button>';
+  }
+  dcRow = function (e) { return dcCard(e, 0, false); };
+  dcListHTML = function () {
+    var anim = !!dc._anim; dc._anim = false;
+    var m = dcMatches(), byKana = !dc.q && dc.sort === 'kana';
+    if (byKana) m = m.slice().sort(function (a, b) { var x = dcKey(a), y = dcKey(b); return x < y ? -1 : x > y ? 1 : 0; });
+    var n = Math.min(m.length, dc.n);
+    var h = '<p class="dccount">' + m.length.toLocaleString('fr-FR') + ' mot' + (m.length > 1 ? 's' : '') + (dc.q ? ' pour « ' + esc(dc.q) + ' »' : '') + '</p>';
+    if (!m.length) return h + '<div class="dcempty"><span class="dcemk jp">空</span><p>Aucun mot ne correspond.</p><small>Essaie le kana, le romaji ou le français, ou retire un filtre.</small></div>';
+    var rows = '', last = '';
+    m.slice(0, n).forEach(function (e, i) {
+      if (byKana) { var r = dcRowOf(e); if (r !== last) { last = r; rows += '<div class="dcgh jp" id="dcg-' + r + '"><b>' + r + '</b><i></i></div>'; } }
+      rows += dcCard(e, i, anim);
+    });
+    h += '<div class="dclist">' + rows + '</div>';
+    if (m.length > n) h += '<button type="button" class="btn dcmore" data-dc="more">Afficher plus (' + (m.length - n).toLocaleString('fr-FR') + ' restants)</button>';
+    m.forEach(function (e) { e.via = ''; });
+    return h;
+  };
+  function dcChip(k, v, t, on) { return '<button type="button" class="dcch' + (on ? ' on' : '') + '" data-dc="' + k + ':' + v + '" aria-pressed="' + on + '">' + t + '</button>'; }
+  function dcThemeName() { var t = QV.filter(function (x) { return x.id === dc.th; })[0]; return t ? t.name : ''; }
+  function dcIdxHTML() { return '<nav id="dcIdx" class="dcidx jp" aria-label="Index kana">' + DC_ROWS.map(function (r) { return '<button type="button" data-dc="jump:' + r[0] + '">' + r[0] + '</button>'; }).join('') + '</nav>'; }
+  dcInner = function () {
+    dcBuild();
+    var q = dc.q || '', cnt = dcCount();
+    var h = '<div class="dcbook' + (q ? ' hasq' : '') + '">';
+    h += '<header class="dchead"><span class="dcseal jp" aria-hidden="true">辞</span><div class="dcht"><b>Dictionnaire</b><small>' + cnt.toLocaleString('fr-FR') + ' mots · verbes conjugués · expressions</small></div></header><div class="dcorn" aria-hidden="true"><i></i><s></s><i></i></div>';
+    h += '<div class="dcsearch"><svg class="dcsi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><input id="dcQ" class="dcq" type="search" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="食べる · たべる · manger…" value="' + esc(q) + '" aria-label="Rechercher un mot"><button type="button" class="dcclr" data-dc="clr" aria-label="Effacer la recherche">×</button><div id="dcSug" class="dcsug" hidden></div></div>';
+    var rec = dcRecent().map(dcByJp).filter(Boolean);
+    if (rec.length) h += '<div class="dcrec"><span>Récents</span><div class="dcchips">' + rec.map(function (e) { return '<button type="button" class="dcrc jp" data-dc="open:' + e.i + '">' + esc(e.jp) + '</button>'; }).join('') + '</div></div>';
+    h += '<div class="dcfil"><div class="dcchips" role="group" aria-label="Type">' + [['all', 'Tous'], ['v', 'Verbes'], ['a', 'Adjectifs'], ['e', 'Expressions'], ['o', 'Autres']].map(function (x) { return dcChip('t', x[0], x[1], dc.t === x[0]); }).join('') + '</div>';
+    h += '<div class="dcchips" role="group" aria-label="Niveau">' + [['all', 'Tous niveaux'], ['n5', 'N5'], ['n4', 'N4'], ['n3', 'N3'], ['n2', 'N2'], ['n1', 'N1'], ['q', 'Quotidien'], ['c', 'Cours'], ['b', 'Bonus']].map(function (x) { return dcChip('lv', x[0], x[1], dc.lv === x[0]); }).join('') + '</div>';
+    h += '<div class="dcchips"><button type="button" class="dcch th' + (dc.th ? ' on' : '') + '" data-dc="thm:1">🏷 ' + (dc.th ? esc(dcThemeName()) : 'Thème') + ' ▾</button><button type="button" class="dcch' + (dc.sort === 'kana' ? ' on' : '') + '" data-dc="sort:' + (dc.sort === 'kana' ? 'lv' : 'kana') + '">あ→ん ' + (dc.sort === 'kana' ? 'activé' : 'ordre kana') + '</button>' + (dcFilterOn() ? '<button type="button" class="dcch rst" data-dc="rst:1">↺ Effacer les filtres</button>' : '') + '</div></div>';
+    var w = (!q && !dcFilterOn()) ? dcWod() : null;
+    if (w) h += '<button type="button" class="dcwod" data-dc="open:' + w.i + '"><span class="dcwl">Mot du jour</span><span class="dcwk jp">' + esc(w.jp) + '</span><span class="dcwm"><span class="jp dcwr">' + esc(w.kana || '') + '</span><span class="dcwf">' + esc(w.fr) + '</span></span><span class="dcwrb" aria-hidden="true"></span></button>';
+    h += '<div class="dcbody"><div id="dcList">' + (dc._anim = !dc._noanim, dc._noanim = false, dcListHTML()) + '</div>' + dcIdxHTML() + '</div></div>';
+    return h;
+  };
+  /* suggestions pendant la frappe */
+  function dcSugRender() {
+    var box = document.getElementById('dcSug'), inp = document.getElementById('dcQ'); if (!box || !inp) return;
+    var q = (dc.q || '').trim(), book = box.closest('.dcbook');
+    if (book) book.classList.toggle('hasq', !!q);
+    if (!q || document.activeElement !== inp) { box.hidden = true; return; }
+    var m = dcMatches().slice(0, 6); m.forEach(function (e) { e.via = ''; });
+    if (!m.length) { box.hidden = true; return; }
+    box.innerHTML = m.map(function (e) { return '<button type="button" class="dcsg" data-dc="open:' + e.i + '"><span class="dcsk jp">' + dcHL(e.jp, q) + '</span><span class="dcsm"><span class="jp">' + dcHL(e.kana && e.kana !== e.jp ? e.kana : '', q) + '</span><span>' + dcHL(e.fr, q) + '</span></span></button>'; }).join('');
+    box.hidden = false;
+  }
+  document.addEventListener('input', function (ev) { if (ev.target && ev.target.id === 'dcQ') setTimeout(dcSugRender, 190); });
+  document.addEventListener('focusin', function (ev) { if (ev.target && ev.target.id === 'dcQ') dcSugRender(); });
+  document.addEventListener('focusout', function (ev) { if (ev.target && ev.target.id === 'dcQ') setTimeout(function () { var b = document.getElementById('dcSug'); if (b) b.hidden = true; }, 180); });
+  document.addEventListener('pointerdown', function (ev) { if (ev.target.closest && ev.target.closest('#dcSug')) ev.preventDefault(); });
+  document.addEventListener('keydown', function (ev) {
+    if (!ev.target || ev.target.id !== 'dcQ') return;
+    if (ev.key === 'Enter') { var f = document.querySelector('#dcSug .dcsg'); if (f) { ev.preventDefault(); f.click(); } }
+    else if (ev.key === 'Escape') { var b = document.getElementById('dcSug'); if (b) b.hidden = true; }
+  });
+  /* actions des nouveaux boutons */
+  function dcThemeSheet() {
+    var seen = {}, groups = {};
+    QV.forEach(function (t) { if (t.virt) return; if (dc.lv !== 'all' && dc.lv !== 'c' && dc.lv !== 'b' && t.lv !== dc.lv) return; var g = /^kg_/.test(t.id) ? 'Keigo et oral' : t.lv === 'q' ? 'Vie quotidienne' : 'JLPT ' + t.lv.toUpperCase(); (groups[g] = groups[g] || []).push(t); });
+    var h = '<div class="dcthm"><button type="button" class="dcch' + (!dc.th ? ' on' : '') + '" data-dc="thset:">Tous les thèmes</button>';
+    Object.keys(groups).forEach(function (g) { h += '<p class="dcg">' + esc(g) + '</p><div class="dcchips wrap">' + groups[g].map(function (t) { return '<button type="button" class="dcch' + (dc.th === t.id ? ' on' : '') + '" data-dc="thset:' + esc(t.id) + '">' + esc(t.name) + ' <small>' + t.w.length + '</small></button>'; }).join('') + '</div>'; });
+    openModal('Thème', h + '</div>', 'kmodal dcmodal');
+  }
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest ? ev.target.closest('[data-dc]') : null; if (!b) return;
+    var p = b.getAttribute('data-dc'), k = p.split(':')[0], v = p.slice(k.length + 1);
+    if (k === 'clr') { dc.q = ''; dc.n = 60; dc._anim = true; dcRefreshAll(); var i = document.getElementById('dcQ'); if (i) i.focus(); }
+    else if (k === 'thm') dcThemeSheet();
+    else if (k === 'thset') { dc.th = v; dc.n = 60; dc._anim = true; closeModal(); dcRefreshAll(); }
+    else if (k === 'sort') { dc.sort = v; dc.n = 60; dc._anim = true; dcRefreshAll(); }
+    else if (k === 'rst') { dc.t = 'all'; dc.lv = 'all'; dc.th = ''; dc.n = 60; dc._anim = true; dcRefreshAll(); }
+    else if (k === 'jump') {
+      dc.sort = 'kana'; dc.q = ''; dc.t = dc.t; var m = dcMatches().slice().sort(function (a, c) { var x = dcKey(a), y = dcKey(c); return x < y ? -1 : x > y ? 1 : 0; }), idx = -1;
+      for (var i2 = 0; i2 < m.length; i2++) if (dcRowOf(m[i2]) === v) { idx = i2; break; }
+      if (idx < 0) return; dc.n = Math.max(dc.n, idx + 50); dc._noanim = true; dcRefreshAll();
+      var t = document.getElementById('dcg-' + v); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    else if (k === 'swk') { var host = document.querySelector('.dcswh'); if (host) { var sw = swBuild(host, v); swPlay(sw); document.querySelectorAll('.dcstab').forEach(function (x) { x.classList.toggle('on', x === b); }); } }
+  });
+  /* fiche d'un mot : page de grimoire + tracé animé */
+  dcOpen = function (i) {
+    var e = dcBuild().all[i]; if (!e) return;
+    try { S.dcRecent = [e.jp].concat((S.dcRecent || []).filter(function (x) { return x !== e.jp; })).slice(0, 8); persist(); } catch (x) {}
+    var ex = null; try { ex = exOf(e.jp); } catch (x) {}
+    var chars = Array.from(e.jp).filter(function (c, n, a) { return a.indexOf(c) === n; }), sk = chars.filter(function (c) { return typeof STROKES === 'object' && STROKES[c]; });
+    var h = '<div class="kbody inmodal dcd dcpage"><div class="dcfr-frame"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i>';
+    h += '<div class="dcdh"><span class="dcbig jp ' + dcSizeCls(e.jp) + '">' + esc(e.jp) + '</span>' + (e.kana && e.kana !== e.jp ? '<span class="dcdrd jp">' + esc(e.kana) + '</span>' : '') + (e.kana ? '<span class="dcrom">' + esc(toRomaji(e.kana)) + '</span>' : '') + '</div>';
+    h += '<p class="dcdfr"><b>' + esc(e.fr) + '</b></p><div class="dcbs">' + dcBadges(e) + (e.th ? '<span class="dcb">' + esc((QV.filter(function (t) { return t.id === e.th; })[0] || {}).name || '') + '</span>' : '') + '</div>';
+    h += '<div class="knact"><button type="button" class="btn" data-dc="say:' + e.i + '">🔊 Écouter</button></div></div>';
+    if (sk.length) {
+      h += '<div class="dcstroke"><p class="dcsec">Tracé 書き順</p>' + (sk.length > 1 ? '<div class="dcstabs">' + sk.map(function (c, n) { return '<button type="button" class="dcstab jp' + (n === 0 ? ' on' : '') + '" data-dc="swk:' + esc(c) + '">' + esc(c) + '</button>'; }).join('') + '</div>' : '') + '<div class="swhost dcswh"></div></div>';
+    }
+    if (ex && ex.full) h += '<div class="dcex"><p class="dcsec">Exemple</p><p class="jp dcexj">' + (typeof furiHTML === 'function' ? furiHTML(ex.full) : esc(ex.full)) + '</p><p class="small">' + esc(ex.fr || '') + '</p></div>';
+    var ks = chars.filter(function (c) { return KMAP[c] || (typeof JK !== 'undefined' && JK && JK[c]); });
+    if (ks.length) h += '<p class="dcsec">Kanji de ce mot</p><div class="dckj">' + ks.map(function (c) { return '<button type="button" class="dckb jp" data-dc="kanji:' + esc(c) + '">' + esc(c) + '</button>'; }).join('') + '</div>';
+    var F = dcForms(e);
+    if (F) {
+      var ttl = e.t === 'v' ? ({ ichi: 'Verbe du 2e groupe (ichidan)', godan: 'Verbe du 1er groupe (godan)', suru: 'Verbe en する', kuru: 'Verbe irrégulier 来る', aru: 'Verbe ある', iku: 'Verbe 行く (て : 行って)', honor: 'Verbe honorifique (ます : いらっしゃいます)' }[e.vt] || 'Verbe') : e.t === 'ai' ? 'Adjectif en い' : 'Adjectif en な';
+      h += '<h4 class="dch4">Conjugaison <small>· ' + ttl + '</small></h4>';
+      var cur = ''; F.forEach(function (x) { if (x[0] !== cur) { if (cur) h += '</div>'; cur = x[0]; h += '<p class="dcg">' + esc(x[0]) + '</p><div class="dcf">'; } h += '<div class="dcfr2"><span class="dcfl">' + esc(x[1]) + '</span><span class="dcfv jp">' + esc(x[2]) + (x[3] ? '<small>' + esc(x[3]) + '</small>' : '') + '</span></div>'; });
+      h += '</div>';
+    }
+    h += '</div>';
+    openModal(e.jp, h, 'kmodal dcmodal');
+    if (sk.length) { var host = document.querySelector('.dcswh'); if (host) { try { var sw = swBuild(host, sk[0]); setTimeout(function () { swPlay(sw); }, 350); } catch (x) {} } }
   };
 
   backend.init().then(function (u) {
