@@ -23150,7 +23150,7 @@ button.dclink{font:inherit;text-align:left;cursor:pointer}
       '<button type="button" class="btn primary clzgo" data-clz="start"' + (items.length ? '' : ' disabled') + '>▶ Commencer (' + Math.min(10, items.length) + ' phrases)</button></div>';
   }
   function clzSentenceHTML(q, filled) {
-    var f = S && S.clzFuri, it = q.it, mid = filled ? '<mark class="clzfill" data-wtok="' + esc(wlookup(it.hit) ? it.hit : it.w.mot) + '" tabindex="0" role="button">' + (f ? furiHTML(it.hit) : esc(it.hit)) + '</mark>' : '<span class="clzblank" style="min-width:' + Math.max(2.4, Array.from(it.hit).length * 1.0 + 0.9).toFixed(1) + 'em"></span>';
+    var f = S && S.clzFuri, it = q.it, mid = filled ? '<mark class="clzfill" data-wtok="' + esc(wlookup(it.hit) ? it.hit : it.w.mot) + '" data-wctx="' + esc((it.hit + String(it.post || '')).split(/[。！？]/)[0].slice(0, 24)) + '" data-wpre="' + esc(String(it.pre || '').slice(-8)) + '" tabindex="0" role="button">' + (f ? furiHTML(it.hit) : esc(it.hit)) + '</mark>' : '<span class="clzblank" style="min-width:' + Math.max(2.4, Array.from(it.hit).length * 1.0 + 0.9).toFixed(1) + 'em"></span>';
     var post = String(it.post || ''), pm = post.match(/^[はがをにでともへの]/), glue = pm ? pm[0] : '';
     return '<p class="clzjp jp">' + wtokHTML(it.pre, f, true) + '<wbr><span class="clznb">' + mid + esc(glue) + '</span>' + wtokHTML(post.slice(glue.length), f, true) + '</p>';
   }
@@ -25143,7 +25143,7 @@ button.dclink{font:inherit;text-align:left;cursor:pointer}
     BONUS.forEach(function (c) { c.items.forEach(function (it) { add(it.jp, it.kana, it.fr, 'Bonus', c.id); srcAdd(it.jp, 'Vocabulaire bonus'); }); });
     Object.keys(QVW).forEach(function (k) { var v = QVW[k], p = k.split(':')[0]; add(v.jp, v.kana, v.fr, WLEX_LV[p] || '', v.reg || ''); srcAdd(v.jp, p === 'q' ? 'Vie quotidienne' : (WLEX_LV[p] ? 'JLPT ' + WLEX_LV[p] : '')); });
     WORDS.forEach(function (w) { add(w.mot, w.lecture, w.sens, 'Cours', ''); try { srcAdd(w.mot, 'Cours ' + (CURSUS[wkLevel(w.wk)] || {}).tag); } catch (e) {} });
-    try { if (typeof RD_GL !== 'undefined') RD_GL.forEach(function (g) { add(g.jp, g.kana, g.fr, g.lvl, ''); var e = d[g.jp]; if (e && !e.srcs) { e.srcs = ['Lecture ' + g.lvl]; } }); } catch (e) { /* ignore */ }
+    try { if (typeof RD_GL !== 'undefined') RD_GL.forEach(function (g) { add(g.jp, g.kana, g.fr, g.lvl, ''); var e = d[g.jp]; if (e && !e.srcs) { e.srcs = [g.lvl === 'Phrases' ? 'Phrases d’exemple' : 'Lecture ' + g.lvl]; } }); } catch (e) { /* ignore */ }
     Object.keys(d).forEach(function (jp) { var c = d[jp]; if (!c.srcs) return; var rk = function (x) { return /^JLPT/.test(x) ? 0 : /^Cours/.test(x) ? 1 : /^Vie/.test(x) ? 2 : 3; }; c.srcs.sort(function (a, b) { return rk(a) - rk(b) || (a < b ? -1 : a > b ? 1 : 0); }); });
     Object.keys(d).forEach(function (jp) {
       var m = jp;
@@ -29357,6 +29357,101 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
 =重要性|じゅうようせい|importance|N1
 =工芸品|こうげいひん|objet d'artisanat|N1
 =新たに|あらたに|à nouveau, nouvellement|N1
+=片づける|かたづける|ranger, mettre en ordre|Phrases
+=片付ける|かたづける|ranger, mettre en ordre|Phrases
+=描く|えがく|dessiner, peindre|Phrases
+=贈る|おくる|offrir, envoyer (en cadeau)|Phrases
+=湯|ゆ|eau chaude, bain|Phrases
+=皮|かわ|peau, écorce, cuir|Phrases
+=替える|かえる|remplacer, changer (une chose par une autre)|Phrases
+=換える|かえる|échanger, convertir|Phrases
+=炊く|たく|cuire (du riz)|Phrases
+=編む|あむ|tricoter, tresser|Phrases
+=織る|おる|tisser|Phrases
+=凍る|こおる|geler, être gelé|Phrases
+=与える|あたえる|donner, accorder|Phrases
+=教わる|おそわる|apprendre (de quelqu'un)|Phrases
+=浴びる|あびる|se doucher, recevoir (lumière, critiques)|Phrases
+=浮かぶ|うかぶ|flotter, venir à l'esprit|Phrases
+=狩り|かり|chasse, cueillette|Phrases
+=誓う|ちかう|jurer, promettre|Phrases
+=叶う|かなう|se réaliser (un vœu)|Phrases
+=腫れる|はれる|enfler|Phrases
+=挙げる|あげる|lever, citer (un exemple)|Phrases
+=進む|すすむ|avancer, progresser|Phrases
+=捜す|さがす|rechercher (une personne, un objet perdu)|Phrases
+=診る|みる|examiner (un patient)|Phrases
+=新鮮|しんせん|frais, nouveau|Phrases
+=墓|はか|tombe|Phrases
+=王|おう|roi|Phrases
+=旗|はた|drapeau|Phrases
+=罪|つみ|crime, faute|Phrases
+=鶴|つる|grue (oiseau)|Phrases
+=布|ぬの|tissu|Phrases
+=鐘|かね|cloche|Phrases
+=劇|げき|pièce de théâtre|Phrases
+=券|けん|ticket, billet|Phrases
+=室|しつ|pièce, salle|Phrases
+=記録|きろく|enregistrement, record|Phrases
+=金属|きんぞく|métal|Phrases
+=真剣|しんけん|sérieux|Phrases
+=大統領|だいとうりょう|président de la République|Phrases
+=患者|かんじゃ|patient, malade|Phrases
+=応募|おうぼ|candidature, participation (à un concours)|Phrases
+=署名|しょめい|signature, pétition|Phrases
+=順調|じゅんちょう|qui se passe bien|Phrases
+=稲|いね|plant de riz|Phrases
+=藁|わら|paille|Phrases
+=粉|こな|poudre, farine|Phrases
+=棒|ぼう|bâton|Phrases
+=舟|ふね|barque|Phrases
+=塔|とう|tour, pagode|Phrases
+=梅|うめ|prunier, prune japonaise|Phrases
+=宝くじ|たからくじ|loterie|Phrases
+=賞品|しょうひん|lot, prix|Phrases
+=委員|いいん|membre d'un comité|Phrases
+=矢印|やじるし|flèche (signe)|Phrases
+=勢い|いきおい|élan, force|Phrases
+=沿う|そう|longer, suivre|Phrases
+=大そうじ|おおそうじ|grand nettoyage|Phrases
+=茶わん|ちゃわん|bol (riz, thé)|Phrases
+=地名|ちめい|nom de lieu|Phrases
+=財|ざい|richesse, biens|Phrases
+=帝|てい|empereur|Phrases
+=丘|おか|colline|Phrases
+=真理|しんり|vérité|Phrases
+=性能|せいのう|performance (technique)|Phrases
+=軍|ぐん|armée|Phrases
+=器|うつわ|récipient, vaisselle|Phrases
+=億|おく|cent millions|Phrases
+=艦|かん|navire de guerre|Phrases
+=真珠|しんじゅ|perle|Phrases
+=宮殿|きゅうでん|palais|Phrases
+=鳩|はと|pigeon|Phrases
+=大金|たいきん|grosse somme d'argent|Phrases
+=兵士|へいし|soldat|Phrases
+=支援|しえん|soutien, aide|Phrases
+=信念|しんねん|conviction|Phrases
+=菌|きん|bactérie, champignon|Phrases
+=任務|にんむ|mission, tâche|Phrases
+=否認|ひにん|démentir, nier|Phrases
+=与党|よとう|parti au pouvoir|Phrases
+=野党|やとう|opposition (parti)|Phrases
+=姫路|ひめじ|Himeji (ville)|Phrases
+=金沢|かなざわ|Kanazawa (ville)|Phrases
+=観覧|かんらん|visite, fait de regarder un spectacle|Phrases
+=仲|なか|relation entre personnes|Phrases
+=我|われ|moi, nous (soutenu)|Phrases
+=鼓|つづみ|tambour japonais|Phrases
+=尊ぶ|とうとぶ|respecter, tenir en haute estime|Phrases
+=頃|ころ|époque, vers (moment)|Phrases
+=泡|あわ|bulle, mousse|Phrases
+=隅|すみ|coin|Phrases
+=俵|たわら|sac de paille (riz)|Phrases
+=墨|すみ|encre de Chine|Phrases
+=玉|たま|boule, perle|Phrases
+=粉末|ふんまつ|poudre|Phrases
+=談話|だんわ|conversation|Phrases
 `;
   var RD = { n5: [], n4: [], n3: [], n2: [], n1: [] };
   var RD_GL = [];   // v351 : glossaire des textes (mots hors vocabulaire de l'appli, rendus cliquables)
@@ -31055,7 +31150,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v355', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v356', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
