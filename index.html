@@ -31307,7 +31307,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v371', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v372', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -31880,7 +31880,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   function kfAll() {
     if (KALL) return KALL;
     var seen = {}, out = [];
-    Object.keys(KX).concat(typeof KMAP === 'object' ? Object.keys(KMAP) : []).forEach(function (c) { if (seen[c] || Array.from(c).length !== 1) return; seen[c] = 1; var i = kxInfo(c); if (i) out.push(i); });
+    Object.keys(KX).concat(typeof KMAP === 'object' ? Object.keys(KMAP) : []).forEach(function (c) { if (seen[c] || Array.from(c).length !== 1) return; seen[c] = 1; var i = kxInfo(c); if (i) { i.wk = (typeof KMAP === 'object' && KMAP[c] && KMAP[c].wk) || 0; out.push(i); } });
     return (KALL = out);
   }
   function kfRead(s) { return toHira(String(s || '')).replace(/[()（）]/g, '').replace(/[-.\s]/g, ''); }
@@ -31895,6 +31895,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
       if (KF.lv !== 'all' && (KF.lv === '0' ? i.jlpt !== 0 : i.jlpt !== +KF.lv)) return false;
       if (KF.g !== 'all') { var g = i.grade; if (KF.g === 'p' ? !(g >= 1 && g <= 6) : KF.g === 'j' ? g !== 8 : !(g === 0 || g > 8)) return false; }
       if (KF.s !== 'all') { var n = i.strokes; if (KF.s === 'a' ? n > 5 : KF.s === 'b' ? (n < 6 || n > 10) : KF.s === 'c' ? (n < 11 || n > 15) : n < 16) return false; }
+      if (dc.cc && !(i.wk && wkLevel(i.wk) === dc.cc && (dc.cw === 'all' || i.wk === +dc.cw))) return false;
       return true;
     });
     if (q) {
@@ -31906,6 +31907,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
     }
     var lvKey = function (i) { return i.jlpt ? i.jlpt : 0; };
     r.sort(function (a, b) {
+      if (KF.sort === 'wk') return (a.wk || 9999) - (b.wk || 9999) || (a.freq || 9999) - (b.freq || 9999);
       if (KF.sort === 'strokes') return (a.strokes || 99) - (b.strokes || 99) || (a.freq || 9999) - (b.freq || 9999);
       if (KF.sort === 'freq') return (a.freq || 9999) - (b.freq || 9999);
       var x = a.jlpt ? 6 - a.jlpt : 9, y = b.jlpt ? 6 - b.jlpt : 9;
@@ -31919,7 +31921,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
     if (!m.length) return h + '<div class="dcempty"><span class="dcemk jp">空</span><p>Aucun kanji ne correspond.</p><small>Essaie un kanji, une lecture (kana ou romaji) ou un sens en français, ou retire un filtre.</small></div>';
     h += '<div class="kfgrid">' + m.slice(0, n).map(function (i) {
       var s = String(i.sens || '').split(/ ; |[;,]/)[0]; if (s.length > 16) s = s.slice(0, 15) + '…';
-      return '<button type="button" class="kft" data-kx="open:' + esc(i.c) + '"><span class="kfk jp">' + esc(i.c) + '</span><span class="kfm">' + esc(s || '—') + '</span><span class="kfb">' + (i.jlpt ? KXL[i.jlpt] : '') + (i.strokes ? '<i>' + i.strokes + ' tr.</i>' : '') + '</span></button>';
+      return '<button type="button" class="kft" data-kx="open:' + esc(i.c) + '"><span class="kfk jp">' + esc(i.c) + '</span><span class="kfm">' + esc(s || '—') + '</span><span class="kfb">' + (i.jlpt ? KXL[i.jlpt] : '') + (dc.cc && i.wk ? '<i>sem. ' + wkNum(i.wk) + '</i>' : i.strokes ? '<i>' + i.strokes + ' tr.</i>' : '') + '</span></button>';
     }).join('') + '</div>';
     if (m.length > n) h += '<button type="button" class="btn dcmore" data-kx="kmore">Afficher plus (' + (m.length - n).toLocaleString('fr-FR') + ' restants)</button>';
     return h;
@@ -31927,23 +31929,46 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   function kfRow(lbl, key, opts) {
     return '<span class="dcfl">' + lbl + '</span><div class="dcchips" role="group" aria-label="' + lbl + '">' + opts.map(function (x) { return '<button type="button" class="dcch' + (KF[key] === x[0] ? ' on' : '') + '" data-kx="kf:' + key + ':' + x[0] + '" aria-pressed="' + (KF[key] === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>';
   }
+  function cwRows() {
+    var ids = ['L0', 'L0S2', 'L1', 'L1S2', 'L2'], h = '<span class="dcfl">Cours de Lille · semestre</span><div class="dcchips" role="group" aria-label="Semestre">';
+    h += '<button type="button" class="dcch' + (!dc.cc ? ' on' : '') + '" data-kx="cc:">Tous</button>';
+    ids.forEach(function (id) { var c = CURSUS[id]; if (c) h += '<button type="button" class="dcch' + (dc.cc === id ? ' on' : '') + '" data-kx="cc:' + id + '">' + esc(c.short + ' ' + String(c.sem).replace('Semestre ', 'S')) + '</button>'; });
+    h += '</div>';
+    if (dc.cc) {
+      var seen = {}, wks = [];
+      KANJI_DATA.concat(WORDS).forEach(function (x) { if (x.wk && wkLevel(x.wk) === dc.cc && !seen[x.wk]) { seen[x.wk] = 1; wks.push(x.wk); } });
+      wks.sort(function (a, b) { return a - b; });
+      h += '<span class="dcfl">Semaine</span><div class="dcchips" role="group" aria-label="Semaine"><button type="button" class="dcch' + (dc.cw === 'all' ? ' on' : '') + '" data-kx="cw:all">Toutes</button>' + wks.map(function (w) { return '<button type="button" class="dcch' + (String(dc.cw) === String(w) ? ' on' : '') + '" data-kx="cw:' + w + '">' + wkNum(w) + '</button>'; }).join('') + '</div>';
+    }
+    return h;
+  }
+  if (typeof dc.cc === 'undefined') { dc.cc = ''; dc.cw = 'all'; }
+  var kfFO0 = dcFilterOn; dcFilterOn = function () { return kfFO0() || !!dc.cc; };
+  var kfM0 = dcMatches;
+  dcMatches = function () {
+    var r = kfM0(); if (!dc.cc) return r;
+    r = r.filter(function (e) { var w = WMAP[e.jp]; return w && w.wk && wkLevel(w.wk) === dc.cc && (dc.cw === 'all' || w.wk === +dc.cw); });
+    if (!dc.q) r = r.map(function (e, n) { return [e, n]; }).sort(function (a, b) { return (WMAP[a[0].jp].wk - WMAP[b[0].jp].wk) || (a[1] - b[1]); }).map(function (p) { return p[0]; });
+    return r;
+  };
   function kfSwitch() {
     return '<div class="dcmode" role="tablist" aria-label="Mode"><button type="button" role="tab" class="' + (dc.mode !== 'k' ? 'on' : '') + '" data-kx="mode:w">語 Mots</button><button type="button" role="tab" class="' + (dc.mode === 'k' ? 'on' : '') + '" data-kx="mode:k">漢 Kanji</button></div>';
   }
   var kfInner0 = dcInner;
   dcInner = function () {
     if (dc.mode !== 'k') {
-      return kfInner0().replace('<div class="dcsearch">', kfSwitch() + '<div class="dcsearch">').replace(/<div class="dcchips" role="group" aria-label="(Type|Niveau)">/g, function (m, a) { return '<span class="dcfl">' + a + '</span>' + m; });
+      return kfInner0().replace('<div class="dcchips"><button type="button" class="dcch th', cwRows() + '<div class="dcchips"><button type="button" class="dcch th').replace('<div class="dcsearch">', kfSwitch() + '<div class="dcsearch">').replace(/<div class="dcchips" role="group" aria-label="(Type|Niveau)">/g, function (m, a) { return '<span class="dcfl">' + a + '</span>' + m; });
     }
-    var q = dc.q || '', on = KF.lv !== 'all' || KF.g !== 'all' || KF.s !== 'all' || KF.sort !== 'lvl';
+    var q = dc.q || '', on = !!dc.cc || KF.lv !== 'all' || KF.g !== 'all' || KF.s !== 'all' || KF.sort !== 'lvl';
     var h = '<div class="dcbook kfbook' + (q ? ' hasq' : '') + '"><header class="dchead"><span class="dcseal jp" aria-hidden="true">漢</span><div class="dcht"><b>Kanji</b><small>' + kfAll().length.toLocaleString('fr-FR') + ' kanji · sens · lectures · tracé</small></div></header><div class="dcorn" aria-hidden="true"><i></i><s></s><i></i></div>';
     h += kfSwitch();
     h += '<div class="dcsearch"><svg class="dcsi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><input id="dcQ" class="dcq" type="search" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="水 · みず · mizu · eau…" value="' + esc(q) + '" aria-label="Rechercher un kanji"><button type="button" class="dcclr" data-dc="clr" aria-label="Effacer la recherche">×</button></div>';
     h += '<div class="kxtrow"><button type="button" class="dcch kxtr" data-kx="train">🎯 S’entraîner aux kanji</button></div>';
     h += '<div class="dcfil">' + kfRow('Niveau', 'lv', [['all', 'Tous'], ['5', 'N5'], ['4', 'N4'], ['3', 'N3'], ['2', 'N2'], ['1', 'N1'], ['0', 'Hors JLPT']]);
+    h += cwRows();
     h += kfRow('Classe', 'g', [['all', 'Toutes'], ['p', 'Primaire'], ['j', 'Collège / lycée'], ['o', 'Rares']]);
     h += kfRow('Nombre de traits', 's', [['all', 'Tous'], ['a', '1–5'], ['b', '6–10'], ['c', '11–15'], ['d', '16+']]);
-    h += kfRow('Trier par', 'sort', [['lvl', 'Niveau'], ['freq', 'Fréquence'], ['strokes', 'Traits']]);
+    h += kfRow('Trier par', 'sort', [['lvl', 'Niveau'], ['freq', 'Fréquence'], ['strokes', 'Traits']].concat(dc.cc ? [['wk', 'Semaine']] : []));
     if (on) h += '<div class="dcchips"><button type="button" class="dcch rst" data-kx="krst">↺ Effacer les filtres</button></div>';
     h += '</div><div class="dcbody"><div id="dcList">' + kfListHTML() + '</div></div></div>';
     return h;
@@ -31957,10 +31982,13 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
     var p = b.getAttribute('data-kx'), k = p.split(':')[0], v = p.slice(k.length + 1);
     if (k === 'mode') { if (dc.mode === (v === 'k' ? 'k' : 'w')) return; dc.mode = v === 'k' ? 'k' : 'w'; dc.q = ''; dc.n = 60; KF.n = 120; dc._anim = true; dcRefreshAll(); }
     else if (k === 'kf') { var a = v.split(':'); KF[a[0]] = a[1]; KF.n = 120; dc.q = dc.q && /[㐀-鿿]/.test(dc.q) ? '' : dc.q; dcRefreshAll(); }
-    else if (k === 'krst') { KF.lv = 'all'; KF.g = 'all'; KF.s = 'all'; KF.sort = 'lvl'; KF.n = 120; dcRefreshAll(); }
+    else if (k === 'cc') { dc.cc = dc.cc === v ? '' : v; dc.cw = 'all'; KF.sort = dc.cc ? 'wk' : 'lvl'; dc.n = 60; KF.n = 120; dc._anim = true; dcRefreshAll(); }
+    else if (k === 'cw') { dc.cw = v; dc.n = 60; KF.n = 120; dc._anim = true; dcRefreshAll(); }
+    else if (k === 'krst') { dc.cc = ''; dc.cw = 'all'; KF.lv = 'all'; KF.g = 'all'; KF.s = 'all'; KF.sort = 'lvl'; KF.n = 120; dcRefreshAll(); }
     else if (k === 'kmore') { KF.n += 120; var l = document.getElementById('dcList'); if (l) l.innerHTML = kfListHTML(); }
   });
   document.addEventListener('input', function (ev) { if (ev.target && ev.target.id === 'dcQ' && dc.mode === 'k') KF.n = 120; });
+  document.addEventListener('click', function (ev) { var b = ev.target.closest ? ev.target.closest('[data-dc="rst:1"]') : null; if (b && dc.cc) { dc.cc = ''; dc.cw = 'all'; dcRefreshAll(); } });
 
   /* ===== v360 : JMdict (EDRDG, CC BY-SA 4.0) — dictionnaire étendu ===== */
   var JM_POSL = { n: 'nom', 'n-adv': 'nom adverbial', 'n-suf': 'nom suffixe', 'n-pref': 'nom préfixe', 'n-t': 'nom temporel', pn: 'pronom', exp: 'expression', int: 'interjection', prt: 'particule', conj: 'conjonction', ctr: 'compteur', num: 'nombre', pref: 'préfixe', suf: 'suffixe', adv: 'adverbe', 'adv-to': 'adverbe', 'adj-i': 'adjectif en い', 'adj-ix': 'adjectif en い', 'adj-na': 'adjectif en な', 'adj-no': 'adjectif en の', 'adj-f': 'adjectif', 'adj-pn': 'adnominal', aux: 'auxiliaire', 'aux-v': 'auxiliaire', 'aux-adj': 'auxiliaire', cop: 'copule', unc: '', vi: 'intransitif', vt: 'transitif', vs: 'nom + する', 'vs-i': 'verbe en する', 'vs-s': 'verbe en する', vk: 'verbe irrégulier', v1: 'verbe ichidan', 'v1-s': 'verbe ichidan', v5aru: 'verbe honorifique', 'v5r-i': 'verbe irrégulier', 'v5k-s': 'verbe irrégulier' };
