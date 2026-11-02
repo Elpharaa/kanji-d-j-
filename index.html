@@ -5555,6 +5555,7 @@ button.dclink{font:inherit;text-align:left;cursor:pointer}
 .wgnt{font-size:.82rem;opacity:.8;line-height:1.3}
 .wgres{margin-top:2px;padding-top:5px;border-top:1px dashed rgba(180,42,93,.35)}
 .wgpart{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;align-items:baseline}.wgpart .wgh2{margin:0}
+.wgfbn{font-size:.8rem;opacity:.75;margin:2px 0 8px;line-height:1.35}
 #wtip .wgc{margin:8px 0 0;padding:6px 8px;text-align:left;font-size:.85rem}#wtip .wgc .wgh,#wtip .wgc .wgh2{display:none}#wtip .wgc .wgres .wgnt,#wtip .wgc .wgpart{display:none}#wtip .wgc .wgsteps li{grid-template-columns:1.2em auto 1fr}#wtip .wgc .wgnt{font-size:.74rem}
 </style>
 
@@ -25156,6 +25157,10 @@ button.dclink{font:inherit;text-align:left;cursor:pointer}
     return WLEX_C;
   }
   function wlookup(tok) { var L = wlex(); return L.d[tok] || (L.stem[tok] ? L.d[L.stem[tok]] : null); }
+  function wStartsHit(a, j) {
+    for (var len = Math.min(8, a.length - j); len >= 1; len--) { var sub = a.slice(j, j + len).join(''); if (len < 2 && !/[㐀-鿿]/.test(sub)) continue; if (wlookup(sub)) return true; }
+    return false;
+  }
   function wtokHTML(text, furi, brk) {
     var L = wlex(), a = Array.from(String(text)), out = '', i = 0;
     while (i < a.length) {
@@ -25169,6 +25174,11 @@ button.dclink{font:inherit;text-align:left;cursor:pointer}
         }
       }
       if (hit) { var n = Array.from(hit).length; out += (brk && i > 0 ? '<wbr>' : '') + '<button type="button" class="wtok" data-wtok="' + esc(hit) + '" data-wctx="' + esc(a.slice(i, i + 24).join('').split(/[。！？]/)[0]) + '" data-wpre="' + esc(a.slice(Math.max(0, i - 8), i).join('')) + '">' + (furi ? furiHTML(hit) : esc(hit)) + '</button>'; i += n; }
+      else if (/[㐀-鿿]/.test(a[i])) {
+        var j = i + 1; while (j < a.length && /[㐀-鿿々]/.test(a[j]) && !wStartsHit(a, j)) j++;
+        var run = a.slice(i, j).join('');
+        out += (brk && i > 0 ? '<wbr>' : '') + '<button type="button" class="wtok wtfb" data-wtok="' + esc(run) + '" data-wctx="' + esc(a.slice(i, i + 24).join('').split(/[。！？]/)[0]) + '" data-wpre="' + esc(a.slice(Math.max(0, i - 8), i).join('')) + '">' + (furi ? furiHTML(run) : esc(run)) + '</button>'; i = j;
+      }
       else { out += esc(a[i]); if (brk && /[はがをにでともへの、]/.test(a[i]) && a.length - i > 3) out += '<wbr>'; i++; }
     }
     return out;
@@ -25584,10 +25594,10 @@ button.dclink{font:inherit;text-align:left;cursor:pointer}
     var cur = null, tm = 0;
     function hide() { clearTimeout(tm); tip.classList.remove('on'); cur = null; }
     function show(el) {
-      var e = wlookup(el.getAttribute('data-wtok')); if (!e) return;
+      var e = wlookup(el.getAttribute('data-wtok')) || wfb(el.getAttribute('data-wtok')); if (!e) return;
       var rom = (typeof toRomaji === 'function' && e.kana) ? toRomaji(e.kana) : '';
       tip.innerHTML = '<div class="tj jp">' + esc(e.jp) + '</div>' + (e.kana && e.kana !== e.jp ? '<div class="tr jp">' + esc(e.kana) + (rom ? '<small>' + esc(rom) + '</small>' : '') + '</div>' : '') +
-        '<div class="tf">' + esc(e.fr) + '</div><div class="tc">' + (e.srcs && e.srcs.length ? e.srcs.map(function (x) { return '<span>' + esc(x) + '</span>'; }).join('') : (e.lvl ? '<span>' + esc(e.lvl) + '</span>' : '')) + '<span>' + esc(regOfWord(e.jp, e.tag)) + '</span><span>clic = fiche complète</span></div>';
+        '<div class="tf">' + esc(e.fr) + '</div><div class="tc">' + (e.srcs && e.srcs.length ? e.srcs.map(function (x) { return '<span>' + esc(x) + '</span>'; }).join('') : (e.lvl ? '<span>' + esc(e.lvl) + '</span>' : '')) + (e.fb ? '' : '<span>' + esc(regOfWord(e.jp, e.tag)) + '</span>') + '<span>clic = fiche complète</span></div>';
       try { WG.ctx = el.getAttribute('data-wctx'); WG.pre = el.getAttribute('data-wpre') || ''; var gg = WG.ctx ? wgramHTML(e) : ''; if (gg) tip.innerHTML += gg.replace('class="wgram"', 'class="wgram wgc"'); WG.ctx = null; } catch (er) { /* ignore */ }
       tip.classList.add('on'); var r = el.getBoundingClientRect(), w = tip.offsetWidth, h = tip.offsetHeight;
       var x = Math.min(Math.max(8, r.left + r.width / 2 - w / 2), window.innerWidth - w - 8), y = r.top - h - 10; if (y < 8) y = r.bottom + 10;
@@ -29486,6 +29496,12 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
         }
       }
       if (hit) { flush(); out += tag === 'span' ? '<span class="wtok" role="button" tabindex="0" data-wtok="' + esc(hit) + '">' + (furi ? rdFuri(hit) : esc(hit)) + '</span>' : '<button type="button" class="wtok" data-wtok="' + esc(hit) + '">' + (furi ? rdFuri(hit) : esc(hit)) + '</button>'; i += Array.from(hit).length; }
+      else if (/[㐀-鿿]/.test(a[i])) {
+        var j = i + 1; while (j < a.length && /[㐀-鿿々]/.test(a[j]) && !wStartsHit(a, j)) j++;
+        var run = a.slice(i, j).join(''); flush();
+        out += tag === 'span' ? '<span class="wtok wtfb" role="button" tabindex="0" data-wtok="' + esc(run) + '">' + (furi ? rdFuri(run) : esc(run)) + '</span>' : '<button type="button" class="wtok wtfb" data-wtok="' + esc(run) + '">' + (furi ? rdFuri(run) : esc(run)) + '</button>';
+        i = j;
+      }
       else { buf += a[i]; i++; }
     }
     flush(); return out;
@@ -31150,7 +31166,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v356', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v357', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -31424,6 +31440,24 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
     WG.ctx = t ? (t.getAttribute('data-wctx') || null) : null;
     WG.pre = t ? (t.getAttribute('data-wpre') || '') : '';
   }, true);
+
+  /* ===== v357 : plus aucun mot à kanji non cliquable (repli sur les kanji) ===== */
+  function wfb(tok) {
+    var parts = [];
+    Array.from(String(tok)).forEach(function (c) { var k = typeof KMAP === 'object' && KMAP[c]; if (k && k.sens && parts.indexOf(k.sens) < 0) parts.push(k.sens); });
+    return { jp: tok, kana: '', fr: parts.length ? parts.join(' · ') : 'sens du mot non renseigné', lvl: 'Hors vocabulaire', srcs: [], tag: '', fb: true };
+  }
+  var wfbCardOrig = wcardHTML;
+  wcardHTML = function (e) {
+    var h = wfbCardOrig(e);
+    if (!e.fb) return h;
+    h = h.replace(/<span class="wfcchip rg">.*?<\/span>/, '');
+    return h.replace('<div class="wfcchips">', '<p class="wgfbn">Ce mot n’est pas encore dans le vocabulaire de l’app : voici ce que je sais de ses kanji (sens séparés ci-dessus, lectures et tracés ci-dessous).</p><div class="wfcchips">');
+  };
+  wcOpen = function (tok) {
+    var e = wlookup(tok) || (/[㐀-鿿]/.test(tok) ? wfb(tok) : null); if (!e) return;
+    openModal('Fiche du mot', wcardHTML(e), 'wfcmodal');
+  };
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
