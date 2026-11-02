@@ -9,3 +9,5 @@ Application web de révision du japonais (kanji, vocabulaire, lecture, dictionna
 - Composants des kanji : [KanjiVG](https://github.com/KanjiVG/kanjivg) (CC BY-SA 3.0).
 - Phrases d'exemple : [Tatoeba](https://tatoeba.org) (CC BY 2.0 FR), paires japonais–français.
 - Traductions françaises complémentaires rédigées pour l'application.
+
+- Niveaux JLPT des mots : listes communautaires (Tanos) via [elzup/jlpt-word-list](https://github.com/elzup/jlpt-word-list), licence MIT.
