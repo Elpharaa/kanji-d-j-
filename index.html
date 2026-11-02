@@ -5523,6 +5523,10 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
 .sitefoot{flex-direction:column;align-items:center;gap:12px}
 .pomlink .dcico{background:linear-gradient(145deg,#f4d58a,#c98a45);color:#2c2452}
 .pomlink .dcico svg{width:24px;height:24px}
+.wkchips{display:flex;flex-wrap:wrap;gap:7px;margin:4px 0 6px}
+.wkchip{min-width:44px;min-height:40px;padding:4px 13px;border-radius:999px;border:2px solid #2c2452;background:#fffaf0;color:#2c2452;font:inherit;font-weight:700;font-size:.92rem;cursor:pointer;box-shadow:0 2px 0 rgba(44,36,82,.35)}
+.wkchip.on{background:linear-gradient(135deg,#4b3d84,#2c2452);color:#fffaf0;border-color:#f0b97a}
+.wkchip:active{transform:translateY(2px);box-shadow:none}
 
 </style>
 
@@ -11845,8 +11849,8 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
   });
   Object.keys(COMP).forEach(function (c) { COMP[c][1] = toKata(COMP[c][1]); COMP[c][2] = toHira(COMP[c][2]); });
   // Mots d'une semaine (1, 2) ou de toutes (« all »)
-  function weekWords(wk) { return wk === 'all' ? WORDS.filter(function (w) { return wkLevel(w.wk) === curLv(); }) : WORDS.filter(function (w) { return w.wk === wk; }); }
-  function weekKanjis(wk) { return wk === 'all' ? KANJI_DATA.filter(function (k) { return wkLevel(k.wk) === curLv(); }) : KANJI_DATA.filter(function (k) { return k.wk === wk; }); }
+  function weekWords(wk) { return wk === 'all' ? WORDS.filter(function (w) { return wkLevel(w.wk) === curLv(); }) : WORDS.filter(function (w) { return Array.isArray(wk) ? wk.indexOf(w.wk) >= 0 : w.wk === wk; }); }
+  function weekKanjis(wk) { return wk === 'all' ? KANJI_DATA.filter(function (k) { return wkLevel(k.wk) === curLv(); }) : KANJI_DATA.filter(function (k) { return Array.isArray(wk) ? wk.indexOf(k.wk) >= 0 : k.wk === wk; }); }
   function lvWeeks(lv) { var o = {}; KANJI_DATA.forEach(function (k) { if (wkLevel(k.wk) === (lv || curLv())) o[k.wk] = 1; }); return Object.keys(o).map(Number).sort(function (a, b) { return a - b; }); }
   // Même écriture que la lecture de référence w (katakana pour un mot on'yomi, hiragana pour un kun'yomi, mixte écrit à la main)
   function scr(w, s) {
@@ -13998,7 +14002,9 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
   // Mots les plus proches (même kanji, même clé, même type de lecture) : ce sont les intrus
   var scope = null;   // mots utilisables comme intrus pour la séance en cours (semaine choisie ou chapitre)
   function weekSel() { return lvWeeks().map(String).indexOf(String(S.weekSel)) >= 0 ? String(S.weekSel) : 'all'; }
-  function kSelList() { if (S && S.flJl) { var cj = {}; jlKanjiList().forEach(function (c) { cj[c] = 1; }); return (S.kSelJ || []).filter(function (c) { return cj[c]; }); } var s = weekSel(), cur = {}; weekKanjis(s === 'all' ? 'all' : +s).forEach(function (k) { cur[k.k] = 1; }); return (S && S.kSel || []).filter(function (c) { return cur[c]; }); }
+  function weekMulti() { var ok = lvWeeks(); return ((S && S.weekMulti) || []).filter(function (w) { return ok.indexOf(w) >= 0; }); }
+  function weekArg() { var m = weekMulti(); if (m.length >= 2) return m; var s0 = weekSel(); return s0 === 'all' ? 'all' : +s0; }
+  function kSelList() { if (S && S.flJl) { var cj = {}; jlKanjiList().forEach(function (c) { cj[c] = 1; }); return (S.kSelJ || []).filter(function (c) { return cj[c]; }); } var s = weekSel(), cur = {}; weekKanjis(weekArg()).forEach(function (k) { cur[k.k] = 1; }); return (S && S.kSel || []).filter(function (c) { return cur[c]; }); }
   /* ---- JLPT : choix du thème et des kanjis comme pour le cours ---- */
   function jlTh() { if (!S || !S.flJl || !S.flTh) return null; var t = typeof qvTheme === 'function' ? qvTheme(S.flTh) : null; return t && t.lv === S.flJl ? t : null; }
   function jlWordsSel(noK) {
@@ -14012,7 +14018,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
   function setKSel(a) { if (S.flJl) S.kSelJ = a; else S.kSel = a; }
   function playPool(forFlash) {   // forFlash : seules les flashcards peuvent masquer les mots aux kanjis pas encore vus en cours
     if (S && S.flJl) return jlWordsSel();
-    var s = weekSel(), p = s === 'all' ? weekWords('all') : weekWords(+s), ks = kSelList();
+    var s = weekSel(), p = weekWords(weekArg()), ks = kSelList();
     if (forFlash && S && S.seenOnly) { var q = p.filter(wordSeen); if (q.length) p = q; }
     return ks.length ? p.filter(function (w) { return w.kanjis.some(function (c) { return ks.indexOf(c) >= 0; }); }) : p;
   }
@@ -14026,7 +14032,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
     return (SEEN_CACHE[lv] = o);
   }
   function wordSeen(w) { var st = seenSet(); return w.kanjis.every(function (c) { return st[c]; }); }
-  function seenHiddenN() { var s = weekSel(), p = s === 'all' ? weekWords('all') : weekWords(+s); return p.filter(function (w) { return !wordSeen(w); }).length; }
+  function seenHiddenN() { var s = weekSel(), p = weekWords(weekArg()); return p.filter(function (w) { return !wordSeen(w); }).length; }
   function trapWords(w, n) {
     return (scope && scope.length > 8 ? scope : weekWords('all')).filter(function (x) { return x.mot !== w.mot && x.sens !== w.sens && !sensClash(x.sens, w.sens) && !(w.alt && x.alt && sensClash(x.alt, w.alt)); }).map(function (x) {
       return { w: x, s: shareScore(x.mot, w.mot) * 3 + (x.type === w.type ? 1 : 0) + (x.owner === w.owner ? 2 : 0) + Math.random() * 2.5 };
@@ -14532,7 +14538,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
   /* ---- Étude des kanjis : uniquement des kanjis (sens, lectures, clé), types variés ---- */
   function kStudyPool(mode) {
     if (S && S.flJl) { var jls = kSelList(), jlist = jlKanjiList().filter(function (c) { return !jls.length || jls.indexOf(c) >= 0; }).map(jlKObj), jrk = readKind(); return mode === 'read' ? jlist.filter(function (k) { return jrk === 'on' ? (k.on && k.on.length) : jrk === 'kun' ? (k.kun && k.kun.length) : ((k.on && k.on.length) || (k.kun && k.kun.length)); }) : jlist; }
-    var s = weekSel(), list = weekKanjis(s === 'all' ? 'all' : +s), ks = kSelList();
+    var s = weekSel(), list = weekKanjis(weekArg()), ks = kSelList();
     list = ks.length ? list.filter(function (k) { return ks.indexOf(k.k) >= 0; }) : list;
     var rk = readKind();
     return mode === 'read' ? list.filter(function (k) { return rk === 'on' ? (k.on && k.on.length) : rk === 'kun' ? (k.kun && k.kun.length) : ((k.on && k.on.length) || (k.kun && k.kun.length)); }) : list;
@@ -15256,7 +15262,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
     $('wpickGrid').className = 'wpickwrap'; $('wpickGrid').removeAttribute('role');
     $('wpickGrid').innerHTML = '<select class="wksel" id="wkSelect" aria-label="Semaines à réviser"><option value="all"' + (sel === 'all' ? ' selected' : '') + '>' + esc('Toutes les semaines ' + L.tag + ' · ' + weekWords('all').length + ' mots') + '</option>' +
       wks.map(function (wk) { var t = wk < 100 ? MP_WKNAME[wk] : (L1_TITLES[wk] || {}).title; return '<option value="' + wk + '"' + (sel === String(wk) ? ' selected' : '') + '>' + esc('Semaine ' + wkNum(wk) + (t ? ' · ' + t : '') + ' · ' + weekWords(wk).length + ' mots') + '</option>'; }).join('') + '</select>';
-    $('weekInfo').textContent = L.short + ' · ' + L.sem + ' : ' + (sel === 'all' ? 'toutes les semaines mélangées' : weekLabel(+sel) + ' uniquement') + ' : ' + pool.length + ' mots pour les mini-jeux. L\'Histoire a ses propres chapitres par semaine.';
+    $('weekInfo').textContent = L.short + ' · ' + L.sem + ' : ' + (weekMulti().length >= 2 ? 'semaines ' + weekMulti().map(wkNum).join(', ') + ' uniquement' : sel === 'all' ? 'toutes les semaines mélangées' : weekLabel(+sel) + ' uniquement') + ' : ' + pool.length + ' mots pour les mini-jeux. L\'Histoire a ses propres chapitres par semaine.';
     if (S.flJl) $('weekInfo').textContent = 'Vocabulaire actuel : ' + (S.flJl === 'q' ? 'vie quotidienne' : 'JLPT ' + S.flJl.toUpperCase()) + ' (' + pool.length + ' mots). Tu peux le changer au lancement d\'un jeu.';
   }
   function renderHome() {
@@ -17603,7 +17609,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
   };
   function setCursus(lv) {
     if (!CURSUS[lv]) return;
-    if (S.cursus !== lv) { S.flJl = ''; S.cursus = lv; S.weekSel = 'all'; S.kSel = []; storyIdx = null; kv.week = 'all'; kv.list = ''; persist(); toast('Niveau : ' + CURSUS[lv].name + ' · ' + CURSUS[lv].sem); }
+    if (S.cursus !== lv) { S.flJl = ''; S.cursus = lv; S.weekSel = 'all'; S.weekMulti = []; S.kSel = []; storyIdx = null; kv.week = 'all'; kv.list = ''; persist(); toast('Niveau : ' + CURSUS[lv].name + ' · ' + CURSUS[lv].sem); }
   }
 
   /* ---- Déblocage progressif des sections selon le niveau ---- */
@@ -19640,7 +19646,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
   // Tout ce qui peut être demandé dans la sélection actuelle : { clé : fonction qui fabrique l'item }
   function wrEligible() {
     var pool = playPool().filter(function (w) { var a = Array.from(w.mot); return a.length <= 4 && a.some(wrIsKanji); });
-    var wks = weekSel() === 'all' ? lvWeeks() : [+weekSel()], map = {};
+    var wa0 = weekArg(), wks = wa0 === 'all' ? lvWeeks() : Array.isArray(wa0) ? wa0 : [wa0], map = {};
     var ks = KANJI_DATA.filter(function (k) { return wks.indexOf(k.wk) >= 0 && STROKES[k.k] && ((k.on && k.on.length) || (k.kun && k.kun.length)); });
     pool.forEach(function (w) { map[w.key] = function () { return wrWordItem(w); }; });
     ks.forEach(function (k) { map['kj:' + k.k] = function () { return wrKanjiItem(k); }; });
@@ -21421,7 +21427,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
   }
   function srsPool() { return dueWords(true).slice(0, 30); }
   function phraseKanjis() {
-    var s = weekSel(), list = weekKanjis(s === 'all' ? 'all' : +s);
+    var s = weekSel(), list = weekKanjis(weekArg());
     return list.filter(function (k) { return k.jp && k.jp.indexOf(k.k) >= 0 && /[ぁ-ん]/.test(k.jp); });
   }
   function phraseQ(kp, prev) {
@@ -21782,7 +21788,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
   });
   document.addEventListener('change', function (e) {
     var t = e.target; if (!t || !user || (t.id !== 'dyLv' && t.id !== 'dyWk')) return;
-    if (t.id === 'dyLv') { setCursus(t.value); gsStep = 0; gsAdv = false; } else { S.weekSel = t.value; persist(); }
+    if (t.id === 'dyLv') { setCursus(t.value); gsStep = 0; gsAdv = false; } else { S.weekSel = t.value; S.weekMulti = []; persist(); }
     $('appModalBody').innerHTML = dailyMenuHTML(); renderHub();
   });
 
@@ -21854,7 +21860,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
     var sel = weekSel(), lv = curLv(), wks = lvWeeks(), ks = kSelList(), jl = px === 'gs' && S.flJl ? S.flJl : '', last = withK ? 3 : 2, st = gsStep;
     if (st > 1) st = 0;
     var kgm = jl === 'q' && /^kg_/.test(S.flTh || ''), lvName = kgm ? 'Keigo' : jl ? (jl === 'q' ? 'Vie quotidienne' : 'JLPT ' + jl.toUpperCase()) : CURSUS[lv].tag + ' · ' + CURSUS[lv].sem;
-    var wkName = sel === 'all' ? 'toutes les semaines' : 'Semaine ' + wkNum(+sel) + ((L1_TITLES[+sel] || {}).title ? ' · ' + L1_TITLES[+sel].title : (+sel < 100 && MP_WKNAME[+sel] ? ' · ' + MP_WKNAME[+sel] : ''));
+    var wkM = weekMulti(), wkName = wkM.length >= 2 ? 'Semaines ' + wkM.map(wkNum).join(' · ') : sel === 'all' ? 'toutes les semaines' : 'Semaine ' + wkNum(+sel) + ((L1_TITLES[+sel] || {}).title ? ' · ' + L1_TITLES[+sel].title : (+sel < 100 && MP_WKNAME[+sel] ? ' · ' + MP_WKNAME[+sel] : ''));
     var kName = ks.length ? ks.length + ' kanji' + (ks.length > 1 ? 's' : '') + ' choisi' + (ks.length > 1 ? 's' : '') : 'tous les kanjis';
     if (st === 0) {
       var sub = jl ? (jlTh() ? jlTh().name : 'tous les thèmes') : wkName;
@@ -21866,11 +21872,9 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
     if (gsAdv) {
       adv = '<div class="as2adv">';
       if (kgm) adv += ''; else if (jl) adv += '<p class="as2l">Thème</p>' + askSel(px + 'Th', 'Thème à réviser', [['', 'Tous les thèmes']].concat(QV.filter(function (t) { return !t.virt && t.lv === jl && t.id.indexOf('kg_') !== 0; }).map(function (t) { return [t.id, t.name]; })), S.flTh || '');
-      else adv += '<p class="as2l">Semaine</p>' + askSel(px + 'Wk', 'Semaine à réviser', [['all', 'Toutes les semaines']].concat(wks.map(function (wk) {
-        var t = wk < 100 ? MP_WKNAME[wk] : (L1_TITLES[wk] || {}).title; return [String(wk), 'Semaine ' + wkNum(wk) + (t ? ' · ' + t : '')];
-      })), sel);
+      else { var wkc = weekMulti().length >= 2 ? weekMulti() : (sel === 'all' ? [] : [+sel]); adv += '<p class="as2l">Semaines <small class="muted">(plusieurs possibles)</small></p><div class="wkchips" role="group" aria-label="Semaines à réviser"><button type="button" class="wkchip' + (wkc.length ? '' : ' on') + '" data-gswk="all" aria-pressed="' + (!wkc.length) + '">Toutes</button>' + wks.map(function (wk) { var t = wk < 100 ? MP_WKNAME[wk] : (L1_TITLES[wk] || {}).title, on = wkc.indexOf(wk) >= 0; return '<button type="button" class="wkchip' + (on ? ' on' : '') + '" data-gswk="' + wk + '" aria-pressed="' + on + '" title="' + esc('Semaine ' + wkNum(wk) + (t ? ' · ' + t : '')) + '">S' + wkNum(wk) + '</button>'; }).join('') + '</div>'; }
       if (withK) {
-        var list = jl ? jlKanjiList().map(function (c) { return { k: c }; }) : weekKanjis(sel === 'all' ? 'all' : +sel), panel = '';
+        var list = jl ? jlKanjiList().map(function (c) { return { k: c }; }) : weekKanjis(weekArg()), panel = '';
         if (gsKOpen) {
           panel = '<div class="gskpanel"><div class="gskbar"><button type="button" class="gsksm" data-gsk="all">Tout cocher</button><button type="button" class="gsksm" data-gsk="none">Effacer</button><span>Touche les kanjis à travailler</span></div>' + (list.length ? '' : '<p class="muted small">Aucun kanji dans cette sélection (mots en kana).</p>') + '<div class="gskgrid">' +
             list.map(function (k) { return '<button type="button" class="gskc' + (ks.indexOf(k.k) >= 0 ? ' on' : '') + '" data-gsk="k" data-k="' + esc(k.k) + '" aria-pressed="' + (ks.indexOf(k.k) >= 0) + '">' + esc(k.k) + '</button>'; }).join('') + '</div></div>';
@@ -21889,7 +21893,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
     return '<label class="seenopt"><input type="checkbox" data-seenonly data-gspx="' + px + '"' + (on ? ' checked' : '') + '><span>Seulement les mots dont les kanjis sont <b>déjà étudiés</b> <small>' + (n ? n + ' mot' + (n > 1 ? 's' : '') + ' avec un kanji pas encore vu ' + (on ? 'masqué' + (n > 1 ? 's' : '') : 'à retirer') : 'Aucun mot concerné ici') + '</small></span></label>';
   }
   function scopeBlockHTML() {
-    var n = playPool().length, ks = kSelList(), s = weekSel(), list = weekKanjis(s === 'all' ? 'all' : +s);
+    var n = playPool().length, ks = kSelList(), s = weekSel(), list = weekKanjis(weekArg());
     if (gsKMode) n = (ks.length ? ks.length : list.length);
     var count = '<p class="gscount">' + (n ? (gsKMode ? '<b>' + n + ' kanji' + (n > 1 ? 's' : '') + '</b> dans cette sélection' : '<b>' + n + ' mot' + (n > 1 ? 's' : '') + '</b> dans cette sélection' + (ks.length ? ' (mots contenant ' + ks.length + ' kanji' + (ks.length > 1 ? 's' : '') + ')' : '')) : 'Aucun mot ici pour l\'instant : choisis un autre niveau.') + '</p>';
     return '<div class="gsblock">' + askHTML('gs', true) + (gsKind ? '<label class="kindopt">Lectures à travailler<select id="gsKind" aria-label="Lectures à travailler">' + [['both', 'ON et KUN'], ['on', 'Seulement les lectures ON (katakana)'], ['kun', 'Seulement les lectures KUN (hiragana)']].map(function (o) { return '<option value="' + o[0] + '"' + (readKind() === o[0] ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') + '</select></label>' : '') + (gsFlashCtx ? seenOptHTML('gs') : '') + (gsStep === 0 ? count : '') + '</div>';
@@ -21909,7 +21913,7 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
   });
   document.addEventListener('click', function (e) {
     var b = e.target.closest ? e.target.closest('[data-gsstep]') : null; if (!b || !user) return;
-    gsStep = +b.getAttribute('data-gsstep'); if (gsStep === 1) gsAdv = !!(weekSel() !== 'all' || kSelList().length || (S && S.flTh)); askRefresh(b.getAttribute('data-gspx'));
+    gsStep = +b.getAttribute('data-gsstep'); if (gsStep === 1) gsAdv = !!(weekArg() !== 'all' || kSelList().length || (S && S.flTh)); askRefresh(b.getAttribute('data-gspx'));
     try { var ab = document.querySelector('.askbox') || document.querySelector('.asksum'); if (ab && ab.scrollIntoView) ab.scrollIntoView({ block: 'nearest' }); } catch (er) {}
   });
   document.addEventListener('change', function (e) {
@@ -21925,13 +21929,13 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
     var b = e.target.closest ? e.target.closest('[data-gsk]') : null; if (!b || !user) return;
     var a = b.getAttribute('data-gsk'), cur = kSelList();
     if (a === 'toggle') gsKOpen = !gsKOpen;
-    else if (a === 'all' || a === 'none') { setKSel(a === 'all' ? (S.flJl ? jlKanjiList() : weekKanjis(weekSel() === 'all' ? 'all' : +weekSel()).map(function (k) { return k.k; })) : []); persist(); }
+    else if (a === 'all' || a === 'none') { setKSel(a === 'all' ? (S.flJl ? jlKanjiList() : weekKanjis(weekArg()).map(function (k) { return k.k; })) : []); persist(); }
     else if (a === 'k') { var c = b.getAttribute('data-k'), i = cur.indexOf(c); if (i >= 0) cur.splice(i, 1); else cur.push(c); setKSel(cur); persist(); }
     var host = document.getElementById('gsHost'); if (host) host.innerHTML = scopeBlockHTML();
   });
   document.addEventListener('change', function (e) {
     var t = e.target; if (!t || !user || (t.id !== 'gsLv' && t.id !== 'gsWk' && t.id !== 'gsTh')) return;
-    if (t.id === 'gsLv') { S.flTh = ''; if (t.value.indexOf('K:') === 0) { S.flJl = 'q'; S.flTh = t.value.slice(2); } else if (t.value.indexOf('J:') === 0) { S.flJl = t.value.slice(2); } else { S.flJl = ''; setCursus(t.value); } } else if (t.id === 'gsTh') { S.flTh = t.value; persist(); } else { S.weekSel = t.value; persist(); }
+    if (t.id === 'gsLv') { S.flTh = ''; if (t.value.indexOf('K:') === 0) { S.flJl = 'q'; S.flTh = t.value.slice(2); } else if (t.value.indexOf('J:') === 0) { S.flJl = t.value.slice(2); } else { S.flJl = ''; setCursus(t.value); } } else if (t.id === 'gsTh') { S.flTh = t.value; persist(); } else { S.weekSel = t.value; S.weekMulti = []; persist(); }
     S.kSel = []; S.kSelJ = []; persist();
     if (t.id === 'gsLv') { gsStep = 0; gsAdv = false; }
     var host = document.getElementById('gsHost'); if (host) host.innerHTML = scopeBlockHTML();
@@ -24253,11 +24257,11 @@ body:has(.rpg) #testLv,body:has(.rpg) #testCheer{display:none!important}
   $('weekPick').onclick = function (e) {
     var b = e.target.closest ? e.target.closest('[data-wsel]') : null;
     if (!b) return;
-    S.weekSel = b.getAttribute('data-wsel'); persist(); renderWeekPick();
+    S.weekSel = b.getAttribute('data-wsel'); S.weekMulti = []; persist(); renderWeekPick();
   };
   $('weekPick').onchange = function (e) {
     var f = e.target; if (!f || f.id !== 'wkSelect') return;
-    S.weekSel = f.value; persist(); renderWeekPick();
+    S.weekSel = f.value; S.weekMulti = []; persist(); renderWeekPick();
   };
   bnInit();
   $('btnSfx').onclick = function () { setSfx(!sfxOn); $('sfxState').textContent = sfxOn ? 'activés' : 'coupés'; $('btnSfx').textContent = sfxOn ? 'Couper les sons' : 'Activer les sons'; if (sfxOn) { document.body.classList.add('vox'); sfx('ok'); document.body.classList.remove('vox'); } };
@@ -31007,6 +31011,18 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
     if (ev.target.closest && ev.target.closest('[data-mgclose]')) { closeModal(); return; }
     var p = ev.target.closest ? ev.target.closest('[data-mgplay]') : null;
     if (p && rp.mode === 'map') { closeModal(); rpgGameStart(p.getAttribute('data-mgplay'), 'sensei'); }
+  });
+
+  /* ===== v352 : réviser plusieurs semaines à la fois (S.weekMulti) ===== */
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-gswk]') : null; if (!b || !user) return;
+    var v = b.getAttribute('data-gswk'), cur = weekMulti().slice();
+    if (!cur.length && weekSel() !== 'all') cur = [+weekSel()];
+    if (v === 'all') cur = [];
+    else { var w = +v, i = cur.indexOf(w); if (i >= 0) cur.splice(i, 1); else cur.push(w); cur.sort(function (x, y) { return x - y; }); }
+    S.weekMulti = cur.length >= 2 ? cur : []; S.weekSel = cur.length === 1 ? String(cur[0]) : 'all'; S.kSel = []; S.kSelJ = []; persist();
+    var host = document.getElementById('gsHost'); if (host) host.innerHTML = scopeBlockHTML();
+    try { if (!$('vHome').hidden) renderHome(); else if (!$('vHub').hidden) renderHub(); } catch (er) { /* ignore */ }
   });
 
   backend.init().then(function (u) {
