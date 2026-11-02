@@ -5544,6 +5544,17 @@ button.dclink{font:inherit;text-align:left;cursor:pointer}
 .pwaup span{flex:1;display:flex;flex-direction:column;line-height:1.25}.pwaup small{opacity:.85}
 .pwaup .btn{white-space:nowrap}
 .pwax{background:none;border:0;color:#fffaf0;font-size:1.4rem;line-height:1;cursor:pointer;padding:4px 8px}
+.wgram{text-align:left;margin:4px 0 12px;padding:10px 12px;border-radius:12px;background:rgba(180,42,93,.07);border:1px solid rgba(180,42,93,.22)}
+.wgh{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:#b42a5d;margin-bottom:4px}
+.wgh2{display:block;font-size:.78rem;font-weight:700;opacity:.75;margin:8px 0 4px}
+.wgsense{font-size:1.02rem}.wgsense b{font-weight:800}.wgex{opacity:.8;font-size:.95rem}
+.wgsteps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.wgsteps li{display:grid;grid-template-columns:1.4em auto 1fr;align-items:baseline;gap:6px}
+.wgsym{opacity:.6;text-align:center;font-weight:700}
+.wgjp{font-size:1.1rem;font-weight:700}
+.wgnt{font-size:.82rem;opacity:.8;line-height:1.3}
+.wgres{margin-top:2px;padding-top:5px;border-top:1px dashed rgba(180,42,93,.35)}
+.wgpart{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;align-items:baseline}.wgpart .wgh2{margin:0}
 
 </style>
 
@@ -25157,7 +25168,7 @@ button.dclink{font:inherit;text-align:left;cursor:pointer}
           if (wlookup(sub)) hit = sub;
         }
       }
-      if (hit) { var n = Array.from(hit).length; out += (brk && i > 0 ? '<wbr>' : '') + '<button type="button" class="wtok" data-wtok="' + esc(hit) + '">' + (furi ? furiHTML(hit) : esc(hit)) + '</button>'; i += n; }
+      if (hit) { var n = Array.from(hit).length; out += (brk && i > 0 ? '<wbr>' : '') + '<button type="button" class="wtok" data-wtok="' + esc(hit) + '" data-wctx="' + esc(a.slice(i, i + 24).join('').split(/[。！？]/)[0]) + '" data-wpre="' + esc(a.slice(Math.max(0, i - 8), i).join('')) + '">' + (furi ? furiHTML(hit) : esc(hit)) + '</button>'; i += n; }
       else { out += esc(a[i]); if (brk && /[はがをにでともへの、]/.test(a[i]) && a.length - i > 3) out += '<wbr>'; i++; }
     }
     return out;
@@ -31043,7 +31054,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v353', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v354', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -31092,6 +31103,227 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   document.addEventListener('visibilitychange', function () { if (!document.hidden) pwaCheck(); });
   window.addEventListener('online', function () { pwaCheck(); });
   setTimeout(pwaCheck, 6000); setInterval(pwaCheck, 20 * 60 * 1000);
+
+  /* ===== v354 : fiche du mot — sens en contexte + forme expliquée pas à pas ===== */
+  var WG = { ctx: null, pre: '' };
+  var WG_LAB = {
+    'Dictionnaire': 'forme du dictionnaire', 'Poli (ます)': 'forme polie (présent / futur)', 'Poli négatif': 'poli négatif', 'Poli passé': 'poli passé', 'Poli passé négatif': 'poli passé négatif',
+    'Négatif': 'négatif (ない)', 'Passé': 'passé (た)', 'Passé négatif': 'passé négatif', 'Forme en て': 'forme en て (relie, demande, enchaîne)', 'Forme en て négative': 'forme en て négative',
+    'Conditionnel ば': 'conditionnel ば (« si… »)', 'Conditionnel たら': 'conditionnel たら (« quand / si… »)', 'Potentiel': 'potentiel (« pouvoir »)', 'Potentiel / Passif': 'potentiel (« pouvoir ») ou passif (« être… par ») selon le contexte', 'Passif': 'passif (« être… par »)', 'Causatif': 'causatif (« faire faire »)',
+    'Volontaire (〜よう)': 'volontaire (« allons… », « je vais… »)', 'Volontaire': 'volontaire (« allons… »)', 'Impératif': 'impératif (ordre)', 'Désir (たい)': 'désir (« vouloir »)', 'En cours (ている)': 'en cours / état (ている)',
+    'Poli (です)': 'poli (です)', 'Poli négatif ': 'poli négatif', 'Adverbe (く)': 'adverbe (く)', 'Adverbe (に)': 'adverbe (に)', 'Devant un nom (な)': 'devant un nom (な)', 'Présent (だ)': 'présent (だ)',
+    'Conditionnel なら': 'conditionnel なら', 'Semble (〜そう)': 'a l’air de (〜そう)', 'Nom (〜さ)': 'nom (〜さ : le degré)'
+  };
+  var WG_EXPR = [
+    [/^(来ま|きま|来た|きた|来て|きて|来ない|こない|来なかった|こなかった|来る|くる|来れ|くれ)/, '〜てくる', 'くる', '来る', 'kuru', 'venir (faire) ; se mettre à / apparaître (changement ou mouvement qui se rapproche de soi)'],
+    [/^(いきま|行きま|いった|行った|いって|行って|いかない|行かない|いく|行く)/, '〜ていく', 'いく', '行く', 'iku', 'aller (faire) ; continuer à / s’éloigner (changement qui s’éloigne)'],
+    [/^(いま[すせ]|いる|いた|いて|いない|いなかった)/, '〜ている', 'いる', '', 'ichi', 'action en cours ou état résultant (« est en train de… », « est… »)'],
+    [/^(しま[いう]|しまっ|ちゃ|じゃ)/, '〜てしまう', 'しまう', '', 'godan', 'faire complètement / par mégarde (regret ou achèvement)'],
+    [/^(おき|おく|おい)/, '〜ておく', 'おく', '', 'godan', 'faire à l’avance, en prévision'],
+    [/^(みま|みる|みた|みて|みな|見ま|見る|見た|見て|見な)/, '〜てみる', 'みる', '見る', 'ichi', 'essayer de faire, pour voir'],
+    [/^(あり|ある|あっ)/, '〜てある', 'ある', '', 'aru', 'état résultant d’une action faite exprès (« c’est déjà fait »)'],
+    [/^(ください|下さい|くださ|くだ)/, '〜てください', '', '', '', 'demande polie : « s’il vous plaît, faites… »'],
+    [/^も(いいです|いい|よろしい|かまいません)/, '〜てもいい', '', '', '', 'permission : « on peut… »'],
+    [/^は(いけません|いけない|いけ|だめ|ダメ|なりません|ならない)/, '〜てはいけない', '', '', '', 'interdiction : « il ne faut pas… »'],
+    [/^から/, '〜てから', '', '', '', 'après avoir… (ordre des actions)'],
+    [/^(あげ|やる|やり)/, '〜てあげる', 'あげる', '', 'ichi', 'faire pour quelqu’un (de soi vers l’autre)'],
+    [/^(くれ|くださ)/, '〜てくれる', 'くれる', '', 'ichi', 'quelqu’un fait pour moi (bienveillance)'],
+    [/^(もらい|もらう|もらっ|いただ)/, '〜てもらう', 'もらう', '', 'godan', 'se faire faire (recevoir le service de quelqu’un)'],
+    [/^ほし(くない|かった|い)?/, '〜てほしい', '', '', '', 'vouloir que quelqu’un fasse'],
+    [/^も(?!い)/, '〜ても', '', '', '', '« même si… »']
+  ];
+  var WG_PART = [
+    ['のが', 'の + が', 'の rend le verbe nominal (« le fait de… ») + が (sujet)'], ['のを', 'の + を', 'の rend le verbe nominal (« le fait de… ») + を (objet)'], ['のは', 'の + は', 'の rend le verbe nominal (« le fait de… ») + は (thème)'],
+    ['に対して', 'に対して', 'envers, face à, par rapport à'], ['について', 'について', 'au sujet de'], ['によって', 'によって', 'selon, par (moyen, cause, agent)'], ['によると', 'によると', 'selon (une source)'],
+    ['のために', 'のために', 'pour, à cause de'], ['として', 'として', 'en tant que'], ['のように', 'のように', 'comme'], ['のような', 'のような', 'comme (devant un nom)'], ['ために', 'ために', 'pour (but) / à cause de'],
+    ['ように', 'ように', 'afin que / de façon à / comme'], ['ながら', 'ながら', 'tout en (deux actions en même temps)'], ['ばかり', 'ばかり', 'rien que, environ'], ['くらい', 'くらい', 'environ, à peu près'], ['ぐらい', 'ぐらい', 'environ, à peu près'],
+    ['には', 'に + は', 'に (lieu / but / cible) + は (thème, contraste) = « quant à / dans »'], ['では', 'で + は', 'で (lieu / moyen) + は (thème, contraste) = « dans / quant à »'], ['とは', 'と + は', 'と (avec / citation) + は (thème) = « quant à / ce qu’est »'],
+    ['からは', 'から + は', 'から (depuis / de la part de) + は (contraste)'], ['までに', 'までに', 'd’ici (échéance)'], ['までは', 'まで + は', 'jusqu’à (+ contraste)'], ['にも', 'に + も', 'に + も = « aussi à / même à »'], ['でも', 'で + も', 'で + も = « aussi dans / même avec » (ou « même », « par ex. »)'],
+    ['とも', 'と + も', 'と + も = « aussi avec »'], ['から', 'から', 'depuis, à partir de / parce que'], ['まで', 'まで', 'jusqu’à'], ['より', 'より', 'que (comparaison) / depuis'], ['だけ', 'だけ', 'seulement'], ['しか', 'しか', 'seulement (avec une négation)'],
+    ['ほど', 'ほど', 'environ, autant que'], ['など', 'など', 'etc., par exemple'], ['ので', 'ので', 'parce que (cause objective)'], ['のに', 'のに', 'alors que, pourtant'], ['けど', 'けど', 'mais'], ['けれど', 'けれど', 'mais'],
+    ['が', 'が', 'sujet (met en avant ce qui fait l’action / ce qui existe) ; ou « mais »'], ['を', 'を', 'complément d’objet (ce que l’on fait / traverse)'], ['に', 'に', 'lieu d’arrivée, cible, moment, existence'], ['で', 'で', 'lieu de l’action, moyen, cause'],
+    ['と', 'と', 'avec / et / citation (« que… »)'], ['の', 'の', 'appartenance (« de »), relie deux noms'], ['は', 'は', 'thème de la phrase (« quant à »)'], ['も', 'も', 'aussi, même'], ['へ', 'へ', 'direction (vers)'], ['や', 'や', 'et (liste non exhaustive)'], ['か', 'か', 'question, ou'],
+    ['ね', 'ね', 'n’est-ce pas (recherche d’accord)'], ['よ', 'よ', 'affirme, informe']
+  ];
+  // sens en contexte : [mots (jp ou kana), regex sur « avant‖à partir du mot », sens, expression]
+  var WG_SENS = [
+    [['出る'], /‖出て(き|く)/, 'apparaître, surgir', '出てくる'],
+    [['出る'], /‖出て(い|いき|いく|行)/, 'sortir, partir', '出ていく'],
+    [['出る'], /(試験|テスト|問題|入試)(に|が)?‖出/, 'tomber (à un examen)', ''],
+    [['出る'], /(電話|ドア|玄関)に‖出/, 'répondre (au téléphone / à la porte)', ''],
+    [['出る'], /(授業|会議|試合|大会)に‖出/, 'participer à, assister à', ''],
+    [['出る'], /(熱|涙|声|お金|金|煙)が‖出/, 'sortir, se manifester (fièvre, larmes, voix…)', ''],
+    [['出す'], /(手紙|宿題|レポート|はがき|メール)を‖出/, 'envoyer / rendre (un devoir, une lettre)', ''],
+    [['出す'], /(声|大声)を‖出/, 'pousser (la voix)', ''],
+    [['取る', 'とる'], /(写真|しゃしん)を‖/, 'prendre (une photo)', '写真を撮る'],
+    [['取る', 'とる'], /(ノート|メモ)を‖/, 'prendre (des notes)', ''],
+    [['取る', 'とる'], /(年|歳|とし)を‖/, 'prendre de l’âge', ''],
+    [['取る', 'とる'], /(休み|休暇|時間)を‖/, 'prendre (un congé, du temps)', ''],
+    [['取る', 'とる'], /(塩|しお|本|もの|物|ペン)を‖/, 'prendre (attraper, passer)', ''],
+    [['掛ける', 'かける'], /(電話|でんわ)を‖/, 'passer (un appel)', '電話をかける'],
+    [['掛ける', 'かける'], /(めがね|眼鏡|メガネ|サングラス)を‖/, 'porter (des lunettes)', ''],
+    [['掛ける', 'かける'], /(かぎ|鍵)を‖/, 'fermer à clé', ''],
+    [['掛ける', 'かける'], /(時間|お金|手間)を‖/, 'consacrer (du temps, de l’argent)', ''],
+    [['掛かる', 'かかる'], /(時間|じかん|お金|費用)が‖/, 'prendre (du temps) / coûter', ''],
+    [['引く', 'ひく'], /(風邪|かぜ)を‖/, 'attraper (un rhume)', '風邪をひく'],
+    [['引く', 'ひく'], /(辞書|じしょ)を‖/, 'consulter (un dictionnaire)', ''],
+    [['引く', 'ひく'], /(線|せん)を‖/, 'tracer (un trait)', ''],
+    [['聞く', 'きく'], /(道|みち|場所|先生|友達|友だち)(を|に)‖/, 'demander (un renseignement)', ''],
+    [['聞く', 'きく'], /(音楽|おんがく|話|はなし|ラジオ|歌|うた)を‖/, 'écouter', ''],
+    [['乗る', 'のる'], /(電車|バス|車|飛行機|タクシー|船|自転車)に‖/, 'prendre / monter dans (un transport)', ''],
+    [['入る', 'はいる'], /(お風呂|おふろ|風呂)に‖/, 'prendre (un bain)', 'お風呂に入る'],
+    [['入る', 'はいる'], /(大学|学校|会社|クラブ|部)に‖/, 'entrer dans, s’inscrire à', ''],
+    [['入れる', 'いれる'], /(お茶|コーヒー|紅茶)を‖/, 'préparer (un thé, un café)', ''],
+    [['入れる', 'いれる'], /(電気|スイッチ|電源)を‖/, 'allumer', ''],
+    [['切る', 'きる'], /(電話|でんわ)を‖/, 'raccrocher', ''],
+    [['切る', 'きる'], /(電気|でんき|スイッチ|テレビ)を‖/, 'éteindre', ''],
+    [['打つ', 'うつ'], /(メール|文字|字)を‖/, 'taper (un message)', ''],
+    [['開く', 'ひらく', 'あく'], /(店|みせ|ドア|窓)が‖/, 'ouvrir / être ouvert', ''],
+    [['上がる', 'あがる'], /(雨|雪)が‖/, 'cesser (de pleuvoir)', ''],
+    [['上がる', 'あがる'], /(値段|ねだん|物価|温度|気温)が‖/, 'monter, augmenter', ''],
+    [['見える', 'みえる'], /‖見え/, 'être visible, se voir', ''],
+    [['聞こえる', 'きこえる'], /‖聞こえ/, 'être audible, s’entendre', ''],
+    [['結構'], /‖結構(です|だ)/, 'non merci / c’est bien comme ça', ''],
+    [['結構'], /‖結構(?!です|だ)/, 'assez, plutôt', ''],
+    [['先'], /‖先に/, 'd’abord, en premier', ''],
+    [['先'], /(この|その|あの)‖先/, 'plus loin, au-delà', ''],
+    [['時間'], /(三|二|一|四|五|六|七|八|九|十|何)‖時間/, 'heure(s) (durée)', ''],
+    [['大丈夫'], /‖大丈夫(です)?か/, 'ça va ? tout va bien ? / ça ira ?', ''],
+    [['大丈夫'], /‖大丈夫(です|だ)(?!か)/, 'ça va, pas de souci', ''],
+    [['昔話'], /‖昔話/, 'conte populaire, histoire d’autrefois', ''],
+    [['妖怪'], /‖妖怪/, 'yōkai (créature surnaturelle du folklore)', '']
+  ];
+  var WG_DICT = null;
+  function wgDictOf(jp) {
+    if (!WG_DICT) { WG_DICT = {}; try { dcBuild().all.forEach(function (x) { if (!WG_DICT[x.jp]) WG_DICT[x.jp] = x; }); } catch (e) {} }
+    return WG_DICT[jp] || null;
+  }
+  function wgStrip(f) { return String(f || '').replace(/ \+ nom$/, ''); }
+  // cherche la plus longue forme de la liste qui colle au début de ctx. Retourne {len, label, form, derived}
+  function wgBest(ctx, forms) {
+    var best = null;
+    (forms || []).forEach(function (x) {
+      var f = wgStrip(x[2]), lab = x[1];
+      if (!f || /^En cours/.test(lab)) return;
+      var derived = /^(Potentiel|Passif|Causatif|Désir)/.test(lab), n = 0, der = false;
+      if (ctx.indexOf(f) === 0) n = f.length;
+      if (derived && f.length > 2 && ctx.indexOf(f.slice(0, -1)) === 0) {
+        var nx = ctx.charAt(f.length - 1);
+        if (/たい$/.test(f) ? /[いくかそ]/.test(nx) : /[るまなてたさらよば]/.test(nx)) { n = f.length - 1 + 0.5; der = true; }
+      }
+      if (!n) return;
+      if (!best || n > best.score || (n === best.score && best.label === 'Dictionnaire')) best = { len: Math.floor(n), score: n, label: lab, form: f, derived: der };
+    });
+    return best;
+  }
+  function wgVerbChain(jp, vt, ctx, depth, steps) {
+    var forms = dcVerbForms(jp, vt); if (!forms) return 0;
+    var b = wgBest(ctx, forms); if (!b) return 0;
+    var lab = b.label;
+    if (lab === 'Potentiel' && forms.some(function (x) { return x[1] === 'Passif' && x[2] === b.form; })) lab = 'Potentiel / Passif';
+    steps.push({ from: jp, to: b.form, label: lab, len: b.len });
+    if (b.derived && depth < 3) {
+      var nvt = /たい$/.test(b.form) ? 'ai' : 'ichi', more = 0;
+      if (nvt === 'ai') { var af = dcAdjForms(b.form, 'ai'), ab = wgBest(ctx, af); if (ab && ab.label !== 'Dictionnaire') { steps.push({ from: b.form, to: ab.form, label: ab.label, len: ab.len }); return ab.len; } return b.len; }
+      more = wgVerbChain(b.form, nvt, ctx, depth + 1, steps);
+      return more || b.len;
+    }
+    return b.len;
+  }
+  function wgAux(rest) {
+    for (var i = 0; i < WG_EXPR.length; i++) {
+      var X = WG_EXPR[i], m = rest.match(X[0]);
+      if (!m) continue;
+      var r = { expr: X[1], gloss: X[5], len: 0, label: '', form: '' };
+      if (X[2] && X[4]) {
+        var best = null;
+        [X[2], X[3]].forEach(function (b) { if (!b) return; var fs = dcVerbForms(b, X[4]); var bb = wgBest(rest, fs); if (bb && bb.label !== 'Dictionnaire' && (!best || bb.len > best.len)) best = bb; else if (bb && !best) best = bb; });
+        if (best) { r.len = best.len; r.label = best.label; r.form = best.form; }
+      }
+      if (!r.len) { r.len = m[0].length; r.form = m[0]; }
+      return r;
+    }
+    return null;
+  }
+  function wgPart(rest) {
+    if (/^(です|でし|でも|でき|でな|である|ではな)/.test(rest) && !/^でも/.test(rest)) return null;
+    for (var i = 0; i < WG_PART.length; i++) { if (rest.indexOf(WG_PART[i][0]) === 0) return WG_PART[i]; }
+    return null;
+  }
+  function wgSense(e, pre, ctx) {
+    var hay = (pre || '') + '‖' + ctx, kana = e.kana || '';
+    for (var i = 0; i < WG_SENS.length; i++) {
+      var s = WG_SENS[i];
+      if ((s[0].indexOf(e.jp) >= 0 || (kana && s[0].indexOf(kana) >= 0)) && s[1].test(hay)) return s;
+    }
+    return null;
+  }
+  function wgLi(sym, jp, note) { return '<li><span class="wgsym">' + sym + '</span><span class="wgjp jp">' + esc(jp) + '</span>' + (note ? '<span class="wgnt">' + esc(note) + '</span>' : '') + '</li>'; }
+  function wgramHTML(e) {
+    var ctx = WG.ctx; if (!ctx) return '';
+    var pre = WG.pre || '', d = wgDictOf(e.jp), steps = [], consumed = 0, aux = null, h = '', surface = '';
+    try {
+      if (d && d.t === 'v' && d.vt) { consumed = wgVerbChain(d.jp, d.vt, ctx, 0, steps); }
+      else if (d && (d.t === 'ai' || d.t === 'an')) {
+        var af = dcAdjForms(d.jp, d.t), ab = wgBest(ctx, af);
+        if (ab) { consumed = ab.len; if (ab.label !== 'Dictionnaire') steps.push({ from: d.jp, to: ab.form, label: ab.label, len: ab.len }); }
+      }
+      if (!consumed && d && d.t !== 'v' && /^(し|す|さ|でき)/.test(ctx.slice(e.jp.length)) && ctx.indexOf(e.jp) === 0) {
+        var sf = dcVerbForms(e.jp + 'する', 'suru'), sb = wgBest(ctx, sf);
+        if (sb && sb.len > e.jp.length) { consumed = sb.len; steps.push({ from: e.jp + 'する', to: sb.form, label: sb.label, len: sb.len, noun: e.jp }); }
+      }
+      if (!consumed) { var st = ctx.indexOf(e.jp) === 0 ? e.jp.length : (e.jp.indexOf(ctx.charAt(0)) === 0 ? 1 : 0); consumed = d && (d.t === 'v' || d.t === 'ai') ? 0 : st; if (!consumed && ctx.indexOf(e.jp) === 0) consumed = e.jp.length; }
+    } catch (err) { steps = []; consumed = 0; }
+    var restAfter = ctx.slice(consumed), last = steps.length ? steps[steps.length - 1] : null;
+    if (steps.length === 1 && steps[0].label === 'Dictionnaire') { steps = []; last = null; }
+    if (last && (last.label === 'Forme en て' || last.label === 'Forme en て négative') && ((d && d.t === 'v') || steps[0].noun)) {
+      try { aux = wgAux(restAfter); } catch (err2) { aux = null; }
+      if (aux) { restAfter = restAfter.slice(aux.len); }
+    }
+    // adjectif + naru / suru
+    if (last && /^Adverbe/.test(last.label)) {
+      var isN = /^な/.test(restAfter), fs2 = isN ? dcVerbForms('なる', 'godan') : dcVerbForms('する', 'x'), mb = wgBest(restAfter, fs2);
+      if (mb && mb.label !== 'Dictionnaire' || (mb && mb.len)) { aux = { expr: isN ? 'なる (devenir)' : 'する (rendre)', gloss: isN ? 'adjectif (adverbe) + なる : « devenir… »' : 'adjectif (adverbe) + する : « rendre… / faire que ce soit… »', len: mb.len, label: mb.label, form: mb.form }; restAfter = restAfter.slice(mb.len); }
+    }
+    var sense = null; try { sense = wgSense(e, pre, ctx); } catch (err3) { sense = null; }
+    var pt = wgPart(restAfter);
+    if (!steps.length && !aux && !sense && !pt) return '';
+    h += '<div class="wgram"><div class="wgh">Dans cette phrase</div>';
+    if (sense) h += '<div class="wgsense"><b>' + esc(sense[2]) + '</b>' + (sense[3] ? ' <span class="jp wgex">(' + esc(sense[3]) + ')</span>' : '') + '</div>';
+    if (steps.length || aux) {
+      h += '<div class="wgh2">Comment la forme se construit</div><ol class="wgsteps">';
+      h += wgLi('', steps.length && steps[0].noun ? steps[0].noun + ' ＋ する' : (d ? d.jp : e.jp), steps.length && steps[0].noun ? 'nom + する = faire — ' + e.fr.split(/[;,]/)[0] : 'forme du dictionnaire — ' + e.fr.split(/[;,]/)[0]);
+      steps.forEach(function (s) { h += wgLi('→', s.to, WG_LAB[s.label] || s.label.toLowerCase()); });
+      if (aux) {
+        var an = aux.label ? (WG_LAB[aux.label] || aux.label.toLowerCase()) : '';
+        h += wgLi('＋', aux.form, aux.expr + (an ? ' — ' + an : ''));
+        h += '<li class="wgres"><span class="wgsym">＝</span><span class="wgjp jp">' + esc(ctx.slice(0, consumed + aux.len)) + '</span><span class="wgnt">' + esc(aux.gloss) + (sense ? ' → ici : « ' + esc(sense[2]) + ' »' : '') + '</span></li>';
+      }
+      h += '</ol>';
+    }
+    if (pt) h += '<div class="wgpart"><span class="wgh2">Juste après le mot</span><span class="jp wgjp">' + esc(pt[1]) + '</span> <span class="wgnt">' + esc(pt[2]) + '</span></div>';
+    return h + '</div>';
+  }
+  var wgCardOrig = wcardHTML;
+  wcardHTML = function (e) {
+    var h = wgCardOrig(e), g = '';
+    try { g = wgramHTML(e); } catch (err) { g = ''; }
+    if (!g) return h;
+    var k = h.indexOf('<div class="wfcchips">');
+    if (k < 0) return h;
+    var j = h.indexOf('</div></div>', k); // fin des puces
+    var cut = h.indexOf('</div>', h.indexOf('</div>', k) + 0) ;
+    // on insère le bloc juste après les puces (premier </div> qui ferme wfcchips)
+    var end = h.indexOf('</span></div>', k);
+    if (end < 0) return h + g;
+    end += '</span></div>'.length;
+    return h.slice(0, end) + g + h.slice(end);
+  };
+  document.addEventListener('click', function (ev) {
+    var t = ev.target.closest ? ev.target.closest('[data-wtok]') : null;
+    WG.ctx = t ? (t.getAttribute('data-wctx') || null) : null;
+    WG.pre = t ? (t.getAttribute('data-wpre') || '') : '';
+  }, true);
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
