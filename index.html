@@ -5687,6 +5687,14 @@ span.kxcp{cursor:default}
 .kfk{font-size:2rem;line-height:1.1}.kfm{font-size:.72rem;color:#5b5280;text-align:center;line-height:1.15;min-height:1.7em}
 .kfb{display:flex;gap:5px;align-items:center;font-size:.66rem;font-weight:800;color:#a63a60}.kfb i{font-style:normal;color:#8a82a8;font-weight:700}
 .kfbook .dcchips{flex-wrap:wrap;overflow:visible}
+/* v373 : navigation fiche */
+.nvbar{position:sticky;top:-1px;z-index:6;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 0 8px;margin:-4px 0 6px;background:linear-gradient(#fbf3de 70%,rgba(251,243,222,0))}
+.nvbar button{min-height:40px;padding:6px 14px;border-radius:999px;border:1.8px solid rgba(75,61,132,.45);background:#fffdf8;color:#2c2452;font:inherit;font-weight:800;cursor:pointer}
+.nvarr{display:flex;align-items:center;gap:8px;font-weight:800;color:#5b5280;font-size:.85rem}.nvarr button{min-width:42px;font-size:1.2rem;padding:2px 10px}
+.nvreplay{margin-top:8px}.nvrow{margin:4px 0 8px;line-height:1.45}.nvtip{padding:10px 12px;border-left:4px solid #c9a24a;background:rgba(246,213,142,.3);border-radius:8px}
+.nvwords{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.nvw{display:flex;align-items:center;gap:8px;text-align:left;padding:8px 10px;border-radius:12px;border:1.8px solid rgba(201,162,74,.55);background:#fffdf8;color:#2c2452;font:inherit;cursor:pointer}
+.nvwk{font-size:1.35rem}.nvwm{display:flex;flex-direction:column;font-size:.78rem;line-height:1.2;color:#5b5280;min-width:0}
 
 </style>
 
@@ -31307,7 +31315,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v372', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v373', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -32183,6 +32191,86 @@ var JLV_RAW="n5:頭|来る|先|角|弾く|～前|～日|一昨日|下|上|魚|�
     });
     return G;
   };
+
+  /* ===== v373 : fiche kanji unique en fenêtre, navigation en couches (kanji ↔ mot ↔ dico) ===== */
+  var nv = { cur: null, hist: [], list: null };
+  function nvVisible() { return !$('appModal').hidden; }
+  function nvLabel(e) { return e.k ? e.k : ((dcBuild().all[e.w] || {}).jp || ''); }
+  function nvBarHTML() {
+    var h = '<div class="nvbar"><button type="button" class="nvback" data-nv="back">‹ ' + (nv.hist.length ? esc(nvLabel(nv.hist[nv.hist.length - 1])) : 'Dico') + '</button>';
+    if (nv.cur && nv.cur.k && nv.list) {
+      var ix = nv.list.indexOf(nv.cur.k);
+      if (ix >= 0 && nv.list.length > 1) h += '<span class="nvarr"><button type="button" data-nv="prev" aria-label="Kanji précédent">‹</button><span>' + (ix + 1) + ' / ' + nv.list.length + '</span><button type="button" data-nv="next" aria-label="Kanji suivant">›</button></span>';
+    }
+    return h + '</div>';
+  }
+  function nvWordsOf(c, k) {
+    var seen = {}, out = [];
+    function add(jp) { if (seen[jp] || jp === c) return; var e = dcByJp(jp); if (!e) return; seen[jp] = 1; out.push(e); }
+    if (k && k.list) k.list.forEach(function (w) { add(w.mot); });
+    kxWords(c).forEach(function (e) { add(e.jp); });
+    return out.slice(0, 18);
+  }
+  function nvKanjiHTML(c) {
+    var i = kxInfo(c); if (!i) return '<p class="dcempty">Kanji introuvable.</p>';
+    var k = typeof KMAP === 'object' && KMAP[c], ws = nvWordsOf(c, k), hasSt = typeof STROKES === 'object' && STROKES[c];
+    var h = '<div class="kbody inmodal dcd dcpage kxf"><div class="dcfr-frame"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i><div class="dcdh"><span class="dcbig jp">' + esc(c) + '</span></div>';
+    h += '<p class="dcdfr"><b>' + esc(i.sens || 'sens non renseigné') + '</b>' + (i.en ? ' <small class="kxen">(en anglais)</small>' : '') + '</p><div class="dcbs">' + kxChips(i) + (k && k.wk ? '<span class="dcb dcc">' + esc(CURSUS[wkLevel(k.wk)].tag) + ' · semaine ' + wkNum(k.wk) + '</span>' : '') + '</div></div>';
+    h += '<div class="kxrd"><div><span class="kxl">ON</span><span class="jp">' + esc(i.on.join('、') || '—') + '</span></div><div><span class="kxl">KUN</span><span class="jp">' + esc(i.kun.join('、') || '—') + '</span></div></div>';
+    if (hasSt) h += '<div class="dcstroke"><p class="dcsec">Tracé 書き順</p><div class="swhost kxsw"></div><button type="button" class="btn nvreplay" data-nv="replay">▶ Rejouer</button></div>';
+    var memo = kxMemoHTML(c); if (memo) h += memo;
+    if (k) {
+      var ro = null; try { ro = radOfficial(k); } catch (x) {}
+      if (ro && ro.form) h += '<p class="dcsec">Clé 部首</p><p class="nvrow"><b class="jp">' + esc(ro.form) + ' ' + esc(ro.kana) + '</b> <small>(' + esc(ro.romaji) + ')</small> · clé n°' + esc(ro.n) + ' sur 214</p>';
+      if (k.parts) h += '<p class="dcsec">Composition</p><p class="nvrow">' + esc(k.parts) + '</p>';
+      if (k.tip) h += '<p class="dcsec">Astuce du cours</p><p class="nvrow nvtip">' + esc(k.tip) + '</p>';
+    }
+    if (ws.length) h += '<p class="dcsec">Mots avec ce kanji</p><div class="nvwords">' + ws.map(function (e) { return '<button type="button" class="nvw" data-dc="open:' + e.i + '"><span class="jp nvwk">' + esc(e.jp) + '</span><span class="nvwm"><span class="jp">' + esc(e.kana && e.kana !== e.jp ? e.kana : '') + '</span><span>' + esc(String(e.fr).split(/[;,]/)[0].slice(0, 32)) + '</span></span></button>'; }).join('') + '</div>';
+    if (k && k.jp) h += '<p class="dcsec">Phrase du cours</p><p class="nvrow"><span class="jp">' + esc(k.jp) + '</span><br><small>' + esc(k.fr || '') + '</small></p>';
+    return h + '<p class="kxsrc">Données : KANJIDIC (EDRDG, CC BY-SA 4.0) · tracés et composants : KanjiVG (CC BY-SA 3.0).</p></div>';
+  }
+  var nvSw = null;
+  function nvPlay(c) {
+    var host = document.querySelector('#appModalBody .kxsw'); if (!host || !(typeof STROKES === 'object' && STROKES[c])) return;
+    try { host.innerHTML = ''; nvSw = swBuild(host, c); setTimeout(function () { if (nvSw) swPlay(nvSw); }, 300); } catch (x) {}
+  }
+  function nvBar() { var body = $('appModalBody'), old = body.querySelector('.nvbar'); if (old) old.remove(); body.insertAdjacentHTML('afterbegin', nvBarHTML()); }
+  var dcOpenNv0 = dcOpen;
+  function nvShow(e, how) {
+    var vis = nvVisible();
+    if (how === 'push') { if (vis && nv.cur) nv.hist.push(nv.cur); else if (!vis) nv.hist = []; }
+    if (e.k) {
+      var html = nvKanjiHTML(e.k);
+      if (vis) { setModalBody(html); $('appModalTitle').textContent = e.k; $('appModal').querySelector('.mbox').className = 'mbox appbox kmodal dcmodal'; $('appModalBody').scrollTop = 0; }
+      else openModal(e.k, html, 'kmodal dcmodal');
+      nv.cur = e; nvBar(); nvPlay(e.k);
+    } else {
+      dcOpenNv0(e.w); nv.cur = e; nvBar(); $('appModalBody').scrollTop = 0;
+    }
+  }
+  dcOpen = function (i) { nvShow({ w: i }, 'push'); };
+  kxOpen = function (c) {
+    if (!kxInfo(c)) return;
+    if (!nvVisible()) { nv.list = dc.mode === 'k' && document.getElementById('dcHost') ? kfMatches().map(function (x) { return x.c; }) : null; }
+    nvShow({ k: c }, 'push');
+  };
+  var closeModalNv0 = closeModal;
+  closeModal = function () { nv.cur = null; nv.hist = []; closeModalNv0(); };
+  /* depuis une fiche de mot : les kanji s'ouvrent aussi en couche */
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest ? ev.target.closest('[data-dc^="kanji:"]') : null; if (!b) return;
+    ev.stopImmediatePropagation(); ev.preventDefault(); kxOpen(b.getAttribute('data-dc').slice(6));
+  }, true);
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest ? ev.target.closest('[data-nv]') : null; if (!b) return;
+    var a = b.getAttribute('data-nv');
+    if (a === 'back') { if (nv.hist.length) nvShow(nv.hist.pop(), 'none'); else closeModal(); }
+    else if (a === 'replay') { if (nv.cur && nv.cur.k) nvPlay(nv.cur.k); }
+    else if (a === 'prev' || a === 'next') {
+      var ix = nv.list ? nv.list.indexOf(nv.cur.k) : -1; if (ix < 0) return;
+      var n = (ix + (a === 'next' ? 1 : -1) + nv.list.length) % nv.list.length; nvShow({ k: nv.list[n] }, 'none');
+    }
+  });
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
