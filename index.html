@@ -4052,7 +4052,7 @@ body .seg button[aria-selected="true"], body .seg.gsegbar button[aria-selected="
 .hubprof .pfpic img.av { width: 100%; height: 100%; max-width: none; aspect-ratio: 1; object-fit: cover; border-radius: 18px; image-rendering: auto; background: #fff; }
 .hubprof .pfname { display: block; font-family: var(--font-brush); font-weight: 400; font-size: 1.5rem; color: #2c2452; line-height: 1.1; overflow-wrap: anywhere; }
 .hubprof .pftitle { display: block; color: #5b4a86; font-weight: 700; font-size: .86rem; margin-top: 3px; }
-.hubprof .pfrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 12px; }
+.hubprof .pfrow { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-top: 12px; }
 .hubprof .pfrow span { background: #fff; border: 1px solid #e9d3dd; border-radius: 12px; padding: 6px 2px; font-size: .68rem; color: #5b4a86; display: grid; gap: 1px; }
 .hubprof .pfrow b { font-size: 1.05rem; color: #c1245a; }
 .newsp { position: relative; overflow: hidden; color: #fffaf0 !important; background: linear-gradient(180deg, #2c2452 0%, #3d3470 55%, #2a5a86 100%) !important; border: 2px solid #f0b97a !important; box-shadow: 0 8px 22px rgba(44,36,82,.4) !important; }
@@ -15412,7 +15412,7 @@ span.kxcp{cursor:default}
     $('wpickGrid').innerHTML = '<select class="wksel" id="wkSelect" aria-label="Semaines à réviser"><option value="all"' + (sel === 'all' ? ' selected' : '') + '>' + esc('Toutes les semaines ' + L.tag + ' · ' + weekWords('all').length + ' mots') + '</option>' +
       wks.map(function (wk) { var t = wk < 100 ? MP_WKNAME[wk] : (L1_TITLES[wk] || {}).title; return '<option value="' + wk + '"' + (sel === String(wk) ? ' selected' : '') + '>' + esc('Semaine ' + wkNum(wk) + (t ? ' · ' + t : '') + ' · ' + weekWords(wk).length + ' mots') + '</option>'; }).join('') + '</select>';
     $('weekInfo').textContent = L.short + ' · ' + L.sem + ' : ' + (weekMulti().length >= 2 ? 'semaines ' + weekMulti().map(wkNum).join(', ') + ' uniquement' : sel === 'all' ? 'toutes les semaines mélangées' : weekLabel(+sel) + ' uniquement') + ' : ' + pool.length + ' mots pour les mini-jeux. L\'Histoire a ses propres chapitres par semaine.';
-    if (S.flJl) $('weekInfo').textContent = 'Vocabulaire actuel : ' + (S.flJl === 'q' ? 'vie quotidienne' : 'JLPT ' + S.flJl.toUpperCase()) + ' (' + pool.length + ' mots). Tu peux le changer au lancement d\'un jeu.';
+    if (S.flJl) $('weekInfo').textContent = 'Vocabulaire actuel : ' + (S.flJl === 'q' ? 'hors JLPT' : 'JLPT ' + S.flJl.toUpperCase()) + ' (' + pool.length + ' mots). Tu peux le changer au lancement d\'un jeu.';
   }
   function renderHome() {
     regen(); renderBars(); renderWeekPick(); renderSrsBox();
@@ -17015,7 +17015,7 @@ span.kxcp{cursor:default}
   Object.keys(JLNEW.jk).forEach(function (c) { if (!JK[c]) JK[c] = JLNEW.jk[c]; });
   Object.keys(JLNEW.st).forEach(function (c) { if (!STROKES[c]) STROKES[c] = JLNEW.st[c]; });
   Object.keys(JK).forEach(function (c) { JK[c][1] = JK[c][1].map(toKata); JK[c][2] = JK[c][2].map(toHira); });
-  var JL_LV = [['n5', 'N5 · débutant'], ['n4', 'N4 · élémentaire'], ['n3', 'N3 · intermédiaire'], ['n2', 'N2 · avancé'], ['n1', 'N1 · expert'], ['q', 'Vie quotidienne']];
+  var JL_LV = [['n5', 'N5 · débutant'], ['n4', 'N4 · élémentaire'], ['n3', 'N3 · intermédiaire'], ['n2', 'N2 · avancé'], ['n1', 'N1 · expert'], ['q', 'Hors JLPT']];
   var JLK = null;
   function jlBuild() {
     if (JLK) return JLK;
@@ -17036,7 +17036,7 @@ span.kxcp{cursor:default}
       lvWeeks(id).forEach(function (wk) { o.push(['C:' + id + ':' + wk, 'Semaine ' + wkNum(wk)]); });
       g.push([CURSUS[id].tag + ' · ' + CURSUS[id].name, o]);
     });
-    g.push(['JLPT et vie quotidienne', JL_LV.map(function (l) { return ['J:' + l[0], (l[0] === 'q' ? '' : 'JLPT ') + l[1]]; })]);
+    g.push(['JLPT et hors JLPT', JL_LV.map(function (l) { return ['J:' + l[0], (l[0] === 'q' ? '' : 'JLPT ') + l[1]]; })]);
     return g;
   }
   function kListFlat() { var f = []; kListOpts().forEach(function (g) { g[1].forEach(function (o) { f.push(o[0]); }); }); return f; }
@@ -17068,12 +17068,12 @@ span.kxcp{cursor:default}
   function kListLabel() {
     var p = kListNow().split(':');
     if (p[0] === 'K') { var kgg = KG_GROUPS.filter(function (g) { return g.id === p[1]; })[0]; return 'Keigo · ' + (kgg ? kgg.name.replace(/^Keigo · /, '') : ''); }
-    if (p[0] === 'J') return p[1] === 'q' ? 'Vie quotidienne' : 'JLPT ' + p[1].toUpperCase();
+    if (p[0] === 'J') return p[1] === 'q' ? 'Hors JLPT' : 'JLPT ' + p[1].toUpperCase();
     return CURSUS[p[1]].tag + (p[2] === 'all' ? '' : ' · semaine ' + wkNum(+p[2]));
   }
   function jkInfo(c) { var j = JK[c]; return j ? { sens: j[0], on: j[1], kun: j[2], n: j[3] } : null; }
   function jlLevelOfKanji(c) { var jl = jlBuild(), r = ''; ['n5', 'n4', 'n3', 'n2', 'n1', 'q'].forEach(function (lv) { if (!r && jl[lv].indexOf(c) >= 0) r = lv; }); return r; }
-  function jlLevelName(lv) { return lv === 'q' ? 'Vie quotidienne' : 'JLPT ' + lv.toUpperCase(); }
+  function jlLevelName(lv) { return lv === 'q' ? 'Hors JLPT' : 'JLPT ' + lv.toUpperCase(); }
   function jkTile(c) {
     var j = jkInfo(c);
     kcards.push({ k: c, w: null, jk: true, title: c, body: function () { return jkBody(c); } });
@@ -17107,7 +17107,7 @@ span.kxcp{cursor:default}
     var ks = Array.from(w.jp).filter(function (c) { return typeof STROKES === 'object' && STROKES[c]; });
     return '<div class="krow"><span class="kl">Lecture</span><span><span class="jp">' + esc(w.kana) + '</span> <small>' + esc(toRomaji(w.kana)) + '</small></span></div>' +
       '<div class="krow"><span class="kl">Sens</span><span><b>' + esc(w.fr) + '</b></span></div>' +
-      '<div class="krow"><span class="kl">Liste</span><span>' + esc(w.key.indexOf('q:') === 0 ? 'Vie quotidienne' : 'JLPT ' + w.key.split(':')[0].toUpperCase()) + (th ? ' · ' + esc(th.name) : '') + '</span></div>' +
+      '<div class="krow"><span class="kl">Liste</span><span>' + esc(w.key.indexOf('q:') === 0 ? 'Hors JLPT' : 'JLPT ' + w.key.split(':')[0].toUpperCase()) + (th ? ' · ' + esc(th.name) : '') + '</span></div>' +
       (dec ? '<div class="krow"><span class="kl">Kanjis</span><span class="wlist">' + dec + '</span></div>' : '') +
       (ks.length ? '<div class="krow"><span class="kl">Tracé 書き順</span><span class="swmulti">' + ks.map(function (c) { return '<span class="swk"><button class="btn" type="button" data-sw="open" data-k="' + esc(c) + '">▶ ' + esc(c) + '</button><span class="swhost"></span></span>'; }).join('') + '</span></div>' : '');
   }
@@ -17453,7 +17453,7 @@ span.kxcp{cursor:default}
     var el = $('hubSide'); if (!el || !user) return;
     var lv = levelOf(S.xp), pub = publicStats(S), kt = katOf(katOfShop(S.shop)), pv = pavLvOf(S.shop);
     el.innerHTML =
-      '<div class="panel hubstat hubprof"><div class="pfpic">' + avatarHTML(avatarOf(user.name, user.avatar), 'xl', user.id) + '</div><b class="pfname">' + esc(user.name) + '</b><span class="pftitle">Niveau ' + lv + ' · ' + (S.xp || 0).toLocaleString('fr-FR') + ' XP</span><div class="pfrow"><span><b>' + (S.bossWins || 0) + '</b>boss</span><span><b>' + (S.coins || 0).toLocaleString('fr-FR') + '</b>pièces</span><span><b>' + ((S.dj && S.dj.best) || 0) + '</b>tour infinie</span></div></div>' +
+      '<div class="panel hubstat hubprof"><div class="pfpic">' + avatarHTML(avatarOf(user.name, user.avatar), 'xl', user.id) + '</div><b class="pfname">' + esc(user.name) + '</b><span class="pftitle">Niveau ' + lv + ' · ' + (S.xp || 0).toLocaleString('fr-FR') + ' XP</span><div class="pfrow"><span><b>' + Object.keys(S.seen || {}).length + '</b>kanji vus</span><span><b>' + (S.coins || 0).toLocaleString('fr-FR') + '</b>pièces</span></div></div>' +
       '<div class="panel newsp" id="hubFeed"><i class="npet p1"></i><i class="npet p2"></i><i class="npet p3"></i><h3 class="nph"><span>報</span>Actualités du dōjō</h3><div id="hubFeedBody">' + feedHTML() + '</div><p class="small muted" style="margin:6px 0 0" id="hubLive"></p></div>';
     renderOnline();
   }
@@ -19191,7 +19191,7 @@ span.kxcp{cursor:default}
     if (jl) wk = 'all';
     return { lv: lv, wk: wk, kind: kind, jl: jl };
   }
-  function jlLabel(jl) { return jl === 'q' ? 'Vie quotidienne' : 'JLPT ' + jl.toUpperCase(); }
+  function jlLabel(jl) { return jl === 'q' ? 'Hors JLPT' : 'JLPT ' + jl.toUpperCase(); }
   function progJlKanjis(jl) {
     var seen = {}, o = [];
     jlFlashWords(jl).forEach(function (w) { (w.kanjis || []).forEach(function (c) { if (!seen[c] && (KMAP[c] || JK[c])) { seen[c] = 1; o.push(jlKObj(c)); } }); });
@@ -19233,7 +19233,7 @@ span.kxcp{cursor:default}
       return '<div class="mpseg" role="group">' + list.map(function (x) { return '<button type="button" class="mpb" data-mpp="' + key + ':' + x[0] + '" data-mppfx="' + pfx + '" aria-pressed="' + (String(cur) === String(x[0])) + '">' + esc(x[1]) + '</button>'; }).join('') + '</div>';
     };
     return '<div class="mpprogpick"><label class="mplabel">Programme · niveau</label>' + seg('lv', ['L0', 'L0S2', 'L1', 'L1S2', 'L2'].map(function (id) { return [id, CURSUS[id].tag]; }), p.jl ? '' : p.lv) +
-      '<label class="mplabel">JLPT et vie quotidienne</label>' + seg('jl', JL_LV.map(function (l) { return [l[0], l[0] === 'q' ? 'Quotidien' : l[0].toUpperCase()]; }), p.jl || '') +
+      '<label class="mplabel">JLPT et vie quotidienne</label>' + seg('jl', JL_LV.map(function (l) { return [l[0], l[0] === 'q' ? 'Hors JLPT' : l[0].toUpperCase()]; }), p.jl || '') +
       (p.jl ? '<p class="small muted" style="margin:6px 0">Tout le niveau ' + esc(jlLabel(p.jl)) + ' : vocabulaire et kanjis du JLPT.</p>' : '<label class="mplabel" for="mppWk' + pfx + '">Semaine</label><select class="mpselect" id="mppWk' + pfx + '" data-mppsel="wk" data-mppfx="' + pfx + '"><option value="all"' + (p.wk === 'all' ? ' selected' : '') + '>Toutes les semaines ' + esc(CURSUS[p.lv].tag) + '</option>' +
       weeks.map(function (wk) { return '<option value="' + wk + '"' + (p.wk === wk ? ' selected' : '') + '>' + esc(progWkLabel(wk)) + '</option>'; }).join('') + '</select>') +
       '<label class="mplabel">Contenu</label>' + seg('kind', MP_KINDS, p.kind) + '</div>';
@@ -22006,7 +22006,7 @@ span.kxcp{cursor:default}
   function askHTML(px, withK) {
     var sel = weekSel(), lv = curLv(), wks = lvWeeks(), ks = kSelList(), jl = px === 'gs' && S.flJl ? S.flJl : '', last = withK ? 3 : 2, st = gsStep;
     if (st > 1) st = 0;
-    var kgm = jl === 'q' && /^kg_/.test(S.flTh || ''), lvName = kgm ? 'Keigo' : jl ? (jl === 'q' ? 'Vie quotidienne' : 'JLPT ' + jl.toUpperCase()) : CURSUS[lv].tag + ' · ' + CURSUS[lv].sem;
+    var kgm = jl === 'q' && /^kg_/.test(S.flTh || ''), lvName = kgm ? 'Keigo' : jl ? (jl === 'q' ? 'Hors JLPT' : 'JLPT ' + jl.toUpperCase()) : CURSUS[lv].tag + ' · ' + CURSUS[lv].sem;
     var wkM = weekMulti(), wkName = wkM.length >= 2 ? 'Semaines ' + wkM.map(wkNum).join(' · ') : sel === 'all' ? 'toutes les semaines' : 'Semaine ' + wkNum(+sel) + ((L1_TITLES[+sel] || {}).title ? ' · ' + L1_TITLES[+sel].title : (+sel < 100 && MP_WKNAME[+sel] ? ' · ' + MP_WKNAME[+sel] : ''));
     var kName = ks.length ? ks.length + ' kanji' + (ks.length > 1 ? 's' : '') + ' choisi' + (ks.length > 1 ? 's' : '') : 'tous les kanjis';
     if (st === 0) {
@@ -22015,7 +22015,7 @@ span.kxcp{cursor:default}
         '<button type="button" class="gsksm as2btn" data-gsstep="1" data-gspx="' + px + '">Modifier</button></div>';
     }
     var q = '<div class="askq as2q">Quel niveau veux-tu travailler ?</div>', adv = '';
-    var levelSel = askSel(px + 'Lv', 'Année et semestre', ['L0', 'L0S2', 'L1', 'L1S2', 'L2'].map(function (id) { return [id, CURSUS[id].tag + ' · ' + CURSUS[id].sem, 'Cours']; }).concat(px === 'gs' ? JL_LV.map(function (l) { return ['J:' + l[0], l[0] === 'q' ? 'Vie quotidienne (hors cours)' : 'JLPT ' + l[1], 'JLPT']; }).concat(KG_GROUPS.map(function (g) { return ['K:' + g.id, g.name, 'Keigo']; })) : []), kgm ? 'K:' + S.flTh : jl ? 'J:' + jl : lv);
+    var levelSel = askSel(px + 'Lv', 'Année et semestre', ['L0', 'L0S2', 'L1', 'L1S2', 'L2'].map(function (id) { return [id, CURSUS[id].tag + ' · ' + CURSUS[id].sem, 'Cours']; }).concat(px === 'gs' ? JL_LV.map(function (l) { return ['J:' + l[0], l[0] === 'q' ? 'Hors JLPT' : 'JLPT ' + l[1], 'JLPT']; }).concat(KG_GROUPS.map(function (g) { return ['K:' + g.id, g.name, 'Keigo']; })) : []), kgm ? 'K:' + S.flTh : jl ? 'J:' + jl : lv);
     if (gsAdv) {
       adv = '<div class="as2adv">';
       if (kgm) adv += ''; else if (jl) adv += '<p class="as2l">Thème</p>' + askSel(px + 'Th', 'Thème à réviser', [['', 'Tous les thèmes']].concat(QV.filter(function (t) { return !t.virt && t.lv === jl && t.id.indexOf('kg_') !== 0; }).map(function (t) { return [t.id, t.name]; })), S.flTh || '');
@@ -22394,7 +22394,7 @@ span.kxcp{cursor:default}
     flash: { k: '札', t: 'Flashcards', art: 'flashfr', d: 'Revois tes mots, les plus urgents d\'abord', tip: 'Les flashcards te montrent d\'abord les mots à revoir. Note-toi honnêtement : c\'est comme ça que tu progresses vite !' },
     kanji: { k: '漢', t: 'Kanjis', art: 'kread', d: 'Lectures, sens et fiches à étudier', tip: 'Entraîne-toi sur les lectures et le sens des kanjis, ou ouvre « Étudier » pour apprendre une fiche.' },
     mini: { k: '遊', t: 'Mini-jeux', art: 'sprint', d: 'Écrit et oral : sprint, écoute, karaoké, cuisine…', tip: 'Des jeux courts pour réviser en s\'amusant. Les jeux « Écrit » se jouent au clavier ou en QCM, les jeux « Oral » avec ton oreille et ta voix. Essaie l\'examen blanc avant un contrôle !' },
-    daily: { k: '日', t: 'Vie quotidienne', art: '', d: 'Maison, famille, amis, ville… du vocabulaire hors cours', tip: 'Ici, du vocabulaire de tous les jours, sans rapport avec ton cours : la maison, la famille, les amis, la ville… Choisis un thème, apprends la liste, puis teste-toi.' },
+    daily: { k: '日', t: 'Hors JLPT', art: '', d: 'Maison, famille, amis, ville… du vocabulaire hors cours', tip: 'Ici, du vocabulaire de tous les jours, sans rapport avec ton cours : la maison, la famille, les amis, la ville… Choisis un thème, apprends la liste, puis teste-toi.' },
     jlpt: { k: '試', t: 'JLPT', art: '', d: 'Vocabulaire N5, N4 et N3, quiz par niveau', tip: 'Les listes JLPT : choisis N5, N4 ou N3, un thème ou le quiz complet du niveau, apprends la liste, puis teste-toi. Un mot est acquis après 3 bonnes réponses d\'affilée.' },
     nb: { k: '数', t: 'Nombres & dates', art: '', d: 'Compteurs, mois, jours, heures, prix', tip: 'Les nombres japonais changent selon ce qu\'on compte, et les dates ont des lectures spéciales. Lis le mot, ou écoute-le et retrouve-le : 10 questions par partie.' },
     kana: { k: 'あ', t: 'Kana', art: '', d: 'Hiragana et katakana : leçons et quiz', tip: 'Ici, tu apprends à lire les kana : les hiragana puis les katakana. Choisis un groupe, regarde les mots d\'exemple, puis entraîne-toi. Commence par les bases !' },
@@ -22445,7 +22445,7 @@ span.kxcp{cursor:default}
   }
   function listenChooser(mode) {
     var g = LISTEN_GAMES.filter(function (x) { return x[0] === mode; })[0];
-    openModal(g[2] + ' · choisis ta liste', '<p class="small muted" style="margin-top:0">' + esc(g[3]) + '. Sur quel vocabulaire veux-tu t\'entraîner ?</p><select id="listenLv" class="wksel" aria-label="Liste de vocabulaire"><option value="q_all">Vie quotidienne (tous les thèmes)</option><option value="n5_all">JLPT N5</option><option value="n4_all">JLPT N4</option><option value="n3_all">JLPT N3</option><option value="n2_all">JLPT N2</option><option value="n1_all">JLPT N1</option></select><div class="row" style="margin-top:12px"><button type="button" class="btn primary" data-listgo="' + mode + '">Jouer</button></div>', '');
+    openModal(g[2] + ' · choisis ta liste', '<p class="small muted" style="margin-top:0">' + esc(g[3]) + '. Sur quel vocabulaire veux-tu t\'entraîner ?</p><select id="listenLv" class="wksel" aria-label="Liste de vocabulaire"><option value="q_all">Hors JLPT (tous les thèmes)</option><option value="n5_all">JLPT N5</option><option value="n4_all">JLPT N4</option><option value="n3_all">JLPT N3</option><option value="n2_all">JLPT N2</option><option value="n1_all">JLPT N1</option></select><div class="row" style="margin-top:12px"><button type="button" class="btn primary" data-listgo="' + mode + '">Jouer</button></div>', '');
     try { var sel = $('listenLv'); var last = localStorage.getItem('kd.listenlv'); if (sel && last) sel.value = last; } catch (e) {}
   }
   document.addEventListener('click', function (e) {
@@ -24541,7 +24541,7 @@ span.kxcp{cursor:default}
       cur.w.push(w); QVW[w.key] = w;
     });
     var qall = []; QV.forEach(function (t) { if (t.lv === 'q' && !t.virt) qall = qall.concat(t.w); });
-    QV.push({ id: 'q_all', k: '日', name: 'Vie quotidienne', note: '', w: qall, lv: 'q', virt: 1, hid: 1 });
+    QV.push({ id: 'q_all', k: '日', name: 'Hors JLPT', note: '', w: qall, lv: 'q', virt: 1, hid: 1 });
     // Quiz de niveau : tous les mots du N5 / N4 / N3 d'un coup
     [['n1', '壱', 'Quiz N1 complet', 'Tout le vocabulaire N1 mélangé : le défi du niveau.'], ['n2', '弐', 'Quiz N2 complet', 'Tout le vocabulaire N2 mélangé : le défi du niveau.'], ['n5', '伍', 'Quiz N5 complet', 'Tout le vocabulaire N5 mélangé : le défi du niveau.'], ['n4', '肆', 'Quiz N4 complet', 'Tout le vocabulaire N4 mélangé : le défi du niveau.'], ['n3', '参', 'Quiz N3 complet', 'Tout le vocabulaire N3 mélangé : le défi du niveau.']].forEach(function (L) {
       var all = []; QV.forEach(function (t) { if (t.lv === L[0] && !t.virt) all = all.concat(t.w); });
@@ -24549,7 +24549,7 @@ span.kxcp{cursor:default}
       QV.push({ id: L[0] + '_exam', k: '試', name: 'Examen blanc ' + L[0].toUpperCase(), note: 'Examen chronométré de 30 questions.', w: all, lv: L[0], virt: 1, exam: 1 });
     });
   })();
-  var QV_LV = [['all', 'Tous les thèmes'], ['q', 'Vie quotidienne'], ['n5', 'JLPT N5'], ['n4', 'JLPT N4'], ['n3', 'JLPT N3'], ['n2', 'JLPT N2'], ['n1', 'JLPT N1']];
+  var QV_LV = [['all', 'Tous les thèmes'], ['q', 'Hors JLPT'], ['n5', 'JLPT N5'], ['n4', 'JLPT N4'], ['n3', 'JLPT N3'], ['n2', 'JLPT N2'], ['n1', 'JLPT N1']];
   var qv = { th: '', mode: 'learn', dir: 'jp', q: null, lv: 'all', ex: null };
   var QV_ART = '<svg viewBox="0 0 320 78" class="gart" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="qvbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e98a3a"/><stop offset="1" stop-color="#b3461e"/></linearGradient></defs><rect width="320" height="78" fill="url(#qvbg)"/><g opacity=".95"><path d="M196 44L232 16L268 44Z" fill="#3a2210" stroke="#2a1c14" stroke-width="2" stroke-linejoin="round"/><rect x="204" y="44" width="56" height="30" fill="#fbf0d8" stroke="#2a1c14" stroke-width="2"/><rect x="214" y="52" width="14" height="22" fill="#8a4a1a" stroke="#2a1c14" stroke-width="1.5"/><rect x="236" y="52" width="16" height="12" fill="#ffd978" stroke="#2a1c14" stroke-width="1.5"/><path d="M236 58H252M244 52V64" stroke="#2a1c14" stroke-width="1"/></g><g stroke="#2a1c14" stroke-width="2" stroke-linejoin="round"><ellipse cx="120" cy="58" rx="24" ry="9" fill="#e8d8b8"/><path d="M98 36H142L138 58Q120 66 102 58Z" fill="#fbf4e3"/><path d="M142 42Q158 42 156 52Q154 58 140 56" fill="none"/><path d="M110 28Q106 20 112 16M122 28Q118 18 124 12" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".8"/></g><text x="30" y="52" font-size="30" fill="#fff6e0" font-family="serif" font-weight="900" opacity=".9">日常</text></svg>';
   function qvStatOf(k) { return qvBest(k); }
@@ -24886,7 +24886,7 @@ span.kxcp{cursor:default}
     out.push(['Flashcards', FLASH_ORDER.map(function (k) { return ['g_' + k, GAMES[k].name]; })]);
     out.push(['Kanjis', ['kread', 'ksens', 'kstudy'].map(function (k) { return ['g_' + k, GAMES[k].name]; })]);
     out.push(['Mini-jeux', GAME_ORDER.map(function (k) { return ['g_' + k, GAMES[k].name]; })]);
-    out.push(['Vie quotidienne : thèmes', QV.filter(function (t) { return !t.virt; }).map(function (t) { return ['qv_' + t.id, t.name]; })]);
+    out.push(['Hors JLPT : thèmes', QV.filter(function (t) { return !t.virt; }).map(function (t) { return ['qv_' + t.id, t.name]; })]);
     return out;
   }
   function adminPanel() {
@@ -25237,7 +25237,7 @@ span.kxcp{cursor:default}
   var REG_FAM = ['じゃあね', 'またね', 'かっこいい', 'スマホ', 'やっぱり', 'めちゃくちゃ', 'やたらに', 'うるさい', 'いらいら', 'ドキドキ', 'イライラ', 'ワクワク', 'おっきい', 'ちっちゃい', 'バイク', 'アニメ', 'カラオケ', 'ゴミ', 'すごい', 'すごく', 'ひどい', 'とにかく', 'かっこいい', 'ごろごろ', 'ぺらぺら', 'ぐっすり', 'ぴったり', 'ぺこぺこ', 'どうせ', 'ちっとも', 'つい', 'ぎりぎり'];
   var REG_WRI = ['なぜなら', 'ゆえに', 'もしくは', '万一', '著しい', '荘厳', '厳か', '偉大', '至急', '円満', '被疑者', '被選挙権', '渡航', '推定', '拝見', '謙譲語', '賢明', '賢者', '均衡', '逃亡', '警戒', '捕獲', '専ら', '被害', 'いわゆる', '従って', 'すなわち', 'あらゆる', 'ただし', 'もっとも', 'ところが', 'または', 'つまり'];
   var JMD = null;
-  var WLEX_C = null, WLEX_LV = { n5: 'N5', n4: 'N4', n3: 'N3', n2: 'N2', n1: 'N1', q: 'Vie quotidienne' };
+  var WLEX_C = null, WLEX_LV = { n5: 'N5', n4: 'N4', n3: 'N3', n2: 'N2', n1: 'N1', q: 'Hors JLPT' };
   function regOfWord(jp, tag) {
     if (tag && BONUS_REG[tag]) return BONUS_REG[tag];
     if (tag === 'wri') return 'Écrit / soutenu';
@@ -25261,10 +25261,10 @@ span.kxcp{cursor:default}
     }
     function srcAdd(jp, label) { jp = String(jp || '').replace(/^[〜～]/, ''); var c = d[jp]; if (!c || !label) return; (c.srcs = c.srcs || []); if (c.srcs.indexOf(label) < 0) c.srcs.push(label); }
     BONUS.forEach(function (c) { c.items.forEach(function (it) { add(it.jp, it.kana, it.fr, 'Bonus', c.id); srcAdd(it.jp, 'Vocabulaire bonus'); }); });
-    Object.keys(QVW).forEach(function (k) { var v = QVW[k], p = k.split(':')[0]; add(v.jp, v.kana, v.fr, WLEX_LV[p] || '', v.reg || ''); srcAdd(v.jp, p === 'q' ? 'Vie quotidienne' : (WLEX_LV[p] ? 'JLPT ' + WLEX_LV[p] : '')); });
+    Object.keys(QVW).forEach(function (k) { var v = QVW[k], p = k.split(':')[0]; add(v.jp, v.kana, v.fr, WLEX_LV[p] || '', v.reg || ''); srcAdd(v.jp, p === 'q' ? 'Hors JLPT' : (WLEX_LV[p] ? 'JLPT ' + WLEX_LV[p] : '')); });
     WORDS.forEach(function (w) { add(w.mot, w.lecture, w.sens, 'Cours', ''); try { srcAdd(w.mot, 'Cours ' + (CURSUS[wkLevel(w.wk)] || {}).tag); } catch (e) {} });
     try { if (typeof RD_GL !== 'undefined') RD_GL.forEach(function (g) { add(g.jp, g.kana, g.fr, g.lvl, ''); var e = d[g.jp]; if (e && !e.srcs) { e.srcs = [g.lvl === 'Phrases' ? 'Phrases d’exemple' : 'Lecture ' + g.lvl]; } }); } catch (e) { /* ignore */ }
-    Object.keys(d).forEach(function (jp) { var c = d[jp]; if (!c.srcs) return; var rk = function (x) { return /^JLPT/.test(x) ? 0 : /^Cours/.test(x) ? 1 : /^Vie/.test(x) ? 2 : 3; }; c.srcs.sort(function (a, b) { return rk(a) - rk(b) || (a < b ? -1 : a > b ? 1 : 0); }); });
+    Object.keys(d).forEach(function (jp) { var c = d[jp]; if (!c.srcs) return; var rk = function (x) { return /^JLPT/.test(x) ? 0 : /^Cours/.test(x) ? 1 : /^Hors/.test(x) ? 2 : 3; }; c.srcs.sort(function (a, b) { return rk(a) - rk(b) || (a < b ? -1 : a > b ? 1 : 0); }); });
     try {
       JMD.forEach(function (r) {
         var ks = r[1] ? r[1].split('・') : [], rs = r[2].split('・'), jp = ks[0] || rs[0]; if (!jp || d[jp]) return;
@@ -25434,7 +25434,7 @@ span.kxcp{cursor:default}
     var curOpt = sel.options[sel.selectedIndex], h = '';
     if (groups.length > 1) h += '<div class="cs-tabs" role="tablist">' + groups.map(function (g, i) {
       var inG = g.opts.some(function (o) { return o.value === cur; });
-      return '<button type="button" role="tab" class="cs-tab' + (i === gi ? ' on' : '') + (inG ? ' has' : '') + '" data-csg="' + i + '" aria-selected="' + (i === gi) + '">' + esc((g.label || '').split(' · ')[0].replace(/ et vie quotidienne/, ' · quotidien')) + '</button>';
+      return '<button type="button" role="tab" class="cs-tab' + (i === gi ? ' on' : '') + (inG ? ' has' : '') + '" data-csg="' + i + '" aria-selected="' + (i === gi) + '">' + esc((g.label || '').split(' · ')[0].replace(/ et hors JLPT/, ' · hors JLPT')) + '</button>';
     }).join('') + '</div>';
     var g0 = groups[gi];
     h += '<div class="cs-chips" role="listbox" aria-label="' + esc(sel.getAttribute('aria-label') || 'Choix') + '">' + g0.opts.map(function (o) {
@@ -25601,7 +25601,7 @@ span.kxcp{cursor:default}
     } else {
       PG_JL.forEach(function (lv) {
         var it = Object.keys(QVW).filter(function (k) { return k.split(':')[0] === lv; }).map(function (k) { var w = QVW[k], st = qvBest(k); return { a: w.jp, b: w.kana === w.jp ? '' : w.kana, c: w.fr, s: pgWst(st), ko: st ? st.ko || 0 : 0 }; });
-        G.push({ id: lv, name: lv === 'q' ? 'Vie quotidienne' : 'JLPT ' + lv.toUpperCase(), items: it });
+        G.push({ id: lv, name: lv === 'q' ? 'Hors JLPT' : 'JLPT ' + lv.toUpperCase(), items: it });
       });
     }
     return G;
@@ -25618,7 +25618,7 @@ span.kxcp{cursor:default}
     } else {
       var jl = jlBuild();
       PG_JL.forEach(function (lv) {
-        G.push({ id: lv, name: lv === 'q' ? 'Vie quotidienne' : 'JLPT ' + lv.toUpperCase(), items: jl[lv].map(function (c) { return { a: c, c: sens(c), s: pgKst(c, I) }; }) });
+        G.push({ id: lv, name: lv === 'q' ? 'Hors JLPT' : 'JLPT ' + lv.toUpperCase(), items: jl[lv].map(function (c) { return { a: c, c: sens(c), s: pgKst(c, I) }; }) });
       });
     }
     return G;
@@ -25651,7 +25651,7 @@ span.kxcp{cursor:default}
       '<small>Estimation indicative : 60 % du vocabulaire acquis + 40 % des kanjis acquis, niveau par niveau.</small></div></div>' +
       '<div class="pglvbars" role="img" aria-label="Avancement par niveau JLPT">' + E.info.map(function (x) { return '<div class="pglb' + (x.p >= 50 ? ' ok' : '') + '"><b>' + x.lv.toUpperCase() + '</b><span class="pglbt"><i style="height:' + Math.max(4, x.p) + '%"></i></span><small>' + x.p + ' %</small></div>'; }).join('') + '</div>' + skillsHTML();
     h += '<div class="bnseg pgseg" role="tablist">' + [['mots', 'Vocabulaire'], ['kanjis', 'Kanjis']].map(function (o) { return '<button type="button" role="tab" data-pgtab="' + o[0] + '" aria-selected="' + (PG.tab === o[0]) + '">' + o[1] + '</button>'; }).join('') + '</div>';
-    h += '<div class="bnseg pgseg" role="tablist">' + [['jlpt', 'JLPT et quotidien'], ['cours', 'Mon cours']].map(function (o) { return '<button type="button" role="tab" data-pgsrc="' + o[0] + '" aria-selected="' + (PG.src === o[0]) + '">' + o[1] + '</button>'; }).join('') + '</div>';
+    h += '<div class="bnseg pgseg" role="tablist">' + [['jlpt', 'JLPT et hors JLPT'], ['cours', 'Mon cours']].map(function (o) { return '<button type="button" role="tab" data-pgsrc="' + o[0] + '" aria-selected="' + (PG.src === o[0]) + '">' + o[1] + '</button>'; }).join('') + '</div>';
     var G = PG.tab === 'mots' ? pgWordGroups(PG.src) : pgKanjiGroups(PG.src, I), tot = { ok: 0, mid: 0, new: 0, old: 0 };
     G.forEach(function (g) { var c = pgCount(g.items); tot.ok += c.ok; tot.mid += c.mid; tot.new += c.new; tot.old += c.old; });
     var all = tot.ok + tot.mid + tot.new + tot.old || 1;
@@ -27350,7 +27350,7 @@ span.kxcp{cursor:default}
     });
     return { list: th, by: by };
   })();
-  /* v288 : les mots et expressions du keigo rejoignent « Vie quotidienne » (flashcards, jeux, phrases à trou) */
+  /* v288 : les mots et expressions du keigo rejoignent « Hors JLPT » (flashcards, jeux, phrases à trou) */
   var KG_GROUPS = [];
   (function () {
     var groups = [
@@ -27878,7 +27878,7 @@ span.kxcp{cursor:default}
       h += '<p class="as2l klsub">Semestre</p><div class="cs-chips">' + Object.keys(CURSUS).map(function (id) { return chip('C:' + id + ':all', CURSUS[id].tag, p[1] === id); }).join('') + '</div>';
       h += '<p class="as2l klsub">Semaine</p><div class="cs-chips">' + chip('C:' + p[1] + ':all', 'Toutes', p[2] === 'all') + lvWeeks(p[1]).map(function (wk) { return chip('C:' + p[1] + ':' + wk, 'S' + wkNum(wk), p[2] === String(wk)); }).join('') + '</div>';
     } else if (cat === 'J') {
-      h += '<p class="as2l klsub">Niveau</p><div class="cs-chips">' + JL_LV.map(function (l) { return chip('J:' + l[0], l[0] === 'q' ? 'Vie quotidienne' : l[0].toUpperCase(), p[1] === l[0]); }).join('') + '</div>';
+      h += '<p class="as2l klsub">Niveau</p><div class="cs-chips">' + JL_LV.map(function (l) { return chip('J:' + l[0], l[0] === 'q' ? 'Hors JLPT' : l[0].toUpperCase(), p[1] === l[0]); }).join('') + '</div>';
     } else {
       h += '<p class="as2l klsub">Thème</p><div class="cs-chips">' + KG_GROUPS.map(function (g) { return chip('K:' + g.id, g.name.replace(/^Keigo · /, '').replace(/^./, function (m) { return m.toUpperCase(); }), p[1] === g.id); }).join('') + '</div>';
     }
@@ -28063,7 +28063,7 @@ span.kxcp{cursor:default}
   }
   /* ===== v318. Dictionnaire : tous les mots, verbes conjugués, adjectifs, expressions ; filtres niveau / thème / type ===== */
   var DC = null, dc = { q: '', t: 'all', lv: 'all', th: '', n: 60, sort: 'lv' };
-  var DC_LVN = { n5: 'N5', n4: 'N4', n3: 'N3', n2: 'N2', n1: 'N1', q: 'Quotidien', c: 'Cours', b: 'Bonus' };
+  var DC_LVN = { n5: 'N5', n4: 'N4', n3: 'N3', n2: 'N2', n1: 'N1', q: 'Hors JLPT', c: 'Cours', b: 'Bonus' };
   var DC_TN = { v: 'Verbe', ai: 'Adj. en い', an: 'Adj. en な', e: 'Expression', o: 'Mot' };
   var DC_GODAN_RU = ['帰る', '返る', '入る', '要る', '切る', '知る', '走る', '減る', '握る', '散る', '喋る', '蹴る', '参る', '限る', '焦る', '滑る', '湿る', '混じる', '照る', '練る', '捻る', '陥る', '遮る', '翻る', '覆る', '蘇る', '茂る', '嘲る', '罵る', '契る', '煎る', '炒る', 'かえる', 'はいる', 'しゃべる', 'へる', 'ける', 'いらっしゃる', 'くださる', 'なさる', 'おっしゃる', 'ござる'];
   var DC_AI = '高 安 大き 小さ 新し 古 長 短 多 少な 近 遠 早 速 遅 重 軽 強 弱 広 狭 暑 寒 熱 冷た 暖か 涼し 暗 明る 白 黒 赤 青 丸 甘 辛 苦 酸っぱ 汚 若 偉 怖 痛 眠 忙し 楽し 嬉し 悲し 難し 易し 優し 厳し 美味し 面白 悪 良 太 細 深 浅 低 硬 固 柔らか 臭 温 濃 薄 賢 凄 鋭 鈍 幼 緩 険 醜 眩し 貧し 珍し 恐ろし 詳し 正し 親し 激し 羨まし 懐かし 欲し 若 黄色 眠た 気持ち悪 可愛 恥ずかし 寂し 淋し 美し 素晴らし 細か 汚'.split(' ');
@@ -28164,7 +28164,7 @@ span.kxcp{cursor:default}
     var tn = {}; QV.forEach(function (t) { tn[t.id] = t; });
     Object.keys(L).forEach(function (jp) {
       var c = L[jp], e = { jp: c.jp, kana: c.kana || (/^[ぁ-ゖァ-ヶー]+$/.test(c.jp) ? c.jp : ''), fr: c.fr, tag: c.tag, srcs: c.srcs || [], i: i++ };
-      var lv = ''; if (c.lvl === 'N5') lv = 'n5'; else if (c.lvl === 'N4') lv = 'n4'; else if (c.lvl === 'N3') lv = 'n3'; else if (c.lvl === 'N2') lv = 'n2'; else if (c.lvl === 'N1') lv = 'n1'; else if (c.lvl === 'Vie quotidienne') lv = 'q';
+      var lv = ''; if (c.lvl === 'N5') lv = 'n5'; else if (c.lvl === 'N4') lv = 'n4'; else if (c.lvl === 'N3') lv = 'n3'; else if (c.lvl === 'N2') lv = 'n2'; else if (c.lvl === 'N1') lv = 'n1'; else if (c.lvl === 'Hors JLPT') lv = 'q';
       e.lv = lv; e.th = th[c.jp] || '';
       e.isC = e.srcs.some(function (s) { return /^Cours/.test(s); }); e.isB = c.lvl === 'Bonus' || e.srcs.indexOf('Vocabulaire bonus') >= 0 || !!c.tag && /^(ono|fam|cont|ami|wri)$/.test(c.tag);
       var th0 = e.th, isKg = /^kg_/.test(th0), isExprTh = /(salut|expr|politesse|discours|oral)/.test(th0) || isKg || /^(n5_salut)/.test(th0);
@@ -28241,7 +28241,7 @@ span.kxcp{cursor:default}
   function dcCount() { return dcBuild().all.length; }
   function dcBadges(e) {
     var b = '<span class="dcb dct">' + DC_TN[e.t] + '</span>';
-    if (e.lv) b += '<span class="dcb dcl">' + (e.lv === 'q' ? 'Quotidien' : e.lv.toUpperCase()) + '</span>';
+    if (e.lv) b += '<span class="dcb dcl">' + (e.lv === 'q' ? 'Hors JLPT' : e.lv.toUpperCase()) + '</span>';
     if (e.isC) b += '<span class="dcb dcc">Cours</span>';
     return b;
   }
@@ -28260,7 +28260,7 @@ span.kxcp{cursor:default}
   }
   function dcThemeOpts() {
     var D = dcBuild(), seen = {}, groups = {};
-    QV.forEach(function (t) { if (t.virt) return; if (dc.lv !== 'all' && dc.lv !== 'c' && dc.lv !== 'b' && t.lv !== dc.lv) return; var g = /^kg_/.test(t.id) ? 'Keigo et oral' : t.lv === 'q' ? 'Vie quotidienne' : 'JLPT ' + t.lv.toUpperCase(); (groups[g] = groups[g] || []).push(t); });
+    QV.forEach(function (t) { if (t.virt) return; if (dc.lv !== 'all' && dc.lv !== 'c' && dc.lv !== 'b' && t.lv !== dc.lv) return; var g = /^kg_/.test(t.id) ? 'Keigo et oral' : t.lv === 'q' ? 'Hors JLPT' : 'JLPT ' + t.lv.toUpperCase(); (groups[g] = groups[g] || []).push(t); });
     var h = '<option value="">Tous les thèmes</option>';
     Object.keys(groups).forEach(function (g) { h += '<optgroup label="' + esc(g) + '">' + groups[g].map(function (t) { return '<option value="' + esc(t.id) + '"' + (dc.th === t.id ? ' selected' : '') + '>' + esc(t.name) + ' (' + t.w.length + ')</option>'; }).join('') + '</optgroup>'; });
     return h;
@@ -28270,7 +28270,7 @@ span.kxcp{cursor:default}
     function chip(k, v, t, on) { return '<button type="button" class="cs-chip' + (on ? ' on' : '') + '" data-dc="' + k + ':' + v + '" aria-pressed="' + on + '">' + t + '</button>'; }
     var h = '<div class="dcbar"><input id="dcQ" class="dcq" type="search" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Chercher : 食べる, たべる, taberu, manger…" value="' + esc(dc.q) + '" aria-label="Rechercher un mot"></div>';
     h += '<p class="as2l klsub">Type</p><div class="cs-chips">' + [['all', 'Tous'], ['v', 'Verbes'], ['a', 'Adjectifs'], ['e', 'Expressions'], ['o', 'Autres mots']].map(function (x) { return chip('t', x[0], x[1], dc.t === x[0]); }).join('') + '</div>';
-    h += '<p class="as2l klsub">Niveau</p><div class="cs-chips">' + [['all', 'Tous'], ['n5', 'N5'], ['n4', 'N4'], ['n3', 'N3'], ['n2', 'N2'], ['n1', 'N1'], ['q', 'Quotidien'], ['c', 'Cours'], ['b', 'Bonus']].map(function (x) { return chip('lv', x[0], x[1], dc.lv === x[0]); }).join('') + '</div>';
+    h += '<p class="as2l klsub">Niveau</p><div class="cs-chips">' + [['all', 'Tous'], ['n5', 'N5'], ['n4', 'N4'], ['n3', 'N3'], ['n2', 'N2'], ['n1', 'N1'], ['q', 'Hors JLPT'], ['c', 'Cours'], ['b', 'Bonus']].map(function (x) { return chip('lv', x[0], x[1], dc.lv === x[0]); }).join('') + '</div>';
     h += '<div class="dcrow"><label class="small muted" for="dcTh">Thème</label><select id="dcTh" class="dcsel">' + dcThemeOpts() + '</select>' + (dc.q ? '' : '<label class="small muted" for="dcSort">Tri</label><select id="dcSort" class="dcsel dcss"><option value="lv"' + (dc.sort === 'lv' ? ' selected' : '') + '>Niveau</option><option value="kana"' + (dc.sort === 'kana' ? ' selected' : '') + '>あいうえお</option></select>') + '</div>';
     return h + '<div id="dcList">' + dcListHTML() + '</div>';
   }
@@ -28426,7 +28426,7 @@ span.kxcp{cursor:default}
   var DJ_SECS = [
     ['rev', '練', 'Réviser et jouer', 'Flashcards, jeux, erreurs à corriger', ['flash', 'mini', 'err']],
     ['base', '学', 'Apprendre les bases', 'Kana, kanji, clés et tracé', ['kana', 'kanji', 'rad', 'tb']],
-    ['voc', '語', 'Vocabulaire', 'Quotidien, JLPT, bonus et keigo', ['daily', 'jlpt', 'bonus', 'kg']],
+    ['voc', '語', 'Vocabulaire', 'JLPT, hors JLPT, bonus et keigo', ['daily', 'jlpt', 'bonus', 'kg']],
     ['lire', '読', 'Lire et chercher', 'Textes, dictionnaire', ['lec', 'dico']]
   ];
   function djSections() {
@@ -31295,7 +31295,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v365', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v366', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -31645,7 +31645,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
     var rec = dcRecent().map(dcByJp).filter(Boolean);
     if (rec.length) h += '<div class="dcrec"><span>Récents</span><div class="dcchips">' + rec.map(function (e) { return '<button type="button" class="dcrc jp" data-dc="open:' + e.i + '">' + esc(e.jp) + '</button>'; }).join('') + '</div></div>';
     h += '<div class="dcfil"><div class="dcchips" role="group" aria-label="Type">' + [['all', 'Tous'], ['v', 'Verbes'], ['a', 'Adjectifs'], ['e', 'Expressions'], ['o', 'Autres']].map(function (x) { return dcChip('t', x[0], x[1], dc.t === x[0]); }).join('') + '</div>';
-    h += '<div class="dcchips" role="group" aria-label="Niveau">' + [['all', 'Tous niveaux'], ['n5', 'N5'], ['n4', 'N4'], ['n3', 'N3'], ['n2', 'N2'], ['n1', 'N1'], ['q', 'Quotidien'], ['c', 'Cours'], ['b', 'Bonus'], ['jm', 'JMdict']].map(function (x) { return dcChip('lv', x[0], x[1], dc.lv === x[0]); }).join('') + '</div>';
+    h += '<div class="dcchips" role="group" aria-label="Niveau">' + [['all', 'Tous niveaux'], ['n5', 'N5'], ['n4', 'N4'], ['n3', 'N3'], ['n2', 'N2'], ['n1', 'N1'], ['q', 'Hors JLPT'], ['c', 'Cours'], ['b', 'Bonus'], ['jm', 'JMdict']].map(function (x) { return dcChip('lv', x[0], x[1], dc.lv === x[0]); }).join('') + '</div>';
     h += '<div class="dcchips"><button type="button" class="dcch th' + (dc.th ? ' on' : '') + '" data-dc="thm:1">🏷 ' + (dc.th ? esc(dcThemeName()) : 'Thème') + ' ▾</button><button type="button" class="dcch' + (dc.sort === 'kana' ? ' on' : '') + '" data-dc="sort:' + (dc.sort === 'kana' ? 'lv' : 'kana') + '">あ→ん ' + (dc.sort === 'kana' ? 'activé' : 'ordre kana') + '</button>' + (dcFilterOn() ? '<button type="button" class="dcch rst" data-dc="rst:1">↺ Effacer les filtres</button>' : '') + '</div></div>';
     var w = (!q && !dcFilterOn()) ? dcWod() : null;
     if (w) h += '<button type="button" class="dcwod" data-dc="open:' + w.i + '"><span class="dcwl">Mot du jour</span><span class="dcwk jp">' + esc(w.jp) + '</span><span class="dcwm"><span class="jp dcwr">' + esc(w.kana || '') + '</span><span class="dcwf">' + esc(w.fr) + '</span></span><span class="dcwrb" aria-hidden="true"></span></button>';
@@ -31675,7 +31675,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   /* actions des nouveaux boutons */
   function dcThemeSheet() {
     var seen = {}, groups = {};
-    QV.forEach(function (t) { if (t.virt) return; if (dc.lv !== 'all' && dc.lv !== 'c' && dc.lv !== 'b' && t.lv !== dc.lv) return; var g = /^kg_/.test(t.id) ? 'Keigo et oral' : t.lv === 'q' ? 'Vie quotidienne' : 'JLPT ' + t.lv.toUpperCase(); (groups[g] = groups[g] || []).push(t); });
+    QV.forEach(function (t) { if (t.virt) return; if (dc.lv !== 'all' && dc.lv !== 'c' && dc.lv !== 'b' && t.lv !== dc.lv) return; var g = /^kg_/.test(t.id) ? 'Keigo et oral' : t.lv === 'q' ? 'Hors JLPT' : 'JLPT ' + t.lv.toUpperCase(); (groups[g] = groups[g] || []).push(t); });
     var h = '<div class="dcthm"><button type="button" class="dcch' + (!dc.th ? ' on' : '') + '" data-dc="thset:">Tous les thèmes</button>';
     Object.keys(groups).forEach(function (g) { h += '<p class="dcg">' + esc(g) + '</p><div class="dcchips wrap">' + groups[g].map(function (t) { return '<button type="button" class="dcch' + (dc.th === t.id ? ' on' : '') + '" data-dc="thset:' + esc(t.id) + '">' + esc(t.name) + ' <small>' + t.w.length + '</small></button>'; }).join('') + '</div>'; });
     openModal('Thème', h + '</div>', 'kmodal dcmodal');
