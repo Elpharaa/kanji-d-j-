@@ -12025,9 +12025,13 @@ span.kxcp{cursor:default}
   });
   Object.keys(COMP).forEach(function (c) { COMP[c][1] = toKata(COMP[c][1]); COMP[c][2] = toHira(COMP[c][2]); });
   // Mots d'une semaine (1, 2) ou de toutes (« all »)
-  function weekWords(wk) { return wk === 'all' ? WORDS.filter(function (w) { return wkLevel(w.wk) === curLv(); }) : WORDS.filter(function (w) { return Array.isArray(wk) ? wk.indexOf(w.wk) >= 0 : w.wk === wk; }); }
-  function weekKanjis(wk) { return wk === 'all' ? KANJI_DATA.filter(function (k) { return wkLevel(k.wk) === curLv(); }) : KANJI_DATA.filter(function (k) { return Array.isArray(wk) ? wk.indexOf(k.wk) >= 0 : k.wk === wk; }); }
-  function lvWeeks(lv) { var o = {}; KANJI_DATA.forEach(function (k) { if (wkLevel(k.wk) === (lv || curLv())) o[k.wk] = 1; }); return Object.keys(o).map(Number).sort(function (a, b) { return a - b; }); }
+  var _wwC = {}, _wwN = -1, _wkC = {}, _wkN = -1, _lwC = {}, _lwN = -1;
+  function weekWords(wk) { if (_wwN !== WORDS.length) { _wwC = {}; _wwN = WORDS.length; } var key = wk === 'all' ? 'all|' + curLv() : JSON.stringify(wk); return (_wwC[key] || (_wwC[key] = weekWords0(wk))).slice(); }
+  function weekWords0(wk) { return wk === 'all' ? WORDS.filter(function (w) { return wkLevel(w.wk) === curLv(); }) : WORDS.filter(function (w) { return Array.isArray(wk) ? wk.indexOf(w.wk) >= 0 : w.wk === wk; }); }
+  function weekKanjis(wk) { if (_wkN !== KANJI_DATA.length) { _wkC = {}; _wkN = KANJI_DATA.length; } var key = wk === 'all' ? 'all|' + curLv() : JSON.stringify(wk); return (_wkC[key] || (_wkC[key] = weekKanjis0(wk))).slice(); }
+  function weekKanjis0(wk) { return wk === 'all' ? KANJI_DATA.filter(function (k) { return wkLevel(k.wk) === curLv(); }) : KANJI_DATA.filter(function (k) { return Array.isArray(wk) ? wk.indexOf(k.wk) >= 0 : k.wk === wk; }); }
+  function lvWeeks(lv) { if (_lwN !== KANJI_DATA.length) { _lwC = {}; _lwN = KANJI_DATA.length; } var key = lv || curLv(); return (_lwC[key] || (_lwC[key] = lvWeeks0(lv))).slice(); }
+  function lvWeeks0(lv) { var o = {}; KANJI_DATA.forEach(function (k) { if (wkLevel(k.wk) === (lv || curLv())) o[k.wk] = 1; }); return Object.keys(o).map(Number).sort(function (a, b) { return a - b; }); }
   // Même écriture que la lecture de référence w (katakana pour un mot on'yomi, hiragana pour un kun'yomi, mixte écrit à la main)
   function scr(w, s) {
     var d = DISP[w.mot];
@@ -31323,7 +31327,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v398', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v399', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
