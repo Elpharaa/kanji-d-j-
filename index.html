@@ -15997,11 +15997,12 @@ span.kxcp{cursor:default}
     { id: 'kt_zangetsu', name: 'Zangetsu', price: 300, desc: "Le sabre noir, épuré et imposant : une lame large, une chaîne qui pend du pommeau." },
     { id: 'kt_senbon', name: 'Senbonzakura', price: 600, desc: "Garde sculptée en fleur de cerisier, lame fine entourée d'une aura de pétales." },
     { id: 'kt_hyorin', name: 'Hyōrinmaru', price: 1000, desc: "Lame de glace aux cristaux scintillants, garde en tête de dragon." },
+    { id: 'kt_momiji', name: 'Momijigari', price: 1250, desc: "Lame cuivrée, garde en feuille d'érable rouge et feuilles d'automne qui tourbillonnent." },
     { id: 'kt_ryujin', name: 'Ryūjin Jakka', price: 1500, desc: "Lame embrasée et fourreau laqué orné de flammes." },
     { id: 'kt_kyoka', name: 'Kyōka Suigetsu', price: 2100, desc: "Lame élégante aux reflets d'eau, double illusoire qui ondule." }
   ];
   // Bonus économique léger : +2 % à +10 % de pièces d'or selon la rareté du katana équipé
-  var KAT_PCT = { kt_base: 0, kt_zangetsu: 0.02, kt_senbon: 0.04, kt_hyorin: 0.06, kt_ryujin: 0.08, kt_kyoka: 0.10 };
+  var KAT_PCT = { kt_base: 0, kt_zangetsu: 0.02, kt_senbon: 0.04, kt_hyorin: 0.06, kt_momiji: 0.07, kt_ryujin: 0.08, kt_kyoka: 0.10 };
   var katLast = 0;   // bonus (en pièces) du dernier gain
   function katPctOf(id) { return KAT_PCT[id] || 0; }
   function katMultOf(id) { return Math.round((1 + katPctOf(id)) * 100) / 100; }
@@ -16027,6 +16028,7 @@ span.kxcp{cursor:default}
     '<linearGradient id="kgIce" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2fcff"/><stop offset=".5" stop-color="#8fd3f4"/><stop offset="1" stop-color="#3f86d0"/></linearGradient>' +
     '<linearGradient id="kgFire" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#7a1208"/><stop offset=".5" stop-color="#e8481c"/><stop offset="1" stop-color="#ffd23b"/></linearGradient>' +
     '<linearGradient id="kgWater" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8f4ff"/><stop offset=".5" stop-color="#9ab8f0"/><stop offset="1" stop-color="#6a5ab8"/></linearGradient>' +
+    '<linearGradient id="kgMomi" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d9b48f"/><stop offset=".5" stop-color="#fff3e2"/><stop offset="1" stop-color="#b9764a"/></linearGradient>' +
     '<linearGradient id="kgWrapD" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#17171d"/><stop offset=".5" stop-color="#3a3a46"/><stop offset="1" stop-color="#101015"/></linearGradient></defs>';
   function kWrap(x, y0, y1, col, col2) {   // poignée entourée d'un cordon en losanges
     var o = '<rect x="' + x + '" y="' + y0 + '" width="10" height="' + (y1 - y0) + '" rx="3" fill="' + col + '" stroke="#00000055" stroke-width=".8"/>', y;
@@ -16056,6 +16058,14 @@ span.kxcp{cursor:default}
       o += kWrap(25, 98, 120, '#274a86', '#9ed6f6') + '<path d="M30 121L26 128L30 126L34 128z" fill="#bfe8ff" stroke="#3f86d0" stroke-width=".8"/>';
       o += '<g class="kfx">';
       [[14, 20, 0], [46, 38, 1], [10, 64, 2], [49, 78, 1.5], [18, 100, 2.5], [42, 14, .5]].forEach(function (p) { o += '<path class="ktw" style="animation-delay:' + (-p[2]) + 's" d="M' + p[0] + ' ' + (p[1] - 3.4) + 'L' + (p[0] + 1) + ' ' + (p[1] - 1) + 'L' + (p[0] + 3.4) + ' ' + p[1] + 'L' + (p[0] + 1) + ' ' + (p[1] + 1) + 'L' + p[0] + ' ' + (p[1] + 3.4) + 'L' + (p[0] - 1) + ' ' + (p[1] + 1) + 'L' + (p[0] - 3.4) + ' ' + p[1] + 'L' + (p[0] - 1) + ' ' + (p[1] - 1) + 'z" fill="#f4fdff" stroke="#8fd3f4" stroke-width=".4"/>'; });
+      o += '</g>';
+    } else if (id === 'kt_momiji') {
+      var mp = 'M0 -9L2.2 -4.6L6.6 -6.4L5.4 -1.6L10 0L5.6 2.6L7 7L2.4 5.6L0 10L-2.4 5.6L-7 7L-5.6 2.6L-10 0L-5.4 -1.6L-6.6 -6.4L-2.2 -4.6z';
+      o += '<path d="M26.5 86V14L30 3L33.5 14V86z" fill="url(#kgMomi)" stroke="#8a4a2a" stroke-width=".9"/><path d="M30 6V86" stroke="#fff" stroke-width=".8" opacity=".8"/><path d="M26.5 60Q30 55 33.5 60" stroke="#e88a4a" stroke-width=".7" fill="none"/>';
+      o += '<g transform="translate(30 91) scale(.95)"><path d="' + mp + '" fill="#d6401f" stroke="#7a1d0c" stroke-width="1"/><path d="M0 -6V7M0 0L-5 -3M0 0L5 -3" stroke="#f2a24a" stroke-width=".8" fill="none"/></g>';
+      o += kWrap(25, 100, 120, '#a8301a', '#ffcf8a') + '<g transform="translate(30 124) scale(.4)"><path d="' + mp + '" fill="#e8741c" stroke="#7a1d0c" stroke-width="2"/></g>';
+      o += '<g class="kfx">';
+      [[12, 96, 0, '#d6401f'], [48, 78, 1.2, '#e8741c'], [14, 48, 2.1, '#f2a24a'], [46, 28, .6, '#d6401f'], [10, 72, 3, '#e8741c'], [50, 56, 1.7, '#c2331a']].forEach(function (p) { o += '<path class="kpet" style="animation-delay:' + (-p[2]) + 's" transform="translate(' + p[0] + ' ' + p[1] + ') scale(.3)" d="' + mp + '" fill="' + p[3] + '" stroke="#7a1d0c" stroke-width="1.2"/>'; });
       o += '</g>';
     } else if (id === 'kt_ryujin') {
       o += '<g transform="rotate(-9 30 70)"><rect x="6" y="14" width="9" height="106" rx="4.5" fill="#2a0e0a" stroke="#0e0504" stroke-width="1"/><path d="M8 110Q12 96 8 84Q13 78 10 66Q15 58 10 46" stroke="#ff8a2a" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M12 108Q10 100 13 92" stroke="#ffd23b" stroke-width="1" fill="none"/><rect x="5" y="12" width="11" height="6" rx="2" fill="#c0392b" stroke="#5a1209" stroke-width=".8"/><rect x="5" y="112" width="11" height="6" rx="2" fill="#c0392b" stroke="#5a1209" stroke-width=".8"/></g>';
@@ -16182,9 +16192,25 @@ span.kxcp{cursor:default}
         '<path d="M0 100 Q100 86 200 100 T400 96 V130 H0Z" fill="#7fa86a"/><path d="M0 114 Q120 104 240 114 T400 110 V130 H0Z" fill="#5c8a4e"/>' +
         '<path d="M165 130 C190 116 200 104 196 94" stroke="#d9c79a" stroke-width="9" fill="none" stroke-linecap="round" opacity=".9"/>' +
         '<g transform="translate(244 78)"><rect x="-22" y="0" width="44" height="26" rx="2" fill="#d7c9a8"/><path d="M-28 2 Q0 -22 28 2Z" fill="#6c8c5a"/><path d="M-10 26 V10 Q0 2 10 10 V26Z" fill="#8b5e34"/><rect x="-18" y="8" width="6" height="8" rx="3" fill="#f2c24a"/></g>' +
-        trees + '<g fill="#fff6c0" opacity=".85"><circle cx="120" cy="84" r="1.6"/><circle cx="210" cy="72" r="1.4"/><circle cx="288" cy="90" r="1.6"/></g>'; } }
+        trees + '<g fill="#fff6c0" opacity=".85"><circle cx="120" cy="84" r="1.6"/><circle cx="210" cy="72" r="1.4"/><circle cx="288" cy="90" r="1.6"/></g>'; } },
+    { id: 'momiji', name: 'Érables rouges (Momiji)', svg: function () {
+      var mp = 'M0 -9L2.2 -4.6L6.6 -6.4L5.4 -1.6L10 0L5.6 2.6L7 7L2.4 5.6L0 10L-2.4 5.6L-7 7L-5.6 2.6L-10 0L-5.4 -1.6L-6.6 -6.4L-2.2 -4.6z';
+      var cols = ['#c9301a', '#e0561e', '#f08a24', '#a8241a', '#f2b13a'];
+      var branch = '<path d="M-10 26 C60 36 120 14 200 46 S310 36 410 64" stroke="#3b2418" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M90 30 C108 56 126 66 146 98" stroke="#3b2418" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M262 42 C282 18 312 8 350 6" stroke="#3b2418" stroke-width="4" fill="none" stroke-linecap="round"/>';
+      var lv = '', r = 11;
+      [[34,30],[64,24],[96,44],[126,36],[158,52],[190,46],[226,48],[256,36],[288,20],[322,12],[352,8],[378,64],[332,52],[120,76],[142,96],[88,56],[300,44],[212,30],[54,46],[172,32]].forEach(function (p, i) {
+        r = (r * 9301 + 49297) % 233280;
+        lv += '<path transform="translate(' + p[0] + ' ' + p[1] + ') rotate(' + Math.round(r / 233280 * 70 - 35) + ') scale(' + (1.1 + (i % 3) * 0.35).toFixed(2) + ')" d="' + mp + '" fill="' + cols[i % 5] + '" stroke="#6e1a0c" stroke-width=".5" opacity=".95"/>';
+      });
+      var fall = '';
+      for (var i = 0; i < 16; i++) { r = (r * 9301 + 49297) % 233280; var x = r / 233280 * 400; r = (r * 9301 + 49297) % 233280; var y = 70 + r / 233280 * 56; r = (r * 9301 + 49297) % 233280;
+        fall += '<path transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') rotate(' + Math.round(r / 233280 * 360) + ') scale(.55)" d="' + mp + '" fill="' + cols[i % 5] + '" opacity=".85"/>'; }
+      return '<defs><linearGradient id="bnMo1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe2b8"/><stop offset=".6" stop-color="#ffd0a0"/><stop offset="1" stop-color="#f6b783"/></linearGradient></defs>' +
+        '<rect width="400" height="130" fill="url(#bnMo1)"/><circle cx="324" cy="94" r="30" fill="#ff9d5c" opacity=".45"/>' +
+        '<path d="M0 108 Q60 92 130 106 T270 100 T400 104 V130 H0Z" fill="#c8522a" opacity=".55"/><path d="M0 118 Q90 104 180 116 T400 112 V130 H0Z" fill="#9c3418"/>' +
+        branch + lv + fall; } }
   ];
-  var BN_PRICE = { sakura: 200, fuji: 250, soul: 300, mine: 300, rivendell: 350 };
+  var BN_PRICE = { sakura: 200, fuji: 250, soul: 300, mine: 300, rivendell: 350, momiji: 250 };
   function bnOwned(id) { return !!(S.shop && S.shop.owned && S.shop.owned['bn_' + id]); }
   function bnShopHTML() {
     var ok = bnUnlocked(S.xp), lv = levelOf(S.xp);
@@ -27353,6 +27379,7 @@ span.kxcp{cursor:default}
     ['bambou', 'Vert bambou', 50, '#2e8a4a'],
     ['violet', 'Violet glycine', 60, '#7a3ac8'],
     ['sakura', 'Rose sakura', 60, '#e0709f'],
+    ['momiji', 'Rouge momiji', 70, '#c2331a'],
     ['orange', 'Orange kaki', 60, '#e8822a'],
     ['turquoise', 'Turquoise', 80, '#1aa5a0'],
     ['or', 'Or', 200, '#d4a017'],
@@ -31422,7 +31449,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v414', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v415', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
