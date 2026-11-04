@@ -2,6 +2,8 @@
 
 Application web de révision du japonais (kanji, vocabulaire, lecture, dictionnaire).
 
+> ⚠️ Un bot Discord est relié au site. Les blocs marqués `DISCORD-BOT` dans `index.html` ne doivent pas être supprimés : voir [CLAUDE.md](CLAUDE.md).
+
 ## Sources de données
 
 - **KANJIDIC** et **JMdict / EDICT** — © Electronic Dictionary Research and Development Group (EDRDG), licence [CC BY-SA 4.0](https://www.edrdg.org/edrdg/licence.html). Version « simplified » de [scriptin/jmdict-simplified](https://github.com/scriptin/jmdict-simplified).
