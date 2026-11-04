@@ -14083,7 +14083,7 @@ span.kxcp{cursor:default}
     } catch (e) { document.documentElement.classList.remove('vt'); goRaw(tab); }
   }
   function goRaw(tab) {
-    if ((tab === 'story' || tab === 'base') && typeof unlOn === 'function' && !unlOn(tab)) { toast('🔒 ' + UNL[tab][1] + ' se débloque au niveau ' + UNL[tab][0]); tab = 'hub'; }
+    if ((tab === 'story' || tab === 'base') && typeof unlOn === 'function' && !unlOn(tab)) { toast(tab === 'story' ? '🗺️ L\u2019Aventure arrive bientôt !' : '🔒 ' + UNL[tab][1] + ' se débloque au niveau ' + UNL[tab][0]); tab = 'hub'; }
     if (!netOn()) {
       if (tab === 'board') { netBlock('Le classement'); return; }
     }
@@ -16682,7 +16682,7 @@ span.kxcp{cursor:default}
       '<div class="vmid" aria-hidden="true">' + vilToriiSVG() + '</div>' +
       '<button type="button" class="vb" data-vgo="shop" aria-label="La Boutique du Dōjō">' + shopSVG() + '<span class="vbl">La Boutique<small>Tous les achats</small></span></button></div>' +
       '<div class="vwater" aria-hidden="true">' + waterSVG() + bridgeSVG() + '<i class="vrp"></i><i class="vrp b"></i><i class="vrp c"></i><i class="vrp d"></i></div>' +
-      '<div class="vstreet"><h3><span class="vsign">Le village du dōjō</span> <small>' + list.length + ' maison' + (list.length > 1 ? 's' : '') + '</small><button type="button" class="famnav mknav" data-mk="open">🏮 Marché</button><button type="button" class="famnav" data-fam="open">🏠 Ma famille<i class="famdot"' + (famReqs.length ? '' : ' hidden') + '>' + famReqs.length + '</i></button></h3>' + sel + rows + '</div>' +
+      '<div class="vstreet"><h3><span class="vsign">Le village du dōjō</span> <small>' + list.length + ' maison' + (list.length > 1 ? 's' : '') + '</small><button type="button" class="famnav mknav" data-mk="open">🏮 Marché</button></h3>' + sel + rows + '</div>' +
       '<div class="vfx" aria-hidden="true">' + fxHTML(tone) + '</div>' + seaCols(sea) + '<div class="vtint" aria-hidden="true"></div></div>' +
       '<p class="small muted vhint">Touche ta maison pour rejoindre ton camp, ou la maison d’un ami pour voir son profil et sa base. Construis ton château ou ton temple dans la boutique du village !</p></div>';
     markVillageOnline();
@@ -17496,7 +17496,7 @@ span.kxcp{cursor:default}
   function publicStats(s) {
     var m = 0; WORDS.forEach(function (w) { var t = s.stats && s.stats[w.key]; if (mst(t)) m++; });
     var chs = 0; CHAPTERS.forEach(function (c) { if (s.story && s.story[c.id] && s.story[c.id].boss) chs++; });
-    return { b: Object.keys(s.badges || {}), m: m, w: s.bossWins || 0, c: s.correct || 0, s: s.best || 0, dj: (s.dj && s.dj.best) || 0, fr: cosmOf(s).frame, ti: cosmOf(s).title, nf: cosmOf(s).fx, sk: (s.streak && s.streak.last && strNum(strDay()) - strNum(s.streak.last) <= 1 ? s.streak.n : 0) || 0, ch: chs, k: s.kills || 0, bs: Object.keys(baseVisible(s.shop)).filter(function (x) { return x.indexOf('__') !== 0; }), pv: pavLvOf(s.shop), kt: katOfShop(s.shop), bn: bnPub(s), lx: s.lastEx || null, hx: vxPub(s), fm: s.fam || null, fq: s.famOut ? s.famOut.id : null, ft: s.famOut ? s.famOut.t : null, fok: (s.famOk || []).slice(-12), fno: (s.famNo || []).slice(-12), bp: bpPub(s), cf: (typeof cardFavOf === 'function' ? cardFavOf(s) : []) };
+    return { b: Object.keys(s.badges || {}), m: m, w: s.bossWins || 0, c: s.correct || 0, s: s.best || 0, dj: (s.dj && s.dj.best) || 0, fr: cosmOf(s).frame, ti: cosmOf(s).title, nf: cosmOf(s).fx, sk: (s.streak && s.streak.last && strNum(strDay()) - strNum(s.streak.last) <= 1 ? s.streak.n : 0) || 0, ch: chs, k: s.kills || 0, bs: Object.keys(baseVisible(s.shop)).filter(function (x) { return x.indexOf('__') !== 0; }), pv: pavLvOf(s.shop), kt: katOfShop(s.shop), bn: bnPub(s), lx: s.lastEx || null, hx: vxPub(s), bp: bpPub(s), cf: (typeof cardFavOf === 'function' ? cardFavOf(s) : []) };
   }
   // Joueurs « démo » (mode local) : un profil plausible calculé à partir de leur XP
   function demoStats(xp) {
@@ -17795,7 +17795,7 @@ span.kxcp{cursor:default}
 
   /* ---- Déblocage progressif des sections selon le niveau ---- */
   var UNL = { story: [2, "L'Aventure"], cards: [3, 'Le Classeur de cartes'], bazar: [4, "La Boutique"], base: [5, 'La Base'] };
-  function unlOn(k) { return true; /* déblocage par niveau désactivé : tout est accessible */ var d = UNL[k]; if (!d || !S) return true; return level() >= d[0] || !!(S.unl && S.unl[k]); }
+  function unlOn(k) { if (k === 'story' && !isAdmin()) return false; return true; /* déblocage par niveau désactivé : tout est accessible */ var d = UNL[k]; if (!d || !S) return true; return level() >= d[0] || !!(S.unl && S.unl[k]); }
   function unlSync() {
     if (!S) return;
     if (!S.unl) { S.unl = {}; Object.keys(UNL).forEach(function (k) { if (level() >= UNL[k][0]) S.unl[k] = 1; }); }
@@ -17813,7 +17813,7 @@ span.kxcp{cursor:default}
   }
   function unlNext() {
     var best = null;
-    Object.keys(UNL).forEach(function (k) { if (!unlOn(k) && (!best || UNL[k][0] < UNL[best][0])) best = k; });
+    Object.keys(UNL).forEach(function (k) { if (k !== 'story' && !unlOn(k) && (!best || UNL[k][0] < UNL[best][0])) best = k; });
     return best;
   }
   function unlHint() {
@@ -23570,6 +23570,8 @@ span.kxcp{cursor:default}
   }
   function famStart() {
     clearInterval(famTimer);
+    if (S && (S.fam || S.famOut || S.famOk || S.famNo)) { delete S.fam; delete S.famOut; delete S.famOk; delete S.famNo; try { persist(); flush(); } catch (e) {} }
+    return;
     if (!user || !backend.fams) return;
     setTimeout(function () { famRefresh(); }, 1500);
     famTimer = setInterval(function () { if (user && !document.hidden) famRefresh(); }, 40000);
@@ -23641,6 +23643,7 @@ span.kxcp{cursor:default}
   }
   // Barre dans le profil d'un autre joueur
   function famBarHTML(d) {
+    return '';
     if (!user || d.id === user.id || !S) return '';
     var f = famMap[d.id] || (d.stats && d.stats.fm), mine = S.fam, o = S.famOut, full = f && famCount(f) >= FAM_MAX, same = f && mine && f === mine;
     var info = f ? '<span class="famtag">🏠 Famille de ' + esc(famNameOf(f) || 'ce joueur') + '</span>' : '';
@@ -31328,7 +31331,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v403', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v404', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
