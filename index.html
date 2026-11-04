@@ -5719,6 +5719,12 @@ span.kxcp{cursor:default}
 .kmx .knh{color:#f3e8ff;text-shadow:0 1px 2px rgba(0,0,0,.35)}
 .kmxt .knc{height:50px;align-content:center}
 .kmxn{max-width:340px;margin:2px 0 0;color:#f3e8ff !important}
+.pgnext{gap:18px;padding:16px 18px;background:linear-gradient(135deg,#fffaf0,#ffeaf1);border-color:#d0587f}
+.pgring{--p:0;flex:none;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(closest-side,#fffaf0 74%,transparent 76%),conic-gradient(#c1245a calc(var(--p)*1%),#ecdcc8 0)}
+.pgring b{font-size:1.9rem;line-height:1;color:#c1245a;display:block;text-align:center}.pgring b small{font-size:.9rem;display:inline;opacity:1;margin:0}
+.pgnext .pgtx{flex:1;min-width:200px}.pgtt{font-size:1.45rem;font-weight:800;color:#2a1c14}.pgtt b{color:#c1245a}
+.pgbar{height:14px;border-radius:9px;background:#ecdcc8;margin:8px 0 6px;overflow:hidden;box-shadow:inset 0 1px 2px rgba(0,0,0,.15)}.pgbar i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,#e8789a,#c1245a);transition:width .6s}
+.pgsub{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 14px;font-size:.85rem;opacity:1}.pgnext .pgtx small{margin-top:6px}
 
 </style>
 
@@ -25731,9 +25737,7 @@ span.kxcp{cursor:default}
   }
   function progInner() {
     var I = pgIndex(), E = pgEstimate(I), h = '', next = E.est ? PG_JL[PG_JL.indexOf(E.est) + 1] : 'n5', ni = E.info[PG_JL.indexOf(next)];
-    h += '<div class="pgsum"><div class="pgbig"><small>Niveau estimé</small><b>' + (E.est ? E.est.toUpperCase() : 'Débutant') + '</b></div><div class="pgtx">' +
-      (next && next !== 'q' && ni ? 'Vers le <b>' + next.toUpperCase() + '</b> : <b>' + ni.p + ' %</b> (objectif 50 %) <i>vocabulaire ' + ni.wp + ' % · kanjis ' + ni.kp + ' %</i>' : 'Tous les niveaux sont validés, bravo !') +
-      '<small>Estimation indicative : 60 % du vocabulaire acquis + 40 % des kanjis acquis, niveau par niveau.</small></div></div>' +
+    h += (next && next !== 'q' && ni ? '<div class="pgsum pgnext"><div class="pgring" style="--p:' + Math.min(100, Math.round(ni.p / 50 * 100)) + '"><b>' + ni.p + '<small> %</small></b></div><div class="pgtx"><div class="pgtt">Vers le <b>' + next.toUpperCase() + '</b></div><div class="pgbar" role="progressbar" aria-valuemin="0" aria-valuemax="50" aria-valuenow="' + Math.min(50, ni.p) + '" aria-label="Progression vers le ' + next.toUpperCase() + '"><i style="width:' + Math.min(100, Math.round(ni.p / 50 * 100)) + '%"></i></div><div class="pgsub"><span>Objectif : 50 %</span><span>Vocabulaire <b>' + ni.wp + ' %</b> · Kanjis <b>' + ni.kp + ' %</b></span></div><small>Estimation indicative : 60 % du vocabulaire acquis + 40 % des kanjis acquis, niveau par niveau.</small></div></div>' : '<div class="pgsum pgnext"><div class="pgtx"><div class="pgtt">🎉 Tous les niveaux sont validés, bravo !</div></div></div>') +
       '<div class="pglvbars" role="img" aria-label="Avancement par niveau JLPT">' + E.info.map(function (x) { return '<div class="pglb' + (x.p >= 50 ? ' ok' : '') + '"><b>' + x.lv.toUpperCase() + '</b><span class="pglbt"><i style="height:' + Math.max(4, x.p) + '%"></i></span><small>' + x.p + ' %</small></div>'; }).join('') + '</div>' + skillsHTML();
     h += '<div class="bnseg pgseg" role="tablist">' + [['mots', 'Vocabulaire'], ['kanjis', 'Kanjis']].map(function (o) { return '<button type="button" role="tab" data-pgtab="' + o[0] + '" aria-selected="' + (PG.tab === o[0]) + '">' + o[1] + '</button>'; }).join('') + '</div>';
     h += '<div class="bnseg pgseg" role="tablist">' + [['jlpt', 'JLPT et hors JLPT'], ['cours', 'Mon cours']].map(function (o) { return '<button type="button" role="tab" data-pgsrc="' + o[0] + '" aria-selected="' + (PG.src === o[0]) + '">' + o[1] + '</button>'; }).join('') + '</div>';
@@ -31381,7 +31385,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v409', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v410', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
