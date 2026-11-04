@@ -28203,7 +28203,7 @@ span.kxcp{cursor:default}
     if (vt === 'suru') { var p = s.slice(0, -2); return dcVerbForms('する', 'x').map(function (x) { return [x[0], x[1], p + x[2]]; }); }
     if (vt === 'x') { // する
       add('Base', 'Dictionnaire', 'する'); add('Poli', 'Poli (ます)', 'します'); add('Poli', 'Poli négatif', 'しません'); add('Poli', 'Poli passé', 'しました'); add('Poli', 'Poli passé négatif', 'しませんでした');
-      add('Courant', 'Négatif', 'しない'); add('Courant', 'Passé', 'した'); add('Courant', 'Passé négatif', 'しなかった'); add('Liaison', 'Forme en て', 'して'); add('Liaison', 'Forme en て négative', 'しないで');
+      add('Forme simple', 'Négatif', 'しない'); add('Forme simple', 'Passé', 'した'); add('Forme simple', 'Passé négatif', 'しなかった'); add('Forme en て', 'Forme en て', 'して'); add('Forme en て', 'Forme en て négative', 'しないで');
       add('Autres', 'Conditionnel ば', 'すれば'); add('Autres', 'Conditionnel たら', 'したら'); add('Autres', 'Potentiel', 'できる'); add('Autres', 'Passif', 'される'); add('Autres', 'Causatif', 'させる'); add('Autres', 'Volontaire (しよう)', 'しよう'); add('Autres', 'Impératif', 'しろ'); add('Autres', 'Désir (たい)', 'したい'); add('Autres', 'En cours (ている)', 'している'); return F;
     }
     if (vt === 'kuru') {
@@ -28211,7 +28211,7 @@ span.kxcp{cursor:default}
       var K = k1 ? ['来', '来', '来'] : ['き', 'こ', 'く'];
       var mp = function (x) { return pk + x; };
       add('Base', 'Dictionnaire', mp(k1 ? '来る' : 'くる')); add('Poli', 'Poli (ます)', mp(K[0] + 'ます')); add('Poli', 'Poli négatif', mp(K[0] + 'ません')); add('Poli', 'Poli passé', mp(K[0] + 'ました')); add('Poli', 'Poli passé négatif', mp(K[0] + 'ませんでした'));
-      add('Courant', 'Négatif', mp(k1 ? '来ない' : 'こない')); add('Courant', 'Passé', mp(K[0] + 'た')); add('Courant', 'Passé négatif', mp(k1 ? '来なかった' : 'こなかった')); add('Liaison', 'Forme en て', mp(K[0] + 'て')); add('Liaison', 'Forme en て négative', mp(k1 ? '来ないで' : 'こないで'));
+      add('Forme simple', 'Négatif', mp(k1 ? '来ない' : 'こない')); add('Forme simple', 'Passé', mp(K[0] + 'た')); add('Forme simple', 'Passé négatif', mp(k1 ? '来なかった' : 'こなかった')); add('Forme en て', 'Forme en て', mp(K[0] + 'て')); add('Forme en て', 'Forme en て négative', mp(k1 ? '来ないで' : 'こないで'));
       add('Autres', 'Conditionnel ば', mp(k1 ? '来れば' : 'くれば')); add('Autres', 'Conditionnel たら', mp(K[0] + 'たら')); add('Autres', 'Potentiel', mp(k1 ? '来られる' : 'こられる')); add('Autres', 'Passif', mp(k1 ? '来られる' : 'こられる')); add('Autres', 'Causatif', mp(k1 ? '来させる' : 'こさせる')); add('Autres', 'Volontaire', mp(k1 ? '来よう' : 'こよう')); add('Autres', 'Impératif', mp(k1 ? '来い' : 'こい')); add('Autres', 'Désir (たい)', mp(K[0] + 'たい')); add('Autres', 'En cours (ている)', mp(K[0] + 'ている')); return F;
     }
     var ichi = vt === 'ichi', stem, neg, ti, tu;
@@ -28230,8 +28230,8 @@ span.kxcp{cursor:default}
     var ik = ichi ? i : i;
     add('Base', 'Dictionnaire', base);
     add('Poli', 'Poli (ます)', ik + 'ます'); add('Poli', 'Poli négatif', ik + 'ません'); add('Poli', 'Poli passé', ik + 'ました'); add('Poli', 'Poli passé négatif', ik + 'ませんでした');
-    add('Courant', 'Négatif', neg1); add('Courant', 'Passé', taform); add('Courant', 'Passé négatif', negp);
-    add('Liaison', 'Forme en て', tform); add('Liaison', 'Forme en て négative', neg1.replace(/い$/, 'いで'));
+    add('Forme simple', 'Négatif', neg1); add('Forme simple', 'Passé', taform); add('Forme simple', 'Passé négatif', negp);
+    add('Forme en て', 'Forme en て', tform); add('Forme en て', 'Forme en て négative', neg1.replace(/い$/, 'いで'));
     add('Autres', 'Conditionnel ば', ichi ? st + 'れば' : e + 'ば'); add('Autres', 'Conditionnel たら', taform + 'ら');
     add('Autres', 'Potentiel', ichi ? st + 'られる' : e + 'る'); add('Autres', 'Passif', ichi ? st + 'られる' : (last === 'う' ? st + 'われる' : a + 'れる'));
     add('Autres', 'Causatif', ichi ? st + 'させる' : (last === 'う' ? st + 'わせる' : a + 'せる'));
@@ -28246,13 +28246,13 @@ span.kxcp{cursor:default}
     if (t === 'ai') {
       var yoi = /^(いい|良い|よい)$/.test(s) || /(いい|良い)$/.test(s) && /^(いい|良い)$/.test(s.slice(-2)); st = s.slice(0, -1);
       if (s === 'いい') st = 'よ'; else if (/いい$/.test(s)) st = s.slice(0, -2) + 'よ'; else if (/良い$/.test(s)) st = s.slice(0, -2) + '良';
-      add('Base', 'Dictionnaire', s); add('Courant', 'Négatif', st + 'くない'); add('Courant', 'Passé', st + 'かった'); add('Courant', 'Passé négatif', st + 'くなかった');
+      add('Base', 'Dictionnaire', s); add('Forme simple', 'Négatif', st + 'くない'); add('Forme simple', 'Passé', st + 'かった'); add('Forme simple', 'Passé négatif', st + 'くなかった');
       add('Poli', 'Poli (です)', s + 'です'); add('Poli', 'Poli négatif', st + 'くないです'); add('Poli', 'Poli passé', st + 'かったです');
-      add('Liaison', 'Forme en て', st + 'くて'); add('Liaison', 'Adverbe (く)', st + 'く'); add('Autres', 'Conditionnel ば', st + 'ければ'); add('Autres', 'Conditionnel たら', st + 'かったら'); add('Autres', 'Semble (〜そう)', (s === 'いい' ? 'よさ' : st) + 'そう'); add('Autres', 'Nom (〜さ)', st + 'さ');
+      add('Forme en て et liaisons', 'Forme en て', st + 'くて'); add('Forme en て et liaisons', 'Adverbe (く)', st + 'く'); add('Autres', 'Conditionnel ば', st + 'ければ'); add('Autres', 'Conditionnel たら', st + 'かったら'); add('Autres', 'Semble (〜そう)', (s === 'いい' ? 'よさ' : st) + 'そう'); add('Autres', 'Nom (〜さ)', st + 'さ');
     } else {
-      add('Base', 'Dictionnaire', s); add('Courant', 'Présent (だ)', s + 'だ'); add('Courant', 'Négatif', s + 'じゃない'); add('Courant', 'Passé', s + 'だった'); add('Courant', 'Passé négatif', s + 'じゃなかった');
+      add('Base', 'Dictionnaire', s); add('Forme simple', 'Présent (だ)', s + 'だ'); add('Forme simple', 'Négatif', s + 'じゃない'); add('Forme simple', 'Passé', s + 'だった'); add('Forme simple', 'Passé négatif', s + 'じゃなかった');
       add('Poli', 'Poli (です)', s + 'です'); add('Poli', 'Poli négatif', s + 'ではありません'); add('Poli', 'Poli passé', s + 'でした');
-      add('Liaison', 'Forme en て', s + 'で'); add('Liaison', 'Adverbe (に)', s + 'に'); add('Liaison', 'Devant un nom (な)', s + 'な + nom'); add('Autres', 'Conditionnel なら', s + 'なら'); add('Autres', 'Conditionnel たら', s + 'だったら');
+      add('Forme en て et liaisons', 'Forme en て', s + 'で'); add('Forme en て et liaisons', 'Adverbe (に)', s + 'に'); add('Forme en て et liaisons', 'Devant un nom (な)', s + 'な + nom'); add('Autres', 'Conditionnel なら', s + 'なら'); add('Autres', 'Conditionnel たら', s + 'だったら');
     }
     return F;
   }
@@ -31395,7 +31395,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v412', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v413', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
