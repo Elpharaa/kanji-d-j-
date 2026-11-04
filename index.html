@@ -25352,7 +25352,7 @@ span.kxcp{cursor:default}
       '<div class="wfcact"><button type="button" class="btn" data-wcsay="' + esc(e.kana || e.jp) + '">🔊 Écouter</button></div>';
     var st = kj.filter(function (c) { return typeof STROKES === 'object' && STROKES[c]; });
     if (st.length) h += '<div class="wfstk"><div class="wfstt">Tracé 書き順</div>' + st.map(function (c) { return '<div class="wfsk"><button class="btn" type="button" data-sw="open" data-k="' + esc(c) + '">▶ ' + esc(c) + '</button><span class="swhost"></span></div>'; }).join('') + '</div>';
-    var kinfo = kj.map(function (c) { var k = typeof KMAP === 'object' && KMAP[c]; return k ? '<li><span class="jp">' + esc(c) + '</span> · ON ' + esc((k.on || []).join('、') || '—') + ' / KUN ' + esc((k.kun || []).join('、') || '—') + ' · ' + esc(k.sens || '') + '</li>' : ''; }).join('');
+    var kinfo = kj.map(function (c) { var k = typeof KMAP === 'object' && KMAP[c]; return k ? '<li><span class="jp">' + esc(c) + '</span> · ON ' + esc((k.on || []).join('、') || '—') + ' / KUN ' + esc((k.kun || []).join('、') || '—') + ' · ' + esc(k.sens || '') + ' <button type=\"button\" class=\"kxlink\" data-kx=\"open:' + esc(c) + '\">fiche ›</button></li>' : ''; }).join('');
     if (kinfo) h += '<ul class="wfckl">' + kinfo + '</ul>';
     return h + '</div>';
   }
@@ -31327,7 +31327,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v400', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v401', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
