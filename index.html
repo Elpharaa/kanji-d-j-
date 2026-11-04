@@ -5735,6 +5735,33 @@ span.kxcp{cursor:default}
 .cjall{margin:8px 0}.cjall summary{cursor:pointer;font-weight:700}.cjgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:6px;margin-top:8px}
 .cjrow{display:flex;flex-direction:column;padding:5px 9px;border-radius:10px;background:#fff;border:1.5px solid #e2d7f0}.cjrow small{color:#5b4a86;font-size:.7rem}.cjrow b{font-weight:600}.cjrow.cur{border-color:#c1245a;background:#fff0f5}
 .cjprog{display:flex;justify-content:space-between;gap:10px;margin:8px 2px;font-weight:700;color:#f3e8ff;text-shadow:0 1px 2px rgba(0,0,0,.35)}
+/* ===== v414 : accueil et barre latérale sur PC ===== */
+@media (min-width:1024px){
+ body.inapp .nav{gap:8px;padding-top:98px}
+ body.inapp .nav .tab{height:58px;min-height:58px;padding:0 18px;gap:16px;border-radius:14px;justify-content:flex-start;border:1.5px solid transparent;transition:background .2s,transform .2s,border-color .2s}
+ body.inapp .nav .tab .ni{width:27px;height:27px;flex:none;background:none !important;box-shadow:none !important;padding:0 !important;border-radius:0 !important}
+ body.inapp .nav .tab .nl{font-size:1.12rem !important;font-weight:400 !important;letter-spacing:.05em;color:#f3e8ff;opacity:1}
+ body.inapp .nav .tab:hover{background:rgba(255,255,255,.09);transform:translateX(3px)}
+ body.inapp .nav .tab[aria-current="page"]{background:linear-gradient(90deg,rgba(208,88,127,.6),rgba(208,88,127,.14)) !important;border-color:rgba(232,196,106,.7) !important;box-shadow:inset 4px 0 0 #e8c46a,0 3px 10px rgba(0,0,0,.25) !important}
+ body.inapp .nav .tab .niw{background:none !important;box-shadow:none !important;width:auto !important;height:auto !important;min-width:0 !important;padding:0 !important;border:0 !important;filter:none !important;display:grid;place-items:center}
+ body.inapp .nav .tab[aria-current="page"] .nl{color:#ffe9a8 !important}
+ body.inapp .nav .tab[aria-current="page"] .ni{color:#ffd1e0}
+ .gate{min-height:0}
+ #dragonCv{height:120px !important;width:auto !important;max-width:100%;margin-top:-6px}
+ .gate .gwel{margin-top:-10px}
+ .hubgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:stretch}
+ .hubcard.hv2,.hubcard.hv3{grid-column:auto;min-height:104px}
+ .hubcard.gramlink{grid-column:auto;min-height:84px}
+ .hubgrid > .gramlink:last-child{grid-column:1 / -1}
+ .hubcard.hv2 .htx,.hubcard.hv3 .htx{padding:12px 14px 12px 56px}
+ .hubprof,.hubside .hubstat{min-height:0 !important}
+ .hubside .pfpic{width:160px;height:160px;margin-inline:auto}
+ .hubside .pfpic img{width:150px;height:150px}
+ .sitefoot{display:flex !important;flex-direction:row !important;flex-wrap:wrap;justify-content:center;align-items:stretch;gap:14px;padding:18px 0}
+ .sitefoot .dclink{margin:0 !important;flex:0 1 auto !important;width:auto !important;min-width:260px;height:auto !important}
+}
+@media (min-width:1100px){ body:not(.hasrail) .hubwrap{grid-template-columns:minmax(0,1fr) 21rem !important} body:not(.hasrail) .hubside{grid-template-columns:1fr !important;position:sticky;top:16px} body:not(.hasrail) .hubside .hubstat{display:block !important} }
+@media (min-width:1600px){ body.hasrail .hubwrap{grid-template-columns:minmax(0,1fr) 21rem !important} body.hasrail .hubside{grid-template-columns:1fr !important;position:sticky;top:16px} body.hasrail .hubside .hubstat{display:block !important} }
 
 </style>
 
@@ -31395,7 +31422,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v413', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v414', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
