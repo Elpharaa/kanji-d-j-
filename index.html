@@ -5717,6 +5717,7 @@ span.kxcp{cursor:default}
 @media (max-width:420px){.kmxt{border-spacing:3px}.kmxt .knc{width:50px}}
 .kmxt th{color:#2c2452;background:#fff1c9;border-radius:8px;padding:2px 6px}.kmxt thead th:first-child{background:none}
 .kmx .knh{color:#f3e8ff;text-shadow:0 1px 2px rgba(0,0,0,.35)}
+.kmxt .knc{height:50px;align-content:center}
 
 </style>
 
@@ -31379,7 +31380,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v407', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v408', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -32493,7 +32494,7 @@ knChartHTML = function (L) {
   function cell(k) {
     if (k == null) return '<td class="kmxe"></td>';
     var s = knSt(k);
-    return '<td><button type="button" class="knc jp' + (s && s.run >= MASTER_RUN ? ' ok' : s ? ' prog' : '') + '" data-kn="' + (kn.cm === 'trace' ? 'strokes' : kn.cm === 'write' ? 'strokew' : 'say') + '" data-t="' + esc(k) + '"><b>' + esc(k) + '</b><i>' + esc(knRom(k)) + '</i></button></td>';
+    return '<td><button type="button" class="knc jp' + (s && s.run >= MASTER_RUN ? ' ok' : s ? ' prog' : '') + '" data-kn="' + (kn.cm === 'trace' ? 'strokes' : kn.cm === 'write' ? 'strokew' : 'say') + '" data-t="' + esc(k) + '"><b>' + esc(k) + '</b></button></td>';
   }
   function tbl(title, cols, rows) {
     var h = '<div class="kmx"><h4 class="knh">' + esc(title) + '</h4><table class="kmxt"><thead><tr><th></th>' + cols.map(function (c) { return '<th scope="col">' + esc(c) + '</th>'; }).join('') + '</tr></thead><tbody>';
