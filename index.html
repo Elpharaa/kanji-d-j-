@@ -5763,6 +5763,24 @@ span.kxcp{cursor:default}
 @media (min-width:1100px){ body:not(.hasrail) .hubwrap{grid-template-columns:minmax(0,1fr) 21rem !important} body:not(.hasrail) .hubside{grid-template-columns:1fr !important;position:sticky;top:16px} body:not(.hasrail) .hubside .hubstat{display:block !important} }
 @media (min-width:1600px){ body.hasrail .hubwrap{grid-template-columns:minmax(0,1fr) 21rem !important} body.hasrail .hubside{grid-template-columns:1fr !important;position:sticky;top:16px} body.hasrail .hubside .hubstat{display:block !important} }
 
+/* v417 : retour de réponse du quiz des kana */
+.knfb{border-radius:16px;padding:14px 16px;margin-top:12px;display:flex;flex-direction:column;gap:10px;width:100%;box-sizing:border-box;border:1.5px solid transparent;animation:pop .2s ease}
+.knfb.good{background:var(--good-bg);border-color:var(--good);color:var(--good)}
+.knfb.bad{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+.knfbtop{display:flex;align-items:center;gap:14px}
+.knfbk{flex:0 0 auto;min-width:64px;padding:2px 10px;text-align:center;font-size:clamp(2.2rem,9vw,3.4rem);line-height:1.15;border-radius:14px;background:#ffffff99;color:#2b2150}
+.knfbtx{display:flex;flex-direction:column;gap:2px;min-width:0}
+.knfbt{font-weight:800;font-size:1.05rem}
+.knfbr{font-size:1.25rem;color:#2b2150;overflow-wrap:anywhere}
+.knfbr i{font-style:normal;opacity:.5;margin:0 2px}.knfbr b{display:inline;font-size:1.45rem}
+.knfbyou,.knfbex{font-size:.92rem;color:#3d3260}
+.knfbyou b{display:inline}
+.knfbex{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding-top:8px;border-top:1px dashed currentColor}
+.knfbsay{font:inherit;font-size:1.1rem;font-weight:700;cursor:pointer;border:0;border-radius:999px;padding:4px 12px;background:#ffffffb0;color:#2b2150}
+.knfbmn .knmn{margin:0;font-size:.85rem;color:#3d3260}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .knfbk,:root:not([data-theme="light"]) .knfbsay{background:#ffffff1a;color:#f2ecff}:root:not([data-theme="light"]) .knfbr,:root:not([data-theme="light"]) .knfbyou,:root:not([data-theme="light"]) .knfbex,:root:not([data-theme="light"]) .knfbmn .knmn{color:#e8e0fb}}
+:root[data-theme="dark"] .knfbk,:root[data-theme="dark"] .knfbsay{background:#ffffff1a;color:#f2ecff}:root[data-theme="dark"] .knfbr,:root[data-theme="dark"] .knfbyou,:root[data-theme="dark"] .knfbex,:root[data-theme="dark"] .knfbmn .knmn{color:#e8e0fb}
+
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -31449,7 +31467,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v416', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v417', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -33015,8 +33033,12 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
       h += '<p class="small muted" id="knHint" style="text-align:center;margin:6px 0 0">' + (q.asKana && isK ? 'Katakana : écris le romaji en majuscules.' : '&nbsp;') + '</p>';
       h += '<div class="skiprow"><button class="btn skipq" type="button" data-kn="skip">🤷 Je ne sais pas</button></div>';
     } else {
-      var ok = kn.ans === 'ok', ex = KN_EX[q.k];
-      h += '<div class="fb ' + (ok ? 'good' : 'bad') + '"><b>' + (ok ? 'Bien joué !' : 'Raté : ' + esc(q.k) + ' = ' + esc(knRom(q.k))) + '</b>' + (ex ? '<br><span class="jp">' + esc(ex[0]) + '</span> · ' + esc(ex[1]) : '') + '</div>' + (ok ? '' : '<div class="knact"><button type="button" class="btn primary" id="knNext" data-kn="nextq">Suivant</button></div>');
+      var ok = kn.ans === 'ok', ex = KN_EX[q.k], typed = kn.typed || '';
+      h += '<div class="knfb ' + (ok ? 'good' : 'bad') + '"><div class="knfbtop"><span class="knfbk jp">' + esc(q.k) + '</span><div class="knfbtx"><span class="knfbt">' + (ok ? '✓ Bien joué !' : '✗ Raté') + '</span><span class="knfbr">' + esc(q.k) + ' <i>=</i> <b>' + esc(knRom(q.k)) + '</b></span></div></div>';
+      if (!ok) h += '<div class="knfbyou">' + (typed ? 'Tu as écrit : <b class="jp">' + esc(typed) + '</b>' : 'Tu ne savais pas, ce n’est pas grave : la prochaine fois sera la bonne.') + '</div>';
+      if (ex) h += '<div class="knfbex"><button type="button" class="knfbsay jp" data-kn="say" data-t="' + esc(ex[0]) + '" aria-label="Écouter ' + esc(ex[0]) + '">🔊 ' + esc(ex[0]) + '</button><span>' + esc(ex[1]) + '</span></div>';
+      if (!ok && typeof knMnHTML === 'function' && knMnHTML(q.k)) h += '<div class="knfbmn">' + knMnHTML(q.k) + '</div>';
+      h += '</div>' + (ok ? '' : '<div class="knact"><button type="button" class="btn primary" id="knNext" data-kn="nextq">Suivant ↵</button></div>');
     }
     return h;
   };
@@ -33024,7 +33046,7 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
     var q = kn.q; if (!q || kn.ans !== null) return;
     var ok = false, k = q.k;
     if (arg !== -1) { var r = kqOk(q, arg); if (r === null) return; ok = r === true; }
-    kn.ans = ok ? 'ok' : 'ko';
+    kn.ans = ok ? 'ok' : 'ko'; kn.typed = arg === -1 ? '' : String(arg);
     S.kana = S.kana || {}; var s = S.kana[k] || (S.kana[k] = { ok: 0, ko: 0, run: 0 }), was = s.run >= MASTER_RUN;
     kn.tot++;
     if (ok) {
