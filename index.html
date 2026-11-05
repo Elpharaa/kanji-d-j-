@@ -6289,6 +6289,23 @@ body .cdcard.rar-r::after, body .cdcard.rar-e::after, body .cdcard.rar-l::after,
 body .cdcard.rar-r.holo::after { opacity: .3; } body .cdcard.rar-e.holo::after { opacity: .45; } body .cdcard.rar-l.holo::after, body .cdcard.rar-m.holo::after { opacity: .6; }
 body .cdcard.rar-e::after, body .cdcard.rar-l::after, body .cdcard.rar-m::after { opacity: .12; } body .cdcard.rar-e.holo::after { opacity: .45; } body .cdcard.rar-l.holo::after, body .cdcard.rar-m.holo::after { opacity: .6; }
 @media (prefers-reduced-motion: reduce) { .kdshn, .kdpkw.static, .kdbs, .kdcuthint { animation: none !important; } }
+/* v447 pages internes alignées DA washi */
+body .sgh { background: linear-gradient(#fffdf8, #fdeee4) !important; color: var(--wa-wood, #5b3a2c) !important; text-shadow: none !important; border: 2px solid var(--wa-gold, #c49a3a) !important; box-shadow: 0 4px 12px rgba(122, 75, 58, .2) !important; animation: none !important; border-radius: 16px !important; }
+body .sgh::after { display: none !important; }
+body .sgh::before { background: radial-gradient(circle at 35% 25%, #f8b4c9, #d8527f) !important; border-color: #fff8ee !important; border-radius: 50% !important; box-shadow: 0 0 0 2px var(--wa-gold, #c49a3a); }
+body .pgsech { background: linear-gradient(#fffdf8, #fdeee4) !important; color: var(--wa-wood, #5b3a2c) !important; border: 2px solid var(--wa-gold, #c49a3a); font-family: var(--font-brush, serif); }
+body .olbar { background: rgba(122, 75, 58, .18) !important; border-color: var(--wa-gold, #c49a3a) !important; }
+body .bnseg button, body .pgseg button { border: 2px solid rgba(196, 154, 58, .7) !important; background: linear-gradient(#fff, #fff1e8) !important; color: var(--wa-wood, #5b3a2c) !important; }
+body .bnseg button.on, body .bnseg [aria-selected="true"], body .pgseg [aria-selected="true"], body .seg [aria-selected="true"] { background: linear-gradient(#f59ab9, #d8527f) !important; color: #fff !important; border-color: #fff8ee !important; box-shadow: 0 0 0 2px var(--wa-gold, #c49a3a), 0 4px 10px rgba(216, 82, 127, .35) !important; }
+body .podium { background: linear-gradient(#fffaf2, #f9d9e4) !important; border: 2px solid var(--wa-gold, #c49a3a) !important; box-shadow: 0 6px 16px rgba(122, 75, 58, .22) !important; }
+body .podium::before { filter: none !important; opacity: .25 !important; }
+body .podium .podn, body .podium .pn, body .podium b, body .podium strong, body .podium small, body .podium span { color: var(--wa-wood, #5b3a2c); }
+body #vBoard #podium .podnm, body #podium .podnm { color: #4a2a1f !important; text-shadow: none !important; font-weight: 800; }
+body #podium .pod.me .podnm { color: #b8325f !important; }
+body #vBoard #podium .pod { opacity: 1 !important; filter: none !important; }
+body #podium .podxp, body #podium .podxp *, body #podium [class*="xp"] { color: #8a5a1a !important; }
+body #podium .podtier, body #podium [class*="tier"], body #podium [class*="clan"] { background: rgba(255, 255, 255, .85) !important; color: #5b3a2c !important; }
+body #podium .podbase, body #podium [class*="base"], body #podium [class*="step"] { background: linear-gradient(#f9d9e4, #f0b3c8) !important; color: #7a3a55 !important; border-color: var(--wa-gold, #c49a3a) !important; }
 
 </style>
 
@@ -31950,7 +31967,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v446', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v448', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
