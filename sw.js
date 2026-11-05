@@ -1,7 +1,7 @@
 /* Kanji Dōjō : mode hors ligne + mises à jour automatiques.
    Principe : on va TOUJOURS chercher la version la plus récente sur le réseau (en vérifiant auprès du serveur
    qu'elle n'a pas changé) ; le cache ne sert qu'en secours quand il n'y a pas de connexion. */
-var CACHE = 'kanji-dojo-v2';
+var CACHE = 'kanji-dojo-v3';
 self.addEventListener('install', function (e) {
   self.skipWaiting();
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(['./', 'index.html', 'manifest.webmanifest', 'icon-192.png']); }).catch(function () {}));
