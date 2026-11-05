@@ -5957,6 +5957,12 @@ html.lite .nfsw{animation:none}@media (prefers-reduced-motion:reduce){.nfsw{anim
   body .nav .tab .ni { color: var(--tc, #8a4b63); }
   body .nav .tab:hover { color: var(--wa-wood) !important; }
 }
+/* bandeau Exploits / En ligne */
+body #onlineBar { background: linear-gradient(#fffaf2, #fbe7dd) !important; border: 2px solid var(--wa-gold) !important; color: var(--wa-wood) !important; box-shadow: 0 3px 10px rgba(122, 75, 58, .18) !important; }
+body #onlineBar .tklab { color: #b8325f !important; border-right-color: rgba(196, 154, 58, .6) !important; }
+body #onlineBar .tki, body #onlineBar .tki span { color: var(--wa-wood) !important; text-shadow: none !important; }
+body #onlineBar .tki b { color: #8a2d4f !important; }
+body #onlineBar .odot { background: #2f9a5a; }
 
 </style>
 
@@ -31612,7 +31618,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v428', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v429', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
