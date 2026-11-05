@@ -5827,6 +5827,20 @@ html.lite .nfsw{animation:none}@media (prefers-reduced-motion:reduce){.nfsw{anim
 #txHost,#dgHost{display:flex;flex-direction:column;gap:12px}
 @media (max-width:420px){.dgrow{grid-template-columns:36px 1fr 46px}.dgv{grid-column:2/4;justify-self:start}.dgs{grid-column:2/4}}
 
+/* v422 : éditeur d'image, tailles conseillées, fond perso */
+#animebg img.bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}
+#animebg.hasimg img.bgW{display:block}#animebg.hasimg svg.sky{display:none!important}
+#animebg.hasimg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,25,70,.12),rgba(40,25,70,.42))}
+@media (max-aspect-ratio:1/1){#animebg.hasimg img.bgW{display:none}#animebg.hasimg img.bgT{display:block}}
+.imged{display:flex;flex-direction:column;gap:12px;align-items:center;color:#2b2150}
+.imgedw{touch-action:none;border-radius:12px;overflow:hidden;border:2px solid #e8c46a;line-height:0;background:#fff}
+.imgedw canvas{cursor:grab;display:block}.imgedw canvas:active{cursor:grabbing}
+.imgedz{display:flex;align-items:center;gap:10px;font-weight:700;width:100%;max-width:460px}.imgedz input{flex:1}
+.imgedrow{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.imgednote{margin:0;text-align:center}
+.imgsz{background:#fffaf0;color:#2b2150;border:1.5px solid #e8c46a;border-radius:12px;padding:10px 14px;margin:8px 0;font-size:.9rem;box-sizing:border-box;width:100%}
+.imgsz b{color:#2b2150}.imgsz ul{margin:6px 0;padding-left:18px}.imgsz p{margin:4px 0 0;color:#5a4a86}
+
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -5967,7 +5981,8 @@ html.lite .nfsw{animation:none}@media (prefers-reduced-motion:reduce){.nfsw{anim
       <div id="bnCustom" hidden class="bncustom">
         <input type="url" id="bnUrl" placeholder="https://… lien d'une image" autocomplete="off">
         <div class="bnrow"><button class="btn" type="button" id="bnUrlGo">Utiliser ce lien</button>
-        <label class="btn bnup">Importer une image<input type="file" id="bnFile" accept="image/*" hidden></label></div>
+        <label class="btn bnup">Importer une image<input type="file" id="bnFile" accept="image/*" hidden></label><button class="btn" type="button" id="bnAdj">Ajuster</button></div>
+        <div class="imgsz"><b>Tailles conseillées</b><ul><li><b>PC et tablette</b> : 1600 × 400 px (4:1), affichée vers 540 × 130 px</li><li><b>Mobile</b> : la même image, vue en 3:1 environ : garde l’important dans la zone centrale</li></ul><p>JPG, PNG ou WebP, 12 Mo maximum. Après l’import, tu recadres et zoomes comme tu veux.</p></div>
       </div>
       <button class="btn ghost" type="button" id="bnReset">Retirer la bannière</button>
       </div>
@@ -12464,7 +12479,7 @@ html.lite .nfsw{animation:none}@media (prefers-reduced-motion:reduce){.nfsw{anim
     function draw(err) {
       root.innerHTML =
         '<div class="pk-top"><span>' + avatarHTML(cur, 'lg') + '</span>' +
-        '<label class="btn pk-up">Importer une photo<input type="file" accept="image/*" hidden></label></div>' +
+        '<label class="btn pk-up">Importer une photo<input type="file" accept="image/*" hidden></label></div><p class="small muted">Photo carrée conseillée : 512 × 512 px, visage au centre (PC, tablette et mobile). Tu recadres après l’import.</p>' +
         '<div class="pk-grid" role="group" aria-label="Avatars proposés">' + PRESETS.map(function (p, i) {
           return '<button type="button" class="pk-item' + (cur === p.url ? ' on' : '') + '" data-i="' + i + '" aria-label="Avatar ' + p.ch + '">' + avatarHTML(p.url, 'md') + '</button>';
         }).join('') + '</div><p class="msg bad" ' + (err ? '' : 'hidden') + '>' + esc(err || '') + '</p>';
@@ -31467,7 +31482,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v421', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v422', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -33311,6 +33326,104 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
   };
   var _txTile = djTile;
   djTile = function (sub) { if (sub === 'diag' && S.diag) { var t = _txTile(sub); return t.replace(DJ_INFO.diag.d, 'Dernier test : niveau ' + esc(S.diag.est) + ' · refais-le quand tu veux'); } return _txTile(sub); };
+
+  /* ===== v422 : éditeur d'image (recadrage + zoom), tailles conseillées, fond personnalisé réservé à l'admin ===== */
+  function imgEdit(o) {
+    return new Promise(function (resolve, reject) {
+      var img = new Image();
+      img.onerror = function () { reject(new Error('Image illisible.')); };
+      img.onload = function () {
+        var iw = img.naturalWidth || img.width, ih = img.naturalHeight || img.height, ratio = o.ow / o.oh;
+        var maxW = Math.min(460, Math.max(220, window.innerWidth - 70)), cw = maxW, ch = Math.round(cw / ratio), maxH = Math.round(window.innerHeight * 0.5);
+        if (ch > maxH) { ch = maxH; cw = Math.round(ch * ratio); }
+        var base = Math.max(cw / iw, ch / ih), z = 1, cx = iw / 2, cy = ih / 2;
+        openModal(o.title, '<div class="imged"><p class="small muted imgednote">' + esc(o.note || '') + '</p><div class="imgedw"><canvas id="ieC" width="' + cw + '" height="' + ch + '" style="width:' + cw + 'px;height:' + ch + 'px" aria-label="Zone de recadrage : fais glisser l’image"></canvas></div><label class="imgedz">Zoom <input type="range" id="ieZ" min="100" max="400" value="100" aria-label="Zoom"></label><div class="imgedrow"><button type="button" class="btn" id="ieRe">Recentrer</button><button type="button" class="btn ghost" id="ieNo">Annuler</button><button type="button" class="btn primary" id="ieOk">Valider</button></div></div>', 'imgedmodal');
+        var cv = $('ieC'), g = cv.getContext('2d');
+        function clamp() { var s = base * z, hw = cw / (2 * s), hh = ch / (2 * s); cx = Math.min(iw - hw, Math.max(hw, cx)); cy = Math.min(ih - hh, Math.max(hh, cy)); }
+        function draw() {
+          clamp(); var s = base * z; g.clearRect(0, 0, cw, ch); g.fillStyle = '#fff'; g.fillRect(0, 0, cw, ch);
+          g.drawImage(img, cw / 2 - cx * s, ch / 2 - cy * s, iw * s, ih * s);
+          if (o.guide === 'mobile') { var gw = cw * 0.75, gx = (cw - gw) / 2; g.save(); g.fillStyle = 'rgba(20,10,40,.35)'; g.fillRect(0, 0, gx, ch); g.fillRect(gx + gw, 0, gx, ch); g.setLineDash([6, 4]); g.strokeStyle = '#fff'; g.lineWidth = 1.5; g.strokeRect(gx, 1, gw, ch - 2); g.fillStyle = '#fff'; g.font = '600 11px sans-serif'; g.fillText('visible sur mobile', gx + 6, 14); g.restore(); }
+          if (o.guide === 'round') { g.save(); g.fillStyle = 'rgba(20,10,40,.45)'; g.beginPath(); g.rect(0, 0, cw, ch); g.arc(cw / 2, ch / 2, Math.min(cw, ch) / 2 - 1, 0, 6.2832, true); g.fill('evenodd'); g.strokeStyle = '#fff'; g.lineWidth = 1.5; g.beginPath(); g.arc(cw / 2, ch / 2, Math.min(cw, ch) / 2 - 1, 0, 6.2832); g.stroke(); g.restore(); }
+        }
+        draw();
+        var drag = null;
+        cv.onpointerdown = function (e) { drag = { x: e.clientX, y: e.clientY }; try { cv.setPointerCapture(e.pointerId); } catch (er) {} e.preventDefault(); };
+        cv.onpointermove = function (e) { if (!drag) return; var s = base * z; cx -= (e.clientX - drag.x) / s; cy -= (e.clientY - drag.y) / s; drag = { x: e.clientX, y: e.clientY }; draw(); };
+        cv.onpointerup = cv.onpointercancel = function () { drag = null; };
+        cv.onwheel = function (e) { e.preventDefault(); z = Math.min(4, Math.max(1, z * (e.deltaY < 0 ? 1.08 : 0.93))); $('ieZ').value = Math.round(z * 100); draw(); };
+        $('ieZ').oninput = function () { z = this.value / 100; draw(); };
+        $('ieRe').onclick = function () { z = 1; cx = iw / 2; cy = ih / 2; $('ieZ').value = 100; draw(); };
+        $('ieNo').onclick = function () { closeModal(); reject(new Error('Import annulé.')); };
+        $('ieOk').onclick = function () {
+          var w = o.ow, h = o.oh, out, d;
+          for (var tries = 0; tries < 6; tries++) {
+            out = document.createElement('canvas'); out.width = w; out.height = h; var oc = out.getContext('2d'), k = w / cw, s = base * z * k;
+            oc.fillStyle = '#fff'; oc.fillRect(0, 0, w, h); oc.imageSmoothingQuality = 'high'; oc.drawImage(img, w / 2 - cx * s, h / 2 - cy * s, iw * s, ih * s);
+            var q = o.q || 0.82; d = out.toDataURL('image/jpeg', q);
+            while (d.length > o.max && q > 0.4) { q -= 0.08; d = out.toDataURL('image/jpeg', q); }
+            if (d.length <= o.max) break; w = Math.round(w * 0.85); h = Math.round(h * 0.85);
+          }
+          if (d.length > o.max) { toast('Image trop détaillée, essaie un autre cadrage.'); return; }
+          closeModal(); resolve(d);
+        };
+      };
+      img.src = o.src;
+    });
+  }
+  function imgLoadFile(file) {
+    return new Promise(function (resolve, reject) {
+      if (!file || !/^image\//.test(file.type)) { reject(new Error('Choisis un fichier image (JPG, PNG, WebP).')); return; }
+      if (file.size > 12 * 1024 * 1024) { reject(new Error('Image trop lourde (12 Mo maximum).')); return; }
+      resolve(URL.createObjectURL(file));
+    });
+  }
+  fileToBanner = function (file) { return imgLoadFile(file).then(function (u) { return imgEdit({ src: u, ow: 960, oh: 240, max: 150000, guide: 'mobile', title: 'Cadrer ma bannière', note: 'Fais glisser l’image et zoome. Les pointillés montrent la partie visible sur mobile : garde l’important au centre.' }); }); };
+  fileToAvatar = function (file) { return imgLoadFile(file).then(function (u) { return imgEdit({ src: u, ow: AVATAR_PX, oh: AVATAR_PX, max: 60000, q: 0.9, guide: 'round', title: 'Cadrer ma photo', note: 'Fais glisser l’image et zoome pour centrer ton visage dans le cercle.' }); }); };
+  /* ---- fond de l'appli : réservé à l'admin, visible par tous ---- */
+  function bgApply() {
+    var el = $('animebg'); if (!el) return; var w = ASSETS && ASSETS.bg_wide, t = ASSETS && ASSETS.bg_tall;
+    ['W', 'T'].forEach(function (k) { var im = el.querySelector('img.bg' + k); if (!im) { im = document.createElement('img'); im.className = 'bgimg bg' + k; im.alt = ''; im.decoding = 'async'; el.insertBefore(im, el.firstChild); } var u = k === 'W' ? (w || t) : (t || w); if (u) { if (im.getAttribute('src') !== u) im.src = u; } else im.removeAttribute('src'); });
+    el.classList.toggle('hasimg', !!(w || t));
+  }
+  function bgAdminHTML() {
+    var w = ASSETS.bg_wide, t = ASSETS.bg_tall;
+    return '<h4 class="admh">Fond de l’application (tout le monde le voit)</h4><div class="imgsz"><b>Tailles conseillées</b><ul><li><b>PC et tablette</b> : 1920 × 1080 px (16:9)</li><li><b>Mobile</b> : 1080 × 1920 px (9:16)</li></ul><p class="small muted">Tu importes une seule image : tu cadres d’abord la version PC / tablette, puis la version mobile (le même fichier, recadré). JPG, PNG ou WebP, 12 Mo maximum ; l’image est réduite automatiquement.</p></div>' +
+      '<div class="admrow"><span class="admth">' + (w ? '<img src="' + esc(w) + '" alt="">' : '·') + '</span><b>PC / tablette</b></div><div class="admrow"><span class="admth">' + (t ? '<img src="' + esc(t) + '" alt="">' : '·') + '</span><b>Mobile</b></div>' +
+      '<div class="admrow"><button type="button" class="btn primary" data-bg="pick">📷 ' + (w || t ? 'Changer le fond' : 'Importer un fond') + '</button>' + (w || t ? '<button type="button" class="btn ghost" data-bg="del">Remettre le décor sakura</button>' : '') + '</div>';
+  }
+  var _imgAdm = adminPanel;
+  adminPanel = function () { _imgAdm(); var det = $('adminAcc'); if (!det || !isAdmin() || !$('adminBody')) return; $('adminBody').insertAdjacentHTML('afterbegin', bgAdminHTML()); };
+  var _imgAdmR = adminRefresh;
+  adminRefresh = function () { _imgAdmR(); bgApply(); };
+  function bgSave(id, d) { return backend.assetSave(id, d, user.id).then(function () { ASSETS[id] = d; }); }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-bg]') : null; if (!b || !isAdmin()) return;
+    var a = b.getAttribute('data-bg');
+    if (a === 'del') {
+      Promise.all(['bg_wide', 'bg_tall'].map(function (id) { return backend.assetDelete(id).then(function () { delete ASSETS[id]; }); })).then(function () { assetsStore(); assetsAt = 0; bgApply(); adminPanel(); toast('Le décor sakura est revenu.'); }).catch(function (er) { toast('Échec : ' + ((er && er.message) || er)); });
+      return;
+    }
+    if (a !== 'pick') return;
+    var inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'image/*';
+    inp.onchange = function () {
+      var f = inp.files && inp.files[0]; if (!f) return;
+      imgLoadFile(f).then(function (u) {
+        return imgEdit({ src: u, ow: 1600, oh: 900, max: 235000, q: 0.8, title: 'Fond PC et tablette (16:9)', note: 'Étape 1 sur 2. Cadre la version PC / tablette : fais glisser et zoome.' }).then(function (wd) {
+          return imgEdit({ src: u, ow: 720, oh: 1280, max: 235000, q: 0.8, title: 'Fond mobile (9:16)', note: 'Étape 2 sur 2. Cadre maintenant la version mobile (vertical) avec la même image.' }).then(function (td) { return [wd, td]; });
+        });
+      }).then(function (r) { return bgSave('bg_wide', r[0]).then(function () { return bgSave('bg_tall', r[1]); }); })
+        .then(function () { assetsStore(); assetsAt = 0; bgApply(); adminPanel(); toast('Fond enregistré pour tout le monde.'); })
+        .catch(function (er) { toast((er && er.message) || 'Échec de l’import'); });
+    };
+    inp.click();
+  });
+  /* ajuster la bannière déjà importée */
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('#bnAdj') : null; if (!b || !S || !S.banner || S.banner.k !== 'd') return;
+    imgEdit({ src: S.banner.v, ow: 960, oh: 240, max: 150000, guide: 'mobile', title: 'Ajuster ma bannière', note: 'Tu recadres l’image déjà enregistrée. Pour repartir de l’original, réimporte-le.' }).then(function (d) { bnSet({ k: 'd', v: d }, 'Bannière enregistrée.'); }, function (er) { msg('bnMsg', er.message, false); });
+  });
+  try { bgApply(); } catch (e) { /* ignore */ }
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
