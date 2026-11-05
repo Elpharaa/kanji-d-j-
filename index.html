@@ -16926,7 +16926,7 @@ html.lite .nfsw{animation:none}@media (prefers-reduced-motion:reduce){.nfsw{anim
   function storyNav() {
     return '<div class="stnav"><div class="seg" role="tablist" aria-label="Mode Histoire">' +
       '<button type="button" role="tab" data-stab="map" aria-selected="' + (storyTab === 'map') + '">Aventure</button>' +
-      '<button type="button" role="tab" data-stab="base" aria-selected="' + (storyTab === 'base') + '">Ma Base</button></div>' + coinHTML(coinsOf()) + '</div>';
+      '</div>' + coinHTML(coinsOf()) + '</div>';
   }
   function bindStoryNav(host) {
     Array.from(host.querySelectorAll('[data-stab]')).forEach(function (b) {
@@ -17557,8 +17557,8 @@ html.lite .nfsw{animation:none}@media (prefers-reduced-motion:reduce){.nfsw{anim
   function friendRows(others) {
     return others.map(function (x) {
       var a = actOf(x.status);
-      return '<div class="orow fr"><span class="frmain"' + pidAttr(x.id) + ' title="Voir le profil et la base de ' + esc(x.name) + '"><span class="fav">' + avatarHTML(avatarOf(x.name, presAv[x.id]), 'md', x.id) + '<span class="fdotg' + (a.act ? ' act' : '') + '"></span></span><span class="oinfo"><b>' + nameHTML(x.id, x.name) + '</b><span class="ost' + (a.act ? ' act' : '') + '">' + a.ico + ' ' + esc(a.txt) + '</span></span></span>' +
-        '<span class="fact"><button type="button" class="fbtn" data-cheer="' + esc(x.id) + '|' + esc(x.name) + '" title="Encourager ' + esc(x.name) + '" aria-label="Encourager ' + esc(x.name) + '">📣<span>Encourager</span></button><button type="button" class="fbtn" data-invite="' + esc(x.id) + '" title="Inviter dans un salon" aria-label="Inviter ' + esc(x.name) + '">⚔️<span>Inviter</span></button><button type="button" class="fbtn" data-visit="' + esc(x.id) + '" title="Visiter sa base" aria-label="Visiter la base de ' + esc(x.name) + '">🏕️<span>Base</span></button></span></div>';
+      return '<div class="orow fr"><span class="frmain"' + pidAttr(x.id) + ' title="Voir le profil de ' + esc(x.name) + '"><span class="fav">' + avatarHTML(avatarOf(x.name, presAv[x.id]), 'md', x.id) + '<span class="fdotg' + (a.act ? ' act' : '') + '"></span></span><span class="oinfo"><b>' + nameHTML(x.id, x.name) + '</b><span class="ost' + (a.act ? ' act' : '') + '">' + a.ico + ' ' + esc(a.txt) + '</span></span></span>' +
+        '<span class="fact"><button type="button" class="fbtn" data-cheer="' + esc(x.id) + '|' + esc(x.name) + '" title="Encourager ' + esc(x.name) + '" aria-label="Encourager ' + esc(x.name) + '">📣<span>Encourager</span></button><button type="button" class="fbtn" data-invite="' + esc(x.id) + '" title="Inviter dans un salon" aria-label="Inviter ' + esc(x.name) + '">⚔️<span>Inviter</span></button></span></div>';
     }).join('');
   }
   var EMPTY_FR = '<p class="small muted frempty">Personne d\'autre en ligne pour l\'instant.<br><button type="button" class="btn primary sm" data-frcall="1">📣 Appeler un ami à réviser</button></p>';
@@ -17944,7 +17944,7 @@ html.lite .nfsw{animation:none}@media (prefers-reduced-motion:reduce){.nfsw{anim
   }
 
   /* ---- Déblocage progressif des sections selon le niveau ---- */
-  var UNL = { story: [2, "L'Aventure"], cards: [3, 'Le Classeur de cartes'], bazar: [4, "La Boutique"], base: [5, 'La Base'] };
+  var UNL = { story: [2, "L'Aventure"], cards: [3, 'Le Classeur de cartes'], bazar: [4, "La Boutique"] };
   function unlOn(k) { if (k === 'story' && !isAdmin()) return false; return true; /* déblocage par niveau désactivé : tout est accessible */ var d = UNL[k]; if (!d || !S) return true; return level() >= d[0] || !!(S.unl && S.unl[k]); }
   function unlSync() {
     if (!S) return;
@@ -22001,7 +22001,6 @@ html.lite .nfsw{animation:none}@media (prefers-reduced-motion:reduce){.nfsw{anim
       ['Collectionner'],
       ['札', 'Cartes et classeur', 'Un booster coûte 30 pièces (offres dès 5) et un booster gratuit t\'attend chaque jour à 8 h (heure de Paris). 6 raretés, des doublons qui te rendent des pièces, et une fiche à lire par carte. Ton classeur garde toute la collection.', ['6 raretés', 'gratuit chaque jour']],
       ['店', 'La Boutique', 'Katanas, animaux, décors, cadres, bannières, thèmes de cartes, coffres du dōjō : tout s\'achète avec tes pièces.'],
-      ['村', 'Ta Base et le village', 'Ton camp, ton pavillon, tes animaux et tes décors. Fais construire ta maison au village et croise les amis en ligne.'],
       ['像', 'Profil et vitrine', 'Photo, cadre, bannière, titre et 3 cartes préférées exposées : les autres élèves voient tout ça sur ta fiche.'],
       ['Entre amis'],
       ['援', 'Encourager un ami', 'Un ami est en ligne ? Touche son profil (ou le bouton 📣 dans la liste) puis « Encourager » : ta photo apparaît sur son écran et lance des pétales de sakura avec un « がんばれ ! ». Il faut être tous les deux en ligne.'],
@@ -22375,7 +22374,7 @@ html.lite .nfsw{animation:none}@media (prefers-reduced-motion:reduce){.nfsw{anim
       '<div class="lvmedal" aria-hidden="true"><span class="lvtag">NIVEAU</span><b class="lvold">' + from + '</b><b class="lvnew">' + to + '</b></div>' +
       '<p class="lvp">Tu passes du niveau ' + from + ' au niveau ' + to + '.</p>' +
       '<div class="lvreward"><span class="lvcoinic" aria-hidden="true">金</span><b class="lvcn">+0</b><span>pièces</span></div>' +
-      (ul.length ? '<div class="lvunl">' + ul.map(function (k) { return '<span>🔓 ' + UNL[k][1] + ' débloqué' + (k === 'story' || k === 'bazar' || k === 'base' ? 'e' : '') + '</span>'; }).join('') + '</div>' : '') +
+      (ul.length ? '<div class="lvunl">' + ul.map(function (k) { return '<span>🔓 ' + UNL[k][1] + ' débloqué' + (k === 'story' || k === 'bazar' ? 'e' : '') + '</span>'; }).join('') + '</div>' : '') +
       '<button type="button" class="btn primary lvgo">Continuer</button></div>';
     var P = d.querySelector('.lvparts'), cols = ['#ffd24a', '#ff6a4a', '#6ad1ff', '#9be36a', '#ffffff', '#ff8fd0'], k, e, r = Math.random;
     for (k = 0; k < (lite ? 14 : 40); k++) {                                // confettis
@@ -31482,7 +31481,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v422', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v423', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
