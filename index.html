@@ -5783,6 +5783,50 @@ span.kxcp{cursor:default}
 .knfbmn .knmn{margin:0;font-size:.88rem;color:#3a2f5c}.knfbmn .knmn b{color:#a42a56}
 .knqn{color:#e3d9f7!important;text-align:center}
 
+/* v420 : menu latéral — branche de cerisier à la place de la cascade */
+.nfsw{transform-origin:0 452px;animation:nfsway 7s ease-in-out infinite alternate}.nfsw.b{transform-origin:214px 452px;animation-duration:9s;animation-delay:-3s}
+@keyframes nfsway{from{transform:rotate(-1.1deg)}to{transform:rotate(1.3deg)}}
+html.lite .nfsw{animation:none}@media (prefers-reduced-motion:reduce){.nfsw{animation:none!important}}
+
+/* v420 : Lire un texte / Test de niveau (fonds clairs fixes, texte foncé) */
+.txpanel,.txbody,.txsum,.lscard,.dgrows,.txleg{background:#fffaf0;color:#2b2150;border:1.5px solid #e8c46a;border-radius:16px;padding:14px 16px;box-sizing:border-box;width:100%}
+.txbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.txlab,.txh{display:block;font-weight:800;color:#2b2150;margin:0 0 6px;font-size:1.02rem}
+.txnote{color:#5a4a86;margin:4px 0 8px}
+.txarea{width:100%;box-sizing:border-box;min-height:160px;resize:vertical;border:1.5px solid #c9b9e8;border-radius:12px;padding:12px;font-size:1.1rem;line-height:1.7;background:#fff;color:#2b2150}
+.txact{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.txsum{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;justify-content:space-between}
+.txcov{display:flex;flex-direction:column}.txcov b{font-size:2.4rem;line-height:1;color:#a42a56}.txcov span{font-size:.9rem;color:#5a4a86}
+.txcnt{display:flex;gap:10px}
+.txc{display:flex;flex-direction:column;align-items:center;min-width:72px;padding:8px 10px;border-radius:12px;font-size:.78rem;border:1.5px solid transparent}
+.txc b{font-size:1.4rem;line-height:1.1}
+.txc.ok{background:#dff3e8;border-color:#2c8a5e;color:#17603f}.txc.mid{background:#ffecd0;border-color:#e08a2c;color:#8a4a0c}.txc.new{background:#fbe3ea;border-color:#c0416d;color:#a42a56}
+.txchips{display:flex;flex-wrap:wrap;gap:6px}.txchip{display:inline-block;padding:3px 10px;border-radius:999px;background:#efe6ff;color:#3a2f5c;font-size:.8rem;font-weight:700}
+.txleg{display:flex;flex-wrap:wrap;gap:8px;padding:8px 12px;font-size:.85rem}
+.txbody{font-size:1.2rem;line-height:2.1;overflow-wrap:anywhere}
+.txk{font:inherit;color:inherit;border:0;background:none;padding:1px 3px;margin:0 1px;border-radius:6px;cursor:pointer;display:inline}
+.txk.ok{background:#dff3e8;border-bottom:2px solid #2c8a5e}
+.txk.mid{background:#ffecd0;border-bottom:2px solid #e08a2c}
+.txk.new{background:#fbe3ea;border-bottom:2px solid #c0416d}
+.txk.out{background:#eee9f5;border-bottom:2px dotted #8a7fa8;cursor:default}
+.txsz{display:flex;gap:8px;flex-wrap:wrap}.txszb{border:1.5px solid #c9b9e8;background:#fff;color:#2b2150;border-radius:999px;padding:6px 14px;font-weight:700;cursor:pointer}.txszb.on{background:#a42a56;border-color:#a42a56;color:#fff}
+.lscards{display:flex;flex-direction:column;gap:10px}
+.lscard{display:flex;flex-direction:column;gap:6px}
+.lstop{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}.lsjp{font-size:1.7rem;font-weight:700}.lsrd{font-size:1.05rem;color:#a42a56}
+.lssay{margin-left:auto;border:1px solid #2b215033;background:#fff;border-radius:999px;padding:4px 10px;cursor:pointer}
+.lsfr{color:#3a2f5c;font-size:.98rem}.lsctx{color:#5a4a86;font-size:.95rem;border-left:3px solid #e8c46a;padding-left:8px}.lsctx b{color:#a42a56}
+.lsbig{font-size:clamp(2.2rem,10vw,3.6rem)!important}
+.dgrows{display:flex;flex-direction:column;gap:10px}
+.dgrow{display:grid;grid-template-columns:42px 1fr 52px auto;align-items:center;gap:6px 10px}
+.dgl{font-weight:800}.dgp{font-weight:800;text-align:right}
+.dgbar{height:12px;border-radius:999px;background:#ece4f7;overflow:hidden}.dgbar u{display:block;height:100%;border-radius:999px;text-decoration:none}
+.dgbar u.ok{background:#2c8a5e}.dgbar u.mid{background:#e08a2c}.dgbar u.new{background:#c0416d}
+.dgv{font-size:.78rem;font-weight:800;padding:2px 8px;border-radius:999px}.dgv.ok{background:#dff3e8;color:#17603f}.dgv.mid{background:#ffecd0;color:#8a4a0c}.dgv.new{background:#fbe3ea;color:#a42a56}
+.dgs{grid-column:2/5;color:#7a6aa0;margin-top:-4px}
+.dgmsg{background:#fffaf0;color:#2b2150;border:1.5px solid #e8c46a;border-radius:16px;padding:12px 16px;margin:0;font-size:1.05rem}.dgmsg b{color:#a42a56}
+#txHost,#dgHost{display:flex;flex-direction:column;gap:12px}
+@media (max-width:420px){.dgrow{grid-template-columns:36px 1fr 46px}.dgv{grid-column:2/4;justify-self:start}.dgs{grid-column:2/4}}
+
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -5819,40 +5863,7 @@ span.kxcp{cursor:default}
     <button class="tab" type="button" data-tab="clz" aria-label="Phrases"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.8h16a1.6 1.6 0 0 1 1.6 1.6v9a1.6 1.6 0 0 1-1.6 1.6h-7.4L8 20.8V17H4a1.6 1.6 0 0 1-1.6-1.6V6.4A1.6 1.6 0 0 1 4 4.8z" fill="currentColor" fill-opacity=".3"/><path d="M6 9.4h4.2M13.8 9.4H18"/><rect x="9.6" y="11.9" width="4.8" height="2.4" rx="1.2" stroke-dasharray="1.6 1.6"/></svg><span class="nl">Phrases</span></button>
     <button class="tab" type="button" data-tab="prog" aria-label="Ma progression"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.6" y="14" width="4.4" height="6.6" rx="1" fill="currentColor" fill-opacity=".3"/><rect x="9.8" y="9" width="4.4" height="11.6" rx="1" fill="currentColor" fill-opacity=".3"/><rect x="16" y="4" width="4.4" height="16.6" rx="1" fill="currentColor" fill-opacity=".3"/><path d="M3 3.2l2.4 2.4M3 6.2 5.4 3.8"/></svg><span class="nl">Progrès</span></button>
     <button class="tab" type="button" data-tab="profil" aria-label="Profil"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7.6" r="4" fill="currentColor" fill-opacity=".32"/><path d="M4.2 21c.5-4.4 3.6-7 7.8-7s7.3 2.6 7.8 7z" fill="currentColor" fill-opacity=".32"/></svg><span class="nl">Profil</span></button>
-  <div class="navfall" aria-hidden="true"><svg viewBox="0 0 200 440" preserveAspectRatio="xMidYMax slice"><defs>
-<linearGradient id="nfSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2150" stop-opacity="0"/><stop offset=".12" stop-color="#4a3c8c"/><stop offset=".5" stop-color="#b57fb0"/><stop offset=".72" stop-color="#f4b3b8"/><stop offset="1" stop-color="#ffd9b8"/></linearGradient>
-<linearGradient id="nfRkL" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6d6296"/><stop offset=".6" stop-color="#9a8cb8"/><stop offset="1" stop-color="#c9b6cf"/></linearGradient>
-<linearGradient id="nfRkR" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#5f5488"/><stop offset=".55" stop-color="#9588b6"/><stop offset="1" stop-color="#d2bdd0"/></linearGradient>
-<linearGradient id="nfBk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6a5b9c"/><stop offset="1" stop-color="#3d3270"/></linearGradient>
-<linearGradient id="nfWt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2fbff" stop-opacity=".9"/><stop offset=".6" stop-color="#ffffff"/><stop offset="1" stop-color="#d6ecfb"/></linearGradient>
-<linearGradient id="nfPool" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f9fa0"/><stop offset=".45" stop-color="#5fc0a4"/><stop offset=".8" stop-color="#9cc79a"/><stop offset="1" stop-color="#d8c79a"/></linearGradient></defs>
-<rect width="200" height="440" fill="url(#nfSky)"/>
-<ellipse cx="150" cy="86" rx="26" ry="10" fill="#fff" opacity=".55"/><ellipse cx="128" cy="78" rx="16" ry="7" fill="#fff" opacity=".5"/><circle cx="100" cy="64" r="14" fill="#fff4cf" opacity=".85"/>
-<path d="M70 100 L72 330 L130 330 L128 96 Q100 80 70 100Z" fill="url(#nfBk)"/>
-<path d="M0 36 Q26 14 50 38 Q68 64 62 108 Q76 150 68 192 Q82 232 76 270 Q72 304 84 330 L0 336Z" fill="url(#nfRkL)"/>
-<path d="M200 22 Q172 28 152 56 Q132 88 136 128 Q120 168 128 208 Q112 250 122 292 Q124 314 114 332 L200 336Z" fill="url(#nfRkR)"/>
-<g fill="none" stroke="#3f3470" stroke-width="1.2" opacity=".45" stroke-linecap="round"><path d='M14.1 298.2 q1.6 8.0 -4.1 16.0'/><path d='M9.1 235.8 q-3.4 7.0 4.4 14.0'/><path d='M40.3 266.4 q2.8 4.6 -4.3 9.2'/><path d='M52.6 172.5 q0.4 6.4 4.3 12.7'/><path d='M20.5 84.9 q-2.1 7.7 -3.9 15.4'/><path d='M14.7 63.6 q-1.5 5.4 -1.9 10.8'/><path d='M47.0 128.3 q-2.6 7.5 -1.5 15.0'/><path d='M7.0 117.6 q1.9 4.1 0.5 8.2'/><path d='M16.2 178.2 q-3.1 10.5 3.2 21.1'/><path d='M29.3 183.7 q-0.9 9.8 0.1 19.7'/><path d='M43.1 315.3 q2.7 6.4 2.1 12.8'/><path d='M40.3 159.3 q-3.6 6.4 -3.7 12.9'/><path d='M9.8 250.0 q-2.7 5.8 -4.2 11.6'/><path d='M51.4 285.0 q-1.7 8.7 -2.6 17.4'/><path d='M21.8 174.1 q-0.4 5.1 -2.4 10.2'/><path d='M57.9 312.6 q-2.0 7.8 4.7 15.7'/><path d='M157.3 139.8 q-0.9 4.0 -0.3 8.0'/><path d='M168.2 96.3 q-4.0 7.5 -2.4 15.1'/><path d='M145.0 151.9 q-3.8 4.3 -2.0 8.6'/><path d='M153.0 204.0 q2.0 7.7 1.6 15.4'/><path d='M180.1 286.1 q-1.4 6.7 4.8 13.5'/><path d='M148.4 242.8 q-3.6 8.5 3.4 17.0'/><path d='M189.9 215.7 q2.5 9.1 -3.6 18.3'/><path d='M169.3 181.2 q2.4 9.8 3.3 19.7'/><path d='M172.7 290.0 q1.5 8.8 -2.7 17.6'/><path d='M141.7 77.3 q-3.2 6.5 3.4 13.0'/><path d='M171.3 215.8 q1.4 8.4 -0.1 16.8'/><path d='M140.2 263.4 q0.0 9.2 0.4 18.5'/><path d='M176.9 58.5 q-2.0 9.2 -4.3 18.3'/><path d='M154.9 244.2 q1.9 5.4 4.8 10.9'/><path d='M167.7 147.1 q1.5 7.4 2.7 14.7'/><path d='M174.6 220.0 q-2.8 4.5 -2.5 9.1'/></g>
-<g fill="#ffd9e4" opacity=".28"><path d="M52 60 Q62 80 58 120 Q66 110 66 80Z"/><path d="M60 170 Q70 200 66 240 Q74 220 74 190Z"/><path d="M140 70 Q132 100 138 140 Q130 120 132 90Z"/><path d="M130 220 Q124 250 130 290 Q122 270 124 240Z"/></g>
-<g fill="#2a2152" opacity=".45"><path d="M0 220 q10 -10 24 -4 q-4 18 -24 22Z"/><path d="M0 120 q8 -6 18 -2 q-2 14 -18 16Z"/><path d="M184 250 q10 -10 16 -2 v22 q-14 -2 -16 -20Z"/><path d="M168 150 q12 -8 20 0 q-6 14 -20 12Z"/></g>
-<g><path d="M86 60 C84 40 80 30 70 14" stroke="#3b2c52" stroke-width="3" fill="none"/></g>
-<g><path d="M10 40 C12 22 18 10 30 -4" stroke="#3b2c52" stroke-width="4" fill="none" stroke-linecap="round"/><g fill="#f6aec6"><circle cx="28" cy="2" r="14"/><circle cx="12" cy="16" r="11"/><circle cx="40" cy="14" r="11"/><circle cx="24" cy="26" r="10"/></g><g fill="#ffd0de" opacity=".9"><circle cx="22" cy="0" r="7"/><circle cx="38" cy="12" r="5"/></g></g>
-<g fill="#4f7a6a"><circle cx="176" cy="30" r="9"/><circle cx="188" cy="38" r="10"/><circle cx="168" cy="40" r="7"/></g><g fill="#6fa08a" opacity=".8"><circle cx="180" cy="28" r="5"/><circle cx="190" cy="34" r="5"/></g>
-<g fill="#f6aec6"><circle cx="150" cy="70" r="5"/><circle cx="158" cy="76" r="4"/><circle cx="144" cy="78" r="4"/></g>
-<path d="M92 100 Q100 96 108 100 L110 116 L90 116Z" fill="#8d82b2"/>
-<path d="M94 100 Q100 98 106 100 Q108 130 106 160 Q108 178 104 192 L96 192 Q92 176 94 160 Q92 130 94 100Z" fill="url(#nfWt)"/>
-<path d="M84 188 Q86 178 100 180 Q116 178 118 190 L120 202 Q100 210 82 202Z" fill="#8a7eb4"/><path d="M86 188 Q100 184 116 190" stroke="#d8cdf2" stroke-width="1.4" fill="none" opacity=".8"/>
-<path d="M88 202 Q84 240 86 284 Q86 308 82 330 H122 Q118 308 118 284 Q118 240 112 202Z" fill="url(#nfWt)" opacity=".96"/>
-<g fill="none" stroke="#fff" stroke-linecap="round"><path class="nfst" d="M98 102 V190" stroke-width="2" opacity=".85"/><path class="nfst b" d="M103 100 V190" stroke-width="2.4" opacity=".85"/>
-<path class="nfst c" d="M92 206 V328" stroke-width="2" opacity=".85"/><path class="nfst" d="M100 204 V328" stroke-width="2.8" opacity=".8"/><path class="nfst d" d="M108 206 V328" stroke-width="2.2" opacity=".85"/><path class="nfst b" d="M114 210 V328" stroke-width="1.8" opacity=".8"/></g>
-<ellipse class="nfmist" cx="100" cy="196" rx="20" ry="5" fill="#fff" opacity=".6"/><ellipse class="nfmist b" cx="102" cy="332" rx="34" ry="9" fill="#fff" opacity=".72"/>
-<path d="M0 330 Q40 322 84 332 Q104 338 124 332 Q164 322 200 330 V440 H0Z" fill="url(#nfPool)"/>
-<path d="M0 345 Q50 336 100 348 T200 342 V440 H0Z" fill="#2f8f94" opacity=".35"/>
-<path d="M10 334 Q30 346 46 360 Q30 350 10 340Z" fill="#3a3270" opacity=".4"/><path d="M190 334 Q170 346 154 360 Q170 350 190 340Z" fill="#3a3270" opacity=".4"/>
-<g fill="none" stroke="#fff" opacity=".6"><ellipse class="nfrp" cx="102" cy="340" rx="26" ry="5"/><ellipse class="nfrp b" cx="102" cy="340" rx="26" ry="5"/></g>
-<g><ellipse cx='64.8' cy='412.8' rx='4.0' ry='1.3' fill='#b7a8c6'/><ellipse cx='18.8' cy='426.6' rx='4.7' ry='1.5' fill='#d9c9d6'/><ellipse cx='86.7' cy='410.2' rx='2.3' ry='1.8' fill='#b7a8c6'/><ellipse cx='24.8' cy='415.1' rx='3.9' ry='2.5' fill='#b7a8c6'/><ellipse cx='117.1' cy='409.6' rx='2.7' ry='2.0' fill='#e8d6cf'/><ellipse cx='57.9' cy='412.6' rx='2.4' ry='1.6' fill='#e8d6cf'/><ellipse cx='20.6' cy='426.3' rx='2.6' ry='1.3' fill='#d9c9d6'/><ellipse cx='112.9' cy='427.8' rx='3.5' ry='1.9' fill='#c2b2cc'/><ellipse cx='93.1' cy='437.6' rx='3.1' ry='1.5' fill='#e8d6cf'/><ellipse cx='139.8' cy='415.8' rx='3.7' ry='1.9' fill='#c2b2cc'/><ellipse cx='145.9' cy='417.2' rx='4.9' ry='1.4' fill='#f0dfe0'/><ellipse cx='33.0' cy='418.9' rx='4.8' ry='1.8' fill='#d9c9d6'/><ellipse cx='152.9' cy='426.3' rx='4.6' ry='1.6' fill='#c2b2cc'/><ellipse cx='118.9' cy='426.6' rx='3.4' ry='2.4' fill='#c2b2cc'/><ellipse cx='94.8' cy='429.3' rx='2.2' ry='2.2' fill='#b7a8c6'/><ellipse cx='198.6' cy='434.3' rx='2.9' ry='1.7' fill='#c2b2cc'/><ellipse cx='4.5' cy='422.8' rx='2.5' ry='1.4' fill='#d9c9d6'/><ellipse cx='43.6' cy='417.2' rx='4.2' ry='1.8' fill='#f0dfe0'/><ellipse cx='16.1' cy='422.4' rx='3.6' ry='2.4' fill='#f0dfe0'/><ellipse cx='172.8' cy='416.9' rx='3.2' ry='1.7' fill='#f0dfe0'/><ellipse cx='191.5' cy='412.8' rx='2.5' ry='1.5' fill='#e8d6cf'/><ellipse cx='2.4' cy='434.6' rx='2.5' ry='1.6' fill='#e8d6cf'/><ellipse cx='83.8' cy='419.8' rx='3.7' ry='2.5' fill='#b7a8c6'/><ellipse cx='190.0' cy='429.0' rx='4.2' ry='1.8' fill='#b7a8c6'/><ellipse cx='78.5' cy='420.8' rx='2.3' ry='2.1' fill='#d9c9d6'/><ellipse cx='38.1' cy='439.5' rx='3.3' ry='1.4' fill='#b7a8c6'/><ellipse cx='10.5' cy='408.0' rx='2.5' ry='1.3' fill='#c2b2cc'/><ellipse cx='122.7' cy='410.3' rx='2.6' ry='1.7' fill='#c2b2cc'/><ellipse cx='191.1' cy='427.3' rx='3.4' ry='1.4' fill='#f0dfe0'/><ellipse cx='198.6' cy='422.9' rx='3.5' ry='1.3' fill='#d9c9d6'/><ellipse cx='149.9' cy='431.7' rx='3.4' ry='2.2' fill='#b7a8c6'/><ellipse cx='4.6' cy='438.4' rx='3.6' ry='1.4' fill='#b7a8c6'/><ellipse cx='182.8' cy='432.3' rx='2.9' ry='2.1' fill='#d9c9d6'/><ellipse cx='139.2' cy='416.4' rx='3.1' ry='1.4' fill='#e8d6cf'/><ellipse cx='106.5' cy='432.9' rx='3.0' ry='1.5' fill='#e8d6cf'/><ellipse cx='161.2' cy='434.2' rx='4.2' ry='1.5' fill='#b7a8c6'/><ellipse cx='98.6' cy='431.4' rx='5.0' ry='2.3' fill='#f0dfe0'/><ellipse cx='51.8' cy='430.2' rx='4.9' ry='1.8' fill='#c2b2cc'/><ellipse cx='191.0' cy='419.7' rx='2.7' ry='1.5' fill='#e8d6cf'/><ellipse cx='67.5' cy='423.4' rx='5.0' ry='2.1' fill='#d9c9d6'/><ellipse cx='95.9' cy='428.9' rx='4.4' ry='1.3' fill='#d9c9d6'/><ellipse cx='182.0' cy='433.0' rx='4.3' ry='1.9' fill='#e8d6cf'/><ellipse cx='86.8' cy='428.3' rx='2.3' ry='2.5' fill='#f0dfe0'/><ellipse cx='92.6' cy='431.8' rx='2.3' ry='1.4' fill='#e8d6cf'/><ellipse cx='5.5' cy='426.9' rx='3.4' ry='2.1' fill='#b7a8c6'/><ellipse cx='165.3' cy='439.4' rx='4.0' ry='1.7' fill='#b7a8c6'/><ellipse cx='109.7' cy='408.7' rx='4.4' ry='2.2' fill='#d9c9d6'/><ellipse cx='105.3' cy='437.9' rx='3.3' ry='2.4' fill='#e8d6cf'/><ellipse cx='5.6' cy='414.8' rx='3.5' ry='2.3' fill='#c2b2cc'/><ellipse cx='51.9' cy='421.4' rx='2.4' ry='2.5' fill='#c2b2cc'/><ellipse cx='179.5' cy='429.2' rx='4.4' ry='1.9' fill='#b7a8c6'/><ellipse cx='26.2' cy='412.9' rx='3.5' ry='2.4' fill='#e8d6cf'/><ellipse cx='121.7' cy='432.8' rx='2.4' ry='1.4' fill='#b7a8c6'/><ellipse cx='145.0' cy='425.8' rx='3.0' ry='1.9' fill='#b7a8c6'/><ellipse cx='96.5' cy='432.8' rx='4.6' ry='1.3' fill='#e8d6cf'/><ellipse cx='55.4' cy='432.7' rx='3.5' ry='2.0' fill='#d9c9d6'/><ellipse cx='88.6' cy='427.6' rx='3.5' ry='1.9' fill='#c2b2cc'/><ellipse cx='90.5' cy='425.1' rx='3.4' ry='2.5' fill='#b7a8c6'/><ellipse cx='175.3' cy='438.1' rx='2.8' ry='2.0' fill='#e8d6cf'/><ellipse cx='168.0' cy='412.4' rx='2.4' ry='1.8' fill='#d9c9d6'/><ellipse cx='134.2' cy='421.7' rx='2.6' ry='1.6' fill='#d9c9d6'/><ellipse cx='179.4' cy='412.9' rx='4.1' ry='2.1' fill='#e8d6cf'/><ellipse cx='50.6' cy='412.4' rx='3.4' ry='2.2' fill='#d9c9d6'/><ellipse cx='79.7' cy='423.6' rx='5.0' ry='2.4' fill='#e8d6cf'/><ellipse cx='141.3' cy='439.8' rx='3.2' ry='1.8' fill='#c2b2cc'/><ellipse cx='63.7' cy='431.1' rx='2.1' ry='2.0' fill='#f0dfe0'/><ellipse cx='140.6' cy='420.3' rx='3.6' ry='1.6' fill='#d9c9d6'/><ellipse cx='22.6' cy='437.4' rx='2.7' ry='2.4' fill='#d9c9d6'/><ellipse cx='53.1' cy='409.3' rx='4.3' ry='1.6' fill='#e8d6cf'/><ellipse cx='164.0' cy='435.2' rx='4.0' ry='2.5' fill='#f0dfe0'/></g>
-<g><ellipse cx="40" cy="376" rx="10" ry="3" fill="#6fae8a"/><circle cx="40" cy="373" r="3" fill="#ffb6d0"/><ellipse cx="160" cy="388" rx="9" ry="2.8" fill="#6fae8a"/><circle cx="161" cy="386" r="2.6" fill="#ffd0e0"/></g>
-<g fill="#f7b6ca"><ellipse class="nfpt" cx="60" cy="90" rx="3" ry="1.6"/><ellipse class="nfpt b" cx="130" cy="120" rx="3" ry="1.6"/><ellipse class="nfpt c" cx="30" cy="140" rx="3" ry="1.6"/><ellipse class="nfpt d" cx="150" cy="60" rx="3" ry="1.6"/></g>
-</svg></div>
+  <div class="navfall" aria-hidden="true"><svg viewBox="0 0 200 440" preserveAspectRatio="xMidYMax slice"><defs><radialGradient id="nfGl" cx=".3" cy="1" r="1"><stop offset="0" stop-color="#f6aec6" stop-opacity=".38"/><stop offset=".6" stop-color="#b575b0" stop-opacity=".12"/><stop offset="1" stop-color="#2a2150" stop-opacity="0"/></radialGradient><linearGradient id="nfBr" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#3a2432"/><stop offset=".6" stop-color="#5a3a48"/><stop offset="1" stop-color="#7a5160"/></linearGradient></defs><rect width="200" height="440" fill="url(#nfGl)"/><g class="nfsw"><path d="M-14 452 C24 372 6 300 58 246" stroke="url(#nfBr)" stroke-width="8.0" fill="none" stroke-linecap="round"/><path d="M58 246 C96 206 96 150 150 112" stroke="url(#nfBr)" stroke-width="5.5" fill="none" stroke-linecap="round"/><path d="M8 382 Q29 378 50 346" stroke="#5a3a48" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M19 329 Q-3 325 -25 288" stroke="#5a3a48" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M34 280 Q56 276 78 240" stroke="#5a3a48" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M81 214 Q66 210 50 183" stroke="#5a3a48" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M102 171 Q125 167 149 137" stroke="#5a3a48" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M129 130 Q106 126 83 108" stroke="#5a3a48" stroke-width="2.4" fill="none" stroke-linecap="round"/><g transform="translate(-2.7 417.8) rotate(32)"><ellipse cx="0" cy="-4.1" rx="3.3" ry="4.4" fill="#f39bb9" transform="rotate(0)"/><ellipse cx="0" cy="-4.1" rx="3.3" ry="4.4" fill="#f39bb9" transform="rotate(72)"/><ellipse cx="0" cy="-4.1" rx="3.3" ry="4.4" fill="#f39bb9" transform="rotate(144)"/><ellipse cx="0" cy="-4.1" rx="3.3" ry="4.4" fill="#f39bb9" transform="rotate(216)"/><ellipse cx="0" cy="-4.1" rx="3.3" ry="4.4" fill="#f39bb9" transform="rotate(288)"/><circle r="1.5" fill="#f4b860"/><circle r="0.7" fill="#fff4c9" opacity=".8"/></g><g transform="translate(7.3 384.9) rotate(53)"><ellipse cx="0" cy="-3.5" rx="2.8" ry="3.7" fill="#f8b4cb" transform="rotate(0)"/><ellipse cx="0" cy="-3.5" rx="2.8" ry="3.7" fill="#f8b4cb" transform="rotate(72)"/><ellipse cx="0" cy="-3.5" rx="2.8" ry="3.7" fill="#f8b4cb" transform="rotate(144)"/><ellipse cx="0" cy="-3.5" rx="2.8" ry="3.7" fill="#f8b4cb" transform="rotate(216)"/><ellipse cx="0" cy="-3.5" rx="2.8" ry="3.7" fill="#f8b4cb" transform="rotate(288)"/><circle r="1.2" fill="#f4b860"/><circle r="0.6" fill="#fff4c9" opacity=".8"/></g><g transform="translate(7.8 373.4) rotate(7)"><ellipse cx="0" cy="-4.5" rx="3.6" ry="4.8" fill="#ffd3e0" transform="rotate(0)"/><ellipse cx="0" cy="-4.5" rx="3.6" ry="4.8" fill="#ffd3e0" transform="rotate(72)"/><ellipse cx="0" cy="-4.5" rx="3.6" ry="4.8" fill="#ffd3e0" transform="rotate(144)"/><ellipse cx="0" cy="-4.5" rx="3.6" ry="4.8" fill="#ffd3e0" transform="rotate(216)"/><ellipse cx="0" cy="-4.5" rx="3.6" ry="4.8" fill="#ffd3e0" transform="rotate(288)"/><circle r="1.6" fill="#f4b860"/><circle r="0.7" fill="#fff4c9" opacity=".8"/></g><g transform="translate(10.6 344.6) rotate(63)"><ellipse cx="0" cy="-3.4" rx="2.7" ry="3.6" fill="#fff0f5" transform="rotate(0)"/><ellipse cx="0" cy="-3.4" rx="2.7" ry="3.6" fill="#fff0f5" transform="rotate(72)"/><ellipse cx="0" cy="-3.4" rx="2.7" ry="3.6" fill="#fff0f5" transform="rotate(144)"/><ellipse cx="0" cy="-3.4" rx="2.7" ry="3.6" fill="#fff0f5" transform="rotate(216)"/><ellipse cx="0" cy="-3.4" rx="2.7" ry="3.6" fill="#fff0f5" transform="rotate(288)"/><circle r="1.2" fill="#f4b860"/><circle r="0.5" fill="#fff4c9" opacity=".8"/></g><g transform="translate(24.5 307.1) rotate(26)"><ellipse cx="0" cy="-3.1" rx="2.5" ry="3.3" fill="#f8b4cb" transform="rotate(0)"/><ellipse cx="0" cy="-3.1" rx="2.5" ry="3.3" fill="#f8b4cb" transform="rotate(72)"/><ellipse cx="0" cy="-3.1" rx="2.5" ry="3.3" fill="#f8b4cb" transform="rotate(144)"/><ellipse cx="0" cy="-3.1" rx="2.5" ry="3.3" fill="#f8b4cb" transform="rotate(216)"/><ellipse cx="0" cy="-3.1" rx="2.5" ry="3.3" fill="#f8b4cb" transform="rotate(288)"/><circle r="1.1" fill="#f4b860"/><circle r="0.5" fill="#fff4c9" opacity=".8"/></g><g transform="translate(36.8 284.5) rotate(16)"><ellipse cx="0" cy="-3.5" rx="2.8" ry="3.7" fill="#f39bb9" transform="rotate(0)"/><ellipse cx="0" cy="-3.5" rx="2.8" ry="3.7" fill="#f39bb9" transform="rotate(72)"/><ellipse cx="0" cy="-3.5" rx="2.8" ry="3.7" fill="#f39bb9" transform="rotate(144)"/><ellipse cx="0" cy="-3.5" rx="2.8" ry="3.7" fill="#f39bb9" transform="rotate(216)"/><ellipse cx="0" cy="-3.5" rx="2.8" ry="3.7" fill="#f39bb9" transform="rotate(288)"/><circle r="1.2" fill="#f4b860"/><circle r="0.6" fill="#fff4c9" opacity=".8"/></g><g transform="translate(50.2 273.8) rotate(13)"><ellipse cx="0" cy="-3.6" rx="2.9" ry="3.9" fill="#f8b4cb" transform="rotate(0)"/><ellipse cx="0" cy="-3.6" rx="2.9" ry="3.9" fill="#f8b4cb" transform="rotate(72)"/><ellipse cx="0" cy="-3.6" rx="2.9" ry="3.9" fill="#f8b4cb" transform="rotate(144)"/><ellipse cx="0" cy="-3.6" rx="2.9" ry="3.9" fill="#f8b4cb" transform="rotate(216)"/><ellipse cx="0" cy="-3.6" rx="2.9" ry="3.9" fill="#f8b4cb" transform="rotate(288)"/><circle r="1.3" fill="#f4b860"/><circle r="0.6" fill="#fff4c9" opacity=".8"/></g><g transform="translate(80.5 228.7) rotate(55)"><ellipse cx="0" cy="-4.4" rx="3.5" ry="4.6" fill="#fff0f5" transform="rotate(0)"/><ellipse cx="0" cy="-4.4" rx="3.5" ry="4.6" fill="#fff0f5" transform="rotate(72)"/><ellipse cx="0" cy="-4.4" rx="3.5" ry="4.6" fill="#fff0f5" transform="rotate(144)"/><ellipse cx="0" cy="-4.4" rx="3.5" ry="4.6" fill="#fff0f5" transform="rotate(216)"/><ellipse cx="0" cy="-4.4" rx="3.5" ry="4.6" fill="#fff0f5" transform="rotate(288)"/><circle r="1.5" fill="#f4b860"/><circle r="0.7" fill="#fff4c9" opacity=".8"/></g><g transform="translate(78.1 216.5) rotate(19)"><ellipse cx="0" cy="-4.4" rx="3.5" ry="4.7" fill="#ffd3e0" transform="rotate(0)"/><ellipse cx="0" cy="-4.4" rx="3.5" ry="4.7" fill="#ffd3e0" transform="rotate(72)"/><ellipse cx="0" cy="-4.4" rx="3.5" ry="4.7" fill="#ffd3e0" transform="rotate(144)"/><ellipse cx="0" cy="-4.4" rx="3.5" ry="4.7" fill="#ffd3e0" transform="rotate(216)"/><ellipse cx="0" cy="-4.4" rx="3.5" ry="4.7" fill="#ffd3e0" transform="rotate(288)"/><circle r="1.6" fill="#f4b860"/><circle r="0.7" fill="#fff4c9" opacity=".8"/></g><g transform="translate(101.6 195.5) rotate(53)"><ellipse cx="0" cy="-3.7" rx="2.9" ry="3.9" fill="#fff0f5" transform="rotate(0)"/><ellipse cx="0" cy="-3.7" rx="2.9" ry="3.9" fill="#fff0f5" transform="rotate(72)"/><ellipse cx="0" cy="-3.7" rx="2.9" ry="3.9" fill="#fff0f5" transform="rotate(144)"/><ellipse cx="0" cy="-3.7" rx="2.9" ry="3.9" fill="#fff0f5" transform="rotate(216)"/><ellipse cx="0" cy="-3.7" rx="2.9" ry="3.9" fill="#fff0f5" transform="rotate(288)"/><circle r="1.3" fill="#f4b860"/><circle r="0.6" fill="#fff4c9" opacity=".8"/></g><g transform="translate(100.6 162.1) rotate(18)"><ellipse cx="0" cy="-3.4" rx="2.7" ry="3.6" fill="#f39bb9" transform="rotate(0)"/><ellipse cx="0" cy="-3.4" rx="2.7" ry="3.6" fill="#f39bb9" transform="rotate(72)"/><ellipse cx="0" cy="-3.4" rx="2.7" ry="3.6" fill="#f39bb9" transform="rotate(144)"/><ellipse cx="0" cy="-3.4" rx="2.7" ry="3.6" fill="#f39bb9" transform="rotate(216)"/><ellipse cx="0" cy="-3.4" rx="2.7" ry="3.6" fill="#f39bb9" transform="rotate(288)"/><circle r="1.2" fill="#f4b860"/><circle r="0.5" fill="#fff4c9" opacity=".8"/></g><g transform="translate(107.0 144.6) rotate(21)"><ellipse cx="0" cy="-4.2" rx="3.4" ry="4.5" fill="#ffe0ea" transform="rotate(0)"/><ellipse cx="0" cy="-4.2" rx="3.4" ry="4.5" fill="#ffe0ea" transform="rotate(72)"/><ellipse cx="0" cy="-4.2" rx="3.4" ry="4.5" fill="#ffe0ea" transform="rotate(144)"/><ellipse cx="0" cy="-4.2" rx="3.4" ry="4.5" fill="#ffe0ea" transform="rotate(216)"/><ellipse cx="0" cy="-4.2" rx="3.4" ry="4.5" fill="#ffe0ea" transform="rotate(288)"/><circle r="1.5" fill="#f4b860"/><circle r="0.7" fill="#fff4c9" opacity=".8"/></g><g transform="translate(121.0 132.5) rotate(58)"><ellipse cx="0" cy="-3.7" rx="3.0" ry="4.0" fill="#f39bb9" transform="rotate(0)"/><ellipse cx="0" cy="-3.7" rx="3.0" ry="4.0" fill="#f39bb9" transform="rotate(72)"/><ellipse cx="0" cy="-3.7" rx="3.0" ry="4.0" fill="#f39bb9" transform="rotate(144)"/><ellipse cx="0" cy="-3.7" rx="3.0" ry="4.0" fill="#f39bb9" transform="rotate(216)"/><ellipse cx="0" cy="-3.7" rx="3.0" ry="4.0" fill="#f39bb9" transform="rotate(288)"/><circle r="1.3" fill="#f4b860"/><circle r="0.6" fill="#fff4c9" opacity=".8"/></g><g transform="translate(46.3 351.8) rotate(40)"><ellipse cx="0" cy="-3.7" rx="3.0" ry="3.9" fill="#f39bb9" transform="rotate(0)"/><ellipse cx="0" cy="-3.7" rx="3.0" ry="3.9" fill="#f39bb9" transform="rotate(72)"/><ellipse cx="0" cy="-3.7" rx="3.0" ry="3.9" fill="#f39bb9" transform="rotate(144)"/><ellipse cx="0" cy="-3.7" rx="3.0" ry="3.9" fill="#f39bb9" transform="rotate(216)"/><ellipse cx="0" cy="-3.7" rx="3.0" ry="3.9" fill="#f39bb9" transform="rotate(288)"/><circle r="1.3" fill="#f4b860"/><circle r="0.6" fill="#fff4c9" opacity=".8"/></g><g transform="translate(46.4 345.8) rotate(35)"><ellipse cx="0" cy="-4.1" rx="3.3" ry="4.4" fill="#fff0f5" transform="rotate(0)"/><ellipse cx="0" cy="-4.1" rx="3.3" ry="4.4" fill="#fff0f5" transform="rotate(72)"/><ellipse cx="0" cy="-4.1" rx="3.3" ry="4.4" fill="#fff0f5" transform="rotate(144)"/><ellipse cx="0" cy="-4.1" rx="3.3" ry="4.4" fill="#fff0f5" transform="rotate(216)"/><ellipse cx="0" cy="-4.1" rx="3.3" ry="4.4" fill="#fff0f5" transform="rotate(288)"/><circle r="1.5" fill="#f4b860"/><circle r="0.7" fill="#fff4c9" opacity=".8"/></g><g transform="translate(41.7 354.7) rotate(60)"><ellipse cx="0" cy="-2.8" rx="2.3" ry="3.0" fill="#f39bb9" transform="rotate(0)"/><ellipse cx="0" cy="-2.8" rx="2.3" ry="3.0" fill="#f39bb9" transform="rotate(72)"/><ellipse cx="0" cy="-2.8" rx="2.3" ry="3.0" fill="#f39bb9" transform="rotate(144)"/><ellipse cx="0" cy="-2.8" rx="2.3" ry="3.0" fill="#f39bb9" transform="rotate(216)"/><ellipse cx="0" cy="-2.8" rx="2.3" ry="3.0" fill="#f39bb9" transform="rotate(288)"/><circle r="1.0" fill="#f4b860"/><circle r="0.5" fill="#fff4c9" opacity=".8"/></g><g transform="translate(-21.0 294.4) rotate(18)"><ellipse cx="0" cy="-2.8" rx="2.3" ry="3.0" fill="#ffd3e0" transform="rotate(0)"/><ellipse cx="0" cy="-2.8" rx="2.3" ry="3.0" fill="#ffd3e0" transform="rotate(72)"/><ellipse cx="0" cy="-2.8" rx="2.3" ry="3.0" fill="#ffd3e0" transform="rotate(144)"/><ellipse cx="0" cy="-2.8" rx="2.3" ry="3.0" fill="#ffd3e0" transform="rotate(216)"/><ellipse cx="0" cy="-2.8" rx="2.3" ry="3.0" fill="#ffd3e0" transform="rotate(288)"/><circle r="1.0" fill="#f4b860"/><circle r="0.5" fill="#fff4c9" opacity=".8"/></g><g transform="translate(-20.3 285.8) rotate(48)"><ellipse cx="0" cy="-3.9" rx="3.1" ry="4.1" fill="#ffe0ea" transform="rotate(0)"/><ellipse cx="0" cy="-3.9" rx="3.1" ry="4.1" fill="#ffe0ea" transform="rotate(72)"/><ellipse cx="0" cy="-3.9" rx="3.1" ry="4.1" fill="#ffe0ea" transform="rotate(144)"/><ellipse cx="0" cy="-3.9" rx="3.1" ry="4.1" fill="#ffe0ea" transform="rotate(216)"/><ellipse cx="0" cy="-3.9" rx="3.1" ry="4.1" fill="#ffe0ea" transform="rotate(288)"/><circle r="1.4" fill="#f4b860"/><circle r="0.6" fill="#fff4c9" opacity=".8"/></g><g transform="translate(-34.3 280.0) rotate(22)"><ellipse cx="0" cy="-3.1" rx="2.5" ry="3.3" fill="#f39bb9" transform="rotate(0)"/><ellipse cx="0" cy="-3.1" rx="2.5" ry="3.3" fill="#f39bb9" transform="rotate(72)"/><ellipse cx="0" cy="-3.1" rx="2.5" ry="3.3" fill="#f39bb9" transform="rotate(144)"/><ellipse cx="0" cy="-3.1" rx="2.5" ry="3.3" fill="#f39bb9" transform="rotate(216)"/><ellipse cx="0" cy="-3.1" rx="2.5" ry="3.3" fill="#f39bb9" transform="rotate(288)"/><circle r="1.1" fill="#f4b860"/><circle r="0.5" fill="#fff4c9" opacity=".8"/></g><g transform="translate(85.7 234.7) rotate(43)"><ellipse cx="0" cy="-4.2" rx="3.4" ry="4.5" fill="#f8b4cb" transform="rotate(0)"/><ellipse cx="0" cy="-4.2" rx="3.4" ry="4.5" fill="#f8b4cb" transform="rotate(72)"/><ellipse cx="0" cy="-4.2" rx="3.4" ry="4.5" fill="#f8b4cb" transform="rotate(144)"/><ellipse cx="0" cy="-4.2" rx="3.4" ry="4.5" fill="#f8b4cb" transform="rotate(216)"/><ellipse cx="0" cy="-4.2" rx="3.4" ry="4.5" fill="#f8b4cb" transform="rotate(288)"/><circle r="1.5" fill="#f4b860"/><circle r="0.7" fill="#fff4c9" opacity=".8"/></g><g transform="translate(85.2 248.1) rotate(11)"><ellipse cx="0" cy="-3.4" rx="2.8" ry="3.7" fill="#f39bb9" transform="rotate(0)"/><ellipse cx="0" cy="-3.4" rx="2.8" ry="3.7" fill="#f39bb9" transform="rotate(72)"/><ellipse cx="0" cy="-3.4" rx="2.8" ry="3.7" fill="#f39bb9" transform="rotate(144)"/><ellipse cx="0" cy="-3.4" rx="2.8" ry="3.7" fill="#f39bb9" transform="rotate(216)"/><ellipse cx="0" cy="-3.4" rx="2.8" ry="3.7" fill="#f39bb9" transform="rotate(288)"/><circle r="1.2" fill="#f4b860"/><circle r="0.6" fill="#fff4c9" opacity=".8"/></g><g transform="translate(74.9 240.6) rotate(34)"><ellipse cx="0" cy="-4.2" rx="3.4" ry="4.5" fill="#ffe0ea" transform="rotate(0)"/><ellipse cx="0" cy="-4.2" rx="3.4" ry="4.5" fill="#ffe0ea" transform="rotate(72)"/><ellipse cx="0" cy="-4.2" rx="3.4" ry="4.5" fill="#ffe0ea" transform="rotate(144)"/><ellipse cx="0" cy="-4.2" rx="3.4" ry="4.5" fill="#ffe0ea" transform="rotate(216)"/><ellipse cx="0" cy="-4.2" rx="3.4" ry="4.5" fill="#ffe0ea" transform="rotate(288)"/><circle r="1.5" fill="#f4b860"/><circle r="0.7" fill="#fff4c9" opacity=".8"/></g><g transform="translate(43.2 187.8) rotate(70)"><ellipse cx="0" cy="-4.3" rx="3.4" ry="4.5" fill="#ffe0ea" transform="rotate(0)"/><ellipse cx="0" cy="-4.3" rx="3.4" ry="4.5" fill="#ffe0ea" transform="rotate(72)"/><ellipse cx="0" cy="-4.3" rx="3.4" ry="4.5" fill="#ffe0ea" transform="rotate(144)"/><ellipse cx="0" cy="-4.3" rx="3.4" ry="4.5" fill="#ffe0ea" transform="rotate(216)"/><ellipse cx="0" cy="-4.3" rx="3.4" ry="4.5" fill="#ffe0ea" transform="rotate(288)"/><circle r="1.5" fill="#f4b860"/><circle r="0.7" fill="#fff4c9" opacity=".8"/></g><g transform="translate(56.8 174.9) rotate(46)"><ellipse cx="0" cy="-4.5" rx="3.7" ry="4.8" fill="#ffd3e0" transform="rotate(0)"/><ellipse cx="0" cy="-4.5" rx="3.7" ry="4.8" fill="#ffd3e0" transform="rotate(72)"/><ellipse cx="0" cy="-4.5" rx="3.7" ry="4.8" fill="#ffd3e0" transform="rotate(144)"/><ellipse cx="0" cy="-4.5" rx="3.7" ry="4.8" fill="#ffd3e0" transform="rotate(216)"/><ellipse cx="0" cy="-4.5" rx="3.7" ry="4.8" fill="#ffd3e0" transform="rotate(288)"/><circle r="1.6" fill="#f4b860"/><circle r="0.7" fill="#fff4c9" opacity=".8"/></g><g transform="translate(42.9 180.4) rotate(45)"><ellipse cx="0" cy="-3.9" rx="3.2" ry="4.2" fill="#ffe0ea" transform="rotate(0)"/><ellipse cx="0" cy="-3.9" rx="3.2" ry="4.2" fill="#ffe0ea" transform="rotate(72)"/><ellipse cx="0" cy="-3.9" rx="3.2" ry="4.2" fill="#ffe0ea" transform="rotate(144)"/><ellipse cx="0" cy="-3.9" rx="3.2" ry="4.2" fill="#ffe0ea" transform="rotate(216)"/><ellipse cx="0" cy="-3.9" rx="3.2" ry="4.2" fill="#ffe0ea" transform="rotate(288)"/><circle r="1.4" fill="#f4b860"/><circle r="0.6" fill="#fff4c9" opacity=".8"/></g><g transform="translate(156.0 134.0) rotate(4)"><ellipse cx="0" cy="-4.5" rx="3.6" ry="4.8" fill="#fff0f5" transform="rotate(0)"/><ellipse cx="0" cy="-4.5" rx="3.6" ry="4.8" fill="#fff0f5" transform="rotate(72)"/><ellipse cx="0" cy="-4.5" rx="3.6" ry="4.8" fill="#fff0f5" transform="rotate(144)"/><ellipse cx="0" cy="-4.5" rx="3.6" ry="4.8" fill="#fff0f5" transform="rotate(216)"/><ellipse cx="0" cy="-4.5" rx="3.6" ry="4.8" fill="#fff0f5" transform="rotate(288)"/><circle r="1.6" fill="#f4b860"/><circle r="0.7" fill="#fff4c9" opacity=".8"/></g><g transform="translate(149.3 133.5) rotate(46)"><ellipse cx="0" cy="-3.4" rx="2.7" ry="3.6" fill="#ffe0ea" transform="rotate(0)"/><ellipse cx="0" cy="-3.4" rx="2.7" ry="3.6" fill="#ffe0ea" transform="rotate(72)"/><ellipse cx="0" cy="-3.4" rx="2.7" ry="3.6" fill="#ffe0ea" transform="rotate(144)"/><ellipse cx="0" cy="-3.4" rx="2.7" ry="3.6" fill="#ffe0ea" transform="rotate(216)"/><ellipse cx="0" cy="-3.4" rx="2.7" ry="3.6" fill="#ffe0ea" transform="rotate(288)"/><circle r="1.2" fill="#f4b860"/><circle r="0.5" fill="#fff4c9" opacity=".8"/></g><g transform="translate(142.7 129.3) rotate(35)"><ellipse cx="0" cy="-3.1" rx="2.5" ry="3.3" fill="#f39bb9" transform="rotate(0)"/><ellipse cx="0" cy="-3.1" rx="2.5" ry="3.3" fill="#f39bb9" transform="rotate(72)"/><ellipse cx="0" cy="-3.1" rx="2.5" ry="3.3" fill="#f39bb9" transform="rotate(144)"/><ellipse cx="0" cy="-3.1" rx="2.5" ry="3.3" fill="#f39bb9" transform="rotate(216)"/><ellipse cx="0" cy="-3.1" rx="2.5" ry="3.3" fill="#f39bb9" transform="rotate(288)"/><circle r="1.1" fill="#f4b860"/><circle r="0.5" fill="#fff4c9" opacity=".8"/></g><g transform="translate(86.2 116.7) rotate(33)"><ellipse cx="0" cy="-3.1" rx="2.5" ry="3.3" fill="#fff0f5" transform="rotate(0)"/><ellipse cx="0" cy="-3.1" rx="2.5" ry="3.3" fill="#fff0f5" transform="rotate(72)"/><ellipse cx="0" cy="-3.1" rx="2.5" ry="3.3" fill="#fff0f5" transform="rotate(144)"/><ellipse cx="0" cy="-3.1" rx="2.5" ry="3.3" fill="#fff0f5" transform="rotate(216)"/><ellipse cx="0" cy="-3.1" rx="2.5" ry="3.3" fill="#fff0f5" transform="rotate(288)"/><circle r="1.1" fill="#f4b860"/><circle r="0.5" fill="#fff4c9" opacity=".8"/></g><g transform="translate(74.7 116.5) rotate(43)"><ellipse cx="0" cy="-3.8" rx="3.1" ry="4.0" fill="#f8b4cb" transform="rotate(0)"/><ellipse cx="0" cy="-3.8" rx="3.1" ry="4.0" fill="#f8b4cb" transform="rotate(72)"/><ellipse cx="0" cy="-3.8" rx="3.1" ry="4.0" fill="#f8b4cb" transform="rotate(144)"/><ellipse cx="0" cy="-3.8" rx="3.1" ry="4.0" fill="#f8b4cb" transform="rotate(216)"/><ellipse cx="0" cy="-3.8" rx="3.1" ry="4.0" fill="#f8b4cb" transform="rotate(288)"/><circle r="1.3" fill="#f4b860"/><circle r="0.6" fill="#fff4c9" opacity=".8"/></g><g transform="translate(81.1 103.0) rotate(1)"><ellipse cx="0" cy="-3.9" rx="3.1" ry="4.1" fill="#f39bb9" transform="rotate(0)"/><ellipse cx="0" cy="-3.9" rx="3.1" ry="4.1" fill="#f39bb9" transform="rotate(72)"/><ellipse cx="0" cy="-3.9" rx="3.1" ry="4.1" fill="#f39bb9" transform="rotate(144)"/><ellipse cx="0" cy="-3.9" rx="3.1" ry="4.1" fill="#f39bb9" transform="rotate(216)"/><ellipse cx="0" cy="-3.9" rx="3.1" ry="4.1" fill="#f39bb9" transform="rotate(288)"/><circle r="1.4" fill="#f4b860"/><circle r="0.6" fill="#fff4c9" opacity=".8"/></g><g transform="translate(150.0 112.0) rotate(70)"><ellipse cx="0" cy="-5.6" rx="4.5" ry="5.9" fill="#fff0f5" transform="rotate(0)"/><ellipse cx="0" cy="-5.6" rx="4.5" ry="5.9" fill="#fff0f5" transform="rotate(72)"/><ellipse cx="0" cy="-5.6" rx="4.5" ry="5.9" fill="#fff0f5" transform="rotate(144)"/><ellipse cx="0" cy="-5.6" rx="4.5" ry="5.9" fill="#fff0f5" transform="rotate(216)"/><ellipse cx="0" cy="-5.6" rx="4.5" ry="5.9" fill="#fff0f5" transform="rotate(288)"/><circle r="2.0" fill="#f4b860"/><circle r="0.9" fill="#fff4c9" opacity=".8"/></g><g transform="translate(160.0 104.0) rotate(41)"><ellipse cx="0" cy="-3.7" rx="3.0" ry="4.0" fill="#fff0f5" transform="rotate(0)"/><ellipse cx="0" cy="-3.7" rx="3.0" ry="4.0" fill="#fff0f5" transform="rotate(72)"/><ellipse cx="0" cy="-3.7" rx="3.0" ry="4.0" fill="#fff0f5" transform="rotate(144)"/><ellipse cx="0" cy="-3.7" rx="3.0" ry="4.0" fill="#fff0f5" transform="rotate(216)"/><ellipse cx="0" cy="-3.7" rx="3.0" ry="4.0" fill="#fff0f5" transform="rotate(288)"/><circle r="1.3" fill="#f4b860"/><circle r="0.6" fill="#fff4c9" opacity=".8"/></g><circle cx="104" cy="188" r="2.4" fill="#f39bb9"/><circle cx="119" cy="141" r="2.4" fill="#f39bb9"/><circle cx="126" cy="141" r="2.4" fill="#f39bb9"/><circle cx="139" cy="136" r="2.4" fill="#f39bb9"/><circle cx="159" cy="115" r="2.4" fill="#f39bb9"/><circle cx="91" cy="183" r="2.4" fill="#f39bb9"/><circle cx="140" cy="125" r="2.4" fill="#f39bb9"/><circle cx="122" cy="138" r="2.4" fill="#f39bb9"/><circle cx="124" cy="144" r="2.4" fill="#f39bb9"/><circle cx="96" cy="197" r="2.4" fill="#f39bb9"/></g><g class="nfsw b"><path d="M214 452 C190 400 196 360 170 330" stroke="url(#nfBr)" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M186 384 Q172 372 160 374" stroke="#5a3a48" stroke-width="2.2" fill="none" stroke-linecap="round"/><g transform="translate(170.0 330.0) rotate(34)"><ellipse cx="0" cy="-4.3" rx="3.5" ry="4.6" fill="#ffd3e0" transform="rotate(0)"/><ellipse cx="0" cy="-4.3" rx="3.5" ry="4.6" fill="#ffd3e0" transform="rotate(72)"/><ellipse cx="0" cy="-4.3" rx="3.5" ry="4.6" fill="#ffd3e0" transform="rotate(144)"/><ellipse cx="0" cy="-4.3" rx="3.5" ry="4.6" fill="#ffd3e0" transform="rotate(216)"/><ellipse cx="0" cy="-4.3" rx="3.5" ry="4.6" fill="#ffd3e0" transform="rotate(288)"/><circle r="1.5" fill="#f4b860"/><circle r="0.7" fill="#fff4c9" opacity=".8"/></g><g transform="translate(160.0 374.0) rotate(3)"><ellipse cx="0" cy="-3.7" rx="3.0" ry="4.0" fill="#f8b4cb" transform="rotate(0)"/><ellipse cx="0" cy="-3.7" rx="3.0" ry="4.0" fill="#f8b4cb" transform="rotate(72)"/><ellipse cx="0" cy="-3.7" rx="3.0" ry="4.0" fill="#f8b4cb" transform="rotate(144)"/><ellipse cx="0" cy="-3.7" rx="3.0" ry="4.0" fill="#f8b4cb" transform="rotate(216)"/><ellipse cx="0" cy="-3.7" rx="3.0" ry="4.0" fill="#f8b4cb" transform="rotate(288)"/><circle r="1.3" fill="#f4b860"/><circle r="0.6" fill="#fff4c9" opacity=".8"/></g><g transform="translate(192.0 396.0) rotate(25)"><ellipse cx="0" cy="-4.0" rx="3.2" ry="4.3" fill="#fff0f5" transform="rotate(0)"/><ellipse cx="0" cy="-4.0" rx="3.2" ry="4.3" fill="#fff0f5" transform="rotate(72)"/><ellipse cx="0" cy="-4.0" rx="3.2" ry="4.3" fill="#fff0f5" transform="rotate(144)"/><ellipse cx="0" cy="-4.0" rx="3.2" ry="4.3" fill="#fff0f5" transform="rotate(216)"/><ellipse cx="0" cy="-4.0" rx="3.2" ry="4.3" fill="#fff0f5" transform="rotate(288)"/><circle r="1.4" fill="#f4b860"/><circle r="0.7" fill="#fff4c9" opacity=".8"/></g><g transform="translate(178.0 352.0) rotate(20)"><ellipse cx="0" cy="-3.4" rx="2.8" ry="3.6" fill="#f39bb9" transform="rotate(0)"/><ellipse cx="0" cy="-3.4" rx="2.8" ry="3.6" fill="#f39bb9" transform="rotate(72)"/><ellipse cx="0" cy="-3.4" rx="2.8" ry="3.6" fill="#f39bb9" transform="rotate(144)"/><ellipse cx="0" cy="-3.4" rx="2.8" ry="3.6" fill="#f39bb9" transform="rotate(216)"/><ellipse cx="0" cy="-3.4" rx="2.8" ry="3.6" fill="#f39bb9" transform="rotate(288)"/><circle r="1.2" fill="#f4b860"/><circle r="0.6" fill="#fff4c9" opacity=".8"/></g><g transform="translate(200.0 420.0) rotate(56)"><ellipse cx="0" cy="-3.7" rx="3.0" ry="4.0" fill="#ffe0ea" transform="rotate(0)"/><ellipse cx="0" cy="-3.7" rx="3.0" ry="4.0" fill="#ffe0ea" transform="rotate(72)"/><ellipse cx="0" cy="-3.7" rx="3.0" ry="4.0" fill="#ffe0ea" transform="rotate(144)"/><ellipse cx="0" cy="-3.7" rx="3.0" ry="4.0" fill="#ffe0ea" transform="rotate(216)"/><ellipse cx="0" cy="-3.7" rx="3.0" ry="4.0" fill="#ffe0ea" transform="rotate(288)"/><circle r="1.3" fill="#f4b860"/><circle r="0.6" fill="#fff4c9" opacity=".8"/></g></g><ellipse class="nfpt" style="animation-duration:7s;animation-delay:0s" cx="40" cy="60" rx="3.2" ry="1.9" transform="rotate(20)" fill="#ffd3e0" opacity=".85"/><ellipse class="nfpt" style="animation-duration:9s;animation-delay:-2.5s" cx="84" cy="74" rx="3.2" ry="1.9" transform="rotate(45)" fill="#f8b4cb" opacity=".85"/><ellipse class="nfpt" style="animation-duration:8s;animation-delay:-5s" cx="118" cy="88" rx="3.2" ry="1.9" transform="rotate(70)" fill="#fff0f5" opacity=".85"/><ellipse class="nfpt" style="animation-duration:10s;animation-delay:-1.4s" cx="150" cy="102" rx="3.2" ry="1.9" transform="rotate(95)" fill="#ffd3e0" opacity=".85"/><ellipse class="nfpt" style="animation-duration:11s;animation-delay:-6.5s" cx="22" cy="116" rx="3.2" ry="1.9" transform="rotate(120)" fill="#f39bb9" opacity=".85"/><ellipse class="nfpt" style="animation-duration:8.5s;animation-delay:-3.8s" cx="176" cy="130" rx="3.2" ry="1.9" transform="rotate(145)" fill="#f8b4cb" opacity=".85"/></svg></div>
 </nav>
 
   <div class="invitebar" id="inviteBar" hidden role="alert"></div>
@@ -31456,7 +31467,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v419', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v421', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -33059,6 +33070,247 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
     if (e.target && e.target.closest && e.target.closest('button,summary,a')) return;
     e.preventDefault(); $('knNext').click();
   });
+
+  /* ===== v420 : « Lire un texte » (texte réel -> mots connus / nouveaux -> leçon) et « Test de niveau » (diagnostic JLPT) ===== */
+  DJ_INFO.txt = { k: '文', t: 'Lire un texte', art: '', d: 'Colle un texte japonais : tes mots connus et nouveaux sont surlignés, puis une leçon avec les mots nouveaux', tip: 'Colle un texte japonais (manga, paroles, article…). Les mots que tu connais sont en vert, ceux que tu apprends en orange, les nouveaux en rose. Touche un mot pour sa fiche, puis crée une leçon avec les mots nouveaux et réponds au clavier.' };
+  DJ_INFO.diag = { k: '測', t: 'Test de niveau', art: '', d: 'Vocabulaire N5 → N1 : ton niveau et ta préparation à chaque examen', tip: 'Environ 30 questions, au clavier : on te montre un mot, tu écris sa lecture en kana (ou en romaji, qui se convertit tout seul). Le test monte de niveau tant que tu réussis, puis estime ta préparation à chaque niveau du JLPT. C’est une estimation sur le vocabulaire seulement.' };
+  try { DJ_SECS[3][4].push('txt'); DJ_SECS[2][4].push('diag'); } catch (e) {}
+  var TX_LV = ['n5', 'n4', 'n3', 'n2', 'n1'];
+  var TX_SAMPLE = '昨日、友達と一緒に新しい映画を見に行きました。映画館は駅の近くにあります。切符を買ってから、少し時間があったので、近くの喫茶店でコーヒーを飲みました。映画はとても面白かったです。帰りに電車の中で感想を話しました。';
+  var tx = { view: 'in', text: '', res: null, n: 12, les: null };
+  var dg = { view: 'home', li: 0, qs: [], i: 0, asked: {}, ok: {}, miss: [], ans: null, typed: '', res: null };
+  function txLvOf(e) { var l = /^N[1-5]$/.test(e.lvl || '') ? e.lvl.toLowerCase() : (typeof jlvOf === 'function' ? jlvOf(e.jp) : ''); return /^n[1-5]$/.test(l) ? l : ''; }
+  function txStat(e) {
+    var keys = ['v:' + e.jp, 'tx:' + e.jp].concat(['q', 'n5', 'n4', 'n3', 'n2', 'n1'].map(function (p) { return p + ':' + e.jp; })), best = 'new';
+    keys.forEach(function (k) { var o = (S.stats && S.stats[k]) || (S.qv && S.qv[k]); if (!o) return; if (mst(o)) best = 'ok'; else if (best !== 'ok' && (o.ok || o.ko)) best = 'mid'; });
+    return best;
+  }
+  function txBasic(e) { return /^[ぁ-ん]+$/.test(e.jp) && e.jp.length <= 3; }
+  function txScan(text) {
+    var a = Array.from(text), i = 0, segs = [], raw = '', sent = 0, sents = [''];
+    function flush() { if (raw) { segs.push({ s: raw }); raw = ''; } }
+    while (i < a.length) {
+      var hit = null, len, c = a[i];
+      if (/[㐀-鿿ぁ-んァ-ヶー]/.test(c)) for (len = Math.min(8, a.length - i); len >= 1 && !hit; len--) {
+        var sub = a.slice(i, i + len).join('');
+        if (len < 2 && !/[㐀-鿿]/.test(sub)) continue;
+        if (wlookup(sub)) hit = sub;
+      }
+      if (hit) { flush(); var n = Array.from(hit).length; segs.push({ s: hit, e: wlookup(hit), sn: sent }); sents[sent] = (sents[sent] || '') + hit; i += n; }
+      else if (/[㐀-鿿]/.test(c)) { var j = i + 1; while (j < a.length && /[㐀-鿿々]/.test(a[j]) && !wStartsHit(a, j)) j++; flush(); var run = a.slice(i, j).join(''); segs.push({ s: run, out: 1, sn: sent }); sents[sent] = (sents[sent] || '') + run; i = j; }
+      else { raw += c; sents[sent] = (sents[sent] || '') + c; if (/[。！？\n]/.test(c)) { sent++; sents[sent] = ''; } i++; }
+    }
+    flush(); return { segs: segs, sents: sents };
+  }
+  function txAnalyse(text) {
+    var sc = txScan(text), words = {}, order = [], tot = 0, known = 0, mid = 0, out = 0;
+    sc.segs.forEach(function (g) {
+      if (g.out) { out++; return; } if (!g.e) return;
+      var e = g.e; if (txBasic(e)) return; g.st = txStat(e);
+      tot++; if (g.st === 'ok') known++; else if (g.st === 'mid') mid++;
+      var w = words[e.jp]; if (!w) { w = words[e.jp] = { e: e, n: 0, st: g.st, lv: txLvOf(e), ctx: (sc.sents[g.sn] || '').replace(/^\s+|\s+$/g, '') }; order.push(e.jp); }
+      w.n++;
+    });
+    var list = order.map(function (k) { return words[k]; });
+    var cnt = { ok: 0, mid: 0, 'new': 0 }; list.forEach(function (w) { cnt[w.st]++; });
+    var lvs = {}; list.forEach(function (w) { lvs[w.lv || 'x'] = (lvs[w.lv || 'x'] || 0) + 1; });
+    return { segs: sc.segs, list: list, tot: tot, known: known, mid: mid, out: out, cnt: cnt, lvs: lvs, cov: tot ? Math.round((known + mid * 0.5) / tot * 100) : 0 };
+  }
+  function txRender(r) {
+    return r.segs.map(function (g) {
+      if (g.e && g.st) return '<button type="button" class="wtok txk ' + g.st + '" data-wtok="' + esc(g.s) + '">' + esc(g.s) + '</button>';
+      if (g.e) return esc(g.s);
+      if (g.out) return '<span class="txk out" title="Hors lexique">' + esc(g.s) + '</span>';
+      return esc(g.s).replace(/\n/g, '<br>');
+    }).join('');
+  }
+  function txIn() {
+    var h = '<div class="txpanel"><label class="txlab" for="txIn">Colle ton texte japonais ici</label><textarea id="txIn" class="txarea jp" maxlength="6000" rows="8" placeholder="Un extrait de manga, des paroles de chanson, un article…" spellcheck="false">' + esc(tx.text) + '</textarea><div class="txact"><button type="button" class="btn primary" data-tx="go">Analyser le texte</button><button type="button" class="btn" data-tx="sample">Essayer avec un exemple</button></div><p class="small txnote">Rien n’est envoyé : l’analyse se fait sur ton appareil. Maximum 6 000 caractères.</p></div>';
+    return h;
+  }
+  function txResHTML() {
+    var r = tx.res, lvn = ['n5', 'n4', 'n3', 'n2', 'n1'].filter(function (l) { return r.lvs[l]; }).map(function (l) { return '<span class="txchip">' + l.toUpperCase() + ' · ' + r.lvs[l] + '</span>'; }).join('') + (r.lvs.x ? '<span class="txchip">Hors liste · ' + r.lvs.x + '</span>' : '');
+    var h = '<div class="txbar"><button type="button" class="btn" data-tx="back">‹ Changer le texte</button></div>';
+    h += '<div class="txsum"><div class="txcov"><b>' + r.cov + ' %</b><span>du texte compris avec tes mots</span></div><div class="txcnt"><span class="txc ok"><b>' + r.cnt.ok + '</b>connus</span><span class="txc mid"><b>' + r.cnt.mid + '</b>en cours</span><span class="txc new"><b>' + r.cnt['new'] + '</b>nouveaux</span></div></div>';
+    if (lvn) h += '<div class="txchips">' + lvn + '</div>';
+    h += '<div class="txleg"><span class="txk ok">connu</span><span class="txk mid">en cours</span><span class="txk new">nouveau</span><span class="txk out">hors lexique</span></div>';
+    h += '<div class="txbody jp">' + txRender(r) + '</div><p class="small txnote">Touche un mot pour voir sa fiche. Les petits mots de grammaire (です, の, は…) ne sont pas comptés.</p>';
+    var nw = r.list.filter(function (w) { return w.st !== 'ok'; });
+    if (nw.length) {
+      h += '<div class="txpanel"><h4 class="txh">Leçon avec les mots à apprendre</h4><p class="small txnote">' + nw.length + ' mot' + (nw.length > 1 ? 's' : '') + ' nouveau' + (nw.length > 1 ? 'x' : '') + ' ou en cours dans ce texte. Combien veux-tu en travailler ?</p><div class="txsz">' + [6, 12, 20].map(function (n) { return '<button type="button" class="txszb' + (tx.n === n ? ' on' : '') + '" data-tx="n:' + n + '">' + n + ' mots</button>'; }).join('') + '</div><div class="txact"><button type="button" class="btn primary" data-tx="lesson">📖 Créer la leçon</button></div></div>';
+    } else h += '<div class="txpanel"><p style="margin:0">🎉 Tu connais déjà tous les mots de ce texte !</p></div>';
+    return h;
+  }
+  /* ---- leçon : découverte puis quiz au clavier (partagée avec le test de niveau) ---- */
+  function lsStart(items, back, title) {
+    var its = items.map(function (w) { return { e: w.e, ctx: w.ctx || '', n: w.n || 1 }; });
+    tx.les = { items: its, back: back, title: title || 'Leçon', step: 'learn', q: [], i: 0, ok: 0, ans: null, typed: '', miss: [], retry: false, xp: 0 };
+  }
+  function lsCtx(it) { var c = it.ctx || ''; if (c.length > 60) { var at = c.indexOf(it.e.jp), s = Math.max(0, at - 18); c = (s ? '…' : '') + c.slice(s, s + 46) + '…'; } return c; }
+  function lsLearn() {
+    var L = tx.les, h = '<div class="txbar"><button type="button" class="btn" data-tx="lback">‹ Retour</button></div><h4 class="txh">' + esc(L.title) + ' · ' + L.items.length + ' mots</h4><p class="small txnote">Lis chaque mot, écoute-le, puis lance le quiz.</p><div class="lscards">';
+    L.items.forEach(function (it) {
+      var e = it.e, c = lsCtx(it), kana = e.kana && e.kana !== e.jp ? e.kana : '';
+      h += '<div class="lscard"><div class="lstop"><span class="lsjp jp">' + esc(e.jp) + '</span><span class="lsrd jp">' + esc(kana) + '</span><button type="button" class="lssay" data-wcsay="' + esc(e.kana || e.jp) + '" aria-label="Écouter">🔊</button></div><div class="lsfr">' + esc(e.fr) + '</div>' + (c ? '<div class="lsctx jp">' + esc(c).replace(esc(e.jp), '<b>' + esc(e.jp) + '</b>') + '</div>' : '') + '</div>';
+    });
+    return h + '</div><div class="txact"><button type="button" class="btn primary" data-tx="lquiz">Je passe au quiz ✍️</button></div>';
+  }
+  function lsNext() { var L = tx.les; if (L.i >= L.q.length) { if (!L.retry && L.miss.length) { L.retry = true; L.q = L.miss.slice(); L.miss = []; L.i = 0; L.rn = L.q.length; } else { L.step = 'end'; lsFinish(); return; } } L.ans = null; L.typed = ''; }
+  function lsQuiz() {
+    var L = tx.les, it = L.q[L.i], e = it.e, c = lsCtx(it), tot = L.retry ? L.rn : L.items.length;
+    var h = '<div class="txbar"><button type="button" class="btn" data-tx="lback">‹ Arrêter</button></div><p class="small knqn" style="text-align:center">' + (L.retry ? 'Deuxième chance · ' : '') + (L.i + 1) + ' / ' + L.q.length + '</p><div class="knqbar"><u style="width:' + Math.round(L.i / L.q.length * 100) + '%"></u></div>';
+    h += '<div class="knqcard"><p class="prompt">Écris la lecture en kana</p><div class="kanji knqk jp lsbig">' + esc(e.jp) + '</div><div class="lsfr" style="text-align:center">' + esc(e.fr) + '</div>' + (c && !L.noctx ? '<div class="lsctx jp" style="text-align:center">' + esc(c).replace(esc(e.jp), '<b>' + esc(e.jp) + '</b>') + '</div>' : '') + '</div>';
+    if (L.ans === null) h += '<form class="answer" id="lsForm" autocomplete="off"><input type="text" id="lsIn" class="ansin" data-ime="1" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="ex. tabemono → たべもの" aria-label="Ta réponse"><button class="btn primary" type="submit">Valider</button></form><div class="skiprow"><button class="btn skipq" type="button" data-tx="lskip">🤷 Je ne sais pas</button></div>';
+    else {
+      var ok = L.ans === 'ok', rd = e.kana || e.jp;
+      h += '<div class="knfb ' + (ok ? 'good' : 'bad') + '"><div class="knfbtop"><span class="knfbk jp" style="font-size:1.6rem">' + esc(rd) + '</span><div class="knfbtx"><span class="knfbt">' + (ok ? '✓ Bien joué !' : '✗ Raté') + '</span><span class="knfbr">' + esc(e.jp) + ' <i>=</i> <b>' + esc(e.fr) + '</b></span></div></div>' + (!ok && L.typed ? '<div class="knfbyou">Tu as écrit : <b class="jp">' + esc(L.typed) + '</b></div>' : '') + '</div>' + (ok ? '' : '<div class="knact"><button type="button" class="btn primary" id="lsNext" data-tx="lnext">Suivant ↵</button></div>');
+    }
+    return h;
+  }
+  function lsAnswer(typed, skip) {
+    var L = tx.les; if (!L || L.ans !== null || L.step !== 'quiz') return; var it = L.q[L.i], e = it.e, ok = false;
+    if (!skip) { var v = toHira(normJP(typed || '')); if (!v) return; ok = v === toHira(normJP(e.kana || e.jp)) || normJP(typed) === e.jp; L.typed = typed; }
+    L.ans = ok ? 'ok' : 'ko';
+    S.stats = S.stats || {}; var s = S.stats['tx:' + e.jp] || (S.stats['tx:' + e.jp] = { ok: 0, ko: 0, run: 0 });
+    if (ok) { s.ok++; s.run++; L.ok++; sfx('ok'); var d = dayKey(), x = S.txd && S.txd.d === d ? S.txd : (S.txd = { d: d, n: 0 }), g = Math.min(3, 40 - x.n); if (g > 0) { x.n += g; L.xp += g; addXp(g); } }
+    else { s.ko++; s.run = 0; sfx('bad'); if (!L.retry) L.miss.push(it); }
+    s.lt = Date.now(); persist(); txRefresh(true);
+    if (ok) setTimeout(function () { if (tx.les === L && L.step === 'quiz' && L.q[L.i] === it) { L.i++; lsNext(); txRefresh(true); } }, 650);
+  }
+  function lsFinish() { try { streakTick(1); } catch (e) {} persist(); }
+  function lsEnd() {
+    var L = tx.les, n = L.items.length, learned = L.items.length - L.miss.length;
+    return '<div class="kxend"><h4>' + (L.miss.length ? 'Bien travaillé !' : 'Sans faute, bravo ! 🎉') + '</h4><p>' + n + ' mot' + (n > 1 ? 's' : '') + ' travaillé' + (n > 1 ? 's' : '') + '.' + (L.xp ? ' <b>+' + L.xp + ' XP</b>' : '') + ' Les mots réussis passent « en cours » dans ton texte ; réussis plusieurs fois, ils deviennent « connus ».</p><div class="knact"><button type="button" class="btn primary" data-tx="lagain">↻ Recommencer la leçon</button><button type="button" class="btn" data-tx="lback">Retour au texte</button></div></div>';
+  }
+  function txInner() {
+    if (tx.les) return tx.les.step === 'learn' ? lsLearn() : tx.les.step === 'quiz' ? lsQuiz() : lsEnd();
+    return tx.view === 'res' && tx.res ? txResHTML() : txIn();
+  }
+  function txRefresh(focus) { var h = $('txHost'); if (!h) return; var keep = $('txIn') ? $('txIn').value : null; h.innerHTML = txInner(); if (focus) setTimeout(function () { var i = $('lsIn') || $('lsNext'); if (i) i.focus(); }, 30); }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-tx]') : null; if (!b || !user || !S) return;
+    var p = b.getAttribute('data-tx').split(':'), a = p[0];
+    if (a === 'go') { var t = ($('txIn').value || '').trim(); if (t.length < 4) { toast('Colle un texte japonais d’abord'); return; } if (!/[㐀-鿿ぁ-んァ-ヶ]/.test(t)) { toast('Je ne vois pas de japonais dans ce texte'); return; } tx.text = t; tx.res = txAnalyse(t); tx.view = 'res'; tx.les = null; }
+    else if (a === 'sample') { tx.text = TX_SAMPLE; $('txIn').value = TX_SAMPLE; return; }
+    else if (a === 'back') { tx.view = 'in'; tx.les = null; }
+    else if (a === 'n') tx.n = +p[1];
+    else if (a === 'lesson') {
+      var nw = tx.res.list.filter(function (w) { return w.st !== 'ok'; }).sort(function (x, y) { return (y.st === 'new' ? 1 : 0) - (x.st === 'new' ? 1 : 0) || y.n - x.n || (TX_LV.indexOf(y.lv) < 0 ? -1 : TX_LV.indexOf(y.lv)) - (TX_LV.indexOf(x.lv) < 0 ? -1 : TX_LV.indexOf(x.lv)); }).slice(0, tx.n);
+      lsStart(nw, 'res', 'Leçon du texte');
+    }
+    else if (a === 'lback') { var bk = tx.les && tx.les.back; tx.les = null; if (bk === 'diag') { dg.view = 'res'; dgRefresh(); window.scrollTo(0, 0); return; } if (tx.res) tx.res = txAnalyse(tx.text); }
+    else if (a === 'lquiz') { var L = tx.les; L.step = 'quiz'; L.q = shuffle(L.items); L.i = 0; L.ok = 0; L.miss = []; L.retry = false; L.ans = null; L.typed = ''; L.xp = 0; txRefresh(true); window.scrollTo(0, 0); return; }
+    else if (a === 'lskip') { lsAnswer('', true); return; }
+    else if (a === 'lnext') { tx.les.i++; lsNext(); txRefresh(true); return; }
+    else if (a === 'lagain') { tx.les.step = 'learn'; }
+    if (tx.les && tx.les.back === 'diag') dgRefresh(); else txRefresh(); window.scrollTo(0, 0);
+  });
+  document.addEventListener('submit', function (e) { if (!e.target || e.target.id !== 'lsForm') return; e.preventDefault(); lsAnswer($('lsIn').value); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' || !tx.les || tx.les.step !== 'quiz' || tx.les.ans === null || !$('lsNext')) return;
+    if (e.target && e.target.closest && e.target.closest('button,summary,a')) return;
+    e.preventDefault(); $('lsNext').click();
+  });
+  /* ---- Test de niveau ---- */
+  var DG_PER = 6;
+  function dgPool(l) {
+    var out = []; Object.keys(QVW).forEach(function (k) { if (k.indexOf(l + ':') !== 0) return; var v = QVW[k]; if (v && /[㐀-鿿]/.test(v.jp) && v.kana && v.jp.length <= 5) out.push(v); });
+    return shuffle(out).slice(0, DG_PER);
+  }
+  function dgStats() { S.diag = S.diag || null; return S.diag; }
+  function dgHome() {
+    var d = S.diag, h = '<div class="txpanel"><h4 class="txh">Quel est ton niveau de vocabulaire ?</h4><p class="small txnote">On te montre un mot, tu écris sa lecture au clavier. Le test commence au N5 et monte tant que tu réussis (6 questions par niveau, 30 au maximum). À la fin : ton niveau estimé et ta préparation à chaque niveau du JLPT.</p>';
+    if (d) h += '<p class="small txnote">Dernier test : <b>' + esc(d.when || '') + '</b> · niveau estimé <b>' + esc(d.est || '—') + '</b></p>';
+    h += '<div class="txact"><button type="button" class="btn primary" data-dg="start">▶ ' + (d ? 'Refaire le test' : 'Commencer le test') + '</button>' + (d && d.r ? '<button type="button" class="btn" data-dg="last">Voir le dernier résultat</button>' : '') + '</div></div>';
+    return h;
+  }
+  function dgQuiz() {
+    var q = dg.qs[dg.i], lv = TX_LV[dg.li], h = '<div class="txbar"><button type="button" class="btn" data-dg="stop">‹ Arrêter</button><span class="txchip">Niveau ' + lv.toUpperCase() + '</span></div><p class="small knqn" style="text-align:center">Question ' + (dg.n + 1) + '</p><div class="knqbar"><u style="width:' + Math.round((dg.li * DG_PER + dg.i) / (TX_LV.length * DG_PER) * 100) + '%"></u></div>';
+    h += '<div class="knqcard"><p class="prompt">Écris la lecture de ce mot en kana</p><div class="kanji knqk jp lsbig">' + esc(q.jp) + '</div></div>';
+    if (dg.ans === null) h += '<form class="answer" id="dgForm" autocomplete="off"><input type="text" id="dgIn" class="ansin" data-ime="1" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="en romaji, ça se convertit en kana" aria-label="Ta réponse"><button class="btn primary" type="submit">Valider</button></form><div class="skiprow"><button class="btn skipq" type="button" data-dg="skip">🤷 Je ne sais pas</button></div>';
+    else {
+      var ok = dg.ans === 'ok';
+      h += '<div class="knfb ' + (ok ? 'good' : 'bad') + '"><div class="knfbtop"><span class="knfbk jp" style="font-size:1.6rem">' + esc(q.kana) + '</span><div class="knfbtx"><span class="knfbt">' + (ok ? '✓ Bien joué !' : '✗ Raté') + '</span><span class="knfbr">' + esc(q.jp) + ' <i>=</i> <b>' + esc(q.fr) + '</b></span></div></div>' + (!ok && dg.typed ? '<div class="knfbyou">Tu as écrit : <b class="jp">' + esc(dg.typed) + '</b></div>' : '') + '</div>' + (ok ? '' : '<div class="knact"><button type="button" class="btn primary" id="dgNext" data-dg="next">Suivant ↵</button></div>');
+    }
+    return h;
+  }
+  function dgSm(l) { var a = dg.asked[l] || 0, o = dg.ok[l] || 0; return (o + 1) / (a + 2); }
+  function dgCompute() {
+    var r = {}, last = -1, prev = null;
+    TX_LV.forEach(function (l, i) { if (dg.asked[l]) { last = i; r[l] = { p: Math.round(dgSm(l) * 100), t: 1, a: dg.asked[l], o: dg.ok[l] || 0 }; prev = r[l].p; } });
+    var f = 1; TX_LV.forEach(function (l, i) { if (!r[l]) { prev = Math.round(prev * 0.55); r[l] = { p: prev, t: 0, a: 0, o: 0 }; } });
+    TX_LV.forEach(function (l) { var tr = qvLevelMastery(l); if (tr > r[l].p) r[l].p = tr; });
+    var est = '', ready = ''; TX_LV.forEach(function (l) { if (r[l].p >= 80) est = l.toUpperCase(); });
+    return { r: r, est: est || 'Débutant', last: last };
+  }
+  function qvLevelMastery(l) { var n = 0, m = 0; Object.keys(QVW).forEach(function (k) { if (k.indexOf(l + ':') !== 0) return; n++; var s = (S.qv && S.qv[k]) || (S.stats && S.stats[k]); if (s && mst(s)) m++; }); return n ? Math.round(m / n * 100) : 0; }
+  function dgVerdict(p) { return p >= 80 ? ['Prêt', 'ok'] : p >= 60 ? ['Presque prêt', 'mid'] : p >= 40 ? ['En bonne voie', 'mid'] : ['Pas encore', 'new']; }
+  function dgRes() {
+    var R = dg.res || S.diag, h = '<div class="txbar"><button type="button" class="btn" data-dg="home">‹ Retour</button></div>';
+    h += '<div class="txsum"><div class="txcov"><b>' + esc(R.est) + '</b><span>niveau de vocabulaire estimé</span></div></div>';
+    h += '<div class="dgrows">';
+    TX_LV.forEach(function (l) {
+      var x = R.r[l], v = dgVerdict(x.p);
+      h += '<div class="dgrow"><span class="dgl">' + l.toUpperCase() + '</span><div class="dgbar"><u class="' + v[1] + '" style="width:' + x.p + '%"></u></div><span class="dgp">' + x.p + ' %</span><span class="dgv ' + v[1] + '">' + v[0] + '</span><small class="dgs">' + (x.t ? x.o + '/' + x.a + ' au test' : 'estimé') + '</small></div>';
+    });
+    h += '</div>';
+    var nx = TX_LV.filter(function (l) { return R.r[l].p < 80; })[0];
+    if (nx) h += '<p class="dgmsg">Tu es prêt pour le <b>' + nx.toUpperCase() + '</b> à <b>' + R.r[nx].p + ' %</b>.' + (R.r[nx].p >= 60 ? ' Encore un petit effort !' : ' Continue le vocabulaire ' + nx.toUpperCase() + ' dans « JLPT ».') + '</p>';
+    else h += '<p class="dgmsg">🎉 Ton vocabulaire est prêt pour tous les niveaux testés !</p>';
+    h += '<p class="small txnote">Estimation sur environ 30 mots et sur le vocabulaire seulement : la grammaire, la lecture et l’écoute ne sont pas mesurées. Plus tu as répondu, plus c’est fiable.</p>';
+    var miss = (dg.res && dg.miss) || [];
+    h += '<div class="txact">' + (miss.length ? '<button type="button" class="btn primary" data-dg="learn">📖 Apprendre mes ' + miss.length + ' mots ratés</button>' : '') + '<button type="button" class="btn" data-dg="start">↻ Refaire le test</button></div>';
+    return h;
+  }
+  function dgInner() { if (tx.les && tx.les.back === 'diag') return txInner(); return dg.view === 'quiz' ? dgQuiz() : dg.view === 'res' ? dgRes() : dgHome(); }
+  function dgRefresh(focus) { var h = $('dgHost'); if (!h) return; h.innerHTML = dgInner(); if (focus) setTimeout(function () { var i = $('dgIn') || $('dgNext'); if (i) i.focus(); }, 30); }
+  function dgLoadLevel() { dg.qs = dgPool(TX_LV[dg.li]); dg.i = 0; if (dg.qs.length < 3) { dgFinish(); return false; } return true; }
+  function dgFinish() {
+    var c = dgCompute(); dg.res = { r: c.r, est: c.est }; dg.view = 'res';
+    S.diag = { r: c.r, est: c.est, when: new Date().toLocaleDateString('fr-FR') }; persist(); try { streakTick(1); } catch (e) {} addXp(10);
+  }
+  function dgAnswer(typed, skip) {
+    var q = dg.qs[dg.i]; if (!q || dg.ans !== null) return; var l = TX_LV[dg.li], ok = false;
+    if (!skip) { var v = toHira(normJP(typed || '')); if (!v) return; ok = v === toHira(normJP(q.kana)) || normJP(typed) === q.jp; dg.typed = typed; } else dg.typed = '';
+    dg.ans = ok ? 'ok' : 'ko'; dg.asked[l] = (dg.asked[l] || 0) + 1; if (ok) { dg.ok[l] = (dg.ok[l] || 0) + 1; sfx('ok'); } else { sfx('bad'); dg.miss.push({ e: { jp: q.jp, kana: q.kana, fr: q.fr }, ctx: '', n: 1 }); }
+    dg.n++; dgRefresh(true);
+    if (ok) setTimeout(function () { if (dg.view === 'quiz' && dg.qs[dg.i] === q && dg.ans) dgForward(); }, 600);
+  }
+  function dgForward() {
+    dg.i++; dg.ans = null; dg.typed = '';
+    if (dg.i >= dg.qs.length) {
+      var l = TX_LV[dg.li], acc = (dg.ok[l] || 0) / (dg.asked[l] || 1);
+      if (acc >= 0.5 && dg.li < TX_LV.length - 1) { dg.li++; if (!dgLoadLevel()) { dgRefresh(); return; } } else { dgFinish(); }
+    }
+    dgRefresh(true);
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-dg]') : null; if (!b || !user || !S) return;
+    var a = b.getAttribute('data-dg');
+    if (a === 'start') { dg = { view: 'quiz', li: 0, qs: [], i: 0, n: 0, asked: {}, ok: {}, miss: [], ans: null, typed: '', res: null }; tx.les = null; if (!dgLoadLevel()) { toast('Pas assez de mots pour le test'); dg.view = 'home'; } }
+    else if (a === 'home' || a === 'stop') { dg.view = 'home'; tx.les = null; }
+    else if (a === 'last') { dg.res = S.diag; dg.miss = []; dg.view = 'res'; }
+    else if (a === 'skip') { dgAnswer('', true); return; }
+    else if (a === 'next') { dgForward(); return; }
+    else if (a === 'learn') { var seen = {}, its = dg.miss.filter(function (w) { if (seen[w.e.jp]) return false; seen[w.e.jp] = 1; return true; }); lsStart(its, 'diag', 'Mes mots ratés'); }
+    else return;
+    dgRefresh(); window.scrollTo(0, 0);
+  });
+  document.addEventListener('submit', function (e) { if (!e.target || e.target.id !== 'dgForm') return; e.preventDefault(); dgAnswer($('dgIn').value); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' || dg.view !== 'quiz' || dg.ans === null || !$('dgNext')) return;
+    if (e.target && e.target.closest && e.target.closest('button,summary,a')) return;
+    e.preventDefault(); $('dgNext').click();
+  });
+  var _txDG = djGamesHTML;
+  djGamesHTML = function (fl, kj, mj) {
+    var h = _txDG(fl, kj, mj);
+    if (djSub === 'txt') return djBackHTML('txt') + tipHTML('dj_txt', DJ_INFO.txt.tip) + '<div id="txHost">' + txInner() + '</div>';
+    if (djSub === 'diag') return djBackHTML('diag') + tipHTML('dj_diag', DJ_INFO.diag.tip) + '<div id="dgHost">' + dgInner() + '</div>';
+    return h;
+  };
+  var _txTile = djTile;
+  djTile = function (sub) { if (sub === 'diag' && S.diag) { var t = _txTile(sub); return t.replace(DJ_INFO.diag.d, 'Dernier test : niveau ' + esc(S.diag.est) + ' · refais-le quand tu veux'); } return _txTile(sub); };
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
