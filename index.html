@@ -31449,7 +31449,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v415', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v416', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -32989,6 +32989,64 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
       var ix = nv.list ? nv.list.indexOf(nv.cur.k) : -1; if (ix < 0) return;
       var n = (ix + (a === 'next' ? 1 : -1) + nv.list.length) % nv.list.length; nvShow({ k: nv.list[n] }, 'none');
     }
+  });
+
+  /* ===== v415 : quiz des kana au clavier (plus de choix multiple) ===== */
+  function kqOk(q, typed) {
+    var t = String(typed || '').normalize('NFKC').trim(), k = q.k;
+    if (!t) return null;
+    if (q.asKana) {                       // romaji affiché -> on écrit le kana (majuscules = katakana)
+      var isK = /[ァ-ヶ]/.test(k);
+      if (isK !== /[ァ-ヶ]/.test(t) && /[ぁ-ゖァ-ヶ]/.test(t)) return 'script';
+      return t === k;
+    }
+    var h = window.__ime.finish(window.__ime.conv(t.toLowerCase())), kh = toHira(k);
+    if (/[^ぁ-ゖー]/.test(h)) return false;
+    if (h === kh) return true;
+    if ((kh === 'を' && h === 'お') || (kh === 'ぢ' && h === 'じ') || (kh === 'づ' && h === 'ず')) return true;
+    return false;
+  }
+  knQuizHTML = function () {
+    var q = kn.q, isK = /[ァ-ヶ]/.test(q.k);
+    var h = knBack('home', 'Arrêter') + '<p class="small muted knqn">Question ' + (kn.i + 1) + ' / ' + kn.len + '</p><div class="knqbar"><u style="width:' + Math.round(kn.i / kn.len * 100) + '%"></u></div>';
+    h += '<div class="knqcard"><p class="prompt">' + (q.asKana ? 'Écris ce kana au clavier' : 'Écris la lecture en romaji') + '</p><div class="kanji knqk jp">' + esc(q.asKana ? knRom(q.k) : q.k) + '</div></div>';
+    if (kn.ans === null) {
+      h += '<form class="answer" id="knForm" autocomplete="off"><input type="text" id="knIn" class="ansin"' + (q.asKana ? ' data-ime="1"' : '') + ' autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="' + (q.asKana ? (isK ? 'en MAJUSCULES : KA → カ' : 'tape en romaji : ka → か') : 'ex. ka, shi, tsu…') + '" aria-label="Ta réponse"><button class="btn primary" type="submit">Valider</button></form>';
+      h += '<p class="small muted" id="knHint" style="text-align:center;margin:6px 0 0">' + (q.asKana && isK ? 'Katakana : écris le romaji en majuscules.' : '&nbsp;') + '</p>';
+      h += '<div class="skiprow"><button class="btn skipq" type="button" data-kn="skip">🤷 Je ne sais pas</button></div>';
+    } else {
+      var ok = kn.ans === 'ok', ex = KN_EX[q.k];
+      h += '<div class="fb ' + (ok ? 'good' : 'bad') + '"><b>' + (ok ? 'Bien joué !' : 'Raté : ' + esc(q.k) + ' = ' + esc(knRom(q.k))) + '</b>' + (ex ? '<br><span class="jp">' + esc(ex[0]) + '</span> · ' + esc(ex[1]) : '') + '</div>' + (ok ? '' : '<div class="knact"><button type="button" class="btn primary" id="knNext" data-kn="nextq">Suivant</button></div>');
+    }
+    return h;
+  };
+  knAnswer = function (arg) {
+    var q = kn.q; if (!q || kn.ans !== null) return;
+    var ok = false, k = q.k;
+    if (arg !== -1) { var r = kqOk(q, arg); if (r === null) return; ok = r === true; }
+    kn.ans = ok ? 'ok' : 'ko';
+    S.kana = S.kana || {}; var s = S.kana[k] || (S.kana[k] = { ok: 0, ko: 0, run: 0 }), was = s.run >= MASTER_RUN;
+    kn.tot++;
+    if (ok) {
+      s.ok++; s.run++; kn.ok++; sfx('ok');
+      if (!was && s.run >= MASTER_RUN && kn.newly.indexOf(k) < 0) kn.newly.push(k);
+      var d = dayKey(), x = S.knxp && S.knxp.d === d ? S.knxp : (S.knxp = { d: d, n: 0 }), g = Math.min(3, 120 - x.n); if (g > 0) { x.n += g; kn.xp = (kn.xp || 0) + g; addXp(g); }
+    } else { s.ko++; s.run = 0; sfx('bad'); }
+    persist(); knRefresh();
+    if (ok) setTimeout(function () { if (kn.view === 'quiz' && kn.q === q) knForward(); }, 650);
+  };
+  var _knRf = knRefresh;
+  knRefresh = function () { _knRf(); if (kn.view === 'quiz') setTimeout(function () { var i = $('knIn') || $('knNext'); if (i) i.focus(); }, 30); };
+  document.addEventListener('submit', function (e) {
+    if (!e.target || e.target.id !== 'knForm') return; e.preventDefault();
+    var v = $('knIn').value, r = kqOk(kn.q, v);
+    if (r === 'script') { var hn = $('knHint'); if (hn) hn.textContent = 'Il faut écrire en katakana : tape le romaji en MAJUSCULES.'; return; }
+    knAnswer(v);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' || kn.view !== 'quiz' || kn.ans === null || !$('knNext')) return;
+    if (e.target && e.target.closest && e.target.closest('button,summary,a')) return;
+    e.preventDefault(); $('knNext').click();
   });
 
   backend.init().then(function (u) {
