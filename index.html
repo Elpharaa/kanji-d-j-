@@ -6055,7 +6055,7 @@ body .status .slv .sname { display: block !important; background: none !importan
 body .status .slvl { font-size: 12px !important; color: var(--wa-wood2) !important; line-height: 1.2 !important; }
 body .status .slvl b { font-size: 12.5px !important; color: #b8325f !important; }
 body .status .sheart { display: none !important; }
-@media (min-width: 768px) { .status::before { margin-right: auto; } body .status .slv { flex: none; order: 2; margin-left: auto; } }
+@media (min-width: 768px) { body .status .slv { flex: 0 1 auto; margin-right: 12px; } body .status .scoin { margin-left: auto; } }
 /* ===== v433 pages : washi ===== */
 /* onglets segmentés */
 body .seg, body .gsegbar { background: #fff3e8 !important; border: 2px solid var(--wa-gold) !important; border-radius: 16px !important; box-shadow: 0 3px 0 rgba(122, 75, 58, .22) !important; padding: 3px !important; }
@@ -6093,6 +6093,59 @@ body .pfbtn::before, body .pfbtn::after { display: none !important; }
 #vProfil .pfbtn { grid-column: auto !important; }
 @media (min-width: 768px) { #pfGrid { grid-template-columns: repeat(6, minmax(0, 1fr)); max-width: 820px; } body .pfbtn i { width: 48px; height: 48px; font-size: 1.5rem; } body .pfbtn span { font-size: .78rem; } }
 .setinv { display: grid; gap: 8px; }
+/* ===== v435 amis ===== */
+#vHub .hubside, #hubSide { display: none !important; }
+#vHub .hubwrap { grid-template-columns: minmax(0, 1fr) !important; }
+#vFriends .stack { display: grid; gap: 12px; max-width: 720px; margin-inline: auto; width: 100%; }
+.frxhead { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 2px solid var(--wa-gold); border-radius: 20px; background: linear-gradient(#fffaf2, #fbe3da); box-shadow: 0 3px 0 rgba(122, 75, 58, .22); }
+.frxseal { width: 52px; height: 52px; display: grid; place-items: center; border-radius: 50%; font: 400 1.7rem/1 var(--font-brush, serif); color: #fff; background: radial-gradient(circle at 35% 25%, #f8b4c9, #d8527f); border: 2px solid #fff8ee; box-shadow: 0 0 0 2px var(--wa-gold); flex: none; }
+.frxhead b { display: block; font: 700 1.25rem/1.15 var(--font-brush, serif); color: var(--wa-wood); }
+.frxhead small { color: var(--wa-wood2); }
+.frxtabs { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; }
+.frxn { font-style: normal; display: inline-block; min-width: 18px; padding: 0 6px; margin-left: 4px; border-radius: 99px; background: #b8325f; color: #fff; font-size: .72rem; line-height: 1.5; }
+.frxbody { display: grid; gap: 8px; }
+.frxh { margin: 10px 2px 0; font: 700 1.05rem var(--font-brush, serif); color: #8a3b5c; display: flex; align-items: center; gap: 8px; }
+.frxh small { font: 700 .75rem var(--font-body); background: var(--wa-gold); color: #fff; border-radius: 99px; padding: 1px 8px; }
+.frx { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 10px 12px; background: linear-gradient(#fffdf8, #fbeee2); border: 2px solid rgba(196, 154, 58, .6); border-radius: 18px; box-shadow: 0 2px 0 rgba(122, 75, 58, .18); color: var(--wa-wood); }
+.frx.fav { border-color: var(--wa-gold); background: linear-gradient(#fffbe9, #fbecc4); }
+.frxmain { display: flex; align-items: center; gap: 10px; flex: 1 1 160px; min-width: 0; }
+.frxav { position: relative; flex: none; }
+.frxav .av { width: 46px; height: 46px; border-radius: 50%; }
+.frxdot { position: absolute; right: -1px; bottom: -1px; width: 13px; height: 13px; border-radius: 50%; background: #b8a9a0; border: 2px solid #fffaf2; }
+.frxdot.on { background: #2f9a5a; }
+.frxin { display: grid; min-width: 0; }
+.frxin b { font-weight: 800; color: var(--wa-wood); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.frxin small { color: var(--wa-wood2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.frxact { display: flex; gap: 6px; align-items: center; flex: none; flex-wrap: wrap; }
+.frxb { width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--wa-gold); background: #fffaf2; color: var(--wa-wood); font-size: 1.05rem; line-height: 1; cursor: pointer; display: grid; place-items: center; box-shadow: 0 2px 0 rgba(122, 75, 58, .25); }
+.frxb:active { transform: scale(.92); }
+.frxb.star { color: #b9892a; font-size: 1.3rem; }
+.frxb.star.on { background: linear-gradient(#ffe9a0, #f2c24d); color: #fff; text-shadow: 0 1px 0 rgba(120, 70, 0, .4); }
+.frxmenu { flex: 1 1 100%; display: flex; gap: 8px; flex-wrap: wrap; padding-top: 6px; border-top: 1px dashed rgba(196, 154, 58, .6); }
+.frxmenu .danger { color: #b8325f; border-color: #d0586f; }
+.frxempty { text-align: center; padding: 22px 14px; border: 2px dashed var(--wa-gold); border-radius: 20px; background: rgba(255, 250, 242, .9); color: var(--wa-wood); }
+.frxempty p { color: var(--wa-wood2); margin: 6px 0 12px; }
+.frxadd, .frxinv { display: grid; gap: 8px; padding: 12px 14px; border: 2px solid var(--wa-gold); border-radius: 20px; background: linear-gradient(#fffaf2, #fbeee2); color: var(--wa-wood); }
+.frxlab { font-weight: 700; color: var(--wa-wood); }
+.frxsr { display: flex; gap: 8px; }
+.frxsr input { flex: 1; min-width: 0; padding: 10px 12px; border-radius: 14px; border: 2px solid var(--wa-gold); background: #fff; color: var(--wa-wood); font: inherit; }
+.frxbtns { display: flex; gap: 8px; flex-wrap: wrap; }
+.frxbl { padding: 8px 12px; border: 2px solid rgba(196, 154, 58, .6); border-radius: 16px; background: #fff8ee; color: var(--wa-wood); }
+.frxbl summary { cursor: pointer; font-weight: 700; margin-bottom: 6px; }
+.frxoff { color: var(--wa-wood); }
+.kdd { position: relative; }
+.kdn { position: absolute; top: -4px; right: calc(50% - 30px); min-width: 18px; padding: 0 5px; border-radius: 99px; background: #b8325f; color: #fff; border: 2px solid #fff8ee; font: 800 .68rem/1.4 var(--font-body); text-align: center; font-style: normal; z-index: 2; }
+#vFriends .stack { grid-template-columns: minmax(0, 1fr); }
+#vFriends .stack > *, .frxbody > * { min-width: 0; }
+.frxtabs { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+.frxtabs button { min-width: 0; padding-inline: 4px !important; text-align: center; white-space: nowrap; }
+.frxsr .btn, .frxbtns .btn { flex: none; width: auto; }
+.frxadd, .frxinv, .frxbl { box-sizing: border-box; max-width: 100%; }
+.frxbtns .btn { white-space: normal; }
+
+.frxsr input { width: 0; min-width: 0; }
+.frxtabs button, .frxtabs button[aria-selected="true"] { transform: none !important; scale: none !important; }
+.frxhead, .frxadd, .frxinv, .frx { max-width: 100%; box-sizing: border-box; }
 
 </style>
 
@@ -6184,6 +6237,8 @@ body .pfbtn::before, body .pfbtn::after { display: none !important; }
    </div>
    <aside class="hubside" id="hubSide"></aside></div>
   </section>
+
+  <section id="vFriends" hidden><div class="stack" id="friendsBody"></div></section>
 
   <!-- ===== PROFIL ===== -->
   <section id="vProfil" hidden>
@@ -12989,6 +13044,11 @@ body .pfbtn::before, body .pfbtn::after { display: none !important; }
       frSend: function (uid, to) { return sb.from('friendships').insert({ requester: uid, addressee: to }).then(function (r) { if (r.error) throw r.error; }); },
       frAnswer: function (rid, ok) { return (ok ? sb.from('friendships').update({ status: 'accepted' }).eq('id', rid) : sb.from('friendships').delete().eq('id', rid)).then(function (r) { if (r.error) throw r.error; }); },
       frRemove: function (rid) { return sb.from('friendships').delete().eq('id', rid).then(function (r) { if (r.error) throw r.error; }); },
+      frFavLoad: function (uid) { return sb.from('friend_favs').select('friend_id').eq('user_id', uid).then(function (r) { if (r.error) throw r.error; return (r.data || []).map(function (x) { return x.friend_id; }); }); },
+      frFavSet: function (uid, fid, on) { return (on ? sb.from('friend_favs').upsert({ user_id: uid, friend_id: fid }) : sb.from('friend_favs').delete().eq('user_id', uid).eq('friend_id', fid)).then(function (r) { if (r.error) throw r.error; }); },
+      frBlockLoad: function (uid) { return sb.from('friend_blocks').select('blocked_id').eq('user_id', uid).then(function (r) { if (r.error) throw r.error; return (r.data || []).map(function (x) { return x.blocked_id; }); }); },
+      frBlockSet: function (uid, bid, on) { return (on ? sb.from('friend_blocks').upsert({ user_id: uid, blocked_id: bid }) : sb.from('friend_blocks').delete().eq('user_id', uid).eq('blocked_id', bid)).then(function (r) { if (r.error) throw r.error; }); },
+      frSearch: function (q) { var k = String(q).replace(/[%_,()]/g, ''); return sb.from('profiles').select('id,username,avatar,xp').ilike('username', '%' + k + '%').limit(12).then(function (r) { if (r.error) throw r.error; return r.data || []; }); },
       frCall: function (uid) { return sb.from('friend_calls').upsert({ user_id: uid, called_at: new Date().toISOString() }).then(function (r) { if (r.error) throw r.error; }); },
       rpc: function (n, a) { return sb.rpc(n, a || {}).then(function (r) { if (r.error) throw r.error; return r.data; }); },
       fams: function () {
@@ -14410,7 +14470,7 @@ body .pfbtn::before, body .pfbtn::after { display: none !important; }
   }
   function show(view) {
     if (view !== 'vMulti' && typeof mpLeaveOnNav === 'function') mpLeaveOnNav();
-    ['vAuth', 'vHub', 'vHome', 'vStory', 'vKanji', 'vOnline', 'vSession', 'vSettings', 'vBoard', 'vMulti', 'vProfil', 'vClz'].forEach(function (id) { $(id).hidden = (id !== view); });
+    ['vAuth', 'vHub', 'vHome', 'vStory', 'vKanji', 'vOnline', 'vSession', 'vSettings', 'vBoard', 'vMulti', 'vProfil', 'vClz', 'vFriends'].forEach(function (id) { $(id).hidden = (id !== view); });
     var inApp = !!user && view !== 'vAuth';
     $('userbox').hidden = !inApp;
     $('nav').hidden = !inApp || view === 'vSession';
@@ -31748,7 +31808,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v434', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v435', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -33693,7 +33753,7 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
 
   /* ===== v432 : menu carrousel + dock d'icônes rondes ===== */
   (function () {
-    var carSel = 0, ro = null, ctrDone = false;
+    var carSel = 0, carLog = null, ro = null, ctrDone = false;
     function T(f, d) { try { return f(); } catch (e) { return d; } }
     function carCards() {
       var lv = T(curLv, 'l1'), L = T(function () { return CURSUS[lv]; }, { tag: '' }) || { tag: '' };
@@ -33705,10 +33765,11 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
         { k: 'clz', kj: '句', t: 'Phrases du dojo', s: 'Construis et lis des phrases', a: 'data-go="clz"', c1: '#dcebc6', c2: '#93bd7a' },
         { k: 'dico', kj: '辞', t: 'Dictionnaire', s: T(function () { return dcCount().toLocaleString('fr-FR'); }, '25 000') + ' mots · verbes conjugués', a: 'data-hubdico="1"', c1: '#fae8b2', c2: '#e0b24c' }
       ];
-      if (errs) arr.splice(1, 0, { k: 'err', kj: '復', t: 'Revoir mes ' + errs + ' erreur' + (errs > 1 ? 's' : ''), s: 'Corrige-les : 3 bonnes réponses d\u2019affilée et elles disparaissent', a: 'data-errbook="1"', c1: '#f8c2c8', c2: '#c8405a' });
+      if (errs) arr.splice(0, 0, { k: 'err', kj: '復', t: 'Revoir mes ' + errs + ' erreur' + (errs > 1 ? 's' : ''), s: 'Corrige-les : 3 bonnes réponses d\u2019affilée et elles disparaissent', a: 'data-errbook="1"', c1: '#f8c2c8', c2: '#c8405a' });
       if (T(function () { return unlOn('story'); }, false)) arr.push({ k: 'story', kj: '旅', t: 'Aventure', s: L.tag + (chs.length ? ' · ' + done + '/' + chs.length + ' chapitres' : ''), a: 'data-go="story"', c1: '#fbd3bc', c2: '#e58a5f' });
       return arr;
     }
+    var NC = 1, jt = 0;
     function ctr(i, smooth) {
       var car = document.getElementById('kdCar'); if (!car) return; var c = car.children[i]; if (!c || !car.clientWidth) return;
       car.scrollTo({ left: c.offsetLeft + c.offsetWidth / 2 - car.clientWidth / 2, behavior: smooth ? 'smooth' : 'auto' });
@@ -33717,36 +33778,41 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
       var car = document.getElementById('kdCar'); if (!car || !car.clientWidth) return;
       var mid = car.scrollLeft + car.clientWidth / 2, best = 0, bd = 1e9, n = car.children.length;
       for (var i = 0; i < n; i++) { var c = car.children[i], d = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid); if (d < bd) { bd = d; best = i; } }
-      carSel = best;
+      carSel = best; carLog = best % NC;
       for (var j = 0; j < n; j++) { car.children[j].classList.toggle('sel', j === best); car.children[j].setAttribute('aria-current', j === best ? 'true' : 'false'); }
-      var dots = document.querySelectorAll('#kdDots i'); for (var k = 0; k < dots.length; k++) dots[k].classList.toggle('on', k === best);
+      var dots = document.querySelectorAll('#kdDots i'); for (var k = 0; k < dots.length; k++) dots[k].classList.toggle('on', k === carLog);
+      clearTimeout(jt); jt = setTimeout(function () { if (carSel < NC || carSel >= 2 * NC) { ctr(NC + carLog, false); } }, 140);
     }
     function buildCar() {
       var g = document.getElementById('hubGrid'); if (!g) return;
       var host = document.getElementById('hubCar');
       if (!host) { host = document.createElement('div'); host.id = 'hubCar'; g.parentNode.insertBefore(host, g); }
-      var cards = carCards(); if (carSel >= cards.length) carSel = 0;
-      host.innerHTML = '<div class="kdcarw"><button type="button" class="kdcarb prev" aria-label="Précédent">‹</button><div class="kdcar" id="kdCar" role="list">' + cards.map(function (c, i) {
+      var cards = carCards(); NC = cards.length;
+      if (carLog == null) { carLog = 0; cards.forEach(function (c, i) { if (c.k === 'home') carLog = i; }); }
+      if (carLog >= NC) carLog = 0;
+      var all = cards.concat(cards, cards);
+      host.innerHTML = '<div class="kdcarw"><button type="button" class="kdcarb prev" aria-label="Précédent">‹</button><div class="kdcar" id="kdCar" role="list">' + all.map(function (c, i) {
         var img = T(function () { return ASSETS['hub_' + c.k]; }, ''), art = img ? '<img class="kdimg" src="' + esc(img) + '" alt="" decoding="async">' : '<b class="kdkj" aria-hidden="true">' + c.kj + '</b><i class="kdpat" aria-hidden="true"></i>';
-        return '<button type="button" role="listitem" class="kdc" data-i="' + i + '" ' + c.a + ' style="--c1:' + c.c1 + ';--c2:' + c.c2 + '"><span class="kdart">' + art + (c.badge ? '<em class="kdbadge" title="Erreurs à corriger">' + c.badge + '</em>' : '') + '</span><span class="kdlab"><b>' + esc(c.t) + '</b><small>' + esc(c.s) + '</small>' + (c.bar != null ? '<i class="kdbar"><u style="width:' + c.bar + '%"></u></i>' : '') + '</span></button>';
+        return '<button type="button" role="listitem" class="kdc" data-i="' + i + '" ' + c.a + ' style="--c1:' + c.c1 + ';--c2:' + c.c2 + '"' + (i < NC || i >= 2 * NC ? ' tabindex="-1"' : '') + '><span class="kdart">' + art + (c.badge ? '<em class="kdbadge" title="Erreurs à corriger">' + c.badge + '</em>' : '') + '</span><span class="kdlab"><b>' + esc(c.t) + '</b><small>' + esc(c.s) + '</small>' + (c.bar != null ? '<i class="kdbar"><u style="width:' + c.bar + '%"></u></i>' : '') + '</span></button>';
       }).join('') + '</div><button type="button" class="kdcarb next" aria-label="Suivant">›</button></div><div class="kdots" id="kdDots">' + cards.map(function (c, i) { return '<i data-i="' + i + '"></i>'; }).join('') + '</div>';
       var car = document.getElementById('kdCar'), raf = 0;
       car.addEventListener('scroll', function () { if (raf) return; raf = requestAnimationFrame(function () { raf = 0; upd(); }); }, { passive: true });
       car.addEventListener('click', function (e) { var c = e.target.closest ? e.target.closest('.kdc') : null; if (!c) return; var i = +c.getAttribute('data-i'); if (i !== carSel) { e.preventDefault(); e.stopPropagation(); ctr(i, true); } }, true);
-      car.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') { ctr(Math.min(carSel + 1, car.children.length - 1), true); e.preventDefault(); } else if (e.key === 'ArrowLeft') { ctr(Math.max(carSel - 1, 0), true); e.preventDefault(); } });
-      host.querySelector('.prev').onclick = function () { ctr(Math.max(carSel - 1, 0), true); };
-      host.querySelector('.next').onclick = function () { ctr(Math.min(carSel + 1, car.children.length - 1), true); };
-      Array.prototype.forEach.call(host.querySelectorAll('#kdDots i'), function (d) { d.onclick = function () { ctr(+d.getAttribute('data-i'), true); }; });
+      car.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') { ctr(carSel + 1, true); e.preventDefault(); } else if (e.key === 'ArrowLeft') { ctr(carSel - 1, true); e.preventDefault(); } });
+      host.querySelector('.prev').onclick = function () { ctr(carSel - 1, true); };
+      host.querySelector('.next').onclick = function () { ctr(carSel + 1, true); };
+      Array.prototype.forEach.call(host.querySelectorAll('#kdDots i'), function (d) { d.onclick = function () { ctr(NC + (+d.getAttribute('data-i')), true); }; });
       if (ro) { try { ro.disconnect(); } catch (e) {} }
-      if (window.ResizeObserver) { ro = new ResizeObserver(function () { ctr(carSel, false); upd(); }); ro.observe(car); }
-      ctr(carSel, false); upd();
+      carSel = NC + carLog;
+      if (window.ResizeObserver) { ro = new ResizeObserver(function () { ctr(NC + carLog, false); upd(); }); ro.observe(car); }
+      ctr(NC + carLog, false); upd();
     }
     var _rh = renderHub;
     renderHub = function () { var r = _rh.apply(this, arguments); try { buildCar(); } catch (e) { if (window.console) console.error(e); } return r; };
 
     /* ---- dock d'icônes rondes ---- */
     var ITEMS = [
-      ['hub', '道', 'Accueil', 'data-go="hub"'], ['profil', '我', 'Profil', 'data-go="profil"'], ['fr', '友', 'Amis', 'id="kdDockFr"'],
+      ['hub', '道', 'Accueil', 'data-go="hub"'], ['profil', '我', 'Profil', 'data-go="profil"'], ['fr', '友', 'Amis', 'data-go="friends"'],
       ['multi', '盟', 'En ligne', 'data-go="multi"'], ['cards', '札', 'Cartes', 'data-cdalbum="1"'], ['bazar', '店', 'Boutique', 'data-bazar="1"'],
       ['gram', '文', 'Grammaire', ''], ['prog', '進', 'Progrès', 'data-go="prog"']
     ];
@@ -33759,14 +33825,13 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
         return '<button type="button" class="kdd" data-k="' + x[0] + '" ' + x[3] + ' aria-label="' + x[2] + '">' + inner + '</button>';
       }).join('');
       document.body.appendChild(d);
-      document.getElementById('kdDockFr').addEventListener('click', function () { railOpen(true); });
     }
     function dockSync() {
       var d = document.getElementById('kdDock'), nav = document.getElementById('nav'); if (!d || !nav) return;
       d.hidden = nav.hidden; document.body.classList.toggle('kddock', !nav.hidden);
       var cur = null, vs = document.querySelectorAll('section[id^="v"]');
       for (var i = 0; i < vs.length; i++) if (!vs[i].hidden) { cur = vs[i].id; break; }
-      var key = cur === 'vHub' ? 'hub' : (cur === 'vProfil' || cur === 'vBoard' || cur === 'vSettings') ? 'profil' : (cur === 'vMulti' || cur === 'vOnline') ? 'multi' : (cur === 'vHome' && T(function () { return djSub; }, '') === 'prog') ? 'prog' : '';
+      var key = cur === 'vHub' ? 'hub' : (cur === 'vProfil' || cur === 'vBoard' || cur === 'vSettings') ? 'profil' : (cur === 'vMulti' || cur === 'vOnline') ? 'multi' : cur === 'vFriends' ? 'fr' : (cur === 'vHome' && T(function () { return djSub; }, '') === 'prog') ? 'prog' : '';
       Array.prototype.forEach.call(d.querySelectorAll('.kdd'), function (b) { var on = b.getAttribute('data-k') === key; b.classList.toggle('on', on); if (on) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
       var im = document.querySelector('#hAvatar img'), pm = d.querySelector('[data-k="profil"] .kdm');
       if (pm) { var cu = pm.querySelector('img'); if (im && im.getAttribute('src')) { if (!cu) { cu = document.createElement('img'); cu.alt = ''; pm.textContent = ''; pm.appendChild(cu); } if (cu.getAttribute('src') !== im.getAttribute('src')) cu.setAttribute('src', im.getAttribute('src')); } }
@@ -33794,6 +33859,129 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
       }
     } catch (e) { if (window.console) console.error(e); }
   })();
+
+  /* ===== v435 : page Amis (liste, meilleurs amis, demandes, ajout, blocage) ===== */
+  var FRX = { favs: {}, blocks: {}, tab: 'list', q: '', res: null, busy: false, loaded: false };
+  function frxOn() { return !!(user && backend && backend.frLoad); }
+  function frxLoadExtras() {
+    if (!frxOn()) return Promise.resolve();
+    var p1 = backend.frFavLoad ? backend.frFavLoad(user.id).catch(function () { return []; }) : Promise.resolve([]);
+    var p2 = backend.frBlockLoad ? backend.frBlockLoad(user.id).catch(function () { return []; }) : Promise.resolve([]);
+    return Promise.all([p1, p2]).then(function (z) {
+      FRX.favs = {}; (z[0] || []).forEach(function (i) { FRX.favs[i] = 1; });
+      FRX.blocks = {}; (z[1] || []).forEach(function (i) { FRX.blocks[i] = 1; });
+      FRX.loaded = true; frxRefresh();
+    });
+  }
+  function frxRefresh() { try { var v = $('vFriends'); if (v && !v.hidden) renderFriends(); } catch (e) {} try { dockBadge(); } catch (e) {} }
+  var _frb0 = frRefreshBars; frRefreshBars = function () { _frb0.apply(this, arguments); frxRefresh(); };
+  var _frl0 = frLoad; frLoad = function () { return _frl0.apply(this, arguments).then(function () { if (!FRX.loaded) return frxLoadExtras(); }); };
+  var _fri0 = frIncoming; frIncoming = function () { return _fri0().filter(function (r) { return !FRX.blocks[r.other]; }); };
+  var _frs0 = frStart; frStart = function () { FRX.loaded = false; return _frs0.apply(this, arguments); };
+  var _gr0 = goRaw; goRaw = function (tab) { if (tab === 'friends') { if (frxOn() && !FR.loaded) frLoad(); renderFriends(); show('vFriends'); return; } return _gr0.apply(this, arguments); };
+  function frxRow(r, opts) {
+    var id = r.other, nm = frNm(id), av = (FR.names[id] && FR.names[id].avatar) || presAv[id], on = null;
+    (presList || []).forEach(function (x) { if (x.id === id) on = x; });
+    var a = on ? actOf(on.status) : null, fav = !!FRX.favs[id], at = ' data-frid="' + esc(id) + '" data-frname="' + esc(nm) + '"';
+    return '<div class="frx' + (fav ? ' fav' : '') + '"><span class="frxmain"' + pidAttr(id) + '><span class="frxav">' + avatarHTML(avatarOf(nm, av), 'md', id) + '<i class="frxdot' + (on ? ' on' : '') + '"></i></span><span class="frxin"><b>' + esc(nm) + '</b><small>' + (on ? esc(a.ico + ' ' + a.txt) : 'Hors ligne') + '</small></span></span>' +
+      '<span class="frxact"><button type="button" class="frxb star' + (fav ? ' on' : '') + '" data-frx="fav"' + at + ' aria-pressed="' + fav + '" aria-label="' + (fav ? 'Retirer des meilleurs amis' : 'Ajouter aux meilleurs amis') + '">' + (fav ? '★' : '☆') + '</button>' +
+      '<button type="button" class="frxb" data-cheer="' + esc(id) + '|' + esc(nm) + '" aria-label="Encourager ' + esc(nm) + '" title="Encourager">📣</button>' +
+      '<button type="button" class="frxb" data-invite="' + esc(id) + '" aria-label="Défier ' + esc(nm) + '" title="Défier">⚔</button>' +
+      '<button type="button" class="frxb more" data-frx="more"' + at + ' aria-label="Plus d\u2019actions" title="Plus">⋯</button></span></div>';
+  }
+  function frxList() {
+    var fr = frFriends(), favs = fr.filter(function (r) { return FRX.favs[r.other]; }), rest = fr.filter(function (r) { return !FRX.favs[r.other]; });
+    var on = {}; (presList || []).forEach(function (x) { on[x.id] = 1; });
+    function srt(a, b) { return (on[b.other] ? 1 : 0) - (on[a.other] ? 1 : 0) || frNm(a.other).localeCompare(frNm(b.other)); }
+    favs.sort(srt); rest.sort(srt);
+    if (!fr.length) return '<div class="frxempty"><b>Pas encore d\u2019ami ici</b><p>Ajoute des camarades par leur pseudo ou envoie-leur ton lien d\u2019invitation.</p><button type="button" class="btn primary" data-frx="tab" data-t="add">➕ Ajouter un ami</button></div>';
+    return (favs.length ? '<h3 class="frxh">⭐ Meilleurs amis <small>' + favs.length + '</small></h3>' + favs.map(frxRow).join('') : '') +
+      '<h3 class="frxh">Amis <small>' + rest.length + '</small></h3>' + (rest.length ? rest.map(frxRow).join('') : '<p class="small muted">Tous tes amis sont des meilleurs amis ⭐</p>');
+  }
+  function frxReq() {
+    var inc = frIncoming(), out = FR.rows.filter(function (r) { return r.status === 'pending' && r.mine; });
+    function row(r, kind) {
+      var id = r.other, nm = frNm(id), at = ' data-frid="' + esc(id) + '" data-frname="' + esc(nm) + '"';
+      return '<div class="frx"><span class="frxmain"' + pidAttr(id) + '><span class="frxav">' + avatarHTML(avatarOf(nm, (FR.names[id] || {}).avatar), 'md', id) + '</span><span class="frxin"><b>' + esc(nm) + '</b><small>' + (kind === 'in' ? 'Veut devenir ton ami' : 'Demande envoyée') + '</small></span></span><span class="frxact">' +
+        (kind === 'in' ? '<button type="button" class="btn primary sm" data-fra="yes"' + at + '>Accepter</button><button type="button" class="btn sm" data-fra="rm"' + at + '>Refuser</button>' : '<button type="button" class="btn sm" data-fra="rm"' + at + '>Annuler</button>') + '</span></div>';
+    }
+    var bl = Object.keys(FRX.blocks);
+    return '<h3 class="frxh">📩 Reçues <small>' + inc.length + '</small></h3>' + (inc.length ? inc.map(function (r) { return row(r, 'in'); }).join('') : '<p class="small muted">Aucune demande en attente.</p>') +
+      '<h3 class="frxh">📤 Envoyées <small>' + out.length + '</small></h3>' + (out.length ? out.map(function (r) { return row(r, 'out'); }).join('') : '<p class="small muted">Aucune demande envoyée.</p>') +
+      (bl.length ? '<details class="frxbl"><summary>🚫 Joueurs bloqués (' + bl.length + ')</summary>' + bl.map(function (id) { return '<div class="frx"><span class="frxin"><b>' + esc(frNm(id)) + '</b></span><span class="frxact"><button type="button" class="btn sm" data-frx="unblock" data-frid="' + esc(id) + '">Débloquer</button></span></div>'; }).join('') + '</details>' : '');
+  }
+  function frxAdd() {
+    var h = '<div class="frxadd"><label class="frxlab" for="frxQ">Chercher un joueur par pseudo</label><div class="frxsr"><input type="search" id="frxQ" placeholder="Pseudo…" autocomplete="off" autocapitalize="off" spellcheck="false" value="' + esc(FRX.q) + '"><button type="button" class="btn primary" data-frx="search">Chercher</button></div><div id="frxRes">' + frxResHTML() + '</div></div>' +
+      '<div class="frxinv"><h3 class="frxh">Inviter quelqu\u2019un qui n\u2019est pas encore là</h3><p class="small muted">Envoie ton lien : ton ami arrive directement dans le dōjō.</p><div class="frxbtns"><button type="button" class="btn primary" data-frx="share">✉ Partager mon lien</button><button type="button" class="btn" data-frcall="1">📣 Appeler à réviser</button></div></div>';
+    return h;
+  }
+  function frxResHTML() {
+    if (FRX.busy) return '<p class="small muted">Recherche…</p>';
+    if (!FRX.res) return '';
+    if (!FRX.res.length) return '<p class="small muted">Aucun joueur trouvé.</p>';
+    return FRX.res.map(function (p) {
+      var r = frRel(p.id), at = ' data-frid="' + esc(p.id) + '" data-frname="' + esc(p.username) + '"', b;
+      if (FRX.blocks[p.id]) b = '<span class="famtag">Bloqué</span>';
+      else if (!r) b = '<button type="button" class="btn primary sm" data-fra="add"' + at + '>➕ Ajouter</button>';
+      else if (r.status === 'accepted') b = '<span class="famtag ok">Ami ✓</span>';
+      else if (r.mine) b = '<span class="famtag">⏳ Envoyée</span>';
+      else b = '<button type="button" class="btn primary sm" data-fra="yes"' + at + '>Accepter</button>';
+      return '<div class="frx"><span class="frxmain"' + pidAttr(p.id) + '><span class="frxav">' + avatarHTML(avatarOf(p.username, p.avatar), 'md', p.id) + '</span><span class="frxin"><b>' + esc(p.username) + '</b><small>Niveau ' + (typeof levelOf === 'function' ? levelOf(p.xp || 0) : '') + '</small></span></span><span class="frxact">' + b + '</span></div>';
+    }).join('');
+  }
+  function renderFriends() {
+    var host = $('friendsBody'); if (!host) return;
+    if (!user) { host.innerHTML = ''; return; }
+    if (!frxOn()) { host.innerHTML = '<div class="panel frxoff"><h3 class="frxh">Amis</h3><p class="muted">La liste d\u2019amis est disponible en mode en ligne. Connecte-toi à ton compte pour ajouter des amis, les encourager et les défier.</p></div>'; return; }
+    var inc = frIncoming().length, n = frFriends().length, on = 0; frFriends().forEach(function (r) { (presList || []).forEach(function (x) { if (x.id === r.other) on++; }); });
+    var tabs = [['list', 'Amis', n], ['req', 'Demandes', inc], ['add', 'Ajouter', 0]];
+    var body = FRX.tab === 'req' ? frxReq() : FRX.tab === 'add' ? frxAdd() : frxList();
+    var keepQ = document.activeElement && document.activeElement.id === 'frxQ';
+    host.innerHTML = '<div class="frxhead"><span class="frxseal" aria-hidden="true">友</span><div><b>Mes amis</b><small>' + n + ' ami' + (n > 1 ? 's' : '') + ' · ' + on + ' en ligne</small></div></div>' +
+      '<div class="seg gsegbar frxtabs" role="tablist">' + tabs.map(function (t) { return '<button type="button" role="tab" data-frx="tab" data-t="' + t[0] + '" aria-selected="' + (FRX.tab === t[0]) + '">' + t[1] + (t[2] ? ' <em class="frxn">' + t[2] + '</em>' : '') + '</button>'; }).join('') + '</div>' +
+      '<div class="frxbody">' + body + '</div>';
+    if (keepQ) { var q = $('frxQ'); if (q) { q.focus(); try { q.setSelectionRange(q.value.length, q.value.length); } catch (e) {} } }
+  }
+  function frxSearch() {
+    var q = $('frxQ') ? $('frxQ').value.trim() : FRX.q; FRX.q = q;
+    if (q.length < 2) { toast('Tape au moins 2 lettres'); return; }
+    if (!backend.frSearch) return;
+    FRX.busy = true; var r = $('frxRes'); if (r) r.innerHTML = frxResHTML();
+    backend.frSearch(q).then(function (rows) { FRX.res = rows.filter(function (p) { return p.id !== user.id; }); }, function () { FRX.res = []; toast('Recherche impossible pour le moment'); }).then(function () { FRX.busy = false; var r2 = $('frxRes'); if (r2) r2.innerHTML = frxResHTML(); });
+  }
+  function frxMore(btn) {
+    var row = btn.closest('.frx'), old = row.querySelector('.frxmenu'); if (old) { old.remove(); return; }
+    var id = btn.getAttribute('data-frid'), nm = btn.getAttribute('data-frname'), at = ' data-frid="' + esc(id) + '" data-frname="' + esc(nm) + '"';
+    row.insertAdjacentHTML('beforeend', '<div class="frxmenu"><button type="button" class="btn sm" data-frx="remove"' + at + '>Retirer de mes amis</button><button type="button" class="btn sm danger" data-frx="block"' + at + '>🚫 Bloquer</button></div>');
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-frx]') : null; if (!b || !frxOn()) return;
+    e.preventDefault(); e.stopPropagation();
+    var a = b.getAttribute('data-frx'), id = b.getAttribute('data-frid'), nm = b.getAttribute('data-frname') || (id ? frNm(id) : '');
+    if (a === 'tab') { FRX.tab = b.getAttribute('data-t'); renderFriends(); }
+    else if (a === 'search') frxSearch();
+    else if (a === 'share') inviteShare();
+    else if (a === 'more') frxMore(b);
+    else if (a === 'fav') {
+      var on = !FRX.favs[id]; if (on) FRX.favs[id] = 1; else delete FRX.favs[id]; renderFriends();
+      if (backend.frFavSet) backend.frFavSet(user.id, id, on).catch(function () { toast('Impossible d\u2019enregistrer le favori'); });
+      toast(on ? '⭐ ' + nm + ' est dans tes meilleurs amis' : nm + ' n\u2019est plus dans tes meilleurs amis');
+    } else if (a === 'remove') {
+      var r = frRel(id); if (!r) return; b.disabled = true;
+      backend.frRemove(r.rid).then(function () { delete FRX.favs[id]; if (backend.frFavSet) backend.frFavSet(user.id, id, false).catch(function () {}); toast(nm + ' a été retiré de tes amis'); }).catch(function () { toast('Action impossible pour le moment'); }).then(function () { return frLoad(); });
+    } else if (a === 'block') {
+      if (!window.confirm('Bloquer ' + nm + ' ? Il sera retiré de tes amis et ses demandes seront ignorées.')) return;
+      var r2 = frRel(id); b.disabled = true; FRX.blocks[id] = 1; delete FRX.favs[id];
+      Promise.all([r2 ? backend.frRemove(r2.rid) : null, backend.frBlockSet ? backend.frBlockSet(user.id, id, true) : null, backend.frFavSet ? backend.frFavSet(user.id, id, false) : null].map(function (p) { return p && p.catch ? p.catch(function () {}) : p; })).then(function () { toast('🚫 ' + nm + ' est bloqué'); return frLoad(); });
+    } else if (a === 'unblock') {
+      delete FRX.blocks[id]; if (backend.frBlockSet) backend.frBlockSet(user.id, id, false).catch(function () {}); renderFriends(); toast('Joueur débloqué');
+    }
+  }, true);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Enter' && e.target && e.target.id === 'frxQ') { e.preventDefault(); frxSearch(); } });
+  function dockBadge() {
+    var d = document.querySelector('#kdDock [data-k="fr"]'); if (!d) return; var n = frxOn() && FR.loaded ? frIncoming().length : 0, m = d.querySelector('.kdn');
+    if (n) { if (!m) { m = document.createElement('i'); m.className = 'kdn'; d.querySelector('.kdm').parentNode.insertBefore(m, d.querySelector('.kdl')); } m.textContent = n; } else if (m) m.remove();
+  }
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
