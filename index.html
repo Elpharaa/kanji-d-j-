@@ -6056,6 +6056,29 @@ body .status .slvl { font-size: 12px !important; color: var(--wa-wood2) !importa
 body .status .slvl b { font-size: 12.5px !important; color: #b8325f !important; }
 body .status .sheart { display: none !important; }
 @media (min-width: 768px) { body .status .slv { flex: 0 1 auto; margin-right: 12px; } body .status .scoin { margin-left: auto; } }
+
+/* v437 : tuiles plus compactes (fond visible), carrousel pleine largeur, plus de panneau Amis en ligne */
+#rail, #railTab { display: none !important; }
+body.hasrail { --railw: 0px !important; }
+body.inapp .app { padding-right: 28px !important; }
+:root { --kw: min(60vw, 232px); }
+@media (min-width: 768px) { :root { --kw: 272px; } }
+html, body { overflow-x: clip; }
+#hubCar { width: 100vw; max-width: 100vw; margin-left: calc(50% - 50vw); margin-top: 2vh; contain: none; }
+.kdcar { gap: 18px; padding: 44px calc(50vw - var(--kw) / 2) 44px; }
+.kdc { height: calc(var(--kw) * .76); border-radius: 20px; border-width: 3px; transform: scale(.88); }
+.kdc.sel { transform: scale(1.14); }
+.kdart { position: absolute; inset: 0; }
+.kdc { position: relative; display: block; }
+.kdlab { position: absolute; left: 0; right: 0; bottom: 0; padding: 7px 12px 9px; gap: 0; }
+.kdlab b { font-size: 1.02rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.kdlab small { font-size: .68rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.kdkj { font-size: clamp(3.6rem, 15vw, 5rem); transform: translateY(-14%); }
+.kdpat { height: 38%; }
+.kdbadge { top: 8px; right: 8px; }
+.kdots { margin-top: -14px; }
+.kdcarb { top: 44%; }
+.kdcarb.prev { left: 3%; } .kdcarb.next { right: 3%; }
 /* ===== v433 pages : washi ===== */
 /* onglets segmentés */
 body .seg, body .gsegbar { background: #fff3e8 !important; border: 2px solid var(--wa-gold) !important; border-radius: 16px !important; box-shadow: 0 3px 0 rgba(122, 75, 58, .22) !important; padding: 3px !important; }
@@ -31808,7 +31831,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v436', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v437', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
