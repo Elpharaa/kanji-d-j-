@@ -5987,6 +5987,11 @@ body #onlineBar .odot { background: #2f9a5a; }
   body .status .slvl { line-height: 1.3 !important; }
   body .status .slvl b { line-height: 1.2; }
 }
+/* panneau amis : textes lisibles sur fond clair */
+body .rail #railList>p, body .rail #railFeed>p, body .rail #railList .muted, body .rail #railFeed>.muted, body .rail .railscroll>.muted, body .rail .frempty, body .rail .muted, body .rail p, body .rail .small { color: #6a4233 !important; }
+body .rail .btn.primary { color: #fff8ee !important; }
+body .rail .orow, body .rail .fr { color: var(--wa-wood) !important; }
+body .railtab { background: linear-gradient(#fffaf2, #fbe3da) !important; border-color: var(--wa-gold) !important; color: var(--wa-wood) !important; }
 
 </style>
 
@@ -31642,7 +31647,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v430', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v431', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
