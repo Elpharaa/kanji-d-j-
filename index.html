@@ -5940,6 +5940,23 @@ html.lite .nfsw{animation:none}@media (prefers-reduced-motion:reduce){.nfsw{anim
 .bar { background: linear-gradient(#fffaf2, #fbe7dd) !important; color: var(--wa-wood) !important; border-bottom: 2px solid var(--wa-gold) !important; box-shadow: 0 4px 14px rgba(122, 75, 58, .18) !important; }
 .bar .brand { color: var(--wa-wood) !important; }
 .bar .wk { background: rgba(255, 255, 255, .75) !important; color: var(--wa-wood2) !important; border-color: rgba(196, 154, 58, .6) !important; }
+/* ===== mobile : barre du haut + dock du bas ===== */
+@media (max-width: 767px) {
+  body .status { gap: 9px !important; padding: 0 10px !important; align-items: center !important; }
+  body .status #hAvatar, body .status .sav { width: 38px !important; height: 38px !important; min-width: 38px; flex: none !important; display: grid !important; place-items: center; border-radius: 50% !important; overflow: visible; box-shadow: 0 0 0 2px var(--wa-gold), 0 2px 6px rgba(122, 75, 58, .25) !important; align-self: center !important; justify-self: auto !important; line-height: 0; position: relative; }
+  body .status .sav > *, body .status .sav .av { width: 38px !important; height: 38px !important; border-radius: 50% !important; object-fit: cover; }
+  body .status .sav .frmw { width: 38px !important; height: 38px !important; display: block; }
+  body .status .slv { gap: 4px !important; justify-content: center; min-width: 0; }
+  body .status .slvl { font-size: 13px !important; line-height: 1.1 !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  body .status .track { height: 7px !important; border-radius: 4px !important; }
+  body .status .sstat, body .status .coinpill { min-height: 32px; }
+  body .status .romtog { width: auto !important; min-width: 36px; height: 36px !important; padding: 0 12px; border-radius: 99px !important; font-weight: 800; font-size: .85rem !important; }
+  /* dock */
+  body .nav { background: linear-gradient(#fffaf2, #fbe7dd) !important; border-top: 2px solid var(--wa-gold) !important; box-shadow: 0 -4px 16px rgba(122, 75, 58, .2) !important; }
+  body .nav .tab { color: var(--tc, #8a4b63) !important; }
+  body .nav .tab .ni { color: var(--tc, #8a4b63); }
+  body .nav .tab:hover { color: var(--wa-wood) !important; }
+}
 
 </style>
 
@@ -31595,7 +31612,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v427', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v428', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
