@@ -5881,6 +5881,17 @@ html.lite .nfsw{animation:none}@media (prefers-reduced-motion:reduce){.nfsw{anim
   .navfall svg{filter:saturate(1.05)}
 }
 
+/* v426 : bouton Profil — la bannière seule, sans voile */
+@media (min-width:768px){
+  .navban .pmban::after{display:none!important}
+  body.inapp .nav .tab[data-tab="profil"].hasban .nl{color:#fff!important;text-shadow:0 1px 3px rgba(0,0,0,.85),0 0 8px rgba(0,0,0,.55)}
+  body.inapp .nav .tab[data-tab="profil"].hasban{border-color:#e8c46a!important}
+}
+@media (min-width:768px){
+  body.inapp .nav .tab[data-tab="profil"] .niw{width:44px!important;height:44px!important;border-radius:50%!important;overflow:visible}
+  body.inapp .nav .tab[data-tab="profil"] .niw img.navav,body.inapp .nav .tab[data-tab="profil"][aria-current] .niw img.navav,body.inapp .nav .tab[data-tab="profil"]:not([aria-current="page"]) .niw img.navav{width:44px!important;height:44px!important;border-radius:50%!important;border:3px solid #e8c46a!important;object-fit:cover;box-shadow:0 2px 6px rgba(0,0,0,.4)!important}
+}
+
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -31534,7 +31545,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v425', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v426', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
