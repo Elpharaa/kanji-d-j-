@@ -22324,7 +22324,7 @@ body .pfbtn::before, body .pfbtn::after { display: none !important; }
     return '<div class="gdgrid">' + G.map(function (it) {
       if (it.length === 1) return '<div class="gdh">' + esc(it[0]) + '</div>';
       return '<section class="gdrow"><span class="gdsl" aria-hidden="true">' + it[0] + '</span><div><h4>' + esc(it[1]) + '</h4><p>' + esc(it[2]) + '</p>' + (it[3] ? '<div class="gdc">' + it[3].map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('') + '</div>' : '') + '</div></section>';
-    }).join('') + '<div class="gdfoot"><button type="button" class="btn primary" data-tour="replay">▶ Lancer la visite guidée</button><button type="button" class="btn" data-tour="level">🎯 Choisir mon niveau</button><a class="btn" href="https://discord.gg/fHxsuRBBHW" target="_blank" rel="noopener noreferrer">💬 Serveur Discord</a></div></div>';
+    }).join('') + '<div class="gdfoot"><button type="button" class="btn primary" data-tour="replay">▶ Lancer la visite guidée</button><button type="button" class="btn" data-tour="level">🎯 Choisir mon niveau</button></div></div>';
   }
   function guideOpen() { openModal('Comment ça marche ?', guideHTML(), 'wide guidemodal'); }
   document.addEventListener('click', function (e) {
@@ -31808,7 +31808,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v435', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v436', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
