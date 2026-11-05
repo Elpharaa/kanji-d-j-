@@ -5841,6 +5841,27 @@ html.lite .nfsw{animation:none}@media (prefers-reduced-motion:reduce){.nfsw{anim
 .imgsz{background:#fffaf0;color:#2b2150;border:1.5px solid #e8c46a;border-radius:12px;padding:10px 14px;margin:8px 0;font-size:.9rem;box-sizing:border-box;width:100%}
 .imgsz b{color:#2b2150}.imgsz ul{margin:6px 0;padding-left:18px}.imgsz p{margin:4px 0 0;color:#5a4a86}
 
+/* v424 : menu latéral PC — cartes washi, sceaux à kanji, sans traits de fond ni violet */
+@media (min-width:768px){
+  body.inapp .nav{background-image:linear-gradient(180deg,rgba(255,248,238,.86),rgba(252,228,236,.82))!important;background-color:transparent!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-right:3px solid #e0c27a!important;box-shadow:6px 0 24px rgba(80,40,60,.18)!important}
+  body.inapp .nav .tab{background:linear-gradient(#fffdf6,#f6ead2)!important;border:1.5px solid #e2c985!important;box-shadow:0 2px 0 #d7b866,0 5px 12px rgba(90,50,40,.14)!important;gap:14px;height:60px;min-height:60px;padding:0 12px;border-radius:16px;color:#3a2a44}
+  body.inapp .nav .tab:hover{background:linear-gradient(#ffffff,#fbf0da)!important;transform:translateY(-1px)}
+  body.inapp .nav .tab[aria-current="page"]{background:linear-gradient(#fff6f8,#fbd9e4)!important;border-color:#d0586f!important;box-shadow:0 2px 0 #b5405a,0 7px 16px rgba(180,60,90,.28)!important;transform:none}
+  body.inapp .nav .tab .nl{font-family:var(--font-display);font-size:1.12rem!important;font-weight:700!important;letter-spacing:.04em;color:#3a2a44!important}
+  body.inapp .nav .tab[aria-current="page"] .nl{color:#a42a56!important}
+  body.inapp .nav .tab .niw>svg.ni{display:none!important}
+  body.inapp .nav .tab .niw::before{content:"";width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:var(--sc,#c9472e);color:#fff;font:700 1.45rem/1 var(--font-display);box-shadow:inset 0 0 0 2px rgba(255,255,255,.4),0 2px 0 rgba(0,0,0,.22);transform:rotate(-3deg)}
+  body.inapp .nav .tab[aria-current="page"] .niw::before{transform:rotate(0) scale(1.06)}
+  body.inapp .nav .tab[data-tab="hub"] .niw::before{content:"門";--sc:#d0586f}
+  body.inapp .nav .tab[data-tab="story"] .niw::before{content:"旅";--sc:#3f8f8a}
+  body.inapp .nav .tab[data-tab="home"] .niw::before{content:"場";--sc:#c9472e}
+  body.inapp .nav .tab[data-tab="clz"] .niw::before{content:"話";--sc:#c9892b}
+  body.inapp .nav .tab[data-tab="prog"] .niw::before{content:"進";--sc:#4f8a5a}
+  body.inapp .nav .tab[data-tab="profil"] .niw::before{content:"像";--sc:#8a5a8c}
+  body.inapp .nav .tab[data-tab="profil"] .niw:has(img)::before{display:none}
+  body.inapp .nav .tab .niw img{width:40px;height:40px;border-radius:10px;object-fit:cover;border:2px solid #e2c985;box-shadow:0 2px 0 rgba(0,0,0,.2)}
+}
+
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -31481,7 +31502,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v423', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v424', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
