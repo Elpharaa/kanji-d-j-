@@ -6106,6 +6106,16 @@ body .status .romtog { order: 5; margin-left: 10px; background: linear-gradient(
   body .status .scoin { margin-left: auto !important; }
   body .status .gear { order: 6; }
 }
+
+/* v445 : barre du haut minimale = logo + pièces */
+body .status { background: transparent !important; box-shadow: none !important; border: 0 !important; pointer-events: none; padding: 0 12px !important; }
+body .status::after { display: none !important; }
+body .status::before { content: "Kanji Dōjō"; flex: none; height: 44px; padding: 0 16px 0 52px; margin: 0 !important; display: flex; align-items: center; border: 0 !important; border-radius: 99px; background: url(data:image/webp;base64,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) 6px center / 38px auto no-repeat, linear-gradient(#fffdf8, #fdeee4); box-shadow: 0 0 0 2px var(--wa-gold), 0 4px 12px rgba(122, 75, 58, .25); font: 700 1.05rem var(--font-brush, serif); color: var(--wa-wood); letter-spacing: .03em; }
+body .status #hAvatar, body .status .slv, body .status #kdFlame, body .status .romtog, body .status .gear, body .status .sheart { display: none !important; }
+body .status .scoin { display: flex !important; order: 9 !important; margin-left: auto !important; pointer-events: auto; }
+body .status .scoin .coinpill, body .status .scoin > * { min-height: 44px !important; padding: 4px 18px 4px 6px !important; gap: 8px; font-size: 1.3rem !important; font-weight: 800 !important; border-radius: 99px !important; background: linear-gradient(#fffdf8, #ffefc9) !important; border: 2px solid var(--wa-gold) !important; box-shadow: 0 4px 12px rgba(122, 75, 58, .25) !important; color: #4a2a1f !important; }
+body .status .scoin img, body .status .scoin svg, body .status .scoin .ico { width: 32px !important; height: 32px !important; }
+@media (max-width: 480px) { body .status::before { font-size: .95rem; padding-right: 12px; } body .status .scoin .coinpill, body .status .scoin > * { font-size: 1.15rem !important; } }
 /* ===== v433 pages : washi ===== */
 /* onglets segmentés */
 body .seg, body .gsegbar { background: #fff3e8 !important; border: 2px solid var(--wa-gold) !important; border-radius: 16px !important; box-shadow: 0 3px 0 rgba(122, 75, 58, .22) !important; padding: 3px !important; }
@@ -6236,6 +6246,49 @@ body .status .scoin { order: 5 !important; } body .status .romtog { order: 6 !im
 #kdStrk .kdwk { display: flex; gap: 5px; flex: none; } #kdStrk .kdwk span { display: grid; justify-items: center; gap: 2px; } #kdStrk .kdwk i { width: 12px; height: 12px; border-radius: 50%; background: rgba(122, 75, 58, .18); } #kdStrk .kdwk .on i { background: radial-gradient(circle at 35% 30%, #ffd04a, #ff7a1f); } #kdStrk .kdwk .now i { outline: 2px solid var(--wa-gold); outline-offset: 1px; } #kdStrk .kdwk em { font-style: normal; font-size: 9px; color: var(--wa-wood2); }
 @media (max-width: 480px) { #kdStrk { margin: 8px 12px 0; max-width: none; gap: 8px; } #kdStrk .kdwk { display: none; } }
 #pfStrk { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; padding-top: 10px; margin-top: 4px; border-top: 1px dashed rgba(196, 154, 58, .6); font-size: 13px; color: var(--wa-wood2); } #pfStrk .kdflm { width: 18px; height: 22px; flex: none; }
+/* v444 cartes façon TCG Pocket */
+.kdpk { width: 100%; height: 100%; display: block; overflow: visible; filter: drop-shadow(0 10px 14px rgba(122, 40, 70, .4)); }
+.kdshn { animation: kdShine 3.4s ease-in-out infinite; } @keyframes kdShine { 0% { transform: translateX(0); } 55%, 100% { transform: translateX(330px); } }
+.kdcm { display: grid; justify-items: center; gap: 12px; padding: 12px 8px 16px; border-radius: 18px; background: linear-gradient(165deg, #e4d4f6 0%, #f8d8e6 48%, #fff4ec 48.2%, #fdeee4 100%); }
+.kdbub { position: relative; width: 100%; max-width: 440px; padding: 8px 0; border-radius: 18px; background: #fff; box-shadow: 0 4px 12px rgba(80, 40, 90, .2); overflow: hidden; margin-bottom: 14px; }
+.kdbub::after { content: ""; position: absolute; left: 50%; bottom: -1px; width: 18px; height: 10px; background: #fff; transform: translateX(-50%); clip-path: polygon(0 0, 100% 0, 50% 100%); }
+.kdbs { display: flex; gap: 8px; width: max-content; animation: kdMq 34s linear infinite; padding: 0 8px; } .kdbub:hover .kdbs { animation-play-state: paused; } @keyframes kdMq { to { transform: translateX(-50%); } }
+.kdbc { width: 72px; flex: none; } .kdbc .cdcard { width: 100%; }
+.kdpkw { position: relative; width: min(52vw, 210px); aspect-ratio: 2 / 3; touch-action: none; user-select: none; -webkit-user-select: none; }
+.kdpkw.static { animation: kdFloat 3.6s ease-in-out infinite; } @keyframes kdFloat { 50% { transform: translateY(-8px) rotate(-1.5deg); } }
+.kdpkw.ready { cursor: pointer; } .kdfree { position: absolute; right: -10px; top: 8px; padding: 3px 9px; border-radius: 99px; background: #ffd04a; color: #4a2a1f; font: 800 12px sans-serif; transform: rotate(8deg); box-shadow: 0 2px 6px rgba(0, 0, 0, .3); }
+.kdfbtn { width: min(100%, 320px); } .kdwait { text-align: center; color: var(--wa-wood, #5b3a2c); font-size: 14px; } .kdwait small { display: block; opacity: .7; }
+.kdoffs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; width: 100%; max-width: 420px; }
+.kdoff { position: relative; display: grid; gap: 1px; justify-items: start; padding: 9px 12px; border-radius: 14px; border: 2px solid var(--wa-gold, #c49a3a); background: linear-gradient(#fff, #fff1e8); color: #4a2a1f; text-align: left; cursor: pointer; }
+.kdoff b { font: 700 .95rem var(--font-brush, serif); } .kdoff small { opacity: .7; } .kdoff span { font-weight: 800; color: #b8325f; } .kdoff i { position: absolute; right: 8px; top: 8px; font-style: normal; font-size: 11px; font-weight: 800; color: #fff; background: #d8527f; border-radius: 99px; padding: 1px 7px; }
+.kdoff:disabled { opacity: .5; cursor: not-allowed; } .kdcol { width: min(100%, 320px); } .kdinfo { width: 100%; max-width: 420px; font-size: 13px; color: #5b3a2c; } .kdinfo summary { cursor: pointer; text-align: center; opacity: .8; }
+/* ouverture : sachet à découper */
+.kdcut { position: relative; display: grid; justify-items: center; gap: 16px; padding: 22px 8px 18px; min-height: 480px; border-radius: 18px; background: radial-gradient(circle at 50% 38%, #fff7fa, #f7cfe0 55%, #d9c3f0); overflow: hidden; }
+.kdglow { position: absolute; left: 50%; top: 42%; width: 120%; aspect-ratio: 1; transform: translate(-50%, -50%) scale(.2); border-radius: 50%; background: radial-gradient(circle, var(--bc), transparent 62%); opacity: 0; pointer-events: none; }
+.kdcut.done .kdglow { animation: kdGlow 1.2s ease-out forwards; } @keyframes kdGlow { 0% { opacity: .9; transform: translate(-50%, -50%) scale(.2); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.3); } }
+.kdcuthint { margin: 0; text-align: center; font: 700 .95rem var(--font-brush, serif); color: #7a3a55; transition: opacity .25s; animation: kdPulse 1.6s ease-in-out infinite; } @keyframes kdPulse { 50% { transform: scale(1.04); } }
+.kdcut .kdpkw { width: min(60vw, 230px); cursor: grab; } .kdcut .kdpkw.drag { cursor: grabbing; }
+.kdph { position: absolute; inset: 0; } .kdph.bot { clip-path: inset(13.4% -20px -20px -20px); } .kdph.top { clip-path: inset(-20px -20px 86.6% -20px); transform-origin: 100% 100%; transition: transform .25s cubic-bezier(.3, 1.6, .5, 1); z-index: 2; } .kdpkw.drag .kdph.top { transition: none; }
+.kdline { position: absolute; left: 6%; right: 6%; top: 13.4%; height: 3px; z-index: 3; pointer-events: none; } .kdline u { position: absolute; left: 0; top: 0; height: 100%; width: 0; background: linear-gradient(90deg, #ffe27a, #fff); box-shadow: 0 0 10px 2px #ffe27a; border-radius: 3px; } .kdline i { position: absolute; left: 0; top: -12px; font-style: normal; font-size: 18px; transform: translateX(-50%) rotate(90deg); filter: drop-shadow(0 0 4px #fff); }
+.kdcut.done .kdph.top { animation: kdFly .9s cubic-bezier(.3, .1, .6, 1) forwards; } @keyframes kdFly { to { transform: translate(40px, -280px) rotate(40deg); opacity: 0; } }
+.kdcut.done .kdph.bot { animation: kdDrop 1s .15s ease-in forwards; } @keyframes kdDrop { 25% { transform: scale(1.06); filter: brightness(1.4); } 100% { transform: translateY(60px) scale(.92); opacity: 0; } }
+.kdcut.done .kdcutbtns, .kdcut.done .kdcuthint { opacity: 0; pointer-events: none; } .kdcutbtns { display: flex; gap: 8px; transition: opacity .2s; }
+.kdburst { position: absolute; left: 50%; top: 13%; width: 0; height: 0; pointer-events: none; z-index: 4; } .kdburst i { position: absolute; font-style: normal; font-size: 18px; color: #f06a95; opacity: 0; animation: kdPet 1.1s var(--dl) ease-out forwards; } .kdburst i:nth-child(4n+1) { color: #ffd04a; }
+@keyframes kdPet { 0% { opacity: 1; transform: translate(0, 0) rotate(0); } 100% { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--r)); } }
+/* classeur en pages */
+.kdbind { position: relative; margin: 8px 0; padding: 10px 10px 10px 22px; border-radius: 14px; background: linear-gradient(135deg, #8a5a44, #5b3a2c); box-shadow: 0 6px 14px rgba(60, 30, 20, .35), inset 0 0 0 2px rgba(255, 220, 150, .35); }
+.kdrings { position: absolute; left: 4px; top: 12px; bottom: 12px; width: 12px; background: radial-gradient(circle, #e6e0d6 0 4px, #8a8f98 5px 6px, transparent 7px) 0 0 / 12px 46px repeat-y; }
+.kdpg { padding: 8px; border-radius: 8px; background: linear-gradient(#fffaf2, #fbeadd); transform-origin: left center; } .kdpg[data-t="1"] { animation: kdTurnN .45s ease-out; } .kdpg[data-t="-1"] { transform-origin: right center; animation: kdTurnP .45s ease-out; }
+@keyframes kdTurnN { from { transform: perspective(900px) rotateY(-75deg); opacity: .2; } } @keyframes kdTurnP { from { transform: perspective(900px) rotateY(75deg); opacity: .2; } }
+.kdpgh { display: flex; justify-content: space-between; align-items: baseline; padding: 0 4px 6px; color: #5b3a2c; font-size: 13px; } .kdpgh b { font: 700 .95rem var(--font-brush, serif); }
+.kdpgrid { grid-template-columns: repeat(3, 1fr); }
+.kdnav { display: flex; align-items: center; justify-content: center; gap: 12px; } .kdnav .btn { width: 44px; height: 40px; padding: 0; font-size: 1.4rem; } .kdnav .btn:disabled { opacity: .35; } .kddots { display: flex; gap: 5px; } .kddots i { width: 7px; height: 7px; border-radius: 50%; background: rgba(122, 75, 58, .25); } .kddots i.on { background: #d8527f; } .kdpn { font-size: 13px; color: #5b3a2c; }
+@media (min-width: 600px) { .kdbind { padding-left: 30px; } }
+/* holographique (Rare et au-dessus) */
+body .cdcard.rar-r::after, body .cdcard.rar-e::after, body .cdcard.rar-l::after, body .cdcard.rar-m::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 5; opacity: 0; transition: opacity .25s; mix-blend-mode: color-dodge; background: radial-gradient(circle at var(--hx, 50%) var(--hy, 30%), rgba(255, 255, 255, .8), transparent 45%), linear-gradient(115deg, rgba(255, 0, 150, .5), rgba(255, 220, 0, .5), rgba(0, 255, 200, .5), rgba(80, 120, 255, .5), rgba(255, 0, 150, .5)); background-size: 100% 100%, 300% 100%; background-position: 0 0, var(--hx, 50%) 0; }
+body .cdcard.rar-r.holo::after { opacity: .3; } body .cdcard.rar-e.holo::after { opacity: .45; } body .cdcard.rar-l.holo::after, body .cdcard.rar-m.holo::after { opacity: .6; }
+body .cdcard.rar-e::after, body .cdcard.rar-l::after, body .cdcard.rar-m::after { opacity: .12; } body .cdcard.rar-e.holo::after { opacity: .45; } body .cdcard.rar-l.holo::after, body .cdcard.rar-m.holo::after { opacity: .6; }
+@media (prefers-reduced-motion: reduce) { .kdshn, .kdpkw.static, .kdbs, .kdcuthint { animation: none !important; } }
 
 </style>
 
@@ -23601,7 +23654,7 @@ body .status .scoin { order: 5 !important; } body .status .romtog { order: 6 !im
     return h + '</div><div class="knact"><button type="button" class="btn primary" data-kn="group">S\'entraîner sur ce groupe</button>' + (kn.gi + 1 < knList(kn.sc).length ? '<button type="button" class="btn" data-kn="next">Groupe suivant ›</button>' : '') + '</div>';
   }
   function knChartHTML(L) {
-    var h = knBack('home', 'Retour') + '<p class="small muted">Touche un kana pour l\'entendre ou voir ses traits. Vert : maîtrisé · rose : en cours.</p><div class="kncm"><button type="button" class="btn' + (kn.cm !== 'trace' ? ' primary' : '') + '" data-kn="cmode" data-v="say">🔊 Écouter</button><button type="button" class="btn' + (kn.cm === 'trace' ? ' primary' : '') + '" data-kn="cmode" data-v="trace">筆 Traits</button><button type="button" class="btn' + (kn.cm === 'write' ? ' primary' : '') + '" data-kn="cmode" data-v="write">✍️ S\'entraîner</button></div>';
+    var h = knBack('home', 'Retour') + '<p class="small muted">Touche un kana pour l\'entendre ou voir ses traits. Vert : maîtrisé · rose : en cours.</p>';
     KN_GROUPS.forEach(function (sec, si) {
       h += '<h4 class="knh">' + esc(sec[0]) + '</h4><div class="knchart">';
       L.forEach(function (g) {
@@ -31897,7 +31950,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v443', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v446', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -34113,6 +34166,133 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
     };
     setInterval(renderStreak, 2000);
     setTimeout(renderStreak, 600);
+  })();
+
+  /* ===== v444 : section Cartes façon TCG Pocket (sachet à découper, révélation, classeur en pages) ===== */
+  (function () {
+    var cardPage = 0, cardTurn = 0, kdBusy = false, PER = 9, drag = null, _cp = cardPanel, _ca = cardAction, _cso = cardStartOpen;
+    function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+    function zig(y, flip, n) { var a = [], i; for (i = 0; i <= 20; i++) a.push((flip ? 200 - i * 10 : i * 10) + ',' + (y + ((i % 2) ? (flip ? -7 : 7) : 0))); return a.join('L'); }
+    var packN = 0;
+    function packSVG() {
+      var u = 'pk' + (++packN), rid = '', i, ridges = '', ridges2 = '', petals = '';
+      for (i = 6; i < 200; i += 7) { ridges += '<path d="M' + i + ' 8V34"/>'; ridges2 += '<path d="M' + i + ' 266V292"/>'; }
+      for (i = 0; i < 5; i++) petals += '<path transform="rotate(' + (i * 72) + ')" d="M0,-4C-15,-16 -12,-34 0,-29C12,-34 15,-16 0,-4Z" fill="#fff4f7" stroke="#d8527f" stroke-width="1.6"/>';
+      return '<svg class="kdpk" viewBox="0 0 200 300" aria-hidden="true"><defs>' +
+        '<linearGradient id="' + u + 'a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffdfe9"/><stop offset=".55" stop-color="#f6a9c4"/><stop offset="1" stop-color="#df5d88"/></linearGradient>' +
+        '<linearGradient id="' + u + 'g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b8861a"/><stop offset=".5" stop-color="#ffe27a"/><stop offset="1" stop-color="#b8861a"/></linearGradient>' +
+        '<linearGradient id="' + u + 's" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".65"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>' +
+        '<clipPath id="' + u + 'c"><path d="M' + zig(3, false) + 'L' + zig(297, true) + 'Z"/></clipPath></defs>' +
+        '<path d="M' + zig(3, false) + 'L' + zig(297, true) + 'Z" fill="url(#' + u + 'a)" stroke="#8a2f52" stroke-width="2"/>' +
+        '<g clip-path="url(#' + u + 'c)"><rect y="0" width="200" height="38" fill="#e07a9e" opacity=".55"/><rect y="262" width="200" height="38" fill="#e07a9e" opacity=".55"/>' +
+        '<g stroke="#8a2f52" stroke-opacity=".35" stroke-width="1.4">' + ridges + ridges2 + '</g>' +
+        '<path d="M0 40H200" stroke="#b8861a" stroke-width="1.4" stroke-dasharray="5 4" opacity=".9"/>' +
+        '<rect x="14" y="54" width="172" height="204" rx="12" fill="none" stroke="url(#' + u + 'g)" stroke-width="2.6"/><rect x="20" y="60" width="160" height="192" rx="9" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="1"/>' +
+        '<g opacity=".28" fill="none" stroke="#fff" stroke-width="1.6"><circle cx="100" cy="140" r="64"/><circle cx="100" cy="140" r="52"/><circle cx="100" cy="140" r="40"/></g>' +
+        '<g transform="translate(100 140) scale(1.55)">' + petals + '<circle r="6" fill="#f3b83a" stroke="#b8861a" stroke-width="1.4"/></g>' +
+        '<rect x="34" y="206" width="132" height="32" rx="6" fill="#4a2a1f" stroke="url(#' + u + 'g)" stroke-width="1.6"/><text x="100" y="224" font-size="14" text-anchor="middle" fill="#ffe27a" font-family="serif" font-weight="700" letter-spacing="1.5">KANJI DŌJŌ</text><text x="100" y="234" font-size="7" text-anchor="middle" fill="#fbd9e4" font-family="sans-serif" letter-spacing="1.2">BOOSTER · 3 CARTES</text>' +
+        '<g transform="translate(34 74)"><rect width="22" height="22" rx="4" fill="#c0392b"/><text x="11" y="17" font-size="15" text-anchor="middle" fill="#fff" font-family="serif">札</text></g>' +
+        '<g class="kdshn"><rect x="-90" y="-20" width="70" height="340" fill="url(#' + u + 's)" transform="skewX(-18)"/></g></g></svg>';
+    }
+    cardPackSVG = packSVG;
+    function sample() {
+      var out = [], ks = ['m', 'l', 'e', 'e', 'r', 'r', 'u', 'c'];
+      ks.forEach(function (k) { var pool = CARDS.filter(function (c) { return c[3] === k && out.indexOf(c[0]) < 0; }); if (pool.length) out.push(pool[Math.floor(Math.random() * pool.length)][0]); });
+      return out;
+    }
+    function mainHTML() {
+      var X = cardS(), ids = sample(), strip = ids.concat(ids).map(function (id) { return '<div class="kdbc">' + cdCard(id, { mini: true }) + '</div>'; }).join('');
+      var rates = ['c', 'u', 'r', 'e', 'l', 'm'].map(function (k) { return '<li style="--rc:' + CARD_RAR[k].col + '"><b>' + CARD_RAR[k].n + '</b> ' + CARD_RAR[k].w + ' %</li>'; }).join('');
+      var offers = CARD_BUNDLES.map(function (b) {
+        var n = b[0], pr = b[1], save = Math.round((1 - pr / (n * CARD_ONE)) * 100), can = coinsOf() >= pr;
+        return '<button type="button" class="kdoff" data-card="buy' + n + '"' + (can ? '' : ' disabled') + '><b>' + n + ' booster' + (n > 1 ? 's' : '') + '</b><small>' + (n * 3) + ' cartes</small><span>' + pr + ' 金</span>' + (save ? '<i>−' + save + ' %</i>' : '') + '</button>';
+      }).join('');
+      var ready = cardFreeReady();
+      return '<div class="kdcm"><div class="kdbub"><div class="kdbs">' + strip + '</div></div>' +
+        '<div class="kdpkw static' + (ready ? ' ready' : '') + '"' + (ready ? ' data-card="free" role="button" aria-label="Ouvrir le booster du jour"' : '') + '>' + packSVG() + (ready ? '<span class="kdfree">🎁 Gratuit</span>' : '') + '</div>' +
+        (ready ? '<button type="button" class="btn primary gold kdfbtn" data-card="free">🎁 Ouvrir le booster du jour<br><small>Gratuit · 3 cartes</small></button>' : '<div class="kdwait">🎁 Prochain booster gratuit dans <b>' + freeWaitTxt() + '</b><small>Chaque jour à 8 h, heure de Paris</small></div>') +
+        '<div class="kdoffs">' + offers + '</div>' +
+        '<button type="button" class="btn kdcol" data-card="col">札 Mon classeur · ' + cardCount() + ' / ' + CARDS.length + '</button>' +
+        '<details class="kdinfo"><summary>Taux et garanties</summary><ul class="lootrates">' + rates + '</ul><p class="small muted">Chaque booster contient au moins une carte Rare ou mieux. Garanti : un Épique ou mieux tous les 12 boosters au plus, un Légendaire tous les 40, un Mythique tous les 100. Une carte en double est convertie en pièces. Prochain Épique garanti dans ' + Math.max(1, 12 - X.pe) + ' booster' + (12 - X.pe > 1 ? 's' : '') + ' au plus.</p></details></div>';
+    }
+    function cutHTML() {
+      var b = cardRev.best;
+      return '<div class="kdcut o-' + b + '" id="kdCut" style="--bc:' + CARD_RAR[b].col + '"><div class="kdglow"></div><p class="kdcuthint" id="kdHint">Glisse le doigt sur le haut du sachet pour le découper</p>' +
+        '<div class="kdpkw" id="kdPkw"><div class="kdph bot">' + packSVG() + '</div><div class="kdph top" id="kdTop">' + packSVG() + '</div><div class="kdline" id="kdLine"><u id="kdFill"></u><i id="kdSpark">✂</i></div></div>' +
+        '<div class="kdcutbtns"><button type="button" class="btn primary" data-card="kdauto">Ouvrir</button><button type="button" class="btn" data-card="kdskip">Passer</button></div></div>';
+    }
+    function colHTML() {
+      var X = cardS(), kinds = ['all', 'prof', 'fac', 'jp', 'hist', 'obj', 'cuis', 'trad', 'art', 'sport', 'lieu', 'nat', 'kami', 'folk', 'ville', 'pop', 'star'], names = { ville: 'Villes du Japon', pop: 'Culture pop', star: 'Stars et personnages', all: 'Toutes les catégories', prof: 'Professeurs', fac: 'Vie de la fac', jp: 'Japon', hist: 'Histoire', obj: 'Objets', cuis: 'Cuisine', trad: 'Traditions', art: 'Arts', sport: 'Budō et sport', lieu: 'Lieux', nat: 'Nature et fêtes', kami: 'Kami (dieux)', folk: 'Folklore' };
+      var list = CARDS.filter(function (c) { return cardFilter === 'all' || c[1] === cardFilter; }), pages = Math.max(1, Math.ceil(list.length / PER));
+      cardPage = clamp(cardPage, 0, pages - 1);
+      var own = list.filter(function (c) { return X.owned[c[0]]; }).length, slice = list.slice(cardPage * PER, cardPage * PER + PER), cells = '', i, dots = '';
+      slice.forEach(function (c) {
+        var n = X.owned[c[0]] || 0, no = ('00' + (CARDS.indexOf(c) + 1)).slice(-3), R = CARD_RAR[c[3]];
+        cells += n ? '<button type="button" class="cdslotm" data-card="zoom:' + c[0] + '" aria-label="' + esc(c[2]) + '">' + cdCard(c[0], { mini: true, count: true }) + '</button>' :
+          '<div class="cdslotm"><div class="cdcard cdmini cdlock rar-' + c[3] + '" style="--rc:' + R.col + '"><div class="cdin"><div class="cdtop"><b class="cdnm">N° ' + no + '</b></div><div class="cdart"><span class="cdq">?</span></div><div class="cdtype"><span>' + R.n + '</span>' + cdStars(c[3]) + '</div></div></div></div>';
+      });
+      for (i = 0; i < pages; i++) dots += '<i class="' + (i === cardPage ? 'on' : '') + '"></i>';
+      var t = cardTurn; cardTurn = 0;
+      return '<div class="lootpanel cdpanel kdcolp"><button type="button" class="btn primary cdbuybig" data-card="main">🛒 Acheter des boosters</button><h3 class="lootttlh" style="margin-top:8px">Mon classeur · ' + cardCount() + '/' + CARDS.length + '</h3>' +
+        '<select id="cdFilter" class="cdsel" aria-label="Filtrer par catégorie">' + kinds.map(function (k) { return '<option value="' + k + '"' + (k === cardFilter ? ' selected' : '') + '>' + names[k] + '</option>'; }).join('') + '</select>' +
+        '<div class="kdbind"><i class="kdrings"></i><div class="kdpg" id="kdPg" data-t="' + t + '"><div class="kdpgh"><b>' + esc(names[cardFilter]) + '</b><span>' + own + ' / ' + list.length + '</span></div><div class="cdgrid kdpgrid">' + cells + '</div></div></div>' +
+        '<div class="kdnav"><button type="button" class="btn" data-card="pg:-1"' + (cardPage <= 0 ? ' disabled' : '') + ' aria-label="Page précédente">‹</button><span class="kddots">' + (pages > 1 ? dots : '') + '</span><b class="kdpn">Page ' + (cardPage + 1) + ' / ' + pages + '</b><button type="button" class="btn" data-card="pg:1"' + (cardPage >= pages - 1 ? ' disabled' : '') + ' aria-label="Page suivante">›</button></div></div>';
+    }
+    cardPanel = function () {
+      if (cardView === 'cut' && cardRev) return cutHTML();
+      if (cardView === 'main') return mainHTML();
+      if (cardView === 'col') return colHTML();
+      return _cp();
+    };
+    cardStartOpen = function (res, n) {
+      var best = cardBest(res); clearTimeout(cardTimer);
+      cardRev = { res: res, up: {}, n: n, page: 0, intro: true, best: best, sum: n > 5 }; cardView = 'cut'; kdBusy = false; sfx('start'); refreshShop();
+    };
+    function cutEnd() { if (cardView === 'cut' && cardRev) { cardView = 'rev'; cardRev.intro = true; kdBusy = false; refreshShop(); } }
+    function setP(p) {
+      var top = document.getElementById('kdTop'), fill = document.getElementById('kdFill'), sp = document.getElementById('kdSpark'), h = document.getElementById('kdHint');
+      if (!top) return;
+      top.style.transform = p > 0 ? 'rotate(' + (-p * 9).toFixed(1) + 'deg) translateY(' + (-p * 5).toFixed(1) + 'px)' : '';
+      if (fill) fill.style.width = (p * 100).toFixed(1) + '%'; if (sp) sp.style.left = (p * 100).toFixed(1) + '%';
+      if (h && p > 0.05) h.style.opacity = '0';
+    }
+    function finish() {
+      var c = document.getElementById('kdCut'); if (!c || kdBusy) return; kdBusy = true; setP(1);
+      c.classList.add('done'); var w = document.getElementById('kdPkw'), i, h = '';
+      for (i = 0; i < 28; i++) { var an = Math.random() * 6.283, d = 80 + Math.random() * 170; h += '<i style="--dx:' + Math.round(Math.cos(an) * d) + 'px;--dy:' + Math.round(Math.sin(an) * d - 40) + 'px;--r:' + Math.round(Math.random() * 360) + 'deg;--dl:' + (Math.random() * .18).toFixed(2) + 's">' + (i % 4 ? '✿' : '✦') + '</i>'; }
+      var pe = document.createElement('div'); pe.className = 'kdburst'; pe.innerHTML = h; w.appendChild(pe);
+      sfx(cardRev && 'elm'.indexOf(cardRev.best) >= 0 ? 'win' : 'ok'); try { navigator.vibrate && navigator.vibrate(reducedMotion() ? 0 : [18, 30, 18]); } catch (e) {}
+      setTimeout(cutEnd, reducedMotion() ? 200 : 1250);
+    }
+    function auto() {
+      if (kdBusy) return; var t0 = performance.now(), from = 0, step = function (t) { var k = clamp((t - t0) / 420, 0, 1); setP(from + (1 - from) * k); if (k < 1) requestAnimationFrame(step); else finish(); }; requestAnimationFrame(step);
+    }
+    cardAction = function (a) {
+      if (a === 'kdskip') { if (cardView === 'cut') cutEnd(); return; }
+      if (a === 'kdauto') { auto(); return; }
+      if (a.indexOf('pg:') === 0) { var d = +a.slice(3), old = cardPage; cardPage += d; cardTurn = d; var X = cardS(); refreshShop(); return; }
+      if (a === 'col') cardPage = 0;
+      return _ca(a);
+    };
+    document.addEventListener('pointerdown', function (e) {
+      var w = e.target.closest ? e.target.closest('#kdPkw') : null; if (!w || kdBusy) return;
+      drag = { x: e.clientX, w: w.getBoundingClientRect().width, p: 0, el: w }; try { w.setPointerCapture(e.pointerId); } catch (er) {} w.classList.add('drag'); e.preventDefault();
+    });
+    document.addEventListener('pointermove', function (e) { if (!drag) return; drag.p = clamp(Math.abs(e.clientX - drag.x) / (drag.w * 0.85), 0, 1); setP(drag.p); });
+    function up() { if (!drag) return; var d = drag; drag = null; d.el.classList.remove('drag'); if (d.p >= 0.7) finish(); else setP(0); }
+    document.addEventListener('pointerup', up); document.addEventListener('pointercancel', up);
+    document.addEventListener('change', function (e) { if (e.target && e.target.id === 'cdFilter') cardPage = 0; }, true);
+    // classeur : glisser pour tourner la page
+    var sw = null;
+    document.addEventListener('pointerdown', function (e) { var p = e.target.closest ? e.target.closest('#kdPg') : null; sw = p ? { x: e.clientX, y: e.clientY } : null; });
+    document.addEventListener('pointerup', function (e) { if (!sw) return; var dx = e.clientX - sw.x, dy = e.clientY - sw.y; sw = null; if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5 && user) cardAction('pg:' + (dx < 0 ? 1 : -1)); });
+    // reflet holographique (Rare et au-dessus) qui suit le doigt ou la souris
+    document.addEventListener('pointermove', function (e) {
+      var c = e.target.closest ? e.target.closest('.cdcard') : null, prev = document.querySelector('.cdcard.holo');
+      if (prev && prev !== c) { prev.classList.remove('holo'); }
+      if (!c || !/\brar-[relm]\b/.test(c.className)) return;
+      var r = c.getBoundingClientRect(); c.style.setProperty('--hx', ((e.clientX - r.left) / r.width * 100).toFixed(0) + '%'); c.style.setProperty('--hy', ((e.clientY - r.top) / r.height * 100).toFixed(0) + '%'); c.classList.add('holo');
+    });
   })();
 
   backend.init().then(function (u) {
