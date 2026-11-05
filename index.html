@@ -5862,6 +5862,25 @@ html.lite .nfsw{animation:none}@media (prefers-reduced-motion:reduce){.nfsw{anim
   body.inapp .nav .tab .niw img{width:40px;height:40px;border-radius:10px;object-fit:cover;border:2px solid #e2c985;box-shadow:0 2px 0 rgba(0,0,0,.2)}
 }
 
+/* v425 : bouton Profil — bannière en fond voilé, photo ronde à bord doré (PC) */
+.navban{display:none}
+@media (min-width:768px){
+  body.inapp .nav .tab[data-tab="profil"]{position:relative;overflow:hidden}
+  body.inapp .nav .tab[data-tab="profil"] .niw,body.inapp .nav .tab[data-tab="profil"] .nl{position:relative;z-index:2}
+  body.inapp .nav .tab[data-tab="profil"] .niw img{width:44px;height:44px;border-radius:50%;border:3px solid #e8c46a;box-shadow:0 2px 6px rgba(0,0,0,.35)}
+  body.inapp .nav .tab[data-tab="profil"].hasban{background:#fffaf0!important}
+  .navban{display:block;position:absolute;inset:0;z-index:0;pointer-events:none}
+  .navban .pmban{position:absolute;inset:0;margin:0!important;height:auto!important;border-radius:0;border:0!important}
+  .navban .pmban::after{background:linear-gradient(90deg,rgba(255,250,240,.88) 0%,rgba(255,250,240,.7) 45%,rgba(255,250,240,.4) 100%)!important}
+  body.inapp .nav .tab[data-tab="profil"].hasban .nl{text-shadow:0 0 6px #fffaf0,0 0 2px #fffaf0}
+}
+
+/* v425 : voile du menu plus sombre et teinté, pour s'accorder avec le fond importé */
+@media (min-width:768px){
+  body.inapp .nav{background-image:linear-gradient(180deg,rgba(58,30,56,.58),rgba(110,52,76,.46) 60%,rgba(140,66,88,.4))!important;-webkit-backdrop-filter:blur(6px) saturate(1.1);backdrop-filter:blur(6px) saturate(1.1)}
+  .navfall svg{filter:saturate(1.05)}
+}
+
 </style>
 
 <div id="kdSplash" aria-hidden="true"><canvas id="kdSplCv"></canvas><div class="kws"><div class="kwlogo"><div class="kwk jp">道場</div><div class="kwt">Kanji Dōjō</div><i class="kwbar"></i></div></div><script>setTimeout(function(){var e=document.getElementById('kdSplash');if(e&&e.parentNode)e.parentNode.removeChild(e)},12000)</script></div>
@@ -25974,7 +25993,20 @@ html.lite .nfsw{animation:none}@media (prefers-reduced-motion:reduce){.nfsw{anim
     }
     var h = document.getElementById('hAvatar');
     if (h && window.MutationObserver) new MutationObserver(sync).observe(h, { childList: true, subtree: true, attributes: true });
-    setInterval(sync, 1500); setTimeout(sync, 400);
+    function banSync() {
+      try {
+        var tb = document.querySelector('.nav .tab[data-tab="profil"]'); if (!tb || !S) return;
+        var bv = bnPub(S), bk = bv ? String(bv).length + String(bv).slice(-24) : '', nb = tb.querySelector('.navban');
+        if (!bv) { if (nb) nb.remove(); tb.classList.remove('hasban'); return; }
+        if (!nb || nb.getAttribute('data-k') !== bk) {
+          if (nb) nb.remove();
+          nb = document.createElement('span'); nb.className = 'navban'; nb.setAttribute('data-k', bk); nb.setAttribute('aria-hidden', 'true'); nb.innerHTML = bannerArt(bv, 'nv');
+          tb.insertBefore(nb, tb.firstChild);
+        }
+        tb.classList.add('hasban');
+      } catch (e2) {}
+    }
+    setInterval(sync, 1500); setTimeout(sync, 400); setInterval(banSync, 1500); setTimeout(banSync, 400);
   })();
 
   /* =====================================================================
@@ -31502,7 +31534,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v424', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v425', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
