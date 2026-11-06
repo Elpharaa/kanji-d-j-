@@ -15449,8 +15449,8 @@ body .fb.good :is(span, small, p, div):not(.fbi):not(.cpxp) { color: #17502f; } 
     if (cfg.fish) fishResult(ok, timedOut);
     showFeedback(ok, q, r, note + (sess.over ? ' Plus de cœurs.' : ''));
     var done = sess.over || (cfg.n && sess.qn >= cfg.n);
-    if (cfg.auto && ok && !done) {
-      sess.nextT = setTimeout(function () { if (done) finishRound(); else nextRound(); }, cfg.fish ? 2800 : 1500);
+    if (false) {
+      sess.nextT = 0;
     } else {
       // erreur : pause obligatoire (bouton « Compris »), le chrono du jeu est suspendu pour ne pas pénaliser la lecture de la correction
       sess.pendingDone = done;
@@ -15998,8 +15998,7 @@ body .fb.good :is(span, small, p, div):not(.fbi):not(.cpxp) { color: #17502f; } 
     showFeedback(ok, q, r, note);
     if (sess.enemyHp <= 0) { art.classList.remove('hit'); setTimeout(function () { fx(art, 'die'); }, 450); sess.nextT = setTimeout(fightWin, 1500); }
     else if (sess.hp <= 0) sess.nextT = setTimeout(fightLose, 3200);
-    else if (ok) sess.nextT = setTimeout(nextFightQ, 2000);
-    else { sess.pendingFight = true; $('next').textContent = 'Compris, continuer'; $('next').hidden = false; }   // erreur : le joueur lit la correction puis valide
+    else { sess.pendingFight = true; $('next').textContent = ok ? 'Suivant' : 'Compris, continuer'; $('next').hidden = false; }   // erreur : le joueur lit la correction puis valide
   }
   function fightWin() {
     if (!sess || sess.kind !== 'fight') return;
@@ -16271,8 +16270,8 @@ body .fb.good :is(span, small, p, div):not(.fbi):not(.cpxp) { color: #17502f; } 
     trialInfo();
     var lost = sess.err > sess.maxErr, done = sess.qn >= sess.total;
     if (lost || done) sess.nextT = setTimeout(function () { trialEnd(!lost); }, ok ? 900 : 1900);
-    else if (ok || sess.trial === 'chrono') sess.nextT = setTimeout(trialNext, ok ? 500 : 1200);
-    else { sess.pendingTrial = true; $('next').textContent = 'Compris, continuer'; $('next').hidden = false; }
+    else if (sess.trial === 'chrono') sess.nextT = setTimeout(trialNext, ok ? 500 : 1200);
+    else { sess.pendingTrial = true; $('next').textContent = ok ? 'Suivant' : 'Compris, continuer'; $('next').hidden = false; }
   }
 
   /* ---- Épreuve du Tracé : tracé réel (si les traits existent), sinon QCM sur la clé ---- */
@@ -22051,7 +22050,7 @@ body .fb.good :is(span, small, p, div):not(.fbi):not(.cpxp) { color: #17502f; } 
     fishResult(ok, timedOut);
     showFeedback(ok, q, r, note);
     sess.pendingDone = done;
-    if (ok && !done) sess.nextT = setTimeout(nextRound, 2300);
+    if (false) sess.nextT = 0;
     else { $('next').textContent = done ? 'Voir le résultat' : (ok ? 'Suivant' : 'Compris, continuer'); $('next').hidden = false; }
   }
   document.addEventListener('click', function (e) {
@@ -31994,7 +31993,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v453', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v454', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
