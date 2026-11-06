@@ -1,10 +1,10 @@
 /* Kanji Dōjō : mode hors ligne + mises à jour automatiques.
    Principe : on va TOUJOURS chercher la version la plus récente sur le réseau (en vérifiant auprès du serveur
    qu'elle n'a pas changé) ; le cache ne sert qu'en secours quand il n'y a pas de connexion. */
-var CACHE = 'kanji-dojo-v3';
+var CACHE = 'kanji-dojo-v4';
 self.addEventListener('install', function (e) {
   self.skipWaiting();
-  e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(['./', 'index.html', 'manifest.webmanifest', 'icon-192.png']); }).catch(function () {}));
+  e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'data/lz_jm.gz', 'data/lz_tx.gz', 'data/lz_st.gz']); }).catch(function () {}));
 });
 self.addEventListener('activate', function (e) {
   e.waitUntil(caches.keys().then(function (ks) { return Promise.all(ks.filter(function (k) { return k !== CACHE; }).map(function (k) { return caches.delete(k); })); }).then(function () { return self.clients.claim(); }));
