@@ -6641,6 +6641,14 @@ body .mbox #appModalBody, body .shopmodal #appModalBody { padding-bottom: calc(v
 .fqs{position:absolute;right:8px;bottom:6px;font-size:.62rem;color:#c8932e;letter-spacing:1px;pointer-events:none}
 .dcb.fqb{background:#fff6dc;color:#a8741a;border-color:#ecd28c}
 .fqb .fqo{color:#e4d6ae}
+.rkbox{margin:8px 0 4px}.rkbox[hidden]{display:none}
+.rkp{background:#fffaf0;border:1.5px solid rgba(75,61,132,.25);border-radius:16px;padding:8px 10px 10px}
+.rks{font-size:.76rem;color:#6a6288;margin:0 0 6px}.rkc{font-size:.62rem;color:#9a92b4;margin:8px 0 0}
+.rksel{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:8px}
+.rkg{display:flex;flex-wrap:wrap;gap:5px;align-items:center;max-height:260px;overflow:auto;-webkit-overflow-scrolling:touch}
+.rkn{flex:none;width:100%;font-size:.62rem;font-weight:800;color:#a63a60;letter-spacing:.06em;margin-top:4px}
+.rkb{min-width:38px;height:38px;border-radius:10px;border:1.5px solid rgba(75,61,132,.3);background:#fff;color:#2c2452;font-size:1.15rem;padding:0 4px;cursor:pointer;box-shadow:0 2px 0 rgba(75,61,132,.15)}
+.rkb.on{background:#4b3d84;color:#fff;border-color:#4b3d84}.rkb.off{opacity:.22;cursor:default;box-shadow:none}
 
 </style>
 
@@ -32304,7 +32312,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v495', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v496', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35427,6 +35435,64 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
     var bs = pg.querySelector('.dcbs'); if (!bs) return;
     bs.insertAdjacentHTML('beforeend', '<span class="dcb fqb" title="Fréquence d\'usage (JMdict)">' + '★'.repeat(s) + '<span class="fqo">' + '★'.repeat(5 - s) + '</span> ' + FQL[s] + '</span>');
   }
+
+  /* v496 : recherche de kanji par composants (KRADFILE/RADKFILE — EDRDG, CC BY-SA 4.0) */
+  var RK = { d: null, st: 0, sel: [], open: false, K: null };
+  var RKSHOW = { '化': '⺅', '刈': '⺉', '込': '⻌', '尚': '⺌', '个': '𠆢' };
+  function rkLoad(cb) {
+    if (RK.d) { cb && cb(); return; } if (RK.st === 1 || RK.st === 3) return; RK.st = 1;
+    try { if (typeof DecompressionStream === 'undefined') { RK.st = 3; return; } } catch (e) { RK.st = 3; return; }
+    fetch('data/radk.gz').then(function (r) { if (!r.ok) throw 0; return r.blob(); }).then(function (b) { return new Response(b.stream().pipeThrough(new DecompressionStream('gzip'))).text(); })
+      .then(function (t) { RK.d = JSON.parse(t); RK.st = 2; RK.K = RK.d.map(function (r) { var o = {}; Array.from(r[2]).forEach(function (c) { o[c] = 1; }); return o; }); cb && cb(); }).catch(function () { RK.st = 3; rkPaint(); });
+  }
+  function rkCand() {
+    if (!RK.sel.length || !RK.K) return null;
+    var out = null;
+    RK.sel.forEach(function (i) { var K = RK.K[i]; if (out === null) { out = Object.assign({}, K); } else { Object.keys(out).forEach(function (c) { if (!K[c]) delete out[c]; }); } });
+    return out;
+  }
+  function rkPanel() {
+    var h = '';
+    if (RK.st === 3) return '<div class="rkp"><p class="rks">Les données des composants ne sont pas disponibles pour le moment (connexion ?).</p></div>';
+    if (!RK.d) return '<div class="rkp"><p class="rks">Chargement des composants…</p></div>';
+    var C = rkCand(), n = C ? Object.keys(C).length : 0, last = 0;
+    h += '<div class="rkp"><p class="rks">' + (RK.sel.length ? 'Touche les composants du kanji. ' : 'Touche les parties que tu vois dans le kanji : la liste se réduit. ') + (RK.sel.length ? '<b>' + n + '</b> kanji' : '') + '</p>';
+    if (RK.sel.length) h += '<div class="rksel">' + RK.sel.map(function (i) { return '<button type="button" class="rkb on jp" data-rk="t:' + i + '">' + esc(RKSHOW[RK.d[i][0]] || RK.d[i][0]) + '</button>'; }).join('') + '<button type="button" class="dcch rst" data-rk="clr">↺ Effacer</button><button type="button" class="dcch on" data-rk="go">Voir les ' + n + ' kanji ↓</button></div>';
+    h += '<div class="rkg">';
+    RK.d.forEach(function (r, i) {
+      if (r[1] !== last) { last = r[1]; h += '<span class="rkn">' + last + ' trait' + (last > 1 ? 's' : '') + '</span>'; }
+      var on = RK.sel.indexOf(i) >= 0, ok = on || !C || Object.keys(RK.K[i]).some(function (c) { return C[c]; });
+      h += '<button type="button" class="rkb jp' + (on ? ' on' : '') + (ok ? '' : ' off') + '" data-rk="t:' + i + '"' + (ok ? '' : ' disabled') + '>' + esc(RKSHOW[r[0]] || r[0]) + '</button>';
+    });
+    return h + '</div><p class="rkc">Composants : KRADFILE/RADKFILE (EDRDG, licence CC BY-SA 4.0)</p></div>';
+  }
+  function rkPaint() {
+    var b = document.getElementById('rkBox'); if (b) { b.hidden = !RK.open; if (RK.open) b.innerHTML = rkPanel(); }
+    var l = document.getElementById('dcList'); if (l && dc.mode === 'k') l.innerHTML = kfListHTML();
+    var c = document.querySelector('[data-rk="open"]'); if (c) { c.classList.toggle('on', RK.open || RK.sel.length > 0); c.textContent = '部首 Par composants' + (RK.sel.length ? ' (' + RK.sel.length + ')' : '') + (RK.open ? ' ▴' : ' ▾'); }
+  }
+  var rkM0 = kfMatches;
+  kfMatches = function () {
+    var r = rkM0(); if (!RK.sel.length) return r;
+    var C = rkCand(); if (!C) return r;
+    return r.filter(function (i) { return C[i.c]; });
+  };
+  var rkI0 = dcInner;
+  dcInner = function () {
+    var h = rkI0(); if (dc.mode !== 'k') return h;
+    var chip = '<button type="button" class="dcch kxtr rkc0' + (RK.open || RK.sel.length ? ' on' : '') + '" data-rk="open">部首 Par composants' + (RK.sel.length ? ' (' + RK.sel.length + ')' : '') + (RK.open ? ' ▴' : ' ▾') + '</button>';
+    h = h.replace(/(🎯 S’entraîner aux kanji<\/button>)(<\/div>)/, function (m, a, b) { return a + chip + b + '<div id="rkBox" class="rkbox"' + (RK.open ? '' : ' hidden') + '>' + (RK.open ? rkPanel() : '') + '</div>'; });
+    return h;
+  };
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest ? ev.target.closest('[data-rk]') : null; if (!b || b.disabled) return;
+    var p = b.getAttribute('data-rk');
+    if (p === 'open') { RK.open = !RK.open; if (RK.open && !RK.d) rkLoad(rkPaint); rkPaint(); return; }
+    if (p === 'go') { var L = document.getElementById('dcList'); if (L && L.scrollIntoView) L.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
+    if (p === 'clr') { RK.sel = []; KF.n = 120; rkPaint(); return; }
+    if (p.indexOf('t:') === 0) { var i = +p.slice(2), ix = RK.sel.indexOf(i); if (ix >= 0) RK.sel.splice(ix, 1); else RK.sel.push(i); KF.n = 120; if (dc.q) { dc.q = ''; var q = document.getElementById('dcQ'); if (q) q.value = ''; } rkPaint(); }
+  });
+  setTimeout(function () { /* préchargement discret */ }, 0);
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
