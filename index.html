@@ -6333,6 +6333,13 @@ body .fb .aids { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; jus
 body .fb.good > b:first-child + br, body .fb.bad > b:first-child + br { display: none; }
 body .fb.good, body .fb.good * { --fbc: #17502f; } body .fb.bad, body .fb.bad * { --fbc: #7a1d3c; }
 body .fb.good :is(span, small, p, div):not(.fbi):not(.cpxp) { color: #17502f; } body .fb.bad :is(span, small, p, div):not(.fbi):not(.cpxp) { color: #7a1d3c; }
+#kdDojoBar { display: flex; align-items: center; gap: 10px; width: calc(100% - 24px); max-width: 520px; margin: 8px auto 0; padding: 7px 12px 7px 10px; border-radius: 16px; border: 2px solid var(--wa-gold, #c49a3a); background: linear-gradient(#fffdf8, #fdeee4); box-shadow: 0 3px 10px rgba(122, 75, 58, .18); color: var(--wa-wood, #5b3a2c); text-align: left; cursor: pointer; font: inherit; position: relative; z-index: 3; overflow: hidden; }
+#kdDojoBar .kdbl { flex: none; font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #b8325f; width: 6.2em; line-height: 1.2; }
+#kdDojoBar .kdbw { flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; transition: opacity .22s, transform .22s; } #kdDojoBar .kdbw.out { opacity: 0; transform: translateY(-8px); } #kdDojoBar .kdbw.in { opacity: 0; transform: translateY(8px); transition: none; }
+#kdDojoBar .kdbk { flex: none; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-size: 1.2rem; color: #fff; background: radial-gradient(circle at 35% 25%, #f8b4c9, #d8527f); box-shadow: 0 0 0 2px var(--wa-gold, #c49a3a); }
+#kdDojoBar .kdbt { display: grid; min-width: 0; } #kdDojoBar .kdbt b { font: 700 1rem var(--font-brush, serif); } #kdDojoBar .kdbt small { font-size: 11.5px; color: var(--wa-wood2, #7a4b3a); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#kdDojoBar .kdbd { flex: none; display: flex; flex-direction: column; gap: 3px; } #kdDojoBar .kdbd i { width: 5px; height: 5px; border-radius: 50%; background: rgba(122, 75, 58, .25); } #kdDojoBar .kdbd i.on { background: #d8527f; }
+@media (prefers-reduced-motion: reduce) { #kdDojoBar .kdbw { transition: none; } }
 
 </style>
 
@@ -31993,7 +32000,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v454', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v457', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -34351,6 +34358,36 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
       if (prev && prev !== c) { prev.classList.remove('holo'); }
       if (!c || !/\brar-[relm]\b/.test(c.className)) return;
       var r = c.getBoundingClientRect(); c.style.setProperty('--hx', ((e.clientX - r.left) / r.width * 100).toFixed(0) + '%'); c.style.setProperty('--hy', ((e.clientY - r.top) / r.height * 100).toFixed(0) + '%'); c.classList.add('holo');
+    });
+  })();
+
+  /* ===== v455 : bandeau « Dans le dojo, tu as… » (modes qui défilent) ===== */
+  (function () {
+    var M = [['tb', '書', 'Le tableau', 'Trace tes kanjis de mémoire sur un grand tableau'], ['kana', 'あ', 'Les kana', 'Hiragana et katakana : écoute, traits et quiz'], ['jlpt', '試', 'Le JLPT', 'Vocabulaire par niveau, listes à apprendre et quiz'], ['flash', '札', 'Les flashcards', 'Les mots les plus urgents à revoir d\u2019abord'], ['mini', '遊', 'Les mini-jeux', 'Sprint, écoute, karaoké, pêche, combats de boss']], cur = 0, timer = 0, hold = false;
+    function paint(first) {
+      var b = document.getElementById('kdDojoBar'); if (!b) return; var m = M[cur], w = b.querySelector('.kdbw');
+      var html = '<span class="kdbk jp" aria-hidden="true">' + m[1] + '</span><span class="kdbt"><b>' + m[2] + '</b><small>' + m[3] + '</small></span>';
+      if (first || !w) { w.innerHTML = html; } else { w.classList.add('out'); setTimeout(function () { w.innerHTML = html; w.classList.remove('out'); w.classList.add('in'); setTimeout(function () { w.classList.remove('in'); }, 30); }, 220); }
+      b.setAttribute('data-kdsub', m[0]); b.setAttribute('aria-label', 'Dans le dojo : ' + m[2] + '. ' + m[3]);
+      var d = b.querySelectorAll('.kdbd i'), i; for (i = 0; i < d.length; i++) d[i].className = i === cur ? 'on' : '';
+    }
+    function ensure() {
+      try {
+        var hub = document.getElementById('vHub'); if (!hub || !user) return; var b = document.getElementById('kdDojoBar');
+        if (!b) {
+          b = document.createElement('button'); b.type = 'button'; b.id = 'kdDojoBar';
+          b.innerHTML = '<span class="kdbl">Dans le dojo</span><span class="kdbw"></span><span class="kdbd">' + M.map(function () { return '<i></i>'; }).join('') + '</span>';
+          var s = document.getElementById('kdStrk'); if (s && s.parentNode === hub) hub.insertBefore(b, s.nextSibling); else hub.insertBefore(b, hub.firstChild);
+          ['pointerenter', 'pointerdown'].forEach(function (ev) { b.addEventListener(ev, function () { hold = true; }); }); ['pointerleave', 'pointerup', 'pointercancel'].forEach(function (ev) { b.addEventListener(ev, function () { hold = false; }); });
+          paint(true);
+        }
+      } catch (e) {}
+    }
+    setInterval(ensure, 1500);
+    timer = setInterval(function () { if (hold || document.hidden || !document.getElementById('kdDojoBar')) return; cur = (cur + 1) % M.length; paint(false); }, 3000);
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('#kdDojoBar') : null; if (!b || !user) return; var sub = b.getAttribute('data-kdsub');
+      go('home'); setTimeout(function () { djSub = sub; renderHome(); window.scrollTo(0, 0); }, 60);
     });
   })();
 
