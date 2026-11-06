@@ -6698,6 +6698,19 @@ body .kdc.sel { border-color: #ffe08a !important; box-shadow: 0 6px 0 #4d0a17, 0
 body .kdc .kdlab b { color: #ffe9b8 !important; text-shadow: 0 2px 0 #4d0a17 !important; letter-spacing: .05em !important; }
 body .kdbar2, body .kdc .kdart .kdbar2 { background: rgba(58, 6, 18, .6) !important; border: 0 !important; border-top: 1px solid rgba(240, 208, 120, .55) !important; border-bottom: 1px solid rgba(240, 208, 120, .55) !important; border-radius: 0 !important; box-shadow: none !important; }
 body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a !important; color: #ffe9b8 !important; text-shadow: 0 1px 0 #4d0a17 !important; box-shadow: none !important; }
+/* v503 : recherche tolérante */
+.dcfz{margin:6px 2px 8px;font-size:.82rem;font-weight:700;color:#6f629a}
+.dcempty .tlb{display:block;margin:8px auto 0}
+.dcempty small{display:block;margin-top:10px}
+.slsort[hidden]{display:none}
+/* v503 : onglets de niveau JLPT sur une seule ligne (plus de débordement à droite) */
+.qvlvseg{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));overflow:visible!important}
+.qvlvseg button{min-width:0;padding:8px 2px;font-size:.92rem;line-height:1.15;white-space:normal;text-align:center}
+.qvlvseg button small{display:block;font-size:.58rem;font-weight:700;opacity:.85;letter-spacing:0}
+/* barre « ‹ retour » collée sous l'en-tête de la fenêtre, pas par-dessus */
+.mbox .nvbar{top:var(--mhh,68px)}
+/* bouton « ! » de l'accent : zone de toucher plus large */
+.paq{width:28px;height:28px;font-size:.85rem}
 
 </style>
 
@@ -25620,7 +25633,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
   function qvGrid() {
     var jl = djSub === 'jlpt', lvv = jl ? (['n4', 'n3', 'n2', 'n1'].indexOf(qv.lv) >= 0 ? qv.lv : 'n5') : 'q', tot = qvTotals(djSub || 'daily');
     var list = QV.filter(function (t) { return t.lv === lvv && !t.hid; });
-    var sel = jl ? '<div class="seg qvlvseg" role="tablist" aria-label="Niveau JLPT">' + [['n5', 'N5 · débutant'], ['n4', 'N4 · élémentaire'], ['n3', 'N3 · intermédiaire'], ['n2', 'N2 · avancé'], ['n1', 'N1 · expert']].map(function (o) { return '<button type="button" role="tab" data-qvlv="' + o[0] + '" aria-selected="' + (lvv === o[0]) + '">' + o[1] + '</button>'; }).join('') + '</div>' : '';
+    var sel = jl ? '<div class="seg qvlvseg" role="tablist" aria-label="Niveau JLPT">' + [['n5', 'N5 · débutant'], ['n4', 'N4 · élémentaire'], ['n3', 'N3 · intermédiaire'], ['n2', 'N2 · avancé'], ['n1', 'N1 · expert']].map(function (o) { return '<button type="button" role="tab" data-qvlv="' + o[0] + '" aria-selected="' + (lvv === o[0]) + '">' + o[1].replace(' · ', '<small>') + '</small></button>'; }).join('') + '</div>' : '';
     return '<p class="qvtop"><b>' + tot[0] + '</b> / ' + tot[1] + ' mots acquis · ' + list.filter(function (t) { return !t.virt; }).length + ' thèmes</p>' + sel + qvTiles(list.filter(function (t) { return t.virt; }), true) +
       (list.some(function (t) { return t.virt; }) ? '<h4 class="qvsubh">Ou par thème</h4>' : '') + '<div class="qvgrid">' + qvTiles(list.filter(function (t) { return !t.virt; }), false) + '</div>';
     function qvTiles(arr, hero) {
@@ -32361,7 +32374,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v502', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v503', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35698,6 +35711,7 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
     var s = document.createElement('summary'); s.innerHTML = title; d.appendChild(s); return d;
   }
   function slTidy() {
+    try { var mh = document.querySelector('#appModal .mhead'); if (mh && mh.offsetHeight) { var v = (mh.offsetHeight - 1) + 'px'; if (document.documentElement.style.getPropertyValue('--mhh') !== v) document.documentElement.style.setProperty('--mhh', v); } } catch (e) {}
     var pg = document.querySelector('.dcpage'); if (!pg || pg.classList.contains('kxf') || !pg.querySelector(':scope > .dcfr-frame')) return;
     var fr = pg.querySelector(':scope > .dcfr-frame'), ex = pg.querySelector(':scope > .dcex'), tx = pg.querySelector(':scope > .txbox');
     var sx = pg.querySelector(':scope > .slex');
@@ -35738,6 +35752,98 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
   var slO0 = dcOpen;
   dcOpen = function (i) { slO0(i); try { slTidy(); } catch (e) {} };
   (function () { var t = 0; try { new MutationObserver(function () { clearTimeout(t); t = setTimeout(function () { try { slTidy(); } catch (e) {} }, 60); }).observe(document.body, { childList: true, subtree: true }); } catch (e) {} })();
+
+  /* v503 : recherche tolérante (rōmaji approximatif, fautes de frappe), état « aucun résultat », retour à la même position */
+  function tlKey(s) {
+    s = dcNorm(s).replace(/[^a-z]/g, '');
+    return s.replace(/sh/g, 's').replace(/ch/g, 't').replace(/ts/g, 't').replace(/j/g, 'z').replace(/fu/g, 'hu').replace(/dz/g, 'z')
+      .replace(/ou|oo/g, 'o').replace(/uu/g, 'u').replace(/aa/g, 'a').replace(/ee|ei/g, 'e').replace(/m(?=[bpm])/g, 'n').replace(/([a-z])\1/g, '$1');
+  }
+  function tlLev(a, b, d) {
+    var la = a.length, lb = b.length; if (Math.abs(la - lb) > d) return d + 1;
+    var p2 = null, p = [], c, i, j; for (j = 0; j <= lb; j++) p[j] = j;
+    for (i = 1; i <= la; i++) {
+      c = [i]; var mn = i;
+      for (j = 1; j <= lb; j++) {
+        var v = Math.min(p[j] + 1, c[j - 1] + 1, p[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+        if (p2 && i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) v = Math.min(v, p2[j - 2] + 1);
+        c[j] = v; if (v < mn) mn = v;
+      }
+      if (mn > d) return d + 1; p2 = p; p = c;
+    }
+    return p[lb];
+  }
+  function tlOK(e) {
+    if (dc.t !== 'all' && (dc.t === 'a' ? !(e.t === 'ai' || e.t === 'an') : e.t !== dc.t)) return false;
+    if (dc.lv !== 'all') { if (dc.lv === 'c') { if (!e.isC) return false; } else if (dc.lv === 'b') { if (!e.isB) return false; } else if (dc.lv === 'jm') { if (!e.jm) return false; } else if (e.lv !== dc.lv) return false; }
+    if (dc.th && e.th !== dc.th) return false;
+    if (dc.cc) { var w = WMAP[e.jp]; if (!(w && w.wk && wkLevel(w.wk) === dc.cc && (dc.cw === 'all' || w.wk === +dc.cw))) return false; }
+    return true;
+  }
+  function tlFuzzy(q) {
+    var D = dcBuild().all, qn = dcNorm(q), qk = tlKey(q), words = qn.split(/[^a-z]+/).filter(function (w) { return w.length >= 4; }), out = [];
+    for (var n = 0; n < D.length; n++) {
+      var e = D[n]; if (!tlOK(e)) continue;
+      var sc = 9, rk = e._rk !== undefined ? e._rk : (e._rk = e.kana ? tlKey(toRomaji(e.kana)) : '');
+      if (qk.length >= 3 && rk) { if (rk === qk) sc = 0; else if (qk.length >= 4 && rk.indexOf(qk) >= 0) sc = 1; else if (qk.length >= 5 && tlLev(qk, rk, 1) <= 1) sc = 2; }
+      if (sc > 2 && words.length) {
+        var toks = e._ft !== undefined ? e._ft : (e._ft = dcNorm(e.fr).split(/[^a-z]+/).filter(function (t) { return t.length >= 4; })), ok = true;
+        for (var a = 0; a < words.length && ok; a++) {
+          var w = words[a], d = w.length >= 8 ? 2 : 1, f = false;
+          for (var b = 0; b < toks.length; b++) if (toks[b][0] === w[0] && tlLev(w, toks[b], d) <= d) { f = true; break; }
+          if (!f) ok = false;
+        }
+        if (ok) sc = 3;
+      }
+      if (sc < 9) out.push([sc, n, e]);
+    }
+    out.sort(function (x, y) { return x[0] - y[0] || x[1] - y[1]; });
+    return out.slice(0, 80).map(function (p) { return p[2]; });
+  }
+  var tlM0 = dcMatches;
+  dcMatches = function () {
+    dc._fz = '';
+    var r = tlM0(); if (r.length || dc.mode === 'k' || dc.mode === 'n') return r;
+    var q = (dc.q || '').trim(); if (q.length < 3 || !/^[A-Za-zÀ-ÿ'’\- ]+$/.test(q)) return r;
+    var f = []; try { f = tlFuzzy(q); } catch (x) {}
+    if (f.length) { f.forEach(function (e) { e.via = ''; }); dc._fz = q; return f; }
+    return r;
+  };
+  function tlNoFil() {
+    var s = { t: dc.t, lv: dc.lv, th: dc.th, cc: dc.cc, cw: dc.cw }, n = 0;
+    dc.t = 'all'; dc.lv = 'all'; dc.th = ''; dc.cc = ''; dc.cw = 'all';
+    try { n = dcMatches().length; } catch (e) {}
+    dc.t = s.t; dc.lv = s.lv; dc.th = s.th; dc.cc = s.cc; dc.cw = s.cw; dc._fz = '';
+    return n;
+  }
+  var tlL0 = dcListHTML;
+  dcListHTML = function () {
+    var h = tlL0();
+    if (dc.mode === 'k' || dc.mode === 'n') return h;
+    if (dc._fz) return '<p class="dcfz">Aucun résultat exact : voici les mots les plus proches de « ' + esc(dc._fz) + ' ».</p>' + h;
+    if (h.indexOf('class="dcempty"') < 0) return h;
+    var q = (dc.q || '').trim(), filt = dcFilterOn() || !!dc.cc, n = filt ? tlNoFil() : 0;
+    var o = '<div class="dcempty"><span class="dcemk jp">空</span><p>' + (q ? 'Aucun mot pour « ' + esc(q) + ' »' : 'Aucun mot avec ces filtres') + '</p>';
+    if (n) o += '<button type="button" class="dcch tlb" data-tl="nofil">Chercher sans les filtres (' + n.toLocaleString('fr-FR') + ')</button>';
+    else if (filt) o += '<button type="button" class="dcch tlb" data-tl="nofil">↺ Effacer les filtres</button>';
+    try { if (q && typeof EX !== 'undefined' && EX.rest !== 2 && !EX.busy) o += '<button type="button" class="dcch tlb" data-jx="rest">📚 Chercher dans tout JMdict (+187 000 mots, 6 Mo)</button>'; } catch (x) {}
+    return o + '<small>Essaie en kana, en rōmaji ou en français. Les petites fautes de frappe sont tolérées.</small></div>';
+  };
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest ? ev.target.closest('[data-tl="nofil"]') : null; if (!b) return;
+    dc.t = 'all'; dc.lv = 'all'; dc.th = ''; dc.cc = ''; dc.cw = 'all'; dc.n = 60; dc._anim = true; dcRefreshAll();
+  });
+  /* retour d'une fiche : même position dans la liste */
+  function tlRemember() { try { if ($('appModal').hidden && document.getElementById('dcHost')) dc._sy = window.pageYOffset; } catch (e) {} }
+  var tlO0 = dcOpen; dcOpen = function (i) { tlRemember(); return tlO0(i); };
+  var tlK0 = kxOpen; kxOpen = function (c) { tlRemember(); return tlK0(c); };
+  var tlC0 = closeModal;
+  closeModal = function () {
+    tlC0();
+    try { if (dc._sy != null && document.getElementById('dcHost')) { var y = dc._sy; setTimeout(function () { window.scrollTo(0, y); }, 30); } } catch (e) {}
+    dc._sy = null;
+  };
+  document.addEventListener('input', function (ev) { if (ev.target && ev.target.id === 'dcQ') { var s = document.querySelector('.slsort'); if (s) s.hidden = !!(ev.target.value || '').trim(); } });
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
