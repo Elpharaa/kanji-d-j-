@@ -6682,6 +6682,10 @@ body .mbox #appModalBody, body .shopmodal #appModalBody { padding-bottom: calc(v
 .dcpage,.dcpage .dcfr-frame,.dcd .dcbs,.dcbook,.dcfil,.dcfil .dcchips,.slbar{min-width:0;max-width:100%}
 .dcfil .dcchips{overflow-x:auto;flex-wrap:nowrap}
 .mbox.kmodal>*,.mbox.kmodal>*>*{min-width:0;max-width:100%}
+.slx>summary small{font-weight:600;color:#6f629a}
+.nvwords .slh{display:none!important}
+.slmw{display:block;margin:8px auto 0}
+.slx>.dcsec{margin-top:10px}
 /* v502 : tuiles du carrousel en laque rouge et or (un seul dégradé, aucun flou : pas de rectangles noirs sur Android) */
 body .kdc, body .kdc:nth-child(2n), body .kdc:nth-child(3n) {
   background: linear-gradient(165deg, #cc2340 0%, #a31832 52%, #7b1024 100%) !important;
@@ -32374,7 +32378,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v503', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v504', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -32405,10 +32409,10 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
     document.body.appendChild(d);
   }
   function pwaCheck() {
-    if (location.protocol !== 'https:' || Date.now() - pwaChecked < 60000) return; pwaChecked = Date.now();
+    if (location.protocol !== 'https:' || Date.now() - pwaChecked < 15000) return; pwaChecked = Date.now();
     try {
       fetch('version.json?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
-        if (j && j.v && j.v !== APP_V) pwaBanner(j.v);
+        if (j && j.v && j.v !== APP_V) { if (pwaAway() && pwaAutoOk(j.v)) pwaReload(j.v); else pwaBanner(j.v); }
       }).catch(function () { /* hors ligne : tant pis */ });
     } catch (e) { /* ignore */ }
   }
@@ -32420,9 +32424,25 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
       try { if (navigator.serviceWorker && navigator.serviceWorker.getRegistration) navigator.serviceWorker.getRegistration().then(function (r) { if (r) r.update().then(go2, go2); else go2(); }, go2); else go2(); } catch (er) { go2(); }
     } else { var el = document.getElementById('pwaUp'); if (el && el.parentNode) el.parentNode.removeChild(el); }
   });
-  document.addEventListener('visibilitychange', function () { if (!document.hidden) pwaCheck(); });
+  /* retour sur l'appli après une longue absence : si une nouvelle version existe, on recharge tout seul (la progression est enregistrée juste avant) */
+  var pwaHid = 0, pwaWasAway = false;
+  function pwaAway() { var a = pwaWasAway; pwaWasAway = false; return a; }
+  function pwaAutoOk(v) { try { if (!document.body.classList.contains('onhome') || !document.getElementById('appModal').hidden) return false; return sessionStorage.getItem('kd_rl') !== v; } catch (e) { return false; } }
+  function pwaReload(v) {
+    try { persist(); } catch (er) { /* ignore */ }
+    try { sessionStorage.setItem('kd_rl', v); } catch (er) { /* ignore */ }
+    var go2 = function () { location.reload(); };
+    try { if (navigator.serviceWorker && navigator.serviceWorker.getRegistration) navigator.serviceWorker.getRegistration().then(function (r) { if (r) r.update().then(go2, go2); else go2(); }, go2); else go2(); } catch (er) { go2(); }
+  }
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { pwaHid = Date.now(); return; }
+    pwaWasAway = !!pwaHid && Date.now() - pwaHid > 120000; pwaHid = 0; pwaChecked = 0; pwaCheck();
+  });
+  /* numéro de version visible en bas de page (pour vérifier qu'on a bien la dernière) */
+  function pwaVer() { var l = document.querySelector('.pwalink'); if (!l || document.getElementById('appVer')) return; var p = document.createElement('p'); p.id = 'appVer'; p.className = 'small muted'; p.style.cssText = 'text-align:center;margin:6px 0 0'; p.textContent = 'Version ' + APP_V; l.insertAdjacentElement('afterend', p); }
+  setTimeout(pwaVer, 1200); setInterval(pwaVer, 5000);
   window.addEventListener('online', function () { pwaCheck(); });
-  setTimeout(pwaCheck, 6000); setInterval(pwaCheck, 20 * 60 * 1000);
+  setTimeout(pwaCheck, 2500); setInterval(pwaCheck, 20 * 60 * 1000);
 
   /* ===== v354 : fiche du mot — sens en contexte + forme expliquée pas à pas ===== */
   var WG = { ctx: null, pre: '' };
@@ -35710,9 +35730,36 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
     var d = document.createElement('details'); d.className = 'slx'; d.setAttribute('data-sl', key);
     var s = document.createElement('summary'); s.innerHTML = title; d.appendChild(s); return d;
   }
+  /* fiche kanji : clé / composition / astuce / phrase et composants repliés, mots limités à 6 */
+  function slTidyK(pg) {
+    var heads = Array.prototype.filter.call(pg.children, function (c) { return c.classList.contains('dcsec') && /^(Clé|Composition|Astuce|Phrase du cours)/.test(c.textContent); });
+    var d = pg.querySelector(':scope > details[data-sl="kcle"]');
+    if (heads.length) {
+      if (!d) { d = slDet('Clé, composition et astuce <small>部首</small>', 'kcle'); heads[0].before(d); }
+      heads.forEach(function (h) { var nx = h.nextElementSibling; d.appendChild(h); if (nx && nx.classList.contains('nvrow')) d.appendChild(nx); });
+    }
+    var nw = pg.querySelector(':scope > .nvwords');
+    if (nw) {
+      var ws = Array.prototype.slice.call(nw.children), open = nw.classList.contains('open');
+      ws.forEach(function (el, i) { var hide = !open && i >= 6; if (el.classList.contains('slh') !== hide) el.classList.toggle('slh', hide); });
+      var mb = pg.querySelector(':scope > .slmw');
+      if (ws.length > 6) {
+        var t = open ? 'Réduire ▴' : 'Voir tous les mots (' + ws.length + ') ▾';
+        if (!mb) { mb = document.createElement('button'); mb.type = 'button'; mb.className = 'dcch slmo slmw'; mb.setAttribute('data-sl', 'wmore'); nw.after(mb); }
+        if (mb.textContent !== t) mb.textContent = t;
+      } else if (mb) mb.remove();
+      if (d && d.previousElementSibling !== (pg.querySelector(':scope > .slmw') || nw)) (pg.querySelector(':scope > .slmw') || nw).after(d);
+    }
+    var rx = pg.querySelector(':scope > .rkx');
+    if (rx) { var d2 = slDet('Composants et kanji liés <small>部品</small>', 'krkx'); rx.before(d2); d2.appendChild(rx); }
+    var d3 = pg.querySelector(':scope > details[data-sl="krkx"]');
+    if (d3 && d && d3.previousElementSibling !== d) d.after(d3);
+  }
   function slTidy() {
     try { var mh = document.querySelector('#appModal .mhead'); if (mh && mh.offsetHeight) { var v = (mh.offsetHeight - 1) + 'px'; if (document.documentElement.style.getPropertyValue('--mhh') !== v) document.documentElement.style.setProperty('--mhh', v); } } catch (e) {}
-    var pg = document.querySelector('.dcpage'); if (!pg || pg.classList.contains('kxf') || !pg.querySelector(':scope > .dcfr-frame')) return;
+    var pg = document.querySelector('.dcpage'); if (!pg) return;
+    if (pg.classList.contains('kxf')) { slTidyK(pg); return; }
+    if (!pg.querySelector(':scope > .dcfr-frame')) return;
     var fr = pg.querySelector(':scope > .dcfr-frame'), ex = pg.querySelector(':scope > .dcex'), tx = pg.querySelector(':scope > .txbox');
     var sx = pg.querySelector(':scope > .slex');
     if (!sx && (ex || tx)) { sx = document.createElement('div'); sx.className = 'slex'; sx.innerHTML = '<p class="dcsec">Exemples</p>'; (ex || tx).before(sx); }
@@ -35748,6 +35795,10 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
   document.addEventListener('click', function (ev) {
     var b = ev.target.closest ? ev.target.closest('[data-sl="more"]') : null; if (!b) return;
     var sx = b.closest('.slex'); if (sx) { sx.classList.toggle('open'); slTidy(); }
+  });
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest ? ev.target.closest('[data-sl="wmore"]') : null; if (!b) return;
+    var nw = b.parentNode.querySelector(':scope > .nvwords'); if (nw) { nw.classList.toggle('open'); slTidy(); }
   });
   var slO0 = dcOpen;
   dcOpen = function (i) { slO0(i); try { slTidy(); } catch (e) {} };
@@ -35844,6 +35895,46 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
     dc._sy = null;
   };
   document.addEventListener('input', function (ev) { if (ev.target && ev.target.id === 'dcQ') { var s = document.querySelector('.slsort'); if (s) s.hidden = !!(ev.target.value || '').trim(); } });
+  /* mode Kanji : mêmes tolérances (sens français, lectures en rōmaji) + message « aucun résultat » utile */
+  var tkM0 = kfMatches;
+  kfMatches = function () {
+    dc._kz = '';
+    var r = tkM0(); if (r.length) return r;
+    var q = String(dc.q || '').trim(); if (q.length < 3 || !/^[A-Za-zÀ-ÿ'’\- ]+$/.test(q)) return r;
+    var base = [], f = [];
+    try {
+      dc.q = ''; try { base = tkM0(); } finally { dc.q = q; }
+      var qn = dcNorm(q), qk = tlKey(q), words = qn.split(/[^a-z]+/).filter(function (w) { return w.length >= 4; }), out = [];
+      base.forEach(function (i, n) {
+        var sc = 9, toks = dcNorm(i.sens).split(/[^a-z]+/).filter(function (t) { return t.length >= 4; });
+        for (var a = 0; a < words.length && sc === 9; a++) {
+          var w = words[a], d = w.length >= 8 ? 2 : 1;
+          for (var b = 0; b < toks.length; b++) if (toks[b][0] === w[0] && tlLev(w, toks[b], d) <= d) { sc = 2; break; }
+        }
+        if (sc === 9 && qk.length >= 3) {
+          var rd = i.on.concat(i.kun);
+          for (var k = 0; k < rd.length; k++) { var rk = tlKey(toRomaji(kfRead(rd[k]))); if (!rk) continue; if (rk === qk) { sc = 0; break; } if (qk.length >= 4 && rk.indexOf(qk) === 0) { sc = 1; break; } if (qk.length >= 5 && tlLev(qk, rk, 1) <= 1) { sc = 2; break; } }
+        }
+        if (sc < 9) out.push([sc, n, i]);
+      });
+      out.sort(function (x, y) { return x[0] - y[0] || x[1] - y[1]; });
+      f = out.slice(0, 80).map(function (p) { return p[2]; });
+    } catch (x) { dc.q = q; }
+    if (f.length) { dc._kz = q; return f; }
+    return r;
+  };
+  var tkL0 = kfListHTML;
+  kfListHTML = function () {
+    var h = tkL0();
+    if (dc._kz) return '<p class="dcfz">Aucun résultat exact : voici les kanji les plus proches de « ' + esc(dc._kz) + ' ».</p>' + h;
+    if (h.indexOf('class="dcempty"') < 0) return h;
+    var q = String(dc.q || '').trim(), filt = !!dc.cc || KF.lv !== 'all' || KF.g !== 'all' || KF.s !== 'all', rk = false;
+    try { rk = RK.sel.length > 0; } catch (e) {}
+    var o = '<div class="dcempty"><span class="dcemk jp">空</span><p>' + (q ? 'Aucun kanji pour « ' + esc(q) + ' »' : 'Aucun kanji avec ces critères') + '</p>';
+    if (filt) o += '<button type="button" class="dcch tlb" data-kx="krst">↺ Effacer les filtres</button>';
+    if (rk) o += '<button type="button" class="dcch tlb" data-rk="clr">↺ Retirer les composants choisis</button>';
+    return o + '<small>Essaie un kanji, une lecture (kana ou rōmaji) ou un sens en français. Les petites fautes de frappe sont tolérées.</small></div>';
+  };
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
