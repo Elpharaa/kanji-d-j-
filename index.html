@@ -31967,7 +31967,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v449', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v450', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -33928,7 +33928,7 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
         { k: 'dico', kj: '辞', t: 'Dictionnaire', s: T(function () { return dcCount().toLocaleString('fr-FR'); }, '25 000') + ' mots · verbes conjugués', a: 'data-hubdico="1"', c1: '#fae8b2', c2: '#e0b24c' }
       ];
       arr.splice(3, 0, { k: 'gram', kj: '文', t: 'Grammaire japonaise', s: 'Sur le site Sakura no Bunpō ↗', a: 'data-kgram="1"', c1: '#d5e8ef', c2: '#6fa8bd' });
-      if (errs) arr.splice(0, 0, { k: 'err', kj: '復', t: 'Revoir mes ' + errs + ' erreur' + (errs > 1 ? 's' : ''), s: 'Corrige-les : 3 bonnes réponses d\u2019affilée et elles disparaissent', a: 'data-errbook="1"', c1: '#f8c2c8', c2: '#c8405a' });
+      if (errs) arr.splice(0, 0, { k: 'err', kj: '復', t: 'Mes erreurs', s: errs + ' à corriger : 3 bonnes réponses d\u2019affilée et elles disparaissent', a: 'data-errbook="1"', c1: '#f8c2c8', c2: '#c8405a' });
       if (T(function () { return unlOn('story'); }, false)) arr.push({ k: 'story', kj: '旅', t: 'Aventure', s: L.tag + (chs.length ? ' · ' + done + '/' + chs.length + ' chapitres' : ''), a: 'data-go="story"', c1: '#fbd3bc', c2: '#e58a5f' });
       return arr;
     }
