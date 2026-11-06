@@ -6565,7 +6565,6 @@ body .kdc, body .kdc::after, body .kdc .kdlab { will-change: auto !important; ba
 body .kdc .kdtv, body .kdc .kdbar2 .kdtv { -webkit-mask-image: none !important; mask-image: none !important; }
 body .kdc .kdlab b { text-shadow: 0 2px 0 #2a1608 !important; }
 body .kdc .kdbar2, body .kdc .kdbar2 .kdtk { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; box-shadow: none !important; }
-body .kdc .kdbar2 .kdtrack { animation: none !important; transform: none !important; will-change: auto !important; }
 
 /* v485 : bois simplifié (3 planches + bandes), un seul calque sans position → plus de rectangles noirs ; défilement rétabli */
 body .kdc, body .kdc:nth-child(2n) {
@@ -32282,7 +32281,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v485', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v486', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
