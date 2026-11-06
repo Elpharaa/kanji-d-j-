@@ -6650,6 +6650,38 @@ body .mbox #appModalBody, body .shopmodal #appModalBody { padding-bottom: calc(v
 .rkb{min-width:38px;height:38px;border-radius:10px;border:1.5px solid rgba(75,61,132,.3);background:#fff;color:#2c2452;font-size:1.15rem;padding:0 4px;cursor:pointer;box-shadow:0 2px 0 rgba(75,61,132,.15)}
 .rkb.on{background:#4b3d84;color:#fff;border-color:#4b3d84}.rkb.off{opacity:.22;cursor:default;box-shadow:none}
 .rkx{margin-top:10px}.rkxc{cursor:default}.rkxc[data-kx]{cursor:pointer}
+/* v501 : dico simplifié */
+.slbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:4px 0 8px}
+.slhide{display:none!important}
+.slsort{display:inline-flex;align-items:center;gap:2px;margin-left:auto;padding:2px;border-radius:999px;border:1.5px solid rgba(201,162,74,.55);background:#fffaf0}
+.slst{font-size:.66rem;font-weight:800;color:#6f629a;padding:0 4px 0 8px;letter-spacing:.06em;text-transform:uppercase}
+.slsb{border:0;background:transparent;font:inherit;font-size:.78rem;font-weight:800;color:#2c2452;padding:6px 10px;border-radius:999px;cursor:pointer}
+.slsb.on{background:#3b2f78;color:#fff4d6}
+.slbar .slf[aria-expanded="true"]~.slr{display:none}
+.dcbook .kxtrow{margin:2px 0 6px;display:flex;flex-wrap:wrap;gap:4px 14px}
+.dcbook .kxtrow .dcch{background:none!important;border:0!important;box-shadow:none!important;color:#a63a60!important;font-size:.78rem;font-weight:800;padding:2px 2px;min-height:0;text-decoration:underline;text-underline-offset:3px}
+.dcbook .kxtrow .dcch.on{color:#3b2f78!important}
+.dcpage .pas{display:none}
+.dcd .dcbs{gap:3px}
+.dcd .dcbs .dcb{flex:0 0 auto;font-size:.68rem;padding:2px 7px;white-space:nowrap}
+.slex{margin:10px 0}
+.slex .dcex>.dcsec,.slex .txbox>.dcsec{display:none}
+.slex .dcex{margin:0 0 8px}
+.slex .slh{display:none!important}
+.slex .slmo{display:block;margin:8px auto 0}
+.slx{margin:10px 0;border:1.5px solid rgba(201,162,74,.45);border-radius:14px;background:#fffaf0;overflow:hidden}
+.slx>summary{list-style:none;cursor:pointer;padding:12px 14px;font-weight:800;font-size:.86rem;color:#a63a60;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.slx>summary::-webkit-details-marker{display:none}
+.slx>summary::after{content:'▾';color:#6f629a;flex:0 0 auto}
+.slx[open]>summary::after{content:'▴'}
+.slx>summary small{font-weight:600;color:#6f629a}
+.slx[open]{padding-bottom:12px}
+.slx>*:not(summary){margin-left:12px;margin-right:12px}
+.slx>.dch4,.slx .dcstroke>.dcsec,.slx .d2box>.dcsec{display:none}
+.slx .dcstroke,.slx .d2box{border:0;box-shadow:none;background:none;padding:0;margin-top:0}
+.dcpage,.dcpage .dcfr-frame,.dcd .dcbs,.dcbook,.dcfil,.dcfil .dcchips,.slbar{min-width:0;max-width:100%}
+.dcfil .dcchips{overflow-x:auto;flex-wrap:nowrap}
+.mbox.kmodal>*,.mbox.kmodal>*>*{min-width:0;max-width:100%}
 
 </style>
 
@@ -32313,7 +32345,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v500', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v501', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35618,6 +35650,78 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
   setTimeout(txmLoad, 4000);
   var txOfM0 = txOf;
   txOf = function (jp) { if (!TXM.st) txmLoad(); return txOfM0(jp).slice(0, 5); };
+
+  /* v501 : dico simplifié — filtres repliés, tri unique, fiche mot allégée */
+  var SL = { fil: false };
+  function slCount() {
+    if (dc.mode === 'k') return (dc.cc ? 1 : 0) + (KF.lv !== 'all' ? 1 : 0) + (KF.g !== 'all' ? 1 : 0) + (KF.s !== 'all' ? 1 : 0) + (KF.sort !== 'lvl' ? 1 : 0);
+    return (dc.t !== 'all' ? 1 : 0) + (dc.lv !== 'all' ? 1 : 0) + (dc.th ? 1 : 0) + (dc.cc ? 1 : 0);
+  }
+  function slBtnTxt(n) { return '⚙ Filtres' + (n ? ' · ' + n : '') + (SL.fil ? ' ▴' : ' ▾'); }
+  var slI0 = dcInner;
+  dcInner = function () {
+    var h = slI0();
+    if (dc.mode === 'n' || h.indexOf('<div class="dcfil">') < 0) return h;
+    var k = dc.mode === 'k', n = slCount();
+    if (!k) h = h.replace(/<button[^>]*data-dc="sort:(?:kana|lv|freq)"[^>]*>[^<]*<\/button>/g, '');
+    var bar = '<div class="slbar"><button type="button" class="dcch slf' + (n ? ' on' : '') + '" data-sl="fil" aria-expanded="' + SL.fil + '">' + slBtnTxt(n) + '</button>';
+    if (!k && !dc.q) bar += '<span class="slsort" role="group" aria-label="Tri"><span class="slst">Tri</span>' + [['lv', 'Niveau'], ['kana', 'あ→ん'], ['freq', '★ Fréq.']].map(function (x) { return '<button type="button" class="slsb' + (dc.sort === x[0] ? ' on' : '') + '" data-dc="sort:' + x[0] + '">' + x[1] + '</button>'; }).join('') + '</span>';
+    if (n) bar += '<button type="button" class="dcch rst slr" ' + (k ? 'data-kx="krst"' : 'data-dc="rst:1"') + ' aria-label="Effacer les filtres">↺</button>';
+    bar += '</div>';
+    return h.replace('<div class="dcfil">', bar + '<div class="dcfil' + (SL.fil ? '' : ' slhide') + '">');
+  };
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest ? ev.target.closest('[data-sl="fil"]') : null; if (!b) return;
+    SL.fil = !SL.fil;
+    var f = document.querySelector('#dcHost .dcfil'); if (f) f.classList.toggle('slhide', !SL.fil);
+    b.setAttribute('aria-expanded', String(SL.fil)); b.textContent = slBtnTxt(slCount());
+  });
+  /* fiche mot : exemples fusionnés + blocs secondaires repliés */
+  function slDet(title, key) {
+    var d = document.createElement('details'); d.className = 'slx'; d.setAttribute('data-sl', key);
+    var s = document.createElement('summary'); s.innerHTML = title; d.appendChild(s); return d;
+  }
+  function slTidy() {
+    var pg = document.querySelector('.dcpage'); if (!pg || pg.classList.contains('kxf') || !pg.querySelector(':scope > .dcfr-frame')) return;
+    var fr = pg.querySelector(':scope > .dcfr-frame'), ex = pg.querySelector(':scope > .dcex'), tx = pg.querySelector(':scope > .txbox');
+    var sx = pg.querySelector(':scope > .slex');
+    if (!sx && (ex || tx)) { sx = document.createElement('div'); sx.className = 'slex'; sx.innerHTML = '<p class="dcsec">Exemples</p>'; (ex || tx).before(sx); }
+    if (sx) {
+      if (ex) sx.insertBefore(ex, sx.children[1] || null);
+      if (tx) sx.appendChild(tx);
+      var items = Array.prototype.slice.call(sx.querySelectorAll(':scope > .dcex, :scope > .txbox .txs')), open = sx.classList.contains('open');
+      items.forEach(function (el, i) { var hide = !open && i >= 3; if (el.classList.contains('slh') !== hide) el.classList.toggle('slh', hide); });
+      var mb = sx.querySelector(':scope > .slmo');
+      if (items.length > 3) {
+        var t = open ? 'Réduire ▴' : 'Voir plus (' + (items.length - 3) + ') ▾';
+        if (!mb) { mb = document.createElement('button'); mb.type = 'button'; mb.className = 'dcch slmo'; mb.setAttribute('data-sl', 'more'); sx.insertBefore(mb, sx.querySelector('.txbox > .txsrc') ? null : null); }
+        if (mb.textContent !== t) mb.textContent = t;
+        var last = sx.querySelector(':scope > .txbox'); if (last && sx.lastElementChild !== mb) sx.appendChild(mb);
+      } else if (mb) mb.remove();
+    }
+    var anchor = pg.querySelector(':scope > .dckj') || sx || fr;
+    var sd = pg.querySelector(':scope > .dcstroke');
+    if (sd) { var d1 = slDet('Tracé 書き順', 'stroke'); sd.before(d1); d1.appendChild(sd); }
+    var h4 = pg.querySelector(':scope > .dch4');
+    if (h4) {
+      var d2 = slDet(h4.innerHTML, 'conj'), nx = h4.nextElementSibling; h4.before(d2); d2.appendChild(h4);
+      while (nx && (nx.classList.contains('dcg') || nx.classList.contains('dcf'))) { var n2 = nx.nextElementSibling; d2.appendChild(nx); nx = n2; }
+    }
+    Array.prototype.forEach.call(pg.querySelectorAll('.d2box'), function (bx) {
+      if (bx.parentNode.classList && bx.parentNode.classList.contains('slx')) return;
+      var sec = bx.querySelector(':scope > .dcsec'); if (!sec || sec.textContent.indexOf('Autres mots') !== 0) return;
+      var d3 = slDet(sec.innerHTML, 'autres'); bx.before(d3); d3.appendChild(bx);
+    });
+    var sdet = pg.querySelector('details[data-sl="stroke"]');
+    if (sdet && sdet.previousElementSibling !== anchor && anchor.nextElementSibling !== sdet) anchor.after(sdet);
+  }
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest ? ev.target.closest('[data-sl="more"]') : null; if (!b) return;
+    var sx = b.closest('.slex'); if (sx) { sx.classList.toggle('open'); slTidy(); }
+  });
+  var slO0 = dcOpen;
+  dcOpen = function (i) { slO0(i); try { slTidy(); } catch (e) {} };
+  (function () { var t = 0; try { new MutationObserver(function () { clearTimeout(t); t = setTimeout(function () { try { slTidy(); } catch (e) {} }, 60); }).observe(document.body, { childList: true, subtree: true }); } catch (e) {} })();
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
