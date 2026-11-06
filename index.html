@@ -31967,7 +31967,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v448', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v449', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -34188,6 +34188,21 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
   /* ===== v444 : section Cartes façon TCG Pocket (sachet à découper, révélation, classeur en pages) ===== */
   (function () {
     var cardPage = 0, cardTurn = 0, kdBusy = false, PER = 9, drag = null, _cp = cardPanel, _ca = cardAction, _cso = cardStartOpen;
+    /* pièces des doublons : créditées au moment où la carte est retournée, pas à l'ouverture */
+    var _co = cardOpen, _cf = cardFlipSet;
+    cardOpen = function (n) {
+      var out = _co(n);
+      out.forEach(function (x) { if (x.coins) { S.coins = coinsOf() - x.coins; S.coinsTotal = Math.max(0, (S.coinsTotal || 0) - x.coins); x.pend = true; } });
+      if (out.length) out.t0 = Date.now();
+      return out;
+    };
+    function settle(x) { if (x && x.pend) { x.pend = false; S.coins = coinsOf() + x.coins; S.coinsTotal = (S.coinsTotal || 0) + x.coins; try { persist(); renderBars(); } catch (e) {} return true; } return false; }
+    function settleAll(r) { var ok = false; (r && r.res || []).forEach(function (x) { if (settle(x)) ok = true; }); return ok; }
+    cardFlipSet = function (idxs) { var g = false; idxs.forEach(function (i) { if (cardRev && settle(cardRev.res[i])) g = true; }); if (g) sfx('coin'); _cf(idxs); };
+    var lastRev = null;
+    setInterval(function () { if (cardRev) { lastRev = cardRev; if (cardView !== 'rev' && cardView !== 'cut' && cardView.indexOf('zoom:') !== 0) settleAll(cardRev); else if (cardRev.res.t0 && Date.now() - cardRev.res.t0 > 60000) settleAll(cardRev); } else if (lastRev) { settleAll(lastRev); lastRev = null; } }, 1500);
+    document.addEventListener('visibilitychange', function () { if (document.hidden) { settleAll(cardRev); settleAll(lastRev); } });
+    window.addEventListener('pagehide', function () { settleAll(cardRev); settleAll(lastRev); });
     function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
     function zig(y, flip, n) { var a = [], i; for (i = 0; i <= 20; i++) a.push((flip ? 200 - i * 10 : i * 10) + ',' + (y + ((i % 2) ? (flip ? -7 : 7) : 0))); return a.join('L'); }
     var packN = 0;
@@ -34265,7 +34280,7 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
       var best = cardBest(res); clearTimeout(cardTimer);
       cardRev = { res: res, up: {}, n: n, page: 0, intro: true, best: best, sum: n > 5 }; cardView = 'cut'; kdBusy = false; sfx('start'); refreshShop();
     };
-    function cutEnd() { if (cardView === 'cut' && cardRev) { cardView = 'rev'; cardRev.intro = true; kdBusy = false; refreshShop(); } }
+    function cutEnd() { if (cardView === 'cut' && cardRev) { if (cardRev.sum) settleAll(cardRev); cardView = 'rev'; cardRev.intro = true; kdBusy = false; refreshShop(); } }
     function setP(p) {
       var top = document.getElementById('kdTop'), fill = document.getElementById('kdFill'), sp = document.getElementById('kdSpark'), h = document.getElementById('kdHint');
       if (!top) return;
@@ -34288,6 +34303,7 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
       if (a === 'kdskip') { if (cardView === 'cut') cutEnd(); return; }
       if (a === 'kdauto') { auto(); return; }
       if (a.indexOf('pg:') === 0) { var d = +a.slice(3), old = cardPage; cardPage += d; cardTurn = d; var X = cardS(); refreshShop(); return; }
+      if (cardRev && !/^(flip:|all$|zoom:|back$|next$|fav:)/.test(a) && a !== 'kdauto' && a !== 'kdskip' && a.indexOf('pg:') !== 0 && cardView !== 'cut') settleAll(cardRev);
       if (a === 'col') cardPage = 0;
       return _ca(a);
     };
