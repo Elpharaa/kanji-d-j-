@@ -32312,7 +32312,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v496', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v497', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35493,6 +35493,46 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
     if (p.indexOf('t:') === 0) { var i = +p.slice(2), ix = RK.sel.indexOf(i); if (ix >= 0) RK.sel.splice(ix, 1); else RK.sel.push(i); KF.n = 120; if (dc.q) { dc.q = ''; var q = document.getElementById('dcQ'); if (q) q.value = ''; } rkPaint(); }
   });
   setTimeout(function () { /* préchargement discret */ }, 0);
+
+  /* v497 : recherche inversée en français — classement par fréquence + formes conjuguées/pluriel */
+  function frsTier(e, qf) {
+    var f = e._f0 !== undefined ? e._f0 : (e._f0 = dcNorm(e.fr).split(/[,;]/)[0].trim());
+    if (f === qf || f === 'se ' + qf || f === 'etre ' + qf) return 0;
+    if (f.indexOf(qf) === 0) return 1;
+    if (dcNorm(e.fr).indexOf(qf) >= 0) return 2;
+    return -1;
+  }
+  function frsStems(w) {
+    var out = [], ends = ['ements', 'ement', 'ations', 'ation', 'aient', 'erait', 'erons', 'eront', 'erez', 'ions', 'iez', 'ons', 'ent', 'ant', 'ait', 'ais', 'ees', 'ee', 'es', 'ez', 'er', 'ir', 're', 'e', 's', 'x', 'e', 'i', 'u'];
+    ends.forEach(function (x) { if (w.length - x.length >= 3 && w.slice(-x.length) === x) { var s = w.slice(0, -x.length); if (out.indexOf(s) < 0) out.push(s); } });
+    return out;
+  }
+  var frsM0 = dcMatches;
+  dcMatches = function () {
+    var hits = frsM0(), q = dc.q ? dc.q.trim() : '';
+    if (!q || !/^[A-Za-zÀ-ÿ' -]+$/.test(q) || q.length < 3) return hits;
+    var qf = dcNorm(q), isEn = false;
+    if (!FQ && typeof fqLoad === 'function') fqLoad();
+    var seen = new Set(hits);
+    // 1) formes proches (pluriel, conjugaison) : racine au début d'un mot de la traduction
+    var extra = [];
+    if (!/ /.test(qf) && hits.length < 400) {
+      var st = frsStems(qf).filter(function (s) { return s.length >= 4 || (s.length === 3 && qf.length <= 5); });
+      if (st.length) {
+        var re = new RegExp('(^|[ ,;(])(?:se |s\')?(' + st.map(function (s) { return s.replace(/[^a-z]/g, ''); }).join('|') + ')');
+        var D = dcBuild().all;
+        for (var i = 0; i < D.length && extra.length < 150; i++) { var e = D[i]; if (seen.has(e) || e.en) continue; if (re.test(dcNorm(e.fr))) extra.push(e); }
+      }
+    }
+    // 2) classement : à tier égal, les mots les plus fréquents d'abord
+    var idx = new Map(); hits.forEach(function (e, i) { idx.set(e, i); });
+    var base = hits.map(function (e) { return [e, frsTier(e, qf)]; });
+    var fr = base.filter(function (p) { return p[1] >= 0 && !p[0].via; }), other = base.filter(function (p) { return p[1] < 0 || p[0].via; });
+    fr.sort(function (a, b) { return a[1] - b[1] || fqRank(a[0]) - fqRank(b[0]) || idx.get(a[0]) - idx.get(b[0]); });
+    extra.sort(function (a, b) { return fqRank(a) - fqRank(b); });
+    var first = fr.filter(function (p) { return p[1] < 2; }).map(function (p) { return p[0]; }), rest = fr.filter(function (p) { return p[1] === 2; }).map(function (p) { return p[0]; });
+    return [].concat(other.filter(function (p) { return p[0].via; }).map(function (p) { return p[0]; }), first, rest, extra, other.filter(function (p) { return !p[0].via; }).map(function (p) { return p[0]; }));
+  };
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
