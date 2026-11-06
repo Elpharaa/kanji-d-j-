@@ -6525,11 +6525,12 @@ body .kdc {
   background-size: 26px 22px, 26px 22px, 46px 14px, 46px 14px, 46px 14px, 46px 14px, 100% 22px, 100% 22px, 500px 300px, 100% calc(100% - 90px), 100% calc(100% - 90px), 5px 26px, 5px 26px, 12px 14px, 12px 14px, 100% 26px !important;
   background-position: 0 48px, 0 100%, left 8px top 52px, right 8px top 52px, left 8px bottom 4px, right 8px bottom 4px, 0 46px, 0 100%, 0 68px, 0 68px, 0 68px, left 22% top 28px, right 22% top 28px, left calc(22% - 3px) top 22px, right calc(22% - 3px) top 22px, 0 0 !important;
   border: 0 !important; border-radius: 0 !important; box-shadow: none !important;
-  filter: drop-shadow(0 8px 5px rgba(30, 12, 4, .5)) !important;
+  filter: none !important; will-change: auto;
   color: #fbe8c4 !important;
 }
 body .kdc:nth-child(2n) { background-position: 6px 48px, 0 100%, left 8px top 52px, right 8px top 52px, left 8px bottom 4px, right 8px bottom 4px, 0 38px, 0 100%, 90px 48px, 0 60px, 0 60px, left 22% top 26px, right 22% top 26px, left calc(22% - 3px) top 20px, right calc(22% - 3px) top 20px, 0 0 !important; }
-body .kdc.sel { filter: drop-shadow(0 10px 6px rgba(30, 12, 4, .6)) brightness(1.1) !important; }
+body .kdc.sel { filter: none !important; }
+body .kdc::after { content: ""; position: absolute; inset: 46px 0 0 0; box-shadow: 0 8px 12px rgba(30, 12, 4, .45); pointer-events: none; z-index: -1; }
 body .kdc .kdlab { inset: 72px 20px 62px 20px !important; padding: 0 !important; }
 body .kdc .kdlab b { color: #fbe8c4 !important; font-size: clamp(1rem, 4.6vw, 1.3rem) !important; text-shadow: 0 2px 0 #2a1608, 0 0 3px #2a1608 !important; letter-spacing: .06em; }
 body .kdc .kdart { inset: auto 16px 28px 16px !important; }
@@ -32198,7 +32199,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v478', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v479', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
