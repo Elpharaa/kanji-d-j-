@@ -6638,6 +6638,9 @@ body .mbox #appModalBody, body .shopmodal #appModalBody { padding-bottom: calc(v
 .jxbtn { width: 100%; margin: 10px 0; padding: 12px 14px; border-radius: 14px; border: 2px dashed #4b3d84; background: #fffaf7; color: #2c2452; font: inherit; font-weight: 800; cursor: pointer; text-align: center; }
 .jxbtn small { display: block; font-weight: 500; color: #6f629a; margin-top: 2px; }
 .jxbar { margin: 8px 0; text-align: center; font-size: .82rem; color: #6f629a; } .jxbar.ok { color: #2f7a4a; font-weight: 700; }
+.fqs{position:absolute;right:8px;bottom:6px;font-size:.62rem;color:#c8932e;letter-spacing:1px;pointer-events:none}
+.dcb.fqb{background:#fff6dc;color:#a8741a;border-color:#ecd28c}
+.fqb .fqo{color:#e4d6ae}
 
 </style>
 
@@ -32301,7 +32304,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v494', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v495', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35378,6 +35381,52 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
       EX.busy = 'rest'; dcRefreshAll();
     }, true);
   })();
+
+  /* v495 : classement par fréquence d'usage (JMdict) */
+  var FQ = null, FQSt = 0;
+  function fqLoad(cb) {
+    if (FQ) { cb && cb(); return; } if (FQSt === 1 || FQSt === 3) return; FQSt = 1;
+    try { if (typeof DecompressionStream === 'undefined') { FQSt = 3; return; } } catch (e) { FQSt = 3; return; }
+    fetch('data/jmdict_freq.gz').then(function (r) { if (!r.ok) throw 0; return r.blob(); }).then(function (b) { return new Response(b.stream().pipeThrough(new DecompressionStream('gzip'))).text(); })
+      .then(function (t) { FQ = JSON.parse(t); FQSt = 2; if (dc.sort === 'freq') { try { dcRefreshAll(); } catch (z) {} } cb && cb(); }).catch(function () { FQSt = 3; });
+  }
+  function fqRank(e) { if (!FQ) return 99; var r = FQ[e.jp + '|' + (e.kana || e.jp)]; return r === undefined ? 99 : r; }
+  function fqStars(r) { return r >= 99 ? 0 : r <= 8 ? 5 : r <= 16 ? 4 : r <= 30 ? 3 : r <= 44 ? 2 : 1; }
+  var FQL = ['', 'Assez courant', 'Courant', 'Très courant', 'Très fréquent', 'Parmi les plus fréquents'];
+  setTimeout(function () { fqLoad(); }, 3500);
+  var dcMatchesFq0 = dcMatches;
+  dcMatches = function () {
+    var m = dcMatchesFq0();
+    if (dc.q || dc.sort !== 'freq') return m;
+    if (!FQ) { fqLoad(); return m; }
+    var ix = new Map(); m.forEach(function (e, i) { ix.set(e, i); });
+    return m.slice().sort(function (a, b) { var x = fqRank(a), y = fqRank(b); return x !== y ? x - y : ix.get(a) - ix.get(b); });
+  };
+  var dcInnerFq0 = dcInner;
+  dcInner = function () {
+    var h = dcInnerFq0(), on = dc.sort === 'freq';
+    var chip = '<button type="button" class="dcch' + (on ? ' on' : '') + '" data-dc="sort:' + (on ? 'lv' : 'freq') + '">★ ' + (on ? 'plus fréquents d\'abord' : 'fréquence') + '</button>';
+    var re = /(ordre kana|activé)<\/button>/;
+    if (re.test(h)) h = h.replace(re, function (m0) { return m0 + chip; });
+    return h;
+  };
+  var dcCardFq0 = dcCard;
+  dcCard = function (e, n, anim) {
+    var h = dcCardFq0(e, n, anim), s = fqStars(fqRank(e));
+    if (s >= 3) { var i = h.lastIndexOf('</button>'); if (i > 0) h = h.slice(0, i) + '<span class="fqs" title="' + FQL[s] + '">' + '★'.repeat(s - 2) + '</span>' + h.slice(i); }
+    return h;
+  };
+  dcRow = function (e) { return dcCard(e, 0, false); };
+  var dcOpenFq0 = dcOpen;
+  dcOpen = function (i) {
+    dcOpenFq0(i);
+    try { var e0 = dcBuild().all[i]; if (e0) fqLoad(function () { fqSheet(e0); }); } catch (x) {}
+  };
+  function fqSheet(e) {
+    var pg = document.querySelector('.dcpage'), s = fqStars(fqRank(e)); if (!pg || !s || pg.querySelector('.fqb')) return;
+    var bs = pg.querySelector('.dcbs'); if (!bs) return;
+    bs.insertAdjacentHTML('beforeend', '<span class="dcb fqb" title="Fréquence d\'usage (JMdict)">' + '★'.repeat(s) + '<span class="fqo">' + '★'.repeat(5 - s) + '</span> ' + FQL[s] + '</span>');
+  }
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
