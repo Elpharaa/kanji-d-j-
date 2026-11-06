@@ -6306,6 +6306,23 @@ body #vBoard #podium .pod { opacity: 1 !important; filter: none !important; }
 body #podium .podxp, body #podium .podxp *, body #podium [class*="xp"] { color: #8a5a1a !important; }
 body #podium .podtier, body #podium [class*="tier"], body #podium [class*="clan"] { background: rgba(255, 255, 255, .85) !important; color: #5b3a2c !important; }
 body #podium .podbase, body #podium [class*="base"], body #podium [class*="step"] { background: linear-gradient(#f9d9e4, #f0b3c8) !important; color: #7a3a55 !important; border-color: var(--wa-gold, #c49a3a) !important; }
+/* v451 phrases à trou : retour correct / erreur plus lisible */
+body .fb.good, body .fb.bad { padding: 12px !important; border-radius: 18px !important; border: 2px solid; text-align: left; }
+body .fb.good { background: #e9f8ef !important; border-color: #2f9a5a !important; color: #1f6b3e !important; }
+body .fb.bad { background: #fdeef1 !important; border-color: #d8527f !important; color: #8f2347 !important; }
+.fbv { display: flex; align-items: center; gap: 10px; } .fbv b { font: 800 1.3rem var(--font-brush, serif); }
+.fbi { flex: none; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 1.3rem; font-weight: 900; box-shadow: 0 2px 6px rgba(0, 0, 0, .25); }
+.fb.good .fbi { background: #2f9a5a; } .fb.bad .fbi { background: #d8527f; }
+.fbw { margin-top: 10px; padding: 10px 12px; border-radius: 14px; background: rgba(255, 255, 255, .8); display: grid; gap: 2px; justify-items: center; text-align: center; color: #3a2418; }
+.fbw small { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; opacity: .7; } .fbw .jp { font-size: 2.1rem; line-height: 1.2; font-weight: 700; } .fbw .fbr { font-size: .95rem; font-weight: 600; }
+.fb .clzwhy { color: inherit; font-size: .9rem; margin: 8px 0 0; }
+.fb > .clzwhy:last-of-type { display: inline-block; padding: 3px 10px; border-radius: 99px; background: rgba(255, 255, 255, .7); font-size: .8rem; font-weight: 700; }
+body .fb .clzprog { background: none !important; border: 0 !important; padding: 0 !important; margin: 6px 0 0 !important; display: block !important; }
+body .fb .clzprog .cpl, body .fb .clzprog .cpd, body .fb .clzprog .cpt { display: none !important; }
+body .fb .clzprog .cpn { color: inherit !important; font-size: .86rem; text-align: left; }
+.clznext { position: sticky; bottom: calc(var(--dockh, 96px) + 8px); z-index: 6; margin-top: 12px; padding-top: 14px; background: linear-gradient(rgba(253, 238, 228, 0), rgba(253, 238, 228, .92) 45%); }
+.clznext .btn { width: 100%; min-height: 54px; font-size: 1.15rem; }
+@media (max-width: 767px) { body .clzcard .clzchip { font-size: .95rem; } }
 
 </style>
 
@@ -23971,10 +23988,10 @@ body #podium .podbase, body #podium [class*="base"], body #podium [class*="step"
     } else {
       var ok = clz.ans === 1, w = it.w;
       h += '<div class="choices">' + (md === 'mcq' ? q.opts.map(function (o, i) { var c = 'choice'; if (o.mot === w.mot) c += ' good'; else if (clz.pick === i) c += ' bad'; return '<button type="button" class="' + c + '" disabled><span class="key">' + (i + 1) + '</span><span class="jp">' + esc(o.mot) + '</span></button>'; }).join('') : '') + '</div>';
-      h += '<div class="fb ' + (ok ? 'good' : 'bad') + '"><b>' + (ok ? 'Bonne réponse !' : 'Raté. Le mot était : ' + esc(w.mot)) + '</b><span class="jp">' + esc(w.mot) + '</span> · ' + esc(w.lecture || '') + ' · ' + esc(w.sens) + (!ok ? clzWhyHTML(it, q) : '') + clzProgHTML() + '<div class="aids"><button type="button" class="aidbtn" data-clz="say">🔊 Écouter la phrase<kbd class="kbhint">L</kbd></button></div>' + '' + '</div>';
+      h += '<div class="fb ' + (ok ? 'good' : 'bad') + '"><div class="fbv"><span class="fbi" aria-hidden="true">' + (ok ? '✓' : '✗') + '</span><b>' + (ok ? 'Bonne réponse !' : 'Raté') + '</b></div><div class="fbw"><small>' + (ok ? 'Le mot' : 'Le mot était') + '</small><span class="jp">' + esc(w.mot) + '</span><span class="fbr">' + esc(w.lecture || '') + ' · ' + esc(w.sens) + '</span></div>' + (!ok ? clzWhyHTML(it, q) : '') + clzProgHTML() + '<div class="aids"><button type="button" class="aidbtn" data-clz="say">🔊 Écouter la phrase<kbd class="kbhint">L</kbd></button></div>' + '' + '</div>';
       if (clz.alt) h += '<p class="small muted" style="text-align:center">Phrase bonus : pas de points pour celle-ci.</p>';
       if (clzAltList(clz.items[clz.i]).length) h += '<div style="text-align:center;margin-top:10px"><button type="button" class="btn" data-clz="alt">🔁 Étudier une autre phrase avec ce mot</button></div>';
-      h += '<div style="text-align:center;margin-top:10px"><button type="button" class="btn primary" data-clz="next">' + (clz.i + 1 >= clz.items.length ? 'Voir le résultat' : 'Suivant') + '<kbd class="kbhint">⏎</kbd></button></div>';
+      h += '<div class="clznext"><button type="button" class="btn primary" data-clz="next">' + (clz.i + 1 >= clz.items.length ? 'Voir le résultat' : 'Suivant') + '<kbd class="kbhint">⏎</kbd></button></div>';
     }
     return h;
   }
@@ -31967,7 +31984,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v450', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v451', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
