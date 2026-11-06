@@ -6626,6 +6626,9 @@ body .mbox #appModalBody, body .shopmodal #appModalBody { padding-bottom: calc(v
 .d2alt { margin: 4px 0 0; font-size: 1.05rem; color: #4b3d84; }
 .d2w { font-size: 1rem; }
 
+.dcb.d2m { background: #efe6f6; color: #5a4a8a; border-color: #cdbfe6; }
+.dcb.d2m.bad { background: #fde4e4; color: #9a2a2a; border-color: #f0b4b4; }
+
 /* v488 : onglet Noms propres */
 .dcmode button { flex: 1 1 0; min-width: 0; padding: 0 4px; font-size: .92rem; }
 .nmrow { cursor: default; }
@@ -32298,7 +32301,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v491', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v492', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35152,7 +35155,7 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
   })();
 
   /* =====================================================================
-     v487 : fiche d'un mot enrichie (tous les sens, écritures, mots du même kanji, homophones).
+     v487/v492 : fiche d'un mot enrichie (tous les sens, écritures, mots du même kanji, homophones).
      ===================================================================== */
   (function () {
     var _o = dcOpen;
@@ -35179,8 +35182,33 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
       }
       return h;
     }
+    var MT = null, MTSt = 0;
+    var MLAB = { pol: 'Poli', hon: 'Honorifique', hum: 'Humble', col: 'Familier', fam: 'Familier', sl: 'Argot', vulg: 'Vulgaire', derog: 'Péjoratif', arch: 'Ancien', obs: 'Désuet', dated: 'Vieilli', joc: 'Humoristique', male: 'Langage masculin', fem: 'Langage féminin', abbr: 'Abréviation', poet: 'Poétique', id: 'Expression imagée', proverb: 'Proverbe', yoji: 'Quatre caractères', rare: 'Rare' };
+    var MBAD = { vulg: 1, derog: 1, sl: 1 };
+    function mtLoad(cb) {
+      if (MT) { cb(); return; } if (MTSt === 1 || MTSt === 3) return; MTSt = 1;
+      try { if (typeof DecompressionStream === 'undefined') { MTSt = 3; return; } } catch (e) { MTSt = 3; return; }
+      fetch('data/jmdict_meta.gz').then(function (r) { if (!r.ok) throw 0; return r.blob(); }).then(function (b) { return new Response(b.stream().pipeThrough(new DecompressionStream('gzip'))).text(); })
+        .then(function (t) { MT = JSON.parse(t); MTSt = 2; cb(); }).catch(function () { MTSt = 3; });
+    }
+    function d2Meta(e) {
+      var m = MT && MT[e.jp + '|' + (e.kana || e.jp)]; if (!m) return;
+      var pg = document.querySelector('.dcpage'); if (!pg || pg.getAttribute('data-d2m') === String(e.i)) return; pg.setAttribute('data-d2m', e.i);
+      if (m[2]) {
+        var bs = pg.querySelector('.dcbs');
+        if (bs) bs.insertAdjacentHTML('beforeend', m[2].split(' ').filter(function (c) { return MLAB[c]; }).map(function (c) { return '<span class="dcb d2m' + (MBAD[c] ? ' bad' : '') + '">' + MLAB[c] + '</span>'; }).join(''));
+      }
+      var D = dcBuild(), h = '';
+      function sec(title, arr) {
+        var L = []; arr.forEach(function (t) { var x = null; try { x = dcByJp(t); } catch (z) {} if (x && x !== e && L.indexOf(x) < 0) L.push(x); });
+        if (L.length) h += '<div class="d2box"><p class="dcsec">' + title + '</p><div class="dckj">' + L.map(chip).join('') + '</div></div>';
+      }
+      sec('Contraire', m[1] || []); sec('Voir aussi', m[0] || []);
+      if (h) { var box = pg.querySelector('.d2wrap'); if (!box) { box = document.createElement('div'); box.className = 'd2wrap'; var src = pg.querySelector('.jmsrc'); if (src) pg.insertBefore(box, src); else pg.appendChild(box); } box.insertAdjacentHTML('afterbegin', h); }
+    }
     dcOpen = function (i) {
       _o(i);
+      try { var e0 = dcBuild().all[i]; if (e0) mtLoad(function () { d2Meta(e0); }); } catch (x) {}
       try {
         var D = dcBuild(), e = D.all[i]; if (!e) return;
         var h = d2HTML(e, D); if (!h) return;
