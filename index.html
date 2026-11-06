@@ -6649,6 +6649,7 @@ body .mbox #appModalBody, body .shopmodal #appModalBody { padding-bottom: calc(v
 .rkn{flex:none;width:100%;font-size:.62rem;font-weight:800;color:#a63a60;letter-spacing:.06em;margin-top:4px}
 .rkb{min-width:38px;height:38px;border-radius:10px;border:1.5px solid rgba(75,61,132,.3);background:#fff;color:#2c2452;font-size:1.15rem;padding:0 4px;cursor:pointer;box-shadow:0 2px 0 rgba(75,61,132,.15)}
 .rkb.on{background:#4b3d84;color:#fff;border-color:#4b3d84}.rkb.off{opacity:.22;cursor:default;box-shadow:none}
+.rkx{margin-top:10px}.rkxc{cursor:default}.rkxc[data-kx]{cursor:pointer}
 
 </style>
 
@@ -32312,7 +32313,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v497', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v498', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35533,6 +35534,37 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
     var first = fr.filter(function (p) { return p[1] < 2; }).map(function (p) { return p[0]; }), rest = fr.filter(function (p) { return p[1] === 2; }).map(function (p) { return p[0]; });
     return [].concat(other.filter(function (p) { return p[0].via; }).map(function (p) { return p[0]; }), first, rest, extra, other.filter(function (p) { return !p[0].via; }).map(function (p) { return p[0]; }));
   };
+
+  /* v498 : composants d'un kanji sur sa fiche (KRADFILE/RADKFILE) */
+  function rkxHTML(c) {
+    if (!RK.d || !RK.K) return '';
+    var comps = [], i;
+    for (i = 0; i < RK.d.length; i++) if (RK.K[i][c] && RK.d[i][0] !== c) comps.push(i);
+    var isRad = -1; for (i = 0; i < RK.d.length; i++) if (RK.d[i][0] === c) isRad = i;
+    var h = '';
+    if (comps.length) {
+      h += '<div class="rkx"><p class="dcsec">Composants 部品</p><div class="dcchips wrap">' + comps.map(function (j) {
+        var ch = RK.d[j][0], sh = RKSHOW[ch] || ch, kk = null; try { kk = kxInfo(ch); } catch (e) {}
+        return '<button type="button" class="dcch jp rkxc"' + (kk && ch !== c ? ' data-kx="open:' + esc(ch) + '"' : '') + '>' + esc(sh) + '</button>';
+      }).join('') + '</div></div>';
+    }
+    if (isRad >= 0) {
+      var list = Array.from(RK.d[isRad][2]).filter(function (k) { if (k === c) return false; try { return !!kxInfo(k); } catch (e) { return false; } }).slice(0, 48);
+      if (list.length) h += '<div class="rkx"><p class="dcsec">Kanji qui contiennent ' + esc(RKSHOW[c] || c) + '</p><div class="dckj">' + list.map(function (k) { return '<button type="button" class="dckb jp" data-kx="open:' + esc(k) + '">' + esc(k) + '</button>'; }).join('') + '</div></div>';
+    }
+    return h;
+  }
+  function rkxAdd(c) {
+    rkLoad(function () {
+      var body = document.querySelector('#appModalBody .kbody'); if (!body || body.querySelector('.rkx')) return;
+      var h = rkxHTML(c); if (!h) return;
+      var src = body.querySelector('.kxsrc'); if (src) src.insertAdjacentHTML('beforebegin', h); else body.insertAdjacentHTML('beforeend', h);
+    });
+  }
+  var rkxK0 = openKCard;
+  openKCard = function (i) { rkxK0(i); try { var c = kcards[i]; if (c && c.k) rkxAdd(c.k); } catch (e) {} };
+  var rkxO0 = kxOpen;
+  kxOpen = function (c) { rkxO0(c); try { if (document.querySelector('.kxf')) rkxAdd(c); } catch (e) {} };
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
