@@ -6548,15 +6548,50 @@ body .kdc, body .kdc:nth-child(2n) {
     radial-gradient(circle at 50% 50%, #e4e7ea 0 1.6px, #50555c 2.4px, rgba(0,0,0,0) 3.2px),
     linear-gradient(#6a7078, #2e3238), linear-gradient(#6a7078, #2e3238), linear-gradient(#6a7078, #2e3238), linear-gradient(#6a7078, #2e3238),
     linear-gradient(#9a643a, #5e3a20 70%, #4a2c16), linear-gradient(#9a643a, #5e3a20 70%, #4a2c16),
-    repeating-linear-gradient(180deg, rgba(70, 36, 12, 0) 0 3px, rgba(70, 36, 12, .16) 3px 4px, rgba(0, 0, 0, 0) 4px 8px, rgba(255, 224, 170, .10) 8px 9px, rgba(0, 0, 0, 0) 9px 15px, rgba(40, 18, 4, .12) 15px 16px, rgba(0, 0, 0, 0) 16px 21px),
-    repeating-linear-gradient(180deg, rgba(0,0,0,0) 0 27px, rgba(24,12,4,.8) 27px 29px, rgba(255,210,150,.18) 29px 30px),
+    linear-gradient(180deg, rgba(60,30,10,.18), rgba(255,220,160,.10) 50%, rgba(60,30,10,.18)),
     linear-gradient(#b27a46, #8a5a30 50%, #744a26) !important;
-  background-repeat: repeat-x, repeat-x, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat !important;
-  background-size: 26px 22px, 26px 22px, 46px 14px, 46px 14px, 46px 14px, 46px 14px, 100% 22px, 100% 22px, 100% calc(100% - 44px), 100% calc(100% - 44px), 100% calc(100% - 44px) !important;
-  background-position: 0 0, 0 100%, left 8px top 4px, right 8px top 4px, left 8px bottom 4px, right 8px bottom 4px, 0 0, 0 100%, 0 22px, 0 22px, 0 22px !important;
+  background-repeat: repeat-x, repeat-x, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat !important;
+  background-size: 26px 22px, 26px 22px, 46px 14px, 46px 14px, 46px 14px, 46px 14px, 100% 22px, 100% 22px, 100% calc(100% - 44px), 100% calc(100% - 44px) !important;
+  background-position: 0 0, 0 100%, left 8px top 4px, right 8px top 4px, left 8px bottom 4px, right 8px bottom 4px, 0 0, 0 100%, 0 22px, 0 22px !important;
 }
 body .kdc::after { inset: 0 !important; }
 body .kdc .kdlab { inset: 28px 20px 62px 20px !important; }
+
+/* v482b : sélection sans zoom ni ombres multiples (évite les artefacts GPU) */
+body .kdc.sel, body .kdc:nth-child(2n).sel { transform: none !important; box-shadow: 0 0 0 3px #ffe27a, 0 8px 14px rgba(40,20,10,.45) !important; filter: none !important; }
+body .kdc, body .kdc::after, body .kdc .kdlab { will-change: auto !important; backface-visibility: visible !important; }
+
+/* v482 : menu des cartes, vente, échanges */
+.kdoffs { grid-template-columns: minmax(0, 1fr) !important; }
+.kdoff.kdone { width: 100%; }
+.kdoff s { opacity: .6; margin-right: 4px; }
+.kdbackrow { padding: 0 0 6px; }
+.kdback { margin: 0 0 4px; }
+.kdhub { display: flex; flex-direction: column; gap: 12px; padding: 4px 2px 18px; }
+.kdpromo { display: grid; gap: 2px; text-align: center; padding: 10px 12px; border-radius: 14px; background: linear-gradient(#e8f4ff, #cfe6fa); border: 2px solid #5aa0d8; color: #1f4a78; }
+.kdpromo span { font-size: .88rem; } .kdpromo s { opacity: .6; } .kdpromo em { font-style: normal; font-weight: 800; }
+.kdhgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.kdhtile { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 16px 8px 14px; border-radius: 16px; border: 2px solid #c49a3a; background: linear-gradient(#fffdf8, #f6e8d4); color: #5b3a2c; font: inherit; cursor: pointer; text-align: center; box-shadow: 0 4px 10px rgba(122, 75, 58, .22); }
+.kdhtile i { font-style: normal; font-size: 2rem; line-height: 1.1; } .kdhtile b { font: 800 1rem var(--font-brush, serif); } .kdhtile small { font-size: .74rem; color: #8a6f5c; } .kdhtile s { opacity: .6; }
+.kdhtile u { position: absolute; top: 8px; right: 8px; min-width: 22px; height: 22px; border-radius: 11px; background: #e0457a; color: #fff; text-decoration: none; font: 800 .8rem/22px sans-serif; text-align: center; }
+.kdsell, .kdtrade { min-width: 0; }
+.kdsall { width: 100%; margin: 4px 0 8px; } .btn.warn { background: linear-gradient(#f08aab, #d8527f); color: #fff; border-color: #b8325f; }
+.kdselbox { display: flex; gap: 12px; align-items: center; padding: 10px; margin: 8px 0; border-radius: 14px; background: #fffaf0; border: 2px solid #c49a3a; }
+.kdselc { width: 34%; flex: none; } .kdselt { display: grid; gap: 6px; flex: 1; min-width: 0; } .kdselt small { color: #8a6f5c; }
+.kdsgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
+.cdslotm { position: relative; } .cdslotm.pick .cdcard { outline: 3px solid #e0457a; outline-offset: 2px; }
+.cdprice { position: absolute; left: 50%; bottom: -6px; transform: translateX(-50%); padding: 1px 8px; border-radius: 99px; background: #fff; border: 1.5px solid #c49a3a; font: 800 .7rem sans-serif; color: #8a5a10; white-space: nowrap; }
+.cdprice.own { color: #2f7a4a; }
+.kdtrnew { width: 100%; margin: 6px 0 10px; }
+.kdtr { padding: 10px; margin: 0 0 10px; border-radius: 14px; background: #fffaf0; border: 2px solid #c49a3a; }
+.kdtrh { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; } .kdtrh .av { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid #c49a3a; }
+.kdtrh span { display: grid; } .kdtrh small { color: #8a6f5c; }
+.kdtrc { display: flex; align-items: center; justify-content: center; gap: 8px; } .kdtrc > div { width: 38%; text-align: center; } .kdtrc small { display: block; font-size: .7rem; color: #8a6f5c; margin-bottom: 2px; } .kdtrc i { font-style: normal; font-size: 1.4rem; color: #c0395f; }
+.kdtrc.big > div { width: 36%; }
+.kdtrb { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; align-items: center; } .kdtrb .btn { flex: 1; }
+.kdsteps { display: flex; gap: 4px; margin: 0 0 10px; } .kdsteps span { flex: 1; text-align: center; font-size: .66rem; padding: 4px 2px; border-radius: 8px; background: #efe6d6; color: #8a6f5c; } .kdsteps .on { background: #d8527f; color: #fff; font-weight: 800; } .kdsteps .ok { background: #cfe8b0; color: #3a6a2a; }
+.kdfl { display: grid; gap: 8px; } .kdfr { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 14px; border: 2px solid #c49a3a; background: #fffaf0; font: inherit; cursor: pointer; text-align: left; color: #5b3a2c; } .kdfr.pick { outline: 3px solid #e0457a; } .kdfr .av { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #c49a3a; }
+.kdd[data-n] { position: relative; } .kdd[data-n]::after { content: attr(data-n); position: absolute; top: 0; right: 14%; min-width: 17px; height: 17px; border-radius: 9px; background: #e0457a; color: #fff; font: 800 10px/17px sans-serif; text-align: center; box-shadow: 0 1px 3px rgba(0, 0, 0, .35); }
 
 </style>
 
@@ -13454,6 +13489,9 @@ body .kdc .kdlab { inset: 28px 20px 62px 20px !important; }
       },
       frSend: function (uid, to) { return sb.from('friendships').insert({ requester: uid, addressee: to }).then(function (r) { if (r.error) throw r.error; }); },
       frAnswer: function (rid, ok) { return (ok ? sb.from('friendships').update({ status: 'accepted' }).eq('id', rid) : sb.from('friendships').delete().eq('id', rid)).then(function (r) { if (r.error) throw r.error; }); },
+      tradeLoad: function (uid) { return sb.from('card_trades').select('id,from_id,to_id,give,want,status,created_at').or('from_id.eq.' + uid + ',to_id.eq.' + uid).neq('status', 'done').order('created_at', { ascending: false }).limit(60).then(function (r) { if (r.error) throw r.error; return r.data || []; }); },
+      tradeSend: function (uid, to, give, want) { return sb.from('card_trades').insert({ from_id: uid, to_id: to, give: give, want: want }).select('id').then(function (r) { if (r.error) throw r.error; return r.data && r.data[0]; }); },
+      tradeSet: function (id, from, to) { return sb.from('card_trades').update({ status: to }).eq('id', id).eq('status', from).select('id').then(function (r) { if (r.error) throw r.error; return (r.data || []).length > 0; }); },
       frRemove: function (rid) { return sb.from('friendships').delete().eq('id', rid).then(function (r) { if (r.error) throw r.error; }); },
       frFavLoad: function (uid) { return sb.from('friend_favs').select('friend_id').eq('user_id', uid).then(function (r) { if (r.error) throw r.error; return (r.data || []).map(function (x) { return x.friend_id; }); }); },
       frFavSet: function (uid, fid, on) { return (on ? sb.from('friend_favs').upsert({ user_id: uid, friend_id: fid }) : sb.from('friend_favs').delete().eq('user_id', uid).eq('friend_id', fid)).then(function (r) { if (r.error) throw r.error; }); },
@@ -32217,7 +32255,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v481', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v482', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -34485,10 +34523,8 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
     function mainHTML() {
       var X = cardS(), ids = sample(), strip = ids.concat(ids).map(function (id) { return '<div class="kdbc">' + cdCard(id, { mini: true }) + '</div>'; }).join('');
       var rates = ['c', 'u', 'r', 'e', 'l', 'm'].map(function (k) { return '<li style="--rc:' + CARD_RAR[k].col + '"><b>' + CARD_RAR[k].n + '</b> ' + CARD_RAR[k].w + ' %</li>'; }).join('');
-      var offers = CARD_BUNDLES.map(function (b) {
-        var n = b[0], pr = b[1], save = Math.round((1 - pr / (n * CARD_ONE)) * 100), can = coinsOf() >= pr;
-        return '<button type="button" class="kdoff" data-card="buy' + n + '"' + (can ? '' : ' disabled') + '><b>' + n + ' booster' + (n > 1 ? 's' : '') + '</b><small>' + (n * 3) + ' cartes</small><span>' + pr + ' 金</span>' + (save ? '<i>−' + save + ' %</i>' : '') + '</button>';
-      }).join('');
+      var ev = cardEvent(), pr = cardOne(), can = coinsOf() >= pr;
+      var offers = '<button type="button" class="kdoff kdone" data-card="buy1"' + (can ? '' : ' disabled') + '><b>Acheter 1 booster</b><small>3 cartes</small><span>' + (ev ? '<s>' + CARD_BASE + '</s> ' : '') + pr + ' 金</span>' + (ev ? '<i>' + esc(ev.name) + '</i>' : '') + '</button>';
       var ready = cardFreeReady();
       return '<div class="kdcm"><div class="kdbub"><div class="kdbs">' + strip + '</div></div>' +
         '<div class="kdpkw static' + (ready ? ' ready' : '') + '"' + (ready ? ' data-card="free" role="button" aria-label="Ouvrir le booster du jour"' : '') + '>' + packSVG() + (ready ? '<span class="kdfree">🎁 Gratuit</span>' : '') + '</div>' +
@@ -34823,6 +34859,253 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
     try { CD_KNAMES.lang = 'Langue japonaise'; CD_KNAMES.jeu = 'Jeux traditionnels'; } catch (e) {}
     CARD_KIND.lang = 'Langue japonaise'; CARD_KIND.jeu = 'Jeux traditionnels';
     CD_BG.lang = ['#34506a', '#8ab0d0', '語']; CD_BG.jeu = ['#6a4a2a', '#e0b070', '遊'];
+  })();
+
+  /* =====================================================================
+     v482 : MENU DES CARTES, prix unique + promos d'événement, vente, échanges entre amis.
+     ===================================================================== */
+  var CARD_BASE = 50;
+  // Promos : à ajouter / modifier ici. price = prix d'un booster pendant l'événement ; from / to = dates incluses (AAAA-MM-JJ, heure de Paris).
+  var CARD_EVENTS = [{ id: 'hiver', name: 'Promos d\'hiver', from: '2026-11-06', to: '2027-01-10', price: 30, ico: '❄️' }];
+  function cardEvent() {
+    var d = ''; try { d = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Paris' }); } catch (e) { d = new Date().toISOString().slice(0, 10); }
+    for (var i = 0; i < CARD_EVENTS.length; i++) { var e = CARD_EVENTS[i]; if (d >= e.from && d <= e.to && e.price < CARD_BASE) return e; }
+    return null;
+  }
+  function cardOne() { var e = cardEvent(); return e ? e.price : CARD_BASE; }
+  function cardPrice(n) { return n * cardOne(); }
+  CARD_ONE = CARD_BASE; CARD_BUNDLES = [[1, CARD_BASE]];
+  function cardSellPrice(id) { var c = CARD_BY[id]; return c ? Math.max(1, Math.round(CARD_RAR[c[3]].dup * 0.25)) : 0; }
+  (function () {
+    var _cp = cardPanel, _ca = cardAction;
+    var sellSel = '', sellCnf = '', sellPage = 0, sellF = 'all';
+    var TR = { rows: [], at: 0, busy: false, err: '', inc: 0, claiming: {} };
+    var TRC = { step: 1, to: '', give: '', want: '', kind: 'all', page: 0 };
+    var PER = 9;
+    var KN = { all: 'Toutes les catégories', prof: 'Professeurs', fac: 'Vie de la fac', jp: 'Japon', hist: 'Histoire', obj: 'Objets', cuis: 'Cuisine', trad: 'Traditions', art: 'Arts', sport: 'Budō et sport', lieu: 'Lieux', nat: 'Nature et fêtes', kami: 'Kami (dieux)', folk: 'Folklore', ville: 'Villes du Japon', pop: 'Culture pop', star: 'Stars et personnages', lang: 'Langue japonaise', jeu: 'Jeux traditionnels' };
+    function owned() { return cardS().owned; }
+    function nOf(id) { return owned()[id] || 0; }
+    function bump(id, d) { var o = owned(); o[id] = (o[id] || 0) + d; if (o[id] <= 0) delete o[id]; }
+    function back(to, label) { return '<button type="button" class="btn kdback" data-card="' + to + '">‹ ' + (label || 'Menu des cartes') + '</button>'; }
+    function ordIdx(id) { return CARD_ORD.indexOf(CARD_BY[id][3]); }
+    function fmt(n) { return (+n).toLocaleString('fr-FR'); }
+    function nm(id) { return CARD_BY[id] ? CARD_BY[id][2] : '?'; }
+    function who(id) { return (typeof frNm === 'function') ? frNm(id) : 'un joueur'; }
+    function avOf(id) { try { var o = FR.names[id] || {}; return avatarHTML(avatarOf(o.name, o.avatar), 'md'); } catch (e) { return ''; } }
+
+    /* ---------- menu ---------- */
+    function hubHTML() {
+      var ev = cardEvent(), pr = cardOne(), ready = cardFreeReady(), inc = TR.inc;
+      var h = '<div class="kdhub">';
+      if (ev) h += '<div class="kdpromo"><b>' + ev.ico + ' ' + esc(ev.name) + '</b><span>Booster à <s>' + CARD_BASE + '</s> <em>' + pr + ' 金</em> jusqu\'au ' + ev.to.split('-').reverse().join('/') + '</span></div>';
+      h += ready ? '<button type="button" class="btn primary gold kdfbtn" data-card="free">🎁 Ouvrir le booster du jour<br><small>Gratuit · 3 cartes</small></button>' : '<div class="kdwait">🎁 Prochain booster gratuit dans <b>' + freeWaitTxt() + '</b><small>Chaque jour à 8 h, heure de Paris</small></div>';
+      h += '<div class="kdhgrid">' +
+        '<button type="button" class="kdhtile" data-card="main"><i>🎴</i><b>Boosters</b><small>' + (ev ? '<s>' + CARD_BASE + '</s> ' : '') + pr + ' 金 · 3 cartes</small></button>' +
+        '<button type="button" class="kdhtile" data-card="col"><i>札</i><b>Mon classeur</b><small>' + cardCount() + ' / ' + CARDS.length + ' cartes</small></button>' +
+        '<button type="button" class="kdhtile" data-card="trade"><i>🔁</i><b>Échanges</b><small>' + (inc ? inc + ' proposition' + (inc > 1 ? 's' : '') + ' pour toi' : 'Avec tes amis') + '</small>' + (inc ? '<u>' + inc + '</u>' : '') + '</button>' +
+        '<button type="button" class="kdhtile" data-card="sell"><i>💰</i><b>Vendre</b><small>Tes cartes contre des pièces</small></button></div></div>';
+      return h;
+    }
+
+    /* ---------- vente ---------- */
+    function dupsTotal() { var t = 0, o = owned(); Object.keys(o).forEach(function (id) { if (CARD_BY[id] && o[id] > 1) t += (o[id] - 1) * cardSellPrice(id); }); return t; }
+    function sellList() {
+      var o = owned(), ids = Object.keys(o).filter(function (id) { return CARD_BY[id] && o[id] > 0; });
+      if (sellF === 'dup') ids = ids.filter(function (id) { return o[id] > 1; });
+      else if (sellF !== 'all') ids = ids.filter(function (id) { return CARD_BY[id][3] === sellF; });
+      ids.sort(function (a, b) { return ordIdx(b) - ordIdx(a) || nm(a).localeCompare(nm(b)); });
+      return ids;
+    }
+    function sellHTML() {
+      var o = owned(), ids = sellList(), pages = Math.max(1, Math.ceil(ids.length / PER)), tot = dupsTotal();
+      sellPage = Math.max(0, Math.min(sellPage, pages - 1));
+      var h = '<div class="lootpanel cdpanel kdsell">' + back('hub') + '<h3 class="lootttlh" style="margin-top:8px">Vendre des cartes</h3>' +
+        '<p class="small muted" style="margin:0 0 8px">Le prix dépend de la rareté. Les doublons (×2 et plus) se vendent sans rien perdre de ta collection.</p>';
+      h += '<button type="button" class="btn kdsall' + (sellCnf === 'all' ? ' warn' : '') + '" data-card="sall"' + (tot ? '' : ' disabled') + '>' + (sellCnf === 'all' ? 'Confirmer : vendre tous les doubles (+' + fmt(tot) + ' 金)' : 'Vendre tous mes doubles' + (tot ? ' (+' + fmt(tot) + ' 金)' : '')) + '</button>';
+      if (sellSel && nOf(sellSel)) {
+        var n = nOf(sellSel), p = cardSellPrice(sellSel), last = n === 1;
+        h += '<div class="kdselbox"><div class="kdselc">' + cdCard(sellSel, { mini: true, count: true }) + '</div><div class="kdselt"><b>' + esc(nm(sellSel)) + '</b><small>' + CARD_RAR[CARD_BY[sellSel][3]].n + ' · tu en as ' + n + '</small>' +
+          '<button type="button" class="btn' + (last && sellCnf === sellSel ? ' warn' : ' primary') + '" data-card="s1">' + (last ? (sellCnf === sellSel ? 'Confirmer : vendre ma dernière copie' : 'Vendre ma dernière copie') : 'Vendre 1') + ' (+' + p + ' 金)</button>' +
+          (n > 2 ? '<button type="button" class="btn" data-card="sd">Vendre les doubles ×' + (n - 1) + ' (+' + fmt(p * (n - 1)) + ' 金)</button>' : '') + '</div></div>';
+      } else h += '<p class="small muted" style="text-align:center;margin:10px 0">Touche une carte pour la vendre.</p>';
+      var opts = [['all', 'Toutes mes cartes'], ['dup', 'Doubles seulement']].concat(['m', 'l', 'e', 'r', 'u', 'c'].map(function (k) { return [k, CARD_RAR[k].n]; }));
+      h += '<select id="sellF" class="cdsel" aria-label="Filtrer">' + opts.map(function (x) { return '<option value="' + x[0] + '"' + (x[0] === sellF ? ' selected' : '') + '>' + x[1] + '</option>'; }).join('') + '</select>';
+      if (!ids.length) return h + '<p class="small muted" style="text-align:center">Aucune carte à afficher.</p></div>';
+      h += '<div class="cdgrid kdsgrid">' + ids.slice(sellPage * PER, sellPage * PER + PER).map(function (id) {
+        return '<button type="button" class="cdslotm' + (id === sellSel ? ' pick' : '') + '" data-card="sp:' + id + '" aria-label="' + esc(nm(id)) + '">' + cdCard(id, { mini: true, count: true }) + '<span class="cdprice">+' + cardSellPrice(id) + ' 金</span></button>';
+      }).join('') + '</div>' +
+        '<div class="kdnav"><button type="button" class="btn" data-card="sg:-1"' + (sellPage <= 0 ? ' disabled' : '') + '>‹</button><b class="kdpn">Page ' + (sellPage + 1) + ' / ' + pages + '</b><button type="button" class="btn" data-card="sg:1"' + (sellPage >= pages - 1 ? ' disabled' : '') + '>›</button></div></div>';
+      return h;
+    }
+    function doSell(id, q) {
+      if (!netOn()) { netBlock('La vente'); return; }
+      var n = nOf(id); q = Math.min(q, n); if (q <= 0) return;
+      var gain = cardSellPrice(id) * q; bump(id, -q);
+      S.coins = coinsOf() + gain; S.coinsTotal = (S.coinsTotal || 0) + gain;
+      persist(); sfx('coin', true); renderBars(); toast(q + ' × ' + nm(id) + ' vendue' + (q > 1 ? 's' : '') + ' : +' + fmt(gain) + ' pièces');
+      sellCnf = ''; if (!nOf(id)) sellSel = ''; refreshShop();
+    }
+    function sellAllDups() {
+      if (!netOn()) { netBlock('La vente'); return; }
+      var o = owned(), gain = 0, c = 0; Object.keys(o).forEach(function (id) { if (CARD_BY[id] && o[id] > 1) { var q = o[id] - 1; gain += q * cardSellPrice(id); c += q; o[id] = 1; } });
+      if (!c) return; S.coins = coinsOf() + gain; S.coinsTotal = (S.coinsTotal || 0) + gain;
+      persist(); sfx('coin', true); renderBars(); toast(c + ' doublons vendus : +' + fmt(gain) + ' pièces'); sellCnf = ''; refreshShop();
+    }
+
+    /* ---------- échanges ---------- */
+    function trLoad(done) {
+      if (!user || !backend || !backend.tradeLoad || TR.busy) { if (done) done(); return; }
+      TR.busy = true;
+      backend.tradeLoad(user.id).then(function (rows) {
+        TR.rows = rows || []; TR.at = Date.now(); TR.err = ''; TR.busy = false;
+        var old = TR.inc; TR.inc = TR.rows.filter(function (r) { return r.to_id === user.id && r.status === 'open'; }).length;
+        if (TR.inc > old && old >= 0 && TR.seen) toast('🔁 Nouvelle proposition d\'échange !'); TR.seen = 1;
+        trClaim(); trBadge(); if (done) done();
+      }, function () { TR.busy = false; TR.err = 'Échanges indisponibles pour le moment.'; if (done) done(); });
+    }
+    function trClaim() {
+      TR.rows.forEach(function (r) {
+        if (r.from_id !== user.id || ['accepted', 'declined', 'cancelled'].indexOf(r.status) < 0 || TR.claiming[r.id]) return;
+        TR.claiming[r.id] = 1;
+        backend.tradeSet(r.id, r.status, 'done').then(function (ok) {
+          if (!ok) return;
+          if (r.status === 'accepted') { bump(r.want, 1); toast('🔁 Échange accepté par ' + who(r.to_id) + ' : tu reçois ' + nm(r.want) + ' !'); }
+          else { bump(r.give, 1); toast('🔁 ' + nm(r.give) + ' est revenue dans ton classeur'); }
+          r.status = 'done'; persist(); trBadge(); sfx('coin'); if (document.querySelector('.shopmodal')) refreshShop();
+        }, function () { delete TR.claiming[r.id]; });
+      });
+    }
+    function trBadge() {
+      var d = document.querySelector('.kdd[data-k="cards"]'); if (!d) return;
+      if (TR.inc > 0) d.setAttribute('data-n', TR.inc); else d.removeAttribute('data-n');
+    }
+    function trStat(r) {
+      var mine = r.from_id === user.id, other = mine ? r.to_id : r.from_id;
+      if (r.status === 'open') return mine ? 'En attente de ' + who(other) : who(other) + ' te propose un échange';
+      if (r.status === 'accepted') return 'Accepté';
+      if (r.status === 'declined') return 'Refusé';
+      return 'Annulé';
+    }
+    function tradeHTML() {
+      var h = '<div class="lootpanel cdpanel kdtrade">' + back('hub') + '<h3 class="lootttlh" style="margin-top:8px">Échanges avec mes amis</h3>' +
+        '<button type="button" class="btn primary kdtrnew" data-card="trnew">➕ Proposer un échange</button>';
+      if (!backend || !backend.tradeLoad) return h + '<p class="small muted">Les échanges nécessitent la connexion en ligne.</p></div>';
+      if (TR.err) h += '<p class="small muted">' + esc(TR.err) + '</p>';
+      var rows = TR.rows.filter(function (r) { return r.status !== 'done'; });
+      if (!rows.length) return h + '<p class="small muted" style="text-align:center;margin-top:12px">Aucun échange en cours. Propose une carte à un ami : s\'il accepte, vous échangez !</p></div>';
+      h += rows.map(function (r) {
+        var mine = r.from_id === user.id, other = mine ? r.to_id : r.from_id, can = !mine && r.status === 'open' && nOf(r.want) > 0;
+        var b = '';
+        if (!mine && r.status === 'open') b = '<button type="button" class="btn primary" data-card="tracc:' + r.id + '"' + (can ? '' : ' disabled') + '>Accepter</button><button type="button" class="btn" data-card="trref:' + r.id + '">Refuser</button>' + (can ? '' : '<small class="muted">Tu n\'as pas cette carte.</small>');
+        else if (mine && r.status === 'open') b = '<button type="button" class="btn" data-card="trcan:' + r.id + '">Annuler</button>';
+        return '<div class="kdtr"><div class="kdtrh">' + avOf(other) + '<span><b>' + esc(who(other)) + '</b><small>' + trStat(r) + '</small></span></div>' +
+          '<div class="kdtrc"><div><small>' + (mine ? 'Tu donnes' : 'Il donne') + '</small>' + cdCard(r.give, { mini: true }) + '</div><i>⇄</i><div><small>' + (mine ? 'Tu veux' : 'Il veut') + '</small>' + cdCard(r.want, { mini: true }) + '</div></div>' +
+          (b ? '<div class="kdtrb">' + b + '</div>' : '') + '</div>';
+      }).join('');
+      return h + '</div>';
+    }
+    function pickGrid(ids, sel, pre) {
+      var pages = Math.max(1, Math.ceil(ids.length / PER)); TRC.page = Math.max(0, Math.min(TRC.page, pages - 1));
+      return '<div class="cdgrid kdsgrid">' + ids.slice(TRC.page * PER, TRC.page * PER + PER).map(function (id) {
+        return '<button type="button" class="cdslotm' + (id === sel ? ' pick' : '') + '" data-card="' + pre + id + '" aria-label="' + esc(nm(id)) + '">' + cdCard(id, { mini: true, count: pre === 'trg:' }) + (pre === 'trw:' && nOf(id) ? '<span class="cdprice own">Possédée</span>' : '') + '</button>';
+      }).join('') + '</div><div class="kdnav"><button type="button" class="btn" data-card="trpg:-1"' + (TRC.page <= 0 ? ' disabled' : '') + '>‹</button><b class="kdpn">Page ' + (TRC.page + 1) + ' / ' + pages + '</b><button type="button" class="btn" data-card="trpg:1"' + (TRC.page >= pages - 1 ? ' disabled' : '') + '>›</button></div>';
+    }
+    function kindSel() { return '<select id="trKind" class="cdsel" aria-label="Catégorie">' + Object.keys(KN).map(function (k) { return '<option value="' + k + '"' + (k === TRC.kind ? ' selected' : '') + '>' + KN[k] + '</option>'; }).join('') + '</select>'; }
+    function trNewHTML() {
+      var fr = (typeof frFriends === 'function') ? frFriends() : [], st = TRC.step;
+      var h = '<div class="lootpanel cdpanel kdtrade">' + back('trade', 'Mes échanges') + '<h3 class="lootttlh" style="margin-top:8px">Nouvel échange</h3><div class="kdsteps">' +
+        ['Ami', 'Je donne', 'Je veux', 'Envoi'].map(function (t, i) { return '<span class="' + (i + 1 === st ? 'on' : i + 1 < st ? 'ok' : '') + '">' + (i + 1) + '. ' + t + '</span>'; }).join('') + '</div>';
+      if (st === 1) {
+        if (!fr.length) return h + '<p class="small muted">Tu n\'as pas encore d\'ami. Ajoute des joueurs dans l\'onglet Amis, puis reviens échanger des cartes !</p></div>';
+        return h + '<div class="kdfl">' + fr.map(function (r) { return '<button type="button" class="kdfr' + (r.other === TRC.to ? ' pick' : '') + '" data-card="trf:' + r.other + '">' + avOf(r.other) + '<b>' + esc(who(r.other)) + '</b></button>'; }).join('') + '</div></div>';
+      }
+      if (st === 2) {
+        var mine = Object.keys(owned()).filter(function (id) { return CARD_BY[id] && owned()[id] > 0 && (TRC.kind === 'all' || CARD_BY[id][1] === TRC.kind); }).sort(function (a, b) { return ordIdx(b) - ordIdx(a); });
+        return h + '<p class="small muted">Choisis la carte que tu donnes à <b>' + esc(who(TRC.to)) + '</b>.</p>' + kindSel() + (mine.length ? pickGrid(mine, TRC.give, 'trg:') : '<p class="small muted">Aucune carte dans cette catégorie.</p>') + '</div>';
+      }
+      if (st === 3) {
+        var all = CARDS.filter(function (c) { return TRC.kind === 'all' || c[1] === TRC.kind; }).map(function (c) { return c[0]; });
+        return h + '<p class="small muted">Choisis la carte que tu veux recevoir.</p>' + kindSel() + pickGrid(all, TRC.want, 'trw:') + '</div>';
+      }
+      return h + '<div class="kdtrc big"><div><small>Tu donnes</small>' + cdCard(TRC.give, { mini: true }) + '</div><i>⇄</i><div><small>Tu veux</small>' + cdCard(TRC.want, { mini: true }) + '</div></div>' +
+        '<p class="small muted" style="text-align:center">À <b>' + esc(who(TRC.to)) + '</b>. Ta carte est mise de côté pendant l\'échange : elle te revient si l\'offre est refusée ou annulée.</p>' +
+        '<button type="button" class="btn primary" data-card="trsend">Envoyer la proposition</button></div>';
+    }
+    function trSend() {
+      if (!netOn()) { netBlock('Les échanges'); return; }
+      if (!TRC.to || !TRC.give || !TRC.want || nOf(TRC.give) < 1) { toast('Choisis un ami et deux cartes'); return; }
+      var g = TRC.give, w = TRC.want, to = TRC.to; bump(g, -1); persist();
+      backend.tradeSend(user.id, to, g, w).then(function () {
+        toast('🔁 Proposition envoyée à ' + who(to) + ' !'); sfx('coin', true);
+        TRC.step = 1; TRC.give = ''; TRC.want = ''; cardView = 'trade'; trLoad(function () { refreshShop(); }); refreshShop();
+      }, function (e) { bump(g, 1); persist(); toast((e && e.message && /maximum/i.test(e.message)) ? 'Trop d\'échanges en cours (8 maximum)' : 'Envoi impossible pour le moment'); refreshShop(); });
+    }
+    function trAnswer(id, ok) {
+      var r = TR.rows.filter(function (x) { return x.id === id; })[0]; if (!r || r.to_id !== user.id || r.status !== 'open') return;
+      if (!netOn()) { netBlock('Les échanges'); return; }
+      if (ok && nOf(r.want) < 1) { toast('Tu n\'as pas la carte demandée'); return; }
+      backend.tradeSet(id, 'open', ok ? 'accepted' : 'declined').then(function (done) {
+        if (!done) { toast('Cet échange n\'est plus disponible'); trLoad(function () { refreshShop(); }); return; }
+        r.status = ok ? 'accepted' : 'declined';
+        if (ok) { bump(r.want, -1); bump(r.give, 1); persist(); sfx('coin', true); toast('🔁 Échange fait : tu reçois ' + nm(r.give) + ' !'); }
+        trLoad(function () { refreshShop(); }); refreshShop();
+      }, function () { toast('Action impossible pour le moment'); });
+    }
+    function trCancel(id) {
+      var r = TR.rows.filter(function (x) { return x.id === id; })[0]; if (!r || r.from_id !== user.id || r.status !== 'open') return;
+      backend.tradeSet(id, 'open', 'cancelled').then(function (done) { if (!done) toast('Cet échange a déjà reçu une réponse'); trLoad(function () { refreshShop(); }); }, function () { toast('Action impossible pour le moment'); });
+    }
+
+    /* ---------- branchements ---------- */
+    cardPanel = function () {
+      if (cardView === 'hub') return hubHTML();
+      if (cardView === 'sell') return sellHTML();
+      if (cardView === 'trade') return tradeHTML();
+      if (cardView === 'trnew') return trNewHTML();
+      var h = _cp();
+      if (cardView === 'main' || cardView === 'col') h = '<div class="kdbackrow">' + back('hub') + '</div>' + h;
+      return h;
+    };
+    cardAction = function (a) {
+      if (!user) return;
+      var v = { hub: 'hub', sell: 'sell', trade: 'trade', trnew: 'trnew' }[a];
+      if (v) {
+        cardView = v; cardRev = null;
+        if (v === 'trade') { if (!netOn()) { netBlock('Les échanges'); cardView = 'hub'; } else { trLoad(function () { refreshShop(); }); } }
+        if (v === 'trnew') { TRC.step = 1; TRC.page = 0; if (typeof frLoad === 'function') frLoad().then(function () { if (cardView === 'trnew') refreshShop(); }); }
+        refreshShop(); return;
+      }
+      if (a.indexOf('sp:') === 0) { sellSel = a.slice(3); sellCnf = ''; refreshShop(); return; }
+      if (a === 's1') { if (!sellSel) return; if (nOf(sellSel) === 1 && sellCnf !== sellSel) { sellCnf = sellSel; refreshShop(); return; } doSell(sellSel, 1); return; }
+      if (a === 'sd') { if (sellSel) doSell(sellSel, nOf(sellSel) - 1); return; }
+      if (a === 'sall') { if (sellCnf !== 'all') { sellCnf = 'all'; refreshShop(); return; } sellAllDups(); return; }
+      if (a.indexOf('sg:') === 0) { sellPage += +a.slice(3); refreshShop(); return; }
+      if (a.indexOf('trf:') === 0) { TRC.to = a.slice(4); TRC.step = 2; TRC.page = 0; TRC.kind = 'all'; refreshShop(); return; }
+      if (a.indexOf('trg:') === 0) { TRC.give = a.slice(4); TRC.step = 3; TRC.page = 0; TRC.kind = 'all'; refreshShop(); return; }
+      if (a.indexOf('trw:') === 0) { TRC.want = a.slice(4); TRC.step = 4; refreshShop(); return; }
+      if (a.indexOf('trpg:') === 0) { TRC.page += +a.slice(5); refreshShop(); return; }
+      if (a === 'trsend') { trSend(); return; }
+      if (a.indexOf('tracc:') === 0) { trAnswer(a.slice(6), true); return; }
+      if (a.indexOf('trref:') === 0) { trAnswer(a.slice(6), false); return; }
+      if (a.indexOf('trcan:') === 0) { trCancel(a.slice(6)); return; }
+      return _ca(a);
+    };
+    document.addEventListener('change', function (e) {
+      var t = e.target; if (!t) return;
+      if (t.id === 'sellF') { sellF = t.value; sellPage = 0; refreshShop(); }
+      else if (t.id === 'trKind') { TRC.kind = t.value; TRC.page = 0; refreshShop(); }
+    });
+    // le bouton Cartes du menu du bas ouvre le menu des cartes (et non plus le classeur)
+    document.addEventListener('click', function (e) {
+      var t = e.target.closest ? e.target.closest('[data-cdalbum]') : null; if (!t || !user) return;
+      e.stopImmediatePropagation(); e.preventDefault();
+      shopTab = 'card'; cardView = 'hub'; cardRev = null;
+      if (!unlOn('cards') && !unlOn('bazar')) { toast('🔒 Les cartes se débloquent bientôt'); return; }
+      if (!netOn()) { netBlock('Les cartes'); return; }
+      openModal('Cartes', shopHTML(), 'shopmodal'); trLoad(function () { if (cardView === 'hub') refreshShop(); });
+    }, true);
+    setInterval(function () { if (user && !document.hidden && backend && backend.tradeLoad && netOn()) trLoad(function () { if (document.querySelector('.shopmodal') && (cardView === 'trade' || cardView === 'hub')) refreshShop(); }); }, 90000);
+    setTimeout(function () { if (user && backend && backend.tradeLoad) trLoad(); }, 8000);
   })();
 
   backend.init().then(function (u) {
