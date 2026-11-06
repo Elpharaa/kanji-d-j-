@@ -6567,6 +6567,24 @@ body .kdc .kdlab b { text-shadow: 0 2px 0 #2a1608 !important; }
 body .kdc .kdbar2, body .kdc .kdbar2 .kdtk { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; box-shadow: none !important; }
 body .kdc .kdbar2 .kdtrack { animation: none !important; transform: none !important; will-change: auto !important; }
 
+/* v485 : bois simplifié (3 planches + bandes), un seul calque sans position → plus de rectangles noirs ; défilement rétabli */
+body .kdc, body .kdc:nth-child(2n) {
+  background-image:
+    radial-gradient(circle at 50% 50%, #f0e2c8 0 1.6px, #3a2212 2.4px, rgba(0,0,0,0) 3.2px),
+    radial-gradient(circle at 50% 50%, #f0e2c8 0 1.6px, #3a2212 2.4px, rgba(0,0,0,0) 3.2px),
+    linear-gradient(180deg,
+      #6e4222 0 22px, #2a170a 22px 24px,
+      #c08a56 24px, #a9743f calc(38% - 2px), #2a170a calc(38% - 2px) 38%,
+      #b9824c 38%, #9c6a3a calc(68% - 2px), #2a170a calc(68% - 2px) 68%,
+      #be8752 68%, #a46f3c calc(100% - 26px), #2a170a calc(100% - 26px) calc(100% - 24px),
+      #6e4222 calc(100% - 24px)) !important;
+  background-repeat: repeat-x, repeat-x, no-repeat !important;
+  background-size: 26px 22px, 26px 22px, 100% 100% !important;
+  background-position: 0 0, 0 100%, 0 0 !important;
+}
+body .kdc .kdbar2 .kdtrack { animation: kdTick 38s linear infinite !important; }
+body .kdc .kdbar2:active .kdtrack { animation-play-state: paused !important; }
+
 /* v482 : menu des cartes, vente, échanges */
 .kdoffs { grid-template-columns: minmax(0, 1fr) !important; }
 .kdoff.kdone { width: 100%; }
@@ -32264,7 +32282,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v484', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v485', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
