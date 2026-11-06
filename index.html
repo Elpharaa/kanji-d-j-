@@ -6682,6 +6682,22 @@ body .mbox #appModalBody, body .shopmodal #appModalBody { padding-bottom: calc(v
 .dcpage,.dcpage .dcfr-frame,.dcd .dcbs,.dcbook,.dcfil,.dcfil .dcchips,.slbar{min-width:0;max-width:100%}
 .dcfil .dcchips{overflow-x:auto;flex-wrap:nowrap}
 .mbox.kmodal>*,.mbox.kmodal>*>*{min-width:0;max-width:100%}
+/* v502 : tuiles du carrousel en laque rouge et or (un seul dégradé, aucun flou : pas de rectangles noirs sur Android) */
+body .kdc, body .kdc:nth-child(2n), body .kdc:nth-child(3n) {
+  background: linear-gradient(165deg, #cc2340 0%, #a31832 52%, #7b1024 100%) !important;
+  background-blend-mode: normal !important;
+  border: 3px solid #e2b85a !important;
+  border-radius: 18px !important;
+  box-shadow: 0 6px 0 #4d0a17, inset 0 0 0 2px #6d0c1f !important;
+  color: #ffe9b8 !important;
+  height: max(150px, calc(var(--kw) * .56)) !important;
+}
+body .kdc::before { content: ""; position: absolute; inset: 7px; border: 1.5px solid rgba(240, 208, 120, .8); border-radius: 11px; pointer-events: none; }
+body .kdc::after { content: none !important; }
+body .kdc.sel { border-color: #ffe08a !important; box-shadow: 0 6px 0 #4d0a17, 0 0 0 3px #ffe08a, inset 0 0 0 2px #6d0c1f !important; }
+body .kdc .kdlab b { color: #ffe9b8 !important; text-shadow: 0 2px 0 #4d0a17 !important; letter-spacing: .05em !important; }
+body .kdbar2, body .kdc .kdart .kdbar2 { background: rgba(58, 6, 18, .6) !important; border: 0 !important; border-top: 1px solid rgba(240, 208, 120, .55) !important; border-bottom: 1px solid rgba(240, 208, 120, .55) !important; border-radius: 0 !important; box-shadow: none !important; }
+body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a !important; color: #ffe9b8 !important; text-shadow: 0 1px 0 #4d0a17 !important; box-shadow: none !important; }
 
 </style>
 
@@ -32345,7 +32361,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v501', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v502', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
