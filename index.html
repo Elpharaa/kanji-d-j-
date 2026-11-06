@@ -6323,6 +6323,16 @@ body .fb .clzprog .cpn { color: inherit !important; font-size: .86rem; text-alig
 .clznext { position: sticky; bottom: calc(var(--dockh, 96px) + 8px); z-index: 6; margin-top: 12px; padding-top: 14px; background: linear-gradient(rgba(253, 238, 228, 0), rgba(253, 238, 228, .92) 45%); }
 .clznext .btn { width: 100%; min-height: 54px; font-size: 1.15rem; }
 @media (max-width: 767px) { body .clzcard .clzchip { font-size: .95rem; } }
+/* v452 : même présentation pour tous les modes (quiz, kana, vocabulaire, grammaire, mini-jeux) */
+body .fb.good > b:first-child, body .fb.bad > b:first-child { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font: 800 1.15rem/1.25 var(--font-brush, serif); }
+body .fb.good > b:first-child::before, body .fb.bad > b:first-child::before { flex: none; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; color: #fff; font: 900 1.2rem sans-serif; box-shadow: 0 2px 6px rgba(0, 0, 0, .25); }
+body .fb.good > b:first-child::before { content: "✓"; background: #2f9a5a; } body .fb.bad > b:first-child::before { content: "✗"; background: #d8527f; }
+body .fb.good, body .fb.bad { font-size: .98rem; line-height: 1.45; }
+body .fb .jp { font-weight: 700; }
+body .fb .aids { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+body .fb.good > b:first-child + br, body .fb.bad > b:first-child + br { display: none; }
+body .fb.good, body .fb.good * { --fbc: #17502f; } body .fb.bad, body .fb.bad * { --fbc: #7a1d3c; }
+body .fb.good :is(span, small, p, div):not(.fbi):not(.cpxp) { color: #17502f; } body .fb.bad :is(span, small, p, div):not(.fbi):not(.cpxp) { color: #7a1d3c; }
 
 </style>
 
@@ -31984,7 +31994,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v451', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v453', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
