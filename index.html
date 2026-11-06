@@ -32313,7 +32313,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v498', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v499', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35565,6 +35565,41 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
   openKCard = function (i) { rkxK0(i); try { var c = kcards[i]; if (c && c.k) rkxAdd(c.k); } catch (e) {} };
   var rkxO0 = kxOpen;
   kxOpen = function (c) { rkxO0(c); try { if (document.querySelector('.kxf')) rkxAdd(c); } catch (e) {} };
+
+  /* v499 : formes verbales supplémentaires (ましょう, てください, なければ, ながら, すぎる…) */
+  var cjV0 = dcVerbForms;
+  dcVerbForms = function (s, vt) {
+    var F = cjV0(s, vt); if (!F || !F.length) return F;
+    var g = {}; F.forEach(function (x) { g[x[1]] = x[2]; });
+    var pm = g['Poli (ます)'], te = g['Forme en て'], neg = g['Négatif'], nte = g['Forme en て négative'], pot = g['Potentiel'], cau = g['Causatif'], dic = g['Dictionnaire'], des = g['Désir (たい)'], prog = g['En cours (ている)'];
+    var X = [];
+    function add(grp, l, f) { if (f && !F.concat(X).some(function (x) { return x[1] === l; })) X.push([grp, l, f]); }
+    if (pm && /ます$/.test(pm)) {
+      var stem = pm.replace(/ます$/, '');
+      add('Invitations et demandes', 'Poli volontaire (〜ましょう)', stem + 'ましょう');
+      add('Invitations et demandes', 'Proposition (〜ませんか)', stem + 'ませんか');
+      add('Dérivés', 'En même temps (〜ながら)', stem + 'ながら');
+      add('Dérivés', 'Trop, excessivement (〜すぎる)', stem + 'すぎる');
+      add('Dérivés', 'Facile à (〜やすい)', stem + 'やすい');
+      add('Dérivés', 'Difficile à (〜にくい)', stem + 'にくい');
+    }
+    if (te) { add('Invitations et demandes', 'S\'il te plaît (〜てください)', te + 'ください'); add('Invitations et demandes', 'Interdit (〜てはいけない)', te + 'はいけない'); add('Invitations et demandes', 'Permission (〜てもいい)', te + 'もいい'); }
+    if (nte) add('Invitations et demandes', 'Ne … pas, s\'il te plaît (〜ないでください)', nte + 'ください');
+    if (dic) add('Invitations et demandes', 'Interdiction (〜な)', dic + 'な');
+    if (neg && /ない$/.test(neg)) {
+      add('Négations et dérivés', 'Négatif en て (〜なくて)', neg.replace(/ない$/, 'なくて'));
+      add('Négations et dérivés', 'Condition négative (〜なければ)', neg.replace(/ない$/, 'なければ'));
+      add('Négations et dérivés', 'Obligation (〜なければならない)', neg.replace(/ない$/, 'なければならない'));
+    }
+    if (te && /て$|で$/.test(te)) { var ta = te.replace(/て$/, 'た').replace(/で$/, 'だ'); add('Négations et dérivés', 'Expérience (〜たことがある)', ta + 'ことがある'); add('Négations et dérivés', 'Après avoir (〜たあとで)', ta + 'あとで'); }
+    if (pot && /る$/.test(pot)) add('Négations et dérivés', 'Potentiel négatif', pot.replace(/る$/, 'ない'));
+    if (cau && /せる$/.test(cau)) add('Négations et dérivés', 'Causatif passif (être forcé de)', cau.replace(/せる$/, 'せられる'));
+    if (des && /たい$/.test(des)) { add('Négations et dérivés', 'Désir négatif (〜たくない)', des.replace(/たい$/, 'たくない')); add('Négations et dérivés', 'Désir passé (〜たかった)', des.replace(/たい$/, 'たかった')); }
+    if (prog && /いる$/.test(prog)) { add('Négations et dérivés', 'En cours négatif (〜ていない)', prog.replace(/いる$/, 'いない')); add('Négations et dérivés', 'En cours passé (〜ていた)', prog.replace(/いる$/, 'いた')); }
+    var order = { 'Invitations et demandes': 0, 'Dérivés': 1, 'Négations et dérivés': 2 };
+    X.sort(function (a, b) { return order[a[0]] - order[b[0]]; });
+    return F.concat(X);
+  };
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
