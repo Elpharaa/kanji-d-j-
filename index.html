@@ -5702,7 +5702,7 @@ span.kxcp{cursor:default}
 .paw{display:inline-flex;font-size:1.5rem;line-height:1.6}.pam{padding:0 1px;border-top:3px solid transparent;border-bottom:3px solid rgba(75,61,132,.35)}
 .pam.hi{border-top-color:#c8325f;border-bottom-color:transparent}.pam.dn{border-right:3px solid #c8325f}
 .pap{margin-left:3px;font-size:1rem;color:#8a82a8;border-top:3px solid transparent;border-bottom:3px solid rgba(75,61,132,.35)}.pap.hi{border-top-color:#c8325f;border-bottom-color:transparent}
-.pak{font-size:.82rem;font-weight:800;color:#a63a60}.pas{font-size:.72rem;color:#8a82a8;margin:2px 0 0}
+.pak{font-size:.82rem;font-weight:800;color:#a63a60}.paq{margin-left:6px;width:20px;height:20px;border-radius:50%;border:1.5px solid #a63a60;background:#fff;color:#a63a60;font-weight:900;font-size:.72rem;line-height:1;padding:0;cursor:pointer;flex:none}.paex{background:#fbf3f5;border:1px solid #ecc9d4;border-radius:12px;padding:8px 10px;margin:6px 0 2px;font-size:.78rem;color:#4a3a5a;line-height:1.4}.paex[hidden]{display:none}.pas{font-size:.72rem;color:#8a82a8;margin:2px 0 0}
 .pan{font-size:.62rem;font-weight:800;color:#a63a60;background:rgba(200,50,95,.12);border-radius:6px;padding:0 4px;margin-right:4px;vertical-align:baseline}
 .kxety{margin:.45rem 0 0;font-size:.85rem;line-height:1.45;color:#5a4f86;text-align:center}
 .clzgram{margin:.6rem 0 0;padding:.55rem .75rem;border-radius:12px;background:rgba(255,248,230,.92);border:1px solid #e1cd9a;color:#2b2150;font-size:.88rem;line-height:1.45;text-align:left}.clzgram p{margin:.2rem 0}.clzgram .clzgt{font-weight:700;color:#7a5a12;margin:0 0 .15rem}
@@ -32301,7 +32301,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v493', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v494', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -33745,9 +33745,22 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
     return '<div class="pa"><p class="dcsec">Accent de hauteur</p>' + out.map(function (k) {
       var h = ms.map(function (m, i) { var hi = k === 0 ? i > 0 : k === 1 ? i === 0 : (i > 0 && i < k); return '<span class="pam' + (hi ? ' hi' : '') + (k > 0 && i === k - 1 ? ' dn' : '') + '">' + esc(m) + '</span>'; }).join('');
       var kd = kinds[k] || (k === n ? '尾高 odaka' : '中高 nakadaka');
-      return '<div class="parow"><span class="paw jp">' + h + '<span class="pap ' + (k === 0 ? 'hi' : '') + '">が</span></span><span class="pak">[' + k + '] ' + kd + '</span></div>';
-    }).join('') + '<p class="pas">Trait haut = syllabe aiguë. Le « が » montre la particule : elle reste haute en heiban, retombe sinon.</p></div>';
+      return '<div class="parow"><span class="paw jp">' + h + '<span class="pap ' + (k === 0 ? 'hi' : '') + '">が</span></span><span class="pak">[' + k + '] ' + kd + '</span><button type="button" class="paq" data-paq="' + (k === 0 ? 'h' : k === 1 ? 'a' : k === n ? 'o' : 'n') + '" aria-label="Explication">!</button></div>';
+    }).join('') + '<div class="paex" hidden></div>' + '<p class="pas">Trait haut = syllabe aiguë. Le « が » montre la particule : elle reste haute en heiban, retombe sinon.</p></div>';
   }
+  var PAEX = {
+    h: '<b>平板 heiban</b> (plat) : la 1re syllabe est basse, les suivantes montent et restent hautes, y compris sur la particule qui suit (が).',
+    a: '<b>頭高 atamadaka</b> (tête haute) : la 1re syllabe est haute, puis la voix retombe dès la 2e et reste basse.',
+    o: '<b>尾高 odaka</b> (queue haute) : le mot monte et reste haut jusqu\'à sa dernière syllabe ; la chute n\'arrive que sur la particule qui suit (が).',
+    n: '<b>中高 nakadaka</b> (milieu haut) : la voix monte après la 1re syllabe, puis retombe avant la fin du mot. Le chiffre [n] indique la syllabe après laquelle elle descend.'
+  };
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest && ev.target.closest('.paq'); if (!b) return;
+    ev.preventDefault(); var box = b.closest('.pa').querySelector('.paex'); if (!box) return;
+    var same = !box.hidden && box.getAttribute('data-k') === b.getAttribute('data-paq');
+    if (same) { box.hidden = true; return; }
+    box.setAttribute('data-k', b.getAttribute('data-paq')); box.innerHTML = PAEX[b.getAttribute('data-paq')]; box.hidden = false;
+  });
   var dcOpenPa0 = dcOpen;
   dcOpen = function (i) {
     dcOpenPa0(i);
