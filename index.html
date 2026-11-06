@@ -32313,7 +32313,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v499', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v500', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35600,6 +35600,24 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
     X.sort(function (a, b) { return order[a[0]] - order[b[0]]; });
     return F.concat(X);
   };
+
+  /* v500 : plus de phrases d'exemple Tatoeba (jpn-fra), chargées à part */
+  var TXM = { st: 0 };
+  function txmLoad() {
+    if (TXM.st) return; if (LZ.st !== 2) { setTimeout(txmLoad, 1500); return; } TXM.st = 1;
+    try { if (typeof DecompressionStream === 'undefined') { TXM.st = 3; return; } } catch (e) { TXM.st = 3; return; }
+    fetch('data/tatoeba_more.gz').then(function (r) { if (!r.ok) throw 0; return r.blob(); })
+      .then(function (b) { return new Response(b.stream().pipeThrough(new DecompressionStream('gzip'))).text(); })
+      .then(function (t) {
+        var d = JSON.parse(t), off = TXP.length;
+        d.p.forEach(function (x) { TXP.push(x); });
+        Object.keys(d.i).forEach(function (w) { var add = d.i[w].map(function (n) { return n + off; }); TXI[w] = (TXI[w] || []).concat(add); });
+        TXM.st = 2;
+      }).catch(function () { TXM.st = 3; });
+  }
+  setTimeout(txmLoad, 4000);
+  var txOfM0 = txOf;
+  txOf = function (jp) { if (!TXM.st) txmLoad(); return txOfM0(jp).slice(0, 5); };
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
