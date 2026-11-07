@@ -62,6 +62,9 @@ button.hchip{font-family:inherit}
 .mapw .land{fill:#f3e6c8;stroke:#8c6b2a;stroke-width:.12;stroke-linejoin:round}
 .mapw .pin{cursor:pointer}.mapw .pin circle{stroke:#fff;stroke-width:.14}.mapw .pin.on circle{stroke:#130f1e;stroke-width:.22}
 .mapz{position:absolute;right:8px;top:8px;display:flex;flex-direction:column;gap:6px}.mapz button{width:38px;height:38px;border:2px solid #130f1e;border-radius:10px;background:#fffaf0;font:700 1.2rem sans-serif;cursor:pointer}
+.himg{display:block;width:100%;max-height:280px;object-fit:cover;border-radius:12px;border:2px solid #c49a3a;margin:0 0 12px}
+.rkimg{width:4.2em;height:4.2em;object-fit:cover;border-radius:10px;border:2px solid #e2b85a;flex:none}
+.hadm{margin:10px 0 0;padding:8px 10px;border:1.5px dashed #b2285b;border-radius:10px;font-size:.85rem}
 </style></head>
 <body class="onhome inapp kddock hist">
 <div class="app">
@@ -100,7 +103,7 @@ function homeV(q){setDock('#');q=(q||'').toLowerCase();var h='<input id="q" clas
  var qi=document.getElementById('q');qi.addEventListener('input',function(){var v=qi.value;homeV(v);var x=document.getElementById('q');x.focus();x.setSelectionRange(v.length,v.length)})}
 function sec(t,b){return b?'<h3 class="hh">'+t+'</h3>'+b:''}
 function epV(id){var i=D.findIndex(function(x){return x.id===id}),p=D[i];if(!p)return homeV();setDock('#');var s={};
- var h='<button class="hbtn hback" data-back="1">‹ Toutes les époques</button><div class="hpanel"><div class="hhero"><div class="hseal'+(p.kanji.length>3?' long':'')+'">'+e(p.kanji.split('・')[0])+'</div><div><h2 class="htitle">'+e(p.nom)+'</h2><div class="hmeta">'+e(p.periode)+'</div></div></div><p>'+lk(p.resume,null,s)+'</p>';
+ var h='<button class="hbtn hback" data-back="1">‹ Toutes les époques</button><div class="hpanel">'+himg('e:'+id)+'<div class="hhero"><div class="hseal'+(p.kanji.length>3?' long':'')+'">'+e(p.kanji.split('・')[0])+'</div><div><h2 class="htitle">'+e(p.nom)+'</h2><div class="hmeta">'+e(p.periode)+'</div></div></div>'+hadm('e:'+id)+'<p>'+lk(p.resume,null,s)+'</p>';
  h+=sec('Événements clés','<div>'+p.evenements.map(function(x){return'<div class="hev"><b>'+e(x[0])+'</b><span>'+lk(x[1],null,s)+'</span></div>'}).join('')+'</div>');
  if(p.chapitres)h+=sec('Cours détaillé',p.chapitres.map(function(c,k){return'<details class="hdet"'+(k===0?' open':'')+'><summary>'+e(c.t)+'</summary>'+c.p.map(function(x){return'<p>'+lk(x,null,s)+'</p>'}).join('')+'</details>'}).join(''));
  h+=sec('Société',p.societe?'<p>'+lk(p.societe,null,s)+'</p>':'')+sec('Culture',p.culture?'<p>'+lk(p.culture,null,s)+'</p>':'');
@@ -139,15 +142,15 @@ function mapInit(flt){MV.x=0;MV.y=0;MV.w=22;MV.h=21;var sv=document.getElementBy
  sv.addEventListener('pointerup',up);sv.addEventListener('pointercancel',function(ev){delete ptr[ev.pointerId]});
  sv.addEventListener('wheel',function(ev){ev.preventDefault();var c=pt(ev);mapZoom(ev.deltaY>0?1.2:1/1.2,c.x,c.y)},{passive:false})}
 function themeV(id){var i=TH.findIndex(function(x){return x.id===id}),p=TH[i];if(!p)return homeV();setDock('#');var s={};
- var h='<button class="hbtn hback" data-back="1">‹ Retour</button><div class="hpanel"><div class="hhero"><div class="hseal">'+e(p.kanji)+'</div><div><h2 class="htitle">'+e(p.nom)+'</h2><div class="hmeta">Cours thématique</div></div></div><p>'+lk(p.resume,null,s)+'</p>';
+ var h='<button class="hbtn hback" data-back="1">‹ Retour</button><div class="hpanel">'+himg('t:'+id)+'<div class="hhero"><div class="hseal">'+e(p.kanji)+'</div><div><h2 class="htitle">'+e(p.nom)+'</h2><div class="hmeta">Cours thématique</div></div></div>'+hadm('t:'+id)+'<p>'+lk(p.resume,null,s)+'</p>';
  h+=sec('Cours détaillé',p.chapitres.map(function(c,k){return'<details class="hdet"'+(k===0?' open':'')+'><summary>'+e(c.t)+'</summary>'+c.p.map(function(x){return'<p>'+lk(x,null,s)+'</p>'}).join('')+'</details>'}).join(''));
  h+=sec('À retenir','<div class="hbox"><ul>'+p.retenir.map(function(x){return'<li>'+lk(x,null,s)+'</li>'}).join('')+'</ul></div>');
  h+=sec('Vocabulaire','<ul>'+p.mots.map(function(x){return'<li><b>'+e(x[0])+'</b> <span class="hmeta">'+e(x[1])+'</span> : '+e(x[2])+'</li>'}).join('')+'</ul>');
  h+='</div><div class="hnav">'+(i>0?'<button class="hbtn" data-t="'+TH[i-1].id+'">‹ '+e(TH[i-1].nom)+'</button>':'')+(i<TH.length-1?'<button class="hbtn" data-t="'+TH[i+1].id+'">'+e(TH[i+1].nom)+' ›</button>':'')+'</div>';m.innerHTML=h;scrollTo(0,0)}
 function fV(id){var f=FM[id];if(!f)return homeV();setDock(f.type==='personnage'?'#p':'#c');var s={};s[id]=1;var ep=D.filter(function(x){return x.id===f.epoque})[0];
  var blob=JSON.stringify(D.map(function(x){return[x.id,x.nom,JSON.stringify(x)]})),ment=D.filter(function(x){var t=JSON.stringify(x);return f.alias.some(function(a){return t.indexOf(a)>=0})&&x.id!==f.epoque});
- var h='<button class="hbtn hback" data-back="1">‹ Retour</button><div class="hpanel"><div class="hhero"><div class="hseal'+(f.kanji.split('・')[0].length>3?' long':'')+'">'+e(f.kanji.split('・')[0].slice(0,4))+'</div><div><h2 class="htitle">'+e(f.nom)+'</h2><div class="hmeta">'+e(f.lecture)+'</div><div style="margin-top:6px"><span class="hchip" style="cursor:default">'+e(TY[f.type])+'</span> <span class="hchip" style="cursor:default">'+e(f.dates)+'</span></div></div></div>';
- h+='<p style="margin-top:12px">'+lk(f.resume,id,s)+'</p>'+sec('À savoir','<div class="hbox"><ul>'+f.points.map(function(x){return'<li>'+lk(x,id,s)+'</li>'}).join('')+'</ul></div>');
+ var h='<button class="hbtn hback" data-back="1">‹ Retour</button><div class="hpanel">'+himg('f:'+id)+'<div class="hhero"><div class="hseal'+(f.kanji.split('・')[0].length>3?' long':'')+'">'+e(f.kanji.split('・')[0].slice(0,4))+'</div><div><h2 class="htitle">'+e(f.nom)+'</h2><div class="hmeta">'+e(f.lecture)+'</div><div style="margin-top:6px"><span class="hchip" style="cursor:default">'+e(TY[f.type])+'</span> <span class="hchip" style="cursor:default">'+e(f.dates)+'</span></div></div></div>';
+ h+=hadm('f:'+id)+'<p style="margin-top:12px">'+lk(f.resume,id,s)+'</p>'+sec('À savoir','<div class="hbox"><ul>'+f.points.map(function(x){return'<li>'+lk(x,id,s)+'</li>'}).join('')+'</ul></div>');
  if(f.voir.length)h+=sec('Voir aussi','<div>'+f.voir.map(function(v){return FM[v]?'<button class="hchip" data-f="'+v+'">'+e(FM[v].nom)+'</button> ':''}).join('')+'</div>');
  var eps=[];if(ep)eps.push(ep);ment.forEach(function(x){if(eps.indexOf(x)<0)eps.push(x)});
  if(eps.length)h+=sec('Dans le cours d\'histoire','<div>'+eps.map(function(x){return'<button class="hchip" data-e="'+x.id+'">'+e(x.nom)+'</button> '}).join('')+'</div>');
@@ -156,7 +159,7 @@ function listV(type,q){var isP=type==='personnage';setDock(isP?'#p':'#c');q=(q||
  var arr=FI.filter(function(f){return isP?f.type==='personnage':f.type!=='personnage'}).filter(function(f){return !q||(f.nom+' '+f.alias.join(' ')+' '+f.resume+' '+f.dates).toLowerCase().indexOf(q)>=0}).sort(function(a,b){return epOf(a.id)-epOf(b.id)});
  var h='<input id="q" class="hsearch" type="search" placeholder="'+(isP?'Chercher un personnage…':'Chercher un concept, un événement…')+'" value="'+e(q)+'" aria-label="Recherche"><div class="hlist">',cur='';
  arr.forEach(function(f){var ep=D.filter(function(x){return x.id===f.epoque})[0];if(ep&&ep.id!==cur){cur=ep.id;h+='<div class="hgrp">'+e(ep.nom)+' · '+e(ep.periode)+'</div>'}
-  h+='<button class="hrow" data-f="'+f.id+'"><span class="rk">'+e(f.kanji.split('・')[0].slice(0,4))+'</span><span><b>'+e(f.nom)+'</b><small>'+e(f.dates)+(f.type==='événement'?' · événement':'')+'</small></span></button>'});
+  h+='<button class="hrow" data-f="'+f.id+'">'+(HA['hist:f:'+f.id]?'<img class="rkimg" src="'+e(HA['hist:f:'+f.id])+'" alt="">':'<span class="rk">'+e(f.kanji.split('・')[0].slice(0,4))+'</span>')+'<span><b>'+e(f.nom)+'</b><small>'+e(f.dates)+(f.type==='événement'?' · événement':'')+'</small></span></button>'});
  h+='</div>'+(arr.length?'':'<div class="hpanel">Aucun résultat.</div>');m.innerHTML=h;
  var qi=document.getElementById('q');qi.addEventListener('input',function(){var v=qi.value;listV(type,v);var x=document.getElementById('q');x.focus();x.setSelectionRange(v.length,v.length)})}
 
@@ -171,6 +174,21 @@ function prSync(cb){if(!SB){cb&&cb();return}
   return SB.from('histoire_progress').select('data').eq('user_id',u.id).maybeSingle().then(function(q){var d=q.data&&q.data.data;if(d&&d.best)PR=prMerge(PR,d);prSaveLocal();
    return SB.from('histoire_progress').upsert({user_id:u.id,data:PR,updated_at:new Date().toISOString()}).then(function(){cb&&cb()})})}).catch(function(){cb&&cb()})}
 prLoadLocal();
+
+var HA={},ADM=false;
+try{HA=JSON.parse(localStorage.getItem('hist_assets')||'{}')||{}}catch(x){}
+function haStore(){try{localStorage.setItem('hist_assets',JSON.stringify(HA))}catch(x){}}
+function haLoad(){if(!SB)return;SB.from('site_assets').select('id,data').like('id','hist:%').then(function(r){if(r.error||!r.data)return;var o={};r.data.forEach(function(x){o[x.id]=x.data});if(JSON.stringify(o)!==JSON.stringify(HA)){HA=o;haStore();route()}}).catch(function(){});
+ SB.auth.getSession().then(function(r){var u=r.data&&r.data.session&&r.data.session.user;if(!u)return;return SB.from('profiles').select('username').eq('id',u.id).single().then(function(q){var a=!!(q.data&&String(q.data.username||'').toLowerCase()==='elphara');if(a!==ADM){ADM=a;route()}})}).catch(function(){})}
+function himg(key){return HA['hist:'+key]?'<img class="himg" src="'+e(HA['hist:'+key])+'" alt="" decoding="async">':''}
+function hadm(key){if(!ADM)return'';var has=!!HA['hist:'+key];return'<div class="hadm">Image (admin) : <button class="hchip" data-himg="'+key+'">📷 '+(has?'Changer':'Importer')+'</button>'+(has?' <button class="hchip" data-hdel="'+key+'">✕ Retirer</button>':'')+'</div>'}
+function haPick(key){var inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.onchange=function(){var f=inp.files&&inp.files[0];if(!f)return;var img=new Image(),url=URL.createObjectURL(f);
+ img.onload=function(){var sc=Math.min(1,640/img.width),cv=document.createElement('canvas');cv.width=Math.max(1,Math.round(img.width*sc));cv.height=Math.max(1,Math.round(img.height*sc));var cx=cv.getContext('2d');cx.fillStyle='#fff';cx.fillRect(0,0,cv.width,cv.height);cx.drawImage(img,0,0,cv.width,cv.height);URL.revokeObjectURL(url);
+  var q=.85,d=cv.toDataURL('image/jpeg',q);while(d.length>140000&&q>.3){q-=.1;d=cv.toDataURL('image/jpeg',q)}
+  if(d.length>=250000){alert('Image trop lourde, choisis-en une plus simple.');return}
+  SB.auth.getSession().then(function(r){var u=r.data.session.user;return SB.from('site_assets').upsert({id:'hist:'+key,data:d,updated_at:new Date().toISOString(),updated_by:u.id})}).then(function(r){if(r&&r.error)throw r.error;HA['hist:'+key]=d;haStore();route()}).catch(function(er){alert('Échec : '+((er&&er.message)||er))})};
+ img.onerror=function(){alert('Image illisible.')};img.src=url};inp.click()}
+function haDel(key){SB.from('site_assets').delete().eq('id','hist:'+key).then(function(r){if(r.error)throw r.error;delete HA['hist:'+key];haStore();route()}).catch(function(er){alert('Échec : '+((er&&er.message)||er))})}
 var QS=null;
 function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
 function pick(pool,ans,n){var o=shuf(pool.filter(function(x,i,ar){return x!==ans&&ar.indexOf(x)===i})).slice(0,n);return shuf(o.concat([ans]))}
@@ -202,7 +220,7 @@ function startC(scope){var all=shuf(cardsFor(scope));QS={cs:all,i:0,flip:false};
 function showC(){var S=QS,c=S.cs[S.i];if(!c){revV();return}
  var front=c.t==='date'?c.q:c.q,back=c.t==='date'?c.a:c.a;
  m.innerHTML='<div class="hpanel"><small>Carte '+(S.i+1)+'/'+S.cs.length+'</small><div class="hbox qcard" data-flip="1">'+(S.flip?'<span>'+lk(back,null,{})+'</span>':'<span><span class="k">'+e(c.k)+'</span>'+e(front)+'</span>')+'</div><p class="hnote" style="color:#513d7c;text-shadow:none">Touche la carte pour la retourner</p><div class="hnav"><button class="hbtn" data-cn="-1">Précédente</button><button class="hbtn" data-cn="1">Suivante</button></div><button class="hbtn" style="width:100%;margin-top:8px" data-rv="menu">Quitter</button></div>'}
-m.addEventListener('click',function(ev){var t=ev.target,b;
+m.addEventListener('click',function(ev){var t=ev.target,b;if(b=t.closest('[data-himg]')){haPick(b.dataset.himg);return}if(b=t.closest('[data-hdel]')){haDel(b.dataset.hdel);return}
  if(b=t.closest('[data-rv]')){var sc=b.dataset.sc||(document.getElementById('rs')||{}).value||'all';var r=b.dataset.rv;if(r==='menu')revV();else if(r==='qcm')startQ(sc);else startC(sc)}
  else if(b=t.closest('[data-o]')){if(b.disabled)return;var S=QS,q=S.qs[S.i],k=+b.dataset.o,ok=q.o[k]===q.a;if(ok)S.s++;[].forEach.call(m.querySelectorAll('.qopt'),function(x,i){x.disabled=true;if(q.o[i]===q.a)x.classList.add('ok');else if(i===k)x.classList.add('ko')});
   var n=document.createElement('button');n.className='hbtn';n.style.cssText='width:100%;margin-top:8px';n.textContent=S.i+1>=S.qs.length?'Voir le score':'Suivante';n.onclick=function(){S.i++;showQ()};m.firstChild.appendChild(n)}
@@ -218,6 +236,6 @@ m.addEventListener('click',function(ev){var mg=ev.target.closest('[data-mapgo]')
 document.getElementById('kdDock').addEventListener('click',function(ev){var b=ev.target.closest('[data-nav]');if(!b)return;var n=b.getAttribute('data-nav');if(n==='out'){location.href='../';return}if(!n||n==='#'){history.pushState(null,'',location.pathname);route()}else go(n.slice(1))});
 window.addEventListener('hashchange',function(){first=false;route()});
 Promise.all([fetch('data/epoques.json').then(function(r){return r.json()}),fetch('data/fiches.json').then(function(r){return r.json()}),fetch('data/themes.json').then(function(r){return r.json()}).catch(function(){return[]}),fetch('animebg.html').then(function(r){return r.text()}).catch(function(){return''})]).then(function(r){
- D=r[0];FI=r[1];TH=r[2]||[];FI.forEach(function(f){FM[f.id]=f});buildRx();if(r[3]){var d=document.createElement('div');d.innerHTML=r[3];document.body.insertBefore(d.firstChild,document.body.firstChild)}route()}).catch(function(){m.innerHTML='<div class="hpanel">Impossible de charger les données.</div>'});
+ D=r[0];FI=r[1];TH=r[2]||[];FI.forEach(function(f){FM[f.id]=f});haLoad();buildRx();if(r[3]){var d=document.createElement('div');d.innerHTML=r[3];document.body.insertBefore(d.firstChild,document.body.firstChild)}route()}).catch(function(){m.innerHTML='<div class="hpanel">Impossible de charger les données.</div>'});
 })();
 </script></body></html>
