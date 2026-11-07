@@ -6628,5 +6628,1137 @@
 "okinawa_bataille",
 "satc_okinawa"
 ]
+},
+{
+"id": "pref_hokkaido",
+"type": "préfecture",
+"nom": "Hokkaidō",
+"kanji": "北海道",
+"lecture": "ほっかいどう",
+"dates": "préfecture · région Hokkaidō",
+"epoque": "",
+"alias": [
+"北海道"
+],
+"resume": "Seule « dō » du Japon, c'est la plus grande préfecture (environ 22 % du territoire). Capitale : Sapporo.",
+"points": [
+"Colonisée à partir de 1869 sur les terres des Ainu.",
+"Jeux d'hiver de 1972 à Sapporo ; parc de Shiretoko (UNESCO 2005).",
+"Produits : lait, pommes de terre, crabe, ramen au miso."
+],
+"voir": [
+"reg_hokkaido"
+]
+},
+{
+"id": "pref_aomori",
+"type": "préfecture",
+"nom": "Aomori",
+"kanji": "青森県",
+"lecture": "あおもり",
+"dates": "préfecture · région Tōhoku",
+"epoque": "",
+"alias": [
+"青森県",
+"préfecture de Aomori",
+"préfecture d'Aomori"
+],
+"resume": "Pointe nord de Honshū, face à Hokkaidō. Capitale : Aomori.",
+"points": [
+"Site Jōmon de Sannai Maruyama.",
+"Festival du Nebuta (août) ; premier producteur de pommes du pays.",
+"Tunnel du Seikan vers Hokkaidō."
+],
+"voir": [
+"reg_tohoku",
+"sannai_maruyama"
+]
+},
+{
+"id": "pref_iwate",
+"type": "préfecture",
+"nom": "Iwate",
+"kanji": "岩手県",
+"lecture": "いわて",
+"dates": "préfecture · région Tōhoku",
+"epoque": "",
+"alias": [
+"岩手県",
+"préfecture de Iwate",
+"préfecture d'Iwate"
+],
+"resume": "La plus grande préfecture de Honshū par la superficie. Capitale : Morioka.",
+"points": [
+"Hiraizumi, capitale des Fujiwara du nord (UNESCO 2011).",
+"Côte du Sanriku, frappée par le tsunami de 2011.",
+"Wanko soba, poète Miyazawa Kenji."
+],
+"voir": [
+"reg_tohoku",
+"zenkunen"
+]
+},
+{
+"id": "pref_miyagi",
+"type": "préfecture",
+"nom": "Miyagi",
+"kanji": "宮城県",
+"lecture": "みやぎ",
+"dates": "préfecture · région Tōhoku",
+"epoque": "",
+"alias": [
+"宮城県",
+"préfecture de Miyagi",
+"préfecture d'Miyagi"
+],
+"resume": "Préfecture de la côte Pacifique du Tōhoku. Capitale : Sendai, fondée par Date Masamune en 1601.",
+"points": [
+"Matsushima, une des « trois vues du Japon ».",
+"Épicentre proche du séisme de 2011 ; reconstruction toujours en cours.",
+"Langue de bœuf grillée, Tanabata de Sendai."
+],
+"voir": [
+"reg_tohoku",
+"fukushima"
+]
+},
+{
+"id": "pref_akita",
+"type": "préfecture",
+"nom": "Akita",
+"kanji": "秋田県",
+"lecture": "あきた",
+"dates": "préfecture · région Tōhoku",
+"epoque": "",
+"alias": [
+"秋田県",
+"préfecture de Akita",
+"préfecture d'Akita"
+],
+"resume": "Côte de la mer du Japon, région riche en riz et en neige. Capitale : Akita.",
+"points": [
+"Clan Satake pendant la période d'Edo.",
+"Festival Kanto ; chien akita ; saké.",
+"Culture matagi (chasseurs traditionnels)."
+],
+"voir": [
+"reg_tohoku"
+]
+},
+{
+"id": "pref_yamagata",
+"type": "préfecture",
+"nom": "Yamagata",
+"kanji": "山形県",
+"lecture": "やまがた",
+"dates": "préfecture · région Tōhoku",
+"epoque": "",
+"alias": [
+"山形県",
+"préfecture de Yamagata",
+"préfecture d'Yamagata"
+],
+"resume": "Préfecture de montagnes et de rizières. Capitale : Yamagata.",
+"points": [
+"Temple Risshaku-ji (Yamadera), visité par Bashō en 1689.",
+"Cerises, saké, onsen de Ginzan.",
+"Pèlerinage des monts Dewa."
+],
+"voir": [
+"reg_tohoku",
+"basho"
+]
+},
+{
+"id": "pref_fukushima",
+"type": "préfecture",
+"nom": "Fukushima",
+"kanji": "福島県",
+"lecture": "ふくしま",
+"dates": "préfecture · région Tōhoku",
+"epoque": "",
+"alias": [
+"福島県",
+"préfecture de Fukushima",
+"préfecture d'Fukushima"
+],
+"resume": "Troisième préfecture du Japon par la superficie. Capitale : Fukushima ; la plus grande ville est Iwaki.",
+"points": [
+"Guerre de Boshin : résistance d'Aizu (château de Tsuruga).",
+"Centrale nucléaire de Fukushima Daiichi, accident du 11 mars 2011.",
+"Pêches, saké, onsen."
+],
+"voir": [
+"reg_tohoku",
+"fukushima",
+"boshin"
+]
+},
+{
+"id": "pref_ibaraki",
+"type": "préfecture",
+"nom": "Ibaraki",
+"kanji": "茨城県",
+"lecture": "いばらき",
+"dates": "préfecture · région Kantō",
+"epoque": "",
+"alias": [
+"茨城県",
+"préfecture de Ibaraki",
+"préfecture d'Ibaraki"
+],
+"resume": "Préfecture de la côte Pacifique au nord-est de Tōkyō. Capitale : Mito.",
+"points": [
+"Domaine de la branche Mito des Tokugawa (mito-gaku).",
+"Jardin Kairakuen, un des trois grands jardins du Japon.",
+"Nattō de Mito ; ville de recherche de Tsukuba."
+],
+"voir": [
+"reg_kanto"
+]
+},
+{
+"id": "pref_tochigi",
+"type": "préfecture",
+"nom": "Tochigi",
+"kanji": "栃木県",
+"lecture": "とちぎ",
+"dates": "préfecture · région Kantō",
+"epoque": "",
+"alias": [
+"栃木県",
+"préfecture de Tochigi",
+"préfecture d'Tochigi"
+],
+"resume": "Préfecture montagneuse du nord du Kantō. Capitale : Utsunomiya.",
+"points": [
+"Nikkō : mausolée d'Ieyasu (Tōshōgū), UNESCO 1999.",
+"Gyōza d'Utsunomiya ; fraises.",
+"Onsen de Kinugawa."
+],
+"voir": [
+"reg_kanto",
+"ieyasu"
+]
+},
+{
+"id": "pref_gunma",
+"type": "préfecture",
+"nom": "Gunma",
+"kanji": "群馬県",
+"lecture": "ぐんま",
+"dates": "préfecture · région Kantō",
+"epoque": "",
+"alias": [
+"群馬県",
+"préfecture de Gunma",
+"préfecture d'Gunma"
+],
+"resume": "Préfecture montagneuse de l'intérieur du Kantō. Capitale : Maebashi.",
+"points": [
+"Filature de soie de Tomioka (UNESCO 2014).",
+"Onsen de Kusatsu et d'Ikaho.",
+"Daruma de Takasaki."
+],
+"voir": [
+"reg_kanto",
+"tomioka"
+]
+},
+{
+"id": "pref_saitama",
+"type": "préfecture",
+"nom": "Saitama",
+"kanji": "埼玉県",
+"lecture": "さいたま",
+"dates": "préfecture · région Kantō",
+"epoque": "",
+"alias": [
+"埼玉県",
+"préfecture de Saitama",
+"préfecture d'Saitama"
+],
+"resume": "Préfecture au nord de Tōkyō, très peuplée. Capitale : la ville de Saitama (créée en 2001).",
+"points": [
+"Ville dortoir de Tōkyō.",
+"Kawagoe, la « petite Edo » aux entrepôts anciens.",
+"Musée du chemin de fer, bonsaï d'Ōmiya."
+],
+"voir": [
+"reg_kanto"
+]
+},
+{
+"id": "pref_chiba",
+"type": "préfecture",
+"nom": "Chiba",
+"kanji": "千葉県",
+"lecture": "ちば",
+"dates": "préfecture · région Kantō",
+"epoque": "",
+"alias": [
+"千葉県",
+"préfecture de Chiba",
+"préfecture d'Chiba"
+],
+"resume": "Péninsule à l'est de la baie de Tōkyō. Capitale : Chiba.",
+"points": [
+"Aéroport de Narita ; Tōkyō Disneyland (à Urayasu).",
+"Péninsule de Bōsō.",
+"Cacahuètes, soja, pêche."
+],
+"voir": [
+"reg_kanto"
+]
+},
+{
+"id": "pref_tokyo",
+"type": "préfecture",
+"nom": "Tōkyō",
+"kanji": "東京都",
+"lecture": "とうきょう",
+"dates": "préfecture · région Kantō",
+"epoque": "",
+"alias": [
+"東京都",
+"préfecture de Tōkyō",
+"préfecture d'Tōkyō"
+],
+"resume": "Seule « to » (métropole) du Japon, capitale du pays (environ 14 millions d'habitants). Le gouvernement métropolitain siège à Shinjuku.",
+"points": [
+"Edo devient Tōkyō en 1868 ; séisme de 1923, bombardements de 1945, Jeux de 1964 et de 2021.",
+"23 arrondissements spéciaux, les îles d'Izu et d'Ogasawara en dépendent.",
+"Palais impérial, Sensō-ji, Shibuya, Akihabara."
+],
+"voir": [
+"reg_kanto",
+"kanto_shinsai"
+]
+},
+{
+"id": "pref_kanagawa",
+"type": "préfecture",
+"nom": "Kanagawa",
+"kanji": "神奈川県",
+"lecture": "かながわ",
+"dates": "préfecture · région Kantō",
+"epoque": "",
+"alias": [
+"神奈川県",
+"préfecture de Kanagawa",
+"préfecture d'Kanagawa"
+],
+"resume": "Préfecture au sud de Tōkyō. Capitale : Yokohama (deuxième ville du pays).",
+"points": [
+"Perry débarque à Kurihama (1853) ; port de Yokohama ouvert en 1859.",
+"Kamakura, capitale des shoguns (1185).",
+"Hakone, Enoshima."
+],
+"voir": [
+"reg_kanto",
+"perry",
+"bakufu"
+]
+},
+{
+"id": "pref_niigata",
+"type": "préfecture",
+"nom": "Niigata",
+"kanji": "新潟県",
+"lecture": "にいがた",
+"dates": "préfecture · région Chūbu",
+"epoque": "",
+"alias": [
+"新潟県",
+"préfecture de Niigata",
+"préfecture d'Niigata"
+],
+"resume": "Longue côte de la mer du Japon, très enneigée. Capitale : Niigata.",
+"points": [
+"Île de Sado : exil, mines d'or.",
+"Riz Koshihikari, saké.",
+"Port ouvert en 1858."
+],
+"voir": [
+"reg_chubu"
+]
+},
+{
+"id": "pref_toyama",
+"type": "préfecture",
+"nom": "Toyama",
+"kanji": "富山県",
+"lecture": "とやま",
+"dates": "préfecture · région Chūbu",
+"epoque": "",
+"alias": [
+"富山県",
+"préfecture de Toyama",
+"préfecture d'Toyama"
+],
+"resume": "Préfecture de la côte nord, au pied des Alpes. Capitale : Toyama.",
+"points": [
+"Vendeurs ambulants de remèdes (Toyama no kusuri).",
+"Route alpine de Tateyama-Kurobe.",
+"Masu-zushi, lucioles de mer."
+],
+"voir": [
+"reg_chubu"
+]
+},
+{
+"id": "pref_ishikawa",
+"type": "préfecture",
+"nom": "Ishikawa",
+"kanji": "石川県",
+"lecture": "いしかわ",
+"dates": "préfecture · région Chūbu",
+"epoque": "",
+"alias": [
+"石川県",
+"préfecture de Ishikawa",
+"préfecture d'Ishikawa"
+],
+"resume": "Péninsule de Noto et plaine de Kanazawa. Capitale : Kanazawa.",
+"points": [
+"Domaine des Maeda (Kaga), le plus riche d'Edo.",
+"Jardin Kenrokuen, feuilles d'or, laque de Wajima.",
+"Séisme de Noto du 1er janvier 2024."
+],
+"voir": [
+"reg_chubu"
+]
+},
+{
+"id": "pref_fukui",
+"type": "préfecture",
+"nom": "Fukui",
+"kanji": "福井県",
+"lecture": "ふくい",
+"dates": "préfecture · région Chūbu",
+"epoque": "",
+"alias": [
+"福井県",
+"préfecture de Fukui",
+"préfecture d'Fukui"
+],
+"resume": "Préfecture de la côte nord du Chūbu. Capitale : Fukui.",
+"points": [
+"Temple Eihei-ji, fondé par Dōgen (1244).",
+"Dinosaures, falaises de Tōjinbō.",
+"Crabe d'Echizen, centrales nucléaires."
+],
+"voir": [
+"reg_chubu",
+"dogen"
+]
+},
+{
+"id": "pref_yamanashi",
+"type": "préfecture",
+"nom": "Yamanashi",
+"kanji": "山梨県",
+"lecture": "やまなし",
+"dates": "préfecture · région Chūbu",
+"epoque": "",
+"alias": [
+"山梨県",
+"préfecture de Yamanashi",
+"préfecture d'Yamanashi"
+],
+"resume": "Préfecture intérieure, au pied du Fuji. Capitale : Kōfu.",
+"points": [
+"Province de Kai de Takeda Shingen.",
+"Mont Fuji et cinq lacs.",
+"Raisins, pêches, vin."
+],
+"voir": [
+"reg_chubu",
+"takeda"
+]
+},
+{
+"id": "pref_nagano",
+"type": "préfecture",
+"nom": "Nagano",
+"kanji": "長野県",
+"lecture": "ながの",
+"dates": "préfecture · région Chūbu",
+"epoque": "",
+"alias": [
+"長野県",
+"préfecture de Nagano",
+"préfecture d'Nagano"
+],
+"resume": "Préfecture des Alpes japonaises, la plus montagneuse. Capitale : Nagano.",
+"points": [
+"Jeux d'hiver de 1998 ; Matsumoto, château noir.",
+"Zenkō-ji ; singes des neiges de Jigokudani.",
+"Soba de Shinano ; bataille de Kawanakajima (Takeda-Uesugi)."
+],
+"voir": [
+"reg_chubu",
+"takeda",
+"uesugi"
+]
+},
+{
+"id": "pref_gifu",
+"type": "préfecture",
+"nom": "Gifu",
+"kanji": "岐阜県",
+"lecture": "ぎふ",
+"dates": "préfecture · région Chūbu",
+"epoque": "",
+"alias": [
+"岐阜県",
+"préfecture de Gifu",
+"préfecture d'Gifu"
+],
+"resume": "Préfecture montagneuse intérieure. Capitale : Gifu.",
+"points": [
+"Nobunaga s'y installe et renomme la ville (1567).",
+"Sekigahara (1600) ; Shirakawa-gō (UNESCO 1995).",
+"Pêche au cormoran sur la Nagara."
+],
+"voir": [
+"reg_chubu",
+"nobunaga",
+"sekigahara"
+]
+},
+{
+"id": "pref_shizuoka",
+"type": "préfecture",
+"nom": "Shizuoka",
+"kanji": "静岡県",
+"lecture": "しずおか",
+"dates": "préfecture · région Chūbu",
+"epoque": "",
+"alias": [
+"静岡県",
+"préfecture de Shizuoka",
+"préfecture d'Shizuoka"
+],
+"resume": "Préfecture de la côte Pacifique, entre Tōkyō et Nagoya. Capitale : Shizuoka.",
+"points": [
+"Sunpu, ville de retraite d'Ieyasu.",
+"Mont Fuji, thé vert (premier producteur du pays), Hamamatsu (instruments, motos).",
+"Route du Tōkaidō."
+],
+"voir": [
+"reg_chubu",
+"ieyasu"
+]
+},
+{
+"id": "pref_aichi",
+"type": "préfecture",
+"nom": "Aichi",
+"kanji": "愛知県",
+"lecture": "あいち",
+"dates": "préfecture · région Chūbu",
+"epoque": "",
+"alias": [
+"愛知県",
+"préfecture de Aichi",
+"préfecture d'Aichi"
+],
+"resume": "Cœur industriel du pays. Capitale : Nagoya.",
+"points": [
+"Province d'origine de Nobunaga, Hideyoshi et Ieyasu.",
+"Toyota (Toyota-shi) ; château de Nagoya.",
+"Hitsumabushi, miso katsu."
+],
+"voir": [
+"reg_chubu",
+"nobunaga",
+"hideyoshi",
+"ieyasu"
+]
+},
+{
+"id": "pref_mie",
+"type": "préfecture",
+"nom": "Mie",
+"kanji": "三重県",
+"lecture": "みえ",
+"dates": "préfecture · région Kansai",
+"epoque": "",
+"alias": [
+"三重県",
+"préfecture de Mie",
+"préfecture d'Mie"
+],
+"resume": "Péninsule de Kii orientale. Capitale : Tsu.",
+"points": [
+"Grand sanctuaire d'Ise (Amaterasu).",
+"Plongeuses ama, perles de Mikimoto.",
+"Route du pèlerinage d'Ise."
+],
+"voir": [
+"reg_kansai",
+"amaterasu"
+]
+},
+{
+"id": "pref_shiga",
+"type": "préfecture",
+"nom": "Shiga",
+"kanji": "滋賀県",
+"lecture": "しが",
+"dates": "préfecture · région Kansai",
+"epoque": "",
+"alias": [
+"滋賀県",
+"préfecture de Shiga",
+"préfecture d'Shiga"
+],
+"resume": "Préfecture du lac Biwa, le plus grand du Japon. Capitale : Ōtsu.",
+"points": [
+"Capitale de Tenji (667) ; Enryaku-ji sur le mont Hiei.",
+"Azuchi (Nobunaga), Hikone (château d'origine).",
+"Mōko nénuphars, poisson du lac."
+],
+"voir": [
+"reg_kansai",
+"naka_no_oe",
+"tendai"
+]
+},
+{
+"id": "pref_kyoto",
+"type": "préfecture",
+"nom": "Kyōto",
+"kanji": "京都府",
+"lecture": "きょうと",
+"dates": "préfecture · région Kansai",
+"epoque": "",
+"alias": [
+"京都府",
+"préfecture de Kyōto",
+"préfecture d'Kyōto"
+],
+"resume": "Préfecture de l'ancienne capitale impériale. Capitale : Kyōto.",
+"points": [
+"Heian-kyō, capitale de 794 à 1868.",
+"17 monuments au patrimoine mondial ; Gion, thé d'Uji.",
+"Byōdōin d'Uji (Yorimichi)."
+],
+"voir": [
+"reg_kansai",
+"heian_kyo",
+"byodoin"
+]
+},
+{
+"id": "pref_osaka",
+"type": "préfecture",
+"nom": "Ōsaka",
+"kanji": "大阪府",
+"lecture": "おおさか",
+"dates": "préfecture · région Kansai",
+"epoque": "",
+"alias": [
+"大阪府",
+"préfecture de Ōsaka",
+"préfecture d'Ōsaka"
+],
+"resume": "Deuxième pôle économique du Japon, plus petite préfecture après Kagawa. Capitale : Ōsaka.",
+"points": [
+"Capitale marchande d'Edo ; château de Hideyoshi.",
+"Expo 1970 et 2025 ; Dōtonbori, takoyaki, okonomiyaki.",
+"Sakai et les tumulus de Mozu (UNESCO 2019)."
+],
+"voir": [
+"reg_kansai",
+"osaka",
+"nintoku"
+]
+},
+{
+"id": "pref_hyogo",
+"type": "préfecture",
+"nom": "Hyōgo",
+"kanji": "兵庫県",
+"lecture": "ひょうご",
+"dates": "préfecture · région Kansai",
+"epoque": "",
+"alias": [
+"兵庫県",
+"préfecture de Hyōgo",
+"préfecture d'Hyōgo"
+],
+"resume": "Préfecture entre la mer intérieure et la mer du Japon. Capitale : Kōbe.",
+"points": [
+"Séisme de Hanshin-Awaji (1995).",
+"Château de Himeji (UNESCO 1993) ; port de Kōbe (1868).",
+"Bœuf de Kōbe, saké de Nada."
+],
+"voir": [
+"reg_kansai",
+"hanshin"
+]
+},
+{
+"id": "pref_nara",
+"type": "préfecture",
+"nom": "Nara",
+"kanji": "奈良県",
+"lecture": "なら",
+"dates": "préfecture · région Kansai",
+"epoque": "",
+"alias": [
+"奈良県",
+"préfecture de Nara",
+"préfecture d'Nara"
+],
+"resume": "Préfecture sans accès à la mer, berceau de l'État de Yamato. Capitale : Nara.",
+"points": [
+"Asuka, Hōryūji, Heijō-kyō (710).",
+"Tōdaiji, Kasuga Taisha, daims du parc.",
+"Mont Yoshino, cerisiers."
+],
+"voir": [
+"reg_kansai",
+"heijo",
+"horyuji"
+]
+},
+{
+"id": "pref_wakayama",
+"type": "préfecture",
+"nom": "Wakayama",
+"kanji": "和歌山県",
+"lecture": "わかやま",
+"dates": "préfecture · région Kansai",
+"epoque": "",
+"alias": [
+"和歌山県",
+"préfecture de Wakayama",
+"préfecture d'Wakayama"
+],
+"resume": "Sud de la péninsule de Kii. Capitale : Wakayama.",
+"points": [
+"Mont Kōya (Kūkai), voies sacrées de Kumano (UNESCO 2004).",
+"Domaine des Tokugawa de Kii (Yoshimune).",
+"Mandarines, prunes, ramen de Wakayama."
+],
+"voir": [
+"reg_kansai",
+"kukai",
+"yoshimune"
+]
+},
+{
+"id": "pref_tottori",
+"type": "préfecture",
+"nom": "Tottori",
+"kanji": "鳥取県",
+"lecture": "とっとり",
+"dates": "préfecture · région Chūgoku",
+"epoque": "",
+"alias": [
+"鳥取県",
+"préfecture de Tottori",
+"préfecture d'Tottori"
+],
+"resume": "Préfecture la moins peuplée du Japon, sur la mer du Japon. Capitale : Tottori.",
+"points": [
+"Dunes de sable de Tottori.",
+"Poires nashi, crabe matsuba.",
+"Mangaka Mizuki Shigeru (Sakaiminato)."
+],
+"voir": [
+"reg_chugoku"
+]
+},
+{
+"id": "pref_shimane",
+"type": "préfecture",
+"nom": "Shimane",
+"kanji": "島根県",
+"lecture": "しまね",
+"dates": "préfecture · région Chūgoku",
+"epoque": "",
+"alias": [
+"島根県",
+"préfecture de Shimane",
+"préfecture d'Shimane"
+],
+"resume": "Préfecture de mythes, sur la mer du Japon. Capitale : Matsue.",
+"points": [
+"Izumo Taisha ; mythe de la cession du pays.",
+"Mine d'argent d'Iwami (UNESCO 2007).",
+"Château de Matsue, séjour de Lafcadio Hearn."
+],
+"voir": [
+"reg_chugoku"
+]
+},
+{
+"id": "pref_okayama",
+"type": "préfecture",
+"nom": "Okayama",
+"kanji": "岡山県",
+"lecture": "おかやま",
+"dates": "préfecture · région Chūgoku",
+"epoque": "",
+"alias": [
+"岡山県",
+"préfecture de Okayama",
+"préfecture d'Okayama"
+],
+"resume": "Préfecture de la mer intérieure de Seto. Capitale : Okayama.",
+"points": [
+"Jardin Kōrakuen, château du corbeau noir.",
+"Kurashiki (quartier de Bikan), jeans.",
+"Légende de Momotarō."
+],
+"voir": [
+"reg_chugoku"
+]
+},
+{
+"id": "pref_hiroshima",
+"type": "préfecture",
+"nom": "Hiroshima",
+"kanji": "広島県",
+"lecture": "ひろしま",
+"dates": "préfecture · région Chūgoku",
+"epoque": "",
+"alias": [
+"広島県",
+"préfecture de Hiroshima",
+"préfecture d'Hiroshima"
+],
+"resume": "Grande préfecture de la mer intérieure. Capitale : Hiroshima.",
+"points": [
+"Bombe atomique du 6 août 1945, dôme de Genbaku (UNESCO 1996).",
+"Miyajima (Itsukushima, UNESCO 1996) ; Mazda.",
+"Okonomiyaki de Hiroshima, huîtres."
+],
+"voir": [
+"reg_chugoku",
+"hiroshima"
+]
+},
+{
+"id": "pref_yamaguchi",
+"type": "préfecture",
+"nom": "Yamaguchi",
+"kanji": "山口県",
+"lecture": "やまぐち",
+"dates": "préfecture · région Chūgoku",
+"epoque": "",
+"alias": [
+"山口県",
+"préfecture de Yamaguchi",
+"préfecture d'Yamaguchi"
+],
+"resume": "Pointe ouest de Honshū. Capitale : Yamaguchi ; ville principale : Shimonoseki.",
+"points": [
+"Domaine de Chōshū (Hagi), foyer de Meiji (Itō Hirobumi, Yamagata Aritomo).",
+"Dan-no-ura (1185) ; clan Ōuchi.",
+"Fugu de Shimonoseki, pont de Kintai."
+],
+"voir": [
+"reg_chugoku",
+"dan_no_ura",
+"ito",
+"kido"
+]
+},
+{
+"id": "pref_tokushima",
+"type": "préfecture",
+"nom": "Tokushima",
+"kanji": "徳島県",
+"lecture": "とくしま",
+"dates": "préfecture · région Shikoku",
+"epoque": "",
+"alias": [
+"徳島県",
+"préfecture de Tokushima",
+"préfecture d'Tokushima"
+],
+"resume": "Est de Shikoku. Capitale : Tokushima.",
+"points": [
+"Festival Awa Odori (mi-août).",
+"Tourbillons de Naruto, vallée d'Iya.",
+"Début du pèlerinage des 88 temples."
+],
+"voir": [
+"reg_shikoku",
+"kukai"
+]
+},
+{
+"id": "pref_kagawa",
+"type": "préfecture",
+"nom": "Kagawa",
+"kanji": "香川県",
+"lecture": "かがわ",
+"dates": "préfecture · région Shikoku",
+"epoque": "",
+"alias": [
+"香川県",
+"préfecture de Kagawa",
+"préfecture d'Kagawa"
+],
+"resume": "La plus petite préfecture du Japon. Capitale : Takamatsu.",
+"points": [
+"Udon sanuki ; jardin Ritsurin.",
+"Naissance de Kūkai à Zentsūji.",
+"Île d'art de Naoshima."
+],
+"voir": [
+"reg_shikoku",
+"kukai"
+]
+},
+{
+"id": "pref_ehime",
+"type": "préfecture",
+"nom": "Ehime",
+"kanji": "愛媛県",
+"lecture": "えひめ",
+"dates": "préfecture · région Shikoku",
+"epoque": "",
+"alias": [
+"愛媛県",
+"préfecture de Ehime",
+"préfecture d'Ehime"
+],
+"resume": "Nord-ouest de Shikoku, sur la mer intérieure. Capitale : Matsuyama.",
+"points": [
+"Dōgo Onsen, un des plus anciens bains.",
+"Mandarines, serviettes d'Imabari.",
+"Shimanami Kaidō, pont vers Hiroshima."
+],
+"voir": [
+"reg_shikoku"
+]
+},
+{
+"id": "pref_kochi",
+"type": "préfecture",
+"nom": "Kōchi",
+"kanji": "高知県",
+"lecture": "こうち",
+"dates": "préfecture · région Shikoku",
+"epoque": "",
+"alias": [
+"高知県",
+"préfecture de Kōchi",
+"préfecture d'Kōchi"
+],
+"resume": "Sud de Shikoku, sur le Pacifique. Capitale : Kōchi.",
+"points": [
+"Domaine de Tosa : Sakamoto Ryōma, Itagaki.",
+"Katsuo no tataki, rivière Shimanto.",
+"Cap Muroto et Ashizuri."
+],
+"voir": [
+"reg_shikoku",
+"satcho"
+]
+},
+{
+"id": "pref_fukuoka",
+"type": "préfecture",
+"nom": "Fukuoka",
+"kanji": "福岡県",
+"lecture": "ふくおか",
+"dates": "préfecture · région Kyūshū",
+"epoque": "",
+"alias": [
+"福岡県",
+"préfecture de Fukuoka",
+"préfecture d'Fukuoka"
+],
+"resume": "Préfecture la plus peuplée de Kyūshū. Capitale : Fukuoka.",
+"points": [
+"Hakata : invasions mongoles de 1274 et 1281.",
+"Dazaifu (Sugawara no Michizane), sidérurgie de Yawata.",
+"Ramen tonkotsu, yatai."
+],
+"voir": [
+"reg_kyushu",
+"mongols",
+"sugawara"
+]
+},
+{
+"id": "pref_saga",
+"type": "préfecture",
+"nom": "Saga",
+"kanji": "佐賀県",
+"lecture": "さが",
+"dates": "préfecture · région Kyūshū",
+"epoque": "",
+"alias": [
+"佐賀県",
+"préfecture de Saga",
+"préfecture d'Saga"
+],
+"resume": "Préfecture la plus petite de Kyūshū. Capitale : Saga.",
+"points": [
+"Yoshinogari, site Yayoi.",
+"Domaine de Nabeshima, moderne dès Bakumatsu.",
+"Porcelaine d'Arita et d'Imari."
+],
+"voir": [
+"reg_kyushu",
+"yoshinogari"
+]
+},
+{
+"id": "pref_nagasaki",
+"type": "préfecture",
+"nom": "Nagasaki",
+"kanji": "長崎県",
+"lecture": "ながさき",
+"dates": "préfecture · région Kyūshū",
+"epoque": "",
+"alias": [
+"長崎県",
+"préfecture de Nagasaki",
+"préfecture d'Nagasaki"
+],
+"resume": "Préfecture aux nombreuses îles. Capitale : Nagasaki.",
+"points": [
+"Dejima, seul port ouvert à l'Europe sous Edo.",
+"Bombe atomique du 9 août 1945.",
+"Shimabara (1637), sites chrétiens cachés (UNESCO 2018)."
+],
+"voir": [
+"reg_kyushu",
+"dejima",
+"shimabara",
+"hiroshima"
+]
+},
+{
+"id": "pref_kumamoto",
+"type": "préfecture",
+"nom": "Kumamoto",
+"kanji": "熊本県",
+"lecture": "くまもと",
+"dates": "préfecture · région Kyūshū",
+"epoque": "",
+"alias": [
+"熊本県",
+"préfecture de Kumamoto",
+"préfecture d'Kumamoto"
+],
+"resume": "Préfecture du centre de Kyūshū. Capitale : Kumamoto.",
+"points": [
+"Château de Katō Kiyomasa ; mont Aso, une des plus grandes caldeiras du monde.",
+"Guerre de Seinan (1877) ; séismes de 2016.",
+"Mascotte Kumamon, ramen de Kumamoto."
+],
+"voir": [
+"reg_kyushu",
+"satsuma_rebellion"
+]
+},
+{
+"id": "pref_oita",
+"type": "préfecture",
+"nom": "Ōita",
+"kanji": "大分県",
+"lecture": "おおいた",
+"dates": "préfecture · région Kyūshū",
+"epoque": "",
+"alias": [
+"大分県",
+"préfecture de Ōita",
+"préfecture d'Ōita"
+],
+"resume": "Préfecture thermale de l'est de Kyūshū. Capitale : Ōita.",
+"points": [
+"Beppu et Yufuin : le plus grand nombre d'onsen du pays.",
+"Christianisme au XVIe siècle (Ōtomo Sōrin).",
+"Poisson-lune de Saganoseki, bœuf Bungo."
+],
+"voir": [
+"reg_kyushu"
+]
+},
+{
+"id": "pref_miyazaki",
+"type": "préfecture",
+"nom": "Miyazaki",
+"kanji": "宮崎県",
+"lecture": "みやざき",
+"dates": "préfecture · région Kyūshū",
+"epoque": "",
+"alias": [
+"宮崎県",
+"préfecture de Miyazaki",
+"préfecture d'Miyazaki"
+],
+"resume": "Côte sud-est de Kyūshū. Capitale : Miyazaki.",
+"points": [
+"Province de Hyūga du mythe de Jinmu.",
+"Takachiho, descente de Ninigi sur terre.",
+"Mangues, côte d'Aoshima."
+],
+"voir": [
+"reg_kyushu",
+"jimmu"
+]
+},
+{
+"id": "pref_kagoshima",
+"type": "préfecture",
+"nom": "Kagoshima",
+"kanji": "鹿児島県",
+"lecture": "かごしま",
+"dates": "préfecture · région Kyūshū",
+"epoque": "",
+"alias": [
+"鹿児島県",
+"préfecture de Kagoshima",
+"préfecture d'Kagoshima"
+],
+"resume": "Pointe sud de Kyūshū et îles. Capitale : Kagoshima.",
+"points": [
+"Domaine de Satsuma : Saigō Takamori, Ōkubo Toshimichi.",
+"Tanegashima (armes à feu, 1543), Xavier (1549).",
+"Sakurajima, Yakushima (UNESCO 1993)."
+],
+"voir": [
+"reg_kyushu",
+"xavier",
+"teppo",
+"saigo"
+]
+},
+{
+"id": "pref_okinawa",
+"type": "préfecture",
+"nom": "Okinawa",
+"kanji": "沖縄県",
+"lecture": "おきなわ",
+"dates": "préfecture · région Okinawa",
+"epoque": "",
+"alias": [
+"沖縄県",
+"préfecture de Okinawa",
+"préfecture d'Okinawa"
+],
+"resume": "Seule préfecture subtropicale du pays. Capitale : Naha.",
+"points": [
+"Royaume des Ryūkyū (1429-1879) ; château de Shuri.",
+"Bataille de 1945 ; administration américaine jusqu'en 1972.",
+"Karaté, goya champuru."
+],
+"voir": [
+"reg_okinawa",
+"ryukyu",
+"okinawa_bataille"
+]
 }
 ]
