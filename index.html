@@ -32797,7 +32797,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v532', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v533', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35287,7 +35287,7 @@ var PAR="";
   var _wpBg = bgApply;
   bgApply = function () {
     _wpBg();
-    if (user) { try { localStorage.setItem('kd.wp.cur', wpOwn() && wpGet() ? String(user.id) : ''); } catch (e) {} }
+    if (user) { try { localStorage.setItem('kd.wp.cur', wpOwn() && wpGet() ? String(user.id) : ''); } catch (e) {} } else { try { kdEarlyBg(); } catch (e) {} return; }
     var el = $('animebg'), d = user && wpOwn() ? wpGet() : null; if (!el || !d) return;
     ['W', 'T'].forEach(function (k) { var im = el.querySelector('img.bg' + k), u = k === 'W' ? d.w : d.t; if (im && u && im.getAttribute('src') !== u) im.src = u; });
     el.classList.add('hasimg');
