@@ -13805,7 +13805,8 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
       // DISCORD-BOT : NE PAS SUPPRIMER (liaison Discord + XP des quiz du bot)
       rpc: function (name, args) { return sb.rpc(name, args || {}).then(function (r) { if (r.error) throw r.error; return r.data; }); },
       discordLink: function () { return sb.from('discord_links').select('discord_name').maybeSingle().then(function (r) { if (r.error) throw r.error; return r.data; }); },
-      assetsLoad: function () { return sb.from('site_assets').select('id,data').then(function (r) { if (r.error) throw r.error; return r.data || []; }); },
+      hassetsLoad: function () { return sb.from('site_assets').select('id,data').like('id', 'hist:%').then(function (r) { if (r.error) throw r.error; return r.data || []; }); },
+      assetsLoad: function () { return sb.from('site_assets').select('id,data').not('id', 'like', 'hist:%').then(function (r) { if (r.error) throw r.error; return r.data || []; }); },
       assetSave: function (id, data, uid) { return sb.from('site_assets').upsert({ id: id, data: data, updated_at: new Date().toISOString(), updated_by: uid || null }).then(function (r) { if (r.error) throw r.error; }); },
       assetDelete: function (id) { return sb.from('site_assets').delete().eq('id', id).then(function (r) { if (r.error) throw r.error; }); },
       loadProgress: function (u) {
@@ -26259,6 +26260,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
      ===================================================================== */
   var ASSETS = (function () { try { return JSON.parse(localStorage.getItem('kd.assets') || '{}') || {}; } catch (e) { return {}; } })();
   var assetsAt = 0;
+  var HASS = {}, HNAMES = null, HTRY = false;
   function isAdmin() { return !!(user && String(user.name || '').toLowerCase() === 'elphara'); }
   function assetsStore() { try { localStorage.setItem('kd.assets', JSON.stringify(ASSETS)); } catch (e) { /* quota */ } }
   function assetsLoad(force) {
@@ -26279,6 +26281,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     out.push(['Flashcards', FLASH_ORDER.map(function (k) { return ['g_' + k, GAMES[k].name]; })]);
     out.push(['Kanjis', ['kread', 'ksens', 'kstudy'].map(function (k) { return ['g_' + k, GAMES[k].name]; })]);
     out.push(['Mini-jeux', GAME_ORDER.map(function (k) { return ['g_' + k, GAMES[k].name]; })]);
+    if (HNAMES) { out.push(['Histoire : époques', HNAMES.e]); out.push(['Histoire : cours thématiques', HNAMES.t]); out.push(['Histoire : personnages', HNAMES.p]); out.push(['Histoire : concepts et événements', HNAMES.c]); }
     out.push(['Hors JLPT : thèmes', QV.filter(function (t) { return !t.virt; }).map(function (t) { return ['qv_' + t.id, t.name]; })]);
     return out;
   }
@@ -26287,9 +26290,10 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     var det = $('adminAcc'); if (!det) return;
     if (!isAdmin()) { det.hidden = true; return; }
     det.hidden = false;
+    if (!HTRY) { HTRY = true; try { Promise.all([fetch('histoire/data/epoques.json').then(function (r) { return r.json(); }), fetch('histoire/data/themes.json').then(function (r) { return r.json(); }), fetch('histoire/data/fiches.json').then(function (r) { return r.json(); }), backend && backend.hassetsLoad ? backend.hassetsLoad() : Promise.resolve([])]).then(function (x) { HNAMES = { e: x[0].map(function (p) { return ['hist:e:' + p.id, p.nom]; }), t: x[1].map(function (p) { return ['hist:t:' + p.id, p.nom]; }), p: x[2].filter(function (f) { return f.type === 'personnage'; }).map(function (f) { return ['hist:f:' + f.id, f.nom]; }), c: x[2].filter(function (f) { return f.type !== 'personnage'; }).map(function (f) { return ['hist:f:' + f.id, f.nom]; }) }; (x[3] || []).forEach(function (r) { HASS[r.id] = r.data; }); adminPanel(); }).catch(function () { HTRY = false; }); } catch (e) { HTRY = false; } }
     $('adminBody').innerHTML = '<p class="small muted">Chaque image est enregistrée dans Supabase et visible par tous les joueurs. Une tuile sans image garde son dessin d\'origine. Les images sont réduites automatiquement.</p>' + adminSlots().map(function (g) {
       return '<h4 class="admh">' + esc(g[0]) + '</h4>' + g[1].map(function (r) {
-        var a = ASSETS[r[0]];
+        var a = ASSETS[r[0]] || HASS[r[0]];
         return '<div class="admrow"><span class="admth">' + (a ? '<img src="' + esc(a) + '" alt="">' : '·') + '</span><b>' + esc(r[1]) + '</b><button type="button" class="btn" data-adminimg="' + r[0] + '" aria-label="Changer l\'image : ' + esc(r[1]) + '">📷 ' + (a ? 'Changer' : 'Importer') + '</button>' + (a ? '<button type="button" class="btn" data-admindel="' + r[0] + '" aria-label="Retirer l\'image : ' + esc(r[1]) + '">✕</button>' : '') + '</div>';
       }).join('');
     }).join('');
@@ -26313,7 +26317,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
   }
   function adminSave(id, data) {
     backend.assetSave(id, data, user.id).then(function () {
-      ASSETS[id] = data; assetsStore(); assetsAt = 0; adminRefresh(); toast('Image enregistrée pour tous les joueurs.');
+      if (id.indexOf('hist:') === 0) HASS[id] = data; else { ASSETS[id] = data; assetsStore(); } assetsAt = 0; adminRefresh(); toast('Image enregistrée pour tous les joueurs.');
     }).catch(function (e) { toast('Échec de l\'enregistrement : ' + ((e && e.message) || e)); });
   }
   function adminPick(id) {
@@ -26340,7 +26344,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     var id = b.getAttribute('data-adminimg');
     if (id) { adminPick(id); return; }
     id = b.getAttribute('data-admindel');
-    backend.assetDelete(id).then(function () { delete ASSETS[id]; assetsStore(); assetsAt = 0; adminRefresh(); toast('Image retirée : le dessin d\'origine revient.'); }).catch(function (er) { toast('Échec : ' + ((er && er.message) || er)); });
+    backend.assetDelete(id).then(function () { delete ASSETS[id]; delete HASS[id]; assetsStore(); assetsAt = 0; adminRefresh(); toast('Image retirée : le dessin d\'origine revient.'); }).catch(function (er) { toast('Échec : ' + ((er && er.message) || er)); });
   }, true);
 
   /* =====================================================================
@@ -32701,7 +32705,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v516', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v517', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
