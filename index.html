@@ -29775,8 +29775,10 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     else if (k === 'fx') dcFx(+v);
     else if (k === 'fxfr') { var f1 = FX && FX[+v]; if (f1) fxSpeakFr(f1.f); }
     else if (k === 'fxfx') { var f2 = FX && FX[+v]; if (f2) fxSpeakFr(f2.e); }
-    else if (k === 'lang') { DCL = v === 'ja' ? 'ja' : 'fr'; try { localStorage.setItem('dcLang', DCL); } catch (e) {} dc.fxOnly = DCL === 'ja'; dc.n = 60; dcRefreshAll(); }
+    else if (k === 'lang') { DCL = v === 'ja' ? 'ja' : 'fr'; try { localStorage.setItem('dcLang', DCL); } catch (e) {} if (DCL === 'ja') dc.fxOnly = true; dc.n = 60; dcRefreshAll(); }
     else if (k === 'fxth') { var _t = v; dc.fxTh = dc.fxTh === _t ? '' : _t; dc.fxOnly = true; dc.n = 60; dcRefreshAll(); }
+    else if (k === 'fxtab') { dc.mode = 'w'; dc.fxTh = ''; dc.fxOnly = true; dc.q = ''; dc.n = 60; dcRefreshAll(); }
+    else if (k === 'fxfav') { var _fx = FX && FX[+v]; if (_fx) { var _on = fxFavToggle(_fx.f), _b = document.querySelector('[data-dc="fxfav:' + v + '"]'); if (_b) _b.textContent = fxFavLabel(_on); } }
     else if (k === 'fxonly') { dc.fxTh = ''; dc.fxOnly = !dc.fxOnly; dc.n = 60; dcRefreshAll(); }
     else if (k === 'fxsay') { var fq = FX && FX[+v]; if (fq && typeof aidSpeak === 'function') aidSpeak(fq.ej, 0.85); }
     else if (k === 'say') { var e = dcBuild().all[+v]; if (e && typeof aidSpeak === 'function') aidSpeak(e.kana || e.jp, 0.85); }
@@ -32775,7 +32777,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v525', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v526', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -36335,6 +36337,76 @@ var PAR="";
     if (ja) h = dcJaUI2(h);
     return h;
   };
+  /* ===== v526 ===== */
+  var FXTH = [['transport', '🚆', 'Transport & billetterie', '交通・チケット'], ['machine', '🏧', 'Machines & paiement', '機械・支払い'], ['banque', '🏦', 'Banque', '銀行'], ['poste', '📮', 'Poste', '郵便'], ['sante', '💊', 'Santé & pharmacie', '健康・薬局'], ['hotel', '🏨', 'Hôtel & logement', 'ホテル・宿'], ['courses', '🛒', 'Courses & restaurant', '買い物・外食'], ['admin', '📱', 'Admin & téléphone', '手続き・通信'], ['orient', '🧭', 'Orientation & secours', '道案内・緊急'], ['japon', '🇯🇵', 'Machines au Japon', '日本の機械'], ['spectacle', '🎭', 'Spectacle', '催し物'], ['tabac', '🚬', 'Tabac', 'たばこ'], ['argot', '🔥', 'Argot', 'スラング'], ['expr', '💬', 'Expressions', '表現'], ['proverbe', '📜', 'Proverbes', 'ことわざ'], ['sport', '⚽', 'Sport', 'スポーツ'], ['ecole', '🎓', 'École', '学校'], ['meteo', '⛅', 'Météo', '天気'], ['famille', '👨‍👩‍👧', 'Famille', '家族'], ['vetement', '👕', 'Vêtements', '服'], ['cuisine', '🍳', 'Cuisine', '料理'], ['travail', '💼', 'Travail', '仕事']];
+  function fxLS(k) { try { var a = JSON.parse(localStorage.getItem(k) || '[]'); return Array.isArray(a) ? a : []; } catch (e) { return []; } }
+  function fxLSset(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  function fxFavToggle(f) { var a = fxLS('fxFav'), i = a.indexOf(f); if (i >= 0) a.splice(i, 1); else a.push(f); fxLSset('fxFav', a); return i < 0; }
+  function fxFavLabel(on) { return DCL === 'ja' ? (on ? '★ お気に入り済み' : '☆ お気に入り') : (on ? '★ Dans mes favoris' : '☆ Ajouter aux favoris'); }
+  function fxRecAdd(f) { var a = fxLS('fxRec').filter(function (z) { return z !== f; }); a.unshift(f); fxLSset('fxRec', a.slice(0, 20)); }
+  var FXCJK = /[぀-ヿ一-鿿]/;
+  fxList2 = function () {
+    if (!FX) return [];
+    var q = dcNorm((dc.q || '').trim()), th = dc.fxOnly ? dc.fxTh : '', fav = fxLS('fxFav'), rec = fxLS('fxRec');
+    var T = !th ? function () { return true; } : th === 'fav' ? function (x) { return fav.indexOf(x.f) >= 0; } : th === 'rec' ? function (x) { return rec.indexOf(x.f) >= 0; } : function (x) { return x.th === th; };
+    if (!q) { if (!dc.fxOnly) return []; var all = FX.filter(T); if (th === 'rec') all.sort(function (a, b) { return rec.indexOf(a.f) - rec.indexOf(b.f); }); return all; }
+    var terms = [q]; if (FXCJK.test(q) && q.length >= 3 && /[いうくすつぬむるぶぐ]$/.test(q)) terms.push(q.slice(0, -1));
+    var jq = FXCJK.test(q) && q.length >= 2;
+    var hits = FX.filter(function (x) { if (!T(x)) return false; return terms.some(function (t) { return x.s.indexOf(t) >= 0 || (jq && (x.sn || (x.sn = dcNorm(x.nj || ''))).indexOf(t) >= 0); }); });
+    hits.sort(function (a, b) { var fa = dcNorm(a.f), fb = dcNorm(b.f), x = fa === q ? 0 : fa.indexOf(q) === 0 ? 1 : a.s.indexOf(q) >= 0 ? 2 : 3, y = fb === q ? 0 : fb.indexOf(q) === 0 ? 1 : b.s.indexOf(q) >= 0 ? 2 : 3; return x - y; });
+    return dc.fxOnly ? hits : hits.slice(0, 8);
+  };
+  fxCard = function (x) {
+    var ja = DCL === 'ja', reg = ja ? (FXREGJ[x.r] || x.r) : (FXREG[x.r] || x.r), m = String(x.j || '').match(/[一-鿿々]/);
+    return '<div class="fxw"><button type="button" class="dcard" data-dc="fx:' + x.i + '"><span class="dcck jp k2">' + (m ? m[0] : '仏') + '</span><span class="dccm">' +
+      (ja ? '<span class="dccr">' + esc(x.f) + '</span><span class="dccf jp">' + esc(x.j) + '</span>' : '<span class="dccr jp">' + esc(x.j) + ' <small>' + esc(x.k) + '</small></span><span class="dccf">' + esc(x.f) + '</span>') +
+      '<span class="dcbs"><span class="dcb dct">' + (ja ? 'フランス語' : 'Expr. FR') + '</span><span class="dcb">' + esc(reg) + '</span></span></span><span class="dccg" aria-hidden="true">›</span></button>' +
+      '<button type="button" class="fxsp" data-dc="fxfr:' + x.i + '" aria-label="' + (ja ? '発音を聞く' : 'Écouter') + '">🔊</button></div>';
+  };
+  function fxTiles() {
+    var ja = DCL === 'ja', cnt = {}, fav = fxLS('fxFav'), rec = fxLS('fxRec');
+    FX.forEach(function (x) { cnt[x.th] = (cnt[x.th] || 0) + 1; });
+    var L = [], nf = FX.filter(function (x) { return fav.indexOf(x.f) >= 0; }).length, nr = FX.filter(function (x) { return rec.indexOf(x.f) >= 0; }).length;
+    if (nf) L.push(['fav', '⭐', 'Favoris', 'お気に入り', nf]);
+    if (nr) L.push(['rec', '🕘', 'Récents', '最近見た', nr]);
+    FXTH.forEach(function (t) { if (cnt[t[0]]) L.push([t[0], t[1], t[2], t[3], cnt[t[0]]]); });
+    return '<p class="dccount">' + (ja ? 'テーマを選ぶか、上で単語を検索' : 'Choisis un thème, ou cherche un mot au-dessus') + ' · ' + FX.length + (ja ? ' 件' : ' expressions') + '</p><div class="fxtiles">' + L.map(function (t) { return '<button type="button" class="fxt" data-dc="fxth:' + t[0] + '"><span class="fxti">' + t[1] + '</span><b>' + (ja ? t[3] : t[2]) + '</b><small>' + t[4] + (ja ? ' 件' : ' mots') + '</small></button>'; }).join('') + '</div>';
+  }
+  var fxL2 = dcListHTML;
+  dcListHTML = function () {
+    if (dc.mode !== 'k' && dc.mode !== 'n' && dc.fxOnly && !(dc.q || '').trim() && !dc.fxTh) { fxLoad(); return FX ? fxTiles() : '<p class="dccount">…</p>'; }
+    return fxL2();
+  };
+  var fxI2 = dcInner;
+  dcInner = function () {
+    var h = fxI2(), ja = DCL === 'ja', on = dc.fxOnly && dc.mode !== 'k' && dc.mode !== 'n';
+    h = h.replace(/<button[^>]*data-dc="fxonly"[^>]*>[\s\S]*?<\/button>/, '').replace(/<div class="kxtrow fxrow fxths">[\s\S]*?<\/div>/, '');
+    if (on) h = h.replace(/class="on"( data-kx="mode:w")/, 'class=""$1');
+    h = h.replace('data-kx="mode:n">名 Noms</button>', 'data-kx="mode:n">名 Noms</button><button type="button" role="tab" class="' + (on ? 'on' : '') + '" data-dc="fxtab">' + (ja ? '仏 フランス語' : '仏 Français') + '</button>');
+    if (on && (dc.fxTh || (dc.q || '').trim())) {
+      var ch = '<div class="kxtrow fxrow fxths"><button type="button" class="dcch" data-dc="fxth:">⬅ ' + (ja ? '全テーマ' : 'Tous les thèmes') + '</button>' + FXTH.map(function (t) { return '<button type="button" class="dcch' + (dc.fxTh === t[0] ? ' on' : '') + '" data-dc="fxth:' + t[0] + '">' + t[1] + ' ' + (ja ? t[3] : t[2]) + '</button>'; }).join('') + '</div>';
+      h = h.replace('<div class="slbar">', ch + '<div class="slbar">');
+    }
+    return h;
+  };
+  dcFx = function (i) {
+    var x = FX && FX[i]; if (!x) return; var ja = DCL === 'ja';
+    fxRecAdd(x.f);
+    var kj = Array.from(String(x.j || '')).filter(function (c, n, a) { return /[一-鿿々]/.test(c) && a.indexOf(c) === n && ((typeof KMAP !== 'undefined' && KMAP[c]) || (typeof JK !== 'undefined' && JK && JK[c])); });
+    var h = '<div class="kbody inmodal dcd"><div class="dcdh"><span class="dcbig">' + esc(x.f) + '</span></div>';
+    h += '<p class="dcdfr jp"><b>' + esc(x.j) + '</b></p><p class="dcrom small muted jp">' + esc(x.k) + (ja || !x.k ? '' : ' · ' + esc(toRomaji(x.k))) + '</p>';
+    h += '<div class="dcbs"><span class="dcb dct">' + (ja ? 'フランス語の表現' : 'Expression française') + '</span><span class="dcb">' + esc((ja ? FXREGJ[x.r] : FXREG[x.r]) || x.r) + '</span></div>';
+    h += '<div class="dcex"><p class="small muted jp">' + (ja ? '例文' : 'Exemple · 例文') + '</p><p class="dcexj">' + esc(x.e) + '</p><p class="small jp">' + esc(x.ej) + '</p></div>';
+    if (kj.length) h += '<p class="small muted" style="margin-top:10px">' + (ja ? 'この語の漢字' : 'Kanji de ce mot') + '</p><div class="dckj">' + kj.map(function (c) { return '<button type="button" class="dckb jp" data-dc="kanji:' + esc(c) + '">' + esc(c) + '</button>'; }).join('') + '</div>';
+    h += '<div class="knact"><button type="button" class="btn" data-dc="fxfr:' + x.i + '">🔊 ' + (ja ? 'フランス語' : 'Français') + '</button> <button type="button" class="btn" data-dc="' + (ja ? 'fxfx' : 'fxsay') + ':' + x.i + '">🔊 ' + (ja ? '例文' : '日本語') + '</button> <button type="button" class="btn" data-dc="fxfav:' + x.i + '">' + fxFavLabel(fxLS('fxFav').indexOf(x.f) >= 0) + '</button></div>';
+    h += '<details class="fxdet"><summary>' + (ja ? '使い方のメモ' : 'Note d’usage') + '</summary><p class="small jp">' + esc(ja ? (x.nj || x.n) : x.n) + '</p></details></div>';
+    openModal(x.f, h, 'kmodal');
+  };
+  document.addEventListener('click', function (ev) {
+    var b = ev.target && ev.target.closest && ev.target.closest('[data-kx^="mode:"]');
+    if (b && dc.fxOnly) { var m = b.getAttribute('data-kx').slice(5); dc.fxOnly = false; dc.fxTh = ''; if (m === 'w' && dc.mode === 'w') { dc.n = 60; dcRefreshAll(); } }
+  }, true);
+  if (!document.getElementById('fxcss')) { var fxs = document.createElement('style'); fxs.id = 'fxcss'; fxs.textContent = '.fxw{position:relative}.fxsp{position:absolute;top:8px;right:8px;width:34px;height:34px;border-radius:50%;border:1.5px solid #d9c18a;background:#fffdf7;font-size:15px;line-height:1;cursor:pointer;padding:0}.fxtiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:6px 2px 14px}.fxt{display:flex;flex-direction:column;align-items:center;gap:3px;padding:14px 8px;border-radius:16px;border:2px solid #d9c18a;background:#fffaf0;color:inherit;font:inherit;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.08)}.fxt:active{transform:translateY(1px)}.fxti{font-size:28px;line-height:1.1}.fxt b{font-size:14px;text-align:center}.fxt small{opacity:.65;font-size:12px}.fxdet{margin-top:12px}.fxdet summary{cursor:pointer;font-weight:600;padding:6px 0}'; document.head.appendChild(fxs); }
   /* retour d'une fiche : même position dans la liste */
   function tlRemember() { try { if ($('appModal').hidden && document.getElementById('dcHost')) dc._sy = window.pageYOffset; } catch (e) {} }
   var tlO0 = dcOpen; dcOpen = function (i) { tlRemember(); return tlO0(i); };
