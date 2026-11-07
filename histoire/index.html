@@ -242,18 +242,19 @@ var QS=null;
 function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
 function pick(pool,ans,n){var o=shuf(pool.filter(function(x,i,ar){return x!==ans&&ar.indexOf(x)===i})).slice(0,n);return shuf(o.concat([ans]))}
 function mask(f){var t=f.resume;[f.nom].concat(f.alias||[]).filter(function(a){return a&&a.length>2}).sort(function(a,b){return b.length-a.length}).forEach(function(a){t=t.split(a).join('…')});return t}
-function cardsFor(scope){var eps=scope==='all'?D.concat(TH):D.filter(function(x){return x.id===scope}).concat(TH.filter(function(x){return x.id===scope})),C=[];
+function cardsFor(scope){if(scope==='geo'){var G=[];(CT&&CT.prefs||[]).forEach(function(p){var nm=p.nom+(p.ja.slice(-1)==='県'||p.ja.slice(-1)==='府'||p.ja.slice(-1)==='都'?'':'');G.push({t:'cap',ep:'',q:'Quelle est la capitale de la préfecture de '+p.nom+' ('+p.ja+') ?',a:p.capnom+' ('+p.cap+')',k:p.ja});G.push({t:'reg',ep:'',q:'Dans quelle région se trouve la préfecture de '+p.nom+' ('+p.ja+') ?',a:p.reg,k:p.ja});G.push({t:'lec',ep:'',q:'Comment se lit « '+p.ja+' » ?',a:p.nom+' ('+p.kana+')',k:p.ja})});return G}
+var eps=scope==='all'?D.concat(TH):D.filter(function(x){return x.id===scope}).concat(TH.filter(function(x){return x.id===scope})),C=[];
  eps.forEach(function(p){(p.mots||[]).forEach(function(w){C.push({t:'mot',ep:p.id,q:'Que signifie « '+w[0]+' »'+(w[1]?' ('+w[1]+')':'')+' ?',a:w[2],k:w[1]||w[0]})});
   (p.retenir||[]).forEach(function(r){C.push({t:'ret',ep:p.id,q:'À retenir · '+p.nom,a:r,k:p.kanji})});
   (p.evenements||[]).forEach(function(v){C.push({t:'date',ep:p.id,q:v[1],a:v[0],k:p.kanji})})});
  FI.filter(function(f){return scope==='all'||f.epoque===scope}).forEach(function(f){C.push({t:'fic',ep:f.epoque,f:f,q:mask(f),a:f.nom,k:f.kanji.split('・')[0].slice(0,4)})});
  return C}
 function mkQ(c,all){var pool=all.filter(function(x){return x.t===c.t&&x!==c}).map(function(x){return x.a});
- if(c.t==='mot')return{q:c.q,a:c.a,o:pick(pool,c.a,3)};
+ if(c.t==='mot'||c.t==='cap'||c.t==='reg'||c.t==='lec')return{q:c.q,a:c.a,o:pick(pool,c.a,3)};
  if(c.t==='date')return{q:'Quand ? '+c.q,a:c.a,o:pick(pool.filter(function(d){return d.length<40}),c.a,3)};
  if(c.t==='fic')return{q:'De qui ou de quoi s\'agit-il ? '+c.q,a:c.a,o:pick(all.filter(function(x){return x.t==='fic'&&x.f.type===c.f.type&&x!==c}).map(function(x){return x.a}),c.a,3)};
  return null}
-function revV(){setDock('#r');var h='<div class="hpanel"><h3 class="hh" style="margin-top:0">Réviser</h3><p>Choisis une époque (ou tout), puis un mode.</p><select id="rs" class="hsearch" aria-label="Époque"><option value="all">Tout</option><optgroup label="Époques">'+D.map(function(p){return'<option value="'+p.id+'">'+e(p.nom)+' · '+e(p.periode)+'</option>'}).join('')+'</optgroup><optgroup label="Cours thématiques">'+TH.map(function(p){return'<option value="'+p.id+'">'+e(p.nom)+'</option>'}).join('')+'</optgroup>'+'</select>';
+function revV(){setDock('#r');var h='<div class="hpanel"><h3 class="hh" style="margin-top:0">Réviser</h3><p>Choisis une époque (ou tout), puis un mode.</p><select id="rs" class="hsearch" aria-label="Époque"><option value="all">Tout</option><optgroup label="Époques">'+D.map(function(p){return'<option value="'+p.id+'">'+e(p.nom)+' · '+e(p.periode)+'</option>'}).join('')+'</optgroup><optgroup label="Géographie"><option value="geo">Préfectures : capitales, régions, lectures</option></optgroup><optgroup label="Cours thématiques">'+TH.map(function(p){return'<option value="'+p.id+'">'+e(p.nom)+'</option>'}).join('')+'</optgroup>'+'</select>';
  h+='<button class="hbtn" style="width:100%;margin-top:10px" data-rv="qcm">QCM · 10 questions max</button><button class="hbtn" style="width:100%;margin-top:8px" data-rv="cartes">Cartes de révision</button>';
  var st=PR.games?'<p class="hnote" style="color:#513d7c;text-shadow:none">'+PR.games+' QCM joués · '+Math.round(PR.ok/Math.max(1,PR.tot)*100)+' % de réussite · meilleur score (tout) : '+(PR.best.all||0)+'/10</p>':'';
  h+=st+'<p class="hnote" id="rsy" style="color:#513d7c;text-shadow:none">'+(UID?'Progression liée à ton compte.':'Connecte-toi sur le Dojo pour lier ta progression à ton compte.')+'</p>';
@@ -270,7 +271,7 @@ function showC(){var S=QS,c=S.cs[S.i];if(!c){revV();return}
  var front=c.t==='date'?c.q:c.q,back=c.t==='date'?c.a:c.a;
  m.innerHTML='<div class="hpanel"><small>Carte '+(S.i+1)+'/'+S.cs.length+'</small><div class="hbox qcard" data-flip="1">'+(S.flip?'<span>'+lk(back,null,{})+'</span>':'<span><span class="k">'+e(c.k)+'</span>'+e(front)+'</span>')+'</div><p class="hnote" style="color:#513d7c;text-shadow:none">Touche la carte pour la retourner</p><div class="hnav"><button class="hbtn" data-cn="-1">Précédente</button><button class="hbtn" data-cn="1">Suivante</button></div><button class="hbtn" style="width:100%;margin-top:8px" data-rv="menu">Quitter</button></div>'}
 m.addEventListener('click',function(ev){var t=ev.target,b;if(b=t.closest('[data-himg]')){haPick(b.dataset.himg);return}if(b=t.closest('[data-hdel]')){haDel(b.dataset.hdel);return}
- if(b=t.closest('[data-rv]')){var sc=b.dataset.sc||(document.getElementById('rs')||{}).value||'all';var r=b.dataset.rv;if(r==='menu')revV();else if(r==='qcm')startQ(sc);else startC(sc)}
+ if(b=t.closest('[data-rv]')){var sc=b.dataset.sc||(document.getElementById('rs')||{}).value||'all';var r=b.dataset.rv;if(r==='menu')revV();else if(sc==='geo'&&!CT){fetch('data/carte.json').then(function(x){return x.json()}).then(function(j){CT=j;if(r==='qcm')startQ(sc);else startC(sc)})}else if(r==='qcm')startQ(sc);else startC(sc)}
  else if(b=t.closest('[data-o]')){if(b.disabled)return;var S=QS,q=S.qs[S.i],k=+b.dataset.o,ok=q.o[k]===q.a;if(ok)S.s++;[].forEach.call(m.querySelectorAll('.qopt'),function(x,i){x.disabled=true;if(q.o[i]===q.a)x.classList.add('ok');else if(i===k)x.classList.add('ko')});
   var n=document.createElement('button');n.className='hbtn';n.style.cssText='width:100%;margin-top:8px';n.textContent=S.i+1>=S.qs.length?'Voir le score':'Suivante';n.onclick=function(){S.i++;showQ()};m.firstChild.appendChild(n)}
  else if(t.closest('[data-flip]')){QS.flip=!QS.flip;showC()}

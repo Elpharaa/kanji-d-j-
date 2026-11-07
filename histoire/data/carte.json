@@ -1929,5 +1929,383 @@
 "ref": "xavier",
 "cap": true
 }
+],
+"prefs": [
+{
+"ja": "北海道",
+"kana": "ほっかいどう",
+"nom": "Hokkaidō",
+"reg": "Hokkaidō",
+"cap": "札幌",
+"capnom": "Sapporo"
+},
+{
+"ja": "青森県",
+"kana": "あおもり",
+"nom": "Aomori",
+"reg": "Tōhoku",
+"cap": "青森",
+"capnom": "Aomori"
+},
+{
+"ja": "岩手県",
+"kana": "いわて",
+"nom": "Iwate",
+"reg": "Tōhoku",
+"cap": "盛岡",
+"capnom": "Morioka"
+},
+{
+"ja": "宮城県",
+"kana": "みやぎ",
+"nom": "Miyagi",
+"reg": "Tōhoku",
+"cap": "仙台",
+"capnom": "Sendai"
+},
+{
+"ja": "秋田県",
+"kana": "あきた",
+"nom": "Akita",
+"reg": "Tōhoku",
+"cap": "秋田",
+"capnom": "Akita"
+},
+{
+"ja": "山形県",
+"kana": "やまがた",
+"nom": "Yamagata",
+"reg": "Tōhoku",
+"cap": "山形",
+"capnom": "Yamagata"
+},
+{
+"ja": "福島県",
+"kana": "ふくしま",
+"nom": "Fukushima",
+"reg": "Tōhoku",
+"cap": "福島",
+"capnom": "Fukushima"
+},
+{
+"ja": "茨城県",
+"kana": "いばらき",
+"nom": "Ibaraki",
+"reg": "Kantō",
+"cap": "水戸",
+"capnom": "Mito"
+},
+{
+"ja": "栃木県",
+"kana": "とちぎ",
+"nom": "Tochigi",
+"reg": "Kantō",
+"cap": "宇都宮",
+"capnom": "Utsunomiya"
+},
+{
+"ja": "群馬県",
+"kana": "ぐんま",
+"nom": "Gunma",
+"reg": "Kantō",
+"cap": "前橋",
+"capnom": "Maebashi"
+},
+{
+"ja": "埼玉県",
+"kana": "さいたま",
+"nom": "Saitama",
+"reg": "Kantō",
+"cap": "さいたま",
+"capnom": "Saitama"
+},
+{
+"ja": "千葉県",
+"kana": "ちば",
+"nom": "Chiba",
+"reg": "Kantō",
+"cap": "千葉",
+"capnom": "Chiba"
+},
+{
+"ja": "東京都",
+"kana": "とうきょう",
+"nom": "Tōkyō",
+"reg": "Kantō",
+"cap": "東京",
+"capnom": "Tōkyō"
+},
+{
+"ja": "神奈川県",
+"kana": "かながわ",
+"nom": "Kanagawa",
+"reg": "Kantō",
+"cap": "横浜",
+"capnom": "Yokohama"
+},
+{
+"ja": "新潟県",
+"kana": "にいがた",
+"nom": "Niigata",
+"reg": "Chūbu",
+"cap": "新潟",
+"capnom": "Niigata"
+},
+{
+"ja": "富山県",
+"kana": "とやま",
+"nom": "Toyama",
+"reg": "Chūbu",
+"cap": "富山",
+"capnom": "Toyama"
+},
+{
+"ja": "石川県",
+"kana": "いしかわ",
+"nom": "Ishikawa",
+"reg": "Chūbu",
+"cap": "金沢",
+"capnom": "Kanazawa"
+},
+{
+"ja": "福井県",
+"kana": "ふくい",
+"nom": "Fukui",
+"reg": "Chūbu",
+"cap": "福井",
+"capnom": "Fukui"
+},
+{
+"ja": "山梨県",
+"kana": "やまなし",
+"nom": "Yamanashi",
+"reg": "Chūbu",
+"cap": "甲府",
+"capnom": "Kōfu"
+},
+{
+"ja": "長野県",
+"kana": "ながの",
+"nom": "Nagano",
+"reg": "Chūbu",
+"cap": "長野",
+"capnom": "Nagano"
+},
+{
+"ja": "岐阜県",
+"kana": "ぎふ",
+"nom": "Gifu",
+"reg": "Chūbu",
+"cap": "岐阜",
+"capnom": "Gifu"
+},
+{
+"ja": "静岡県",
+"kana": "しずおか",
+"nom": "Shizuoka",
+"reg": "Chūbu",
+"cap": "静岡",
+"capnom": "Shizuoka"
+},
+{
+"ja": "愛知県",
+"kana": "あいち",
+"nom": "Aichi",
+"reg": "Chūbu",
+"cap": "名古屋",
+"capnom": "Nagoya"
+},
+{
+"ja": "三重県",
+"kana": "みえ",
+"nom": "Mie",
+"reg": "Kansai",
+"cap": "津",
+"capnom": "Tsu"
+},
+{
+"ja": "滋賀県",
+"kana": "しが",
+"nom": "Shiga",
+"reg": "Kansai",
+"cap": "大津",
+"capnom": "Ōtsu"
+},
+{
+"ja": "京都府",
+"kana": "きょうと",
+"nom": "Kyōto",
+"reg": "Kansai",
+"cap": "京都",
+"capnom": "Kyōto"
+},
+{
+"ja": "大阪府",
+"kana": "おおさか",
+"nom": "Ōsaka",
+"reg": "Kansai",
+"cap": "大阪",
+"capnom": "Ōsaka"
+},
+{
+"ja": "兵庫県",
+"kana": "ひょうご",
+"nom": "Hyōgo",
+"reg": "Kansai",
+"cap": "神戸",
+"capnom": "Kōbe"
+},
+{
+"ja": "奈良県",
+"kana": "なら",
+"nom": "Nara",
+"reg": "Kansai",
+"cap": "奈良",
+"capnom": "Nara"
+},
+{
+"ja": "和歌山県",
+"kana": "わかやま",
+"nom": "Wakayama",
+"reg": "Kansai",
+"cap": "和歌山",
+"capnom": "Wakayama"
+},
+{
+"ja": "鳥取県",
+"kana": "とっとり",
+"nom": "Tottori",
+"reg": "Chūgoku",
+"cap": "鳥取",
+"capnom": "Tottori"
+},
+{
+"ja": "島根県",
+"kana": "しまね",
+"nom": "Shimane",
+"reg": "Chūgoku",
+"cap": "松江",
+"capnom": "Matsue"
+},
+{
+"ja": "岡山県",
+"kana": "おかやま",
+"nom": "Okayama",
+"reg": "Chūgoku",
+"cap": "岡山",
+"capnom": "Okayama"
+},
+{
+"ja": "広島県",
+"kana": "ひろしま",
+"nom": "Hiroshima",
+"reg": "Chūgoku",
+"cap": "広島",
+"capnom": "Hiroshima"
+},
+{
+"ja": "山口県",
+"kana": "やまぐち",
+"nom": "Yamaguchi",
+"reg": "Chūgoku",
+"cap": "山口",
+"capnom": "Yamaguchi"
+},
+{
+"ja": "徳島県",
+"kana": "とくしま",
+"nom": "Tokushima",
+"reg": "Shikoku",
+"cap": "徳島",
+"capnom": "Tokushima"
+},
+{
+"ja": "香川県",
+"kana": "かがわ",
+"nom": "Kagawa",
+"reg": "Shikoku",
+"cap": "高松",
+"capnom": "Takamatsu"
+},
+{
+"ja": "愛媛県",
+"kana": "えひめ",
+"nom": "Ehime",
+"reg": "Shikoku",
+"cap": "松山",
+"capnom": "Matsuyama"
+},
+{
+"ja": "高知県",
+"kana": "こうち",
+"nom": "Kōchi",
+"reg": "Shikoku",
+"cap": "高知",
+"capnom": "Kōchi"
+},
+{
+"ja": "福岡県",
+"kana": "ふくおか",
+"nom": "Fukuoka",
+"reg": "Kyūshū",
+"cap": "福岡",
+"capnom": "Fukuoka"
+},
+{
+"ja": "佐賀県",
+"kana": "さが",
+"nom": "Saga",
+"reg": "Kyūshū",
+"cap": "佐賀",
+"capnom": "Saga"
+},
+{
+"ja": "長崎県",
+"kana": "ながさき",
+"nom": "Nagasaki",
+"reg": "Kyūshū",
+"cap": "長崎",
+"capnom": "Nagasaki"
+},
+{
+"ja": "熊本県",
+"kana": "くまもと",
+"nom": "Kumamoto",
+"reg": "Kyūshū",
+"cap": "熊本",
+"capnom": "Kumamoto"
+},
+{
+"ja": "大分県",
+"kana": "おおいた",
+"nom": "Ōita",
+"reg": "Kyūshū",
+"cap": "大分",
+"capnom": "Ōita"
+},
+{
+"ja": "宮崎県",
+"kana": "みやざき",
+"nom": "Miyazaki",
+"reg": "Kyūshū",
+"cap": "宮崎",
+"capnom": "Miyazaki"
+},
+{
+"ja": "鹿児島県",
+"kana": "かごしま",
+"nom": "Kagoshima",
+"reg": "Kyūshū",
+"cap": "鹿児島",
+"capnom": "Kagoshima"
+},
+{
+"ja": "沖縄県",
+"kana": "おきなわ",
+"nom": "Okinawa",
+"reg": "Okinawa",
+"cap": "那覇",
+"capnom": "Naha"
+}
 ]
 }
