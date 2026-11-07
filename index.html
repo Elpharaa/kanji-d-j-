@@ -18262,7 +18262,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
       '<button type="button" role="tab" data-view="mots" aria-selected="' + (kv.view === 'mots') + '" id="kCntW">Mots (' + it.w.length + ')</button></div>' +
       '<input type="text" id="kSearch" class="search" placeholder="Chercher dans toutes les listes : kanji, lecture, romaji, sens" value="' + esc(kv.q) + '" autocapitalize="none" spellcheck="false">' +
       '<div class="stack" id="kList"></div>' +
-      '<p class="muted small" style="margin:0">Ordre des traits : KanjiVG (© Ulrich Apel, licence CC BY-SA 3.0). Lectures des kanjis JLPT : KANJIDIC (EDRDG, CC BY-SA 4.0), sens en français. Clés : noms officiels des dictionnaires. Source du cours : tes polycopiés. Règle d\'écriture : les on\'yomi sont toujours en katakana, les kun\'yomi toujours en hiragana. Les sens en français, les compositions et les astuces sont rédigés pour cet outil.</p>';
+      '<p class="muted small" style="margin:0">Ordre des traits : KanjiVG (© Ulrich Apel, licence CC BY-SA 3.0). Lectures des kanjis JLPT : KANJIDIC (EDRDG, CC BY-SA 4.0), sens en français. Définitions françaises de milliers de mots : Wiktionnaire (CC BY-SA 4.0). Clés : noms officiels des dictionnaires. Source du cours : tes polycopiés. Règle d\'écriture : les on\'yomi sont toujours en katakana, les kun\'yomi toujours en hiragana. Les sens en français, les compositions et les astuces sont rédigés pour cet outil.</p>';
     renderKList();
     if (focus && focus.open) {
       var d = $('kList').querySelector('.ktile[data-' + (focus.view === 'kanji' ? 'k' : 'w') + '="' + focus.open + '"]');
@@ -32395,7 +32395,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v509', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v510', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
