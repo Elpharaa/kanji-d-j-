@@ -29686,7 +29686,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
   }
   function dcRefreshList() { var l = document.getElementById('dcList'); if (l) l.innerHTML = dcListHTML(); }
   var DCL = 'fr'; try { DCL = localStorage.getItem('dcLang') || (/^ja/i.test(navigator.language || '') ? 'ja' : 'fr'); } catch (e) {}
-  var FXREGJ = { argot: 'スラング', familier: 'くだけた表現', courant: '一般的', soutenu: '改まった表現', proverbe: 'ことわざ' };
+  var FXREGJ = { argot: 'スラング', vulgaire: '下品な表現', familier: 'くだけた表現', courant: '一般的', soutenu: '改まった表現', proverbe: 'ことわざ' };
   function dcJaUI(h) {
     [['Type', '種類'], ['Niveau', 'レベル'], ['Tous', 'すべて'], ['Verbes', '動詞'], ['Adjectifs', '形容詞'], ['Expressions', '日本語の表現'], ['Autres mots', 'その他'], ['Expr. françaises', 'フランス語の表現'], ['Hors JLPT', 'JLPT外'], ['Cours', '授業'], ['Bonus', 'ボーナス'], ['Thème', 'テーマ'], ['Tri', '並び順']].forEach(function (p) { h = h.split('>' + p[0] + '<').join('>' + p[1] + '<'); });
     return h.split('Tous les thèmes').join('すべてのテーマ').split('Chercher : 食べる, taberu, manger, avoir le seum…').join('検索：食べる、taberu、manger、avoir le seum…');
@@ -29712,7 +29712,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     h += '<div class="knact"><button type="button" class="btn" data-dc="fxfr:' + x.i + '">🔊 フランス語を聞く</button> <button type="button" class="btn" data-dc="fxfx:' + x.i + '">🔊 例文を聞く</button></div></div>';
     openModal(x.f, h, 'kmodal');
   }
-  var FX = null, FXP = null, FXREG = { argot: 'Argot', familier: 'Familier', courant: 'Courant', soutenu: 'Soutenu', proverbe: 'Proverbe' };
+  var FX = null, FXP = null, FXREG = { argot: 'Argot', vulgaire: 'Vulgaire', familier: 'Familier', courant: 'Courant', soutenu: 'Soutenu', proverbe: 'Proverbe' };
   function fxLoad() {
     if (FX || FXP) return;
     FXP = fetch('data/exfr.json').then(function (r) { return r.json(); }).then(function (j) { FX = j.map(function (x, i) { x.i = i; x.s = dcNorm([x.f].concat(x.a || []).join(' ') + ' ' + x.j + ' ' + x.k); return x; }); dcRefreshList(); }).catch(function () { FX = []; });
@@ -32773,7 +32773,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v520', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v521', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
