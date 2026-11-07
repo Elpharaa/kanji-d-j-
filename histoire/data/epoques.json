@@ -105,6 +105,48 @@
 "Lectures (en anglais) : Keiji Imamura, Prehistoric Japan: New Perspectives on Insular East Asia (1996) ; Junko Habu, Ancient Jomon of Japan (2004) ; Mark Hudson, Ruins of Identity (1999), sur les origines du peuple japonais."
 ]
 }
+],
+"tableaux": [
+{
+"t": "Les phases du Jōmon (repères approximatifs)",
+"cols": [
+"Phase",
+"Dates (≈ av. J.-C.)",
+"Traits principaux"
+],
+"rows": [
+[
+"Incipient",
+"≈ 14 000 – 8 000",
+"Premières poteries ; chasseurs-cueilleurs mobiles ; fin de l'âge glaciaire"
+],
+[
+"Initial",
+"≈ 8 000 – 5 000",
+"Poteries à fond pointu, premiers amas coquilliers (kaizuka) ; réchauffement"
+],
+[
+"Ancien",
+"≈ 5 000 – 3 500",
+"Villages plus stables, jarres à cordes, pêche en mer"
+],
+[
+"Moyen",
+"≈ 3 500 – 2 500",
+"Apogée de la population dans le Chūbu et le Kantō ; poteries « à flammes » ; Sannai Maruyama"
+],
+[
+"Récent",
+"≈ 2 500 – 1 300",
+"Refroidissement ; poteries plus fines ; cercles de pierre (Ōyu)"
+],
+[
+"Final",
+"≈ 1 300 – 300",
+"Poteries décorées du Tōhoku (Kamegaoka) ; contacts avec le continent ; arrivée du riz"
+]
+]
+}
 ]
 },
 {
@@ -219,6 +261,56 @@
 "Les débats portent sur l'équilibre entre migration et adoption locale des techniques : les nouveautés se diffusent par contact autant que par déplacement de gens. La génétique tend à confirmer un mélange entre populations Jōmon et migrants continentaux.",
 "Lectures : Mizoguchi Kōji, An Archaeological History of Japan, 30,000 B.C. to A.D. 700 (2002) ; Gina L. Barnes, State Formation in Japan (2007) ; J. Edward Kidder, Himiko and Japan's Elusive Chiefdom of Yamatai (2007)."
 ]
+}
+],
+"tableaux": [
+{
+"t": "Sources écrites et repères",
+"cols": [
+"Date",
+"Source / événement",
+"Intérêt"
+],
+"rows": [
+[
+"57",
+"Sceau d'or donné au roi de Na (Hou Han shu)",
+"Première relation diplomatique attestée avec la Chine"
+],
+[
+"107",
+"Ambassade de Suishō, roi de Wa",
+"Mentionnée dans les sources chinoises"
+],
+[
+"≈ 180",
+"Guerre civile (« troubles des Wa »)",
+"Précède l'accession de Himiko"
+],
+[
+"239",
+"Ambassade de Himiko aux Wei",
+"Titre de « reine des Wa amie des Wei », miroirs de bronze"
+],
+[
+"247–248",
+"Mort de Himiko, succession troublée",
+"Wei zhi : Iyo lui succède"
+],
+[
+"≈ 3e s.",
+"Débuts des tumulus",
+"Transition vers la période Kofun"
+]
+]
+}
+],
+"documents": [
+{
+"t": "Wei zhi : la reine Himiko",
+"src": "Wei zhi (chronique des Wei, vers 297), section sur les « gens de Wa » · paraphrase de l'auteur",
+"texte": "Le pays de Wa comprenait une trentaine de petits royaumes. Après de longues années de guerre, les chefs convinrent de placer sur le trône une femme nommée Himiko. Elle pratiquait la magie et séduisait le peuple ; elle vivait cloîtrée, servie par mille servantes, et son frère transmettait ses ordres.",
+"com": "Seule source écrite détaillée sur le Yamatai. Elle fait de Himiko une souveraine-chamane. L'itinéraire donné par le texte est difficile à situer : il alimente le débat entre Kyūshū et Kinai. Les Chinois n'ont pas vu le pays eux-mêmes ; leurs informations viennent d'ambassades et de récits."
 }
 ]
 },
@@ -340,6 +432,48 @@
 "Les questions classiques : le Kofun est-il un « État » ou une chefferie complexe ? Comment l'archéologie (formes, miroirs, objets) montre-t-elle l'extension du pouvoir du Yamato ? Que faire des tumulus impériaux non fouillés ? Les identifications aux empereurs (par exemple Nintoku) reposent sur des listes tardives et sont très incertaines.",
 "Les débats concernent aussi l'influence de la péninsule coréenne : conquête, immigration, ou simple échange ? Et le rôle de l'archéologie dans la construction d'un récit national.",
 "Lectures : Gina L. Barnes, State Formation in Japan: Emergence of a 4th-century Ruling Elite (2007) ; Mizoguchi Kōji, An Archaeological History of Japan (2002) ; Wayne Farris, Sacred Texts and Buried Treasures (1998) ; Walter Edwards, articles sur les tumulus et l'identité."
+]
+}
+],
+"tableaux": [
+{
+"t": "Yamato et le continent : repères",
+"cols": [
+"Date",
+"Événement",
+"Remarque"
+],
+"rows": [
+[
+"391 (stèle de Gwanggaeto)",
+"Wa intervient en Corée",
+"Stèle de Koguryŏ, datée de 414"
+],
+[
+"421–502",
+"Ambassades des « cinq rois de Wa » aux Song et aux Qi",
+"San, Chin, Sai, Kō, Bu"
+],
+[
+"478",
+"Lettre du roi Bu à l'empereur Song",
+"Revendique un titre militaire sur la Corée"
+],
+[
+"527–528",
+"Révolte d'Iwai (Kyūshū)",
+"Écrasée par Yamato"
+],
+[
+"538 ou 552",
+"Arrivée officielle du bouddhisme",
+"Offerte par le roi de Baekje"
+],
+[
+"587",
+"Les Soga détruisent les Mononobe",
+"Triomphe de la faction pro-bouddhiste"
+]
 ]
 }
 ]
@@ -478,6 +612,72 @@
 "Lectures : Joan R. Piggott, The Emergence of Japanese Kingship (1997) ; The Cambridge History of Japan, vol. 1, Ancient Japan (dir. Delmer Brown, 1993) ; en français : Pierre-François Souyri, Nouvelle histoire du Japon (2010) et Francine Hérail, Histoire du Japon des origines à la fin de Meiji (1986)."
 ]
 }
+],
+"tableaux": [
+{
+"t": "Souverains du VIIe siècle",
+"cols": [
+"Souverain",
+"Règne",
+"Faits marquants"
+],
+"rows": [
+[
+"Suiko",
+"592–628",
+"Première impératrice régnante ; régence de Shōtoku ; 17 articles (604)"
+],
+[
+"Jomei",
+"629–641",
+"Ambassades en Chine, premiers temples impériaux"
+],
+[
+"Kōgyoku (Saimei)",
+"642–645 ; 655–661",
+"Coup d'État d'Isshi (645) ; second règne"
+],
+[
+"Kōtoku",
+"645–654",
+"Réformes de Taika ; Naniwa comme capitale"
+],
+[
+"Tenji",
+"661/668–671",
+"Défaite de Hakusukinoe (663), registre de 670"
+],
+[
+"Tenmu",
+"673–686",
+"Victoire de Jinshin ; Kojiki, titre de « tennō »"
+],
+[
+"Jitō",
+"690–697",
+"Fujiwara-kyō (694) ; code de Kiyomihara"
+],
+[
+"Monmu",
+"697–707",
+"Code de Taihō (701)"
+]
+]
+}
+],
+"documents": [
+{
+"t": "Constitution en 17 articles (604)",
+"src": "Nihon shoki, an 12 de Suiko · paraphrase des articles 1 et 2",
+"texte": "Article 1 : l'harmonie est précieuse ; il faut éviter les querelles. Article 2 : révérez sincèrement les trois trésors, c'est-à-dire le Bouddha, la Loi et la communauté monastique.",
+"com": "Texte attribué au prince Shōtoku, plutôt une charte morale pour les fonctionnaires qu'une constitution. On y voit confucianisme (harmonie, hiérarchie) et bouddhisme. Les historiens discutent de sa rédaction : une partie de la critique pense à un ajout plus tardif dans le Nihon shoki."
+},
+{
+"t": "Édit de Taika (646)",
+"src": "Nihon shoki, premier mois de l'an 2 de Taika · résumé",
+"texte": "L'empereur abolit la propriété privée des terres et des sujets des clans (shiro et tokoro), fait établir des registres de population, organise des provinces et des districts et fixe des taxes en nature.",
+"com": "Quatre axes : fin du pouvoir privé des clans, administration centrale par provinces, registres et redistribution des rizières, impôts. Les historiens soulignent que le texte du Nihon shoki a été réécrit plus tard (références au code de Taihō) et que les réformes ont été progressives."
+}
 ]
 },
 {
@@ -602,6 +802,53 @@
 "p": [
 "En 784, Kanmu abandonne Nara pour Nagaoka-kyō, puis en 794 Heian-kyō. Les motifs sont discutés : se libérer de l'influence des grands temples et des vieux clans, marquer l'avènement d'une nouvelle lignée (la lignée de Tenji), trouver un site mieux placé pour les transports par eau. L'assassinat en 785 de Fujiwara no Tanetsugu, qui supervisait la construction de Nagaoka, entraîne la disgrâce et la mort du prince héritier Sawara, dont les esprits furent apaisés ensuite.",
 "Lectures : Wayne Farris, Population, Disease, and Land in Early Japan, 645-900 (1985) ; Herman Ooms, Imperial Politics and Symbolics in Ancient Japan: The Tenmu Dynasty, 650-800 (2009) ; Torquil Duthie, Man'yōshū and the Imperial Imagination in Early Japan (2014)."
+]
+}
+],
+"tableaux": [
+{
+"t": "Souverains et événements",
+"cols": [
+"Souverain",
+"Règne",
+"Faits marquants"
+],
+"rows": [
+[
+"Genmei",
+"707–715",
+"Kojiki (712), capitale à Heijō-kyō (710)"
+],
+[
+"Genshō",
+"715–724",
+"Nihon shoki (720), code de Yōrō"
+],
+[
+"Shōmu",
+"724–749",
+"Nagaya (729), kokubunji (741), Grand Bouddha (752)"
+],
+[
+"Kōken (Shōtoku)",
+"749–758 ; 764–770",
+"Dōkyō, oracle d'Usa (769)"
+],
+[
+"Junnin",
+"758–764",
+"Révolte de Fujiwara no Nakamaro (764)"
+],
+[
+"Kōnin",
+"770–781",
+"Retour des Fujiwara et de la lignée de Tenji"
+],
+[
+"Kanmu",
+"781–806",
+"Nagaoka (784), puis Heian-kyō (794)"
+]
 ]
 }
 ]
@@ -752,6 +999,76 @@
 "Lectures : The Cambridge History of Japan, vol. 2, Heian Japan (dir. Donald Shively et William McCullough, 1999) ; Karl Friday, Hired Swords (1992) ; Ivan Morris, La Vie de cour dans le Japon classique (The World of the Shining Prince, 1964) ; en français : Francine Hérail, La Cour du Japon à l'époque de Heian aux Xe et XIe siècles (1995), et le Dit du Genji dans la traduction de René Sieffert."
 ]
 }
+],
+"tableaux": [
+{
+"t": "Pouvoir à la cour : repères",
+"cols": [
+"Date",
+"Personnage / événement",
+"Remarque"
+],
+"rows": [
+[
+"794",
+"Kanmu fonde Heian-kyō",
+""
+],
+[
+"858",
+"Fujiwara no Yoshifusa, premier sesshō non impérial",
+"Régent d'un empereur enfant (Seiwa)"
+],
+[
+"884",
+"Mototsune, premier kanpaku",
+""
+],
+[
+"894",
+"Fin des missions kentōshi",
+"Sugawara no Michizane"
+],
+[
+"905",
+"Kokinshū",
+"Première anthologie impériale de waka"
+],
+[
+"939–941",
+"Révoltes de Masakado et de Sumitomo",
+"Montée des guerriers"
+],
+[
+"995–1028",
+"Fujiwara no Michinaga",
+"Apogée de la régence ; Genji vers 1008"
+],
+[
+"1086",
+"Insei de Shirakawa",
+"Pouvoir de l'empereur retiré"
+],
+[
+"1156 / 1159",
+"Hōgen et Heiji",
+"Les guerriers entrent dans la politique de cour"
+],
+[
+"1185",
+"Dan-no-ura",
+"Défaite des Taira"
+]
+]
+}
+],
+"documents": [
+{
+"t": "Préface du Kokinshū (905)",
+"src": "Ki no Tsurayuki, préface en kana · paraphrase",
+"texte": "Les poèmes japonais ont pour graine le cœur des hommes, qui se déploie en d'innombrables feuilles de paroles. Dans la vie, on ne peut s'empêcher de chanter ce qu'on voit et ce qu'on entend ; le chant de la fauvette dans les fleurs, celui de la grenouille de l'eau.",
+"com": "Premier grand texte de poétique en japonais. Il défend la valeur du waka face aux poèmes en chinois et fixe la notion de poésie spontanée. L'écriture en kana et la place des femmes sont un fait culturel important de l'époque."
+}
 ]
 },
 {
@@ -896,6 +1213,77 @@
 "Lectures : Jeffrey Mass, Warrior Government in Early Medieval Japan (1974) et The Kamakura Bakufu (1976) ; Thomas Conlan, In Little Need of Divine Intervention (2001), sur les invasions mongoles ; Pierre-François Souyri, Le Monde à l'envers (1998), sur la société médiévale japonaise."
 ]
 }
+],
+"tableaux": [
+{
+"t": "Shoguns et régents Hōjō",
+"cols": [
+"Dirigeant",
+"Période",
+"Remarque"
+],
+"rows": [
+[
+"Minamoto no Yoritomo",
+"1192–1199 (shogun)",
+"Fondateur du bakufu"
+],
+[
+"Yoriie",
+"1202–1203",
+"Écarté par les Hōjō"
+],
+[
+"Sanetomo",
+"1203–1219",
+"Assassiné à Tsurugaoka"
+],
+[
+"Hōjō Tokimasa",
+"1203–1205 (shikken)",
+"Premier régent"
+],
+[
+"Hōjō Yoshitoki",
+"1205–1224",
+"Vainqueur de Jōkyū (1221)"
+],
+[
+"Hōjō Yasutoki",
+"1224–1242",
+"Goseibai shikimoku (1232)"
+],
+[
+"Hōjō Tokiyori",
+"1246–1256",
+"Réforme judiciaire ; accueille des moines zen"
+],
+[
+"Hōjō Tokimune",
+"1268–1284",
+"Invasions mongoles (1274, 1281)"
+],
+[
+"Hōjō Takatoki",
+"1316–1333",
+"Chute de Kamakura"
+]
+]
+}
+],
+"documents": [
+{
+"t": "Début du Heike monogatari",
+"src": "Heike monogatari, livre 1 · paraphrase",
+"texte": "La cloche du monastère de Gion fait entendre l'impermanence de toutes choses ; la couleur des fleurs de sāla dit que ce qui prospère doit décliner. Les orgueilleux ne durent pas, ils sont comme un songe de nuit de printemps.",
+"com": "L'ouverture résume la vision bouddhique du mujō. Le récit, chanté avec la biwa, fait de la chute des Taira un exemple moral, avec des épisodes célèbres (Atsumori, Nasu no Yoichi)."
+},
+{
+"t": "Goseibai shikimoku (1232)",
+"src": "Code de 51 articles de Hōjō Yasutoki · paraphrase",
+"texte": "Les premiers articles ordonnent de respecter les sanctuaires et d'entretenir les temples ; puis viennent des règles sur les gouverneurs (shugo) et les régisseurs (jitō), la propriété et les héritages, et les procès entre vassaux.",
+"com": "Premier code des guerriers, fondé sur des coutumes (dōri : « raison »). Il ne remplace pas le droit de la cour, il s'applique aux guerriers et aux terres qu'ils tiennent."
+}
 ]
 },
 {
@@ -1024,6 +1412,53 @@
 "p": [
 "Le shogunat Ashikaga est parfois jugé faible, parce qu'il dépendait des grands shugo. Des historiens soulignent au contraire sa capacité à gouverner Kyōto et à tenir ensemble ses vassaux pendant plus d'un siècle (1392-1467). La culture de cette période est considérée comme l'origine de beaucoup de traditions « japonaises » : thé, jardins, nō, architecture.",
 "Lectures : Kenneth Grossberg, Japan's Renaissance (1981) ; Thomas Conlan, State of War (2003) ; Andrew Goble, Kenmu: Go-Daigo's Revolution (1996) ; H. Paul Varley, The Ōnin War (1967) ; John W. Hall et Toyoda Takeshi (dir.), Japan in the Muromachi Age (1977)."
+]
+}
+],
+"tableaux": [
+{
+"t": "Shoguns Ashikaga",
+"cols": [
+"Shogun",
+"Période",
+"Remarque"
+],
+"rows": [
+[
+"Takauji",
+"1338–1358",
+"Fondateur ; cours du Nord et du Sud"
+],
+[
+"Yoshiakira",
+"1359–1367",
+""
+],
+[
+"Yoshimitsu",
+"1368–1394 ; reste influent jusqu'en 1408",
+"Réunification des cours (1392), Kinkaku, commerce avec les Ming"
+],
+[
+"Yoshimochi",
+"1394–1423",
+""
+],
+[
+"Yoshinori",
+"1429–1441",
+"Assassiné (Kakitsu, 1441)"
+],
+[
+"Yoshimasa",
+"1449–1473",
+"Guerre d'Ōnin, Ginkaku"
+],
+[
+"Yoshiaki",
+"1568–1573",
+"Dernier shogun, chassé par Nobunaga"
+]
 ]
 }
 ]
@@ -1169,6 +1604,81 @@
 "Les historiens discutent de la nature de l'unification (ruptures ou continuités avec Muromachi), des motifs des guerres de Corée (ambition de Hideyoshi, besoin de terres, désir de commerce) et du degré de modernité de Nobunaga, qu'ils jugent aujourd'hui plus traditionnel que sa légende. Le modèle des « trois unificateurs » est une simplification.",
 "Lectures : Mary Elizabeth Berry, Hideyoshi (1982) et The Culture of Civil War in Kyoto (1994) ; Neil McMullin, Buddhism and the State in Sixteenth-Century Japan (1984) ; George Elison, Deus Destroyed (1973), sur le christianisme ; Jeroen Lamers, Japonius Tyrannus (2000), sur Nobunaga."
 ]
+}
+],
+"tableaux": [
+{
+"t": "L'unification : chronologie",
+"cols": [
+"Date",
+"Événement",
+"Acteur"
+],
+"rows": [
+[
+"1543",
+"Arrivée des armes à feu à Tanegashima",
+"Portugais"
+],
+[
+"1549",
+"Arrivée de François Xavier à Kagoshima",
+"Jésuites"
+],
+[
+"1560",
+"Okehazama : défaite d'Imagawa Yoshimoto",
+"Oda Nobunaga"
+],
+[
+"1568",
+"Entrée à Kyōto aux côtés du shogun Yoshiaki",
+"Oda Nobunaga"
+],
+[
+"1573",
+"Chute du shogunat Ashikaga",
+"Oda Nobunaga"
+],
+[
+"1575",
+"Nagashino",
+"Oda et Tokugawa"
+],
+[
+"1582",
+"Honnō-ji : mort de Nobunaga",
+"Akechi Mitsuhide"
+],
+[
+"1585",
+"Hideyoshi devient kanpaku",
+"Toyotomi Hideyoshi"
+],
+[
+"1590",
+"Siège d'Odawara : unification",
+"Toyotomi Hideyoshi"
+],
+[
+"1592–1598",
+"Invasions de Corée",
+"Toyotomi Hideyoshi"
+],
+[
+"1600",
+"Sekigahara",
+"Tokugawa Ieyasu"
+]
+]
+}
+],
+"documents": [
+{
+"t": "Chasse aux épées (1588)",
+"src": "Édit de Toyotomi Hideyoshi · résumé",
+"texte": "Les paysans de toutes les provinces ne doivent plus posséder d'épées, de dagues, d'arcs, de lances ni d'armes à feu. Les armes confisquées seront fondues pour fabriquer les clous et les rivets du grand Bouddha.",
+"com": "Mesure clé du partage entre guerriers et paysans (séparation des statuts). Elle s'appuie sur une justification religieuse. Elle est appliquée plus ou moins strictement selon les régions."
 }
 ]
 },
@@ -1334,6 +1844,101 @@
 "Lectures : Conrad Totman, Early Modern Japan (1993) ; Ronald Toby, State and Diplomacy in Early Modern Japan (1984) ; Mary Elizabeth Berry, Japan in Print (2006) ; Marius Jansen, The Making of Modern Japan (2000) ; Thomas C. Smith, The Agrarian Origins of Modern Japan (1959) ; Ronald Dore, Education in Tokugawa Japan (1965)."
 ]
 }
+],
+"tableaux": [
+{
+"t": "Shoguns Tokugawa",
+"cols": [
+"Shogun",
+"Période",
+"Remarque"
+],
+"rows": [
+[
+"Ieyasu",
+"1603–1605",
+"Fondateur ; Sekigahara, siège d'Ōsaka"
+],
+[
+"Hidetada",
+"1605–1623",
+""
+],
+[
+"Iemitsu",
+"1623–1651",
+"Sankin kōtai, restrictions maritimes"
+],
+[
+"Tsunayoshi",
+"1680–1709",
+"Genroku, lois sur la protection des animaux"
+],
+[
+"Yoshimune",
+"1716–1745",
+"Réformes de Kyōhō"
+],
+[
+"Ienari",
+"1787–1837",
+"Longue période, culture de Bunka-Bunsei"
+],
+[
+"Iesada",
+"1853–1858",
+"Arrivée de Perry"
+],
+[
+"Yoshinobu",
+"1867–1868",
+"Dernier shogun, rend le pouvoir"
+]
+]
+},
+{
+"t": "Les trois grandes réformes",
+"cols": [
+"Réforme",
+"Dates",
+"Dirigeant",
+"Contenu"
+],
+"rows": [
+[
+"Kyōhō",
+"1716–1745",
+"Tokugawa Yoshimune",
+"Impôt, économie, importation de livres occidentaux"
+],
+[
+"Kansei",
+"1787–1793",
+"Matsudaira Sadanobu",
+"Austérité, contrôle des idées (néoconfucianisme)"
+],
+[
+"Tenpō",
+"1841–1843",
+"Mizuno Tadakuni",
+"Dissolution des corporations ; échec"
+]
+]
+}
+],
+"documents": [
+{
+"t": "Buke shohatto (1615)",
+"src": "Règlement des maisons guerrières · paraphrase",
+"texte": "Les samouraïs doivent cultiver à la fois les lettres et les arts militaires. Il est interdit de bâtir de nouveaux châteaux et de réparer les anciens sans autorisation, et de contracter des mariages entre domaines sans l'accord du shogunat.",
+"com": "Charte de contrôle des daimyō : le shogunat régit leurs châteaux, leurs alliances et leurs successions. Révisé en 1635 pour inclure le sankin kōtai."
+},
+{
+"t": "Édit de fermeture (1639)",
+"src": "Politique des restrictions maritimes (sakoku) · résumé",
+"texte": "Les navires portugais sont interdits. Seuls les Hollandais et les Chinois peuvent commercer, à Nagasaki. Les Japonais ne peuvent quitter le pays, et ceux qui sont partis ne peuvent y revenir, sous peine de mort.",
+"com": "Étape de la politique appelée plus tard « sakoku ». Les historiens parlent aujourd'hui de « quatre bouches » (Nagasaki, Tsushima, Satsuma, Matsumae) : le Japon n'était pas complètement isolé."
+}
 ]
 },
 {
@@ -1492,6 +2097,87 @@
 "Lectures : W. G. Beasley, The Meiji Restoration (1972) ; Marius Jansen, The Making of Modern Japan (2000) ; Carol Gluck, Japan's Modern Myths (1985) ; Andrew Gordon, A Modern History of Japan (2003) ; Takashi Fujitani, Splendid Monarchy (1996) ; en français : Pierre-François Souyri, Nouvelle histoire du Japon (2010)."
 ]
 }
+],
+"tableaux": [
+{
+"t": "Réformes de l'ère Meiji",
+"cols": [
+"Année",
+"Mesure",
+"Effet"
+],
+"rows": [
+[
+"1868",
+"Serment en cinq articles ; Restauration",
+"Déclaration de principe du nouveau régime"
+],
+[
+"1869",
+"Retour des registres des domaines",
+"Prépare la fin des han"
+],
+[
+"1871",
+"Abolition des domaines ; mission Iwakura",
+"Centralisation"
+],
+[
+"1872",
+"Système scolaire (Gakusei) ; chemin de fer Tōkyō–Yokohama",
+"Modernisation"
+],
+[
+"1873",
+"Conscription ; réforme foncière ; calendrier grégorien",
+"Armée moderne, impôt en argent"
+],
+[
+"1877",
+"Révolte de Satsuma",
+"Fin des révoltes de samouraïs"
+],
+[
+"1881",
+"Promesse d'une constitution pour 1890",
+"Réponse au mouvement des droits du peuple"
+],
+[
+"1889",
+"Constitution de Meiji",
+"Monarchie constitutionnelle"
+],
+[
+"1890",
+"Première Diète ; Rescrit sur l'éducation",
+""
+],
+[
+"1894–1895",
+"Guerre sino-japonaise",
+"Taiwan"
+],
+[
+"1904–1905",
+"Guerre russo-japonaise",
+"Protectorat sur la Corée, 1910 : annexion"
+]
+]
+}
+],
+"documents": [
+{
+"t": "Serment en cinq articles (1868)",
+"src": "Charte de l'empereur Meiji, 6 avril 1868 · paraphrase",
+"texte": "Les assemblées seront largement ouvertes et toutes les affaires décidées par la discussion publique. Les gouvernants et les gouvernés uniront leurs efforts. Chacun, des nobles aux gens du peuple, pourra réaliser ses aspirations. Les vieilles coutumes injustes seront abandonnées et l'on suivra les principes de la justice universelle. On cherchera le savoir dans le monde entier.",
+"com": "Texte-programme du nouveau gouvernement. Il parle d'assemblées sans définir leur pouvoir, ce qui laisse la voie ouverte aux débats ultérieurs. L'article sur le savoir du monde justifie l'occidentalisation."
+},
+{
+"t": "Constitution de Meiji (1889), articles 1 à 4",
+"src": "Constitution de l'empire du Japon · paraphrase",
+"texte": "Article 1 : l'empire du Japon est gouverné par une lignée impériale ininterrompue depuis l'éternité. Article 3 : l'empereur est sacré et inviolable. Article 4 : l'empereur est le chef de l'empire et réunit en sa personne les droits de souveraineté, qu'il exerce selon la Constitution.",
+"com": "La souveraineté est impériale, ce qui est conforme au modèle prussien préféré par Itō Hirobumi. Droits des sujets accordés « dans les limites de la loi » ; commandement militaire indépendant du gouvernement : cette clause aura des conséquences graves dans les années 1930."
+}
 ]
 },
 {
@@ -1605,6 +2291,61 @@
 "« Démocratie Taishō » est une expression discutée : s'agit-il d'un début réel de démocratie, ou d'un compromis fragile entre élites, rapidement détruit après 1931 ? Les historiens soulignent les continuités avec la militarisation des années 1930 (lois de répression, empire colonial, rôle de l'armée).",
 "Lectures : Peter Duus, Party Rivalry and Political Change in Taishō Japan (1968) ; Andrew Gordon, Labor and Imperial Democracy in Prewar Japan (1991) ; Sheldon Garon, Molding Japanese Minds (1997) ; Elise Tipton et John Clark (dir.), Being Modern in Japan (2000)."
 ]
+}
+],
+"tableaux": [
+{
+"t": "Premiers ministres de l'ère Taishō",
+"cols": [
+"Premier ministre",
+"Période",
+"Remarque"
+],
+"rows": [
+[
+"Katsura Tarō",
+"1912–1913",
+"Crise de Taishō"
+],
+[
+"Yamamoto Gonnohyōe",
+"1913–1914 ; 1923–1924",
+"Second cabinet : séisme du Kantō"
+],
+[
+"Ōkuma Shigenobu",
+"1914–1916",
+"Première Guerre mondiale, Vingt et une demandes"
+],
+[
+"Terauchi Masatake",
+"1916–1918",
+"Émeutes du riz"
+],
+[
+"Hara Takashi",
+"1918–1921",
+"Premier chef de parti ; assassiné"
+],
+[
+"Takahashi Korekiyo",
+"1921–1922",
+""
+],
+[
+"Katō Takaaki",
+"1924–1926",
+"Suffrage masculin et loi de 1925"
+]
+]
+}
+],
+"documents": [
+{
+"t": "Manifeste de la revue Seitō (1911)",
+"src": "Hiratsuka Raichō, première livraison de Seitō · paraphrase",
+"texte": "Au commencement, la femme était véritablement le soleil. Elle était une personne authentique. Aujourd'hui la femme est la lune : elle vit grâce à autrui et brille de la lumière d'autrui. Nous devons faire revenir le soleil caché.",
+"com": "Texte célèbre du féminisme japonais. Il s'inscrit dans la mouvance des « femmes nouvelles » (atarashii onna). Il est lié à la création de la revue littéraire Seitō (« bas-bleus »)."
 }
 ]
 },
@@ -1770,6 +2511,52 @@
 "Lectures : John Dower, Embracing Defeat (1999) et War Without Mercy (1986) ; Andrew Gordon, A Modern History of Japan (2003) ; Louise Young, Japan's Total Empire (1998) ; Ezra Vogel, Japan as Number One (1979) ; en français : Jean-Louis Margolin, L'Armée de l'empereur (2007) et Pierre-François Souyri, Nouvelle histoire du Japon (2010)."
 ]
 }
+],
+"tableaux": [
+{
+"t": "Trois périodes du règne de Hirohito",
+"cols": [
+"Période",
+"Dates",
+"Repères"
+],
+"rows": [
+[
+"Avant-guerre et guerre",
+"1926–1945",
+"Crise de 1927, Mandchourie (1931), 15 mai (1932), 26 février (1936), guerre de Chine (1937), Pacifique (1941)"
+],
+[
+"Occupation",
+"1945–1952",
+"Réformes, tribunal de Tōkyō, Constitution (1947), San Francisco (1951)"
+],
+[
+"Reconstruction et haute croissance",
+"1952–1973",
+"Système de 1955, Anpo (1960), Jeux de 1964, Okinawa (1972)"
+],
+[
+"Stabilité et bulle",
+"1973–1989",
+"Chocs pétroliers, accord du Plaza (1985), mort de Hirohito (1989)"
+]
+]
+}
+],
+"documents": [
+{
+"t": "Déclaration de Potsdam (26 juillet 1945)",
+"src": "Proclamation des Alliés · résumé",
+"texte": "Les Alliés exigent la capitulation sans condition des forces armées japonaises, l'élimination des dirigeants qui ont poussé le pays à la guerre, le désarmement, le jugement des criminels de guerre, le rétablissement des libertés et la limitation de la souveraineté aux quatre îles principales et aux îles déterminées. À défaut, le Japon subira une destruction rapide et totale.",
+"com": "La phrase sur l'empereur n'est pas explicite : le sort de la monarchie était l'enjeu principal des débats japonais. La réponse japonaise (mokusatsu) a été comprise par les Alliés comme un rejet."
+},
+{
+"t": "Article 9 de la Constitution de 1947",
+"src": "Constitution du Japon, chapitre II · paraphrase",
+"texte": "Aspirant sincèrement à une paix internationale fondée sur la justice et l'ordre, le peuple japonais renonce à jamais à la guerre comme droit souverain de la nation et à la menace ou à l'usage de la force comme moyen de régler les différends internationaux. Pour atteindre ce but, il ne sera jamais maintenu de forces terrestres, navales et aériennes, ni d'autre potentiel de guerre. Le droit de belligérance de l'État ne sera pas reconnu.",
+"com": "Le deuxième alinéa est au cœur du débat : les Forces d'autodéfense (1954) sont-elles un « potentiel de guerre » ? Le gouvernement soutient que non, car elles servent la légitime défense ; une partie de la doctrine soutient l'inverse. La réinterprétation de 2014-2015 a élargi le champ d'action."
+}
 ]
 },
 {
@@ -1880,6 +2667,76 @@
 "Les « décennies perdues » sont-elles vraiment une stagnation, ou une adaptation à un pays âgé et riche ? Les économistes divergent sur le rôle de la politique monétaire, des réformes et de la démographie. Les historiens comparent aussi la gestion de la catastrophe de 2011 et la mémoire d'Hiroshima.",
 "Lectures : Jeff Kingston, Japan in Transformation, 1952-2000 (2001) et Contemporary Japan (2011) ; Andrew Gordon, A Modern History of Japan (2003) ; Richard Katz, Japanese Phoenix (2003) ; en français : Jean-Marie Bouissou, Le Japon contemporain (2007)."
 ]
+}
+],
+"tableaux": [
+{
+"t": "Premiers ministres (1989-2020)",
+"cols": [
+"Premier ministre",
+"Période",
+"Remarque"
+],
+"rows": [
+[
+"Takeshita Noboru",
+"1987–1989",
+"Introduction de la TVA à 3 %"
+],
+[
+"Kaifu Toshiki",
+"1989–1991",
+"Guerre du Golfe"
+],
+[
+"Miyazawa Kiichi",
+"1991–1993",
+"Chute du LDP (1993)"
+],
+[
+"Hosokawa Morihiro",
+"1993–1994",
+"Réforme électorale"
+],
+[
+"Murayama Tomiichi",
+"1994–1996",
+"Séisme de Kōbe, sarin, déclaration de 1995"
+],
+[
+"Hashimoto Ryūtarō",
+"1996–1998",
+"TVA à 5 %, crise financière"
+],
+[
+"Koizumi Jun'ichirō",
+"2001–2006",
+"Poste privatisée"
+],
+[
+"Abe Shinzō",
+"2006–2007 ; 2012–2020",
+"Abenomics"
+],
+[
+"Hatoyama Yukio",
+"2009–2010",
+"Première alternance (DPJ)"
+],
+[
+"Kan Naoto",
+"2010–2011",
+"Catastrophe de 2011"
+]
+]
+}
+],
+"documents": [
+{
+"t": "Déclaration du Premier ministre Murayama (1995)",
+"src": "15 août 1995, 50e anniversaire de la fin de la guerre · paraphrase",
+"texte": "Dans un passé récent, le Japon a suivi une politique erronée, a engagé le pays sur la voie de la guerre et, par sa domination coloniale et son agression, a causé des dommages et des souffrances immenses aux peuples de nombreux pays, en particulier d'Asie. Je reconnais avec humilité ces faits historiques et je présente des excuses sincères.",
+"com": "Texte de référence, repris et réaffirmé par les cabinets ultérieurs (Koizumi en 2005, Abe en 2015 avec des nuances). Il reste un point de comparaison dans les relations avec la Chine et la Corée du Sud."
 }
 ]
 }

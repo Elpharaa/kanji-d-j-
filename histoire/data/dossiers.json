@@ -1,0 +1,452 @@
+[
+{
+"id": "taika",
+"nom": "Les réformes de Taika",
+"kanji": "大化の改新",
+"epoque": "asuka",
+"date": "645–701",
+"resume": "Du coup d'État contre les Soga (645) au code de Taihō (701) : la construction d'un État centralisé sur le modèle des Tang.",
+"chapitres": [
+{
+"t": "Le contexte",
+"p": [
+"Au début du VIIe siècle, le clan Soga domine la cour de Yamato. La Chine des Sui puis des Tang, unifiée, impressionne : les ambassades et les étudiants envoyés en Chine (Minoru, Takamuko no Kuromaro) en reviennent avec l'idée d'un État fondé sur la loi.",
+"Les Soga sont aussi contestés au sein de la famille impériale : le prince Shōtoku est mort en 622, son fils Yamashiro no Ōe est tué en 643 par Soga no Iruka."
+]
+},
+{
+"t": "Le coup d'État de 645",
+"p": [
+"En 645, le prince Naka no Ōe et Nakatomi no Kamatari font tuer Soga no Iruka en pleine cérémonie de cour (incident d'Isshi). Le père d'Iruka, Emishi, se suicide. Kōtoku monte sur le trône et adopte la première devise d'ère : Taika.",
+"Le nom « réformes de Taika » vient du Nihon shoki. Les historiens modernes discutent le détail des mesures rapportées."
+]
+},
+{
+"t": "Le programme",
+"p": [
+"Le texte parle de supprimer les propriétés privées des clans, d'établir des provinces et districts dirigés par des fonctionnaires, de dresser des registres de population et d'instaurer la redistribution des rizières (handen shūju) avec des taxes en grains, en tissu et en corvées.",
+"Les registres de 670 (Kōgo nenjaku) et de 690 (Kōin nenjaku) sont les premières mises en œuvre sûres."
+]
+},
+{
+"t": "Aboutissement : les codes ritsuryō",
+"p": [
+"Après la guerre de Jinshin (672), Tenmu et Jitō poursuivent le travail. Le code de Kiyomihara (689) précède le code de Taihō (701), puis celui de Yōrō (718).",
+"Le système « ritsuryō » associe le droit pénal (ritsu) et administratif (ryō). Il fixe la structure : Conseil d'État (Dajōkan) et huit ministères."
+]
+},
+{
+"t": "Débat historiographique",
+"p": [
+"Certains historiens (Sakamoto Tarō) tenaient Taika pour une réforme réelle. D'autres, à partir de la découverte de tablettes (mokkan) du VIIe siècle, montrent que des termes du texte (district, gun) n'apparaissent qu'après 701 : le Nihon shoki a donc retouché le récit.",
+"Il est plus prudent d'y voir une construction progressive sur plus d'un demi-siècle."
+]
+}
+],
+"retenir": [
+"Date : 645, coup d'État d'Isshi",
+"Acteurs : Naka no Ōe, Nakatomi no Kamatari, Soga no Iruka",
+"Résultat : État centralisé, registres, redistribution des terres",
+"Code de Taihō : 701"
+]
+},
+{
+"id": "nara-grand-bouddha",
+"nom": "Le Grand Bouddha de Nara",
+"kanji": "東大寺大仏",
+"epoque": "nara",
+"date": "741–752",
+"resume": "Shōmu fait fondre une statue colossale à Tōdai-ji pour protéger l'État par le bouddhisme.",
+"chapitres": [
+{
+"t": "Pourquoi une telle statue ?",
+"p": [
+"Après des épidémies de variole (735-737) et la révolte de Fujiwara no Hirotsugu (740), l'empereur Shōmu cherche à protéger l'État. En 741, il ordonne un temple provincial (kokubunji) dans chaque province.",
+"En 743, il annonce la construction d'un Bouddha Vairocana (Rushana) à Shigaraki, puis à Nara."
+]
+},
+{
+"t": "La réalisation",
+"p": [
+"Le moine Gyōki mobilise des fonds et des travailleurs du peuple. La statue est coulée en bronze en plusieurs étapes entre 747 et 749 ; elle est dorée par la suite.",
+"La cérémonie d'ouverture des yeux a lieu en 752, en présence du moine indien Bodhisena et de milliers de moines."
+]
+},
+{
+"t": "Portée politique et religieuse",
+"p": [
+"Le chantier ruine en partie le trésor. Il consacre l'idée que le bouddhisme protège l'État (chingo kokka).",
+"Shōmu se proclame « serviteur des Trois Trésors ». Son épouse Kōmyō joue un rôle important."
+]
+},
+{
+"t": "Aujourd'hui",
+"p": [
+"Tōdai-ji est inscrit au patrimoine mondial avec les monuments anciens de Nara. L'actuelle halle principale, reconstruite en 1709, est plus petite que l'originale d'un tiers environ. La statue a été réparée plusieurs fois après les incendies de 1180 et 1567."
+]
+}
+],
+"retenir": [
+"Shōmu, Gyōki, Kōmyō",
+"Kokubunji en 741, cérémonie en 752",
+"Bouddhisme protecteur de l'État"
+]
+},
+{
+"id": "genpei",
+"nom": "La guerre de Genpei",
+"kanji": "源平合戦",
+"epoque": "heian",
+"date": "1180–1185",
+"resume": "Cinq ans de guerre entre Minamoto et Taira, qui aboutissent à la naissance du premier shogunat.",
+"chapitres": [
+{
+"t": "Les origines",
+"p": [
+"Taira no Kiyomori domine la cour après Heiji (1159). Il marie sa fille à l'empereur et place son petit-fils Antoku sur le trône en 1180.",
+"Le prince Mochihito lance un appel aux armes contre les Taira ; les Minamoto s'y rallient."
+]
+},
+{
+"t": "Les grandes étapes",
+"p": [
+"1180 : Yoritomo se soulève en Izu, est battu à Ishibashiyama, puis s'installe à Kamakura. Victoire de Fujigawa.",
+"1183 : Yoshinaka (cousin) entre à Kyōto, les Taira fuient vers l'ouest avec Antoku et les regalia.",
+"1184 : Yoshitsune bat Yoshinaka à Uji puis les Taira à Ichi-no-Tani. 1185 : Yashima, puis la bataille navale de Dan-no-ura (25 avril) où Antoku se noie."
+]
+},
+{
+"t": "Conséquences",
+"p": [
+"Yoritomo obtient en 1185 le droit de nommer des shugo et des jitō. En 1189 il détruit les Fujiwara du Nord qui avaient accueilli Yoshitsune. En 1192, il reçoit le titre de shogun.",
+"Cette organisation (bakufu) s'installe à Kamakura, loin de la cour."
+]
+},
+{
+"t": "Mémoire",
+"p": [
+"Le Heike monogatari, chanté par des moines aveugles, transforme la guerre en leçon d'impermanence. Les « Heike-gani » de Dan-no-ura (crabes au visage de guerrier) sont une légende locale."
+]
+}
+],
+"retenir": [
+"1180–1185",
+"Yoritomo, Yoshitsune, Kiyomori",
+"Dan-no-ura 1185",
+"1192 : titre de shogun"
+]
+},
+{
+"id": "invasions-mongoles",
+"nom": "Les invasions mongoles",
+"kanji": "元寇",
+"epoque": "kamakura",
+"date": "1274 et 1281",
+"resume": "Deux expéditions de Kubilai Khan repoussées, avec des conséquences pour le régime de Kamakura.",
+"chapitres": [
+{
+"t": "Les demandes de Kubilai",
+"p": [
+"Après avoir soumis la Corée (Koryŏ), Kubilai envoie des messages exigeant la soumission du Japon (1266-1272). Le régent Hōjō Tokimune refuse et fait exécuter des émissaires."
+]
+},
+{
+"t": "Première invasion (1274, Bun'ei)",
+"p": [
+"Environ 900 navires mongols, chinois et coréens attaquent Tsushima, Iki puis la baie de Hakata. Les Japonais, habitués au combat individuel, sont surpris par les tactiques collectives et les armes explosives.",
+"Les envahisseurs se retirent après une tempête et un affrontement indécis."
+]
+},
+{
+"t": "Seconde invasion (1281, Kōan)",
+"p": [
+"Deux armées (nordique et du sud) arrivent. Les Japonais ont construit un mur de pierre le long de la baie de Hakata. Les troupes sont bloquées sur la côte pendant près de deux mois, puis un typhon détruit une grande partie de la flotte.",
+"Le typhon est appelé plus tard « kamikaze » (vent divin)."
+]
+},
+{
+"t": "Conséquences",
+"p": [
+"Pas de butin à distribuer : les guerriers ne sont pas récompensés, ce qui érode la loyauté envers les Hōjō. Le scroll de Takezaki Suenaga (Mōko shūrai ekotoba) est une demande de récompense.",
+"Les Hōjō concentrent le pouvoir et sont affaiblis. La chute de Kamakura en 1333 y est liée."
+]
+}
+],
+"retenir": [
+"1274 et 1281",
+"Hōjō Tokimune",
+"Typhons (kamikaze)",
+"Manque de récompenses → affaiblissement du bakufu"
+]
+},
+{
+"id": "onin",
+"nom": "La guerre d'Ōnin",
+"kanji": "応仁の乱",
+"epoque": "muromachi",
+"date": "1467–1477",
+"resume": "Une querelle de succession devient une guerre qui ravage Kyōto et ouvre l'ère des provinces en guerre.",
+"chapitres": [
+{
+"t": "Les causes",
+"p": [
+"Le shogun Yoshimasa n'a pas d'héritier ; il désigne son frère Yoshimi, puis son épouse Tomiko donne naissance à Yoshihisa. S'y ajoutent des querelles de succession chez les Hatakeyama et les Shiba.",
+"Les deux grands protecteurs, Hosokawa Katsumoto et Yamana Sōzen, prennent chacun un camp."
+]
+},
+{
+"t": "Le déroulement",
+"p": [
+"Les combats commencent en 1467 à Kyōto. Une grande partie de la ville est incendiée, dont des temples et des demeures nobles. Les troupes de fantassins légers (ashigaru) se multiplient.",
+"Katsumoto et Sōzen meurent en 1473. La guerre s'éteint en 1477 sans vainqueur net."
+]
+},
+{
+"t": "Conséquences",
+"p": [
+"Le shogunat n'exerce plus qu'un pouvoir local. Les shugo reviennent dans leurs provinces et sont remplacés par leurs vassaux : c'est le gekokujō (« le bas l'emporte sur le haut »).",
+"La culture Higashiyama (Ginkaku) se développe pendant ces années troublées."
+]
+}
+],
+"retenir": [
+"1467–1477",
+"Hosokawa vs Yamana",
+"Gekokujō",
+"Début de l'époque Sengoku"
+]
+},
+{
+"id": "sekigahara",
+"nom": "Sekigahara",
+"kanji": "関ヶ原の戦い",
+"epoque": "sengoku",
+"date": "21 octobre 1600",
+"resume": "La bataille décisive qui donne la victoire à Tokugawa Ieyasu.",
+"chapitres": [
+{
+"t": "Avant la bataille",
+"p": [
+"À la mort de Hideyoshi (1598), le Conseil des cinq régents doit protéger son fils Hideyori, âgé de cinq ans. Ieyasu, le plus puissant, étend son influence. Ishida Mitsunari, haut fonctionnaire, constitue l'« armée de l'Ouest »."
+]
+},
+{
+"t": "La bataille",
+"p": [
+"Les deux armées s'affrontent dans la plaine de Sekigahara (Mino). Environ 80 000 hommes de chaque côté selon les estimations traditionnelles. Plusieurs seigneurs de l'ouest trahissent ou restent inactifs, notamment Kobayakawa Hideaki, qui se retourne contre l'armée de l'Ouest.",
+"La bataille est décidée en quelques heures."
+]
+},
+{
+"t": "Suites",
+"p": [
+"Mitsunari est exécuté. Ieyasu confisque ou réduit les fiefs de nombreux daimyō, redistribue des terres à ses alliés. Les domaines des Tozama (alliés tardifs) sont placés loin des centres.",
+"En 1603 Ieyasu devient shogun ; il élimine les Toyotomi à Ōsaka en 1614-1615."
+]
+}
+],
+"retenir": [
+"1600",
+"Ieyasu vs Mitsunari",
+"Trahison de Kobayakawa",
+"1603 : shogunat Tokugawa"
+]
+},
+{
+"id": "perry",
+"nom": "L'arrivée de Perry et l'ouverture",
+"kanji": "黒船来航",
+"epoque": "edo",
+"date": "1853–1858",
+"resume": "Des navires américains forcent le Japon à renégocier sa relation avec l'étranger.",
+"chapitres": [
+{
+"t": "Les navires noirs",
+"p": [
+"En juillet 1853, le commodore Matthew Perry entre dans la baie d'Edo avec quatre navires, dont deux à vapeur, et remet une lettre du président Fillmore. Il promet de revenir.",
+"Le shogunat consulte les daimyō, ce qui est une rupture avec l'habitude."
+]
+},
+{
+"t": "Les traités",
+"p": [
+"1854 : convention de Kanagawa (ouverture de Shimoda et Hakodate). 1858 : traité Harris, traité de commerce avec les États-Unis, suivi de traités avec les Pays-Bas, la Russie, la Grande-Bretagne et la France (« traités de l'ère Ansei »).",
+"Ils sont qualifiés d'« inégaux » : extraterritorialité et tarifs douaniers fixés conjointement."
+]
+},
+{
+"t": "Réactions",
+"p": [
+"Slogan sonnō jōi (« honorer l'empereur, expulser les barbares »). Ii Naosuke réprime les opposants (purge d'Ansei) puis est assassiné en 1860 devant la porte Sakuradamon.",
+"Les domaines de Chōshū et Satsuma, d'abord hostiles, s'allient en 1866 contre le shogunat."
+]
+}
+],
+"retenir": [
+"1853 : Perry",
+"1854 : Kanagawa ; 1858 : traités",
+"Sonnō jōi",
+"Chute du shogunat 1867–1868"
+]
+},
+{
+"id": "restauration-meiji",
+"nom": "La restauration de Meiji",
+"kanji": "明治維新",
+"epoque": "meiji",
+"date": "1867–1868",
+"resume": "La chute du shogunat et la mise en place d'un nouveau gouvernement autour de l'empereur.",
+"chapitres": [
+{
+"t": "L'alliance Satchō",
+"p": [
+"En 1866, sous l'influence de Sakamoto Ryōma, Satsuma (Saigō Takamori, Ōkubo Toshimichi) et Chōshū (Kido Takayoshi) s'allient. Le shogunat perd la seconde expédition contre Chōshū."
+]
+},
+{
+"t": "Taisei hōkan et décret de restauration",
+"p": [
+"En novembre 1867, le shogun Tokugawa Yoshinobu rend le pouvoir à l'empereur (taisei hōkan). Le 3 janvier 1868, le décret de restauration du gouvernement impérial est proclamé par les chefs de Satsuma, Chōshū et des nobles."
+]
+},
+{
+"t": "La guerre de Boshin (1868-1869)",
+"p": [
+"Toba-Fushimi (janvier 1868), reddition d'Edo (Saigō et Katsu Kaishū), résistance du Tōhoku, puis des Tokugawa à Hakodate (république d'Ezo) jusqu'en juin 1869."
+]
+},
+{
+"t": "Premières mesures",
+"p": [
+"Serment en cinq articles (avril 1868), ère Meiji (octobre), capitale à Tōkyō (1869). Abolition des domaines (1871)."
+]
+}
+],
+"retenir": [
+"1867–1868",
+"Satchō, Saigō, Ōkubo, Kido",
+"Guerre de Boshin",
+"Edo → Tōkyō"
+]
+},
+{
+"id": "guerre-russo-japonaise",
+"nom": "La guerre russo-japonaise",
+"kanji": "日露戦争",
+"epoque": "meiji",
+"date": "1904–1905",
+"resume": "Le premier grand conflit où une puissance asiatique bat une puissance européenne.",
+"chapitres": [
+{
+"t": "Origines",
+"p": [
+"Après 1895, la Russie, la France et l'Allemagne imposent au Japon la rétrocession de la péninsule du Liaodong (triple intervention). La Russie occupe ensuite la Mandchourie et loue Port-Arthur. Le Japon s'allie à la Grande-Bretagne en 1902."
+]
+},
+{
+"t": "Le conflit",
+"p": [
+"Attaque japonaise de Port-Arthur (février 1904), siège de la ville (chute en janvier 1905), bataille de Mukden (mars 1905), destruction de la flotte russe de la Baltique à Tsushima (mai 1905) par l'amiral Tōgō."
+]
+},
+{
+"t": "Le traité de Portsmouth",
+"p": [
+"Médiation de Theodore Roosevelt. Septembre 1905 : le Japon obtient la moitié sud de Sakhaline, Port-Arthur et des droits en Mandchourie du Sud, et un protectorat sur la Corée. Pas d'indemnité : émeutes de Hibiya."
+]
+},
+{
+"t": "Portée",
+"p": [
+"Retentissement en Asie. Le Japon est reconnu comme grande puissance. Annexion de la Corée en 1910."
+]
+}
+],
+"retenir": [
+"1904–1905",
+"Tsushima, Mukden",
+"Portsmouth",
+"Corée sous protectorat"
+]
+},
+{
+"id": "guerre-pacifique",
+"nom": "La guerre du Pacifique",
+"kanji": "太平洋戦争",
+"epoque": "showa",
+"date": "1941–1945",
+"resume": "De Pearl Harbor à la capitulation, le Japon dans la Seconde Guerre mondiale.",
+"chapitres": [
+{
+"t": "Du conflit en Chine au Pacifique",
+"p": [
+"Après l'incident du pont Marco Polo (1937), la guerre s'enlise. Le Japon occupe l'Indochine du Sud (1941) ; les États-Unis imposent un embargo sur le pétrole. Les négociations échouent."
+]
+},
+{
+"t": "Les victoires, puis le tournant",
+"p": [
+"Le 7 décembre 1941 (8 au Japon), attaque de Pearl Harbor et offensive en Malaisie, aux Philippines et en Indes néerlandaises. Le tournant est la bataille de Midway (juin 1942) puis Guadalcanal."
+]
+},
+{
+"t": "La défaite",
+"p": [
+"Bombardements stratégiques à partir de 1944 (Tōkyō en mars 1945), bataille d'Okinawa (avril-juin 1945), bombes atomiques sur Hiroshima (6 août) et Nagasaki (9 août), entrée en guerre de l'URSS (8 août)."
+]
+},
+{
+"t": "La capitulation",
+"p": [
+"Le 15 août 1945, Hirohito lit le rescrit de fin de guerre (gyokuon hōsō). Signature de la capitulation le 2 septembre sur le cuirassé Missouri."
+]
+}
+],
+"retenir": [
+"1941–1945",
+"Pearl Harbor, Midway",
+"Hiroshima/Nagasaki",
+"15 août 1945"
+]
+},
+{
+"id": "occupation",
+"nom": "L'occupation du Japon",
+"kanji": "占領期",
+"epoque": "showa",
+"date": "1945–1952",
+"resume": "Sous l'autorité de MacArthur, des réformes en profondeur transforment le pays.",
+"chapitres": [
+{
+"t": "Les institutions",
+"p": [
+"Le SCAP (Commandement suprême des forces alliées) gouverne par l'intermédiaire de l'administration japonaise. Le Conseil pour l'Extrême-Orient siège à Washington."
+]
+},
+{
+"t": "Les réformes",
+"p": [
+"Démilitarisation, procès de Tōkyō (1946-1948), épuration, dissolution des zaibatsu, réforme agraire, droit de vote des femmes (1946), syndicats, nouveau système scolaire."
+]
+},
+{
+"t": "La Constitution de 1947",
+"p": [
+"Rédigée à partir d'un projet du GHQ, adoptée par la Diète. Souveraineté du peuple, empereur symbole, article 9 (renonciation à la guerre)."
+]
+},
+{
+"t": "Le « revirement »",
+"p": [
+"Avec la guerre froide et la guerre de Corée (1950), les États-Unis privilégient la reconstruction économique. Traité de San Francisco (1951), traité de sécurité nippo-américain, fin de l'occupation en avril 1952."
+]
+}
+],
+"retenir": [
+"1945–1952",
+"MacArthur / SCAP",
+"Constitution 1947",
+"San Francisco 1951"
+]
+}
+]
