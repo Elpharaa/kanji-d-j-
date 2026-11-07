@@ -47,6 +47,12 @@ button.hchip{font-family:inherit}
 .hrow b{display:block}.hrow small{color:#513d7c}
 .hnote{color:#fff3dc;text-shadow:0 1px 3px rgba(35,26,54,.8);font-size:.85rem;text-align:center;margin:4px 8px}
 .vtag{font-size:.72rem;padding:1px 8px;border-radius:999px;background:#2f254b;color:#ffe9b8;margin-left:6px;vertical-align:middle}
+.qopt{display:block;width:100%;text-align:left;margin:7px 0;padding:11px 14px;border:2px solid #130f1e;border-radius:12px;background:linear-gradient(#fffaf0,#edddbd);color:#130f1e;font:600 .95rem "Zen Kaku Gothic New",sans-serif;cursor:pointer}
+.qopt.ok{background:#bfe3b4;border-color:#2d6a2a}.qopt.ko{background:#f3b6b6;border-color:#9b1c1c}
+.qq{font:400 1.08rem/1.5 "Yuji Syuku","Shippori Mincho",serif;color:#7b1024;margin:6px 0 10px}
+.qbar{height:8px;border-radius:99px;background:#d9c9a5;overflow:hidden;margin:4px 0 10px}.qbar i{display:block;height:100%;background:#b2285b}
+.qcard{min-height:150px;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;cursor:pointer;font:600 1.02rem/1.55 "Zen Kaku Gothic New",sans-serif}
+.qcard .k{font:400 2rem "Yuji Syuku",serif;color:#b2285b;display:block;margin-bottom:6px}
 </style></head>
 <body class="onhome inapp kddock hist">
 <div class="app">
@@ -57,6 +63,7 @@ button.hchip{font-family:inherit}
 <button type="button" class="kdd" data-k="hub" data-nav="out" aria-label="Retour au dojo"><span class="kdm" aria-hidden="true">道</span><span class="kdl">Dojo</span></button>
 <button type="button" class="kdd on" data-k="multi" data-nav="#" aria-label="Époques"><span class="kdm" aria-hidden="true">史</span><span class="kdl">Époques</span></button>
 <button type="button" class="kdd" data-k="fr" data-nav="#p" aria-label="Personnages"><span class="kdm" aria-hidden="true">人</span><span class="kdl">Personnages</span></button>
+<button type="button" class="kdd" data-k="rev" data-nav="#r" aria-label="Réviser"><span class="kdm" aria-hidden="true">試</span><span class="kdl">Réviser</span></button>
 <button type="button" class="kdd" data-k="cards" data-nav="#c" aria-label="Concepts"><span class="kdm" aria-hidden="true">語</span><span class="kdl">Concepts</span></button>
 </nav>
 <script>
@@ -106,8 +113,46 @@ function listV(type,q){var isP=type==='personnage';setDock(isP?'#p':'#c');q=(q||
   h+='<button class="hrow" data-f="'+f.id+'"><span class="rk">'+e(f.kanji.split('・')[0].slice(0,4))+'</span><span><b>'+e(f.nom)+'</b><small>'+e(f.dates)+(f.type==='événement'?' · événement':'')+'</small></span></button>'});
  h+='</div>'+(arr.length?'':'<div class="hpanel">Aucun résultat.</div>');m.innerHTML=h;
  var qi=document.getElementById('q');qi.addEventListener('input',function(){var v=qi.value;listV(type,v);var x=document.getElementById('q');x.focus();x.setSelectionRange(v.length,v.length)})}
+
+var QS=null;
+function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function pick(pool,ans,n){var o=shuf(pool.filter(function(x,i,ar){return x!==ans&&ar.indexOf(x)===i})).slice(0,n);return shuf(o.concat([ans]))}
+function mask(f){var t=f.resume;[f.nom].concat(f.alias||[]).filter(function(a){return a&&a.length>2}).sort(function(a,b){return b.length-a.length}).forEach(function(a){t=t.split(a).join('…')});return t}
+function cardsFor(scope){var eps=scope==='all'?D:D.filter(function(x){return x.id===scope}),C=[];
+ eps.forEach(function(p){(p.mots||[]).forEach(function(w){C.push({t:'mot',ep:p.id,q:'Que signifie « '+w[0]+' »'+(w[1]?' ('+w[1]+')':'')+' ?',a:w[2],k:w[1]||w[0]})});
+  (p.retenir||[]).forEach(function(r){C.push({t:'ret',ep:p.id,q:'À retenir · '+p.nom,a:r,k:p.kanji})});
+  (p.evenements||[]).forEach(function(v){C.push({t:'date',ep:p.id,q:v[1],a:v[0],k:p.kanji})})});
+ FI.filter(function(f){return scope==='all'||f.epoque===scope}).forEach(function(f){C.push({t:'fic',ep:f.epoque,f:f,q:mask(f),a:f.nom,k:f.kanji.split('・')[0].slice(0,4)})});
+ return C}
+function mkQ(c,all){var pool=all.filter(function(x){return x.t===c.t&&x!==c}).map(function(x){return x.a});
+ if(c.t==='mot')return{q:c.q,a:c.a,o:pick(pool,c.a,3)};
+ if(c.t==='date')return{q:'Quand ? '+c.q,a:c.a,o:pick(pool.filter(function(d){return d.length<40}),c.a,3)};
+ if(c.t==='fic')return{q:'De qui ou de quoi s\'agit-il ? '+c.q,a:c.a,o:pick(all.filter(function(x){return x.t==='fic'&&x.f.type===c.f.type&&x!==c}).map(function(x){return x.a}),c.a,3)};
+ return null}
+function revV(){setDock('#r');var h='<div class="hpanel"><h3 class="hh" style="margin-top:0">Réviser</h3><p>Choisis une époque (ou tout), puis un mode.</p><select id="rs" class="hsearch" aria-label="Époque"><option value="all">Toutes les époques</option>'+D.map(function(p){return'<option value="'+p.id+'">'+e(p.nom)+' · '+e(p.periode)+'</option>'}).join('')+'</select>';
+ h+='<button class="hbtn" style="width:100%;margin-top:10px" data-rv="qcm">QCM · 10 questions</button><button class="hbtn" style="width:100%;margin-top:8px" data-rv="cartes">Cartes de révision</button>';
+ var b='';try{b=localStorage.getItem('hist_best')||''}catch(x){}
+ if(b)h+='<p class="hnote" style="color:#513d7c;text-shadow:none">Meilleur score QCM : '+e(b)+'/10</p>';
+ m.innerHTML=h+'</div>';scrollTo(0,0)}
+function startQ(scope){var all=cardsFor(scope),qs=shuf(all).map(function(c){return mkQ(c,all)}).filter(function(x){return x&&x.o.length>=3}).slice(0,10);
+ if(qs.length<3){m.innerHTML='<div class="hpanel">Pas assez de contenu pour cette époque. <button class="hbtn" data-rv="menu">Retour</button></div>';return}
+ QS={qs:qs,i:0,s:0,scope:scope};showQ()}
+function showQ(){var S=QS,q=S.qs[S.i];if(!q)return endQ();
+ m.innerHTML='<div class="hpanel"><div class="qbar"><i style="width:'+(S.i/S.qs.length*100)+'%"></i></div><small>Question '+(S.i+1)+'/'+S.qs.length+'</small><div class="qq">'+e(q.q)+'</div>'+q.o.map(function(o,k){return'<button class="qopt" data-o="'+k+'">'+e(o)+'</button>'}).join('')+'</div>'}
+function endQ(){var S=QS;try{var b=+localStorage.getItem('hist_best')||0;if(S.scope==='all'&&S.s>b)localStorage.setItem('hist_best',S.s)}catch(x){}
+ m.innerHTML='<div class="hpanel"><h3 class="hh" style="margin-top:0">Score : '+S.s+'/'+S.qs.length+'</h3><p>'+(S.s>=S.qs.length*.8?'Excellent !':S.s>=S.qs.length*.5?'Bien, continue.':'À retravailler : repasse par les cours.')+'</p><button class="hbtn" style="width:100%" data-rv="qcm" data-sc="'+S.scope+'">Rejouer</button><button class="hbtn" style="width:100%;margin-top:8px" data-rv="menu">Menu</button></div>'}
+function startC(scope){var all=shuf(cardsFor(scope));QS={cs:all,i:0,flip:false};showC()}
+function showC(){var S=QS,c=S.cs[S.i];if(!c){revV();return}
+ var front=c.t==='date'?c.q:c.q,back=c.t==='date'?c.a:c.a;
+ m.innerHTML='<div class="hpanel"><small>Carte '+(S.i+1)+'/'+S.cs.length+'</small><div class="hbox qcard" data-flip="1">'+(S.flip?'<span>'+lk(back,null,{})+'</span>':'<span><span class="k">'+e(c.k)+'</span>'+e(front)+'</span>')+'</div><p class="hnote" style="color:#513d7c;text-shadow:none">Touche la carte pour la retourner</p><div class="hnav"><button class="hbtn" data-cn="-1">Précédente</button><button class="hbtn" data-cn="1">Suivante</button></div><button class="hbtn" style="width:100%;margin-top:8px" data-rv="menu">Quitter</button></div>'}
+m.addEventListener('click',function(ev){var t=ev.target,b;
+ if(b=t.closest('[data-rv]')){var sc=b.dataset.sc||(document.getElementById('rs')||{}).value||'all';var r=b.dataset.rv;if(r==='menu')revV();else if(r==='qcm')startQ(sc);else startC(sc)}
+ else if(b=t.closest('[data-o]')){if(b.disabled)return;var S=QS,q=S.qs[S.i],k=+b.dataset.o,ok=q.o[k]===q.a;if(ok)S.s++;[].forEach.call(m.querySelectorAll('.qopt'),function(x,i){x.disabled=true;if(q.o[i]===q.a)x.classList.add('ok');else if(i===k)x.classList.add('ko')});
+  var n=document.createElement('button');n.className='hbtn';n.style.cssText='width:100%;margin-top:8px';n.textContent=S.i+1>=S.qs.length?'Voir le score':'Suivante';n.onclick=function(){S.i++;showQ()};m.firstChild.appendChild(n)}
+ else if(t.closest('[data-flip]')){QS.flip=!QS.flip;showC()}
+ else if(b=t.closest('[data-cn]')){var S2=QS;S2.i=Math.max(0,S2.i+ +b.dataset.cn);S2.flip=false;showC()}});
 function route(){var h=decodeURIComponent(location.hash.slice(1)),a=h.split('/');
- if(!h)return homeV();if(a[0]==='e')return epV(a[1]);if(a[0]==='f')return fV(a[1]);if(a[0]==='p')return listV('personnage');if(a[0]==='c')return listV('concept');
+ if(!h)return homeV();if(a[0]==='e')return epV(a[1]);if(a[0]==='f')return fV(a[1]);if(a[0]==='p')return listV('personnage');if(a[0]==='c')return listV('concept');if(a[0]==='r')return revV();
  var i=D.findIndex(function(x){return x.id===h});return i>=0?epV(h):homeV()}
 var first=true;
 function go(h){location.hash=h}
