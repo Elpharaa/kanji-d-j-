@@ -32845,7 +32845,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v540', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v541', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -36475,7 +36475,7 @@ var PAR="";
     var h = '<div class="kbody inmodal dcd"><div class="dcdh"><span class="dcbig">' + esc(x.f) + '</span></div>';
     h += '<p class="dcdfr jp"><b>' + esc(x.j) + '</b></p><p class="dcrom small muted jp">' + esc(x.k) + (ja || !x.k ? '' : ' · ' + esc(toRomaji(x.k))) + '</p>';
     h += '<div class="dcbs"><span class="dcb dct">' + (ja ? 'フランス語の表現' : 'Expression française') + '</span><span class="dcb">' + esc((ja ? FXREGJ[x.r] : FXREG[x.r]) || x.r) + '</span></div>';
-    h += '<div class="dcex"><p class="small muted jp">' + (ja ? '例文' : 'Exemple · 例文') + '</p><p class="dcexj">' + esc(x.e) + '</p><p class="small jp">' + esc(x.ej) + '</p></div>';
+    h += '<div class="dcex"><p class="small muted jp">' + (ja ? '例文' : 'Exemple · 例文') + '</p><p class="dcexj">' + esc(x.e) + '</p><p class="small jp">' + (!ja && typeof furiHTML === 'function' ? furiHTML(x.ej) : esc(x.ej)) + '</p></div>';
     if (kj.length) h += '<p class="small muted" style="margin-top:10px">' + (ja ? 'この語の漢字' : 'Kanji de ce mot') + '</p><div class="dckj">' + kj.map(function (c) { return '<button type="button" class="dckb jp" data-dc="kanji:' + esc(c) + '">' + esc(c) + '</button>'; }).join('') + '</div>';
     h += '<div class="knact"><button type="button" class="btn" data-dc="fxfr:' + x.i + '">🔊 ' + (ja ? 'フランス語' : 'Français') + '</button> <button type="button" class="btn" data-dc="' + (ja ? 'fxfx' : 'fxsay') + ':' + x.i + '">🔊 ' + (ja ? '例文' : '日本語') + '</button> <button type="button" class="btn" data-dc="fxfav:' + x.i + '">' + fxFavLabel(fxLS('fxFav').indexOf(x.f) >= 0) + '</button></div>';
     h += '<details class="fxdet"><summary>' + (ja ? '使い方のメモ' : 'Note d’usage') + '</summary><p class="small jp">' + esc(ja ? (x.nj || x.n) : x.n) + '</p></details></div>';
