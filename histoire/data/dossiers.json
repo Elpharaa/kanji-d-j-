@@ -448,5 +448,566 @@
 "Constitution 1947",
 "San Francisco 1951"
 ]
+},
+{
+"id": "yamatai",
+"nom": "Le débat sur le Yamatai",
+"kanji": "邪馬台国",
+"epoque": "yayoi",
+"date": "IIIe siècle",
+"resume": "Où se trouvait le royaume de Himiko ? Kyūshū ou Kinai : le plus célèbre débat de l'histoire ancienne.",
+"chapitres": [
+{
+"t": "Les sources",
+"p": [
+"Le Wei zhi (vers 297) décrit un itinéraire depuis la Corée jusqu'au Yamatai (Yamatai-koku), dirigé par la reine Himiko. Les distances et les directions, prises à la lettre, mènent en pleine mer."
+]
+},
+{
+"t": "Théorie du Kyūshū",
+"p": [
+"Elle suit l'itinéraire en le lisant comme un trajet vers le sud, puis l'infléchit vers l'est. Elle s'appuie sur la densité de sites yayoi du nord de Kyūshū, comme Yoshinogari."
+]
+},
+{
+"t": "Théorie du Kinai",
+"p": [
+"Elle corrige la direction (est au lieu de sud) et rapproche le Yamatai de la région de Nara. Le site de Makimuku, avec ses premiers grands tumulus, et la concentration de miroirs triangulaires sont des arguments."
+]
+},
+{
+"t": "Où en est-on ?",
+"p": [
+"Aucune preuve décisive (sceau, inscription) n'a été trouvée. La question reste ouverte, d'où l'intérêt de présenter les deux hypothèses."
+]
+}
+],
+"retenir": [
+"Wei zhi, Himiko, 239",
+"Kyūshū vs Kinai",
+"Makimuku, Yoshinogari"
+]
+},
+{
+"id": "bouddhisme-yamato",
+"nom": "L'introduction du bouddhisme",
+"kanji": "仏教伝来",
+"epoque": "kofun",
+"date": "VIe siècle",
+"resume": "Une querelle politique autant que religieuse entre les Soga et les Mononobe.",
+"chapitres": [
+{
+"t": "L'arrivée",
+"p": [
+"Selon le Nihon shoki, le roi de Baekje envoie une statue et des sutras en 552 ; d'autres sources (Gangōji engi) indiquent 538. La date est donc discutée."
+]
+},
+{
+"t": "Le conflit",
+"p": [
+"Les Soga acceptent le culte ; les Mononobe et les Nakatomi, liés aux rites des kami, s'y opposent. En 587, Soga no Umako détruit les Mononobe."
+]
+},
+{
+"t": "Conséquences",
+"p": [
+"Suiko règne à partir de 592 avec Shōtoku et Umako. Temples : Asuka-dera, Hōryū-ji. Le bouddhisme s'impose comme religion de cour et d'État."
+]
+}
+],
+"retenir": [
+"538 ou 552",
+"Soga vs Mononobe",
+"587"
+]
+},
+{
+"id": "shotoku",
+"nom": "Le prince Shōtoku",
+"kanji": "聖徳太子",
+"epoque": "asuka",
+"date": "574–622",
+"resume": "Régent de l'impératrice Suiko, figure à la fois historique et légendaire.",
+"chapitres": [
+{
+"t": "Ce que l'on sait",
+"p": [
+"Fils de l'empereur Yōmei, régent de Suiko à partir de 593. Il envoie des ambassades en Chine (607, Ono no Imoko) et organise le système des douze rangs de cap (603)."
+]
+},
+{
+"t": "Les 17 articles",
+"p": [
+"Texte de 604 qui présente les devoirs des fonctionnaires, avec des influences confucéennes et bouddhiques."
+]
+},
+{
+"t": "Légende et débat",
+"p": [
+"Des chroniques le font naître avec des prodiges. Certains historiens, dont Ōyama Seiichi, doutent de la réalité de son rôle ; d'autres soulignent la place du nom « Umayado » dans les sources."
+]
+}
+],
+"retenir": [
+"574–622",
+"Douze rangs, 17 articles",
+"Ambassade de 607"
+]
+},
+{
+"id": "capitales-anciennes",
+"nom": "Les capitales anciennes",
+"kanji": "古代の都",
+"epoque": "nara",
+"date": "694–794",
+"resume": "Fujiwara-kyō, Heijō-kyō, Nagaoka, Heian-kyō : pourquoi déplacer la capitale.",
+"chapitres": [
+{
+"t": "Fujiwara-kyō (694)",
+"p": [
+"Première capitale construite selon un plan en damier à la chinoise, sous l'impératrice Jitō."
+]
+},
+{
+"t": "Heijō-kyō (710)",
+"p": [
+"Nara. Le plan s'inspire de Chang'an. Elle compte peut-être entre 50 000 et 100 000 habitants. Les temples y prennent une grande influence politique."
+]
+},
+{
+"t": "Nagaoka (784) puis Heian (794)",
+"p": [
+"Kanmu quitte Nara pour échapper à l'influence des temples et renouveler la dynastie. Nagaoka est abandonnée après l'assassinat de Fujiwara no Tanetsugu (785) et divers malheurs. En 794 s'ouvre Heian-kyō, qui restera capitale jusqu'en 1868."
+]
+}
+],
+"retenir": [
+"710 Nara",
+"784 Nagaoka",
+"794 Heian"
+]
+},
+{
+"id": "fujiwara",
+"nom": "La régence des Fujiwara",
+"kanji": "藤原摂関政治",
+"epoque": "heian",
+"date": "858–1068",
+"resume": "Le gouvernement par alliances matrimoniales.",
+"chapitres": [
+{
+"t": "La méthode",
+"p": [
+"Marier une fille à l'empereur, placer le petit-fils sur le trône, gouverner comme sesshō (régent d'un empereur enfant) ou kanpaku (régent d'un adulte)."
+]
+},
+{
+"t": "Étapes",
+"p": [
+"858 Yoshifusa, premier sesshō non impérial ; 884 Mototsune, premier kanpaku ; 969 affaire d'Anna ; 995-1028 Michinaga et Yorimichi, avec l'apogée."
+]
+},
+{
+"t": "Le déclin",
+"p": [
+"Après 1068, l'empereur Go-Sanjō, sans mère Fujiwara, gouverne de lui-même. Shirakawa instaure l'insei (1086)."
+]
+}
+],
+"retenir": [
+"858 – 1068",
+"Michinaga",
+"Sesshō / kanpaku"
+]
+},
+{
+"id": "shinden-kokufu",
+"nom": "La culture de cour Heian",
+"kanji": "国風文化",
+"epoque": "heian",
+"date": "Xe–XIe siècles",
+"resume": "Kana, Genji, Makura no sōshi : l'âge d'or de la cour.",
+"chapitres": [
+{
+"t": "Une culture « japonaise »",
+"p": [
+"Après l'arrêt des ambassades (894), la cour développe des formes propres : écriture en kana, peinture yamato-e, architecture shinden-zukuri."
+]
+},
+{
+"t": "Les femmes de lettres",
+"p": [
+"Murasaki Shikibu (Genji monogatari, vers 1008), Sei Shōnagon (Makura no sōshi), Izumi Shikibu, Michitsuna no haha (Kagerō nikki)."
+]
+},
+{
+"t": "Religion",
+"p": [
+"Tendai (Saichō) et Shingon (Kūkai), puis foi en Amida : Byōdō-in (1053) est un temple de la Terre pure."
+]
+}
+],
+"retenir": [
+"Genji",
+"Kana",
+"Byōdō-in 1053"
+]
+},
+{
+"id": "jokyu",
+"nom": "La guerre de Jōkyū",
+"kanji": "承久の乱",
+"epoque": "kamakura",
+"date": "1221",
+"resume": "Le retrait de l'empereur Go-Toba échoue et renforce Kamakura.",
+"chapitres": [
+{
+"t": "Les causes",
+"p": [
+"Go-Toba, empereur retiré, veut restaurer le pouvoir de la cour après l'extinction de la lignée Minamoto (1219)."
+]
+},
+{
+"t": "Le conflit",
+"p": [
+"Il appelle à punir le régent Hōjō Yoshitoki. Les guerriers de l'Est, entraînés par Masako, répondent et prennent Kyōto en quelques semaines."
+]
+},
+{
+"t": "Suites",
+"p": [
+"Go-Toba, Juntoku et Tsuchimikado sont exilés. Le shogunat installe des représentants (rokuhara tandai) à Kyōto et redistribue les terres."
+]
+}
+],
+"retenir": [
+"1221",
+"Go-Toba vs Yoshitoki",
+"Rokuhara tandai"
+]
+},
+{
+"id": "zen",
+"nom": "Le bouddhisme de Kamakura",
+"kanji": "鎌倉新仏教",
+"epoque": "kamakura",
+"date": "XIIe–XIIIe siècles",
+"resume": "Terre pure, Nichiren, Zen : des voies plus accessibles.",
+"chapitres": [
+{
+"t": "Terre pure",
+"p": [
+"Hōnen (Jōdo-shū) : la récitation du nenbutsu. Shinran (Jōdo shinshū) : la foi seule suffit. Ippen (Ji-shū)."
+]
+},
+{
+"t": "Nichiren",
+"p": [
+"Il prône le Lotus et la récitation du daimoku ; il critique le shogunat dans le Risshō ankoku ron (1260)."
+]
+},
+{
+"t": "Zen",
+"p": [
+"Eisai introduit le Rinzai, Dōgen le Sōtō (Eihei-ji). Le zen Rinzai est soutenu par les Hōjō, puis par les Ashikaga."
+]
+}
+],
+"retenir": [
+"Hōnen, Shinran, Nichiren",
+"Eisai, Dōgen",
+"Mouvements populaires"
+]
+},
+{
+"id": "namban",
+"nom": "Les Européens au Japon",
+"kanji": "南蛮貿易",
+"epoque": "sengoku",
+"date": "1543–1639",
+"resume": "Armes à feu, christianisme et commerce.",
+"chapitres": [
+{
+"t": "Tanegashima",
+"p": [
+"En 1543, des Portugais accostent à Tanegashima. Les armes à feu sont reproduites en quelques années et changent la guerre."
+]
+},
+{
+"t": "Xavier et les chrétiens",
+"p": [
+"François Xavier arrive en 1549. Le christianisme se répand à Kyūshū ; des daimyō (Ōmura Sumitada, Ōtomo Sōrin) se convertissent. Mission Tenshō (1582)."
+]
+},
+{
+"t": "L'interdiction",
+"p": [
+"Hideyoshi publie l'édit d'expulsion des missionnaires (1587). Persécutions, crucifixion de 26 chrétiens à Nagasaki (1597), révolte de Shimabara (1637-1638)."
+]
+}
+],
+"retenir": [
+"1543",
+"1549 Xavier",
+"1587 édit",
+"1637 Shimabara"
+]
+},
+{
+"id": "sankin-kotai",
+"nom": "Le sankin kōtai",
+"kanji": "参勤交代",
+"epoque": "edo",
+"date": "1635",
+"resume": "Le système qui oblige les daimyō à résider alternativement à Edo.",
+"chapitres": [
+{
+"t": "Le principe",
+"p": [
+"Formalisé en 1635 par Tokugawa Iemitsu : le daimyō passe une année sur deux à Edo, et sa famille y reste en permanence."
+]
+},
+{
+"t": "Effets",
+"p": [
+"Un coût énorme pour les domaines, mais aussi le développement des routes (Gokaidō), des auberges et du commerce, et la diffusion de la culture d'Edo."
+]
+},
+{
+"t": "Fin",
+"p": [
+"Assoupli en 1862, aboli ensuite avec la restauration."
+]
+}
+],
+"retenir": [
+"1635",
+"Une année sur deux",
+"Gokaidō"
+]
+},
+{
+"id": "genroku",
+"nom": "La culture de Genroku",
+"kanji": "元禄文化",
+"epoque": "edo",
+"date": "1688–1704",
+"resume": "Le Japon des marchands d'Ōsaka et de Kyōto.",
+"chapitres": [
+{
+"t": "Contexte",
+"p": [
+"Paix et croissance sous Tsunayoshi, essor des chōnin (citadins)."
+]
+},
+{
+"t": "Les arts",
+"p": [
+"Bashō (haïku, Oku no hosomichi), Chikamatsu (théâtre de marionnettes, jōruri), Saikaku (romans ukiyo-zōshi), Kabuki (Ichikawa Danjūrō), Ogata Kōrin."
+]
+}
+],
+"retenir": [
+"Bashō, Chikamatsu, Saikaku",
+"Chōnin"
+]
+},
+{
+"id": "seinan",
+"nom": "La révolte de Satsuma",
+"kanji": "西南戦争",
+"epoque": "meiji",
+"date": "1877",
+"resume": "Saigō Takamori contre le gouvernement qu'il a contribué à fonder.",
+"chapitres": [
+{
+"t": "Les causes",
+"p": [
+"Rupture sur la Corée (1873), perte des privilèges des samouraïs, école privée de Kagoshima."
+]
+},
+{
+"t": "La guerre",
+"p": [
+"Siège du château de Kumamoto, défaites des insurgés. Saigō meurt à Shiroyama (septembre 1877)."
+]
+},
+{
+"t": "Portée",
+"p": [
+"Dernier grand soulèvement armé. La conscription a prouvé son efficacité."
+]
+}
+],
+"retenir": [
+"1877",
+"Saigō Takamori",
+"Shiroyama"
+]
+},
+{
+"id": "ere-taisho-democratie",
+"nom": "La démocratie de Taishō",
+"kanji": "大正デモクラシー",
+"epoque": "taisho",
+"date": "1912–1926",
+"resume": "Partis, suffrage et mouvements sociaux.",
+"chapitres": [
+{
+"t": "Les idées",
+"p": [
+"Yoshino Sakuzō défend la minponshugi ; Minobe Tatsukichi, la théorie de l'empereur comme organe de l'État."
+]
+},
+{
+"t": "Politique",
+"p": [
+"Cabinet Hara (1918), « gouvernement constitutionnel normal » (1924-1932), loi sur le suffrage masculin (1925) mais aussi loi de préservation de l'ordre public."
+]
+},
+{
+"t": "Limites",
+"p": [
+"Séisme du Kantō (1923), massacres de Coréens, crise de 1927."
+]
+}
+],
+"retenir": [
+"Yoshino Sakuzō",
+"1925 suffrage masculin",
+"Loi de préservation de l'ordre public"
+]
+},
+{
+"id": "manchourie",
+"nom": "L'incident de Mukden et la Mandchourie",
+"kanji": "満洲事変",
+"epoque": "showa",
+"date": "1931–1937",
+"resume": "Le tournant militariste.",
+"chapitres": [
+{
+"t": "L'incident",
+"p": [
+"Le 18 septembre 1931, une explosion sur la voie ferrée près de Mukden sert de prétexte à l'armée du Guandong."
+]
+},
+{
+"t": "Manchukuo",
+"p": [
+"Création de l'État fantoche du Manchukuo (1932), Puyi à sa tête. Rapport Lytton, retrait de la Société des Nations (1933)."
+]
+},
+{
+"t": "Radicalisation",
+"p": [
+"15 mai 1932 (assassinat de Inukai), 26 février 1936, guerre de Chine 1937."
+]
+}
+],
+"retenir": [
+"1931",
+"Manchukuo 1932",
+"SDN 1933"
+]
+},
+{
+"id": "haute-croissance",
+"nom": "La haute croissance",
+"kanji": "高度経済成長",
+"epoque": "showa",
+"date": "1955–1973",
+"resume": "Le « miracle » japonais.",
+"chapitres": [
+{
+"t": "Facteurs",
+"p": [
+"Aide américaine, MITI, entreprises en keiretsu, emploi à vie, épargne élevée."
+]
+},
+{
+"t": "Jalons",
+"p": [
+"Plan de doublement des revenus (Ikeda, 1960), Jeux olympiques de 1964, Shinkansen, Expo d'Ōsaka (1970), deuxième économie mondiale vers 1968."
+]
+},
+{
+"t": "Fin",
+"p": [
+"Choc pétrolier de 1973."
+]
+}
+],
+"retenir": [
+"1955–1973",
+"1964",
+"Choc de 1973"
+]
+},
+{
+"id": "bulle",
+"nom": "La bulle économique",
+"kanji": "バブル経済",
+"epoque": "heisei",
+"date": "1985–1991",
+"resume": "Le boom puis l'éclatement.",
+"chapitres": [
+{
+"t": "Montée",
+"p": [
+"Accord du Plaza (1985), hausse du yen, baisse des taux, flambée de l'immobilier et de la bourse."
+]
+},
+{
+"t": "Éclatement",
+"p": [
+"Le Nikkei atteint son sommet fin 1989 ; l'éclatement suit en 1990-1991."
+]
+},
+{
+"t": "Décennies perdues",
+"p": [
+"Crédit bancaire, déflation, faible croissance. Abenomics à partir de 2012."
+]
+}
+],
+"retenir": [
+"Plaza 1985",
+"Nikkei 1989",
+"Décennies perdues"
+]
+},
+{
+"id": "catastrophe-2011",
+"nom": "Le séisme du 11 mars 2011",
+"kanji": "東日本大震災",
+"epoque": "heisei",
+"date": "2011",
+"resume": "Séisme, tsunami et accident de Fukushima.",
+"chapitres": [
+{
+"t": "Le séisme",
+"p": [
+"Magnitude 9,0 au large du Tōhoku, suivie d'un tsunami. Environ 18 000 morts et disparus."
+]
+},
+{
+"t": "Fukushima Daiichi",
+"p": [
+"Pertes d'alimentation, fusions de cœurs de réacteurs ; évacuations massives."
+]
+},
+{
+"t": "Conséquences",
+"p": [
+"Arrêt progressif des réacteurs, débat énergétique, reconstruction."
+]
+}
+],
+"retenir": [
+"11 mars 2011",
+"Tsunami",
+"Fukushima"
+]
 }
 ]
