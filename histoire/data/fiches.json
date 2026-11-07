@@ -1,1 +1,3082 @@
-[{"id":"himiko","type":"personnage","nom":"Himiko","kanji":"卑弥呼","lecture":"ひみこ","dates":"≈ IIe – IIIe siècle","epoque":"yayoi","alias":["Himiko","卑弥呼"],"resume":"Reine du Yamatai, connue surtout par la chronique chinoise Wei zhi. Après une longue guerre entre petits royaumes, les chefs l'auraient choisie pour rétablir la paix.","points":["Souveraine-chamane : elle pratique des rites que les sources chinoises appellent « voie des esprits ».","Vit retirée ; un frère transmet ses ordres et gouverne.","En 239, elle envoie une ambassade au royaume de Wei et reçoit le titre de « reine des Wa amie des Wei », un sceau d'or et des miroirs de bronze.","Sa localisation (Kyūshū ou région de Nara) divise toujours les historiens."],"voir":["yamatai","kofun"]},{"id":"shotoku","type":"personnage","nom":"Prince Shōtoku","kanji":"聖徳太子","lecture":"しょうとくたいし","dates":"574 – 622","epoque":"asuka","alias":["Prince Shōtoku","Shōtoku","聖徳太子","Umayado"],"resume":"Prince régent de l'impératrice Suiko, devenu dans la tradition le modèle du souverain sage et du protecteur du bouddhisme. Son nom d'origine est Umayado.","points":["593 : devient régent de Suiko.","603 : système des douze rangs de bonnet, qui récompense le mérite plutôt que la naissance.","604 : « Constitution en dix-sept articles », plutôt une morale pour les fonctionnaires qu'une constitution moderne.","607 : ambassade en Chine des Sui ; fondation du Hōryū-ji.","Les historiens débattent de la part qui lui revient : le Nihon shoki a fortement idéalisé son image."],"voir":["soga_umako","ritsuryo","bouddhisme"]},{"id":"soga_umako","type":"personnage","nom":"Soga no Umako","kanji":"蘇我馬子","lecture":"そがのうまこ","dates":"≈ 551 – 626","epoque":"asuka","alias":["Soga no Umako","蘇我馬子","Umako"],"resume":"Chef du clan Soga, grand soutien du bouddhisme et véritable homme fort de la cour au début du VIIe siècle.","points":["587 : écrase le clan Mononobe, adversaire du culte bouddhique.","Fait bâtir l'Asuka-dera, premier grand temple.","Son petit-fils Iruka est tué en 645 lors du coup d'État qui ouvre les réformes de Taika."],"voir":["shotoku","taika","bouddhisme"]},{"id":"tenmu","type":"personnage","nom":"Empereur Tenmu","kanji":"天武天皇","lecture":"てんむてんのう","dates":"≈ 631 – 686","epoque":"asuka","alias":["Tenmu","天武"],"resume":"Il prend le trône en 672 après la guerre de Jinshin, en battant le fils de son prédécesseur Tenji. Son règne renforce le pouvoir impérial.","points":["Impose un pouvoir impérial fort et un début de code administratif.","Lance la compilation de l'histoire officielle : Kojiki et Nihon shoki.","Son épouse et successeure, Jitō, poursuit son œuvre."],"voir":["kojiki","nihon_shoki","ritsuryo"]},{"id":"shomu","type":"personnage","nom":"Empereur Shōmu","kanji":"聖武天皇","lecture":"しょうむてんのう","dates":"701 – 756","epoque":"nara","alias":["Shōmu","聖武"],"resume":"Empereur du milieu de l'époque de Nara, marqué par les épidémies de variole et par sa foi bouddhiste.","points":["735-737 : la variole fait des ravages, y compris dans la haute noblesse.","741 : ordonne des temples provinciaux (kokubunji).","743 : décret pour un Bouddha colossal ; le Grand Bouddha du Tōdai-ji est consacré en 752.","Abdique en 749 et devient moine."],"voir":["todaiji","nara_epoque_note","bouddhisme"]},{"id":"hitomaro","type":"personnage","nom":"Kakinomoto no Hitomaro","kanji":"柿本人麻呂","lecture":"かきのもとのひとまろ","dates":"fin VIIe siècle","epoque":"nara","alias":["Kakinomoto no Hitomaro","Hitomaro","柿本人麻呂"],"resume":"Poète de cour, considéré comme le plus grand des poètes du Man'yōshū (« saint de la poésie »).","points":["Maître du chōka (long poème) et de ses envois en tanka.","Poèmes de cérémonie pour la famille impériale, élégies, poèmes de voyage.","Sa vie est très mal connue ; la tradition en a fait une figure quasi mythique."],"voir":["manyoshu","manyogana"]},{"id":"michinaga","type":"personnage","nom":"Fujiwara no Michinaga","kanji":"藤原道長","lecture":"ふじわらのみちなが","dates":"966 – 1028","epoque":"heian","alias":["Fujiwara no Michinaga","Michinaga","藤原道長"],"resume":"Chef du clan Fujiwara au sommet de sa puissance. Il marie ses filles à trois empereurs successifs et fait de petits-fils des souverains.","points":["Gouverne la cour sans occuper durablement les charges suprêmes.","Son poème « ce monde est le mien, comme la pleine lune sans manque » est resté célèbre.","Soutient les lettres de cour : Murasaki Shikibu appartient à l'entourage de sa fille."],"voir":["sessho_kanpaku","murasaki"]},{"id":"murasaki","type":"personnage","nom":"Murasaki Shikibu","kanji":"紫式部","lecture":"むらさきしきぶ","dates":"≈ 973 – ≈ 1014","epoque":"heian","alias":["Murasaki Shikibu","紫式部"],"resume":"Dame d'honneur de l'impératrice Shōshi, auteure du Genji monogatari, souvent présenté comme le premier grand roman du monde.","points":["Écrit aussi un journal (Murasaki Shikibu nikki).","Son œuvre suit la vie du prince Genji et de sa descendance.","Illustre l'essor de la prose en kana, écrite surtout par des femmes."],"voir":["genji","kana","michinaga"]},{"id":"kukai","type":"personnage","nom":"Kūkai","kanji":"空海","lecture":"くうかい","dates":"774 – 835","epoque":"heian","alias":["Kūkai","空海","Kōbō Daishi"],"resume":"Moine qui introduit le bouddhisme ésotérique (Shingon) après un séjour en Chine des Tang. On le vénère sous le nom de Kōbō Daishi.","points":["Rentre de Chine en 806.","816 : obtient le mont Kōya pour y fonder son monastère.","Lettré, calligraphe : la tradition lui prête l'invention du kana."],"voir":["saicho","bouddhisme"]},{"id":"saicho","type":"personnage","nom":"Saichō","kanji":"最澄","lecture":"さいちょう","dates":"767 – 822","epoque":"heian","alias":["Saichō","最澄","Dengyō Daishi"],"resume":"Fondateur de l'école Tendai, établie au mont Hiei près de la capitale, à l'écart de Nara.","points":["Revient de Chine en 805.","Le Tendai devient une école-mère : de nombreux fondateurs du bouddhisme de Kamakura s'y forment.","Rival et correspondant de Kūkai."],"voir":["kukai","bouddhisme"]},{"id":"sugawara","type":"personnage","nom":"Sugawara no Michizane","kanji":"菅原道真","lecture":"すがわらのみちざね","dates":"845 – 903","epoque":"heian","alias":["Sugawara no Michizane","Michizane","菅原道真"],"resume":"Lettré et ministre, il propose en 894 d'interrompre les ambassades en Chine. Exilé à Dazaifu à la suite d'intrigues, il devient après sa mort le dieu de l'étude, Tenjin.","points":["894 : fin des ambassades officielles vers les Tang.","Mort en exil ; une série de catastrophes à la cour est attribuée à sa colère.","Les temples Tenman-gū lui sont consacrés ; les étudiants y prient avant les examens."],"voir":["kana"]},{"id":"kiyomori","type":"personnage","nom":"Taira no Kiyomori","kanji":"平清盛","lecture":"たいらのきよもり","dates":"1118 – 1181","epoque":"heian","alias":["Taira no Kiyomori","Kiyomori","平清盛","Taira"],"resume":"Chef du clan Taira, premier guerrier à diriger la cour : il suit la voie des Fujiwara en mariant sa fille à un empereur.","points":["1160 : écrase les Minamoto lors de la guerre de Heiji.","1167 : devient grand ministre (dajō-daijin).","Petit-fils sur le trône (Antoku), mais révoltes dès 1180.","Fait agrandir le sanctuaire d'Itsukushima et le port de Hyōgo."],"voir":["yoritomo","bushi","dan_no_ura"]},{"id":"yoritomo","type":"personnage","nom":"Minamoto no Yoritomo","kanji":"源頼朝","lecture":"みなもとのよりとも","dates":"1147 – 1199","epoque":"kamakura","alias":["Minamoto no Yoritomo","Yoritomo","源頼朝","Minamoto"],"resume":"Chef du clan Minamoto, vainqueur des Taira et fondateur du premier shogunat. Il choisit de s'installer à Kamakura, loin de la cour.","points":["Exilé enfant à Izu après la défaite de 1160, il se révolte en 1180.","Ses frères et cousins (dont Yoshitsune) mènent la guerre ; il finit par se méfier de Yoshitsune.","Nomme des gouverneurs militaires (shugo) et des intendants (jitō).","1192 : reçoit le titre de shōgun."],"voir":["bakufu","shogun","masako","dan_no_ura"]},{"id":"masako","type":"personnage","nom":"Hōjō Masako","kanji":"北条政子","lecture":"ほうじょうまさこ","dates":"1157 – 1225","epoque":"kamakura","alias":["Hōjō Masako","Masako","北条政子"],"resume":"Veuve de Yoritomo et fille de Hōjō Tokimasa, surnommée la « nonne-shogun ». Elle assure la continuité du régime après la mort de son époux et de ses fils.","points":["En 1221, lors de la guerre de Jōkyū, elle harangue les vassaux et les convainc de marcher contre l'empereur retiré.","Les Hōjō, sa famille, exercent la régence (shikken)."],"voir":["yoritomo","bakufu","gokenin"]},{"id":"dogen","type":"personnage","nom":"Dōgen","kanji":"道元","lecture":"どうげん","dates":"1200 – 1253","epoque":"kamakura","alias":["Dōgen","道元"],"resume":"Moine fondateur du Sōtō zen au Japon, après un séjour en Chine des Song.","points":["Fonde l'Eihei-ji (1244).","Auteur du Shōbōgenzō, grand texte philosophique.","Prône la pratique de la simple assise (shikantaza) comme réalisation de l'éveil."],"voir":["zen"]},{"id":"godaigo","type":"personnage","nom":"Empereur Go-Daigo","kanji":"後醍醐天皇","lecture":"ごだいごてんのう","dates":"1288 – 1339","epoque":"muromachi","alias":["Go-Daigo","後醍醐"],"resume":"Empereur qui tente de rétablir un pouvoir impérial direct en renversant le shogunat de Kamakura, puis se heurte à Ashikaga Takauji.","points":["1333 : chute des Hōjō avec l'aide de Takauji.","1333-1336 : restauration de Kenmu.","1336 : chassé de Kyōto, il fonde la cour du Sud à Yoshino."],"voir":["takauji","nanbokucho"]},{"id":"takauji","type":"personnage","nom":"Ashikaga Takauji","kanji":"足利尊氏","lecture":"あしかがたかうじ","dates":"1305 – 1358","epoque":"muromachi","alias":["Ashikaga Takauji","Takauji","足利尊氏","Ashikaga"],"resume":"Vassal des Hōjō qui retourne sa veste en 1333, puis fonde le shogunat Ashikaga après sa rupture avec Go-Daigo.","points":["1336 : prend Kyōto et promulgue les principes de Kenmu (Kenmu shikimoku).","1338 : reçoit le titre de shōgun de l'empereur qu'il a installé.","Son règne est dominé par la guerre contre la cour du Sud."],"voir":["godaigo","nanbokucho","bakufu"]},{"id":"yoshimitsu","type":"personnage","nom":"Ashikaga Yoshimitsu","kanji":"足利義満","lecture":"あしかがよしみつ","dates":"1358 – 1408","epoque":"muromachi","alias":["Ashikaga Yoshimitsu","Yoshimitsu","足利義満"],"resume":"Troisième shōgun Ashikaga, au sommet de la puissance du régime : il réunifie les deux cours en 1392 et commerce avec les Ming.","points":["1392 : fin de la division Nord-Sud.","1397 : construit le Pavillon d'Or (Kinkaku-ji).","Reçoit des Ming le titre de « roi du Japon » pour ouvrir le commerce.","Soutient le nō de Zeami."],"voir":["takauji","zeami","nanbokucho"]},{"id":"zeami","type":"personnage","nom":"Zeami","kanji":"世阿弥","lecture":"ぜあみ","dates":"≈ 1363 – ≈ 1443","epoque":"muromachi","alias":["Zeami","世阿弥"],"resume":"Acteur et théoricien du nō, protégé de Yoshimitsu. Ses traités fixent les principes esthétiques de l'art du nō.","points":["Traité majeur : Fūshi kaden (« Transmission de la fleur »).","Notion de yūgen : beauté profonde et mystérieuse.","Exilé à Sado en 1434 sous un autre shogun."],"voir":["no","yoshimitsu"]},{"id":"rikyu","type":"personnage","nom":"Sen no Rikyū","kanji":"千利休","lecture":"せんのりきゅう","dates":"1522 – 1591","epoque":"sengoku","alias":["Sen no Rikyū","Rikyū","千利休"],"resume":"Maître de thé de Nobunaga puis de Hideyoshi, qui fixe l'esthétique du wabi-cha, un thé de simplicité.","points":["Salles de thé minuscules, objets rustiques.","Obligé de se suicider par Hideyoshi en 1591, pour des raisons discutées."],"voir":["cha_no_yu","hideyoshi"]},{"id":"nobunaga","type":"personnage","nom":"Oda Nobunaga","kanji":"織田信長","lecture":"おだのぶなが","dates":"1534 – 1582","epoque":"sengoku","alias":["Oda Nobunaga","Nobunaga","織田信長","Oda"],"resume":"Seigneur de la région de Nagoya, premier des trois unificateurs. Il maîtrise le centre du pays en moins de vingt ans.","points":["1560 : bat Imagawa Yoshimoto à Okehazama.","1568 : entre à Kyōto ; 1573 : met fin au shogunat Ashikaga.","1571 : brûle l'Enryaku-ji, puissant monastère armé.","1575 : à Nagashino, utilise massivement les fusils.","Libère le commerce (rakuichi-rakuza).","1582 : meurt à Honnō-ji, trahi par Akechi Mitsuhide."],"voir":["hideyoshi","ieyasu","gekokujo","honnoji"]},{"id":"hideyoshi","type":"personnage","nom":"Toyotomi Hideyoshi","kanji":"豊臣秀吉","lecture":"とよとみひでよし","dates":"1537 – 1598","epoque":"sengoku","alias":["Toyotomi Hideyoshi","Hideyoshi","豊臣秀吉","Toyotomi"],"resume":"Fils de paysan devenu régent, second unificateur. Il achève la conquête du pays en 1590 et met de l'ordre dans la société.","points":["Venge Nobunaga en battant Akechi (1582).","1585 : kanpaku ; 1590 : conquête de Odawara et unification.","Cadastre du pays (Taikō kenchi) et chasse aux épées (1588).","Invasions de la Corée en 1592-1593 et 1597-1598.","Construit le château d'Ōsaka."],"voir":["nobunaga","ieyasu","taiko_kenchi","katanagari"]},{"id":"ieyasu","type":"personnage","nom":"Tokugawa Ieyasu","kanji":"徳川家康","lecture":"とくがわいえやす","dates":"1543 – 1616","epoque":"sengoku","alias":["Tokugawa Ieyasu","Ieyasu","徳川家康","Tokugawa"],"resume":"Troisième unificateur, fondateur du shogunat Tokugawa. Patient, il attend la mort de Hideyoshi.","points":["1600 : vainc ses rivaux à Sekigahara.","1603 : devient shōgun ; abdique en 1605 pour assurer la succession.","1614-1615 : sièges d'Ōsaka, fin des Toyotomi.","Code des maisons guerrières (1615), sanctuaire de Nikkō."],"voir":["sekigahara","sankin_kotai","sakoku"]},{"id":"basho","type":"personnage","nom":"Matsuo Bashō","kanji":"松尾芭蕉","lecture":"まつおばしょう","dates":"1644 – 1694","epoque":"edo","alias":["Matsuo Bashō","Bashō","松尾芭蕉"],"resume":"Poète qui élève le haïku (alors haikai) au rang d'art majeur.","points":["Oku no hosomichi (« La Sente étroite du Bout-du-Monde », voyage de 1689).","Esthétique du sabi, du wabi et de l'instant.","Exemple : « Furuike ya / kawazu tobikomu / mizu no oto »."],"voir":["haiku"]},{"id":"hokusai","type":"personnage","nom":"Katsushika Hokusai","kanji":"葛飾北斎","lecture":"かつしかほくさい","dates":"1760 – 1849","epoque":"edo","alias":["Katsushika Hokusai","Hokusai","葛飾北斎"],"resume":"Peintre et graveur d'ukiyo-e, auteur de la Grande Vague au large de Kanagawa.","points":["Série des Trente-six vues du mont Fuji (vers 1830-1832).","Ses Hokusai manga sont des recueils de croquis.","A influencé les impressionnistes en Europe (japonisme)."],"voir":["ukiyoe"]},{"id":"perry","type":"personnage","nom":"Matthew C. Perry","kanji":"マシュー・ペリー","lecture":"ペリー","dates":"1794 – 1858","epoque":"edo","alias":["Matthew Perry","Matthew C. Perry","Perry","ペリー"],"resume":"Commodore américain dont l'escadre arrive dans la baie d'Edo en 1853, pour exiger l'ouverture du pays.","points":["1853 : « navires noirs » devant Uraga.","1854 : traité de Kanagawa, ouverture de Shimoda et Hakodate.","Suivent d'autres traités inégaux (1858)."],"voir":["sakoku","restauration_meiji"]},{"id":"saigo","type":"personnage","nom":"Saigō Takamori","kanji":"西郷隆盛","lecture":"さいごうたかもり","dates":"1828 – 1877","epoque":"meiji","alias":["Saigō Takamori","Saigō","西郷隆盛"],"resume":"Samouraï de Satsuma, l'un des grands artisans de la Restauration de Meiji, puis chef de la dernière grande révolte de samouraïs en 1877.","points":["Négocie la reddition du château d'Edo en 1868.","Rompt avec le gouvernement en 1873 sur la question de la Corée.","1877 : révolte de Satsuma, défaite à Shiroyama et mort."],"voir":["restauration_meiji","fukoku_kyohei"]},{"id":"meiji_tenno","type":"personnage","nom":"Empereur Meiji","kanji":"明治天皇","lecture":"めいじてんのう","dates":"1852 – 1912","epoque":"meiji","alias":["empereur Meiji","Empereur Meiji","明治天皇"],"resume":"Mutsuhito, monté sur le trône en 1867, symbole du nouveau régime. Son règne couvre toute l'ère Meiji.","points":["Devient le centre d'un État centralisé, avec l'armée à ses ordres.","La Constitution de 1889 est « octroyée » par lui.","Mort en 1912 ; le général Nogi se suicide en son honneur."],"voir":["constitution_meiji","ito"]},{"id":"ito","type":"personnage","nom":"Itō Hirobumi","kanji":"伊藤博文","lecture":"いとうひろぶみ","dates":"1841 – 1909","epoque":"meiji","alias":["Itō Hirobumi","Itō","伊藤博文"],"resume":"Chef de gouvernement et principal rédacteur de la constitution de Meiji, inspirée de la Prusse.","points":["1885 : premier Premier ministre.","Rédige la Constitution (promulguée en 1889).","Résident général en Corée, assassiné à Harbin en 1909."],"voir":["constitution_meiji","meiji_tenno"]},{"id":"fukuzawa","type":"personnage","nom":"Fukuzawa Yukichi","kanji":"福沢諭吉","lecture":"ふくざわゆきち","dates":"1835 – 1901","epoque":"meiji","alias":["Fukuzawa Yukichi","Fukuzawa","福沢諭吉"],"resume":"Penseur de la modernisation, fondateur de l'université Keiō. Ses livres sont des best-sellers.","points":["Seiyō jijō (1866), sur l'Occident.","Gakumon no susume (« Encouragement à l'étude », 1872) : « le ciel ne crée pas d'homme au-dessus ou au-dessous d'un autre ».","Figure du billet de 10 000 yens."],"voir":["fukoku_kyohei"]},{"id":"hara","type":"personnage","nom":"Hara Takashi","kanji":"原敬","lecture":"はらたかし","dates":"1856 – 1921","epoque":"taisho","alias":["Hara Takashi","Hara","原敬"],"resume":"Premier chef de gouvernement issu d'un parti politique et sans titre de noblesse (1918). Assassiné en 1921 à la gare de Tōkyō.","points":["Dirige le Seiyūkai.","Symbole de la « démocratie Taishō » et du rôle croissant de la Diète."],"voir":["taisho_democratie"]},{"id":"hirohito","type":"personnage","nom":"Empereur Shōwa (Hirohito)","kanji":"昭和天皇","lecture":"ひろひと","dates":"1901 – 1989","epoque":"showa","alias":["Hirohito","empereur Shōwa","Empereur Shōwa","昭和天皇"],"resume":"Empereur du Japon de 1926 à 1989, le règne le plus long de l'histoire du pays.","points":["15 août 1945 : annonce radiophonique de la capitulation.","1946 : déclaration où il renonce à sa nature divine.","La Constitution de 1947 fait de lui le « symbole de l'État »."],"voir":["article9","yoshida"]},{"id":"yoshida","type":"personnage","nom":"Yoshida Shigeru","kanji":"吉田茂","lecture":"よしだしげる","dates":"1878 – 1967","epoque":"showa","alias":["Yoshida Shigeru","Yoshida","吉田茂"],"resume":"Premier ministre de la reconstruction (1946-1947 et 1948-1954). Il signe le traité de San Francisco en 1951.","points":["Doctrine Yoshida : alliance avec les États-Unis, peu de dépenses militaires, priorité à l'économie.","Ancêtre du parti libéral-démocrate."],"voir":["article9","kodo_seicho"]},{"id":"akihito","type":"personnage","nom":"Empereur Akihito","kanji":"明仁","lecture":"あきひと","dates":"né en 1933","epoque":"heisei","alias":["Akihito","明仁"],"resume":"Empereur de 1989 à 2019, premier à abdiquer depuis deux siècles. Il redéfinit le rôle d'empereur symbole.","points":["Visites aux victimes de catastrophes, voyages de mémoire.","Abdication le 30 avril 2019 ; son fils Naruhito lui succède, début de l'ère Reiwa."],"voir":["hirohito","bulle"]},{"id":"yamatai","type":"concept","nom":"Yamatai","kanji":"邪馬台国","lecture":"やまたいこく","dates":"IIe – IIIe siècle","epoque":"yayoi","alias":["Yamatai","邪馬台国"],"resume":"Royaume gouverné par Himiko selon le Wei zhi. Son emplacement est un grand débat : nord de Kyūshū ou région de Nara.","points":["Thèse Kinki : sites de Makimuku près de Nara, tumulus de Hashihaka.","Thèse Kyūshū : proximité des routes décrites par les Chinois.","Le Yamatai n'est pas forcément l'ancêtre direct du Yamato."],"voir":["himiko","yamato"]},{"id":"yamato","type":"concept","nom":"Yamato","kanji":"大和","lecture":"やまと","dates":"IIIe – VIIe siècle","epoque":"kofun","alias":["Yamato","大和"],"resume":"Nom de la cour dont les rois deviennent les « grands rois » (ōkimi) puis les empereurs. Désigne aussi la région de Nara.","points":["Alliance de clans (uji) autour d'une dynastie.","Étend son influence par le système des titres (kabane) et des tumulus.","Yamato-damashii : « l'esprit japonais »."],"voir":["kofun","yamatai"]},{"id":"kofun","type":"concept","nom":"Kofun","kanji":"古墳","lecture":"こふん","dates":"IIIe – VIIe siècle","epoque":"kofun","alias":["kofun","Kofun","古墳","tumulus"],"resume":"Tumulus funéraires des élites, qui donnent leur nom à la période. Leur forme typique : une partie ronde et une partie carrée (zenpō kōen fun).","points":["Le plus grand : tumulus attribué à Nintoku à Sakai (≈ 486 m).","Entourés de douves ; haniwa en surface.","Les plus récents deviennent plus petits avec l'arrivée du bouddhisme."],"voir":["haniwa","yamato"]},{"id":"haniwa","type":"concept","nom":"Haniwa","kanji":"埴輪","lecture":"はにわ","dates":"Ve – VIe siècle","epoque":"kofun","alias":["haniwa","Haniwa","埴輪"],"resume":"Sculptures d'argile cuite placées sur les kofun : maisons, chevaux, guerriers, prêtresses.","points":["Servent peut-être à délimiter l'espace sacré de la tombe.","Source précieuse sur les vêtements et l'armement."],"voir":["kofun"]},{"id":"dogu","type":"concept","nom":"Dogū","kanji":"土偶","lecture":"どぐう","dates":"Jōmon","epoque":"jomon","alias":["dogū","Dogū","土偶"],"resume":"Figurines d'argile du Jōmon, aux formes stylisées, souvent féminines.","points":["Fonction rituelle supposée : fécondité, guérison.","Souvent brisées volontairement avant d'être enterrées.","Figurine « à lunettes » du site de Kamegaoka, très célèbre."],"voir":[]},{"id":"bouddhisme","type":"concept","nom":"Bouddhisme au Japon","kanji":"仏教","lecture":"ぶっきょう","dates":"VIe siècle →","epoque":"asuka","alias":["bouddhisme","Bouddhisme","仏教"],"resume":"Religion introduite par la Corée vers 538 ou 552. Après des conflits entre clans, elle devient un pilier de l'État.","points":["Coexistence avec les cultes des kami (shintō).","VIIIe siècle : religion d'État (temples provinciaux, Tōdai-ji).","Heian : Tendai et Shingon ; Kamakura : Terre pure, Nichiren, Zen."],"voir":["shotoku","soga_umako","todaiji","zen"]},{"id":"ritsuryo","type":"concept","nom":"Ritsuryō","kanji":"律令","lecture":"りつりょう","dates":"VIIe – Xe siècle","epoque":"asuka","alias":["ritsuryō","Ritsuryō","律令"],"resume":"Système juridique et administratif inspiré de la Chine des Tang : ritsu (code pénal) et ryō (code administratif).","points":["Le code de Taihō (701) en est la première forme achevée.","Recensements, répartition des rizières (handen), impôts en nature et corvées.","Déclin progressif à Heian avec les shōen."],"voir":["taika","shotoku","shoen"]},{"id":"taika","type":"concept","nom":"Réforme de Taika","kanji":"大化改新","lecture":"たいかのかいしん","dates":"645","epoque":"asuka","alias":["Taika","réforme de Taika","Réformes de Taika","大化"],"resume":"Séries de réformes qui suivent l'élimination des Soga en 645 (incident d'Isshi), menées par le prince Naka no Ōe et Nakatomi no Kamatari.","points":["Principe : toutes les terres et les sujets appartiennent à l'empereur.","Introduit la première ère (nengō) : Taika.","Les historiens discutent de ce qui a vraiment été mis en œuvre."],"voir":["soga_umako","ritsuryo"]},{"id":"kojiki","type":"concept","nom":"Kojiki","kanji":"古事記","lecture":"こじき","dates":"712","epoque":"nara","alias":["Kojiki","古事記"],"resume":"« Chronique des faits anciens », plus ancien livre conservé du Japon. Présente les mythes de la création et la généalogie impériale.","points":["Écrit en un mélange de chinois et de notation phonétique des noms.","Récit d'Izanagi et Izanami, d'Amaterasu, de Susanoo.","Commandé par Tenmu, achevé sous l'impératrice Genmei."],"voir":["nihon_shoki","tenmu"]},{"id":"nihon_shoki","type":"concept","nom":"Nihon shoki","kanji":"日本書紀","lecture":"にほんしょき","dates":"720","epoque":"nara","alias":["Nihon shoki","日本書紀"],"resume":"« Chroniques du Japon », première histoire officielle, rédigée en chinois classique et destinée à l'étranger autant qu'à la cour.","points":["Contient des variantes des mêmes mythes que le Kojiki.","Texte plus politique ; remonte jusqu'à l'impératrice Jitō.","Source majeure et souvent idéalisée pour Asuka."],"voir":["kojiki","tenmu","shotoku"]},{"id":"manyoshu","type":"concept","nom":"Man'yōshū","kanji":"万葉集","lecture":"まんようしゅう","dates":"≈ 759","epoque":"nara","alias":["Man'yōshū","Man’yōshū","万葉集"],"resume":"Plus ancienne anthologie de poésie japonaise, environ 4 500 poèmes. Auteurs de toutes conditions : empereurs, soldats, paysans.","points":["Genres : tanka, chōka, sedōka.","Écrit avec des kanji, en man'yōgana.","Poètes : Hitomaro, Yamanoue no Okura, Ōtomo no Yakamochi."],"voir":["hitomaro","manyogana","kana"]},{"id":"manyogana","type":"concept","nom":"Man'yōgana","kanji":"万葉仮名","lecture":"まんようがな","dates":"VIIIe siècle","epoque":"nara","alias":["man'yōgana","man’yōgana","万葉仮名"],"resume":"Usage de caractères chinois pour leur son seul, afin de noter le japonais. Ils donnent plus tard les kana.","points":["Hiragana : formes cursives de man'yōgana.","Katakana : éléments de caractères, utilisés par les moines."],"voir":["kana","manyoshu"]},{"id":"kana","type":"concept","nom":"Kana","kanji":"仮名","lecture":"かな","dates":"IXe – Xe siècle","epoque":"heian","alias":["kana","hiragana","katakana","平仮名","片仮名"],"resume":"Écritures syllabiques japonaises, nées de la simplification des kanji. Les hiragana servent à la poésie et à la prose de cour.","points":["Hiragana : surtout utilisés par les femmes de cour (« écriture féminine », onna-de).","Katakana : utilisés pour le glossage de textes bouddhiques.","Rend possible une littérature en langue japonaise."],"voir":["manyogana","murasaki","genji"]},{"id":"genji","type":"concept","nom":"Genji monogatari","kanji":"源氏物語","lecture":"げんじものがたり","dates":"≈ 1008","epoque":"heian","alias":["Genji monogatari","Genji","源氏物語"],"resume":"« Dit du Genji », roman de cour en 54 chapitres, qui suit la vie amoureuse et politique du prince Hikaru Genji.","points":["Notion du mono no aware : sensibilité à la fragilité des choses.","Texte fondateur de la littérature japonaise classique.","Il en existe des rouleaux illustrés du XIIe siècle."],"voir":["murasaki","kana"]},{"id":"sessho_kanpaku","type":"concept","nom":"Sesshō et kanpaku","kanji":"摂政・関白","lecture":"せっしょう・かんぱく","dates":"IXe – XIe siècle","epoque":"heian","alias":["sesshō","kanpaku","régent","Sesshō","Kanpaku"],"resume":"Régent d'un empereur mineur (sesshō) puis chancelier d'un empereur majeur (kanpaku). Charges accaparées par la branche nord des Fujiwara.","points":["Fujiwara no Yoshifusa : premier régent non impérial (858).","Les Fujiwara gouvernent en mariant leurs filles aux empereurs.","Apogée avec Michinaga."],"voir":["michinaga","shoen"]},{"id":"shoen","type":"concept","nom":"Shōen","kanji":"荘園","lecture":"しょうえん","dates":"VIIIe – XVIe siècle","epoque":"heian","alias":["shōen","Shōen","荘園"],"resume":"Domaines fonciers privés, souvent exemptés d'impôt, placés sous la protection de grands temples ou nobles.","points":["Affaiblissent les finances de l'État.","Leurs administrateurs et intendants s'arment : rôle dans l'essor des bushi."],"voir":["ritsuryo","bushi"]},{"id":"bushi","type":"concept","nom":"Bushi / samouraï","kanji":"武士","lecture":"ぶし","dates":"Xe siècle →","epoque":"heian","alias":["bushi","samouraï","samouraïs","Bushi","武士"],"resume":"Guerriers professionnels des provinces, au service d'un chef ou d'un seigneur. Le terme « samouraï » (« celui qui sert ») s'impose plus tard.","points":["Naissent des conflits provinciaux et de la défense des shōen.","Grands clans : Taira et Minamoto.","Idéal du bushidō formulé surtout à l'époque d'Edo."],"voir":["kiyomori","yoritomo","shoen"]},{"id":"dan_no_ura","type":"événement","nom":"Bataille de Dan-no-ura","kanji":"壇ノ浦の戦い","lecture":"だんのうらのたたかい","dates":"1185","epoque":"heian","alias":["Dan-no-ura","壇ノ浦"],"resume":"Bataille navale finale entre Taira et Minamoto, dans le détroit de Shimonoseki.","points":["Les Taira sont anéantis ; l'enfant-empereur Antoku se noie.","Épisode central du Heike monogatari."],"voir":["kiyomori","yoritomo"]},{"id":"bakufu","type":"concept","nom":"Bakufu","kanji":"幕府","lecture":"ばくふ","dates":"1185 – 1868","epoque":"kamakura","alias":["bakufu","Bakufu","幕府","shogunat","shogunats","shogunat de Kamakura"],"resume":"« Gouvernement de la tente » : l'administration militaire du shōgun, en parallèle de la cour impériale.","points":["Kamakura (1185-1333), Muromachi (1336-1573), Edo (1603-1868).","Le shōgun est vassal de l'empereur en théorie mais gouverne en pratique.","Chaque bakufu a ses organes de justice et de contrôle des vassaux."],"voir":["shogun","gokenin","yoritomo"]},{"id":"shogun","type":"concept","nom":"Shōgun","kanji":"将軍","lecture":"しょうぐん","dates":"1192 – 1867","epoque":"kamakura","alias":["shōgun","Shōgun","将軍"],"resume":"Titre abrégé de seii taishōgun (« grand général qui soumet les barbares »), détenu par le chef du bakufu.","points":["Yoritomo : 1192.","Dernier shōgun : Tokugawa Yoshinobu, démission en 1867.","L'empereur le nomme, ce qui légitime son pouvoir."],"voir":["bakufu","yoritomo"]},{"id":"gokenin","type":"concept","nom":"Gokenin","kanji":"御家人","lecture":"ごけにん","dates":"1185 – 1868","epoque":"kamakura","alias":["gokenin","Gokenin","御家人"],"resume":"Vassal direct du shōgun. Son service militaire est échangé contre la confirmation de ses terres (go-on).","points":["Relation « bienfait et service » (go-on et hōkō).","La distribution du butin ayant cessé après les Mongols, ils s'appauvrissent."],"voir":["bakufu","mongols"]},{"id":"mongols","type":"événement","nom":"Invasions mongoles","kanji":"元寇","lecture":"げんこう","dates":"1274, 1281","epoque":"kamakura","alias":["Mongols","mongoles","invasions mongoles","元寇","Mongol"],"resume":"Deux expéditions de la Chine mongole (dynastie Yuan) contre le Japon, par Kubilai Khan.","points":["1274 : première tentative, repoussée près de Hakata.","1281 : grande armée, détruite en partie par un typhon.","Peu de butin à distribuer : crise des vassaux et du bakufu."],"voir":["bakufu","gokenin"]},{"id":"zen","type":"concept","nom":"Zen","kanji":"禅","lecture":"ぜん","dates":"XIIe siècle →","epoque":"kamakura","alias":["zen","Zen","禅"],"resume":"École bouddhique de méditation arrivée de Chine : Rinzai (Eisai) et Sōtō (Dōgen).","points":["Rinzai : soutenu par les guerriers de Kamakura et de Muromachi.","Influence sur le thé, les jardins secs, le nō et l'encre.","Les « Cinq Montagnes » (gozan) organisent les grands temples."],"voir":["dogen","cha_no_yu"]},{"id":"nanbokucho","type":"événement","nom":"Nanbokuchō","kanji":"南北朝時代","lecture":"なんぼくちょう","dates":"1336 – 1392","epoque":"muromachi","alias":["Nanbokuchō","cours du Nord et du Sud","deux cours"],"resume":"Période des deux cours : la cour du Nord, à Kyōto, et la cour du Sud, à Yoshino.","points":["Cour du Nord soutenue par Takauji.","1392 : Yoshimitsu obtient la réunification."],"voir":["godaigo","takauji","yoshimitsu"]},{"id":"no","type":"concept","nom":"Nō","kanji":"能","lecture":"のう","dates":"XIVe siècle →","epoque":"muromachi","alias":["nō","Nō","能"],"resume":"Théâtre lyrique masqué, issu de formes populaires (sarugaku) et sublimé par Kan'ami et Zeami.","points":["Acteur principal (shite) souvent un spectre ; masques ; lenteur.","Kyōgen : intermèdes comiques.","Notion de yūgen."],"voir":["zeami","zen"]},{"id":"cha_no_yu","type":"concept","nom":"Cérémonie du thé","kanji":"茶の湯","lecture":"ちゃのゆ","dates":"XVe – XVIe siècle","epoque":"sengoku","alias":["cérémonie du thé","chanoyu","茶の湯","thé"],"resume":"Art de préparer et de boire le thé matcha selon un rituel, mêlant esthétique zen, hospitalité et politique.","points":["Murata Jukō, Takeno Jōō puis Rikyū : wabi-cha.","Les seigneurs s'en servent comme outil de pouvoir."],"voir":["rikyu","zen"]},{"id":"gekokujo","type":"concept","nom":"Gekokujō","kanji":"下剋上","lecture":"げこくじょう","dates":"XVe – XVIe siècle","epoque":"sengoku","alias":["gekokujō","Gekokujō","下剋上"],"resume":"« Le bas l'emporte sur le haut » : vassaux qui renversent leurs maîtres, paysans qui s'arment, familles nouvelles qui s'imposent.","points":["Symbole des Sengoku.","Hideyoshi, d'origine modeste, en est l'illustration."],"voir":["nobunaga","hideyoshi"]},{"id":"honnoji","type":"événement","nom":"Incident du Honnō-ji","kanji":"本能寺の変","lecture":"ほんのうじのへん","dates":"1582","epoque":"sengoku","alias":["Honnō-ji","本能寺"],"resume":"Nobunaga est attaqué dans un temple de Kyōto par son général Akechi Mitsuhide et se donne la mort.","points":["Motifs d'Akechi discutés.","Hideyoshi bat Akechi à Yamazaki, 11 jours plus tard."],"voir":["nobunaga","hideyoshi"]},{"id":"taiko_kenchi","type":"concept","nom":"Taikō kenchi","kanji":"太閤検地","lecture":"たいこうけんち","dates":"1582 →","epoque":"sengoku","alias":["Taikō kenchi","太閤検地","cadastre"],"resume":"Cadastre général lancé par Hideyoshi : chaque terre est mesurée et évaluée en production de riz (koku).","points":["Le paysan est inscrit comme cultivateur responsable de l'impôt.","Unifie les unités de mesure."],"voir":["hideyoshi","katanagari"]},{"id":"katanagari","type":"concept","nom":"Chasse aux épées","kanji":"刀狩","lecture":"かたながり","dates":"1588","epoque":"sengoku","alias":["chasse aux épées","刀狩","Katanagari"],"resume":"Édit de Hideyoshi qui interdit aux paysans de posséder armes et armures.","points":["Sépare nettement guerriers et paysans.","Fixe les statuts sociaux."],"voir":["hideyoshi","shi_no_ko_sho"]},{"id":"sekigahara","type":"événement","nom":"Bataille de Sekigahara","kanji":"関ヶ原の戦い","lecture":"せきがはらのたたかい","dates":"21 octobre 1600","epoque":"sengoku","alias":["Sekigahara","関ヶ原"],"resume":"Bataille décisive entre l'armée de l'Est (Ieyasu) et la coalition de l'Ouest d'Ishida Mitsunari.","points":["Trahisons de dernière minute, dont celle de Kobayakawa Hideaki.","Ouvre la voie à la fondation du shogunat en 1603."],"voir":["ieyasu"]},{"id":"sankin_kotai","type":"concept","nom":"Sankin kōtai","kanji":"参勤交代","lecture":"さんきんこうたい","dates":"1635 →","epoque":"edo","alias":["sankin kōtai","Sankin kōtai","参勤交代"],"resume":"Système d'alternance : les daimyō passent une année sur deux à Edo, et leur famille y reste en permanence.","points":["Contrôle les seigneurs et les ruine en voyages.","Fait naître des routes, des relais et un réseau de commerce."],"voir":["ieyasu","daimyo"]},{"id":"daimyo","type":"concept","nom":"Daimyō","kanji":"大名","lecture":"だいみょう","dates":"XIVe – XIXe siècle","epoque":"sengoku","alias":["daimyō","Daimyō","大名","daimyōs"],"resume":"Seigneur régional, d'abord shugo-daimyō (Muromachi), puis sengoku-daimyō, puis seigneur d'un han sous les Tokugawa.","points":["Edo : plus de 250 han ; un daimyō a au moins 10 000 koku.","Contrôlés par le bakufu."],"voir":["sankin_kotai","gekokujo"]},{"id":"sakoku","type":"concept","nom":"Sakoku","kanji":"鎖国","lecture":"さこく","dates":"1630 – 1853","epoque":"edo","alias":["sakoku","Sakoku","鎖国"],"resume":"« Pays fermé » : politique de contrôle des relations extérieures par le bakufu, plutôt qu'une fermeture totale.","points":["1639 : interdiction des Portugais ; Hollandais cantonnés à Dejima.","Quatre « portes » : Nagasaki, Tsushima (Corée), Satsuma (Ryūkyū), Matsumae (Ezo).","1853-1854 : fin avec Perry."],"voir":["perry","ieyasu"]},{"id":"shi_no_ko_sho","type":"concept","nom":"Shi-nō-kō-shō","kanji":"士農工商","lecture":"しのうこうしょう","dates":"Edo","epoque":"edo","alias":["shi-nō-kō-shō","士農工商"],"resume":"Hiérarchie traditionnelle d'Edo : guerriers, paysans, artisans, marchands.","points":["Les historiens modernes nuancent ce modèle : en pratique, les marchands étaient souvent riches.","Autres groupes : nobles, religieux, hors-castes (eta, hinin)."],"voir":["katanagari"]},{"id":"ukiyoe","type":"concept","nom":"Ukiyo-e","kanji":"浮世絵","lecture":"うきよえ","dates":"XVIIe – XIXe siècle","epoque":"edo","alias":["ukiyo-e","Ukiyo-e","浮世絵"],"resume":"« Images du monde flottant » : estampes sur bois montrant acteurs, courtisanes, paysages.","points":["Moronobu, Harunobu, Utamaro, Hokusai, Hiroshige.","Imprimé en plusieurs couleurs (nishiki-e) à partir de 1765."],"voir":["hokusai","kabuki"]},{"id":"kabuki","type":"concept","nom":"Kabuki","kanji":"歌舞伎","lecture":"かぶき","dates":"XVIIe siècle →","epoque":"edo","alias":["kabuki","Kabuki","歌舞伎"],"resume":"Théâtre populaire spectaculaire, né vers 1603 avec Izumo no Okuni, aujourd'hui joué uniquement par des hommes.","points":["Acteurs spécialisés dans les rôles féminins : onnagata.","Genroku : âge d'or avec Chikamatsu pour le bunraku."],"voir":["ukiyoe","basho"]},{"id":"haiku","type":"concept","nom":"Haïku","kanji":"俳句","lecture":"はいく","dates":"XVIIe siècle →","epoque":"edo","alias":["haïku","haikai","Haïku","俳句"],"resume":"Poème de 17 mores (5-7-5) avec un mot de saison (kigo) et un mot de coupe (kireji).","points":["Issu du hokku, strophe d'ouverture des chaînes de poèmes (renga).","Nommé « haiku » par Masaoka Shiki à la fin du XIXe siècle."],"voir":["basho"]},{"id":"restauration_meiji","type":"événement","nom":"Restauration de Meiji","kanji":"明治維新","lecture":"めいじいしん","dates":"1868","epoque":"meiji","alias":["Restauration de Meiji","Restauration de Meiji","明治維新","Boshin"],"resume":"Renversement du shogunat par des coalitions de han (Satsuma, Chōshū) au nom de l'empereur.","points":["Janvier 1868 : coup de Toba-Fushimi, guerre de Boshin.","1871 : abolition des han et création des préfectures."],"voir":["saigo","perry","fukoku_kyohei"]},{"id":"fukoku_kyohei","type":"concept","nom":"Fukoku kyōhei","kanji":"富国強兵","lecture":"ふこくきょうへい","dates":"1868 →","epoque":"meiji","alias":["fukoku kyōhei","富国強兵"],"resume":"« Pays riche, armée forte » : mot d'ordre de la modernisation de Meiji.","points":["Industrialisation, chemins de fer, conscription (1873).","Réforme de l'impôt foncier (1873) pour financer l'État."],"voir":["zaibatsu","fukuzawa"]},{"id":"zaibatsu","type":"concept","nom":"Zaibatsu","kanji":"財閥","lecture":"ざいばつ","dates":"Meiji – 1945","epoque":"meiji","alias":["zaibatsu","Zaibatsu","財閥"],"resume":"Grands conglomérats familiaux : Mitsui, Mitsubishi, Sumitomo, Yasuda.","points":["Dissous (en théorie) par l'occupation américaine.","Remplacés par les keiretsu."],"voir":["fukoku_kyohei"]},{"id":"constitution_meiji","type":"concept","nom":"Constitution de Meiji","kanji":"大日本帝国憲法","lecture":"だいにほんていこくけんぽう","dates":"1889","epoque":"meiji","alias":["Constitution de Meiji","constitution de Meiji","Constitution Meiji"],"resume":"Première constitution moderne d'Asie : monarchie constitutionnelle, empereur souverain et commandant des forces armées.","points":["Diète bicamérale (chambre des pairs et chambre des représentants).","Droits des sujets « dans la limite de la loi ».","Remplacée en 1947."],"voir":["ito","meiji_tenno"]},{"id":"taisho_democratie","type":"concept","nom":"Démocratie Taishō","kanji":"大正デモクラシー","lecture":"たいしょうデモクラシー","dates":"1912 – 1925","epoque":"taisho","alias":["démocratie Taishō","Démocratie Taishō"],"resume":"Mouvement pour le gouvernement de partis, le suffrage et les droits civiques sous l'ère Taishō.","points":["Théorie de Yoshino Sakuzō (« minponshugi »).","Suffrage masculin en 1925, accompagné d'une loi de préservation de la paix."],"voir":["hara"]},{"id":"article9","type":"concept","nom":"Article 9","kanji":"憲法第9条","lecture":"けんぽうだいきゅうじょう","dates":"1947","epoque":"showa","alias":["article 9","Article 9"],"resume":"Article de la Constitution de 1947 qui renonce à la guerre comme droit souverain et prévoit de ne pas maintenir de forces de guerre.","points":["Les Forces d'autodéfense (1954) font l'objet d'interprétations.","Débat récurrent sur sa révision."],"voir":["yoshida","hirohito"]},{"id":"kodo_seicho","type":"événement","nom":"Haute croissance","kanji":"高度経済成長","lecture":"こうどけいざいせいちょう","dates":"1955 – 1973","epoque":"showa","alias":["haute croissance","高度成長"],"resume":"Période de croissance de plus de 9 % par an en moyenne, qui fait du Japon la deuxième économie mondiale.","points":["1964 : Jeux olympiques et Shinkansen.","Fin avec le choc pétrolier de 1973."],"voir":["yoshida"]},{"id":"bulle","type":"événement","nom":"Bulle économique","kanji":"バブル景気","lecture":"バブルけいき","dates":"1986 – 1991","epoque":"heisei","alias":["bulle","bulle économique","バブル"],"resume":"Envolée des prix de l'immobilier et de la bourse, suivie d'un effondrement au début des années 1990.","points":["Indice Nikkei au sommet fin 1989.","Décennie perdue : déflation, banques en difficulté."],"voir":["akihito"]},{"id":"todaiji","type":"concept","nom":"Tōdai-ji","kanji":"東大寺","lecture":"とうだいじ","dates":"752","epoque":"nara","alias":["Tōdai-ji","東大寺"],"resume":"Grand temple de Nara, siège du Daibutsu, immense Bouddha de bronze.","points":["Bâtiment en bois parmi les plus vastes du monde.","Daibutsu : environ 15 m, consacré en 752."],"voir":["shomu","bouddhisme"]},{"id":"nara_epoque_note","type":"concept","nom":"Temples provinciaux","kanji":"国分寺","lecture":"こくぶんじ","dates":"741","epoque":"nara","alias":["kokubunji","temples provinciaux"],"resume":"Réseau de temples et de couvents créés dans chaque province par ordre de Shōmu, pour protéger l'État par les rites bouddhiques.","points":["Un temple de moines et un de nonnes par province.","Le Tōdai-ji est le temple principal."],"voir":["shomu","todaiji"]}]
+[
+{
+"id": "himiko",
+"type": "personnage",
+"nom": "Himiko",
+"kanji": "卑弥呼",
+"lecture": "ひみこ",
+"dates": "≈ IIe – IIIe siècle",
+"epoque": "yayoi",
+"alias": [
+"Himiko",
+"卑弥呼"
+],
+"resume": "Reine du Yamatai, connue surtout par la chronique chinoise Wei zhi. Après une longue guerre entre petits royaumes, les chefs l'auraient choisie pour rétablir la paix.",
+"points": [
+"Souveraine-chamane : elle pratique des rites que les sources chinoises appellent « voie des esprits ».",
+"Vit retirée ; un frère transmet ses ordres et gouverne.",
+"En 239, elle envoie une ambassade au royaume de Wei et reçoit le titre de « reine des Wa amie des Wei », un sceau d'or et des miroirs de bronze.",
+"Sa localisation (Kyūshū ou région de Nara) divise toujours les historiens."
+],
+"voir": [
+"yamatai",
+"kofun"
+]
+},
+{
+"id": "shotoku",
+"type": "personnage",
+"nom": "Prince Shōtoku",
+"kanji": "聖徳太子",
+"lecture": "しょうとくたいし",
+"dates": "574 – 622",
+"epoque": "asuka",
+"alias": [
+"Prince Shōtoku",
+"Shōtoku",
+"聖徳太子",
+"Umayado"
+],
+"resume": "Prince régent de l'impératrice Suiko, devenu dans la tradition le modèle du souverain sage et du protecteur du bouddhisme. Son nom d'origine est Umayado.",
+"points": [
+"593 : devient régent de Suiko.",
+"603 : système des douze rangs de bonnet, qui récompense le mérite plutôt que la naissance.",
+"604 : « Constitution en dix-sept articles », plutôt une morale pour les fonctionnaires qu'une constitution moderne.",
+"607 : ambassade en Chine des Sui ; fondation du Hōryū-ji.",
+"Les historiens débattent de la part qui lui revient : le Nihon shoki a fortement idéalisé son image."
+],
+"voir": [
+"soga_umako",
+"ritsuryo",
+"bouddhisme"
+]
+},
+{
+"id": "soga_umako",
+"type": "personnage",
+"nom": "Soga no Umako",
+"kanji": "蘇我馬子",
+"lecture": "そがのうまこ",
+"dates": "≈ 551 – 626",
+"epoque": "asuka",
+"alias": [
+"Soga no Umako",
+"蘇我馬子",
+"Umako"
+],
+"resume": "Chef du clan Soga, grand soutien du bouddhisme et véritable homme fort de la cour au début du VIIe siècle.",
+"points": [
+"587 : écrase le clan Mononobe, adversaire du culte bouddhique.",
+"Fait bâtir l'Asuka-dera, premier grand temple.",
+"Son petit-fils Iruka est tué en 645 lors du coup d'État qui ouvre les réformes de Taika."
+],
+"voir": [
+"shotoku",
+"taika",
+"bouddhisme"
+]
+},
+{
+"id": "tenmu",
+"type": "personnage",
+"nom": "Empereur Tenmu",
+"kanji": "天武天皇",
+"lecture": "てんむてんのう",
+"dates": "≈ 631 – 686",
+"epoque": "asuka",
+"alias": [
+"Tenmu",
+"天武"
+],
+"resume": "Il prend le trône en 672 après la guerre de Jinshin, en battant le fils de son prédécesseur Tenji. Son règne renforce le pouvoir impérial.",
+"points": [
+"Impose un pouvoir impérial fort et un début de code administratif.",
+"Lance la compilation de l'histoire officielle : Kojiki et Nihon shoki.",
+"Son épouse et successeure, Jitō, poursuit son œuvre."
+],
+"voir": [
+"kojiki",
+"nihon_shoki",
+"ritsuryo"
+]
+},
+{
+"id": "shomu",
+"type": "personnage",
+"nom": "Empereur Shōmu",
+"kanji": "聖武天皇",
+"lecture": "しょうむてんのう",
+"dates": "701 – 756",
+"epoque": "nara",
+"alias": [
+"Shōmu",
+"聖武"
+],
+"resume": "Empereur du milieu de l'époque de Nara, marqué par les épidémies de variole et par sa foi bouddhiste.",
+"points": [
+"735-737 : la variole fait des ravages, y compris dans la haute noblesse.",
+"741 : ordonne des temples provinciaux (kokubunji).",
+"743 : décret pour un Bouddha colossal ; le Grand Bouddha du Tōdai-ji est consacré en 752.",
+"Abdique en 749 et devient moine."
+],
+"voir": [
+"todaiji",
+"nara_epoque_note",
+"bouddhisme"
+]
+},
+{
+"id": "hitomaro",
+"type": "personnage",
+"nom": "Kakinomoto no Hitomaro",
+"kanji": "柿本人麻呂",
+"lecture": "かきのもとのひとまろ",
+"dates": "fin VIIe siècle",
+"epoque": "nara",
+"alias": [
+"Kakinomoto no Hitomaro",
+"Hitomaro",
+"柿本人麻呂"
+],
+"resume": "Poète de cour, considéré comme le plus grand des poètes du Man'yōshū (« saint de la poésie »).",
+"points": [
+"Maître du chōka (long poème) et de ses envois en tanka.",
+"Poèmes de cérémonie pour la famille impériale, élégies, poèmes de voyage.",
+"Sa vie est très mal connue ; la tradition en a fait une figure quasi mythique."
+],
+"voir": [
+"manyoshu",
+"manyogana"
+]
+},
+{
+"id": "michinaga",
+"type": "personnage",
+"nom": "Fujiwara no Michinaga",
+"kanji": "藤原道長",
+"lecture": "ふじわらのみちなが",
+"dates": "966 – 1028",
+"epoque": "heian",
+"alias": [
+"Fujiwara no Michinaga",
+"Michinaga",
+"藤原道長"
+],
+"resume": "Chef du clan Fujiwara au sommet de sa puissance. Il marie ses filles à trois empereurs successifs et fait de petits-fils des souverains.",
+"points": [
+"Gouverne la cour sans occuper durablement les charges suprêmes.",
+"Son poème « ce monde est le mien, comme la pleine lune sans manque » est resté célèbre.",
+"Soutient les lettres de cour : Murasaki Shikibu appartient à l'entourage de sa fille."
+],
+"voir": [
+"sessho_kanpaku",
+"murasaki"
+]
+},
+{
+"id": "murasaki",
+"type": "personnage",
+"nom": "Murasaki Shikibu",
+"kanji": "紫式部",
+"lecture": "むらさきしきぶ",
+"dates": "≈ 973 – ≈ 1014",
+"epoque": "heian",
+"alias": [
+"Murasaki Shikibu",
+"紫式部"
+],
+"resume": "Dame d'honneur de l'impératrice Shōshi, auteure du Genji monogatari, souvent présenté comme le premier grand roman du monde.",
+"points": [
+"Écrit aussi un journal (Murasaki Shikibu nikki).",
+"Son œuvre suit la vie du prince Genji et de sa descendance.",
+"Illustre l'essor de la prose en kana, écrite surtout par des femmes."
+],
+"voir": [
+"genji",
+"kana",
+"michinaga"
+]
+},
+{
+"id": "kukai",
+"type": "personnage",
+"nom": "Kūkai",
+"kanji": "空海",
+"lecture": "くうかい",
+"dates": "774 – 835",
+"epoque": "heian",
+"alias": [
+"Kūkai",
+"空海",
+"Kōbō Daishi"
+],
+"resume": "Moine qui introduit le bouddhisme ésotérique (Shingon) après un séjour en Chine des Tang. On le vénère sous le nom de Kōbō Daishi.",
+"points": [
+"Rentre de Chine en 806.",
+"816 : obtient le mont Kōya pour y fonder son monastère.",
+"Lettré, calligraphe : la tradition lui prête l'invention du kana."
+],
+"voir": [
+"saicho",
+"bouddhisme"
+]
+},
+{
+"id": "saicho",
+"type": "personnage",
+"nom": "Saichō",
+"kanji": "最澄",
+"lecture": "さいちょう",
+"dates": "767 – 822",
+"epoque": "heian",
+"alias": [
+"Saichō",
+"最澄",
+"Dengyō Daishi"
+],
+"resume": "Fondateur de l'école Tendai, établie au mont Hiei près de la capitale, à l'écart de Nara.",
+"points": [
+"Revient de Chine en 805.",
+"Le Tendai devient une école-mère : de nombreux fondateurs du bouddhisme de Kamakura s'y forment.",
+"Rival et correspondant de Kūkai."
+],
+"voir": [
+"kukai",
+"bouddhisme"
+]
+},
+{
+"id": "sugawara",
+"type": "personnage",
+"nom": "Sugawara no Michizane",
+"kanji": "菅原道真",
+"lecture": "すがわらのみちざね",
+"dates": "845 – 903",
+"epoque": "heian",
+"alias": [
+"Sugawara no Michizane",
+"Michizane",
+"菅原道真"
+],
+"resume": "Lettré et ministre, il propose en 894 d'interrompre les ambassades en Chine. Exilé à Dazaifu à la suite d'intrigues, il devient après sa mort le dieu de l'étude, Tenjin.",
+"points": [
+"894 : fin des ambassades officielles vers les Tang.",
+"Mort en exil ; une série de catastrophes à la cour est attribuée à sa colère.",
+"Les temples Tenman-gū lui sont consacrés ; les étudiants y prient avant les examens."
+],
+"voir": [
+"kana"
+]
+},
+{
+"id": "kiyomori",
+"type": "personnage",
+"nom": "Taira no Kiyomori",
+"kanji": "平清盛",
+"lecture": "たいらのきよもり",
+"dates": "1118 – 1181",
+"epoque": "heian",
+"alias": [
+"Taira no Kiyomori",
+"Kiyomori",
+"平清盛",
+"Taira"
+],
+"resume": "Chef du clan Taira, premier guerrier à diriger la cour : il suit la voie des Fujiwara en mariant sa fille à un empereur.",
+"points": [
+"1160 : écrase les Minamoto lors de la guerre de Heiji.",
+"1167 : devient grand ministre (dajō-daijin).",
+"Petit-fils sur le trône (Antoku), mais révoltes dès 1180.",
+"Fait agrandir le sanctuaire d'Itsukushima et le port de Hyōgo."
+],
+"voir": [
+"yoritomo",
+"bushi",
+"dan_no_ura"
+]
+},
+{
+"id": "yoritomo",
+"type": "personnage",
+"nom": "Minamoto no Yoritomo",
+"kanji": "源頼朝",
+"lecture": "みなもとのよりとも",
+"dates": "1147 – 1199",
+"epoque": "kamakura",
+"alias": [
+"Minamoto no Yoritomo",
+"Yoritomo",
+"源頼朝",
+"Minamoto"
+],
+"resume": "Chef du clan Minamoto, vainqueur des Taira et fondateur du premier shogunat. Il choisit de s'installer à Kamakura, loin de la cour.",
+"points": [
+"Exilé enfant à Izu après la défaite de 1160, il se révolte en 1180.",
+"Ses frères et cousins (dont Yoshitsune) mènent la guerre ; il finit par se méfier de Yoshitsune.",
+"Nomme des gouverneurs militaires (shugo) et des intendants (jitō).",
+"1192 : reçoit le titre de shōgun."
+],
+"voir": [
+"bakufu",
+"shogun",
+"masako",
+"dan_no_ura"
+]
+},
+{
+"id": "masako",
+"type": "personnage",
+"nom": "Hōjō Masako",
+"kanji": "北条政子",
+"lecture": "ほうじょうまさこ",
+"dates": "1157 – 1225",
+"epoque": "kamakura",
+"alias": [
+"Hōjō Masako",
+"Masako",
+"北条政子"
+],
+"resume": "Veuve de Yoritomo et fille de Hōjō Tokimasa, surnommée la « nonne-shogun ». Elle assure la continuité du régime après la mort de son époux et de ses fils.",
+"points": [
+"En 1221, lors de la guerre de Jōkyū, elle harangue les vassaux et les convainc de marcher contre l'empereur retiré.",
+"Les Hōjō, sa famille, exercent la régence (shikken)."
+],
+"voir": [
+"yoritomo",
+"bakufu",
+"gokenin"
+]
+},
+{
+"id": "dogen",
+"type": "personnage",
+"nom": "Dōgen",
+"kanji": "道元",
+"lecture": "どうげん",
+"dates": "1200 – 1253",
+"epoque": "kamakura",
+"alias": [
+"Dōgen",
+"道元"
+],
+"resume": "Moine fondateur du Sōtō zen au Japon, après un séjour en Chine des Song.",
+"points": [
+"Fonde l'Eihei-ji (1244).",
+"Auteur du Shōbōgenzō, grand texte philosophique.",
+"Prône la pratique de la simple assise (shikantaza) comme réalisation de l'éveil."
+],
+"voir": [
+"zen"
+]
+},
+{
+"id": "godaigo",
+"type": "personnage",
+"nom": "Empereur Go-Daigo",
+"kanji": "後醍醐天皇",
+"lecture": "ごだいごてんのう",
+"dates": "1288 – 1339",
+"epoque": "muromachi",
+"alias": [
+"Go-Daigo",
+"後醍醐"
+],
+"resume": "Empereur qui tente de rétablir un pouvoir impérial direct en renversant le shogunat de Kamakura, puis se heurte à Ashikaga Takauji.",
+"points": [
+"1333 : chute des Hōjō avec l'aide de Takauji.",
+"1333-1336 : restauration de Kenmu.",
+"1336 : chassé de Kyōto, il fonde la cour du Sud à Yoshino."
+],
+"voir": [
+"takauji",
+"nanbokucho"
+]
+},
+{
+"id": "takauji",
+"type": "personnage",
+"nom": "Ashikaga Takauji",
+"kanji": "足利尊氏",
+"lecture": "あしかがたかうじ",
+"dates": "1305 – 1358",
+"epoque": "muromachi",
+"alias": [
+"Ashikaga Takauji",
+"Takauji",
+"足利尊氏",
+"Ashikaga"
+],
+"resume": "Vassal des Hōjō qui retourne sa veste en 1333, puis fonde le shogunat Ashikaga après sa rupture avec Go-Daigo.",
+"points": [
+"1336 : prend Kyōto et promulgue les principes de Kenmu (Kenmu shikimoku).",
+"1338 : reçoit le titre de shōgun de l'empereur qu'il a installé.",
+"Son règne est dominé par la guerre contre la cour du Sud."
+],
+"voir": [
+"godaigo",
+"nanbokucho",
+"bakufu"
+]
+},
+{
+"id": "yoshimitsu",
+"type": "personnage",
+"nom": "Ashikaga Yoshimitsu",
+"kanji": "足利義満",
+"lecture": "あしかがよしみつ",
+"dates": "1358 – 1408",
+"epoque": "muromachi",
+"alias": [
+"Ashikaga Yoshimitsu",
+"Yoshimitsu",
+"足利義満"
+],
+"resume": "Troisième shōgun Ashikaga, au sommet de la puissance du régime : il réunifie les deux cours en 1392 et commerce avec les Ming.",
+"points": [
+"1392 : fin de la division Nord-Sud.",
+"1397 : construit le Pavillon d'Or (Kinkaku-ji).",
+"Reçoit des Ming le titre de « roi du Japon » pour ouvrir le commerce.",
+"Soutient le nō de Zeami."
+],
+"voir": [
+"takauji",
+"zeami",
+"nanbokucho"
+]
+},
+{
+"id": "zeami",
+"type": "personnage",
+"nom": "Zeami",
+"kanji": "世阿弥",
+"lecture": "ぜあみ",
+"dates": "≈ 1363 – ≈ 1443",
+"epoque": "muromachi",
+"alias": [
+"Zeami",
+"世阿弥"
+],
+"resume": "Acteur et théoricien du nō, protégé de Yoshimitsu. Ses traités fixent les principes esthétiques de l'art du nō.",
+"points": [
+"Traité majeur : Fūshi kaden (« Transmission de la fleur »).",
+"Notion de yūgen : beauté profonde et mystérieuse.",
+"Exilé à Sado en 1434 sous un autre shogun."
+],
+"voir": [
+"no",
+"yoshimitsu"
+]
+},
+{
+"id": "rikyu",
+"type": "personnage",
+"nom": "Sen no Rikyū",
+"kanji": "千利休",
+"lecture": "せんのりきゅう",
+"dates": "1522 – 1591",
+"epoque": "sengoku",
+"alias": [
+"Sen no Rikyū",
+"Rikyū",
+"千利休"
+],
+"resume": "Maître de thé de Nobunaga puis de Hideyoshi, qui fixe l'esthétique du wabi-cha, un thé de simplicité.",
+"points": [
+"Salles de thé minuscules, objets rustiques.",
+"Obligé de se suicider par Hideyoshi en 1591, pour des raisons discutées."
+],
+"voir": [
+"cha_no_yu",
+"hideyoshi"
+]
+},
+{
+"id": "nobunaga",
+"type": "personnage",
+"nom": "Oda Nobunaga",
+"kanji": "織田信長",
+"lecture": "おだのぶなが",
+"dates": "1534 – 1582",
+"epoque": "sengoku",
+"alias": [
+"Oda Nobunaga",
+"Nobunaga",
+"織田信長",
+"Oda"
+],
+"resume": "Seigneur de la région de Nagoya, premier des trois unificateurs. Il maîtrise le centre du pays en moins de vingt ans.",
+"points": [
+"1560 : bat Imagawa Yoshimoto à Okehazama.",
+"1568 : entre à Kyōto ; 1573 : met fin au shogunat Ashikaga.",
+"1571 : brûle l'Enryaku-ji, puissant monastère armé.",
+"1575 : à Nagashino, utilise massivement les fusils.",
+"Libère le commerce (rakuichi-rakuza).",
+"1582 : meurt à Honnō-ji, trahi par Akechi Mitsuhide."
+],
+"voir": [
+"hideyoshi",
+"ieyasu",
+"gekokujo",
+"honnoji"
+]
+},
+{
+"id": "hideyoshi",
+"type": "personnage",
+"nom": "Toyotomi Hideyoshi",
+"kanji": "豊臣秀吉",
+"lecture": "とよとみひでよし",
+"dates": "1537 – 1598",
+"epoque": "sengoku",
+"alias": [
+"Toyotomi Hideyoshi",
+"Hideyoshi",
+"豊臣秀吉",
+"Toyotomi"
+],
+"resume": "Fils de paysan devenu régent, second unificateur. Il achève la conquête du pays en 1590 et met de l'ordre dans la société.",
+"points": [
+"Venge Nobunaga en battant Akechi (1582).",
+"1585 : kanpaku ; 1590 : conquête de Odawara et unification.",
+"Cadastre du pays (Taikō kenchi) et chasse aux épées (1588).",
+"Invasions de la Corée en 1592-1593 et 1597-1598.",
+"Construit le château d'Ōsaka."
+],
+"voir": [
+"nobunaga",
+"ieyasu",
+"taiko_kenchi",
+"katanagari"
+]
+},
+{
+"id": "ieyasu",
+"type": "personnage",
+"nom": "Tokugawa Ieyasu",
+"kanji": "徳川家康",
+"lecture": "とくがわいえやす",
+"dates": "1543 – 1616",
+"epoque": "sengoku",
+"alias": [
+"Tokugawa Ieyasu",
+"Ieyasu",
+"徳川家康",
+"Tokugawa"
+],
+"resume": "Troisième unificateur, fondateur du shogunat Tokugawa. Patient, il attend la mort de Hideyoshi.",
+"points": [
+"1600 : vainc ses rivaux à Sekigahara.",
+"1603 : devient shōgun ; abdique en 1605 pour assurer la succession.",
+"1614-1615 : sièges d'Ōsaka, fin des Toyotomi.",
+"Code des maisons guerrières (1615), sanctuaire de Nikkō."
+],
+"voir": [
+"sekigahara",
+"sankin_kotai",
+"sakoku"
+]
+},
+{
+"id": "basho",
+"type": "personnage",
+"nom": "Matsuo Bashō",
+"kanji": "松尾芭蕉",
+"lecture": "まつおばしょう",
+"dates": "1644 – 1694",
+"epoque": "edo",
+"alias": [
+"Matsuo Bashō",
+"Bashō",
+"松尾芭蕉"
+],
+"resume": "Poète qui élève le haïku (alors haikai) au rang d'art majeur.",
+"points": [
+"Oku no hosomichi (« La Sente étroite du Bout-du-Monde », voyage de 1689).",
+"Esthétique du sabi, du wabi et de l'instant.",
+"Exemple : « Furuike ya / kawazu tobikomu / mizu no oto »."
+],
+"voir": [
+"haiku"
+]
+},
+{
+"id": "hokusai",
+"type": "personnage",
+"nom": "Katsushika Hokusai",
+"kanji": "葛飾北斎",
+"lecture": "かつしかほくさい",
+"dates": "1760 – 1849",
+"epoque": "edo",
+"alias": [
+"Katsushika Hokusai",
+"Hokusai",
+"葛飾北斎"
+],
+"resume": "Peintre et graveur d'ukiyo-e, auteur de la Grande Vague au large de Kanagawa.",
+"points": [
+"Série des Trente-six vues du mont Fuji (vers 1830-1832).",
+"Ses Hokusai manga sont des recueils de croquis.",
+"A influencé les impressionnistes en Europe (japonisme)."
+],
+"voir": [
+"ukiyoe"
+]
+},
+{
+"id": "perry",
+"type": "personnage",
+"nom": "Matthew C. Perry",
+"kanji": "マシュー・ペリー",
+"lecture": "ペリー",
+"dates": "1794 – 1858",
+"epoque": "edo",
+"alias": [
+"Matthew Perry",
+"Matthew C. Perry",
+"Perry",
+"ペリー"
+],
+"resume": "Commodore américain dont l'escadre arrive dans la baie d'Edo en 1853, pour exiger l'ouverture du pays.",
+"points": [
+"1853 : « navires noirs » devant Uraga.",
+"1854 : traité de Kanagawa, ouverture de Shimoda et Hakodate.",
+"Suivent d'autres traités inégaux (1858)."
+],
+"voir": [
+"sakoku",
+"restauration_meiji"
+]
+},
+{
+"id": "saigo",
+"type": "personnage",
+"nom": "Saigō Takamori",
+"kanji": "西郷隆盛",
+"lecture": "さいごうたかもり",
+"dates": "1828 – 1877",
+"epoque": "meiji",
+"alias": [
+"Saigō Takamori",
+"Saigō",
+"西郷隆盛"
+],
+"resume": "Samouraï de Satsuma, l'un des grands artisans de la Restauration de Meiji, puis chef de la dernière grande révolte de samouraïs en 1877.",
+"points": [
+"Négocie la reddition du château d'Edo en 1868.",
+"Rompt avec le gouvernement en 1873 sur la question de la Corée.",
+"1877 : révolte de Satsuma, défaite à Shiroyama et mort."
+],
+"voir": [
+"restauration_meiji",
+"fukoku_kyohei"
+]
+},
+{
+"id": "meiji_tenno",
+"type": "personnage",
+"nom": "Empereur Meiji",
+"kanji": "明治天皇",
+"lecture": "めいじてんのう",
+"dates": "1852 – 1912",
+"epoque": "meiji",
+"alias": [
+"empereur Meiji",
+"Empereur Meiji",
+"明治天皇"
+],
+"resume": "Mutsuhito, monté sur le trône en 1867, symbole du nouveau régime. Son règne couvre toute l'ère Meiji.",
+"points": [
+"Devient le centre d'un État centralisé, avec l'armée à ses ordres.",
+"La Constitution de 1889 est « octroyée » par lui.",
+"Mort en 1912 ; le général Nogi se suicide en son honneur."
+],
+"voir": [
+"constitution_meiji",
+"ito"
+]
+},
+{
+"id": "ito",
+"type": "personnage",
+"nom": "Itō Hirobumi",
+"kanji": "伊藤博文",
+"lecture": "いとうひろぶみ",
+"dates": "1841 – 1909",
+"epoque": "meiji",
+"alias": [
+"Itō Hirobumi",
+"Itō",
+"伊藤博文"
+],
+"resume": "Chef de gouvernement et principal rédacteur de la constitution de Meiji, inspirée de la Prusse.",
+"points": [
+"1885 : premier Premier ministre.",
+"Rédige la Constitution (promulguée en 1889).",
+"Résident général en Corée, assassiné à Harbin en 1909."
+],
+"voir": [
+"constitution_meiji",
+"meiji_tenno"
+]
+},
+{
+"id": "fukuzawa",
+"type": "personnage",
+"nom": "Fukuzawa Yukichi",
+"kanji": "福沢諭吉",
+"lecture": "ふくざわゆきち",
+"dates": "1835 – 1901",
+"epoque": "meiji",
+"alias": [
+"Fukuzawa Yukichi",
+"Fukuzawa",
+"福沢諭吉"
+],
+"resume": "Penseur de la modernisation, fondateur de l'université Keiō. Ses livres sont des best-sellers.",
+"points": [
+"Seiyō jijō (1866), sur l'Occident.",
+"Gakumon no susume (« Encouragement à l'étude », 1872) : « le ciel ne crée pas d'homme au-dessus ou au-dessous d'un autre ».",
+"Figure du billet de 10 000 yens."
+],
+"voir": [
+"fukoku_kyohei"
+]
+},
+{
+"id": "hara",
+"type": "personnage",
+"nom": "Hara Takashi",
+"kanji": "原敬",
+"lecture": "はらたかし",
+"dates": "1856 – 1921",
+"epoque": "taisho",
+"alias": [
+"Hara Takashi",
+"Hara",
+"原敬"
+],
+"resume": "Premier chef de gouvernement issu d'un parti politique et sans titre de noblesse (1918). Assassiné en 1921 à la gare de Tōkyō.",
+"points": [
+"Dirige le Seiyūkai.",
+"Symbole de la « démocratie Taishō » et du rôle croissant de la Diète."
+],
+"voir": [
+"taisho_democratie"
+]
+},
+{
+"id": "hirohito",
+"type": "personnage",
+"nom": "Empereur Shōwa (Hirohito)",
+"kanji": "昭和天皇",
+"lecture": "ひろひと",
+"dates": "1901 – 1989",
+"epoque": "showa",
+"alias": [
+"Hirohito",
+"empereur Shōwa",
+"Empereur Shōwa",
+"昭和天皇"
+],
+"resume": "Empereur du Japon de 1926 à 1989, le règne le plus long de l'histoire du pays.",
+"points": [
+"15 août 1945 : annonce radiophonique de la capitulation.",
+"1946 : déclaration où il renonce à sa nature divine.",
+"La Constitution de 1947 fait de lui le « symbole de l'État »."
+],
+"voir": [
+"article9",
+"yoshida"
+]
+},
+{
+"id": "yoshida",
+"type": "personnage",
+"nom": "Yoshida Shigeru",
+"kanji": "吉田茂",
+"lecture": "よしだしげる",
+"dates": "1878 – 1967",
+"epoque": "showa",
+"alias": [
+"Yoshida Shigeru",
+"Yoshida",
+"吉田茂"
+],
+"resume": "Premier ministre de la reconstruction (1946-1947 et 1948-1954). Il signe le traité de San Francisco en 1951.",
+"points": [
+"Doctrine Yoshida : alliance avec les États-Unis, peu de dépenses militaires, priorité à l'économie.",
+"Ancêtre du parti libéral-démocrate."
+],
+"voir": [
+"article9",
+"kodo_seicho"
+]
+},
+{
+"id": "akihito",
+"type": "personnage",
+"nom": "Empereur Akihito",
+"kanji": "明仁",
+"lecture": "あきひと",
+"dates": "né en 1933",
+"epoque": "heisei",
+"alias": [
+"Akihito",
+"明仁"
+],
+"resume": "Empereur de 1989 à 2019, premier à abdiquer depuis deux siècles. Il redéfinit le rôle d'empereur symbole.",
+"points": [
+"Visites aux victimes de catastrophes, voyages de mémoire.",
+"Abdication le 30 avril 2019 ; son fils Naruhito lui succède, début de l'ère Reiwa."
+],
+"voir": [
+"hirohito",
+"bulle"
+]
+},
+{
+"id": "yamatai",
+"type": "concept",
+"nom": "Yamatai",
+"kanji": "邪馬台国",
+"lecture": "やまたいこく",
+"dates": "IIe – IIIe siècle",
+"epoque": "yayoi",
+"alias": [
+"Yamatai",
+"邪馬台国"
+],
+"resume": "Royaume gouverné par Himiko selon le Wei zhi. Son emplacement est un grand débat : nord de Kyūshū ou région de Nara.",
+"points": [
+"Thèse Kinki : sites de Makimuku près de Nara, tumulus de Hashihaka.",
+"Thèse Kyūshū : proximité des routes décrites par les Chinois.",
+"Le Yamatai n'est pas forcément l'ancêtre direct du Yamato."
+],
+"voir": [
+"himiko",
+"yamato"
+]
+},
+{
+"id": "yamato",
+"type": "concept",
+"nom": "Yamato",
+"kanji": "大和",
+"lecture": "やまと",
+"dates": "IIIe – VIIe siècle",
+"epoque": "kofun",
+"alias": [
+"Yamato",
+"大和"
+],
+"resume": "Nom de la cour dont les rois deviennent les « grands rois » (ōkimi) puis les empereurs. Désigne aussi la région de Nara.",
+"points": [
+"Alliance de clans (uji) autour d'une dynastie.",
+"Étend son influence par le système des titres (kabane) et des tumulus.",
+"Yamato-damashii : « l'esprit japonais »."
+],
+"voir": [
+"kofun",
+"yamatai"
+]
+},
+{
+"id": "kofun",
+"type": "concept",
+"nom": "Kofun",
+"kanji": "古墳",
+"lecture": "こふん",
+"dates": "IIIe – VIIe siècle",
+"epoque": "kofun",
+"alias": [
+"kofun",
+"Kofun",
+"古墳",
+"tumulus"
+],
+"resume": "Tumulus funéraires des élites, qui donnent leur nom à la période. Leur forme typique : une partie ronde et une partie carrée (zenpō kōen fun).",
+"points": [
+"Le plus grand : tumulus attribué à Nintoku à Sakai (≈ 486 m).",
+"Entourés de douves ; haniwa en surface.",
+"Les plus récents deviennent plus petits avec l'arrivée du bouddhisme."
+],
+"voir": [
+"haniwa",
+"yamato"
+]
+},
+{
+"id": "haniwa",
+"type": "concept",
+"nom": "Haniwa",
+"kanji": "埴輪",
+"lecture": "はにわ",
+"dates": "Ve – VIe siècle",
+"epoque": "kofun",
+"alias": [
+"haniwa",
+"Haniwa",
+"埴輪"
+],
+"resume": "Sculptures d'argile cuite placées sur les kofun : maisons, chevaux, guerriers, prêtresses.",
+"points": [
+"Servent peut-être à délimiter l'espace sacré de la tombe.",
+"Source précieuse sur les vêtements et l'armement."
+],
+"voir": [
+"kofun"
+]
+},
+{
+"id": "dogu",
+"type": "concept",
+"nom": "Dogū",
+"kanji": "土偶",
+"lecture": "どぐう",
+"dates": "Jōmon",
+"epoque": "jomon",
+"alias": [
+"dogū",
+"Dogū",
+"土偶"
+],
+"resume": "Figurines d'argile du Jōmon, aux formes stylisées, souvent féminines.",
+"points": [
+"Fonction rituelle supposée : fécondité, guérison.",
+"Souvent brisées volontairement avant d'être enterrées.",
+"Figurine « à lunettes » du site de Kamegaoka, très célèbre."
+],
+"voir": []
+},
+{
+"id": "bouddhisme",
+"type": "concept",
+"nom": "Bouddhisme au Japon",
+"kanji": "仏教",
+"lecture": "ぶっきょう",
+"dates": "VIe siècle →",
+"epoque": "asuka",
+"alias": [
+"bouddhisme",
+"Bouddhisme",
+"仏教"
+],
+"resume": "Religion introduite par la Corée vers 538 ou 552. Après des conflits entre clans, elle devient un pilier de l'État.",
+"points": [
+"Coexistence avec les cultes des kami (shintō).",
+"VIIIe siècle : religion d'État (temples provinciaux, Tōdai-ji).",
+"Heian : Tendai et Shingon ; Kamakura : Terre pure, Nichiren, Zen."
+],
+"voir": [
+"shotoku",
+"soga_umako",
+"todaiji",
+"zen"
+]
+},
+{
+"id": "ritsuryo",
+"type": "concept",
+"nom": "Ritsuryō",
+"kanji": "律令",
+"lecture": "りつりょう",
+"dates": "VIIe – Xe siècle",
+"epoque": "asuka",
+"alias": [
+"ritsuryō",
+"Ritsuryō",
+"律令"
+],
+"resume": "Système juridique et administratif inspiré de la Chine des Tang : ritsu (code pénal) et ryō (code administratif).",
+"points": [
+"Le code de Taihō (701) en est la première forme achevée.",
+"Recensements, répartition des rizières (handen), impôts en nature et corvées.",
+"Déclin progressif à Heian avec les shōen."
+],
+"voir": [
+"taika",
+"shotoku",
+"shoen"
+]
+},
+{
+"id": "taika",
+"type": "concept",
+"nom": "Réforme de Taika",
+"kanji": "大化改新",
+"lecture": "たいかのかいしん",
+"dates": "645",
+"epoque": "asuka",
+"alias": [
+"Taika",
+"réforme de Taika",
+"Réformes de Taika",
+"大化"
+],
+"resume": "Séries de réformes qui suivent l'élimination des Soga en 645 (incident d'Isshi), menées par le prince Naka no Ōe et Nakatomi no Kamatari.",
+"points": [
+"Principe : toutes les terres et les sujets appartiennent à l'empereur.",
+"Introduit la première ère (nengō) : Taika.",
+"Les historiens discutent de ce qui a vraiment été mis en œuvre."
+],
+"voir": [
+"soga_umako",
+"ritsuryo"
+]
+},
+{
+"id": "kojiki",
+"type": "concept",
+"nom": "Kojiki",
+"kanji": "古事記",
+"lecture": "こじき",
+"dates": "712",
+"epoque": "nara",
+"alias": [
+"Kojiki",
+"古事記"
+],
+"resume": "« Chronique des faits anciens », plus ancien livre conservé du Japon. Présente les mythes de la création et la généalogie impériale.",
+"points": [
+"Écrit en un mélange de chinois et de notation phonétique des noms.",
+"Récit d'Izanagi et Izanami, d'Amaterasu, de Susanoo.",
+"Commandé par Tenmu, achevé sous l'impératrice Genmei."
+],
+"voir": [
+"nihon_shoki",
+"tenmu"
+]
+},
+{
+"id": "nihon_shoki",
+"type": "concept",
+"nom": "Nihon shoki",
+"kanji": "日本書紀",
+"lecture": "にほんしょき",
+"dates": "720",
+"epoque": "nara",
+"alias": [
+"Nihon shoki",
+"日本書紀"
+],
+"resume": "« Chroniques du Japon », première histoire officielle, rédigée en chinois classique et destinée à l'étranger autant qu'à la cour.",
+"points": [
+"Contient des variantes des mêmes mythes que le Kojiki.",
+"Texte plus politique ; remonte jusqu'à l'impératrice Jitō.",
+"Source majeure et souvent idéalisée pour Asuka."
+],
+"voir": [
+"kojiki",
+"tenmu",
+"shotoku"
+]
+},
+{
+"id": "manyoshu",
+"type": "concept",
+"nom": "Man'yōshū",
+"kanji": "万葉集",
+"lecture": "まんようしゅう",
+"dates": "≈ 759",
+"epoque": "nara",
+"alias": [
+"Man'yōshū",
+"Man’yōshū",
+"万葉集"
+],
+"resume": "Plus ancienne anthologie de poésie japonaise, environ 4 500 poèmes. Auteurs de toutes conditions : empereurs, soldats, paysans.",
+"points": [
+"Genres : tanka, chōka, sedōka.",
+"Écrit avec des kanji, en man'yōgana.",
+"Poètes : Hitomaro, Yamanoue no Okura, Ōtomo no Yakamochi."
+],
+"voir": [
+"hitomaro",
+"manyogana",
+"kana"
+]
+},
+{
+"id": "manyogana",
+"type": "concept",
+"nom": "Man'yōgana",
+"kanji": "万葉仮名",
+"lecture": "まんようがな",
+"dates": "VIIIe siècle",
+"epoque": "nara",
+"alias": [
+"man'yōgana",
+"man’yōgana",
+"万葉仮名"
+],
+"resume": "Usage de caractères chinois pour leur son seul, afin de noter le japonais. Ils donnent plus tard les kana.",
+"points": [
+"Hiragana : formes cursives de man'yōgana.",
+"Katakana : éléments de caractères, utilisés par les moines."
+],
+"voir": [
+"kana",
+"manyoshu"
+]
+},
+{
+"id": "kana",
+"type": "concept",
+"nom": "Kana",
+"kanji": "仮名",
+"lecture": "かな",
+"dates": "IXe – Xe siècle",
+"epoque": "heian",
+"alias": [
+"kana",
+"hiragana",
+"katakana",
+"平仮名",
+"片仮名"
+],
+"resume": "Écritures syllabiques japonaises, nées de la simplification des kanji. Les hiragana servent à la poésie et à la prose de cour.",
+"points": [
+"Hiragana : surtout utilisés par les femmes de cour (« écriture féminine », onna-de).",
+"Katakana : utilisés pour le glossage de textes bouddhiques.",
+"Rend possible une littérature en langue japonaise."
+],
+"voir": [
+"manyogana",
+"murasaki",
+"genji"
+]
+},
+{
+"id": "genji",
+"type": "concept",
+"nom": "Genji monogatari",
+"kanji": "源氏物語",
+"lecture": "げんじものがたり",
+"dates": "≈ 1008",
+"epoque": "heian",
+"alias": [
+"Genji monogatari",
+"Genji",
+"源氏物語"
+],
+"resume": "« Dit du Genji », roman de cour en 54 chapitres, qui suit la vie amoureuse et politique du prince Hikaru Genji.",
+"points": [
+"Notion du mono no aware : sensibilité à la fragilité des choses.",
+"Texte fondateur de la littérature japonaise classique.",
+"Il en existe des rouleaux illustrés du XIIe siècle."
+],
+"voir": [
+"murasaki",
+"kana"
+]
+},
+{
+"id": "sessho_kanpaku",
+"type": "concept",
+"nom": "Sesshō et kanpaku",
+"kanji": "摂政・関白",
+"lecture": "せっしょう・かんぱく",
+"dates": "IXe – XIe siècle",
+"epoque": "heian",
+"alias": [
+"sesshō",
+"kanpaku",
+"régent",
+"Sesshō",
+"Kanpaku"
+],
+"resume": "Régent d'un empereur mineur (sesshō) puis chancelier d'un empereur majeur (kanpaku). Charges accaparées par la branche nord des Fujiwara.",
+"points": [
+"Fujiwara no Yoshifusa : premier régent non impérial (858).",
+"Les Fujiwara gouvernent en mariant leurs filles aux empereurs.",
+"Apogée avec Michinaga."
+],
+"voir": [
+"michinaga",
+"shoen"
+]
+},
+{
+"id": "shoen",
+"type": "concept",
+"nom": "Shōen",
+"kanji": "荘園",
+"lecture": "しょうえん",
+"dates": "VIIIe – XVIe siècle",
+"epoque": "heian",
+"alias": [
+"shōen",
+"Shōen",
+"荘園"
+],
+"resume": "Domaines fonciers privés, souvent exemptés d'impôt, placés sous la protection de grands temples ou nobles.",
+"points": [
+"Affaiblissent les finances de l'État.",
+"Leurs administrateurs et intendants s'arment : rôle dans l'essor des bushi."
+],
+"voir": [
+"ritsuryo",
+"bushi"
+]
+},
+{
+"id": "bushi",
+"type": "concept",
+"nom": "Bushi / samouraï",
+"kanji": "武士",
+"lecture": "ぶし",
+"dates": "Xe siècle →",
+"epoque": "heian",
+"alias": [
+"bushi",
+"samouraï",
+"samouraïs",
+"Bushi",
+"武士"
+],
+"resume": "Guerriers professionnels des provinces, au service d'un chef ou d'un seigneur. Le terme « samouraï » (« celui qui sert ») s'impose plus tard.",
+"points": [
+"Naissent des conflits provinciaux et de la défense des shōen.",
+"Grands clans : Taira et Minamoto.",
+"Idéal du bushidō formulé surtout à l'époque d'Edo."
+],
+"voir": [
+"kiyomori",
+"yoritomo",
+"shoen"
+]
+},
+{
+"id": "dan_no_ura",
+"type": "événement",
+"nom": "Bataille de Dan-no-ura",
+"kanji": "壇ノ浦の戦い",
+"lecture": "だんのうらのたたかい",
+"dates": "1185",
+"epoque": "heian",
+"alias": [
+"Dan-no-ura",
+"壇ノ浦"
+],
+"resume": "Bataille navale finale entre Taira et Minamoto, dans le détroit de Shimonoseki.",
+"points": [
+"Les Taira sont anéantis ; l'enfant-empereur Antoku se noie.",
+"Épisode central du Heike monogatari."
+],
+"voir": [
+"kiyomori",
+"yoritomo"
+]
+},
+{
+"id": "bakufu",
+"type": "concept",
+"nom": "Bakufu",
+"kanji": "幕府",
+"lecture": "ばくふ",
+"dates": "1185 – 1868",
+"epoque": "kamakura",
+"alias": [
+"bakufu",
+"Bakufu",
+"幕府",
+"shogunat",
+"shogunats",
+"shogunat de Kamakura"
+],
+"resume": "« Gouvernement de la tente » : l'administration militaire du shōgun, en parallèle de la cour impériale.",
+"points": [
+"Kamakura (1185-1333), Muromachi (1336-1573), Edo (1603-1868).",
+"Le shōgun est vassal de l'empereur en théorie mais gouverne en pratique.",
+"Chaque bakufu a ses organes de justice et de contrôle des vassaux."
+],
+"voir": [
+"shogun",
+"gokenin",
+"yoritomo"
+]
+},
+{
+"id": "shogun",
+"type": "concept",
+"nom": "Shōgun",
+"kanji": "将軍",
+"lecture": "しょうぐん",
+"dates": "1192 – 1867",
+"epoque": "kamakura",
+"alias": [
+"shōgun",
+"Shōgun",
+"将軍"
+],
+"resume": "Titre abrégé de seii taishōgun (« grand général qui soumet les barbares »), détenu par le chef du bakufu.",
+"points": [
+"Yoritomo : 1192.",
+"Dernier shōgun : Tokugawa Yoshinobu, démission en 1867.",
+"L'empereur le nomme, ce qui légitime son pouvoir."
+],
+"voir": [
+"bakufu",
+"yoritomo"
+]
+},
+{
+"id": "gokenin",
+"type": "concept",
+"nom": "Gokenin",
+"kanji": "御家人",
+"lecture": "ごけにん",
+"dates": "1185 – 1868",
+"epoque": "kamakura",
+"alias": [
+"gokenin",
+"Gokenin",
+"御家人"
+],
+"resume": "Vassal direct du shōgun. Son service militaire est échangé contre la confirmation de ses terres (go-on).",
+"points": [
+"Relation « bienfait et service » (go-on et hōkō).",
+"La distribution du butin ayant cessé après les Mongols, ils s'appauvrissent."
+],
+"voir": [
+"bakufu",
+"mongols"
+]
+},
+{
+"id": "mongols",
+"type": "événement",
+"nom": "Invasions mongoles",
+"kanji": "元寇",
+"lecture": "げんこう",
+"dates": "1274, 1281",
+"epoque": "kamakura",
+"alias": [
+"Mongols",
+"mongoles",
+"invasions mongoles",
+"元寇",
+"Mongol"
+],
+"resume": "Deux expéditions de la Chine mongole (dynastie Yuan) contre le Japon, par Kubilai Khan.",
+"points": [
+"1274 : première tentative, repoussée près de Hakata.",
+"1281 : grande armée, détruite en partie par un typhon.",
+"Peu de butin à distribuer : crise des vassaux et du bakufu."
+],
+"voir": [
+"bakufu",
+"gokenin"
+]
+},
+{
+"id": "zen",
+"type": "concept",
+"nom": "Zen",
+"kanji": "禅",
+"lecture": "ぜん",
+"dates": "XIIe siècle →",
+"epoque": "kamakura",
+"alias": [
+"zen",
+"Zen",
+"禅"
+],
+"resume": "École bouddhique de méditation arrivée de Chine : Rinzai (Eisai) et Sōtō (Dōgen).",
+"points": [
+"Rinzai : soutenu par les guerriers de Kamakura et de Muromachi.",
+"Influence sur le thé, les jardins secs, le nō et l'encre.",
+"Les « Cinq Montagnes » (gozan) organisent les grands temples."
+],
+"voir": [
+"dogen",
+"cha_no_yu"
+]
+},
+{
+"id": "nanbokucho",
+"type": "événement",
+"nom": "Nanbokuchō",
+"kanji": "南北朝時代",
+"lecture": "なんぼくちょう",
+"dates": "1336 – 1392",
+"epoque": "muromachi",
+"alias": [
+"Nanbokuchō",
+"cours du Nord et du Sud",
+"deux cours"
+],
+"resume": "Période des deux cours : la cour du Nord, à Kyōto, et la cour du Sud, à Yoshino.",
+"points": [
+"Cour du Nord soutenue par Takauji.",
+"1392 : Yoshimitsu obtient la réunification."
+],
+"voir": [
+"godaigo",
+"takauji",
+"yoshimitsu"
+]
+},
+{
+"id": "no",
+"type": "concept",
+"nom": "Nō",
+"kanji": "能",
+"lecture": "のう",
+"dates": "XIVe siècle →",
+"epoque": "muromachi",
+"alias": [
+"nō",
+"Nō",
+"能"
+],
+"resume": "Théâtre lyrique masqué, issu de formes populaires (sarugaku) et sublimé par Kan'ami et Zeami.",
+"points": [
+"Acteur principal (shite) souvent un spectre ; masques ; lenteur.",
+"Kyōgen : intermèdes comiques.",
+"Notion de yūgen."
+],
+"voir": [
+"zeami",
+"zen"
+]
+},
+{
+"id": "cha_no_yu",
+"type": "concept",
+"nom": "Cérémonie du thé",
+"kanji": "茶の湯",
+"lecture": "ちゃのゆ",
+"dates": "XVe – XVIe siècle",
+"epoque": "sengoku",
+"alias": [
+"cérémonie du thé",
+"chanoyu",
+"茶の湯",
+"thé"
+],
+"resume": "Art de préparer et de boire le thé matcha selon un rituel, mêlant esthétique zen, hospitalité et politique.",
+"points": [
+"Murata Jukō, Takeno Jōō puis Rikyū : wabi-cha.",
+"Les seigneurs s'en servent comme outil de pouvoir."
+],
+"voir": [
+"rikyu",
+"zen"
+]
+},
+{
+"id": "gekokujo",
+"type": "concept",
+"nom": "Gekokujō",
+"kanji": "下剋上",
+"lecture": "げこくじょう",
+"dates": "XVe – XVIe siècle",
+"epoque": "sengoku",
+"alias": [
+"gekokujō",
+"Gekokujō",
+"下剋上"
+],
+"resume": "« Le bas l'emporte sur le haut » : vassaux qui renversent leurs maîtres, paysans qui s'arment, familles nouvelles qui s'imposent.",
+"points": [
+"Symbole des Sengoku.",
+"Hideyoshi, d'origine modeste, en est l'illustration."
+],
+"voir": [
+"nobunaga",
+"hideyoshi"
+]
+},
+{
+"id": "honnoji",
+"type": "événement",
+"nom": "Incident du Honnō-ji",
+"kanji": "本能寺の変",
+"lecture": "ほんのうじのへん",
+"dates": "1582",
+"epoque": "sengoku",
+"alias": [
+"Honnō-ji",
+"本能寺"
+],
+"resume": "Nobunaga est attaqué dans un temple de Kyōto par son général Akechi Mitsuhide et se donne la mort.",
+"points": [
+"Motifs d'Akechi discutés.",
+"Hideyoshi bat Akechi à Yamazaki, 11 jours plus tard."
+],
+"voir": [
+"nobunaga",
+"hideyoshi"
+]
+},
+{
+"id": "taiko_kenchi",
+"type": "concept",
+"nom": "Taikō kenchi",
+"kanji": "太閤検地",
+"lecture": "たいこうけんち",
+"dates": "1582 →",
+"epoque": "sengoku",
+"alias": [
+"Taikō kenchi",
+"太閤検地",
+"cadastre"
+],
+"resume": "Cadastre général lancé par Hideyoshi : chaque terre est mesurée et évaluée en production de riz (koku).",
+"points": [
+"Le paysan est inscrit comme cultivateur responsable de l'impôt.",
+"Unifie les unités de mesure."
+],
+"voir": [
+"hideyoshi",
+"katanagari"
+]
+},
+{
+"id": "katanagari",
+"type": "concept",
+"nom": "Chasse aux épées",
+"kanji": "刀狩",
+"lecture": "かたながり",
+"dates": "1588",
+"epoque": "sengoku",
+"alias": [
+"chasse aux épées",
+"刀狩",
+"Katanagari"
+],
+"resume": "Édit de Hideyoshi qui interdit aux paysans de posséder armes et armures.",
+"points": [
+"Sépare nettement guerriers et paysans.",
+"Fixe les statuts sociaux."
+],
+"voir": [
+"hideyoshi",
+"shi_no_ko_sho"
+]
+},
+{
+"id": "sekigahara",
+"type": "événement",
+"nom": "Bataille de Sekigahara",
+"kanji": "関ヶ原の戦い",
+"lecture": "せきがはらのたたかい",
+"dates": "21 octobre 1600",
+"epoque": "sengoku",
+"alias": [
+"Sekigahara",
+"関ヶ原"
+],
+"resume": "Bataille décisive entre l'armée de l'Est (Ieyasu) et la coalition de l'Ouest d'Ishida Mitsunari.",
+"points": [
+"Trahisons de dernière minute, dont celle de Kobayakawa Hideaki.",
+"Ouvre la voie à la fondation du shogunat en 1603."
+],
+"voir": [
+"ieyasu"
+]
+},
+{
+"id": "sankin_kotai",
+"type": "concept",
+"nom": "Sankin kōtai",
+"kanji": "参勤交代",
+"lecture": "さんきんこうたい",
+"dates": "1635 →",
+"epoque": "edo",
+"alias": [
+"sankin kōtai",
+"Sankin kōtai",
+"参勤交代"
+],
+"resume": "Système d'alternance : les daimyō passent une année sur deux à Edo, et leur famille y reste en permanence.",
+"points": [
+"Contrôle les seigneurs et les ruine en voyages.",
+"Fait naître des routes, des relais et un réseau de commerce."
+],
+"voir": [
+"ieyasu",
+"daimyo"
+]
+},
+{
+"id": "daimyo",
+"type": "concept",
+"nom": "Daimyō",
+"kanji": "大名",
+"lecture": "だいみょう",
+"dates": "XIVe – XIXe siècle",
+"epoque": "sengoku",
+"alias": [
+"daimyō",
+"Daimyō",
+"大名",
+"daimyōs"
+],
+"resume": "Seigneur régional, d'abord shugo-daimyō (Muromachi), puis sengoku-daimyō, puis seigneur d'un han sous les Tokugawa.",
+"points": [
+"Edo : plus de 250 han ; un daimyō a au moins 10 000 koku.",
+"Contrôlés par le bakufu."
+],
+"voir": [
+"sankin_kotai",
+"gekokujo"
+]
+},
+{
+"id": "sakoku",
+"type": "concept",
+"nom": "Sakoku",
+"kanji": "鎖国",
+"lecture": "さこく",
+"dates": "1630 – 1853",
+"epoque": "edo",
+"alias": [
+"sakoku",
+"Sakoku",
+"鎖国"
+],
+"resume": "« Pays fermé » : politique de contrôle des relations extérieures par le bakufu, plutôt qu'une fermeture totale.",
+"points": [
+"1639 : interdiction des Portugais ; Hollandais cantonnés à Dejima.",
+"Quatre « portes » : Nagasaki, Tsushima (Corée), Satsuma (Ryūkyū), Matsumae (Ezo).",
+"1853-1854 : fin avec Perry."
+],
+"voir": [
+"perry",
+"ieyasu"
+]
+},
+{
+"id": "shi_no_ko_sho",
+"type": "concept",
+"nom": "Shi-nō-kō-shō",
+"kanji": "士農工商",
+"lecture": "しのうこうしょう",
+"dates": "Edo",
+"epoque": "edo",
+"alias": [
+"shi-nō-kō-shō",
+"士農工商"
+],
+"resume": "Hiérarchie traditionnelle d'Edo : guerriers, paysans, artisans, marchands.",
+"points": [
+"Les historiens modernes nuancent ce modèle : en pratique, les marchands étaient souvent riches.",
+"Autres groupes : nobles, religieux, hors-castes (eta, hinin)."
+],
+"voir": [
+"katanagari"
+]
+},
+{
+"id": "ukiyoe",
+"type": "concept",
+"nom": "Ukiyo-e",
+"kanji": "浮世絵",
+"lecture": "うきよえ",
+"dates": "XVIIe – XIXe siècle",
+"epoque": "edo",
+"alias": [
+"ukiyo-e",
+"Ukiyo-e",
+"浮世絵"
+],
+"resume": "« Images du monde flottant » : estampes sur bois montrant acteurs, courtisanes, paysages.",
+"points": [
+"Moronobu, Harunobu, Utamaro, Hokusai, Hiroshige.",
+"Imprimé en plusieurs couleurs (nishiki-e) à partir de 1765."
+],
+"voir": [
+"hokusai",
+"kabuki"
+]
+},
+{
+"id": "kabuki",
+"type": "concept",
+"nom": "Kabuki",
+"kanji": "歌舞伎",
+"lecture": "かぶき",
+"dates": "XVIIe siècle →",
+"epoque": "edo",
+"alias": [
+"kabuki",
+"Kabuki",
+"歌舞伎"
+],
+"resume": "Théâtre populaire spectaculaire, né vers 1603 avec Izumo no Okuni, aujourd'hui joué uniquement par des hommes.",
+"points": [
+"Acteurs spécialisés dans les rôles féminins : onnagata.",
+"Genroku : âge d'or avec Chikamatsu pour le bunraku."
+],
+"voir": [
+"ukiyoe",
+"basho"
+]
+},
+{
+"id": "haiku",
+"type": "concept",
+"nom": "Haïku",
+"kanji": "俳句",
+"lecture": "はいく",
+"dates": "XVIIe siècle →",
+"epoque": "edo",
+"alias": [
+"haïku",
+"haikai",
+"Haïku",
+"俳句"
+],
+"resume": "Poème de 17 mores (5-7-5) avec un mot de saison (kigo) et un mot de coupe (kireji).",
+"points": [
+"Issu du hokku, strophe d'ouverture des chaînes de poèmes (renga).",
+"Nommé « haiku » par Masaoka Shiki à la fin du XIXe siècle."
+],
+"voir": [
+"basho"
+]
+},
+{
+"id": "restauration_meiji",
+"type": "événement",
+"nom": "Restauration de Meiji",
+"kanji": "明治維新",
+"lecture": "めいじいしん",
+"dates": "1868",
+"epoque": "meiji",
+"alias": [
+"Restauration de Meiji",
+"Restauration de Meiji",
+"明治維新",
+"Boshin"
+],
+"resume": "Renversement du shogunat par des coalitions de han (Satsuma, Chōshū) au nom de l'empereur.",
+"points": [
+"Janvier 1868 : coup de Toba-Fushimi, guerre de Boshin.",
+"1871 : abolition des han et création des préfectures."
+],
+"voir": [
+"saigo",
+"perry",
+"fukoku_kyohei"
+]
+},
+{
+"id": "fukoku_kyohei",
+"type": "concept",
+"nom": "Fukoku kyōhei",
+"kanji": "富国強兵",
+"lecture": "ふこくきょうへい",
+"dates": "1868 →",
+"epoque": "meiji",
+"alias": [
+"fukoku kyōhei",
+"富国強兵"
+],
+"resume": "« Pays riche, armée forte » : mot d'ordre de la modernisation de Meiji.",
+"points": [
+"Industrialisation, chemins de fer, conscription (1873).",
+"Réforme de l'impôt foncier (1873) pour financer l'État."
+],
+"voir": [
+"zaibatsu",
+"fukuzawa"
+]
+},
+{
+"id": "zaibatsu",
+"type": "concept",
+"nom": "Zaibatsu",
+"kanji": "財閥",
+"lecture": "ざいばつ",
+"dates": "Meiji – 1945",
+"epoque": "meiji",
+"alias": [
+"zaibatsu",
+"Zaibatsu",
+"財閥"
+],
+"resume": "Grands conglomérats familiaux : Mitsui, Mitsubishi, Sumitomo, Yasuda.",
+"points": [
+"Dissous (en théorie) par l'occupation américaine.",
+"Remplacés par les keiretsu."
+],
+"voir": [
+"fukoku_kyohei"
+]
+},
+{
+"id": "constitution_meiji",
+"type": "concept",
+"nom": "Constitution de Meiji",
+"kanji": "大日本帝国憲法",
+"lecture": "だいにほんていこくけんぽう",
+"dates": "1889",
+"epoque": "meiji",
+"alias": [
+"Constitution de Meiji",
+"constitution de Meiji",
+"Constitution Meiji"
+],
+"resume": "Première constitution moderne d'Asie : monarchie constitutionnelle, empereur souverain et commandant des forces armées.",
+"points": [
+"Diète bicamérale (chambre des pairs et chambre des représentants).",
+"Droits des sujets « dans la limite de la loi ».",
+"Remplacée en 1947."
+],
+"voir": [
+"ito",
+"meiji_tenno"
+]
+},
+{
+"id": "taisho_democratie",
+"type": "concept",
+"nom": "Démocratie Taishō",
+"kanji": "大正デモクラシー",
+"lecture": "たいしょうデモクラシー",
+"dates": "1912 – 1925",
+"epoque": "taisho",
+"alias": [
+"démocratie Taishō",
+"Démocratie Taishō"
+],
+"resume": "Mouvement pour le gouvernement de partis, le suffrage et les droits civiques sous l'ère Taishō.",
+"points": [
+"Théorie de Yoshino Sakuzō (« minponshugi »).",
+"Suffrage masculin en 1925, accompagné d'une loi de préservation de la paix."
+],
+"voir": [
+"hara"
+]
+},
+{
+"id": "article9",
+"type": "concept",
+"nom": "Article 9",
+"kanji": "憲法第9条",
+"lecture": "けんぽうだいきゅうじょう",
+"dates": "1947",
+"epoque": "showa",
+"alias": [
+"article 9",
+"Article 9"
+],
+"resume": "Article de la Constitution de 1947 qui renonce à la guerre comme droit souverain et prévoit de ne pas maintenir de forces de guerre.",
+"points": [
+"Les Forces d'autodéfense (1954) font l'objet d'interprétations.",
+"Débat récurrent sur sa révision."
+],
+"voir": [
+"yoshida",
+"hirohito"
+]
+},
+{
+"id": "kodo_seicho",
+"type": "événement",
+"nom": "Haute croissance",
+"kanji": "高度経済成長",
+"lecture": "こうどけいざいせいちょう",
+"dates": "1955 – 1973",
+"epoque": "showa",
+"alias": [
+"haute croissance",
+"高度成長"
+],
+"resume": "Période de croissance de plus de 9 % par an en moyenne, qui fait du Japon la deuxième économie mondiale.",
+"points": [
+"1964 : Jeux olympiques et Shinkansen.",
+"Fin avec le choc pétrolier de 1973."
+],
+"voir": [
+"yoshida"
+]
+},
+{
+"id": "bulle",
+"type": "événement",
+"nom": "Bulle économique",
+"kanji": "バブル景気",
+"lecture": "バブルけいき",
+"dates": "1986 – 1991",
+"epoque": "heisei",
+"alias": [
+"bulle",
+"bulle économique",
+"バブル"
+],
+"resume": "Envolée des prix de l'immobilier et de la bourse, suivie d'un effondrement au début des années 1990.",
+"points": [
+"Indice Nikkei au sommet fin 1989.",
+"Décennie perdue : déflation, banques en difficulté."
+],
+"voir": [
+"akihito"
+]
+},
+{
+"id": "todaiji",
+"type": "concept",
+"nom": "Tōdai-ji",
+"kanji": "東大寺",
+"lecture": "とうだいじ",
+"dates": "752",
+"epoque": "nara",
+"alias": [
+"Tōdai-ji",
+"東大寺"
+],
+"resume": "Grand temple de Nara, siège du Daibutsu, immense Bouddha de bronze.",
+"points": [
+"Bâtiment en bois parmi les plus vastes du monde.",
+"Daibutsu : environ 15 m, consacré en 752."
+],
+"voir": [
+"shomu",
+"bouddhisme"
+]
+},
+{
+"id": "nara_epoque_note",
+"type": "concept",
+"nom": "Temples provinciaux",
+"kanji": "国分寺",
+"lecture": "こくぶんじ",
+"dates": "741",
+"epoque": "nara",
+"alias": [
+"kokubunji",
+"temples provinciaux"
+],
+"resume": "Réseau de temples et de couvents créés dans chaque province par ordre de Shōmu, pour protéger l'État par les rites bouddhiques.",
+"points": [
+"Un temple de moines et un de nonnes par province.",
+"Le Tōdai-ji est le temple principal."
+],
+"voir": [
+"shomu",
+"todaiji"
+]
+},
+{
+"id": "jimmu",
+"type": "personnage",
+"nom": "Jinmu",
+"kanji": "神武天皇",
+"lecture": "じんむてんのう",
+"dates": "légendaire, 660 av. J.-C. selon le Nihon shoki",
+"epoque": "yayoi",
+"alias": [
+"Jinmu",
+"神武天皇",
+"empereur Jinmu"
+],
+"resume": "Premier empereur du Japon selon les chroniques Kojiki et Nihon shoki, descendant de la déesse Amaterasu. Les historiens le considèrent comme légendaire.",
+"points": [
+"Le Nihon shoki place son avènement en 660 av. J.-C. : date reconstruite à partir d'un calcul cosmologique.",
+"Le récit de sa « conquête vers l'est », de Kyūshū à Yamato, reflète peut-être une mémoire déformée de migrations.",
+"La fête de la fondation de l'empire (kigensetsu) fut fixée au 11 février en 1872 ; elle est devenue la fête nationale en 1966-1967."
+],
+"voir": [
+"kojiki",
+"nihon_shoki",
+"yamato"
+]
+},
+{
+"id": "amaterasu",
+"type": "personnage",
+"nom": "Amaterasu",
+"kanji": "天照大神",
+"lecture": "あまてらすおおみかみ",
+"dates": "mythologie",
+"epoque": "yayoi",
+"alias": [
+"Amaterasu",
+"天照大神",
+"Amaterasu Ōmikami"
+],
+"resume": "Déesse du soleil de la mythologie shintō, ancêtre de la lignée impériale. Son sanctuaire principal est le Grand sanctuaire d'Ise.",
+"points": [
+"Dans le mythe de la grotte céleste, elle se cache et plonge le monde dans l'obscurité ; les autres dieux l'attirent dehors par une fête.",
+"Les trois regalia impériaux (miroir, épée, joyau) sont liés à elle : le miroir est conservé à Ise.",
+"Ise est reconstruit à l'identique tous les vingt ans (shikinen sengū)."
+],
+"voir": [
+"kojiki",
+"jimmu"
+]
+},
+{
+"id": "shinto",
+"type": "concept",
+"nom": "Shintō",
+"kanji": "神道",
+"lecture": "しんとう",
+"dates": "depuis les temps anciens",
+"epoque": "yayoi",
+"alias": [
+"Shintō",
+"神道",
+"shintō",
+"kami"
+],
+"resume": "Ensemble de croyances et de rites japonais centrés sur les kami, forces ou divinités liées à la nature, aux lieux et aux ancêtres. Il n'a ni fondateur ni texte canonique unique.",
+"points": [
+"Le mot « shintō » (voie des kami) apparaît en contraste avec le bouddhisme.",
+"Syncrétisme shintō-bouddhique (shinbutsu shūgō) jusqu'en 1868, puis séparation forcée (shinbutsu bunri).",
+"Shintō d'État de 1868 à 1945, aboli par l'occupation américaine (directive de décembre 1945)."
+],
+"voir": [
+"bouddhisme",
+"amaterasu"
+]
+},
+{
+"id": "yoshino",
+"type": "personnage",
+"nom": "Yoshino Sakuzō",
+"kanji": "吉野作造",
+"lecture": "よしのさくぞう",
+"dates": "1878-1933",
+"epoque": "taisho",
+"alias": [
+"Yoshino Sakuzō",
+"吉野作造",
+"Yoshino"
+],
+"resume": "Juriste et politologue de l'université de Tōkyō, principal théoricien de la démocratie Taishō avec son concept de minponshugi.",
+"points": [
+"Son article de 1916 dans Chūō kōron défend un gouvernement orienté vers le peuple, compatible avec la souveraineté impériale.",
+"Il fonde l'association Reimeikai (1918) et soutient le suffrage universel.",
+"Il est aussi un défenseur de la Chine face à l'impérialisme japonais."
+],
+"voir": [
+"taisho_democratie",
+"minobe"
+]
+},
+{
+"id": "minobe",
+"type": "personnage",
+"nom": "Minobe Tatsukichi",
+"kanji": "美濃部達吉",
+"lecture": "みのべたつきち",
+"dates": "1873-1948",
+"epoque": "taisho",
+"alias": [
+"Minobe Tatsukichi",
+"美濃部達吉",
+"Minobe",
+"organe de l'État"
+],
+"resume": "Juriste, auteur de la théorie selon laquelle l'empereur est un organe de l'État. Elle domine l'enseignement constitutionnel jusqu'aux années 1930.",
+"points": [
+"En 1935, des députés et des militaires l'accusent de lèse-majesté ; ses livres sont interdits et il perd son siège de pair.",
+"L'affaire aboutit à la déclaration sur le kokutai (1935), qui impose la ligne de la souveraineté impériale absolue."
+],
+"voir": [
+"taisho_democratie",
+"kokutai"
+]
+},
+{
+"id": "kokutai",
+"type": "concept",
+"nom": "Kokutai",
+"kanji": "国体",
+"lecture": "こくたい",
+"dates": "XIXe – XXe siècle",
+"epoque": "showa",
+"alias": [
+"Kokutai",
+"国体",
+"kokutai",
+"politique nationale"
+],
+"resume": "« Corps national » : idée d'une communauté politique unique centrée sur l'empereur, érigée en dogme dans les années 1930.",
+"points": [
+"Le manuel Kokutai no hongi (1937) en précise la doctrine.",
+"La loi de préservation de la paix (1925) en fait un objet de protection pénale.",
+"Après 1945, la question de sa « préservation » retarde l'acceptation de la déclaration de Potsdam."
+],
+"voir": [
+"minobe",
+"hirohito"
+]
+},
+{
+"id": "kanto_shinsai",
+"type": "concept",
+"nom": "Séisme du Kantō",
+"kanji": "関東大震災",
+"lecture": "かんとうだいしんさい",
+"dates": "1er septembre 1923",
+"epoque": "taisho",
+"alias": [
+"Séisme du Kantō",
+"関東大震災",
+"séisme du Kantō",
+"grand séisme du Kantō"
+],
+"resume": "Séisme de magnitude d'environ 7,9 qui détruit Tōkyō et Yokohama, causant environ 105 000 morts ou disparus, en majorité à cause des incendies.",
+"points": [
+"Massacres de Coréens, de Chinois et de militants de gauche dans le chaos.",
+"Reconstruction conduite par Gotō Shinpei : avenues, ponts, immeubles en béton.",
+"Le 1er septembre est devenu la journée de prévention des catastrophes."
+],
+"voir": [
+"taisho_democratie"
+]
+},
+{
+"id": "mandchourie",
+"type": "événement",
+"nom": "Incident de Mandchourie",
+"kanji": "満州事変",
+"lecture": "まんしゅうじへん",
+"dates": "18 septembre 1931",
+"epoque": "showa",
+"alias": [
+"Incident de Mandchourie",
+"満州事変",
+"incident de Mandchourie",
+"incident de Moukden",
+"Mandchoukouo"
+],
+"resume": "Sabotage d'une voie ferrée près de Moukden par des officiers de l'armée du Guandong, prétexte à l'occupation de la Mandchourie, puis création de l'État du Mandchoukouo (1932).",
+"points": [
+"Organisé par Ishiwara Kanji et Itagaki Seishirō, sans ordre de Tōkyō.",
+"La commission Lytton condamne l'action ; le Japon quitte la Société des Nations en 1933.",
+"Début de la « guerre de quinze ans » selon une périodisation courante."
+],
+"voir": [
+"hirohito",
+"kokutai"
+]
+},
+{
+"id": "nanjing",
+"type": "événement",
+"nom": "Massacre de Nankin",
+"kanji": "南京事件",
+"lecture": "なんきんじけん",
+"dates": "décembre 1937 – début 1938",
+"epoque": "showa",
+"alias": [
+"Massacre de Nankin",
+"南京事件",
+"massacre de Nankin",
+"Nankin",
+"Nanjing"
+],
+"resume": "Massacres de civils et de prisonniers de guerre chinois, accompagnés de viols massifs, après la prise de Nankin par l'armée japonaise.",
+"points": [
+"Les estimations du nombre de victimes varient fortement : de quelques dizaines de milliers à plus de 200 000 ; la Chine retient 300 000.",
+"Le tribunal de Tōkyō condamne le général Matsui Iwane ; le tribunal de Nankin condamne d'autres officiers.",
+"Le sujet reste conflictuel dans les mémoires et les manuels."
+],
+"voir": [
+"hirohito"
+]
+},
+{
+"id": "pearl_harbor",
+"type": "événement",
+"nom": "Pearl Harbor",
+"kanji": "真珠湾攻撃",
+"lecture": "しんじゅわんこうげき",
+"dates": "7 décembre 1941 (8 au Japon)",
+"epoque": "showa",
+"alias": [
+"Pearl Harbor",
+"真珠湾攻撃",
+"guerre du Pacifique"
+],
+"resume": "Attaque surprise de l'aviation embarquée japonaise contre la flotte américaine d'Hawaï, au début de la guerre du Pacifique.",
+"points": [
+"Planifiée par l'amiral Yamamoto Isoroku ; coordonnée avec des offensives en Malaisie, à Hong Kong et aux Philippines.",
+"Elle suit l'embargo pétrolier américain et l'échec des négociations (note Hull)."
+],
+"voir": [
+"tojo",
+"hirohito"
+]
+},
+{
+"id": "tojo",
+"type": "personnage",
+"nom": "Tōjō Hideki",
+"kanji": "東条英機",
+"lecture": "とうじょうひでき",
+"dates": "1884-1948",
+"epoque": "showa",
+"alias": [
+"Tōjō Hideki",
+"東条英機",
+"Tōjō"
+],
+"resume": "Général, Premier ministre d'octobre 1941 à juillet 1944, cumulant plusieurs fonctions. Il est condamné à mort par le tribunal de Tōkyō.",
+"points": [
+"Chute après la perte de Saipan (1944).",
+"Pendu en décembre 1948 avec six autres dirigeants condamnés.",
+"Ses cendres ont été honorées au sanctuaire Yasukuni (en 1978)."
+],
+"voir": [
+"pearl_harbor",
+"tokyo_trial",
+"yasukuni"
+]
+},
+{
+"id": "hiroshima",
+"type": "événement",
+"nom": "Hiroshima et Nagasaki",
+"kanji": "広島・長崎",
+"lecture": "ひろしま・ながさき",
+"dates": "6 et 9 août 1945",
+"epoque": "showa",
+"alias": [
+"Hiroshima et Nagasaki",
+"広島・長崎",
+"Hiroshima",
+"Nagasaki",
+"bombe atomique"
+],
+"resume": "Les deux seules attaques nucléaires de l'histoire, menées par les États-Unis. Elles sont suivies de l'entrée en guerre de l'URSS et de la capitulation.",
+"points": [
+"Environ 140 000 morts à Hiroshima et 70 000 à Nagasaki fin 1945 (estimations).",
+"Les hibakusha, survivants, ont subi des discriminations et des maladies.",
+"Le parc de la paix d'Hiroshima date de 1954 ; le Dôme est inscrit à l'UNESCO (1996).",
+"Débat historiographique : rôle de la bombe et de l'entrée en guerre soviétique dans la reddition."
+],
+"voir": [
+"hirohito",
+"article9"
+]
+},
+{
+"id": "macarthur",
+"type": "personnage",
+"nom": "MacArthur",
+"kanji": "マッカーサー",
+"lecture": "まっかーさー",
+"dates": "1880-1964",
+"epoque": "showa",
+"alias": [
+"MacArthur",
+"マッカーサー",
+"Douglas MacArthur",
+"SCAP"
+],
+"resume": "Général américain, commandant suprême des forces alliées (SCAP) au Japon de 1945 à 1951.",
+"points": [
+"Il dirige l'occupation de manière indirecte, par le gouvernement japonais.",
+"Il décide de garder l'empereur sur le trône et de faire rédiger la Constitution de 1947.",
+"Il est relevé de ses fonctions par Truman en avril 1951, à cause de la guerre de Corée."
+],
+"voir": [
+"article9",
+"hirohito",
+"yoshida"
+]
+},
+{
+"id": "tokyo_trial",
+"type": "événement",
+"nom": "Tribunal de Tōkyō",
+"kanji": "極東国際軍事裁判",
+"lecture": "きょくとうこくさいぐんじさいばん",
+"dates": "1946-1948",
+"epoque": "showa",
+"alias": [
+"Tribunal de Tōkyō",
+"極東国際軍事裁判",
+"tribunal de Tōkyō",
+"procès de Tōkyō"
+],
+"resume": "Tribunal militaire international qui juge 28 dirigeants japonais. Sept sont pendus, 16 condamnés à la prison à vie.",
+"points": [
+"L'empereur n'est pas poursuivi.",
+"Le juge indien Radhabinod Pal rend une opinion dissidente.",
+"Il est critiqué comme « justice des vainqueurs » par certains, alors que d'autres soulignent le manque de procès pour les crimes contre les civils asiatiques."
+],
+"voir": [
+"tojo",
+"hirohito"
+]
+},
+{
+"id": "yasukuni",
+"type": "concept",
+"nom": "Sanctuaire Yasukuni",
+"kanji": "靖国神社",
+"lecture": "やすくにじんじゃ",
+"dates": "fondé en 1869",
+"epoque": "showa",
+"alias": [
+"Sanctuaire Yasukuni",
+"靖国神社",
+"Yasukuni",
+"sanctuaire Yasukuni"
+],
+"resume": "Sanctuaire shintō de Tōkyō honorant les âmes des morts de guerre du Japon. En 1978, des criminels de guerre de classe A y sont intronisés.",
+"points": [
+"Les visites de Premiers ministres (Koizumi, Abe en 2013) provoquent des protestations de la Chine et de la Corée du Sud.",
+"L'empereur n'y va plus depuis 1975.",
+"Débat constitutionnel sur la séparation de l'État et de la religion."
+],
+"voir": [
+"tojo",
+"tokyo_trial"
+]
+},
+{
+"id": "san_francisco",
+"type": "événement",
+"nom": "Traité de San Francisco",
+"kanji": "サンフランシスコ平和条約",
+"lecture": "さんふらんしすこへいわじょうやく",
+"dates": "8 septembre 1951",
+"epoque": "showa",
+"alias": [
+"Traité de San Francisco",
+"サンフランシスコ平和条約",
+"traité de San Francisco",
+"traité de paix de San Francisco"
+],
+"resume": "Traité de paix qui met fin à l'occupation (en vigueur le 28 avril 1952). Le Japon signe le même jour un traité de sécurité avec les États-Unis.",
+"points": [
+"L'URSS et la Chine ne le signent pas.",
+"Okinawa reste sous administration américaine jusqu'en 1972.",
+"Yoshida Shigeru le signe pour le Japon."
+],
+"voir": [
+"yoshida",
+"macarthur"
+]
+},
+{
+"id": "ldp",
+"type": "concept",
+"nom": "Parti libéral-démocrate",
+"kanji": "自由民主党",
+"lecture": "じゆうみんしゅとう",
+"dates": "fondé en 1955",
+"epoque": "showa",
+"alias": [
+"Parti libéral-démocrate",
+"自由民主党",
+"LDP",
+"système de 1955"
+],
+"resume": "Parti conservateur issu de la fusion de 1955, au pouvoir presque sans interruption jusqu'en 1993, puis de nouveau de 1994 à 2009 et depuis 2012.",
+"points": [
+"Le « système de 1955 » : le LDP face à un parti socialiste affaibli.",
+"Son pouvoir repose sur les factions, les réseaux locaux et la bureaucratie.",
+"Scandales : Lockheed (1976), Recruit (1988)."
+],
+"voir": [
+"yoshida",
+"abe"
+]
+},
+{
+"id": "anpo",
+"type": "événement",
+"nom": "Mouvement Anpo",
+"kanji": "安保闘争",
+"lecture": "あんぽとうそう",
+"dates": "1959-1960",
+"epoque": "showa",
+"alias": [
+"Mouvement Anpo",
+"安保闘争",
+"Anpo",
+"traité de sécurité"
+],
+"resume": "Grandes manifestations contre la révision du traité de sécurité nippo-américain par le gouvernement de Kishi Nobusuke.",
+"points": [
+"Le traité révisé est adopté de force par la majorité en mai 1960.",
+"Kishi démissionne en juillet ; la visite d'Eisenhower est annulée.",
+"Un nouveau mouvement est lancé en 1970."
+],
+"voir": [
+"ldp"
+]
+},
+{
+"id": "ikeda",
+"type": "personnage",
+"nom": "Ikeda Hayato",
+"kanji": "池田勇人",
+"lecture": "いけだはやと",
+"dates": "1899-1965",
+"epoque": "showa",
+"alias": [
+"Ikeda Hayato",
+"池田勇人",
+"Ikeda",
+"doublement des revenus"
+],
+"resume": "Premier ministre de 1960 à 1964, qui met en avant l'économie après la crise d'Anpo.",
+"points": [
+"Plan de doublement des revenus (1960).",
+"Les Jeux de Tōkyō de 1964 et le Shinkansen ont lieu sous son gouvernement."
+],
+"voir": [
+"ldp",
+"miracle_eco"
+]
+},
+{
+"id": "miracle_eco",
+"type": "concept",
+"nom": "Miracle économique",
+"kanji": "高度経済成長",
+"lecture": "こうどけいざいせいちょう",
+"dates": "1955-1973",
+"epoque": "showa",
+"alias": [
+"Miracle économique",
+"高度経済成長",
+"miracle économique",
+"haute croissance",
+"croissance rapide",
+"MITI"
+],
+"resume": "Période de croissance d'environ 9 à 10 % par an qui fait du Japon la deuxième économie mondiale en 1968.",
+"points": [
+"Rôle du MITI, des keiretsu, des banques principales et de l'emploi à vie.",
+"Revers : pollution (Minamata, Itai-itai) ; lois de 1967.",
+"Fin avec le choc pétrolier de 1973."
+],
+"voir": [
+"ikeda",
+"bulle",
+"zaibatsu"
+]
+},
+{
+"id": "minamata",
+"type": "événement",
+"nom": "Maladie de Minamata",
+"kanji": "水俣病",
+"lecture": "みなまたびょう",
+"dates": "reconnue en 1956",
+"epoque": "showa",
+"alias": [
+"Maladie de Minamata",
+"水俣病",
+"Minamata",
+"maladie de Minamata"
+],
+"resume": "Intoxication au mercure causée par les rejets de l'usine Chisso dans la baie de Minamata (Kyūshū).",
+"points": [
+"Reconnue officiellement en 1968 comme liée à Chisso.",
+"Les victimes obtiennent des indemnités après des procès (1973).",
+"Un symbole des dégâts de la haute croissance."
+],
+"voir": [
+"miracle_eco"
+]
+},
+{
+"id": "tezuka",
+"type": "personnage",
+"nom": "Tezuka Osamu",
+"kanji": "手塚治虫",
+"lecture": "てづかおさむ",
+"dates": "1928-1989",
+"epoque": "showa",
+"alias": [
+"Tezuka Osamu",
+"手塚治虫",
+"Tezuka"
+],
+"resume": "Mangaka surnommé « dieu du manga », créateur d'Astro Boy (1952) et du premier anime télévisé en série du Japon (1963).",
+"points": [
+"Style influencé par Disney : grands yeux, narration cinématographique.",
+"Œuvres : Le Roi Léo, Phénix, Black Jack, Buddha."
+],
+"voir": [
+"culture_pop"
+]
+},
+{
+"id": "culture_pop",
+"type": "concept",
+"nom": "Culture populaire japonaise",
+"kanji": "ポップカルチャー",
+"lecture": "",
+"dates": "XXe – XXIe siècle",
+"epoque": "heisei",
+"alias": [
+"Culture populaire japonaise",
+"ポップカルチャー",
+"manga",
+"anime",
+"Cool Japan"
+],
+"resume": "Ensemble de manga, d'anime et de jeux vidéo, devenu un moteur du rayonnement du Japon depuis les années 1990.",
+"points": [
+"Pokémon (1996), Ghibli, One Piece, Naruto, Demon Slayer.",
+"Politique « Cool Japan » lancée par l'État dans les années 2010.",
+"Les racines remontent à l'ukiyo-e, au kamishibai et à Tezuka."
+],
+"voir": [
+"tezuka",
+"ukiyoe"
+]
+},
+{
+"id": "abe",
+"type": "personnage",
+"nom": "Abe Shinzō",
+"kanji": "安倍晋三",
+"lecture": "あべしんぞう",
+"dates": "1954-2022",
+"epoque": "heisei",
+"alias": [
+"Abe Shinzō",
+"安倍晋三",
+"Abenomics"
+],
+"resume": "Premier ministre de 2006 à 2007, puis de 2012 à 2020 : record de longévité. Il est assassiné lors d'un meeting en juillet 2022.",
+"points": [
+"Abenomics : assouplissement monétaire, relance, réformes.",
+"Réinterprétation de l'article 9 (2014-2015).",
+"Sa démission en août 2020 est due à une maladie."
+],
+"voir": [
+"ldp",
+"article9",
+"bulle"
+]
+},
+{
+"id": "koizumi",
+"type": "personnage",
+"nom": "Koizumi Jun'ichirō",
+"kanji": "小泉純一郎",
+"lecture": "こいずみじゅんいちろう",
+"dates": "né en 1942",
+"epoque": "heisei",
+"alias": [
+"Koizumi Jun'ichirō",
+"小泉純一郎",
+"Koizumi"
+],
+"resume": "Premier ministre de 2001 à 2006, populaire pour son style direct et sa promesse de réformer le LDP.",
+"points": [
+"Privatisation de La Poste (2005).",
+"Visites répétées à Yasukuni, qui nuisent aux relations avec Pékin et Séoul.",
+"Rencontre Kim Jong-il en 2002."
+],
+"voir": [
+"ldp",
+"yasukuni"
+]
+},
+{
+"id": "hanshin",
+"type": "événement",
+"nom": "Séisme de Hanshin-Awaji",
+"kanji": "阪神・淡路大震災",
+"lecture": "はんしんあわじだいしんさい",
+"dates": "17 janvier 1995",
+"epoque": "heisei",
+"alias": [
+"Séisme de Hanshin-Awaji",
+"阪神・淡路大震災",
+"séisme de Kōbe",
+"Hanshin-Awaji",
+"séisme de Hanshin"
+],
+"resume": "Séisme de magnitude 7,3 qui frappe Kōbe et fait plus de 6 400 morts.",
+"points": [
+"Il révèle les faiblesses de la préparation et de la gestion de crise.",
+"1995 devient « l'année du volontariat »."
+],
+"voir": [
+"fukushima"
+]
+},
+{
+"id": "fukushima",
+"type": "événement",
+"nom": "Catastrophe de 2011",
+"kanji": "東日本大震災",
+"lecture": "ひがしにほんだいしんさい",
+"dates": "11 mars 2011",
+"epoque": "heisei",
+"alias": [
+"Catastrophe de 2011",
+"東日本大震災",
+"séisme du Tōhoku",
+"Fukushima",
+"catastrophe de Fukushima"
+],
+"resume": "Séisme de magnitude 9,0 suivi d'un tsunami (environ 18 000 morts ou disparus) et d'un accident nucléaire à Fukushima Daiichi (niveau 7).",
+"points": [
+"Plus de 150 000 évacués.",
+"Débat national sur l'énergie nucléaire.",
+"Les travaux de démantèlement doivent durer des décennies."
+],
+"voir": [
+"hanshin",
+"abe"
+]
+},
+{
+"id": "aum",
+"type": "événement",
+"nom": "Attentat au sarin",
+"kanji": "地下鉄サリン事件",
+"lecture": "ちかてつさりんじけん",
+"dates": "20 mars 1995",
+"epoque": "heisei",
+"alias": [
+"Attentat au sarin",
+"地下鉄サリン事件",
+"Aum Shinrikyō",
+"attentat au sarin"
+],
+"resume": "Attaque de la secte Aum Shinrikyō dans le métro de Tōkyō : 13 morts et des milliers de blessés.",
+"points": [
+"Le fondateur, Asahara Shōkō, est condamné à mort et exécuté en 2018.",
+"La loi sur les organisations religieuses est révisée."
+],
+"voir": [
+"hanshin"
+]
+},
+{
+"id": "hosokawa",
+"type": "personnage",
+"nom": "Hosokawa Morihiro",
+"kanji": "細川護熙",
+"lecture": "ほそかわもりひろ",
+"dates": "né en 1938",
+"epoque": "heisei",
+"alias": [
+"Hosokawa Morihiro",
+"細川護熙",
+"Hosokawa"
+],
+"resume": "Premier ministre en 1993-1994, à la tête de la coalition qui écarte le LDP du pouvoir pour la première fois depuis 1955.",
+"points": [
+"Il conduit la réforme électorale de 1994.",
+"Il parle de « guerre d'agression » à propos de la guerre."
+],
+"voir": [
+"ldp"
+]
+},
+{
+"id": "akutagawa",
+"type": "personnage",
+"nom": "Akutagawa Ryūnosuke",
+"kanji": "芥川龍之介",
+"lecture": "あくたがわりゅうのすけ",
+"dates": "1892-1927",
+"epoque": "taisho",
+"alias": [
+"Akutagawa Ryūnosuke",
+"芥川龍之介",
+"Akutagawa"
+],
+"resume": "Écrivain de nouvelles psychologiques, dont Rashōmon (1915) et Dans le fourré, adaptés par Kurosawa en 1950. Il se suicide en 1927.",
+"points": [
+"Il puise dans des récits anciens (Konjaku monogatari).",
+"Le prix Akutagawa, créé en 1935, est l'un des grands prix littéraires du Japon."
+],
+"voir": [
+"taisho_democratie"
+]
+},
+{
+"id": "kurosawa",
+"type": "personnage",
+"nom": "Kurosawa Akira",
+"kanji": "黒澤明",
+"lecture": "くろさわあきら",
+"dates": "1910-1998",
+"epoque": "showa",
+"alias": [
+"Kurosawa Akira",
+"黒澤明",
+"Kurosawa"
+],
+"resume": "Cinéaste dont Rashōmon (Lion d'or 1951), Les Sept Samouraïs (1954) et Ran (1985) ont marqué le cinéma mondial.",
+"points": [
+"Rashōmon est adapté d'Akutagawa.",
+"Il a influencé le western et la science-fiction occidentaux."
+],
+"voir": [
+"akutagawa",
+"culture_pop"
+]
+},
+{
+"id": "kawabata",
+"type": "personnage",
+"nom": "Kawabata Yasunari",
+"kanji": "川端康成",
+"lecture": "かわばたやすなり",
+"dates": "1899-1972",
+"epoque": "showa",
+"alias": [
+"Kawabata Yasunari",
+"川端康成",
+"Kawabata"
+],
+"resume": "Premier Japonais à recevoir le prix Nobel de littérature (1968). Pays de neige, Les Belles Endormies.",
+"points": [
+"Il se suicide en 1972.",
+"Il s'inscrit dans la tradition esthétique du genji et du haïku."
+],
+"voir": [
+"genji",
+"haiku"
+]
+},
+{
+"id": "mishima",
+"type": "personnage",
+"nom": "Mishima Yukio",
+"kanji": "三島由紀夫",
+"lecture": "みしまゆきお",
+"dates": "1925-1970",
+"epoque": "showa",
+"alias": [
+"Mishima Yukio",
+"三島由紀夫",
+"Mishima"
+],
+"resume": "Écrivain (Confession d'un masque, Le Pavillon d'or) et activiste nationaliste. Il se suicide rituellement (seppuku) au quartier général des Forces d'autodéfense le 25 novembre 1970.",
+"points": [
+"Il fonde la Tatenokai, milice privée.",
+"Son geste est un appel avorté à restaurer l'empereur."
+],
+"voir": [
+"kawabata",
+"article9"
+]
+},
+{
+"id": "noh_kyogen",
+"type": "concept",
+"nom": "Kyōgen",
+"kanji": "狂言",
+"lecture": "きょうげん",
+"dates": "depuis le XIVe siècle",
+"epoque": "muromachi",
+"alias": [
+"Kyōgen",
+"狂言",
+"kyōgen"
+],
+"resume": "Courtes comédies parlées jouées entre les pièces de nō, avec un ton comique et des dialogues du parler médiéval.",
+"points": [
+"Pas de masque en général ; thèmes : maîtres, serviteurs, moines.",
+"Forme patrimoniale classée par l'UNESCO avec le nō."
+],
+"voir": [
+"no",
+"zeami"
+]
+},
+{
+"id": "bunraku",
+"type": "concept",
+"nom": "Bunraku",
+"kanji": "文楽",
+"lecture": "ぶんらく",
+"dates": "XVIIe siècle",
+"epoque": "edo",
+"alias": [
+"Bunraku",
+"文楽",
+"bunraku",
+"jōruri"
+],
+"resume": "Théâtre de marionnettes à trois manipulateurs, accompagné d'un récitant (tayū) et d'un shamisen.",
+"points": [
+"Chikamatsu Monzaemon écrit ses grands drames (Les Amants suicidés de Sonezaki, 1703).",
+"Centre d'Ōsaka."
+],
+"voir": [
+"kabuki",
+"no"
+]
+},
+{
+"id": "chikamatsu",
+"type": "personnage",
+"nom": "Chikamatsu Monzaemon",
+"kanji": "近松門左衛門",
+"lecture": "ちかまつもんざえもん",
+"dates": "1653-1725",
+"epoque": "edo",
+"alias": [
+"Chikamatsu Monzaemon",
+"近松門左衛門",
+"Chikamatsu"
+],
+"resume": "Dramaturge de bunraku et de kabuki, auteur de drames bourgeois (sewamono) fondés sur des faits divers, surtout des doubles suicides amoureux.",
+"points": [
+"Les Amants suicidés de Sonezaki (1703).",
+"Il oppose giri (devoir) et ninjō (sentiment)."
+],
+"voir": [
+"bunraku",
+"kabuki"
+]
+},
+{
+"id": "chonin",
+"type": "concept",
+"nom": "Chōnin",
+"kanji": "町人",
+"lecture": "ちょうにん",
+"dates": "période d'Edo",
+"epoque": "edo",
+"alias": [
+"Chōnin",
+"町人",
+"chōnin"
+],
+"resume": "Habitants des villes (marchands et artisans) de l'époque d'Edo, au bas de l'échelle du système des quatre états, mais de plus en plus riches.",
+"points": [
+"Ils sont les principaux soutiens de la culture urbaine : kabuki, ukiyo-e, littérature.",
+"Les maisons de commerce (Mitsui) en sont des exemples."
+],
+"voir": [
+"ukiyoe",
+"kabuki",
+"shi_no_ko_sho"
+]
+},
+{
+"id": "rangaku",
+"type": "concept",
+"nom": "Rangaku",
+"kanji": "蘭学",
+"lecture": "らんがく",
+"dates": "XVIIIe – XIXe siècle",
+"epoque": "edo",
+"alias": [
+"Rangaku",
+"蘭学",
+"rangaku",
+"études hollandaises"
+],
+"resume": "« Études hollandaises » : étude des sciences occidentales par les lettrés japonais via le comptoir néerlandais de Dejima.",
+"points": [
+"Sugita Genpaku et la traduction de l'anatomie (Kaitai shinsho, 1774).",
+"Le shogunat crée un bureau de traduction en 1811.",
+"Elles préparent la modernisation de Meiji."
+],
+"voir": [
+"sakoku",
+"perry"
+]
+},
+{
+"id": "tokugawa_yoshinobu",
+"type": "personnage",
+"nom": "Tokugawa Yoshinobu",
+"kanji": "徳川慶喜",
+"lecture": "とくがわよしのぶ",
+"dates": "1837-1913",
+"epoque": "edo",
+"alias": [
+"Tokugawa Yoshinobu",
+"徳川慶喜",
+"Yoshinobu"
+],
+"resume": "Dernier shogun (1866-1867). Il rend le pouvoir à l'empereur en novembre 1867.",
+"points": [
+"Il perd la guerre de Boshin (1868-1869) malgré sa démission.",
+"Il se retire de la vie politique."
+],
+"voir": [
+"restauration_meiji",
+"saigo"
+]
+},
+{
+"id": "boshin",
+"type": "événement",
+"nom": "Guerre de Boshin",
+"kanji": "戊辰戦争",
+"lecture": "ぼしんせんそう",
+"dates": "1868-1869",
+"epoque": "meiji",
+"alias": [
+"Guerre de Boshin",
+"戊辰戦争",
+"guerre de Boshin",
+"Boshin"
+],
+"resume": "Guerre civile entre les troupes du nouveau gouvernement impérial et les partisans du shogunat, de la bataille de Toba-Fushimi à Hakodate.",
+"points": [
+"Edo se rend sans combat (avril 1868), négociée par Saigō Takamori et Katsu Kaishū.",
+"Aizu résiste avant sa chute à l'automne 1868."
+],
+"voir": [
+"restauration_meiji",
+"saigo",
+"tokugawa_yoshinobu"
+]
+},
+{
+"id": "satsuma_rebellion",
+"type": "événement",
+"nom": "Révolte de Satsuma",
+"kanji": "西南戦争",
+"lecture": "せいなんせんそう",
+"dates": "1877",
+"epoque": "meiji",
+"alias": [
+"Révolte de Satsuma",
+"西南戦争",
+"révolte de Satsuma",
+"guerre de Seinan"
+],
+"resume": "Dernière grande révolte de samouraïs, menée par Saigō Takamori contre le gouvernement de Meiji.",
+"points": [
+"Vaincue par l'armée conscrite.",
+"Saigō se donne la mort à Shiroyama."
+],
+"voir": [
+"saigo",
+"meiji_tenno"
+]
+},
+{
+"id": "guerre_sino_japonaise",
+"type": "événement",
+"nom": "Guerre sino-japonaise",
+"kanji": "日清戦争",
+"lecture": "にっしんせんそう",
+"dates": "1894-1895",
+"epoque": "meiji",
+"alias": [
+"Guerre sino-japonaise",
+"日清戦争",
+"guerre sino-japonaise",
+"traité de Shimonoseki"
+],
+"resume": "Guerre contre la Chine des Qing au sujet de la Corée. Le traité de Shimonoseki cède Taiwan au Japon.",
+"points": [
+"Intervention de la Russie, de l'Allemagne et de la France (Triple Intervention) sur le Liaodong.",
+"Le Japon devient une puissance régionale."
+],
+"voir": [
+"ito",
+"meiji_tenno"
+]
+},
+{
+"id": "guerre_russo_japonaise",
+"type": "événement",
+"nom": "Guerre russo-japonaise",
+"kanji": "日露戦争",
+"lecture": "にちろせんそう",
+"dates": "1904-1905",
+"epoque": "meiji",
+"alias": [
+"Guerre russo-japonaise",
+"日露戦争",
+"guerre russo-japonaise",
+"Tsushima",
+"traité de Portsmouth"
+],
+"resume": "Guerre contre la Russie pour la Mandchourie et la Corée. Victoire de Tsushima (mai 1905) et traité de Portsmouth.",
+"points": [
+"Le Japon est la première puissance non occidentale à vaincre une puissance européenne.",
+"Pas d'indemnité : émeutes de Hibiya (1905).",
+"Annexion de la Corée en 1910."
+],
+"voir": [
+"guerre_sino_japonaise",
+"meiji_tenno"
+]
+},
+{
+"id": "natsume",
+"type": "personnage",
+"nom": "Natsume Sōseki",
+"kanji": "夏目漱石",
+"lecture": "なつめそうせき",
+"dates": "1867-1916",
+"epoque": "meiji",
+"alias": [
+"Natsume Sōseki",
+"夏目漱石",
+"Sōseki"
+],
+"resume": "Romancier majeur de Meiji (Je suis un chat, Botchan, Kokoro). Il décrit l'individu face à la modernisation.",
+"points": [
+"Il a étudié à Londres (1900-1902).",
+"Il figurait sur les billets de 1 000 yens."
+],
+"voir": [
+"akutagawa",
+"fukuzawa"
+]
+},
+{
+"id": "shogun_ashikaga_kinkaku",
+"type": "concept",
+"nom": "Pavillon d'or",
+"kanji": "金閣",
+"lecture": "きんかく",
+"dates": "1397",
+"epoque": "muromachi",
+"alias": [
+"Pavillon d'or",
+"金閣",
+"Kinkaku",
+"Kinkaku-ji"
+],
+"resume": "Pavillon de Kyōto construit par le shogun Yoshimitsu, symbole de la culture de Kitayama. Il est brûlé en 1950 par un moine et reconstruit en 1955.",
+"points": [
+"Roman de Mishima : Le Pavillon d'or (1956).",
+"Le Ginkaku, pavillon d'argent, est lié à Yoshimasa (culture de Higashiyama)."
+],
+"voir": [
+"yoshimitsu",
+"mishima"
+]
+},
+{
+"id": "onin",
+"type": "événement",
+"nom": "Guerre d'Ōnin",
+"kanji": "応仁の乱",
+"lecture": "おうにんのらん",
+"dates": "1467-1477",
+"epoque": "muromachi",
+"alias": [
+"Guerre d'Ōnin",
+"応仁の乱",
+"guerre d'Ōnin",
+"Ōnin"
+],
+"resume": "Guerre civile née d'une succession shogunale et de rivalités entre familles de gouverneurs (Hosokawa et Yamana). Kyōto est largement détruite.",
+"points": [
+"Elle marque le début de la période des Provinces en guerre (Sengoku).",
+"Le pouvoir du shogun s'effondre au profit des daimyō locaux."
+],
+"voir": [
+"gekokujo",
+"bakufu"
+]
+}
+]
