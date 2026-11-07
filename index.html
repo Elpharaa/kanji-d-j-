@@ -6737,6 +6737,8 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
 .dcck{text-wrap:balance}
 .orx .orp{margin-top:0;margin-bottom:6px;font-size:.9rem;line-height:1.5;color:#3d3558}
 .orx .orsrc{margin-top:0;margin-bottom:0;font-size:.74rem;color:#6f629a}
+.dcb.ar{background:#fdeccd;color:#8a5a00}
+.dcb.arr{background:#efeff4;color:#6f629a}
 
 </style>
 
@@ -32397,7 +32399,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v511', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v512', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35987,6 +35989,21 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
   var orO0 = dcOpen;
   dcOpen = function (i) { orO0(i); ORI = i; try { orLoad(orShow); orShow(); } catch (e) {} };
   (function () { var t = 0; try { new MutationObserver(function () { clearTimeout(t); t = setTimeout(function () { try { if (OR) orShow(); } catch (e) {} }, 120); }).observe(document.body, { childList: true, subtree: true }); } catch (e) {} })();
+
+  /* ANCIEN : pastille « Ancien / Désuet / Vieilli / Rare » dans la liste du dico (données JMdict, petit fichier chargé au démarrage) */
+  var AR = null, ARL = { o: 'Désuet', a: 'Ancien', d: 'Vieilli', r: 'Rare' };
+  function arLoad() {
+    try { if (typeof DecompressionStream === 'undefined') return; } catch (e) { return; }
+    fetch('data/lz_ar.gz').then(function (r) { if (!r.ok) throw 0; return r.blob(); }).then(function (b) { return new Response(b.stream().pipeThrough(new DecompressionStream('gzip'))).text(); })
+      .then(function (t) { AR = JSON.parse(t); try { if (document.getElementById('dcHost') && dc.mode !== 'n') dcRefreshAll(); } catch (e) {} }).catch(function () {});
+  }
+  setTimeout(arLoad, 1200);
+  var arCard0 = dcCard;
+  dcCard = function (e, n, anim) {
+    var h = arCard0(e, n, anim); if (!AR) return h;
+    var t = AR[e.jp + '|' + (e.kana || e.jp)]; if (!t) return h;
+    return h.replace('<span class="dcbs">', '<span class="dcbs"><span class="dcb d2m ar ar' + t + '">' + ARL[t] + '</span>');
+  };
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
