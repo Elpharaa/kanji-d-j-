@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Histoire du Japon · Kanji Dōjō</title>
+<meta name="theme-color" content="#2c2452">
+<style>
+:root{--bg:#faf5ea;--fg:#1f1830;--mut:#6b6280;--card:#fff;--line:#e3d9c4;--acc:#b2285b;--acc2:#2c2452}
+@media(prefers-color-scheme:dark){:root{--bg:#161225;--fg:#f2ecdf;--mut:#a79fbd;--card:#221c38;--line:#3a3158;--acc:#ff7aa8;--acc2:#d9d0f5}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 "Zen Kaku Gothic New",system-ui,sans-serif}
+header{padding:16px;background:var(--acc2);color:#fff}header a{color:#ffd9a0;text-decoration:none;font-size:.9rem}
+header h1{margin:4px 0 0;font:400 1.6rem "Shippori Mincho",serif}header p{margin:2px 0 0;opacity:.85;font-size:.9rem}
+main{max-width:760px;margin:0 auto;padding:16px}
+#q{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--fg);font-size:1rem}
+.tl{position:relative;margin:18px 0 0;padding-left:22px;border-left:3px solid var(--acc)}
+.ep{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:0 0 12px;color:inherit;font:inherit;cursor:pointer;position:relative}
+.ep::before{content:"";position:absolute;left:-30px;top:18px;width:11px;height:11px;border-radius:50%;background:var(--acc);border:2px solid var(--bg)}
+.ep b{font:400 1.2rem "Shippori Mincho",serif}.ep small{color:var(--mut);display:block}.ep span.k{float:right;font:400 1.5rem "Shippori Mincho",serif;color:var(--acc)}
+.back{background:none;border:0;color:var(--acc);font:inherit;padding:8px 0;cursor:pointer}
+h2{font:400 1.7rem "Shippori Mincho",serif;margin:.2em 0}h3{font:700 1rem sans-serif;color:var(--acc);margin:1.4em 0 .4em;letter-spacing:.04em;text-transform:uppercase}
+.big{font:400 3rem "Shippori Mincho",serif;color:var(--acc);line-height:1}.per{color:var(--mut)}
+.ev{display:flex;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line)}.ev b{flex:none;width:7.2em;color:var(--acc2)}@media(prefers-color-scheme:dark){.ev b{color:var(--acc)}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px}ul{padding-left:1.2em;margin:.3em 0}
+.nav{display:flex;justify-content:space-between;margin-top:22px;gap:8px}.nav button{flex:1;padding:10px;border:1px solid var(--line);background:var(--card);color:inherit;border-radius:12px;font:inherit;cursor:pointer}
+.jp{font-family:"Shippori Mincho",serif}.note{color:var(--mut);font-size:.85rem;margin-top:26px}
+</style></head><body>
+<header><a href="../">‹ Kanji Dōjō</a><h1>Histoire du Japon 日本史</h1><p>Des premiers villages à l'ère Reiwa</p></header>
+<main id="m"></main>
+<script>
+var D=[],m=document.getElementById('m');
+function e(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function home(q){q=(q||'').toLowerCase();var h='<input id="q" type="search" placeholder="Chercher une époque, un personnage, un mot…" value="'+e(q)+'" aria-label="Recherche"><div class="tl">';
+ var n=0;D.forEach(function(p,i){if(q&&JSON.stringify(p).toLowerCase().indexOf(q)<0)return;n++;h+='<button class="ep" data-i="'+i+'"><span class="k">'+e(p.kanji)+'</span><b>'+e(p.nom)+'</b><small>'+e(p.periode)+'</small>'+e(p.accroche)+'</button>'});
+ h+='</div>'+(n?'':'<p class="per">Aucun résultat.</p>')+'<p class="note">Contenu en cours d\'enrichissement : chapitres détaillés, cartes, quiz et frise à venir. Dates et faits à recouper avec des sources universitaires avant tout examen.</p>';m.innerHTML=h;
+ var qi=document.getElementById('q');qi.addEventListener('input',function(){var v=qi.value;home(v);var x=document.getElementById('q');x.focus();x.setSelectionRange(v.length,v.length)});}
+function sec(t,b){return b?'<h3>'+t+'</h3>'+b:''}
+function ep(i){var p=D[i];if(!p)return home();location.hash=p.id;
+ var h='<button class="back" data-h="1">‹ Toutes les époques</button><div class="big">'+e(p.kanji)+'</div><h2>'+e(p.nom)+'</h2><div class="per">'+e(p.periode)+'</div><p>'+e(p.resume)+'</p>';
+ h+=sec('Événements clés','<div>'+p.evenements.map(function(x){return'<div class="ev"><b>'+e(x[0])+'</b><span>'+e(x[1])+'</span></div>'}).join('')+'</div>');
+ h+=sec('Société',p.societe?'<p>'+e(p.societe)+'</p>':'')+sec('Culture',p.culture?'<p>'+e(p.culture)+'</p>':'');
+ h+=sec('Personnages',p.personnages.length?'<ul>'+p.personnages.map(function(x){return'<li><b class="jp">'+e(x[0])+'</b> : '+e(x[1])+'</li>'}).join('')+'</ul>':'');
+ h+=sec('À retenir','<div class="box"><ul>'+p.retenir.map(function(x){return'<li>'+e(x)+'</li>'}).join('')+'</ul></div>');
+ h+=sec('Vocabulaire',p.mots.length?'<ul>'+p.mots.map(function(x){return'<li><b>'+e(x[0])+'</b> <span class="jp">'+e(x[1])+'</span> : '+e(x[2])+'</li>'}).join('')+'</ul>':'');
+ h+='<div class="nav">'+(i>0?'<button data-i="'+(i-1)+'">‹ '+e(D[i-1].nom)+'</button>':'<span></span>')+(i<D.length-1?'<button data-i="'+(i+1)+'">'+e(D[i+1].nom)+' ›</button>':'<span></span>')+'</div>';
+ m.innerHTML=h;scrollTo(0,0)}
+m.addEventListener('click',function(ev){var b=ev.target.closest('[data-i],[data-h]');if(!b)return;if(b.dataset.h){history.replaceState(null,'',location.pathname);home()}else ep(+b.dataset.i)});
+fetch('data/epoques.json').then(function(r){return r.json()}).then(function(d){D=d;var id=location.hash.slice(1),i=D.findIndex(function(p){return p.id===id});i>=0?ep(i):home()}).catch(function(){m.innerHTML='<p>Impossible de charger les données.</p>'});
+</script></body></html>
