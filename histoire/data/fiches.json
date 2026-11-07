@@ -6371,5 +6371,262 @@
 "akihito",
 "manyoshu"
 ]
+},
+{
+"id": "reg_hokkaido",
+"type": "région",
+"nom": "Hokkaidō",
+"kanji": "北海道",
+"lecture": "ほっかいどう",
+"dates": "région · 1 préfecture",
+"epoque": "",
+"alias": [
+"Hokkaidō",
+"北海道",
+"Ezo"
+],
+"resume": "Grande île du nord, 22 % du territoire du Japon pour environ 5 millions d'habitants. Intégrée tardivement (Ezo, rebaptisée Hokkaidō en 1869), elle a été colonisée à l'époque de Meiji sur les terres du peuple ainu.",
+"points": [
+"Géographie : climat subarctique, longs hivers de neige, grandes plaines agricoles ; premier producteur agricole du pays (pommes de terre, blé, produits laitiers).",
+"Histoire : territoire des Ainu ; comptoirs japonais (Matsumae) sous Edo ; Office de colonisation (Kaitakushi, 1869-1882) et colons-soldats (tondenhei) à Meiji ; loi de 1899 d'assimilation des Ainu, remplacée en 2019 par une loi qui les reconnaît comme peuple autochtone.",
+"Villes : Sapporo (environ 2 millions, Jeux d'hiver de 1972), Asahikawa, Hakodate (port ouvert en 1854).",
+"Culture et nature : festival de la neige de Sapporo, ramen au miso, fruits de mer, parc national de Shiretoko (patrimoine mondial en 2005).",
+"Transports : Shinkansen jusqu'à Shin-Hakodate-Hokuto depuis 2016, tunnel du Seikan."
+],
+"voir": [
+"ryukyu",
+"reg_tohoku"
+]
+},
+{
+"id": "reg_tohoku",
+"type": "région",
+"nom": "Tōhoku",
+"kanji": "東北",
+"lecture": "とうほく",
+"dates": "région · 6 préfectures",
+"epoque": "",
+"alias": [
+"Tōhoku",
+"東北",
+"Oshū"
+],
+"resume": "Le « nord-est » de Honshū : Aomori, Iwate, Miyagi, Akita, Yamagata et Fukushima. Longtemps territoire des Emishi, puis grenier à riz et région souvent frappée par les famines et les catastrophes.",
+"points": [
+"Antiquité : territoire des Emishi, soumis par Sakanoue no Tamuramaro au début du IXe siècle ; site Jōmon de Sannai Maruyama (Aomori).",
+"Moyen Âge : Hiraizumi, capitale des Fujiwara du nord (patrimoine mondial, 2011).",
+"Edo : domaines de Date Masamune (Sendai) ; la mission de Hasekura Tsunenaga part en Europe (1613) ; Bashō y voyage pour La Sente étroite du Nord (1689).",
+"Meiji : les domaines pro-shogunat (Aizu) sont vaincus pendant la guerre de Boshin ; famines (Tenmei, années 1930).",
+"2011 : séisme et tsunami du 11 mars (environ 18 000 morts ou disparus), accident nucléaire de Fukushima Daiichi.",
+"Culture : festivals de Nebuta (Aomori), de Kanto (Akita) et du Tanabata (Sendai) ; riz, saké, pommes, cerises."
+],
+"voir": [
+"emishi",
+"fukushima",
+"tamuramaro",
+"basho"
+]
+},
+{
+"id": "reg_kanto",
+"type": "région",
+"nom": "Kantō",
+"kanji": "関東",
+"lecture": "かんとう",
+"dates": "région · 7 préfectures",
+"epoque": "",
+"alias": [
+"Kantō",
+"関東",
+"Grand Tōkyō"
+],
+"resume": "La plaine du Kantō, la plus grande du Japon, avec Tōkyō, Kanagawa, Saitama, Chiba, Ibaraki, Tochigi et Gunma : plus d'un quart de la population du pays (environ 43 millions avec l'agglomération).",
+"points": [
+"Histoire : berceau des guerriers (bushi) ; Kamakura (1185), puis Edo, capitale du shogunat (1603) ; Tōkyō capitale impériale (1868).",
+"Catastrophes : séisme du Kantō (1923), bombardements de 1945.",
+"Modernité : ouverture du port de Yokohama (1859) ; centre politique, financier et culturel.",
+"Culture : Sensō-ji, Nikkō (mausolée d'Ieyasu), Kamakura (Grand Bouddha), culture pop (Akihabara).",
+"Économie : industrie, banques, sièges sociaux ; plus de 35 millions d'habitants dans l'agglomération de Tōkyō.",
+"Dialecte : le parler de Tōkyō sert de base au japonais standard (hyōjungo)."
+],
+"voir": [
+"kanto_shinsai",
+"bakufu",
+"tomioka"
+]
+},
+{
+"id": "reg_chubu",
+"type": "région",
+"nom": "Chūbu",
+"kanji": "中部",
+"lecture": "ちゅうぶ",
+"dates": "région · 9 préfectures",
+"epoque": "",
+"alias": [
+"Chūbu",
+"中部",
+"Hokuriku",
+"Tōkai"
+],
+"resume": "Le « centre » de Honshū, entre mer du Japon et océan Pacifique. Elle regroupe trois sous-régions : Hokuriku (Niigata, Toyama, Ishikawa, Fukui), Kōshin'etsu (Yamanashi, Nagano) et Tōkai (Gifu, Shizuoka, Aichi).",
+"points": [
+"Géographie : Alpes japonaises, mont Fuji (3 776 m, patrimoine mondial en 2013), côte à neige de la mer du Japon.",
+"Histoire : Oda Nobunaga, Toyotomi Hideyoshi et Tokugawa Ieyasu en sont issus ; Sekigahara (1600) ; Takeda Shingen (Kai).",
+"Voies : Tōkaidō et Nakasendō reliaient Edo à Kyōto.",
+"Économie : Nagoya et Toyota (industrie automobile, Aichi) ; riz de Niigata ; thé de Shizuoka.",
+"Patrimoine : Shirakawa-gō (patrimoine mondial, 1995), Kanazawa (Kenrokuen), Eihei-ji (Dōgen).",
+"Nagano a accueilli les Jeux d'hiver de 1998."
+],
+"voir": [
+"nobunaga",
+"hideyoshi",
+"ieyasu",
+"sekigahara",
+"takeda",
+"dogen"
+]
+},
+{
+"id": "reg_kansai",
+"type": "région",
+"nom": "Kansai",
+"kanji": "関西",
+"lecture": "かんさい",
+"dates": "région · 2 fu et 5 ken",
+"epoque": "",
+"alias": [
+"Kansai",
+"関西",
+"Kinki"
+],
+"resume": "Région historique du Japon : Ōsaka, Kyōto, Hyōgo, Nara, Wakayama, Shiga et Mie (appelée aussi Kinki). Berceau de l'État de Yamato et des capitales anciennes.",
+"points": [
+"Antiquité : Yamato (Kofun), Asuka, Nara (710), Nagaoka, Heian-kyō (794).",
+"Moyen Âge et Edo : Kyōto capitale impériale jusqu'en 1868 ; Ōsaka « cuisine de la nation » et capitale des marchands.",
+"Culture : bunraku, kabuki d'Ōsaka, thé, arts de la cour ; dialecte du Kansai (Kansai-ben).",
+"Patrimoine : 17 monuments de Kyōto, Nara, Himeji, route sacrée des monts Kii (patrimoine mondial, 2004).",
+"Économie : Ōsaka (environ 2,7 millions), Kōbe (port ouvert en 1868), Expo 1970 et 2025.",
+"Rivalité traditionnelle avec le Kantō : goûts (dashi clair ou foncé), langage, humour (manzai)."
+],
+"voir": [
+"heian_kyo",
+"heijo",
+"osaka",
+"genroku",
+"bunraku"
+]
+},
+{
+"id": "reg_chugoku",
+"type": "région",
+"nom": "Chūgoku",
+"kanji": "中国",
+"lecture": "ちゅうごく",
+"dates": "région · 5 préfectures",
+"epoque": "",
+"alias": [
+"Chūgoku",
+"中国",
+"Sanyō",
+"San'in"
+],
+"resume": "Région de l'ouest de Honshū (Tottori, Shimane, Okayama, Hiroshima, Yamaguchi). Son nom signifie « pays du milieu » dans le découpage ancien des provinces : il n'a aucun rapport avec la Chine.",
+"points": [
+"Géographie : deux façades opposées, San'in (mer du Japon, plus rurale) et Sanyō (mer intérieure, plus industrielle).",
+"Antiquité : Izumo et ses mythes ; sanctuaire d'Izumo Taisha.",
+"Moyen Âge : Ōuchi (Yamaguchi, « petite Kyōto »), Mōri (Hiroshima).",
+"Edo : domaine de Chōshū (Hagi), foyer des dirigeants de Meiji ; mine d'argent d'Iwami (patrimoine mondial, 2007).",
+"1945 : bombe atomique sur Hiroshima ; dôme de Genbaku et Miyajima (Itsukushima) au patrimoine mondial.",
+"Économie : chantiers navals, sidérurgie, automobile (Mazda à Hiroshima), jeans d'Okayama."
+],
+"voir": [
+"hiroshima",
+"satcho",
+"kido"
+]
+},
+{
+"id": "reg_shikoku",
+"type": "région",
+"nom": "Shikoku",
+"kanji": "四国",
+"lecture": "しこく",
+"dates": "région · 4 préfectures",
+"epoque": "",
+"alias": [
+"Shikoku",
+"四国"
+],
+"resume": "La plus petite des quatre grandes îles : « quatre provinces » (Awa, Sanuki, Iyo, Tosa), aujourd'hui Tokushima, Kagawa, Ehime et Kōchi. Environ 3,7 millions d'habitants.",
+"points": [
+"Pèlerinage : les 88 temples de Shikoku (henro), liés à la mémoire du moine Kūkai, né à Zentsūji (Kagawa).",
+"Histoire : exil d'empereurs (Sutoku à Sanuki, 1156) ; domaine de Tosa et Sakamoto Ryōma ; mouvement des droits du peuple (Itagaki).",
+"Liaisons avec Honshū : pont Seto-Ōhashi (1988), Akashi Kaikyō (1998), Shimanami Kaidō (1999).",
+"Culture : festival Awa Odori de Tokushima, Dōgo Onsen de Matsuyama, udon sanuki de Kagawa.",
+"Nature : rivière Shimanto, tourbillons de Naruto."
+],
+"voir": [
+"kukai",
+"satcho",
+"shingon"
+]
+},
+{
+"id": "reg_kyushu",
+"type": "région",
+"nom": "Kyūshū",
+"kanji": "九州",
+"lecture": "きゅうしゅう",
+"dates": "région · 7 préfectures (+ Okinawa)",
+"epoque": "",
+"alias": [
+"Kyūshū",
+"九州",
+"Saikaidō"
+],
+"resume": "Île du sud-ouest : Fukuoka, Saga, Nagasaki, Kumamoto, Ōita, Miyazaki et Kagoshima, souvent regroupées avec Okinawa. Porte du Japon vers le continent depuis l'Antiquité.",
+"points": [
+"Antiquité : Yoshinogari, royaume de Na, Yamatai, mythes de Hyūga ; Dazaifu, administration de défense (VIIe siècle).",
+"Moyen Âge : invasions mongoles à Hakata (1274 et 1281) ; Hideyoshi y mène ses campagnes (Corée).",
+"Contacts avec l'Occident : Tanegashima (1543), Kagoshima (Xavier, 1549), Nagasaki et Dejima ; révolte de Shimabara (1637).",
+"Meiji : Satsuma (Saigō Takamori), révolte de 1877 ; sidérurgie de Yawata (1901).",
+"Nature : volcans (Aso, Sakurajima), Yakushima (patrimoine mondial, 1993), sources chaudes (Beppu).",
+"Économie : agriculture, électronique, porcelaine d'Arita ; Fukuoka, métropole d'environ 1,6 million d'habitants."
+],
+"voir": [
+"yoshinogari",
+"mongols",
+"xavier",
+"dejima",
+"shimabara",
+"saigo"
+]
+},
+{
+"id": "reg_okinawa",
+"type": "région",
+"nom": "Okinawa",
+"kanji": "沖縄",
+"lecture": "おきなわ",
+"dates": "région · 1 préfecture",
+"epoque": "",
+"alias": [
+"Okinawa",
+"沖縄"
+],
+"resume": "Chapelet d'environ 160 îles du Pacifique, au climat subtropical. Ancien royaume des Ryūkyū (1429-1879), devenu préfecture japonaise, puis occupé par les États-Unis jusqu'en 1972.",
+"points": [
+"Royaume : unification de l'île en 1429 ; commerce de relais entre la Chine, le Japon et l'Asie du Sud-Est ; tributaire de la Chine et soumis à Satsuma depuis 1609 ; gusuku (château de Shuri) au patrimoine mondial depuis 2000.",
+"Annexion : « disposition des Ryūkyū » de 1879 ; assimilation et interdiction progressive des langues locales.",
+"1945 : bataille d'Okinawa, environ 200 000 morts dont près de la moitié de civils.",
+"Après-guerre : administration américaine (1945-1972) ; rétrocession le 15 mai 1972 ; les bases américaines occupent encore une part importante du territoire de l'île principale.",
+"Culture : karaté, sanshin, shisa, cuisine locale (goya champuru), langues ryūkyū."
+],
+"voir": [
+"ryukyu",
+"okinawa_bataille",
+"satc_okinawa"
+]
 }
 ]
