@@ -4,7 +4,7 @@
 var CACHE = 'kanji-dojo-v5';
 self.addEventListener('install', function (e) {
   self.skipWaiting();
-  e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'data/lz_jm.gz', 'data/lz_tx.gz', 'data/lz_st.gz', 'data/lz_sk.gz']); }).catch(function () {}));
+  e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'data/lz_jm.gz', 'data/lz_tx.gz', 'data/lz_st.gz', 'data/lz_sk.gz', 'data/lz_x.gz']); }).catch(function () {}));
 });
 self.addEventListener('activate', function (e) {
   e.waitUntil(caches.keys().then(function (ks) { return Promise.all(ks.filter(function (k) { return k !== CACHE; }).map(function (k) { return caches.delete(k); })); }).then(function () { return self.clients.claim(); }));
