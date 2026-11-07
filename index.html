@@ -32797,7 +32797,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v533', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v534', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -34733,7 +34733,7 @@ var PAR="";
   function bgApply() {
     var el = $('animebg'); if (!el) return; var w = ASSETS && ASSETS.bg_wide, t = ASSETS && ASSETS.bg_tall;
     ['W', 'T'].forEach(function (k) { var im = el.querySelector('img.bg' + k); if (!im) { im = document.createElement('img'); im.className = 'bgimg bg' + k; im.alt = ''; im.decoding = 'async'; el.insertBefore(im, el.firstChild); } var u = k === 'W' ? (w || t) : (t || w); if (u) { if (im.getAttribute('src') !== u) im.src = u; } else im.removeAttribute('src'); });
-    el.classList.toggle('hasimg', !!(w || t));
+    el.classList.toggle('hasimg', !!(w || t)); try { kdEarlyBg(); } catch (e) {}
   }
   function bgAdminHTML() {
     var w = ASSETS.bg_wide, t = ASSETS.bg_tall;
