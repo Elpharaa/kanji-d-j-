@@ -3078,5 +3078,1224 @@
 "gekokujo",
 "bakufu"
 ]
+},
+{
+"id": "jomon_poterie",
+"type": "concept",
+"nom": "Poterie Jōmon",
+"kanji": "縄文土器",
+"lecture": "じょうもんどき",
+"dates": "dès ≈ 14 000 av. J.-C. (datations les plus hautes)",
+"epoque": "jomon",
+"alias": [
+"Poterie Jōmon",
+"縄文土器",
+"poterie Jōmon",
+"poterie jōmon"
+],
+"resume": "Poteries décorées d'impressions de cordes (jōmon : « marques de corde »), parmi les plus anciennes du monde. Elles donnent son nom à la période.",
+"points": [
+"Les plus anciens tessons connus (Odai Yamamoto I, Aomori) sont datés d'environ 16 000 ans avant le présent.",
+"Servent à bouillir les aliments : noix, poissons, coquillages.",
+"Les formes « à flammes » du Jōmon moyen sont les plus spectaculaires."
+],
+"voir": [
+"dogu",
+"sannai_maruyama"
+]
+},
+{
+"id": "sannai_maruyama",
+"type": "concept",
+"nom": "Sannai Maruyama",
+"kanji": "三内丸山遺跡",
+"lecture": "さんないまるやまいせき",
+"dates": "≈ 3900 – 2200 av. J.-C.",
+"epoque": "jomon",
+"alias": [
+"Sannai Maruyama",
+"三内丸山遺跡"
+],
+"resume": "Grand site villageois de la préfecture d'Aomori, qui montre une vie sédentaire de chasseurs-cueilleurs sur près de 1 700 ans.",
+"points": [
+"Plus de 700 fosses d'habitation et de grandes structures sur poteaux.",
+"Inscrit au patrimoine mondial (2021) avec d'autres sites Jōmon du nord du Japon.",
+"Nourriture : châtaignes (probablement gérées), poissons, gibier."
+],
+"voir": [
+"jomon_poterie",
+"kaizuka"
+]
+},
+{
+"id": "kaizuka",
+"type": "concept",
+"nom": "Amas coquilliers",
+"kanji": "貝塚",
+"lecture": "かいづか",
+"dates": "Jōmon",
+"epoque": "jomon",
+"alias": [
+"Amas coquilliers",
+"貝塚",
+"kaizuka",
+"amas coquilliers"
+],
+"resume": "Dépôts de coquillages, d'os et d'objets jetés par les populations côtières, essentiels pour connaître l'alimentation et les rites funéraires.",
+"points": [
+"Le site d'Ōmori (Tōkyō) est fouillé par l'Américain Edward Morse en 1877 : début de l'archéologie moderne au Japon.",
+"Certains amas contiennent des sépultures."
+],
+"voir": [
+"jomon_poterie"
+]
+},
+{
+"id": "riziculture",
+"type": "concept",
+"nom": "Riziculture irriguée",
+"kanji": "水稲耕作",
+"lecture": "すいとうこうさく",
+"dates": "dès ≈ Xe – IXe siècle av. J.-C. au nord de Kyūshū",
+"epoque": "yayoi",
+"alias": [
+"Riziculture irriguée",
+"水稲耕作",
+"riziculture",
+"riziculture irriguée"
+],
+"resume": "Technique venue du continent (via la Corée) qui transforme la société : sédentarité, stockage, hiérarchies, guerres pour la terre et l'eau.",
+"points": [
+"Premiers champs en rizières du nord de Kyūshū (site de Itazuke, Fukuoka).",
+"S'accompagne du métal (bronze, fer) et de nouvelles poteries (style Yayoi).",
+"La datation exacte de ses débuts est débattue (datation au radiocarbone)."
+],
+"voir": [
+"yoshinogari",
+"dotaku"
+]
+},
+{
+"id": "yoshinogari",
+"type": "concept",
+"nom": "Yoshinogari",
+"kanji": "吉野ヶ里遺跡",
+"lecture": "よしのがりいせき",
+"dates": "≈ IIIe s. av. J.-C. – IIIe s. apr. J.-C.",
+"epoque": "yayoi",
+"alias": [
+"Yoshinogari",
+"吉野ヶ里遺跡"
+],
+"resume": "Grand site fortifié de la préfecture de Saga : village entouré de fossés, avec tours de guet, tombes en jarres et armes en bronze.",
+"points": [
+"Un des principaux témoignages d'une société hiérarchisée et guerrière.",
+"Reconstitué en parc archéologique.",
+"Cité dans les débats sur la localisation du Yamatai."
+],
+"voir": [
+"yamatai",
+"riziculture"
+]
+},
+{
+"id": "dotaku",
+"type": "concept",
+"nom": "Dōtaku",
+"kanji": "銅鐸",
+"lecture": "どうたく",
+"dates": "Yayoi",
+"epoque": "yayoi",
+"alias": [
+"Dōtaku",
+"銅鐸",
+"dōtaku",
+"cloches de bronze"
+],
+"resume": "Cloches de bronze sans battant, probablement utilisées lors de rites agricoles. Elles sont retrouvées enfouies seules, surtout dans la région de Kinai.",
+"points": [
+"Leur taille augmente avec le temps.",
+"Les épées de bronze dominent plutôt le nord de Kyūshū : deux zones culturelles."
+],
+"voir": [
+"riziculture",
+"yamatai"
+]
+},
+{
+"id": "wajinden",
+"type": "concept",
+"nom": "Wajinden",
+"kanji": "魏志倭人伝",
+"lecture": "ぎしわじんでん",
+"dates": "IIIe siècle (rédigé vers 280-297)",
+"epoque": "yayoi",
+"alias": [
+"Wajinden",
+"魏志倭人伝",
+"Wei zhi",
+"Weishu"
+],
+"resume": "Passage de la chronique chinoise Sanguozhi (section Wei) qui décrit le pays des Wa : routes, coutumes, Himiko et le Yamatai.",
+"points": [
+"Source majeure pour la période, mais écrite par des Chinois, sans témoin direct.",
+"Itinéraire peu clair : d'où le débat Kyūshū / Kinai."
+],
+"voir": [
+"himiko",
+"yamatai"
+]
+},
+{
+"id": "sceau_na",
+"type": "concept",
+"nom": "Sceau d'or de Na",
+"kanji": "漢委奴国王印",
+"lecture": "かんのわのなのこくおういん",
+"dates": "57 apr. J.-C.",
+"epoque": "yayoi",
+"alias": [
+"Sceau d'or de Na",
+"漢委奴国王印",
+"sceau d'or de Na",
+"royaume de Na",
+"Nakoku"
+],
+"resume": "Sceau d'or donné par l'empereur Guangwu des Han au roi de Na (Kyūshū), mentionné dans le Hou Hanshu. Un sceau a été trouvé en 1784 sur l'île de Shikanoshima.",
+"points": [
+"Preuve des contacts diplomatiques avec la Chine.",
+"Son authenticité a été contestée mais elle est largement acceptée."
+],
+"voir": [
+"wajinden",
+"yamatai"
+]
+},
+{
+"id": "nintoku",
+"type": "personnage",
+"nom": "Nintoku",
+"kanji": "仁徳天皇",
+"lecture": "にんとくてんのう",
+"dates": "légendaire / Ve siècle",
+"epoque": "kofun",
+"alias": [
+"Nintoku",
+"仁徳天皇",
+"Daisen kofun"
+],
+"resume": "Empereur traditionnel auquel est attribué le plus grand tumulus du Japon (Daisen, à Sakai, d'environ 486 m de long).",
+"points": [
+"Attribution traditionnelle : l'identification exacte est discutée.",
+"Fait partie des tumulus de Mozu-Furuichi (patrimoine mondial 2019)."
+],
+"voir": [
+"kofun",
+"yamato"
+]
+},
+{
+"id": "cinq_rois",
+"type": "concept",
+"nom": "Cinq rois de Wa",
+"kanji": "倭の五王",
+"lecture": "わのごおう",
+"dates": "Ve siècle",
+"epoque": "kofun",
+"alias": [
+"Cinq rois de Wa",
+"倭の五王",
+"cinq rois de Wa",
+"Wa no gō"
+],
+"resume": "Cinq souverains (San, Chin, Sai, Kō, Bu) qui envoient des ambassades aux Song de Chine pour demander titres et reconnaissance militaire en Corée.",
+"points": [
+"Bu est souvent identifié à l'empereur Yūryaku.",
+"Le texte de Bu en 478 est très célèbre.",
+"La rivalité avec Koguryŏ joue un rôle majeur."
+],
+"voir": [
+"yamato",
+"inariyama"
+]
+},
+{
+"id": "inariyama",
+"type": "concept",
+"nom": "Épée d'Inariyama",
+"kanji": "稲荷山古墳出土鉄剣",
+"lecture": "いなりやまこふんしゅつどてっけん",
+"dates": "Ve siècle",
+"epoque": "kofun",
+"alias": [
+"Épée d'Inariyama",
+"稲荷山古墳出土鉄剣",
+"épée d'Inariyama",
+"Inariyama"
+],
+"resume": "Épée de fer trouvée dans un tumulus de Saitama, portant une inscription en caractères chinois qui mentionne le « grand roi Wakatakeru ».",
+"points": [
+"Preuve que l'autorité de Yamato s'étend du Kyūshū au Kantō.",
+"Date : 471 ou 531 selon l'interprétation du cycle sexagésimal."
+],
+"voir": [
+"cinq_rois",
+"kofun"
+]
+},
+{
+"id": "toraijin",
+"type": "concept",
+"nom": "Toraijin",
+"kanji": "渡来人",
+"lecture": "とらいじん",
+"dates": "Yayoi – Asuka",
+"epoque": "kofun",
+"alias": [
+"Toraijin",
+"渡来人",
+"toraijin"
+],
+"resume": "Immigrés venus de Corée et de Chine, qui apportent techniques (métallurgie, sériciculture, poterie sue), écriture, textes et savoirs.",
+"points": [
+"Clans Hata et Aya, scribes (fumi).",
+"Jouent un rôle important dans l'État de Yamato et dans le bouddhisme."
+],
+"voir": [
+"soga_umako",
+"bouddhisme"
+]
+},
+{
+"id": "iwai",
+"type": "événement",
+"nom": "Révolte d'Iwai",
+"kanji": "磐井の乱",
+"lecture": "いわいのらん",
+"dates": "527-528",
+"epoque": "kofun",
+"alias": [
+"Révolte d'Iwai",
+"磐井の乱",
+"révolte d'Iwai",
+"Iwai"
+],
+"resume": "Soulèvement du chef de Tsukushi (nord de Kyūshū), qui aurait obtenu l'appui de Silla, contre le pouvoir de Yamato. Il est écrasé par Mononobe no Arakai.",
+"points": [
+"Montre la résistance des puissances locales à l'État de Yamato.",
+"Les chroniques le rattachent au règne de Keitai."
+],
+"voir": [
+"yamato",
+"kofun"
+]
+},
+{
+"id": "naka_no_oe",
+"type": "personnage",
+"nom": "Naka no Ōe",
+"kanji": "中大兄皇子",
+"lecture": "なかのおおえのおうじ",
+"dates": "626-671",
+"epoque": "asuka",
+"alias": [
+"Naka no Ōe",
+"中大兄皇子",
+"Tenji",
+"empereur Tenji"
+],
+"resume": "Prince, futur empereur Tenji (668-671). Il dirige le coup d'État de 645 contre les Soga puis les réformes de Taika.",
+"points": [
+"Transfère la capitale à Ōtsu (667).",
+"Perd la bataille de Hakusukinoe (663) contre Tang et Silla.",
+"Établit le premier registre de population (Kōgo nenjaku, 670)."
+],
+"voir": [
+"taika",
+"kamatari",
+"soga_umako"
+]
+},
+{
+"id": "kamatari",
+"type": "personnage",
+"nom": "Nakatomi no Kamatari",
+"kanji": "中臣鎌足",
+"lecture": "なかとみのかまたり",
+"dates": "614-669",
+"epoque": "asuka",
+"alias": [
+"Nakatomi no Kamatari",
+"中臣鎌足",
+"Fujiwara no Kamatari",
+"Kamatari"
+],
+"resume": "Conseiller de Naka no Ōe, il participe au coup d'État de 645. Il reçoit en 669 le nom Fujiwara, origine de la grande famille aristocratique.",
+"points": [
+"Son fils Fuhito prépare le code de Taihō (701).",
+"Les Fujiwara dominent la cour jusqu'à la fin de Heian."
+],
+"voir": [
+"naka_no_oe",
+"michinaga"
+]
+},
+{
+"id": "hakusukinoe",
+"type": "événement",
+"nom": "Bataille de Hakusukinoe",
+"kanji": "白村江の戦い",
+"lecture": "はくすきのえのたたかい",
+"dates": "663",
+"epoque": "asuka",
+"alias": [
+"Bataille de Hakusukinoe",
+"白村江の戦い",
+"Hakusukinoe"
+],
+"resume": "Défaite de la flotte japonaise, venue soutenir le royaume coréen de Baekje, face aux alliés Tang et Silla.",
+"points": [
+"Le Japon se replie, fortifie Kyūshū (Mizuki) et renforce l'État.",
+"Des réfugiés de Baekje s'installent au Japon."
+],
+"voir": [
+"naka_no_oe",
+"toraijin"
+]
+},
+{
+"id": "jinshin",
+"type": "événement",
+"nom": "Guerre de Jinshin",
+"kanji": "壬申の乱",
+"lecture": "じんしんのらん",
+"dates": "672",
+"epoque": "asuka",
+"alias": [
+"Guerre de Jinshin",
+"壬申の乱",
+"guerre de Jinshin",
+"Jinshin"
+],
+"resume": "Conflit de succession entre le prince Ōama (futur Tenmu) et le prince Ōtomo (Kōbun), fils de Tenji. Ōama l'emporte.",
+"points": [
+"Ouvre la voie à un pouvoir impérial fort sous Tenmu.",
+"Une des premières guerres décrites en détail dans le Nihon shoki."
+],
+"voir": [
+"tenmu",
+"naka_no_oe"
+]
+},
+{
+"id": "jito",
+"type": "personnage",
+"nom": "Jitō",
+"kanji": "持統天皇",
+"lecture": "じとうてんのう",
+"dates": "645-703",
+"epoque": "asuka",
+"alias": [
+"Jitō",
+"持統天皇",
+"impératrice Jitō"
+],
+"resume": "Épouse de Tenmu et impératrice régnante (690-697). Elle achève les réformes de son mari et fonde la capitale de Fujiwara-kyō.",
+"points": [
+"Promulgue le code de Kiyomihara (689).",
+"Abdique en faveur de son petit-fils Monmu."
+],
+"voir": [
+"tenmu",
+"ritsuryo"
+]
+},
+{
+"id": "taiho",
+"type": "événement",
+"nom": "Code de Taihō",
+"kanji": "大宝律令",
+"lecture": "たいほうりつりょう",
+"dates": "701",
+"epoque": "asuka",
+"alias": [
+"Code de Taihō",
+"大宝律令",
+"code de Taihō",
+"Taihō"
+],
+"resume": "Premier code complet de lois (ritsuryō) en vigueur au Japon, d'inspiration chinoise (Tang), complété par le code de Yōrō (718, mis en œuvre en 757).",
+"points": [
+"Rédigé notamment sous la direction de Fujiwara no Fuhito.",
+"Organise l'État : Grand Conseil (Daijōkan) et huit ministères."
+],
+"voir": [
+"ritsuryo",
+"kamatari"
+]
+},
+{
+"id": "handen",
+"type": "concept",
+"nom": "Système d'attribution des terres",
+"kanji": "班田収授法",
+"lecture": "はんでんしゅうじゅのほう",
+"dates": "646-vers 900",
+"epoque": "asuka",
+"alias": [
+"Système d'attribution des terres",
+"班田収授法",
+"handen",
+"attribution des terres"
+],
+"resume": "Redistribution périodique de rizières aux paysans enregistrés, qui paient impôts (so, chō, yō) et services.",
+"points": [
+"La terre est censée appartenir à l'État.",
+"La loi de 743 (konden einen shizai-hō) autorise la propriété privée des terres défrichées : origine des shōen."
+],
+"voir": [
+"ritsuryo",
+"shoen"
+]
+},
+{
+"id": "horyuji",
+"type": "concept",
+"nom": "Hōryūji",
+"kanji": "法隆寺",
+"lecture": "ほうりゅうじ",
+"dates": "fondé au début du VIIe siècle",
+"epoque": "asuka",
+"alias": [
+"Hōryūji",
+"法隆寺"
+],
+"resume": "Temple d'Ikaruga (Nara) lié au prince Shōtoku. Ses bâtiments en bois comptent parmi les plus anciens du monde.",
+"points": [
+"Patrimoine mondial depuis 1993.",
+"Il conserve la triade de Shaka et la peinture de la Tamamushi."
+],
+"voir": [
+"shotoku",
+"bouddhisme"
+]
+},
+{
+"id": "kentoshi",
+"type": "concept",
+"nom": "Kentōshi",
+"kanji": "遣唐使",
+"lecture": "けんとうし",
+"dates": "630-894",
+"epoque": "asuka",
+"alias": [
+"Kentōshi",
+"遣唐使",
+"kentōshi",
+"ambassades auprès des Tang"
+],
+"resume": "Ambassades japonaises envoyées en Chine des Tang, qui rapportent textes, techniques et moines.",
+"points": [
+"Le trajet en mer est très risqué.",
+"Sugawara no Michizane obtient l'arrêt des missions (894)."
+],
+"voir": [
+"sugawara",
+"bouddhisme",
+"kukai"
+]
+},
+{
+"id": "fujiwara_kyo",
+"type": "concept",
+"nom": "Fujiwara-kyō",
+"kanji": "藤原京",
+"lecture": "ふじわらきょう",
+"dates": "694-710",
+"epoque": "asuka",
+"alias": [
+"Fujiwara-kyō",
+"藤原京"
+],
+"resume": "Première capitale japonaise construite sur un plan quadrillé de type chinois, fondée sous Jitō.",
+"points": [
+"Remplacée par Heijō-kyō en 710."
+],
+"voir": [
+"jito",
+"heijo"
+]
+},
+{
+"id": "heijo",
+"type": "concept",
+"nom": "Heijō-kyō",
+"kanji": "平城京",
+"lecture": "へいじょうきょう",
+"dates": "710-784",
+"epoque": "nara",
+"alias": [
+"Heijō-kyō",
+"平城京"
+],
+"resume": "Capitale de l'époque de Nara, au plan quadrillé inspiré de Chang'an, fondée sous l'impératrice Genmei.",
+"points": [
+"Environ 100 000 habitants.",
+"Grands temples : Tōdaiji, Kōfukuji.",
+"Des tablettes de bois (mokkan) fournissent de précieux renseignements."
+],
+"voir": [
+"todaiji",
+"shomu",
+"fujiwara_kyo"
+]
+},
+{
+"id": "mokkan",
+"type": "concept",
+"nom": "Mokkan",
+"kanji": "木簡",
+"lecture": "もっかん",
+"dates": "VIIe – VIIIe siècle",
+"epoque": "nara",
+"alias": [
+"Mokkan",
+"木簡",
+"mokkan"
+],
+"resume": "Tablettes de bois inscrites (étiquettes de marchandises, ordres, registres), retrouvées en grand nombre.",
+"points": [
+"Source administrative de premier plan.",
+"Montrent l'écriture en kanji adaptés (manyōgana)."
+],
+"voir": [
+"heijo",
+"manyogana"
+]
+},
+{
+"id": "gyoki",
+"type": "personnage",
+"nom": "Gyōki",
+"kanji": "行基",
+"lecture": "ぎょうき",
+"dates": "668-749",
+"epoque": "nara",
+"alias": [
+"Gyōki",
+"行基"
+],
+"resume": "Moine bouddhiste qui prêche auprès du peuple et construit des ponts et des routes. Il est d'abord réprimé puis nommé grand prélat pour le Tōdaiji.",
+"points": [
+"Une figure de la diffusion populaire du bouddhisme.",
+"Il apporte son soutien à la construction du grand Bouddha."
+],
+"voir": [
+"shomu",
+"todaiji"
+]
+},
+{
+"id": "ganjin",
+"type": "personnage",
+"nom": "Ganjin",
+"kanji": "鑑真",
+"lecture": "がんじん",
+"dates": "688-763",
+"epoque": "nara",
+"alias": [
+"Ganjin",
+"鑑真",
+"Jianzhen"
+],
+"resume": "Moine chinois qui atteint le Japon en 753 après cinq échecs et la perte de la vue. Il y établit l'ordination régulière.",
+"points": [
+"Fonde le Tōshōdaiji.",
+"Il transmet la discipline du Ritsu."
+],
+"voir": [
+"bouddhisme",
+"shomu"
+]
+},
+{
+"id": "kokubunji",
+"type": "concept",
+"nom": "Kokubunji",
+"kanji": "国分寺",
+"lecture": "こくぶんじ",
+"dates": "741",
+"epoque": "nara",
+"alias": [
+"Kokubunji",
+"国分寺",
+"kokubunji",
+"temples provinciaux"
+],
+"resume": "Réseau de temples provinciaux créés par l'empereur Shōmu pour protéger l'État par la prière.",
+"points": [
+"Le Tōdaiji en est le chef.",
+"Souligne le bouddhisme comme religion protectrice de l'État."
+],
+"voir": [
+"shomu",
+"todaiji"
+]
+},
+{
+"id": "nagaya",
+"type": "personnage",
+"nom": "Prince Nagaya",
+"kanji": "長屋王",
+"lecture": "ながやおう",
+"dates": "684-729",
+"epoque": "nara",
+"alias": [
+"Prince Nagaya",
+"長屋王",
+"prince Nagaya",
+"Nagaya-ō"
+],
+"resume": "Haut dignitaire descendant de Tenmu, ministre de gauche, qui est contraint au suicide en 729 sur accusation de sorcellerie.",
+"points": [
+"L'incident accroît l'influence des Fujiwara.",
+"Fouilles de sa résidence (mokkan)."
+],
+"voir": [
+"heijo",
+"kamatari"
+]
+},
+{
+"id": "dokyo",
+"type": "personnage",
+"nom": "Dōkyō",
+"kanji": "道鏡",
+"lecture": "どうきょう",
+"dates": "mort en 772",
+"epoque": "nara",
+"alias": [
+"Dōkyō",
+"道鏡"
+],
+"resume": "Moine favori de l'impératrice Shōtoku (Kōken). Il devient chef du Conseil et tente d'accéder au trône après un oracle (769).",
+"points": [
+"L'oracle d'Usa Hachiman est démenti par Wake no Kiyomaro.",
+"Il est exilé à la mort de l'impératrice : les moines sont écartés du pouvoir.",
+"Parmi les raisons du déplacement de la capitale."
+],
+"voir": [
+"shomu",
+"kammu"
+]
+},
+{
+"id": "kammu",
+"type": "personnage",
+"nom": "Kanmu",
+"kanji": "桓武天皇",
+"lecture": "かんむてんのう",
+"dates": "737-806",
+"epoque": "heian",
+"alias": [
+"Kanmu",
+"桓武天皇",
+"empereur Kanmu"
+],
+"resume": "Empereur (781-806) qui quitte Nara pour Nagaoka (784) puis fonde Heian-kyō (794).",
+"points": [
+"Mène des campagnes contre les Emishi.",
+"Soutient Saichō et Kūkai.",
+"Limite le pouvoir des grands monastères."
+],
+"voir": [
+"heian_kyo",
+"tamuramaro",
+"saicho"
+]
+},
+{
+"id": "heian_kyo",
+"type": "concept",
+"nom": "Heian-kyō",
+"kanji": "平安京",
+"lecture": "へいあんきょう",
+"dates": "794-1868 (capitale impériale)",
+"epoque": "heian",
+"alias": [
+"Heian-kyō",
+"平安京"
+],
+"resume": "Capitale fondée en 794, future Kyōto, au plan en damier de 4,5 km sur 5,3 km environ. Elle reste le siège de l'empereur jusqu'en 1868.",
+"points": [
+"Rues nommées par numéros (jō).",
+"Le palais impérial (Daidairi) est détruit plusieurs fois par le feu."
+],
+"voir": [
+"kammu",
+"genji"
+]
+},
+{
+"id": "tamuramaro",
+"type": "personnage",
+"nom": "Sakanoue no Tamuramaro",
+"kanji": "坂上田村麻呂",
+"lecture": "さかのうえのたむらまろ",
+"dates": "758-811",
+"epoque": "heian",
+"alias": [
+"Sakanoue no Tamuramaro",
+"坂上田村麻呂",
+"Tamuramaro"
+],
+"resume": "Général de l'empereur Kanmu, premier à porter le titre de seii taishōgun (797), qui soumet les Emishi du nord-est.",
+"points": [
+"Fait construire le château de Shiwa.",
+"Aterui, chef emishi, se rend en 802."
+],
+"voir": [
+"kammu",
+"shogun"
+]
+},
+{
+"id": "emishi",
+"type": "concept",
+"nom": "Emishi",
+"kanji": "蝦夷",
+"lecture": "えみし",
+"dates": "Antiquité – IXe siècle",
+"epoque": "heian",
+"alias": [
+"Emishi",
+"蝦夷"
+],
+"resume": "Populations du nord-est de Honshū, hors du contrôle de l'État de Yamato, combattues pendant des siècles.",
+"points": [
+"Leur identité (ancêtres des Ainu ou non) reste discutée.",
+"Beaucoup d'entre eux furent déportés ou assimilés."
+],
+"voir": [
+"tamuramaro",
+"kammu"
+]
+},
+{
+"id": "tendai",
+"type": "concept",
+"nom": "Tendai",
+"kanji": "天台宗",
+"lecture": "てんだいしゅう",
+"dates": "fondé en 806 au Japon",
+"epoque": "heian",
+"alias": [
+"Tendai",
+"天台宗",
+"Tiantai"
+],
+"resume": "École bouddhiste introduite par Saichō, fondée sur le Sûtra du Lotus, avec le mont Hiei comme centre.",
+"points": [
+"De nombreux fondateurs de l'ère de Kamakura (Hōnen, Shinran, Dōgen, Nichiren) y ont étudié.",
+"Les moines-soldats (sōhei) du Hiei pèsent sur la politique."
+],
+"voir": [
+"saicho",
+"shingon"
+]
+},
+{
+"id": "shingon",
+"type": "concept",
+"nom": "Shingon",
+"kanji": "真言宗",
+"lecture": "しんごんしゅう",
+"dates": "fondé en 816",
+"epoque": "heian",
+"alias": [
+"Shingon",
+"真言宗"
+],
+"resume": "École ésotérique introduite par Kūkai, qui a son centre au mont Kōya. Rituels (mantra, mandala) qui visent l'éveil dans le corps présent.",
+"points": [
+"Le Tōji de Kyōto en est un centre.",
+"Large influence sur la noblesse et les rites de protection."
+],
+"voir": [
+"kukai",
+"tendai"
+]
+},
+{
+"id": "jodo_heian",
+"type": "concept",
+"nom": "Foi dans la Terre pure",
+"kanji": "浄土信仰",
+"lecture": "じょうどしんこう",
+"dates": "Xe – XIIe siècle",
+"epoque": "heian",
+"alias": [
+"Foi dans la Terre pure",
+"浄土信仰",
+"Terre pure"
+],
+"resume": "Croyance en la renaissance dans la Terre pure du bouddha Amida, par l'invocation de son nom (nenbutsu).",
+"points": [
+"Genshin écrit L'essentiel de la renaissance (Ōjōyōshū, 985).",
+"L'idée de mappō (fin de la Loi, 1052) alimente cette ferveur.",
+"Le Byōdōin à Uji en est un symbole."
+],
+"voir": [
+"byodoin",
+"bouddhisme"
+]
+},
+{
+"id": "byodoin",
+"type": "concept",
+"nom": "Byōdōin",
+"kanji": "平等院",
+"lecture": "びょうどういん",
+"dates": "1053",
+"epoque": "heian",
+"alias": [
+"Byōdōin",
+"平等院",
+"Pavillon du Phénix"
+],
+"resume": "Temple d'Uji, converti de la villa de Fujiwara no Michinaga par son fils Yorimichi. Le Pavillon du Phénix abrite un Amida de Jōchō.",
+"points": [
+"Figure sur la pièce de 10 yens.",
+"Chef-d'œuvre de l'architecture aristocratique."
+],
+"voir": [
+"jodo_heian",
+"michinaga"
+]
+},
+{
+"id": "masakado",
+"type": "personnage",
+"nom": "Taira no Masakado",
+"kanji": "平将門",
+"lecture": "たいらのまさかど",
+"dates": "mort en 940",
+"epoque": "heian",
+"alias": [
+"Taira no Masakado",
+"平将門",
+"Masakado"
+],
+"resume": "Guerrier du Kantō qui se proclame « nouvel empereur » en 939 et est tué en 940. Il devient un kami vénéré et redouté.",
+"points": [
+"La révolte est contemporaine de celle de Fujiwara no Sumitomo (Seto intérieure).",
+"Sa « tête » est l'objet de légendes à Tōkyō."
+],
+"voir": [
+"bushi",
+"sessho_kanpaku"
+]
+},
+{
+"id": "ki_tsurayuki",
+"type": "personnage",
+"nom": "Ki no Tsurayuki",
+"kanji": "紀貫之",
+"lecture": "きのつらゆき",
+"dates": "≈ 872-945",
+"epoque": "heian",
+"alias": [
+"Ki no Tsurayuki",
+"紀貫之",
+"Tsurayuki",
+"Kokinshū"
+],
+"resume": "Poète, principal compilateur du Kokinshū (905), première anthologie impériale de waka. Il écrit en kana le Journal de Tosa (935).",
+"points": [
+"Sa préface en kana est le premier grand texte de poétique japonaise.",
+"Le journal de Tosa est écrit en se faisant passer pour une femme."
+],
+"voir": [
+"kana",
+"manyoshu"
+]
+},
+{
+"id": "sei_shonagon",
+"type": "personnage",
+"nom": "Sei Shōnagon",
+"kanji": "清少納言",
+"lecture": "せいしょうなごん",
+"dates": "≈ 966 – après 1017",
+"epoque": "heian",
+"alias": [
+"Sei Shōnagon",
+"清少納言"
+],
+"resume": "Dame d'honneur de l'impératrice Teishi, auteure des Notes de chevet (Makura no sōshi, vers 1000). Elle a le goût de l'élégance, de l'ironie et des listes.",
+"points": [
+"Rivale de Murasaki Shikibu, dame de la cour de Shōshi.",
+"Le genre zuihitsu (au fil du pinceau) naît ici."
+],
+"voir": [
+"murasaki",
+"kana"
+]
+},
+{
+"id": "onmyodo",
+"type": "concept",
+"nom": "Onmyōdō",
+"kanji": "陰陽道",
+"lecture": "おんみょうどう",
+"dates": "Xe siècle",
+"epoque": "heian",
+"alias": [
+"Onmyōdō",
+"陰陽道",
+"onmyōdō",
+"Abe no Seimei"
+],
+"resume": "Divination et calendrier d'origine chinoise (yin-yang et cinq éléments). Elle influe sur la vie de cour : tabous directionnels, jours fastes.",
+"points": [
+"Abe no Seimei (921-1005) est le plus célèbre onmyōji.",
+"Le bureau d'onmyō dépend du ministère du Cérémonial."
+],
+"voir": [
+"heian_kyo"
+]
+},
+{
+"id": "insei",
+"type": "concept",
+"nom": "Insei",
+"kanji": "院政",
+"lecture": "いんせい",
+"dates": "à partir de 1086",
+"epoque": "heian",
+"alias": [
+"Insei",
+"院政",
+"insei",
+"empereur retiré"
+],
+"resume": "« Gouvernement du cloître » : l'empereur retiré dirige les affaires depuis son palais (in) et contourne les Fujiwara.",
+"points": [
+"Instauré par Shirakawa (1086), puis Toba et Go-Shirakawa.",
+"Les cours des empereurs retirés disposent de vastes shōen et de guerriers."
+],
+"voir": [
+"sessho_kanpaku",
+"shirakawa"
+]
+},
+{
+"id": "shirakawa",
+"type": "personnage",
+"nom": "Shirakawa",
+"kanji": "白河天皇",
+"lecture": "しらかわてんのう",
+"dates": "1053-1129",
+"epoque": "heian",
+"alias": [
+"Shirakawa",
+"白河天皇",
+"empereur Shirakawa"
+],
+"resume": "Empereur (1072-1086) puis empereur retiré qui domine la politique jusqu'à sa mort. Il est connu pour sa piété et pour ses moines.",
+"points": [
+"Aurait déclaré que seuls l'eau de la Kamo, les dés et les moines du Hiei lui échappaient."
+],
+"voir": [
+"insei"
+]
+},
+{
+"id": "zenkunen",
+"type": "événement",
+"nom": "Guerres de Zenkunen et Gosannen",
+"kanji": "前九年・後三年合戦",
+"lecture": "ぜんくねん・ごさんねんかっせん",
+"dates": "1051-1062 et 1083-1087",
+"epoque": "heian",
+"alias": [
+"Guerres de Zenkunen et Gosannen",
+"前九年・後三年合戦",
+"Zenkunen",
+"Gosannen",
+"Minamoto no Yoshiie"
+],
+"resume": "Guerres dans le Tōhoku où les Minamoto (Yoriyoshi, Yoshiie) battent les Abe puis les Kiyohara, ce qui renforce leur prestige.",
+"points": [
+"Fujiwara no Kiyohira fonde ensuite les Fujiwara du nord (Hiraizumi)."
+],
+"voir": [
+"bushi",
+"hogen"
+]
+},
+{
+"id": "hogen",
+"type": "événement",
+"nom": "Rébellion de Hōgen",
+"kanji": "保元の乱",
+"lecture": "ほうげんのらん",
+"dates": "1156",
+"epoque": "heian",
+"alias": [
+"Rébellion de Hōgen",
+"保元の乱",
+"rébellion de Hōgen",
+"Hōgen"
+],
+"resume": "Conflit de succession à la cour entre l'empereur retiré Sutoku et l'empereur Go-Shirakawa, où les guerriers sont décisifs (Kiyomori, Yoshitomo).",
+"points": [
+"Premier cas où des samouraïs décident d'une affaire de cour.",
+"Le chroniqueur Jien y voit le début de l'ère des guerriers."
+],
+"voir": [
+"kiyomori",
+"heiji"
+]
+},
+{
+"id": "heiji",
+"type": "événement",
+"nom": "Rébellion de Heiji",
+"kanji": "平治の乱",
+"lecture": "へいじのらん",
+"dates": "1159-1160",
+"epoque": "heian",
+"alias": [
+"Rébellion de Heiji",
+"平治の乱",
+"rébellion de Heiji",
+"Heiji"
+],
+"resume": "Coup d'État de Minamoto no Yoshitomo contre Taira no Kiyomori. Vaincu, Yoshitomo est tué, et son fils Yoritomo est exilé.",
+"points": [
+"Les Taira dominent la cour pendant vingt ans.",
+"Le Heike monogatari en fait un récit de chute."
+],
+"voir": [
+"kiyomori",
+"yoritomo",
+"hogen"
+]
+},
+{
+"id": "heike",
+"type": "concept",
+"nom": "Heike monogatari",
+"kanji": "平家物語",
+"lecture": "へいけものがたり",
+"dates": "XIIIe siècle",
+"epoque": "heian",
+"alias": [
+"Heike monogatari",
+"平家物語",
+"Dit des Heike"
+],
+"resume": "Récit épique de l'essor et de la chute des Taira, récité par des moines aveugles (biwa hōshi) avec accompagnement de biwa.",
+"points": [
+"Commence par l'idée de l'impermanence : « le bruit de la cloche de Gion ».",
+"Source majeure pour la bataille de Dan-no-ura."
+],
+"voir": [
+"kiyomori",
+"dan_no_ura"
+]
+},
+{
+"id": "taketori",
+"type": "concept",
+"nom": "Taketori monogatari",
+"kanji": "竹取物語",
+"lecture": "たけとりものがたり",
+"dates": "début du Xe siècle",
+"epoque": "heian",
+"alias": [
+"Taketori monogatari",
+"竹取物語",
+"princesse Kaguya",
+"Conte du coupeur de bambou"
+],
+"resume": "« Conte du coupeur de bambou », considéré comme le plus ancien récit en prose en kana (princesse Kaguya).",
+"points": [
+"Adapté par Takahata Isao (2013).",
+"Appelé « ancêtre des récits »."
+],
+"voir": [
+"genji",
+"kana"
+]
+},
+{
+"id": "ise_monogatari",
+"type": "concept",
+"nom": "Ise monogatari",
+"kanji": "伊勢物語",
+"lecture": "いせものがたり",
+"dates": "Xe siècle",
+"epoque": "heian",
+"alias": [
+"Ise monogatari",
+"伊勢物語"
+],
+"resume": "Recueil de courts épisodes autour de poèmes, centré sur un héros souvent identifié à Ariwara no Narihira.",
+"points": [
+"Genre : uta monogatari.",
+"Une influence majeure sur la poétique courtoise."
+],
+"voir": [
+"genji",
+"ki_tsurayuki"
+]
+},
+{
+"id": "fujiwara_yoshifusa",
+"type": "personnage",
+"nom": "Fujiwara no Yoshifusa",
+"kanji": "藤原良房",
+"lecture": "ふじわらのよしふさ",
+"dates": "804-872",
+"epoque": "heian",
+"alias": [
+"Fujiwara no Yoshifusa",
+"藤原良房",
+"Yoshifusa"
+],
+"resume": "Premier non-membre de la famille impériale nommé régent (sesshō, 858) pour son petit-fils Seiwa.",
+"points": [
+"Écarte les Ōtomo et les Tomo (incident d'Ōtenmon, 866).",
+"Son fils adoptif Mototsune devient le premier kanpaku (884)."
+],
+"voir": [
+"sessho_kanpaku",
+"michinaga"
+]
+},
+{
+"id": "yorimichi",
+"type": "personnage",
+"nom": "Fujiwara no Yorimichi",
+"kanji": "藤原頼通",
+"lecture": "ふじわらのよりみち",
+"dates": "990-1074",
+"epoque": "heian",
+"alias": [
+"Fujiwara no Yorimichi",
+"藤原頼通",
+"Yorimichi"
+],
+"resume": "Fils de Michinaga, régent puis chancelier pendant près d'un demi-siècle. Il fait bâtir le Byōdōin.",
+"points": [
+"Voit le déclin des Fujiwara avec l'accession de Go-Sanjō, non lié à eux (1068)."
+],
+"voir": [
+"michinaga",
+"byodoin",
+"insei"
+]
 }
 ]
