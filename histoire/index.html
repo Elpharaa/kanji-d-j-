@@ -1,46 +1,119 @@
 <!doctype html>
-<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Histoire du Japon · Kanji Dōjō</title>
 <meta name="theme-color" content="#2c2452">
+<link rel="icon" href="logo.webp">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Yuji+Syuku&display=swap">
+<link rel="stylesheet" href="da.css?v=1">
 <style>
-:root{--bg:#faf5ea;--fg:#1f1830;--mut:#6b6280;--card:#fff;--line:#e3d9c4;--acc:#b2285b;--acc2:#2c2452}
-@media(prefers-color-scheme:dark){:root{--bg:#161225;--fg:#f2ecdf;--mut:#a79fbd;--card:#221c38;--line:#3a3158;--acc:#ff7aa8;--acc2:#d9d0f5}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 "Zen Kaku Gothic New",system-ui,sans-serif}
-header{padding:16px;background:var(--acc2);color:#fff}header a{color:#ffd9a0;text-decoration:none;font-size:.9rem}
-header h1{margin:4px 0 0;font:400 1.6rem "Shippori Mincho",serif}header p{margin:2px 0 0;opacity:.85;font-size:.9rem}
-main{max-width:760px;margin:0 auto;padding:16px}
-#q{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--fg);font-size:1rem}
-.tl{position:relative;margin:18px 0 0;padding-left:22px;border-left:3px solid var(--acc)}
-.ep{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:0 0 12px;color:inherit;font:inherit;cursor:pointer;position:relative}
-.ep::before{content:"";position:absolute;left:-30px;top:18px;width:11px;height:11px;border-radius:50%;background:var(--acc);border:2px solid var(--bg)}
-.ep b{font:400 1.2rem "Shippori Mincho",serif}.ep small{color:var(--mut);display:block}.ep span.k{float:right;font:400 1.5rem "Shippori Mincho",serif;color:var(--acc)}
-.back{background:none;border:0;color:var(--acc);font:inherit;padding:8px 0;cursor:pointer}
-h2{font:400 1.7rem "Shippori Mincho",serif;margin:.2em 0}h3{font:700 1rem sans-serif;color:var(--acc);margin:1.4em 0 .4em;letter-spacing:.04em;text-transform:uppercase}
-.big{font:400 3rem "Shippori Mincho",serif;color:var(--acc);line-height:1}.per{color:var(--mut)}
-.ev{display:flex;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line)}.ev b{flex:none;width:7.2em;color:var(--acc2)}@media(prefers-color-scheme:dark){.ev b{color:var(--acc)}}
-.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px}ul{padding-left:1.2em;margin:.3em 0}
-.nav{display:flex;justify-content:space-between;margin-top:22px;gap:8px}.nav button{flex:1;padding:10px;border:1px solid var(--line);background:var(--card);color:inherit;border-radius:12px;font:inherit;cursor:pointer}
-.jp{font-family:"Shippori Mincho",serif}.note{color:var(--mut);font-size:.85rem;margin-top:26px}
-</style></head><body>
-<header><a href="../">‹ Kanji Dōjō</a><h1>Histoire du Japon 日本史</h1><p>Des premiers villages à l'ère Reiwa</p></header>
-<main id="m"></main>
+/* composants propres à la section Histoire, dans les codes de l'appli (laque rouge, or, parchemin) */
+html{background:#b9a8dc}
+body.hist{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+.hwrap{max-width:760px;margin:0 auto;display:grid;gap:14px;padding-top:6px}
+.hsearch{width:100%;padding:12px 16px;border:2px solid #c49a3a;border-radius:999px;background:linear-gradient(#fffaf2,#fbe7dd);color:#181225;font:500 1rem "Zen Kaku Gothic New",sans-serif;box-shadow:0 2px 8px rgba(35,26,54,.14)}
+.hlist{display:grid;gap:12px}
+.hcard{display:block;width:100%;text-align:left;position:relative;padding:14px 16px 14px 16px;border:3px solid #e2b85a;border-radius:18px;background:linear-gradient(165deg,#cc2340 0%,#a31832 52%,#7b1024 100%);color:#ffe9b8;cursor:pointer;font:inherit;box-shadow:0 6px 14px rgba(70,15,35,.35);overflow:hidden}
+.hcard::before{content:"";position:absolute;inset:5px;border:1px solid rgba(255,233,184,.45);border-radius:12px;pointer-events:none}
+.hcard .hk{position:absolute;right:14px;top:8px;font:400 2.1rem "Yuji Syuku",serif;color:#ffe9b8;opacity:.9}
+.hcard b{display:block;font:400 1.25rem "Yuji Syuku","Shippori Mincho",serif;letter-spacing:.04em}
+.hcard small{display:block;color:#f6cf8e;margin:1px 0 4px}
+.hcard span.hd{display:block;font-size:.92rem;line-height:1.4;color:#fff3dc;padding-right:3rem}
+.hcard:active{transform:scale(.985)}
+.hpanel{background:rgba(255,250,240,.96);border:1px solid #a392c5;border-radius:16px;padding:16px;box-shadow:0 2px 8px rgba(35,26,54,.14);color:#181225}
+.hpanel p{margin:.4em 0}
+.hhero{display:flex;align-items:center;gap:14px}
+.hseal{flex:none;width:84px;height:84px;display:grid;place-items:center;border:3px solid #e2b85a;border-radius:16px;background:linear-gradient(165deg,#cc2340,#7b1024);color:#ffe9b8;font:400 2.3rem/1.05 "Yuji Syuku",serif;text-align:center;box-shadow:0 4px 10px rgba(70,15,35,.35);padding:4px;word-break:keep-all}
+.hseal.long{font-size:1.5rem}
+.htitle{font:400 1.7rem/1.1 "Yuji Syuku","Shippori Mincho",serif;margin:0;color:#4a2f23}
+.hmeta{color:#513d7c;font-size:.92rem}
+.hchip{display:inline-block;padding:3px 11px;border-radius:999px;border:1.5px solid #c49a3a;background:linear-gradient(#fffaf0,#edddbd);color:#4a2f23;font:700 .78rem "Zen Kaku Gothic New",sans-serif;letter-spacing:.03em;cursor:pointer}
+button.hchip{font-family:inherit}
+.hh{font:400 1.12rem "Yuji Syuku","Shippori Mincho",serif;color:#b2285b;margin:18px 0 6px;display:flex;align-items:center;gap:8px;letter-spacing:.04em}
+.hh::before{content:"";width:6px;height:1.1em;background:#b2285b;border-radius:2px}
+.hev{display:flex;gap:12px;padding:8px 0;border-bottom:1px dashed #c8b9a0}.hev:last-child{border:0}
+.hev b{flex:none;width:7.4em;color:#7b1024;font-weight:700;font-size:.92rem}
+.hbox{background:linear-gradient(#fbf5e6,#f2e6c9);border:1.5px solid #c49a3a;border-radius:12px;padding:10px 14px}
+.hbox ul,.hpanel ul{margin:.3em 0;padding-left:1.15em}.hbox li,.hpanel li{margin:.25em 0}
+.kw{display:inline;padding:0;margin:0;border:0;border-bottom:2px dotted #b2285b;background:none;color:inherit;font:inherit;cursor:pointer;border-radius:2px}
+.kw:hover,.kw:focus-visible{background:rgba(178,40,91,.12);outline:none}
+.hnav{display:flex;gap:10px;margin-top:6px}.hnav button{flex:1}
+.hbtn{padding:10px 14px;border:2px solid #130f1e;border-radius:12px;background:linear-gradient(#fffaf0,#edddbd);color:#130f1e;font:700 .95rem "Zen Kaku Gothic New",sans-serif;cursor:pointer}
+.hback{justify-self:start}
+.hgrp{font:400 1.05rem "Yuji Syuku",serif;color:#fff3dc;text-shadow:0 1px 3px rgba(35,26,54,.8);margin:8px 2px 0}
+.hrow{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1.5px solid #c49a3a;border-radius:14px;background:linear-gradient(#fffaf0,#f3e6c8);cursor:pointer;width:100%;text-align:left;font:inherit;color:#181225}
+.hrow .rk{flex:none;width:4.6em;text-align:center;font:400 1.1rem/1.15 "Yuji Syuku",serif;color:#b2285b;word-break:break-all}
+.hrow b{display:block}.hrow small{color:#513d7c}
+.hnote{color:#fff3dc;text-shadow:0 1px 3px rgba(35,26,54,.8);font-size:.85rem;text-align:center;margin:4px 8px}
+.vtag{font-size:.72rem;padding:1px 8px;border-radius:999px;background:#2f254b;color:#ffe9b8;margin-left:6px;vertical-align:middle}
+</style></head>
+<body class="onhome inapp kddock hist">
+<div class="app">
+<div class="status" id="status"></div>
+<main class="hwrap" id="m"></main>
+</div>
+<nav id="kdDock" class="kdDock" aria-label="Menu principal">
+<button type="button" class="kdd" data-k="hub" data-nav="out" aria-label="Retour au dojo"><span class="kdm" aria-hidden="true">道</span><span class="kdl">Dojo</span></button>
+<button type="button" class="kdd on" data-k="multi" data-nav="#" aria-label="Époques"><span class="kdm" aria-hidden="true">史</span><span class="kdl">Époques</span></button>
+<button type="button" class="kdd" data-k="fr" data-nav="#p" aria-label="Personnages"><span class="kdm" aria-hidden="true">人</span><span class="kdl">Personnages</span></button>
+<button type="button" class="kdd" data-k="cards" data-nav="#c" aria-label="Concepts"><span class="kdm" aria-hidden="true">語</span><span class="kdl">Concepts</span></button>
+</nav>
 <script>
-var D=[],m=document.getElementById('m');
-function e(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-function home(q){q=(q||'').toLowerCase();var h='<input id="q" type="search" placeholder="Chercher une époque, un personnage, un mot…" value="'+e(q)+'" aria-label="Recherche"><div class="tl">';
- var n=0;D.forEach(function(p,i){if(q&&JSON.stringify(p).toLowerCase().indexOf(q)<0)return;n++;h+='<button class="ep" data-i="'+i+'"><span class="k">'+e(p.kanji)+'</span><b>'+e(p.nom)+'</b><small>'+e(p.periode)+'</small>'+e(p.accroche)+'</button>'});
- h+='</div>'+(n?'':'<p class="per">Aucun résultat.</p>')+'<p class="note">Contenu en cours d\'enrichissement : chapitres détaillés, cartes, quiz et frise à venir. Dates et faits à recouper avec des sources universitaires avant tout examen.</p>';m.innerHTML=h;
- var qi=document.getElementById('q');qi.addEventListener('input',function(){var v=qi.value;home(v);var x=document.getElementById('q');x.focus();x.setSelectionRange(v.length,v.length)});}
-function sec(t,b){return b?'<h3>'+t+'</h3>'+b:''}
-function ep(i){var p=D[i];if(!p)return home();location.hash=p.id;
- var h='<button class="back" data-h="1">‹ Toutes les époques</button><div class="big">'+e(p.kanji)+'</div><h2>'+e(p.nom)+'</h2><div class="per">'+e(p.periode)+'</div><p>'+e(p.resume)+'</p>';
- h+=sec('Événements clés','<div>'+p.evenements.map(function(x){return'<div class="ev"><b>'+e(x[0])+'</b><span>'+e(x[1])+'</span></div>'}).join('')+'</div>');
- h+=sec('Société',p.societe?'<p>'+e(p.societe)+'</p>':'')+sec('Culture',p.culture?'<p>'+e(p.culture)+'</p>':'');
- h+=sec('Personnages',p.personnages.length?'<ul>'+p.personnages.map(function(x){return'<li><b class="jp">'+e(x[0])+'</b> : '+e(x[1])+'</li>'}).join('')+'</ul>':'');
- h+=sec('À retenir','<div class="box"><ul>'+p.retenir.map(function(x){return'<li>'+e(x)+'</li>'}).join('')+'</ul></div>');
- h+=sec('Vocabulaire',p.mots.length?'<ul>'+p.mots.map(function(x){return'<li><b>'+e(x[0])+'</b> <span class="jp">'+e(x[1])+'</span> : '+e(x[2])+'</li>'}).join('')+'</ul>':'');
- h+='<div class="nav">'+(i>0?'<button data-i="'+(i-1)+'">‹ '+e(D[i-1].nom)+'</button>':'<span></span>')+(i<D.length-1?'<button data-i="'+(i+1)+'">'+e(D[i+1].nom)+' ›</button>':'<span></span>')+'</div>';
- m.innerHTML=h;scrollTo(0,0)}
-m.addEventListener('click',function(ev){var b=ev.target.closest('[data-i],[data-h]');if(!b)return;if(b.dataset.h){history.replaceState(null,'',location.pathname);home()}else ep(+b.dataset.i)});
-fetch('data/epoques.json').then(function(r){return r.json()}).then(function(d){D=d;var id=location.hash.slice(1),i=D.findIndex(function(p){return p.id===id});i>=0?ep(i):home()}).catch(function(){m.innerHTML='<p>Impossible de charger les données.</p>'});
+(function(){
+var D=[],FI=[],FM={},m=document.getElementById('m'),RX=null,TY={personnage:'Personnage',concept:'Concept','événement':'Événement'};
+function e(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+/* ---- mots cliquables : chaque alias de fiche, repéré dans les textes ---- */
+function buildRx(){var lat=[],cjk=[],map={};FI.forEach(function(f){f.alias.forEach(function(a){if(!a||map[a])return;map[a]=f.id;(/^[\x00-ɏ’Ā-ſḀ-ỿ]/.test(a)&&/[A-Za-zÀ-ÿĀ-ſ]$/.test(a)?lat:cjk).push(a)})});
+ function esc(a){return a.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}function srt(x){return x.sort(function(a,b){return b.length-a.length}).map(esc).join('|')}
+ var parts=[];if(lat.length)parts.push('(?<![\\p{L}\\p{M}])(?:'+srt(lat)+')(?![\\p{L}\\p{M}])');if(cjk.length)parts.push('(?:'+srt(cjk)+')');
+ RX={re:new RegExp(parts.join('|'),'gu'),map:map}}
+function lk(t,self,seen){t=String(t==null?'':t);seen=seen||{};var o='',i=0,mm;RX.re.lastIndex=0;
+ while((mm=RX.re.exec(t))){var id=RX.map[mm[0]];if(!id||id===self||seen[id])continue;seen[id]=1;o+=e(t.slice(i,mm.index))+'<button type="button" class="kw" data-f="'+id+'">'+e(mm[0])+'</button>';i=mm.index+mm[0].length}
+ return o+e(t.slice(i))}
+function epName(id){var p=D.filter(function(x){return x.id===id||x.id.indexOf(id)===0})[0];return p}
+function epOf(fid){var f=FM[fid],map={jomon:0,yayoi:1,kofun:2,asuka:3,nara:4,heian:5,kamakura:6,muromachi:7,sengoku:8,edo:9,meiji:10,taisho:11,showa:12,heisei:13};return map[f.epoque]==null?99:map[f.epoque]}
+/* ---- vues ---- */
+function setDock(k){[].forEach.call(document.querySelectorAll('#kdDock .kdd'),function(b){var on=b.getAttribute('data-nav')===k;b.classList.toggle('on',on);if(on)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')})}
+function homeV(q){setDock('#');q=(q||'').toLowerCase();var h='<input id="q" class="hsearch" type="search" placeholder="Rechercher…" value="'+e(q)+'" aria-label="Recherche"><div class="hlist">';var n=0;
+ D.forEach(function(p){if(q&&JSON.stringify(p).toLowerCase().indexOf(q)<0)return;n++;h+='<button class="hcard" data-e="'+p.id+'"><span class="hk">'+e(p.kanji.split('・')[0])+'</span><b>'+e(p.nom)+'</b><small>'+e(p.periode)+'</small><span class="hd">'+e(p.accroche)+'</span></button>'});
+ if(q){FI.forEach(function(f){if((f.nom+' '+f.alias.join(' ')+' '+f.resume).toLowerCase().indexOf(q)>=0){n++;h+='<button class="hcard" data-f="'+f.id+'"><span class="hk">'+e(f.kanji.slice(0,2))+'</span><b>'+e(f.nom)+'</b><small>'+e(TY[f.type])+' · '+e(f.dates)+'</small><span class="hd">'+e(f.resume.slice(0,110))+'…</span></button>'}})}
+ h+='</div>'+(n?'':'<div class="hpanel">Aucun résultat.</div>')+'<p class="hnote">Touche un mot en pointillé dans un texte pour ouvrir sa fiche. Contenu en cours d\'enrichissement.</p>';m.innerHTML=h;
+ var qi=document.getElementById('q');qi.addEventListener('input',function(){var v=qi.value;homeV(v);var x=document.getElementById('q');x.focus();x.setSelectionRange(v.length,v.length)})}
+function sec(t,b){return b?'<h3 class="hh">'+t+'</h3>'+b:''}
+function epV(id){var i=D.findIndex(function(x){return x.id===id}),p=D[i];if(!p)return homeV();setDock('#');var s={};
+ var h='<button class="hbtn hback" data-back="1">‹ Toutes les époques</button><div class="hpanel"><div class="hhero"><div class="hseal'+(p.kanji.length>3?' long':'')+'">'+e(p.kanji.split('・')[0])+'</div><div><h2 class="htitle">'+e(p.nom)+'</h2><div class="hmeta">'+e(p.periode)+'</div></div></div><p>'+lk(p.resume,null,s)+'</p>';
+ h+=sec('Événements clés','<div>'+p.evenements.map(function(x){return'<div class="hev"><b>'+e(x[0])+'</b><span>'+lk(x[1],null,s)+'</span></div>'}).join('')+'</div>');
+ h+=sec('Société',p.societe?'<p>'+lk(p.societe,null,s)+'</p>':'')+sec('Culture',p.culture?'<p>'+lk(p.culture,null,s)+'</p>':'');
+ h+=sec('Personnages',p.personnages.length?'<ul>'+p.personnages.map(function(x){return'<li><b>'+lk(x[0],null,s)+'</b> : '+lk(x[1],null,s)+'</li>'}).join('')+'</ul>':'');
+ h+=sec('À retenir','<div class="hbox"><ul>'+p.retenir.map(function(x){return'<li>'+lk(x,null,s)+'</li>'}).join('')+'</ul></div>');
+ h+=sec('Vocabulaire',p.mots.length?'<ul>'+p.mots.map(function(x){return'<li><b>'+lk(x[0],null,s)+'</b> <span class="hmeta">'+e(x[1])+'</span> : '+e(x[2])+'</li>'}).join('')+'</ul>':'');
+ var rel=FI.filter(function(f){return f.epoque===p.id});if(rel.length)h+=sec('Fiches de cette époque','<div>'+rel.map(function(f){return'<button class="hchip" data-f="'+f.id+'">'+e(f.nom)+'</button> '}).join('')+'</div>');
+ h+='</div><div class="hnav">'+(i>0?'<button class="hbtn" data-e="'+D[i-1].id+'">‹ '+e(D[i-1].nom)+'</button>':'')+(i<D.length-1?'<button class="hbtn" data-e="'+D[i+1].id+'">'+e(D[i+1].nom)+' ›</button>':'')+'</div>';m.innerHTML=h;scrollTo(0,0)}
+function fV(id){var f=FM[id];if(!f)return homeV();setDock(f.type==='personnage'?'#p':'#c');var s={};s[id]=1;var ep=D.filter(function(x){return x.id===f.epoque})[0];
+ var blob=JSON.stringify(D.map(function(x){return[x.id,x.nom,JSON.stringify(x)]})),ment=D.filter(function(x){var t=JSON.stringify(x);return f.alias.some(function(a){return t.indexOf(a)>=0})&&x.id!==f.epoque});
+ var h='<button class="hbtn hback" data-back="1">‹ Retour</button><div class="hpanel"><div class="hhero"><div class="hseal'+(f.kanji.split('・')[0].length>3?' long':'')+'">'+e(f.kanji.split('・')[0].slice(0,4))+'</div><div><h2 class="htitle">'+e(f.nom)+'</h2><div class="hmeta">'+e(f.lecture)+'</div><div style="margin-top:6px"><span class="hchip" style="cursor:default">'+e(TY[f.type])+'</span> <span class="hchip" style="cursor:default">'+e(f.dates)+'</span></div></div></div>';
+ h+='<p style="margin-top:12px">'+lk(f.resume,id,s)+'</p>'+sec('À savoir','<div class="hbox"><ul>'+f.points.map(function(x){return'<li>'+lk(x,id,s)+'</li>'}).join('')+'</ul></div>');
+ if(f.voir.length)h+=sec('Voir aussi','<div>'+f.voir.map(function(v){return FM[v]?'<button class="hchip" data-f="'+v+'">'+e(FM[v].nom)+'</button> ':''}).join('')+'</div>');
+ var eps=[];if(ep)eps.push(ep);ment.forEach(function(x){if(eps.indexOf(x)<0)eps.push(x)});
+ if(eps.length)h+=sec('Dans le cours d\'histoire','<div>'+eps.map(function(x){return'<button class="hchip" data-e="'+x.id+'">'+e(x.nom)+'</button> '}).join('')+'</div>');
+ h+='</div>';m.innerHTML=h;scrollTo(0,0)}
+function listV(type,q){var isP=type==='personnage';setDock(isP?'#p':'#c');q=(q||'').toLowerCase();
+ var arr=FI.filter(function(f){return isP?f.type==='personnage':f.type!=='personnage'}).filter(function(f){return !q||(f.nom+' '+f.alias.join(' ')+' '+f.resume+' '+f.dates).toLowerCase().indexOf(q)>=0}).sort(function(a,b){return epOf(a.id)-epOf(b.id)});
+ var h='<input id="q" class="hsearch" type="search" placeholder="'+(isP?'Chercher un personnage…':'Chercher un concept, un événement…')+'" value="'+e(q)+'" aria-label="Recherche"><div class="hlist">',cur='';
+ arr.forEach(function(f){var ep=D.filter(function(x){return x.id===f.epoque})[0];if(ep&&ep.id!==cur){cur=ep.id;h+='<div class="hgrp">'+e(ep.nom)+' · '+e(ep.periode)+'</div>'}
+  h+='<button class="hrow" data-f="'+f.id+'"><span class="rk">'+e(f.kanji.split('・')[0].slice(0,4))+'</span><span><b>'+e(f.nom)+'</b><small>'+e(f.dates)+(f.type==='événement'?' · événement':'')+'</small></span></button>'});
+ h+='</div>'+(arr.length?'':'<div class="hpanel">Aucun résultat.</div>');m.innerHTML=h;
+ var qi=document.getElementById('q');qi.addEventListener('input',function(){var v=qi.value;listV(type,v);var x=document.getElementById('q');x.focus();x.setSelectionRange(v.length,v.length)})}
+function route(){var h=decodeURIComponent(location.hash.slice(1)),a=h.split('/');
+ if(!h)return homeV();if(a[0]==='e')return epV(a[1]);if(a[0]==='f')return fV(a[1]);if(a[0]==='p')return listV('personnage');if(a[0]==='c')return listV('concept');
+ var i=D.findIndex(function(x){return x.id===h});return i>=0?epV(h):homeV()}
+var first=true;
+function go(h){location.hash=h}
+m.addEventListener('click',function(ev){var b=ev.target.closest('[data-f],[data-e],[data-back]');if(!b)return;
+ if(b.dataset.back){if(history.length>1&&!first)history.back();else go('')}else if(b.dataset.f)go('f/'+b.dataset.f);else if(b.dataset.e)go('e/'+b.dataset.e)});
+document.getElementById('kdDock').addEventListener('click',function(ev){var b=ev.target.closest('[data-nav]');if(!b)return;var n=b.getAttribute('data-nav');if(n==='out'){location.href='../';return}if(!n||n==='#'){history.pushState(null,'',location.pathname);route()}else go(n.slice(1))});
+window.addEventListener('hashchange',function(){first=false;route()});
+Promise.all([fetch('data/epoques.json').then(function(r){return r.json()}),fetch('data/fiches.json').then(function(r){return r.json()}),fetch('animebg.html').then(function(r){return r.text()}).catch(function(){return''})]).then(function(r){
+ D=r[0];FI=r[1];FI.forEach(function(f){FM[f.id]=f});buildRx();if(r[2]){var d=document.createElement('div');d.innerHTML=r[2];document.body.insertBefore(d.firstChild,document.body.firstChild)}route()}).catch(function(){m.innerHTML='<div class="hpanel">Impossible de charger les données.</div>'});
+})();
 </script></body></html>
