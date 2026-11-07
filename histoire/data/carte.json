@@ -872,7 +872,8 @@
 "hist": "Fondée à partir de 1869 par l'Office de colonisation (Kaitakushi) ; plan en damier inspiré des villes américaines.",
 "voir": "Festival de la neige (février), bière, ramen au miso, Horloge de la ville.",
 "type": "e",
-"ref": "meiji"
+"ref": "meiji",
+"cap": true
 },
 {
 "id": "asahikawa",
@@ -888,7 +889,8 @@
 "hist": "Ville de garnison fondée à la fin du XIXe siècle ; région de peuplement ainu.",
 "voir": "Zoo d'Asahiyama, ramen, saké, culture ainu.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": false
 },
 {
 "id": "hakodate",
@@ -904,7 +906,8 @@
 "hist": "Port ouvert aux Américains en 1854 ; lieu de la dernière bataille de la guerre de Boshin (1869), fort Goryōkaku.",
 "voir": "Vue du mont Hakodate, marché du matin, fort étoilé Goryōkaku.",
 "type": "f",
-"ref": "boshin"
+"ref": "boshin",
+"cap": false
 },
 {
 "id": "otaru",
@@ -920,7 +923,8 @@
 "hist": "Grand port commercial et financier du nord au début du XXe siècle.",
 "voir": "Canal, entrepôts en pierre, verre soufflé, sushi.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": false
 },
 {
 "id": "kushiro",
@@ -936,7 +940,8 @@
 "hist": "Port de pêche de l'est de l'île.",
 "voir": "Marais de Kushiro (grues du Japon), poisson frais.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": false
 },
 {
 "id": "obihiro",
@@ -952,7 +957,8 @@
 "hist": "Fondée en 1883 par des colons ; centre agricole du Tokachi.",
 "voir": "Plaine du Tokachi, courses de chevaux ban'ei, buta-don.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": false
 },
 {
 "id": "tomakomai",
@@ -968,7 +974,8 @@
 "hist": "Développée avec l'industrie du papier au XXe siècle ; grand port de Hokkaidō.",
 "voir": "Port, lac Utonai.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": false
 },
 {
 "id": "kitami",
@@ -984,7 +991,8 @@
 "hist": "Colonisée à la fin du XIXe siècle.",
 "voir": "Menthe et oignons, grande ville de l'est de Hokkaidō.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": false
 },
 {
 "id": "muroran",
@@ -1000,7 +1008,8 @@
 "hist": "Centre sidérurgique et port d'industrie lourde depuis le début du XXe siècle.",
 "voir": "Cap Chikyū, yakitori de Muroran.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": false
 },
 {
 "id": "tokyo",
@@ -1016,7 +1025,8 @@
 "hist": "Edo, capitale du shogunat (1603), devient Tōkyō en 1868 et capitale impériale ; détruite en 1923 puis en 1945.",
 "voir": "Sensō-ji, Palais impérial, Shibuya, Akihabara.",
 "type": "f",
-"ref": "sankin_kotai"
+"ref": "sankin_kotai",
+"cap": true
 },
 {
 "id": "yokohama",
@@ -1032,7 +1042,8 @@
 "hist": "Port ouvert en 1859 : première porte sur l'Occident, détruit en 1923.",
 "voir": "Minato Mirai, Chinatown, musée du ramen.",
 "type": "f",
-"ref": "perry"
+"ref": "perry",
+"cap": true
 },
 {
 "id": "osaka",
@@ -1048,7 +1059,8 @@
 "hist": "Capitale commerciale du Japon d'Edo, château de Hideyoshi (1583).",
 "voir": "Château d'Ōsaka, Dōtonbori, takoyaki, okonomiyaki.",
 "type": "f",
-"ref": "osaka"
+"ref": "osaka",
+"cap": true
 },
 {
 "id": "nagoya",
@@ -1064,7 +1076,8 @@
 "hist": "Ville-château des Tokugawa d'Owari ; région d'origine de Nobunaga, Hideyoshi et Ieyasu.",
 "voir": "Château de Nagoya, Toyota, hitsumabushi, miso katsu.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": true
 },
 {
 "id": "kyoto",
@@ -1080,7 +1093,8 @@
 "hist": "Capitale impériale de 794 à 1868, épargnée par les bombardements de 1945.",
 "voir": "Kinkaku-ji, Fushimi Inari, Gion, kaiseki.",
 "type": "f",
-"ref": "heian_kyo"
+"ref": "heian_kyo",
+"cap": true
 },
 {
 "id": "kobe",
@@ -1096,7 +1110,8 @@
 "hist": "Port ouvert en 1868 ; frappée par le séisme du 17 janvier 1995.",
 "voir": "Bœuf de Kōbe, quartier Kitano, saké de Nada.",
 "type": "f",
-"ref": "hanshin"
+"ref": "hanshin",
+"cap": true
 },
 {
 "id": "nara",
@@ -1112,7 +1127,8 @@
 "hist": "Heijō-kyō, première grande capitale permanente (710-784).",
 "voir": "Tōdaiji et son Grand Bouddha, daims du parc, Kasuga Taisha.",
 "type": "f",
-"ref": "heijo"
+"ref": "heijo",
+"cap": true
 },
 {
 "id": "hiroshima",
@@ -1128,7 +1144,8 @@
 "hist": "Cité-château des Mōri ; détruite par la bombe du 6 août 1945.",
 "voir": "Dôme de Genbaku, parc de la paix, Miyajima, okonomiyaki.",
 "type": "f",
-"ref": "hiroshima"
+"ref": "hiroshima",
+"cap": true
 },
 {
 "id": "okayama",
@@ -1144,7 +1161,8 @@
 "hist": "Ville-château (« château du corbeau ») des Ukita puis des Ikeda.",
 "voir": "Jardin Kōrakuen, légende de Momotarō.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": true
 },
 {
 "id": "sendai",
@@ -1160,7 +1178,8 @@
 "hist": "Fondée par Date Masamune (1601) ; touchée par le tsunami de 2011.",
 "voir": "Fête du Tanabata, langue de bœuf grillée, rue des zelkovas.",
 "type": "f",
-"ref": "fukushima"
+"ref": "fukushima",
+"cap": true
 },
 {
 "id": "niigata",
@@ -1176,7 +1195,8 @@
 "hist": "Un des cinq ports ouverts en 1858 ; porte d'entrée vers l'île de Sado.",
 "voir": "Riz Koshihikari, saké, côte de la mer du Japon.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": true
 },
 {
 "id": "kanazawa",
@@ -1192,7 +1212,8 @@
 "hist": "Cité des Maeda, plus riche han de l'époque d'Edo ; épargnée par la guerre.",
 "voir": "Jardin Kenrokuen, quartier des geisha, feuilles d'or.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": true
 },
 {
 "id": "kamakura",
@@ -1208,7 +1229,8 @@
 "hist": "Capitale du premier shogunat (1185-1333).",
 "voir": "Grand Bouddha, Tsurugaoka Hachimangū, Enoshima.",
 "type": "f",
-"ref": "bakufu"
+"ref": "bakufu",
+"cap": false
 },
 {
 "id": "nagano",
@@ -1224,7 +1246,8 @@
 "hist": "Ville-temple du Zenkō-ji ; Jeux olympiques d'hiver de 1998.",
 "voir": "Zenkō-ji, singes des neiges de Jigokudani, soba.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": true
 },
 {
 "id": "aomori",
@@ -1240,7 +1263,8 @@
 "hist": "Port de la pointe nord de Honshū ; près du site Jōmon de Sannai Maruyama.",
 "voir": "Festival du Nebuta, pommes, Sannai Maruyama.",
 "type": "f",
-"ref": "sannai_maruyama"
+"ref": "sannai_maruyama",
+"cap": true
 },
 {
 "id": "matsue",
@@ -1256,7 +1280,8 @@
 "hist": "Ville-château (1611) et séjour de Lafcadio Hearn ; proche d'Izumo.",
 "voir": "Château de Matsue, lac Shinji, sanctuaire d'Izumo.",
 "type": "e",
-"ref": "kofun"
+"ref": "kofun",
+"cap": true
 },
 {
 "id": "matsuyama",
@@ -1272,7 +1297,8 @@
 "hist": "Ville-château ; ville natale du poète Masaoka Shiki.",
 "voir": "Dōgo Onsen, château, mandarines.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": true
 },
 {
 "id": "takamatsu",
@@ -1288,7 +1314,8 @@
 "hist": "Ville-château sur la mer intérieure de Seto, capitale de la préfecture aux udon.",
 "voir": "Jardin Ritsurin, udon sanuki.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": true
 },
 {
 "id": "kochi",
@@ -1304,7 +1331,8 @@
 "hist": "Domaine de Tosa : origine de Sakamoto Ryōma et du mouvement des droits du peuple.",
 "voir": "Marché du dimanche, katsuo no tataki, château de Kōchi.",
 "type": "f",
-"ref": "satcho"
+"ref": "satcho",
+"cap": true
 },
 {
 "id": "tokushima",
@@ -1320,7 +1348,8 @@
 "hist": "Ville-château des Hachisuka ; son festival Awa Odori a plus de 400 ans.",
 "voir": "Awa Odori (août), tourbillons de Naruto.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": true
 },
 {
 "id": "imabari",
@@ -1336,7 +1365,8 @@
 "hist": "Port de la mer intérieure de Seto, ancien territoire des pirates Murakami.",
 "voir": "Serviettes d'Imabari, pont du Shimanami Kaidō.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": false
 },
 {
 "id": "uwajima",
@@ -1352,7 +1382,8 @@
 "hist": "Domaine des Date d'Uwajima, à l'ouest de Shikoku.",
 "voir": "Château d'Uwajima, combats de taureaux (tōgyū), daurade.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": false
 },
 {
 "id": "fukuoka",
@@ -1368,7 +1399,8 @@
 "hist": "Hakata, porte vers le continent depuis l'Antiquité ; invasions mongoles de 1274 et de 1281.",
 "voir": "Ramen de Hakata, yatai, Dazaifu.",
 "type": "f",
-"ref": "mongols"
+"ref": "mongols",
+"cap": true
 },
 {
 "id": "kitakyushu",
@@ -1384,7 +1416,8 @@
 "hist": "Cité industrielle depuis la fonderie de Yawata (1901) ; proche de Dan-no-ura.",
 "voir": "Château de Kokura, pont de Kanmon.",
 "type": "f",
-"ref": "dan_no_ura"
+"ref": "dan_no_ura",
+"cap": false
 },
 {
 "id": "kumamoto",
@@ -1400,7 +1433,8 @@
 "hist": "Ville-château de Katō Kiyomasa ; guerre de Seinan (1877) ; séisme de 2016.",
 "voir": "Château, mont Aso, mascotte Kumamon.",
 "type": "f",
-"ref": "satsuma_rebellion"
+"ref": "satsuma_rebellion",
+"cap": true
 },
 {
 "id": "kagoshima",
@@ -1416,7 +1450,8 @@
 "hist": "Domaine de Satsuma ; arrivée de François Xavier (1549).",
 "voir": "Volcan Sakurajima, bains de sable, porc kurobuta.",
 "type": "f",
-"ref": "xavier"
+"ref": "xavier",
+"cap": true
 },
 {
 "id": "nagasaki",
@@ -1432,7 +1467,8 @@
 "hist": "Seul port ouvert à l'Europe sous Edo (Dejima) ; détruite par la bombe du 9 août 1945.",
 "voir": "Dejima, parc de la paix, champon, Glover Garden.",
 "type": "f",
-"ref": "dejima"
+"ref": "dejima",
+"cap": true
 },
 {
 "id": "oita",
@@ -1448,7 +1484,8 @@
 "hist": "Ancienne province de Bungo, christianisée au XVIe siècle.",
 "voir": "Onsen d'Ōita, poisson-lune de Saganoseki.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": true
 },
 {
 "id": "miyazaki",
@@ -1464,7 +1501,8 @@
 "hist": "Province de Hyūga du mythe de Jinmu (départ vers l'est).",
 "voir": "Sanctuaire de Miyazaki, côte d'Aoshima, mangue.",
 "type": "f",
-"ref": "jimmu"
+"ref": "jimmu",
+"cap": true
 },
 {
 "id": "saga",
@@ -1480,7 +1518,8 @@
 "hist": "Domaine de Nabeshima, très actif dans la modernisation de Meiji ; près de Yoshinogari.",
 "voir": "Porcelaine d'Arita et d'Imari, Yoshinogari.",
 "type": "f",
-"ref": "yoshinogari"
+"ref": "yoshinogari",
+"cap": true
 },
 {
 "id": "sasebo",
@@ -1496,7 +1535,8 @@
 "hist": "Base navale depuis 1889 ; base américaine encore aujourd'hui.",
 "voir": "Burger de Sasebo, îles de Kujūkushima.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": false
 },
 {
 "id": "beppu",
@@ -1512,7 +1552,8 @@
 "hist": "Ville thermale très ancienne.",
 "voir": "Enfers (jigoku) de Beppu, onsen.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": false
 },
 {
 "id": "naha",
@@ -1528,7 +1569,8 @@
 "hist": "Port du royaume des Ryūkyū, détruit pendant la bataille de 1945.",
 "voir": "Château de Shuri, rue Kokusai-dōri, cuisine d'Okinawa.",
 "type": "f",
-"ref": "ryukyu"
+"ref": "ryukyu",
+"cap": true
 },
 {
 "id": "okinawashi",
@@ -1544,7 +1586,8 @@
 "hist": "Anciennement Koza, près de la base de Kadena.",
 "voir": "Musique rock locale, base américaine de Kadena.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": false
 },
 {
 "id": "nago",
@@ -1560,7 +1603,331 @@
 "hist": "Ville du nord de l'île, siège de l'aquarium Churaumi.",
 "voir": "Aquarium Churaumi, ananas, cerisiers d'hiver.",
 "type": "",
-"ref": ""
+"ref": "",
+"cap": false
+},
+{
+"id": "morioka",
+"ja": "盛岡",
+"kana": "もりおか",
+"nom": "Morioka",
+"pref": "Iwate",
+"reg": "Tōhoku",
+"ile": "hon",
+"pop": 290000,
+"lat": 39.7,
+"lon": 141.15,
+"hist": "Ville-château des Nanbu, construite au début du XVIIe siècle.",
+"voir": "Wanko soba, reimen, fleuve Kitakami.",
+"type": "",
+"ref": "",
+"cap": true
+},
+{
+"id": "akita",
+"ja": "秋田",
+"kana": "あきた",
+"nom": "Akita",
+"pref": "Akita",
+"reg": "Tōhoku",
+"ile": "hon",
+"pop": 305000,
+"lat": 39.72,
+"lon": 140.1,
+"hist": "Ville du clan Satake (château de Kubota), à partir de 1602.",
+"voir": "Festival Kanto, riz d'Akita, chien akita, inaniwa udon.",
+"type": "",
+"ref": "",
+"cap": true
+},
+{
+"id": "yamagata",
+"ja": "山形",
+"kana": "やまがた",
+"nom": "Yamagata",
+"pref": "Yamagata",
+"reg": "Tōhoku",
+"ile": "hon",
+"pop": 245000,
+"lat": 38.24,
+"lon": 140.36,
+"hist": "Ville du clan Mogami, ancien grand domaine du nord.",
+"voir": "Temple Risshaku-ji (Yamadera), imoni, cerises.",
+"type": "",
+"ref": "",
+"cap": true
+},
+{
+"id": "fukushima",
+"ja": "福島",
+"kana": "ふくしま",
+"nom": "Fukushima",
+"pref": "Fukushima",
+"reg": "Tōhoku",
+"ile": "hon",
+"pop": 280000,
+"lat": 37.76,
+"lon": 140.47,
+"hist": "Chef-lieu de la préfecture ; l'accident nucléaire de 2011 a eu lieu à la centrale côtière de Fukushima Daiichi, loin de la ville.",
+"voir": "Pêches, onsen d'Iizaka.",
+"type": "f",
+"ref": "fukushima",
+"cap": true
+},
+{
+"id": "mito",
+"ja": "水戸",
+"kana": "みと",
+"nom": "Mito",
+"pref": "Ibaraki",
+"reg": "Kantō",
+"ile": "hon",
+"pop": 270000,
+"lat": 36.37,
+"lon": 140.47,
+"hist": "Domaine de la branche Mito des Tokugawa, centre du mito-gaku (pensée nationale).",
+"voir": "Jardin Kairakuen, nattō.",
+"type": "",
+"ref": "",
+"cap": true
+},
+{
+"id": "utsunomiya",
+"ja": "宇都宮",
+"kana": "うつのみや",
+"nom": "Utsunomiya",
+"pref": "Tochigi",
+"reg": "Kantō",
+"ile": "hon",
+"pop": 520000,
+"lat": 36.56,
+"lon": 139.88,
+"hist": "Ville-château sur la route de Nikkō.",
+"voir": "Gyōza, pierre d'Ōya.",
+"type": "",
+"ref": "",
+"cap": true
+},
+{
+"id": "maebashi",
+"ja": "前橋",
+"kana": "まえばし",
+"nom": "Maebashi",
+"pref": "Gunma",
+"reg": "Kantō",
+"ile": "hon",
+"pop": 330000,
+"lat": 36.39,
+"lon": 139.06,
+"hist": "Ville de la soie, proche de la filature de Tomioka.",
+"voir": "Onsen de la préfecture de Gunma, daruma de Takasaki.",
+"type": "f",
+"ref": "tomioka",
+"cap": true
+},
+{
+"id": "saitama",
+"ja": "さいたま",
+"kana": "さいたま",
+"nom": "Saitama",
+"pref": "Saitama",
+"reg": "Kantō",
+"ile": "hon",
+"pop": 1330000,
+"lat": 35.86,
+"lon": 139.65,
+"hist": "Créée en 2001 par la fusion d'Urawa, d'Ōmiya et de Yono.",
+"voir": "Musée du chemin de fer, bonsaï d'Ōmiya.",
+"type": "",
+"ref": "",
+"cap": true
+},
+{
+"id": "chiba",
+"ja": "千葉",
+"kana": "ちば",
+"nom": "Chiba",
+"pref": "Chiba",
+"reg": "Kantō",
+"ile": "hon",
+"pop": 980000,
+"lat": 35.61,
+"lon": 140.12,
+"hist": "Ancienne province de Shimōsa ; aujourd'hui grand port industriel.",
+"voir": "Makuhari, aéroport de Narita proche.",
+"type": "",
+"ref": "",
+"cap": true
+},
+{
+"id": "toyama",
+"ja": "富山",
+"kana": "とやま",
+"nom": "Toyama",
+"pref": "Toyama",
+"reg": "Chūbu",
+"ile": "hon",
+"pop": 410000,
+"lat": 36.7,
+"lon": 137.21,
+"hist": "Ville-château, célèbre pour ses vendeurs ambulants de remèdes (Toyama no kusuri-uri).",
+"voir": "Masu-zushi, monts Tateyama, tramway.",
+"type": "",
+"ref": "",
+"cap": true
+},
+{
+"id": "fukui",
+"ja": "福井",
+"kana": "ふくい",
+"nom": "Fukui",
+"pref": "Fukui",
+"reg": "Chūbu",
+"ile": "hon",
+"pop": 260000,
+"lat": 36.07,
+"lon": 136.22,
+"hist": "Domaine de Shibata Katsuie puis des Matsudaira ; le temple Eihei-ji, fondé par Dōgen, est dans la préfecture.",
+"voir": "Dinosaures (musée), Eihei-ji, crabe d'Echizen.",
+"type": "f",
+"ref": "dogen",
+"cap": true
+},
+{
+"id": "kofu",
+"ja": "甲府",
+"kana": "こうふ",
+"nom": "Kōfu",
+"pref": "Yamanashi",
+"reg": "Chūbu",
+"ile": "hon",
+"pop": 185000,
+"lat": 35.66,
+"lon": 138.57,
+"hist": "Capitale de la province de Kai de Takeda Shingen.",
+"voir": "Vin et raisins, sanctuaire Takeda, Fuji tout proche.",
+"type": "f",
+"ref": "takeda",
+"cap": true
+},
+{
+"id": "gifu",
+"ja": "岐阜",
+"kana": "ぎふ",
+"nom": "Gifu",
+"pref": "Gifu",
+"reg": "Chūbu",
+"ile": "hon",
+"pop": 400000,
+"lat": 35.42,
+"lon": 136.76,
+"hist": "Nobunaga renomme la ville Gifu en 1567 et s'y installe.",
+"voir": "Pêche au cormoran (ukai), château de Gifu.",
+"type": "f",
+"ref": "nobunaga",
+"cap": true
+},
+{
+"id": "shizuoka",
+"ja": "静岡",
+"kana": "しずおか",
+"nom": "Shizuoka",
+"pref": "Shizuoka",
+"reg": "Chūbu",
+"ile": "hon",
+"pop": 690000,
+"lat": 34.98,
+"lon": 138.38,
+"hist": "Sunpu, ville de retraite d'Ieyasu après 1605.",
+"voir": "Thé vert, vue sur le Fuji, fraises.",
+"type": "f",
+"ref": "ieyasu",
+"cap": true
+},
+{
+"id": "tsu",
+"ja": "津",
+"kana": "つ",
+"nom": "Tsu",
+"pref": "Mie",
+"reg": "Kansai",
+"ile": "hon",
+"pop": 275000,
+"lat": 34.73,
+"lon": 136.51,
+"hist": "Ville-château sur la route d'Ise.",
+"voir": "Anguille grillée, route du pèlerinage d'Ise (Ise-kaidō).",
+"type": "f",
+"ref": "amaterasu",
+"cap": true
+},
+{
+"id": "otsu",
+"ja": "大津",
+"kana": "おおつ",
+"nom": "Ōtsu",
+"pref": "Shiga",
+"reg": "Kansai",
+"ile": "hon",
+"pop": 345000,
+"lat": 35.02,
+"lon": 135.86,
+"hist": "Capitale de l'empereur Tenji (Ōtsu-kyō, 667-672) ; au bord du lac Biwa.",
+"voir": "Lac Biwa, Enryaku-ji sur le mont Hiei.",
+"type": "f",
+"ref": "naka_no_oe",
+"cap": true
+},
+{
+"id": "wakayama",
+"ja": "和歌山",
+"kana": "わかやま",
+"nom": "Wakayama",
+"pref": "Wakayama",
+"reg": "Kansai",
+"ile": "hon",
+"pop": 360000,
+"lat": 34.23,
+"lon": 135.17,
+"hist": "Domaine des Tokugawa de Kii, famille du shogun Yoshimune.",
+"voir": "Château de Wakayama, mont Kōya, mandarines.",
+"type": "f",
+"ref": "yoshimune",
+"cap": true
+},
+{
+"id": "tottori",
+"ja": "鳥取",
+"kana": "とっとり",
+"nom": "Tottori",
+"pref": "Tottori",
+"reg": "Chūgoku",
+"ile": "hon",
+"pop": 185000,
+"lat": 35.5,
+"lon": 134.24,
+"hist": "Ville-château de la côte de la mer du Japon.",
+"voir": "Dunes de sable, poires, crabe.",
+"type": "",
+"ref": "",
+"cap": true
+},
+{
+"id": "yamaguchi",
+"ja": "山口",
+"kana": "やまぐち",
+"nom": "Yamaguchi",
+"pref": "Yamaguchi",
+"reg": "Chūgoku",
+"ile": "hon",
+"pop": 190000,
+"lat": 34.19,
+"lon": 131.47,
+"hist": "Ville du clan Ōuchi, la « Kyōto de l'ouest » ; François Xavier y prêche en 1550.",
+"voir": "Pagode du Rurikō-ji, Hagi toute proche.",
+"type": "f",
+"ref": "xavier",
+"cap": true
 }
 ]
 }
