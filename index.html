@@ -16842,7 +16842,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
       var bt = bestText(id);
       return '<button class="mode gamecard djt" type="button" data-game="' + id + '" aria-label="' + esc(c.name) + '"><span class="tk" aria-hidden="true">' + c.g + '</span><span class="gtx"><b>' + esc(c.name) + '</b>' + (bt ? '<small>' + esc(bt) + '</small>' : '') + '</span></button>';
     }
-    $('games').innerHTML = djGamesHTML(FLASH_ORDER.map(card).join(''), card('kread') + card('ksens') + card('kstudy') + djTile('comp'), '<h4 class="mjh"><span aria-hidden="true">✍️</span> Écrit</h4>' + GAME_ORDER.map(card).join('') + djTile('nb') + '<h4 class="mjh"><span aria-hidden="true">🎤</span> Oral</h4>' + listenTiles() + djTile('lire') + djTile('cuis'));
+    $('games').innerHTML = djGamesHTML(FLASH_ORDER.map(card).join(''), card('kread') + card('ksens') + card('kstudy') + djTile('comp'), '<h4 class="mjh"><span aria-hidden="true">✍️</span> Écrit</h4>' + GAME_ORDER.map(card).join('') + djTile('nb'));
     $('badges').innerHTML = BADGES.map(badgeCardHTML).join('');
     var empty = false;
     $('homeNote').hidden = !empty;
@@ -23838,7 +23838,8 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     tb: { k: '書', t: 'Tableau', art: '', d: 'Un grand tableau pour t\'entraîner à tracer les kanjis', tip: 'Choisis tes kanjis, puis ouvre le tableau : tu vois le sens, tu traces le kanji de mémoire, et tu peux t\'aider des lectures on / kun, du kanji en modèle ou de l\'ordre des traits. Glisse sur le sens pour changer de kanji.' },
     flash: { k: '札', t: 'Flashcards', art: 'flashfr', d: 'Revois tes mots, les plus urgents d\'abord', tip: 'Les flashcards te montrent d\'abord les mots à revoir. Note-toi honnêtement : c\'est comme ça que tu progresses vite !' },
     kanji: { k: '漢', t: 'Kanjis', art: 'kread', d: 'Lectures, sens et fiches à étudier', tip: 'Entraîne-toi sur les lectures et le sens des kanjis, ou ouvre « Étudier » pour apprendre une fiche.' },
-    mini: { k: '遊', t: 'Mini-jeux', art: 'sprint', d: 'Écrit et oral : sprint, écoute, karaoké, cuisine…', tip: 'Des jeux courts pour réviser en s\'amusant. Les jeux « Écrit » se jouent au clavier ou en QCM, les jeux « Oral » avec ton oreille et ta voix. Essaie l\'examen blanc avant un contrôle !' },
+    mini: { k: '遊', t: 'Mini-jeux', art: 'sprint', d: 'Sprint, pêche, lecture, paires, examen blanc…', tip: 'Des jeux courts pour réviser en s\'amusant, au clavier ou en QCM. Les jeux avec ton oreille et ta voix sont dans la section « Oral ». Essaie l\'examen blanc avant un contrôle !' },
+    oral: { k: '声', t: 'Oral', art: '', d: 'Écoute, dictée, pétales, karaoké, cuisine : oreille et voix', tip: 'Ici, tout se travaille à l\'oral : écoute un mot et retrouve-le, écris ce que tu entends, lis un texte à voix haute en karaoké, ou suis une recette en l\'écoutant.' },
     daily: { k: '日', t: 'Hors JLPT', art: '', d: 'Maison, famille, amis, ville… du vocabulaire hors cours', tip: 'Ici, du vocabulaire de tous les jours, sans rapport avec ton cours : la maison, la famille, les amis, la ville… Choisis un thème, apprends la liste, puis teste-toi.' },
     jlpt: { k: '試', t: 'JLPT', art: '', d: 'Vocabulaire N5, N4 et N3, quiz par niveau', tip: 'Les listes JLPT : choisis N5, N4 ou N3, un thème ou le quiz complet du niveau, apprends la liste, puis teste-toi. Un mot est acquis après 3 bonnes réponses d\'affilée.' },
     nb: { k: '数', t: 'Nombres & dates', art: '', d: 'Compteurs, mois, jours, heures, prix', tip: 'Les nombres japonais changent selon ce qu\'on compte, et les dates ont des lectures spéciales. Lis le mot, ou écoute-le et retrouve-le : 10 questions par partie.' },
@@ -23880,7 +23881,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     }
     return '<button class="mode gamecard djt" type="button" data-djsub="' + sub + '">' + chip + '<span class="tk" aria-hidden="true">' + i.k + '</span><span class="gtx"><b>' + i.t + '</b><small>' + esc(d) + '</small></span></button>';
   }
-  function djBackHTML(sub) { var oral = sub === 'lire' || sub === 'cuis' || sub === 'nb', fu = sub === 'fur', cp = sub === 'comp'; return '<div class="grp djbar"><button type="button" class="btn djback" data-djsub="' + (oral ? 'mini' : fu ? 'err' : cp ? 'kanji' : '') + '">‹ ' + (oral ? 'Mini-jeux' : fu ? 'Carnet d\'erreurs' : cp ? 'Kanjis' : 'Dojo') + '</button><h3 class="sgh" data-k="' + DJ_INFO[sub].k + '"><span>' + DJ_INFO[sub].t + '</span></h3></div>'; }
+  function djBackHTML(sub) { var oral = sub === 'lire' || sub === 'cuis', mjb = sub === 'nb', fu = sub === 'fur', cp = sub === 'comp'; return '<div class="grp djbar"><button type="button" class="btn djback" data-djsub="' + (oral ? 'oral' : mjb ? 'mini' : fu ? 'err' : cp ? 'kanji' : '') + '">‹ ' + (oral ? 'Oral' : mjb ? 'Mini-jeux' : fu ? 'Carnet d\'erreurs' : cp ? 'Kanjis' : 'Dojo') + '</button><h3 class="sgh" data-k="' + DJ_INFO[sub].k + '"><span>' + DJ_INFO[sub].t + '</span></h3></div>'; }
   var LISTEN_GAMES = [['ecoute', '聴', 'Écoute', 'Entends le mot, retrouve-le parmi 4'], ['dictee', '写', 'Dictée', 'Écris ce que tu entends'], ['petales', '花', 'Pétales', 'Touche le bon pétale avant la rivière']];
   function listenTiles() {
     return LISTEN_GAMES.map(function (g) {
@@ -23902,7 +23903,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
       var id = ($('listenLv') || {}).value || 'q_all', mode = b.getAttribute('data-listgo'), t = qvTheme(id); if (!t) return;
       try { localStorage.setItem('kd.listenlv', id); } catch (x) {}
       closeModal(); qvPetStop(); qvExStop(); qv.ex = null;
-      djSub = t.lv === 'q' ? 'daily' : 'jlpt'; qv.lv = t.lv; qv.th = id; qv.mode = mode; qv.from = 'mini';
+      djSub = t.lv === 'q' ? 'daily' : 'jlpt'; qv.lv = t.lv; qv.th = id; qv.mode = mode; qv.from = 'oral';
       qvStart(t); qvRefresh(true); qvSayCur(); if (mode === 'petales') qvPetArm(true);
     }
   });
@@ -24916,7 +24917,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     if (djSub === 'rad' || djSub === 'cuis' || djSub === 'lire' || djSub === 'nb') return djBackHTML(djSub) + tipHTML('dj_' + djSub, DJ_INFO[djSub].tip) + '<div id="lrnHost">' + lrnInner() + '</div>';
     if (djSub === 'daily' || djSub === 'jlpt') return qvHTML();
     if (djSub === 'comp') return djBackHTML('comp') + tipHTML('dj_comp', DJ_INFO.comp.tip) + '<div id="cmpHost">' + (window.__kdCmp ? window.__kdCmp.html() : '') + '</div>';
-    return djBackHTML(djSub) + tipHTML('dj_' + djSub, DJ_INFO[djSub].tip) + (djSub === 'flash' ? fl : djSub === 'kanji' ? kj : mj + gameAchHTML());
+    return djBackHTML(djSub) + tipHTML('dj_' + djSub, DJ_INFO[djSub].tip) + (djSub === 'flash' ? fl : djSub === 'kanji' ? kj : djSub === 'oral' ? listenTiles() + djTile('lire') + djTile('cuis') : mj);
   }
   document.addEventListener('click', function (e) {
     var b = e.target.closest ? e.target.closest('[data-djsub]') : null; if (!b || !user) return;
@@ -29954,7 +29955,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
   function knMnHTML(k) { return KN_MN[k] ? '<em class="knmn">💡 ' + knMnFmt(KN_MN[k]) + '</em>' : ''; }
   /* ===== v326. Dojo : tuiles rangées par sous-parties repliables ===== */
   var DJ_SECS = [
-    ['rev', '練', 'Réviser et jouer', 'Flashcards, jeux, erreurs à corriger', ['flash', 'mini', 'err']],
+    ['rev', '練', 'Réviser et jouer', 'Flashcards, jeux, erreurs à corriger', ['flash', 'mini', 'oral', 'err']],
     ['base', '学', 'Apprendre les bases', 'Kana, kanji, clés et tracé', ['kana', 'kanji', 'rad', 'tb']],
     ['voc', '語', 'Vocabulaire', 'JLPT, hors JLPT, bonus et keigo', ['daily', 'jlpt', 'bonus', 'kg']],
     ['lire', '読', 'Lire et chercher', 'Textes, dictionnaire', ['lec', 'dico']]
@@ -32844,7 +32845,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v537', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v538', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
