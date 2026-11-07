@@ -6663,7 +6663,7 @@ body .mbox #appModalBody, body .shopmodal #appModalBody { padding-bottom: calc(v
 .dcbook .kxtrow .dcch.on{color:#3b2f78!important}
 .dcpage .pas{display:none}
 .dcd .dcbs{gap:3px}
-.dcd .dcbs .dcb{flex:0 0 auto;font-size:.68rem;padding:2px 7px;white-space:nowrap}
+.dcd .dcbs .dcb{flex:0 0 auto;font-size:.74rem;padding:2px 8px;white-space:nowrap}
 .slex{margin:10px 0}
 .slex .dcex>.dcsec,.slex .txbox>.dcsec{display:none}
 .slex .dcex{margin:0 0 8px}
@@ -6719,6 +6719,22 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
 .qcard .kanji.md:not(.sent):not(.knqk){font-size:clamp(3.8rem,18vw,5.6rem)!important}
 .qcard .kanji.sm:not(.sent):not(.knqk){font-size:clamp(2.3rem,10vw,3.5rem)!important;overflow-wrap:anywhere}
 .kdhub .kdfbtn{width:100%}
+/* v506 : fiche mot, textes secondaires plus lisibles et blocs repliés plus serrés */
+.dcpage>.slx{margin:0 0 -2px}
+.dcpage .dcsec{font-size:.78rem}
+.dcpage .dcg{font-size:.8rem}
+.dcpage .dcfl{font-size:.76rem}
+.dcpage .dcfv small{font-size:.76rem;color:#5a4d88}
+.dcpage .txsrc,.dcpage .jmsrc,.dcpage .kxsrc{font-size:.74rem;color:#6a5f94}
+.dcpage rt{font-size:.58em}
+.dcpage .dcb{font-size:.74rem}
+/* v506 : zones de toucher plus larges */
+.dcidx{padding:4px 3px;gap:3px}
+.dcidx button{min-height:36px;min-width:32px;font-size:.98rem}
+.wtok{padding-top:4px;padding-bottom:4px}
+.dcrc,.dckb{min-height:36px}
+.dcpage .d2wrap{margin:0}.dcpage .d2wrap>.slx{margin:0}
+.dcck{text-wrap:balance}
 
 </style>
 
@@ -32382,7 +32398,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v505', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v506', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
