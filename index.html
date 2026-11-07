@@ -32705,7 +32705,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v517', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v518', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35107,7 +35107,8 @@ var PAR="";
       dico: ['Dans le<br>dico', [['', '動', 'Verbes conjugués'], ['', '句', 'Expressions'], ['', '漢', 'Kanjis'], ['', '例', 'Exemples'], ['', '探', 'Recherche'], ['', '音', 'Audio']]],
       gram: ['Au<br>menu', [['', '章', 'Unités'], ['', '丁', 'Politesse'], ['', '助', 'Particules'], ['', '形', 'Formes en て'], ['', '問', 'Quiz'], ['', '読', 'Lecture']]],
       err: ['Pour<br>corriger', [['', '帳', 'Carnet'], ['', '三', '3 bonnes réponses'], ['', '炉', 'Fourneau'], ['', '復', 'Révision'], ['', '忘', 'Jamais oublié']]],
-      story: ['Au<br>menu', [['', '章', 'Chapitres'], ['', '鬼', 'Boss'], ['', '話', 'Histoire'], ['', '試', 'Épreuves']]]
+      story: ['Au<br>menu', [['', '章', 'Chapitres'], ['', '鬼', 'Boss'], ['', '話', 'Histoire'], ['', '試', 'Épreuves']]],
+      hist: ['Dans<br>l\'histoire', [['', '時', 'Époques'], ['l', '年', 'Frise'], ['g', '地', 'Carte'], ['d', '史', 'Dossiers'], ['p', '人', 'Personnages'], ['c', '語', 'Concepts'], ['r', '試', 'Réviser']]]
     };
     function chips(list) { return list.map(function (m) { return '<span class="kdtk"' + (m[0] ? ' data-kdsub="' + m[0] + '"' : '') + '><i class="jp" aria-hidden="true">' + m[1] + '</i>' + m[2] + '</span>'; }).join(''); }
     function ensure() {
@@ -35123,7 +35124,9 @@ var PAR="";
     }
     setInterval(ensure, 1500);
     document.addEventListener('click', function (e) {
-      var t = e.target.closest ? e.target.closest('.kdtk') : null; if (!t || !user) return; var c = t.closest('.kdc'); if (!c || !c.classList.contains('sel')) return;
+      var t = e.target.closest ? e.target.closest('.kdtk') : null; if (!t) return; var c = t.closest('.kdc'); if (!c || !c.classList.contains('sel')) return;
+      if (c.getAttribute('data-k') === 'hist') { e.preventDefault(); e.stopPropagation(); var hs = t.getAttribute('data-kdsub'); location.href = 'histoire/' + (hs ? '#' + hs : ''); return; }
+      if (!user) return;
       e.preventDefault(); e.stopPropagation(); var sub = t.getAttribute('data-kdsub');
       go('home'); setTimeout(function () { djSub = sub; renderHome(); window.scrollTo(0, 0); }, 60);
     }, true);
