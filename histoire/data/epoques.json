@@ -821,6 +821,81 @@
 "御家人",
 "vassal direct du shogun"
 ]
+],
+"chapitres": [
+{
+"t": "1. Fondation du bakufu : à quelle date ?",
+"p": [
+"La date de naissance du shogunat de Kamakura fait débat. Yoritomo s'installe à Kamakura dès 1180 et crée l'office des vassaux (samurai-dokoro) ; en 1183, la cour reconnaît son autorité sur les provinces de l'Est ; en 1185, il obtient le droit de nommer des gouverneurs militaires (shugo) et des intendants (jitō) dans tout le pays ; en 1190, il reçoit des titres à Kyōto ; en 1192, le titre de shōgun (seii taishōgun). Les manuels retiennent soit 1185, soit 1192.",
+"Kamakura est un site défendable, entouré de collines et ouvert au sud sur la mer, avec le sanctuaire de Tsurugaoka Hachimangū. Le bakufu s'organise avec trois bureaux : l'office des vassaux (samurai-dokoro), l'office des affaires générales (kumonjo, plus tard mandokoro) et l'office de justice (monchūjo).",
+"Les shugo supervisent la sécurité des provinces et l'armée ; les jitō gèrent les domaines et lèvent une part du revenu. Le bakufu n'abolit pas la cour : il coexiste avec elle. On parle donc d'un pouvoir double, où la cour garde les terres de ses nobles et la légitimité."
+]
+},
+{
+"t": "2. Les liens entre le shōgun et les vassaux",
+"p": [
+"Le fondement du régime est le lien de bienfaits (go-on) et de service (hōkō) entre le shōgun et ses vassaux directs, les gokenin. Le shōgun confirme leurs droits sur leurs terres, ou les récompense par de nouveaux fiefs. En échange, le vassal sert à la guerre et assure des tours de garde, à Kyōto (ōban-yaku) ou à Kamakura.",
+"Les héritages se partagent entre tous les enfants, y compris les filles : les terres se morcellent et les familles s'appauvrissent. Les femmes peuvent hériter et même être intendantes (jitō), ce qui sera restreint plus tard.",
+"Le régime n'est pas féodal au sens européen : le shōgun ne distribue pas des fiefs aux vassaux comme un suzerain, il confirme des droits qui existent déjà. Il est important de nuancer ce parallèle avec l'Europe."
+]
+},
+{
+"t": "3. Des Minamoto aux Hōjō",
+"p": [
+"Yoritomo meurt en 1199. Son fils Yoriie est écarté en 1203 par le clan de sa mère, les Hōjō, puis assassiné en 1204. Hōjō Tokimasa, grand-père de Yoriie, devient régent (shikken) ; ses héritiers garderont ce titre. En 1219, le troisième shōgun, Sanetomo, est assassiné au sanctuaire de Tsurugaoka par son neveu Kugyō : la lignée de Yoritomo s'éteint.",
+"Les Hōjō confient alors le titre de shōgun à des enfants de la maison Fujiwara (Kujō) puis à des princes impériaux, tout en gardant le pouvoir réel. Les chefs de la branche aînée, les « tokusō », concentrent encore plus le pouvoir à partir de la seconde moitié du siècle : après l'incident de Shimotsuki (1285), qui élimine Adachi Yasumori, leur intendant Taira no Yoritsuna dirige le régime."
+]
+},
+{
+"t": "4. La guerre de Jōkyū (1221)",
+"p": [
+"L'empereur retiré Go-Toba, qui a constitué une armée personnelle, veut reprendre la main. En 1221, il déclare Hōjō Yoshitoki rebelle. La veuve de Yoritomo, Hōjō Masako, aurait alors harangué les vassaux, selon une tradition rapportée dans le Azuma kagami, en rappelant les bienfaits de Yoritomo. L'armée du bakufu marche sur Kyōto et l'emporte en quelques semaines.",
+"Les conséquences sont lourdes pour la cour : Go-Toba est exilé à Oki, Juntoku à Sado et Tsuchimikado à Tosa. Le bakufu confisque près de 3 000 domaines et y place de nouveaux intendants, installe à Kyōto deux représentants (Rokuhara tandai) et intervient désormais dans la succession impériale."
+]
+},
+{
+"t": "5. Le droit des guerriers : le code de Jōei (1232)",
+"p": [
+"Sous Hōjō Yasutoki, le bakufu établit un conseil des conseillers (hyōjōshū, 1225), puis publie en 1232 le Goseibai shikimoku (code de Jōei) de 51 articles. Il ne remplace pas la loi de la cour : il règle les litiges de guerriers, d'après la « raison » (dōri) et la coutume. Il fixe notamment la prescription de vingt ans pour la possession des terres et définit les droits des intendants.",
+"Une justice organisée, avec des tribunaux (hikitsukeshū créés en 1249), est un facteur de stabilité. Le droit de Kamakura servira de modèle à des codes ultérieurs, en particulier celui de Muromachi puis ceux des seigneurs de l'époque Sengoku."
+]
+},
+{
+"t": "6. Les invasions mongoles (1274 et 1281)",
+"p": [
+"Après avoir soumis la Corée (Goryeo), Kubilai Khan, fondateur de la dynastie Yuan, exige en 1268 la soumission du Japon. Le régent Hōjō Tokimune refuse les ambassades. En 1274, une flotte mongole et coréenne attaque Tsushima, Iki puis la baie de Hakata. Les défenseurs se heurtent à des tactiques collectives et à des armes inconnues (projectiles explosifs, flèches empoisonnées). Les envahisseurs se retirent, peut-être à cause d'une tempête, mais aussi pour d'autres raisons militaires.",
+"Le bakufu fait construire un mur de pierre le long de la baie de Hakata (1276). En 1281, deux flottes (une venue de Corée, l'autre de Chine du Sud, environ 140 000 hommes selon les chroniques, un chiffre à prendre avec prudence) débarquent. Après deux mois de combats, un typhon détruit une grande partie des navires. Des fouilles sous-marines près de Takashima (Nagasaki) ont retrouvé des vestiges de la flotte. C'est cette tempête que la tradition appellera plus tard « vent divin » (kamikaze).",
+"Les guerriers ont défendu le pays mais n'ont pas de terres conquises à recevoir. Les gokenin n'obtiennent pas de récompense et s'endettent. Un vassal, Takezaki Suenaga, fait peindre des rouleaux pour faire reconnaître ses mérites (Mōko shūrai ekotoba, vers 1293). Les temples et sanctuaires, eux, revendiquent le crédit de leurs prières."
+]
+},
+{
+"t": "7. Une société en mutation : économie et crise des vassaux",
+"p": [
+"L'agriculture progresse (double culture riz-blé, outils de fer, engrais). Les marchés se développent, avec des marchands de gros, des guildes (za) et une économie monétaire alimentée par des pièces chinoises importées. Les ports comme Hakata se développent.",
+"Les vassaux s'endettent et vendent leurs terres. En 1297, le bakufu édicte une loi de grâce (tokusei-rei) qui annule les dettes et interdit la vente de terres, mais l'effet est limité. Des groupes de brigands (akutō) menacent les domaines. Les tokusō, de plus en plus autocratiques, sont de moins en moins appréciés, ce qui prépare la chute de 1333."
+]
+},
+{
+"t": "8. Le bouddhisme de Kamakura",
+"p": [
+"De nouveaux mouvements s'adressent aux gens ordinaires : Hōnen (1133-1212) prêche l'invocation de la formule d'Amida (nembutsu) comme seule voie (Jōdo-shū) et est exilé en 1207 ; son disciple Shinran (1173-1263) fonde le Jōdo Shinshū, qui s'appuie sur la foi plutôt que les pratiques ; Ippen (1239-1289) fait danser la formule (Ji-shū). Nichiren (1222-1282), fondateur de l'école qui porte son nom, place le Soutra du Lotus au centre et critique violemment les autres écoles (Risshō ankoku-ron, 1260).",
+"Le zen est importé de Chine : Eisai (1141-1215) pour le Rinzai, apprécié des guerriers (Kenchō-ji, 1253 ; Engaku-ji, 1282) ; Dōgen (1200-1253) pour le Sōtō. Les écoles anciennes ne disparaissent pas et se réforment (Myōe, Jōkei). Le Grand Bouddha de Kamakura (Kōtoku-in), en bronze, date du milieu du XIIIe siècle."
+]
+},
+{
+"t": "9. Littérature, arts et mentalités",
+"p": [
+"Le Heike monogatari, récit de la chute des Taira chanté par des moines aveugles accompagnés du biwa, exprime l'éphémère des puissants. Le Shin kokin wakashū (1205), anthologie commandée par Go-Toba, est dominé par Fujiwara no Teika. Le Hōjōki de Kamo no Chōmei (1212) évoque les désastres et la vie d'ermite. Le Tsurezuregusa de Yoshida Kenkō est de la fin de la période.",
+"Les sculpteurs Unkei et Kaikei, à Nara (gardiens Niō du Tōdai-ji, 1203), cultivent un réalisme énergique. Les rouleaux peints (emaki) racontent les guerres et la vie des temples. Les sabres, dans la région de Bizen, atteignent une grande qualité."
+]
+},
+{
+"t": "10. La chute du bakufu (1333)",
+"p": [
+"L'empereur Go-Daigo, monté sur le trône en 1318, veut gouverner directement. Après des complots (1324, 1331), il est exilé à Oki en 1332 mais s'évade. Des guerriers (Kusunoki Masashige) se révoltent. Le bakufu envoie Ashikaga Takauji ; celui-ci passe en 1333 du côté de l'empereur et prend Rokuhara, tandis que Nitta Yoshisada attaque Kamakura, qui tombe en juillet. Le dernier tokusō, Hōjō Takatoki, se suicide avec les siens à Tōshō-ji.",
+"Lectures : Jeffrey Mass, Warrior Government in Early Medieval Japan (1974) et The Kamakura Bakufu (1976) ; Thomas Conlan, In Little Need of Divine Intervention (2001), sur les invasions mongoles ; Pierre-François Souyri, Le Monde à l'envers (1998), sur la société médiévale japonaise."
+]
+}
 ]
 },
 {
@@ -886,6 +961,71 @@
 "能",
 "théâtre masqué classique"
 ]
+],
+"chapitres": [
+{
+"t": "1. De la restauration de Kenmu au shogunat Ashikaga",
+"p": [
+"Go-Daigo tente de gouverner directement (restauration de Kenmu, 1333-1336) : il remet en question les droits des guerriers, favorise la cour et crée des organes à son image. Les guerriers, déçus, se tournent vers Ashikaga Takauji, qui rompt en 1335 et prend Kyōto en 1336. En novembre, il publie les principes de Kenmu (Kenmu shikimoku) pour définir sa politique. Go-Daigo s'enfuit à Yoshino. En 1338, Takauji est nommé shōgun par l'empereur qu'il a installé.",
+"Le nom « Muromachi » vient du quartier de Kyōto où Yoshimitsu fait construire son palais en 1378. La période est traditionnellement bornée par 1336 (ou 1338) et 1573, année où Oda Nobunaga chasse le dernier shōgun, Ashikaga Yoshiaki."
+]
+},
+{
+"t": "2. Les deux cours (Nanbokuchō, 1336-1392)",
+"p": [
+"Pendant plus d'un demi-siècle, deux cours rivales coexistent : la cour du Nord (Kyōto, soutenue par les Ashikaga) et la cour du Sud (Yoshino). Les partisans du Sud, comme Kusunoki Masashige (mort à Minatogawa en 1336), Nitta Yoshisada (mort en 1338) ou Kitabatake Akiie (mort en 1338), sont ensuite présentés comme des modèles de loyauté. Kitabatake Chikafusa rédige en 1339 le Jinnō shōtōki, qui soutient la légitimité de la lignée du Sud.",
+"Le camp Ashikaga est lui-même déchiré : la guerre de Kannō (1350-1352) oppose Takauji à son frère Tadayoshi, qui meurt. Des rivalités locales prolongent la guerre. Sous le troisième shōgun Yoshimitsu (au pouvoir depuis 1368), avec l'aide du kanrei Hosokawa Yoriyuki, le Nord prend l'avantage ; en 1392, l'empereur du Sud, Go-Kameyama, remet les regalia à Go-Komatsu, en échange de promesses d'alternance qui ne seront pas tenues."
+]
+},
+{
+"t": "3. Institutions : le bakufu et les shugo",
+"p": [
+"Le bakufu Ashikaga siège à Kyōto, contrairement à Kamakura, et contrôle directement la ville, ses marchands et ses prêteurs. Le shōgun est assisté d'un « kanrei » choisi parmi trois familles (Hosokawa, Shiba, Hatakeyama) et de l'office des vassaux, dirigé par quatre familles (Akamatsu, Isshiki, Kyōgoku, Yamana). Dans l'Est, un représentant du shōgun (kantō kubō) siège à Kamakura.",
+"Les gouverneurs militaires (shugo) obtiennent des pouvoirs bien plus larges qu'à Kamakura : justice, impôts (la moitié du revenu des domaines, par la loi du hanzei, 1352), autorité sur les guerriers locaux. On parle de shugo-daimyō. Le système fonctionne tant que le shōgun contrôle ces grandes familles : Yoshimitsu écrase les Yamana (1391) et les Ōuchi (1399)."
+]
+},
+{
+"t": "4. Yoshimitsu et le commerce avec les Ming",
+"p": [
+"Yoshimitsu (1358-1408) est au sommet du système. En 1394, il cède le titre de shōgun à son fils mais garde le pouvoir, devient grand ministre, puis moine. Il fait bâtir le Pavillon d'Or (Kinkaku, 1397) à Kitayama. En 1404, il ouvre le commerce de tribut avec la Chine des Ming (« commerce à tablettes », kangō bōeki), au prix de recevoir le titre de « roi du Japon » de l'empereur chinois, ce qui scandalise certains.",
+"Son fils Yoshimochi interrompt les relations en 1411. Yoshinori les reprend en 1432. Le commerce est ensuite dominé par les Hosokawa et les Ōuchi, qui s'affrontent à Ningbo en 1523."
+]
+},
+{
+"t": "5. Économie, villages et révoltes",
+"p": [
+"Kyōto prospère grâce aux marchands de saké et prêteurs (sakaya, dosō), aux guildes (za), aux ports (Hyōgo, Sakai, Hakata). Les campagnes se structurent en villages autonomes (sōson), qui gèrent eux-mêmes l'eau, les terres communes et les amendes, avec des assemblées (yoriai).",
+"Ces communautés organisent des soulèvements (ikki) pour réclamer l'annulation des dettes : en 1428, transporteurs et paysans de la région d'Ōmi pillent les prêteurs (révolte de Shōchō). En 1441, après l'assassinat du shōgun Yoshinori par Akamatsu Mitsusuke (incident de Kakitsu), un soulèvement obtient un édit général d'annulation (tokusei). Les pièces chinoises, de qualité inégale, créent des problèmes de monnaie, avec des tris (erizeni)."
+]
+},
+{
+"t": "6. La guerre d'Ōnin (1467-1477)",
+"p": [
+"Le shōgun Ashikaga Yoshimasa (1449-1473), peu intéressé par le gouvernement, n'a pas d'héritier avant la naissance de son fils Yoshihisa en 1465 : il avait désigné son frère Yoshimi. S'y ajoutent des querelles de succession chez les Hatakeyama et les Shiba. Deux camps se forment : Hosokawa Katsumoto (Est) et Yamana Sōzen (Ouest). Kyōto est incendiée et ravagée. Des fantassins mobiles, les ashigaru, pillent la ville.",
+"Les deux chefs meurent en 1473. La guerre se termine en 1477 sans vainqueur. Elle ruine l'autorité du shōgun, détruit Kyōto, et les seigneurs retournent dans leurs provinces. Le coup d'État de Meiō (1493), où Hosokawa Masamoto dépose le shōgun Yoshitane, montre que le shōgun n'est plus qu'un instrument. Selon les auteurs, l'ère des Provinces en guerre commence en 1467 ou en 1493."
+]
+},
+{
+"t": "7. Culture : Kitayama et Higashiyama",
+"p": [
+"La culture de Kitayama (époque de Yoshimitsu) mêle l'élégance de cour et la sobriété zen : le Pavillon d'Or, la littérature des Cinq Montagnes (gozan), la peinture à l'encre de Shūbun et Sesshū (1420-1506). Le nō, avec Kan'ami et Zeami, devient un art raffiné ; le kyōgen apporte des intermèdes comiques.",
+"La culture de Higashiyama (époque de Yoshimasa) est plus intime et plus austère : le Pavillon d'Argent (Ginkaku, 1482), l'architecture de la salle d'étude (shoin-zukuri), les tatami, les jardins secs (karesansui, Ryōan-ji), l'arrangement floral (ikebana), la cérémonie du thé de Murata Jukō et le poème en chaîne (renga) de Sōgi. De nombreux contes populaires (otogizōshi) circulent."
+]
+},
+{
+"t": "8. Relations extérieures et arrivée des Européens",
+"p": [
+"Les pirates wakō, d'origine mixte japonaise, coréenne et chinoise, attaquent les côtes de la Corée et de la Chine du XIVe au XVIe siècle. En 1419, la Corée attaque l'île de Tsushima (incident d'Ōei). Le royaume des Ryūkyū, unifié en 1429, joue un rôle d'intermédiaire commercial entre la Chine, le Japon et l'Asie du Sud-Est. Dans le nord, les colons japonais se heurtent aux Ainu (révolte de Koshamain, 1457).",
+"En 1543, des Portugais abordent à Tanegashima : les seigneurs de l'île achètent leurs arquebuses, qui seront reproduites à grande échelle. En 1549, François Xavier arrive à Kagoshima et amorce la mission jésuite."
+]
+},
+{
+"t": "9. Débats et lectures",
+"p": [
+"Le shogunat Ashikaga est parfois jugé faible, parce qu'il dépendait des grands shugo. Des historiens soulignent au contraire sa capacité à gouverner Kyōto et à tenir ensemble ses vassaux pendant plus d'un siècle (1392-1467). La culture de cette période est considérée comme l'origine de beaucoup de traditions « japonaises » : thé, jardins, nō, architecture.",
+"Lectures : Kenneth Grossberg, Japan's Renaissance (1981) ; Thomas Conlan, State of War (2003) ; Andrew Goble, Kenmu: Go-Daigo's Revolution (1996) ; H. Paul Varley, The Ōnin War (1967) ; John W. Hall et Toyoda Takeshi (dir.), Japan in the Muromachi Age (1977)."
+]
+}
 ]
 },
 {
@@ -963,6 +1103,73 @@
 "大名",
 "seigneur féodal"
 ]
+],
+"chapitres": [
+{
+"t": "1. Définition et chronologie",
+"p": [
+"L'époque des Provinces en guerre (Sengoku, de 1467 ou 1493 à 1573) précède celle d'Azuchi-Momoyama (1573-1600 ou 1603), nommée d'après le château d'Azuchi de Nobunaga et le château de Fushimi (ou Momoyama) de Hideyoshi. Les trois unificateurs (Nobunaga, Hideyoshi, Ieyasu) mettent fin à ce siècle de guerre.",
+"Le principe est le gekokujō (« le bas l'emporte sur le haut »). Hōjō Sōun prend l'Izu vers 1493 et fonde la lignée des Hōjō de Odawara. Saitō Dōsan prend la province de Mino. Matsunaga Hisahide fait assassiner le shōgun Yoshiteru en 1565. Les familles de shugo sont remplacées par des seigneurs de guerre (sengoku daimyō) : Takeda (Kai), Uesugi (Echigo), Imagawa (Suruga), Mōri (Chūgoku), Shimazu (Kyūshū), Date (Tōhoku), Chōsokabe (Shikoku), Oda (Owari)."
+]
+},
+{
+"t": "2. Gouverner un domaine : les seigneurs de guerre",
+"p": [
+"Les seigneurs de guerre se dotent de lois propres (bunkoku-hō) : Imagawa Kana mokuroku (1526), Takeda-shi shinpatsu (1547), Jinkaishū des Date (1536). Ils font mesurer les terres (cadastres, kenchi), fixent des impôts et lient le service militaire au revenu (kandaka).",
+"Les seigneurs rassemblent leurs vassaux dans des villes-châteaux (jōkamachi), comme Odawara ou Ichijōdani (fouillée dans la préfecture de Fukui). Ils protègent les marchés, abolissent les barrières, exploitent les mines (argent d'Iwami) et favorisent le commerce. Les villes libres comme Sakai ou Hakata sont gérées par leurs marchands."
+]
+},
+{
+"t": "3. La guerre change : fusils, châteaux, armées de masse",
+"p": [
+"Les armées croissent : on recrute des fantassins d'infanterie légère (ashigaru) armés de lances. Après 1543, les arquebuses (tanegashima) sont produites à Sakai et Kunitomo. Les châteaux de montagne laissent la place à de vastes châteaux de plaine, avec murs de pierre et grandes tours (le donjon d'Azuchi, 1576).",
+"Batailles marquantes : Kawanakajima (Takeda Shingen contre Uesugi Kenshin, 1553-1564) ; Okehazama (1560), où Nobunaga défait Imagawa Yoshimoto ; Anegawa (1570) ; Mikatagahara (1572) ; Nagashino (1575), où Nobunaga et Ieyasu battent Takeda Katsuyori. La tradition évoque trois lignes de tireurs alternant leurs tirs derrière une palissade, mais les historiens modernes mettent en doute cette image de tir en volées."
+]
+},
+{
+"t": "4. Oda Nobunaga (1534-1582)",
+"p": [
+"Nobunaga, seigneur de la région de Nagoya, bat Imagawa à Okehazama en 1560, s'allie à Matsudaira Motoyasu (futur Ieyasu) en 1562, prend la province de Mino (1567) et adopte la devise « le pays par la force » (tenka fubu). En 1568, il entre à Kyōto avec Ashikaga Yoshiaki, qu'il fait shōgun, avant de l'écarter en 1573 : c'est la fin du shogunat de Muromachi.",
+"Il élimine ses rivaux (Asai et Asakura, 1573), détruit l'Enryaku-ji (1571), réduit les confréries bouddhistes armées, les Ikkō-ikki (Nagashima, 1574), et assiège le Hongan-ji d'Ishiyama (1570-1580). Il abolit des barrières, libère des marchés (rakuichi-rakuza), contrôle Sakai, protège les jésuites et fait bâtir le château d'Azuchi (1576).",
+"Le 21 juin 1582, au temple Honnō-ji de Kyōto, son général Akechi Mitsuhide l'attaque, et Nobunaga se suicide. Les motifs d'Akechi restent discutés."
+]
+},
+{
+"t": "5. Toyotomi Hideyoshi (1537-1598)",
+"p": [
+"Fils de paysan, Hideyoshi devient un général de Nobunaga. Il bat Akechi à Yamazaki (1582) puis Shibata Katsuie (1583). Il fait soumettre Ieyasu (après la bataille de Komaki-Nagakute, 1584), obtient en 1585 le titre de kanpaku, puis en 1586 celui de grand ministre et le nom de Toyotomi. Il soumet Kyūshū (1587), puis les Hōjō à Odawara (1590) : le pays est unifié.",
+"Politique : cadastre général (Taikō kenchi, à partir de 1582), unification des mesures, évaluation des terres en koku (de riz) ; chasse aux épées (1588) ; édits de 1591 qui figent les statuts et interdisent aux guerriers de devenir paysans ou marchands, séparation guerriers / paysans (heinō bunri). En 1587, il ordonne l'expulsion des missionnaires, sans l'appliquer à la lettre ; en 1597, après l'affaire du San Felipe, il fait crucifier 26 chrétiens à Nagasaki.",
+"Il lance deux invasions de la Corée (1592-1593 et 1597-1598), qui s'enlisent face à la résistance coréenne (dont l'amiral Yi Sun-sin) et à l'intervention des Ming. À sa mort en 1598, son fils Hideyori n'a que cinq ans ; un conseil de régents est créé."
+]
+},
+{
+"t": "6. Société et monde extérieur",
+"p": [
+"Le système de koku règle la vie : le revenu d'un seigneur ou d'un vassal est mesuré en riz. Les villes-châteaux attirent artisans et marchands. Hideyoshi reconstruit Kyōto (digue de terre Odoi, 1591), fait bâtir le château d'Ōsaka (1583) et celui de Fushimi (1594).",
+"Les Portugais arrivent à Nagasaki, ville fondée par Ōmura Sumitada en 1571 et confiée aux jésuites en 1580. Le commerce « nanban » échange la soie chinoise contre l'argent japonais. Plusieurs seigneurs deviennent chrétiens (Ōtomo Sōrin, Arima, Ōmura, Takayama Ukon). Une ambassade de quatre jeunes Japonais visite l'Europe (1582-1590). On estime à plusieurs centaines de milliers le nombre de chrétiens vers 1600."
+]
+},
+{
+"t": "7. La culture de Momoyama",
+"p": [
+"Elle exprime la puissance des nouveaux maîtres : châteaux somptueux, paravents à fond d'or. Kanō Eitoku (1543-1590) peint pour Azuchi et Jurakudai ; Hasegawa Tōhaku est connu pour ses paravents de pins dans la brume.",
+"Le thé est un outil politique et esthétique. Sen no Rikyū (1522-1591) développe le wabi-cha, un thé de simplicité, dans une salle minuscule (Taian, deux tatamis). Hideyoshi, lui, organise la grande cérémonie de Kitano (1587) et possède une salle de thé dorée. Rikyū est contraint au suicide en 1591. Le kabuki naît vers 1603 avec Izumo no Okuni."
+]
+},
+{
+"t": "8. De Sekigahara à la fondation du shogunat",
+"p": [
+"Ieyasu, installé dans le Kantō depuis 1590 (Edo), est le plus puissant des régents. Après la mort de Hideyoshi (1598) et celle de Maeda Toshiie (1599), il s'oppose à Ishida Mitsunari. Le 21 octobre 1600, à Sekigahara, les armées de l'Est et de l'Ouest s'affrontent ; les défections, dont celle de Kobayakawa Hideaki, tournent la bataille en faveur d'Ieyasu. Mitsunari est exécuté.",
+"En 1603, Ieyasu reçoit le titre de shōgun. Il abdique en 1605 au profit de son fils Hidetada pour assurer la succession. Il élimine les Toyotomi lors des sièges d'Ōsaka (1614-1615), fait publier le code des maisons guerrières (buke shohatto, 1615) et la règle « un château par domaine ». Il meurt en 1616 ; sa tombe est à Nikkō (Tōshōgū)."
+]
+},
+{
+"t": "9. Débats et lectures",
+"p": [
+"Les historiens discutent de la nature de l'unification (ruptures ou continuités avec Muromachi), des motifs des guerres de Corée (ambition de Hideyoshi, besoin de terres, désir de commerce) et du degré de modernité de Nobunaga, qu'ils jugent aujourd'hui plus traditionnel que sa légende. Le modèle des « trois unificateurs » est une simplification.",
+"Lectures : Mary Elizabeth Berry, Hideyoshi (1982) et The Culture of Civil War in Kyoto (1994) ; Neil McMullin, Buddhism and the State in Sixteenth-Century Japan (1984) ; George Elison, Deus Destroyed (1973), sur le christianisme ; Jeroen Lamers, Japonius Tyrannus (2000), sur Nobunaga."
+]
+}
 ]
 },
 {
