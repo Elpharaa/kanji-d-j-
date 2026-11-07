@@ -53,6 +53,10 @@ button.hchip{font-family:inherit}
 .qbar{height:8px;border-radius:99px;background:#d9c9a5;overflow:hidden;margin:4px 0 10px}.qbar i{display:block;height:100%;background:#b2285b}
 .qcard{min-height:150px;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;cursor:pointer;font:600 1.02rem/1.55 "Zen Kaku Gothic New",sans-serif}
 .qcard .k{font:400 2rem "Yuji Syuku",serif;color:#b2285b;display:block;margin-bottom:6px}
+.frz{position:relative;margin:6px 0 0 8px;padding-left:18px;border-left:3px solid #b2285b}
+.frz .fe{position:relative;padding:6px 0 10px}.frz .fe::before{content:"";position:absolute;left:-26px;top:12px;width:11px;height:11px;border-radius:50%;background:#fffaf0;border:3px solid #b2285b}
+.frz .fe b{display:block;color:#7b1024;font-size:.92rem}
+.frh{font:400 1.12rem "Yuji Syuku",serif;color:#fff3dc;text-shadow:0 1px 3px rgba(35,26,54,.8);margin:16px 2px 6px}
 </style></head>
 <body class="onhome inapp kddock hist">
 <div class="app">
@@ -84,7 +88,7 @@ function epName(id){var p=D.filter(function(x){return x.id===id||x.id.indexOf(id
 function epOf(fid){var f=FM[fid],map={jomon:0,yayoi:1,kofun:2,asuka:3,nara:4,heian:5,kamakura:6,muromachi:7,sengoku:8,edo:9,meiji:10,taisho:11,showa:12,heisei:13};return map[f.epoque]==null?99:map[f.epoque]}
 /* ---- vues ---- */
 function setDock(k){[].forEach.call(document.querySelectorAll('#kdDock .kdd'),function(b){var on=b.getAttribute('data-nav')===k;b.classList.toggle('on',on);if(on)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')})}
-function homeV(q){setDock('#');q=(q||'').toLowerCase();var h='<input id="q" class="hsearch" type="search" placeholder="Rechercher…" value="'+e(q)+'" aria-label="Recherche"><div class="hlist">';var n=0;
+function homeV(q){setDock('#');q=(q||'').toLowerCase();var h='<input id="q" class="hsearch" type="search" placeholder="Rechercher…" value="'+e(q)+'" aria-label="Recherche">'+(q?'':'<button class="hbtn" style="width:100%;margin:8px 0" data-fr="">年 Frise chronologique</button>')+'<div class="hlist">';var n=0;
  D.forEach(function(p){if(q&&JSON.stringify(p).toLowerCase().indexOf(q)<0)return;n++;h+='<button class="hcard" data-e="'+p.id+'"><span class="hk">'+e(p.kanji.split('・')[0])+'</span><b>'+e(p.nom)+'</b><small>'+e(p.periode)+'</small><span class="hd">'+e(p.accroche)+'</span></button>'});
  if(q){FI.forEach(function(f){if((f.nom+' '+f.alias.join(' ')+' '+f.resume).toLowerCase().indexOf(q)>=0){n++;h+='<button class="hcard" data-f="'+f.id+'"><span class="hk">'+e(f.kanji.slice(0,2))+'</span><b>'+e(f.nom)+'</b><small>'+e(TY[f.type])+' · '+e(f.dates)+'</small><span class="hd">'+e(f.resume.slice(0,110))+'…</span></button>'}})}
  h+='</div>';if(!q&&TH.length)h+='<div class="hgrp" style="margin:14px 2px 6px">Cours thématiques</div><div class="hlist">'+TH.map(function(t){return'<button class="hcard" data-t="'+t.id+'"><span class="hk">'+e(t.kanji)+'</span><b>'+e(t.nom)+'</b><small>Cours transversal</small><span class="hd">'+e(t.accroche)+'</span></button>'}).join('')+'</div>';h+=(n?'':'<div class="hpanel">Aucun résultat.</div>')+'<p class="hnote">Touche un mot en pointillé dans un texte pour ouvrir sa fiche. Contenu en cours d\'enrichissement.</p>';m.innerHTML=h;
@@ -100,6 +104,9 @@ function epV(id){var i=D.findIndex(function(x){return x.id===id}),p=D[i];if(!p)r
  h+=sec('Vocabulaire',p.mots.length?'<ul>'+p.mots.map(function(x){return'<li><b>'+lk(x[0],null,s)+'</b> <span class="hmeta">'+e(x[1])+'</span> : '+e(x[2])+'</li>'}).join('')+'</ul>':'');
  var rel=FI.filter(function(f){return f.epoque===p.id});if(rel.length)h+=sec('Fiches de cette époque','<div>'+rel.map(function(f){return'<button class="hchip" data-f="'+f.id+'">'+e(f.nom)+'</button> '}).join('')+'</div>');
  h+='</div><div class="hnav">'+(i>0?'<button class="hbtn" data-e="'+D[i-1].id+'">‹ '+e(D[i-1].nom)+'</button>':'')+(i<D.length-1?'<button class="hbtn" data-e="'+D[i+1].id+'">'+e(D[i+1].nom)+' ›</button>':'')+'</div>';m.innerHTML=h;scrollTo(0,0)}
+function frV(f){setDock('#');var h='<button class="hbtn hback" data-back="1">‹ Retour</button><div class="hpanel"><div class="hhero"><div class="hseal">年</div><div><h2 class="htitle">Frise chronologique</h2><div class="hmeta">Les événements clés, époque par époque</div></div></div><div>'+D.map(function(p){return'<button class="hchip" data-fr="'+p.id+'"'+(f===p.id?' style="background:#b2285b;color:#fff"':'')+'>'+e(p.nom.split(' ')[0])+'</button> '}).join('')+'<button class="hchip" data-fr="" '+(!f?'style="background:#b2285b;color:#fff"':'')+'>Tout</button></div></div>';
+ var s={};D.filter(function(p){return !f||p.id===f}).forEach(function(p){h+='<div class="frh">'+e(p.nom)+' · '+e(p.periode)+'</div><div class="hpanel"><div class="frz">'+p.evenements.map(function(x){return'<div class="fe"><b>'+e(x[0])+'</b>'+lk(x[1],null,s)+'</div>'}).join('')+'</div><button class="hchip" data-e="'+p.id+'" style="margin-top:6px">Ouvrir le cours ›</button></div>'});
+ m.innerHTML=h;scrollTo(0,0)}
 function themeV(id){var i=TH.findIndex(function(x){return x.id===id}),p=TH[i];if(!p)return homeV();setDock('#');var s={};
  var h='<button class="hbtn hback" data-back="1">‹ Retour</button><div class="hpanel"><div class="hhero"><div class="hseal">'+e(p.kanji)+'</div><div><h2 class="htitle">'+e(p.nom)+'</h2><div class="hmeta">Cours thématique</div></div></div><p>'+lk(p.resume,null,s)+'</p>';
  h+=sec('Cours détaillé',p.chapitres.map(function(c,k){return'<details class="hdet"'+(k===0?' open':'')+'><summary>'+e(c.t)+'</summary>'+c.p.map(function(x){return'<p>'+lk(x,null,s)+'</p>'}).join('')+'</details>'}).join(''));
@@ -149,7 +156,7 @@ function mkQ(c,all){var pool=all.filter(function(x){return x.t===c.t&&x!==c}).ma
  if(c.t==='fic')return{q:'De qui ou de quoi s\'agit-il ? '+c.q,a:c.a,o:pick(all.filter(function(x){return x.t==='fic'&&x.f.type===c.f.type&&x!==c}).map(function(x){return x.a}),c.a,3)};
  return null}
 function revV(){setDock('#r');var h='<div class="hpanel"><h3 class="hh" style="margin-top:0">Réviser</h3><p>Choisis une époque (ou tout), puis un mode.</p><select id="rs" class="hsearch" aria-label="Époque"><option value="all">Tout</option><optgroup label="Époques">'+D.map(function(p){return'<option value="'+p.id+'">'+e(p.nom)+' · '+e(p.periode)+'</option>'}).join('')+'</optgroup><optgroup label="Cours thématiques">'+TH.map(function(p){return'<option value="'+p.id+'">'+e(p.nom)+'</option>'}).join('')+'</optgroup>'+'</select>';
- h+='<button class="hbtn" style="width:100%;margin-top:10px" data-rv="qcm">QCM · jusqu'à 10 questions</button><button class="hbtn" style="width:100%;margin-top:8px" data-rv="cartes">Cartes de révision</button>';
+ h+='<button class="hbtn" style="width:100%;margin-top:10px" data-rv="qcm">QCM · 10 questions max</button><button class="hbtn" style="width:100%;margin-top:8px" data-rv="cartes">Cartes de révision</button>';
  var st=PR.games?'<p class="hnote" style="color:#513d7c;text-shadow:none">'+PR.games+' QCM joués · '+Math.round(PR.ok/Math.max(1,PR.tot)*100)+' % de réussite · meilleur score (tout) : '+(PR.best.all||0)+'/10</p>':'';
  h+=st+'<p class="hnote" id="rsy" style="color:#513d7c;text-shadow:none">'+(UID?'Progression liée à ton compte.':'Connecte-toi sur le Dojo pour lier ta progression à ton compte.')+'</p>';
  m.innerHTML=h+'</div>';scrollTo(0,0);prSync(function(){var el=document.getElementById('rsy');if(el)el.textContent=UID?'Progression liée à ton compte.':'Connecte-toi sur le Dojo pour lier ta progression à ton compte.'})}
@@ -171,12 +178,12 @@ m.addEventListener('click',function(ev){var t=ev.target,b;
  else if(t.closest('[data-flip]')){QS.flip=!QS.flip;showC()}
  else if(b=t.closest('[data-cn]')){var S2=QS;S2.i=Math.max(0,S2.i+ +b.dataset.cn);S2.flip=false;showC()}});
 function route(){var h=decodeURIComponent(location.hash.slice(1)),a=h.split('/');
- if(!h)return homeV();if(a[0]==='e')return epV(a[1]);if(a[0]==='t')return themeV(a[1]);if(a[0]==='f')return fV(a[1]);if(a[0]==='p')return listV('personnage');if(a[0]==='c')return listV('concept');if(a[0]==='r')return revV();
+ if(!h)return homeV();if(a[0]==='e')return epV(a[1]);if(a[0]==='t')return themeV(a[1]);if(a[0]==='l')return frV(a[1]||'');if(a[0]==='f')return fV(a[1]);if(a[0]==='p')return listV('personnage');if(a[0]==='c')return listV('concept');if(a[0]==='r')return revV();
  var i=D.findIndex(function(x){return x.id===h});return i>=0?epV(h):homeV()}
 var first=true;
 function go(h){location.hash=h}
-m.addEventListener('click',function(ev){var b=ev.target.closest('[data-f],[data-e],[data-t],[data-back]');if(!b)return;
- if(b.dataset.back){if(history.length>1&&!first)history.back();else go('')}else if(b.dataset.f)go('f/'+b.dataset.f);else if(b.dataset.e)go('e/'+b.dataset.e);else if(b.dataset.t)go('t/'+b.dataset.t)});
+m.addEventListener('click',function(ev){var b=ev.target.closest('[data-f],[data-e],[data-t],[data-fr],[data-back]');if(!b)return;
+ if(b.dataset.back){if(history.length>1&&!first)history.back();else go('')}else if(b.dataset.f)go('f/'+b.dataset.f);else if(b.dataset.e)go('e/'+b.dataset.e);else if(b.dataset.t)go('t/'+b.dataset.t);else if(b.dataset.fr!=null)go('l/'+b.dataset.fr)});
 document.getElementById('kdDock').addEventListener('click',function(ev){var b=ev.target.closest('[data-nav]');if(!b)return;var n=b.getAttribute('data-nav');if(n==='out'){location.href='../';return}if(!n||n==='#'){history.pushState(null,'',location.pathname);route()}else go(n.slice(1))});
 window.addEventListener('hashchange',function(){first=false;route()});
 Promise.all([fetch('data/epoques.json').then(function(r){return r.json()}),fetch('data/fiches.json').then(function(r){return r.json()}),fetch('data/themes.json').then(function(r){return r.json()}).catch(function(){return[]}),fetch('animebg.html').then(function(r){return r.text()}).catch(function(){return''})]).then(function(r){
