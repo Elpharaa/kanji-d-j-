@@ -29775,7 +29775,8 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     else if (k === 'fx') dcFx(+v);
     else if (k === 'fxfr') { var f1 = FX && FX[+v]; if (f1) fxSpeakFr(f1.f); }
     else if (k === 'fxfx') { var f2 = FX && FX[+v]; if (f2) fxSpeakFr(f2.e); }
-    else if (k === 'lang') { DCL = v === 'ja' ? 'ja' : 'fr'; try { localStorage.setItem('dcLang', DCL); } catch (e) {} dc.t = DCL === 'ja' ? 'fx' : 'all'; dc.n = 60; dcRefreshAll(); }
+    else if (k === 'lang') { DCL = v === 'ja' ? 'ja' : 'fr'; try { localStorage.setItem('dcLang', DCL); } catch (e) {} dc.fxOnly = DCL === 'ja'; dc.n = 60; dcRefreshAll(); }
+    else if (k === 'fxonly') { dc.fxOnly = !dc.fxOnly; dc.n = 60; dcRefreshAll(); }
     else if (k === 'fxsay') { var fq = FX && FX[+v]; if (fq && typeof aidSpeak === 'function') aidSpeak(fq.ej, 0.85); }
     else if (k === 'say') { var e = dcBuild().all[+v]; if (e && typeof aidSpeak === 'function') aidSpeak(e.kana || e.jp, 0.85); }
     else if (k === 'kanji') { closeModal(); openKanji(v); }
@@ -32773,7 +32774,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v521', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v522', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -36288,6 +36289,46 @@ var PAR="";
     var b = ev.target.closest ? ev.target.closest('[data-tl="nofil"]') : null; if (!b) return;
     dc.t = 'all'; dc.lv = 'all'; dc.th = ''; dc.cc = ''; dc.cw = 'all'; dc.n = 60; dc._anim = true; dcRefreshAll();
   });
+  /* expressions françaises : liste, carte, onglets et interface japonaise */
+  function fxList2() {
+    if (!FX) return [];
+    var q = dcNorm((dc.q || '').trim());
+    if (!q) return dc.fxOnly ? FX : [];
+    var hits = FX.filter(function (x) { return x.s.indexOf(q) >= 0; });
+    hits.sort(function (a, b) { var fa = dcNorm(a.f), fb = dcNorm(b.f), x = fa === q ? 0 : fa.indexOf(q) === 0 ? 1 : 2, y = fb === q ? 0 : fb.indexOf(q) === 0 ? 1 : 2; return x - y; });
+    return dc.fxOnly ? hits : hits.slice(0, 8);
+  }
+  function fxCard(x) {
+    var ja = DCL === 'ja', reg = ja ? (FXREGJ[x.r] || x.r) : (FXREG[x.r] || x.r);
+    return '<button type="button" class="dcard" data-dc="fx:' + x.i + '"><span class="dcck jp k2">仏</span><span class="dccm">' +
+      (ja ? '<span class="dccr">' + esc(x.f) + '</span><span class="dccf jp">' + esc(x.j) + '</span>' : '<span class="dccr jp">' + esc(x.j) + ' <small>' + esc(x.k) + '</small></span><span class="dccf">' + esc(x.f) + '</span>') +
+      '<span class="dcbs"><span class="dcb dct">' + (ja ? 'フランス語' : 'Expr. FR') + '</span><span class="dcb">' + esc(reg) + '</span></span></span><span class="dccg" aria-hidden="true">›</span></button>';
+  }
+  var fxL1 = dcListHTML;
+  dcListHTML = function () {
+    if (dc.mode === 'k' || dc.mode === 'n') return fxL1();
+    fxLoad();
+    var fx = fxList2(), ja = DCL === 'ja';
+    var hx = fx.length ? '<p class="dccount">' + (ja ? 'フランス語の表現' : 'Expressions françaises · フランス語の表現') + ' · ' + fx.length + '</p><div class="dclist">' + fx.map(fxCard).join('') + '</div>' : '';
+    if (dc.fxOnly) return !FX ? '<p class="dccount">…</p>' : (hx || '<div class="dcempty"><span class="dcemk jp">空</span><p>' + (ja ? '一致する表現がありません' : 'Aucune expression ne correspond') + '</p><small>' + (ja ? 'フランス語か日本語で別の言葉を試してください。' : 'Essaie un autre mot en français ou en japonais.') + '</small></div>');
+    var base = fxL1();
+    if (!hx) return base;
+    if (base.indexOf('class="dcempty"') >= 0) base = '';
+    return hx + base;
+  };
+  function dcJaUI2(h) {
+    [['Tous niveaux', '全レベル'], ['Type', '種類'], ['Niveau', 'レベル'], ['Tous', 'すべて'], ['Verbes', '動詞'], ['Adjectifs', '形容詞'], ['Expressions', '表現'], ['Autres', 'その他'], ['Hors JLPT', 'JLPT外'], ['Cours', '授業'], ['Bonus', 'ボーナス'], ['Tri', '並び順'], ['Mot du jour', '今日の単語']].forEach(function (p) { h = h.split('>' + p[0] + '<').join('>' + p[1] + '<'); });
+    return h.split('⚙ Filtres').join('⚙ フィルター').split('🎯 S’entraîner aux kanji').join('🎯 漢字を練習する').split('placeholder="食べる · たべる · manger…"').join('placeholder="食べる · manger · avoir le seum…"').split('Cours de Lille · semestre').join('授業 · 学期');
+  }
+  var fxI1 = dcInner;
+  dcInner = function () {
+    var h = fxI1(); if (dc.mode === 'k' || dc.mode === 'n') return h;
+    var ja = DCL === 'ja';
+    var row = '<div class="kxtrow fxrow"><button type="button" class="dcch kxtr' + (dc.fxOnly ? ' on' : '') + '" data-dc="fxonly" aria-pressed="' + !!dc.fxOnly + '">🇫🇷 ' + (ja ? 'フランス語の表現' : 'Expressions françaises') + '</button><button type="button" class="dcch' + (ja ? '' : ' on') + '" data-dc="lang:fr">Français</button><button type="button" class="dcch' + (ja ? ' on' : '') + '" data-dc="lang:ja">日本語</button></div>';
+    h = h.replace('<div class="slbar">', row + '<div class="slbar">');
+    if (ja) h = dcJaUI2(h);
+    return h;
+  };
   /* retour d'une fiche : même position dans la liste */
   function tlRemember() { try { if ($('appModal').hidden && document.getElementById('dcHost')) dc._sy = window.pageYOffset; } catch (e) {} }
   var tlO0 = dcOpen; dcOpen = function (i) { tlRemember(); return tlO0(i); };
