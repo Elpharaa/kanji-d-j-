@@ -415,6 +415,69 @@
 "法隆寺",
 "temple de Nara, bois ancien"
 ]
+],
+"chapitres": [
+{
+"t": "1. Cadre : une cour itinérante au carrefour de l'Asie",
+"p": [
+"L'époque d'Asuka tire son nom de la région d'Asuka, au sud de la plaine de Nara, où s'installent la plupart des palais. Elle commence en 538 ou 552 (introduction du bouddhisme) ou en 592 (début du règne de Suiko), selon les manuels, et s'achève en 710 avec le transfert à Nara. Jusqu'à la fin du VIIe siècle, la cour déplace son palais à presque chaque règne ; ce n'est qu'en 694 que l'impératrice Jitō fonde Fujiwara-kyō, première capitale à plan en damier, à la chinoise.",
+"Le contexte international pèse lourd. La Chine est réunifiée par les Sui (581), puis dominée par les Tang (618). Dans la péninsule coréenne, le royaume de Silla, allié aux Tang, détruit Baekje (660) puis Goguryeo (668). Le Japon, allié de Baekje, envoie une flotte mais subit une défaite à la bataille de Baekgang (663, Hakusukinoe en japonais). Cette humiliation provoque un grand effort de défense : forteresses en Kyūshū (Dazaifu, forteresse d'eau Mizuki), déplacement de la capitale à Ōtsu (667) et accélération de la construction d'un État."
+]
+},
+{
+"t": "2. L'arrivée du bouddhisme et la querelle des clans",
+"p": [
+"Selon le Nihon shoki, le roi Seong de Baekje envoie en 552 une statue de Bouddha et des soutras à la cour. D'autres sources (Gangōji engi, Jōgū Shōtoku hōō teisetsu) indiquent 538. Les deux dates coexistent dans les manuels. La question est politique : accepter ce culte étranger, c'est entrer dans le système culturel de la Chine et de la Corée, et rivaliser avec les cultes des kami.",
+"Deux grands clans s'affrontent : les Soga, favorables au bouddhisme et liés à des familles venues de Corée, et les Mononobe et Nakatomi, défenseurs des cultes traditionnels. En 587, Soga no Umako, avec le prince Umayado (le futur Shōtoku), écrase Mononobe no Moriya. Le clan Soga domine alors la cour pour plusieurs décennies.",
+"Les temples se multiplient : Asuka-dera (Gangō-ji), fondé par Umako vers 588-596, Shitennō-ji (Ōsaka), puis Hōryū-ji, à Ikaruga, fondé vers 607 et reconstruit après un incendie de 670. Ses bâtiments en bois sont parmi les plus anciens du monde (inscrits à l'UNESCO en 1993). Les sculpteurs, tel Tori Busshi (triade de Shaka, 623), s'inspirent du style des Wei du Nord."
+]
+},
+{
+"t": "3. Suiko et le prince Shōtoku",
+"p": [
+"En 592, Suiko, nièce de Soga no Umako, devient la première impératrice régnante historique. En 593, son neveu, le prince Umayado (Shōtoku), est nommé régent. La tradition lui attribue plusieurs réformes : en 603, les douze rangs de bonnet (冠位十二階), distingués par des couleurs et des vertus confucéennes, qui récompensent le mérite individuel plutôt que le seul lignage ; en 604, la « Constitution en dix-sept articles » (憲法十七条), qui est un code moral pour les fonctionnaires (« L'harmonie est précieuse », « Révérez les Trois Trésors »).",
+"En 607, une ambassade menée par Ono no Imoko apporte aux Sui une lettre célèbre : « le Fils du Ciel du pays où le soleil se lève » écrit « au Fils du Ciel du pays où le soleil se couche ». L'empereur Yang des Sui s'offusque de cette égalité affichée, mais le contact est maintenu. Des étudiants et des moines (Takamuko no Genri, Minabuchi no Shōan, le moine Min) restent en Chine pendant des années ; ils seront des acteurs des réformes de 645.",
+"Les historiens sont prudents. Le Nihon shoki, rédigé un siècle après, a magnifié Shōtoku en sage et en saint ; certains chercheurs (Ōyama Seiichi, 1999) doutent même que la « Constitution » date de son temps. Il faut donc séparer la figure de la légende et reconnaître la part collective, notamment du clan Soga."
+]
+},
+{
+"t": "4. Le coup d'État de 645 et les réformes de Taika",
+"p": [
+"En 645 (incident d'Isshi), le prince Naka no Ōe et Nakatomi no Kamatari (futur Fujiwara no Kamatari) assassinent Soga no Iruka sous les yeux de l'impératrice Kōgyoku. Son père Emishi se suicide. Kōtoku monte sur le trône, le nom d'ère Taika est adopté, et la cour s'installe à Naniwa (Ōsaka).",
+"Un édit de 646 (« édit de réforme de Taika ») annonce quatre mesures : supprimer les domaines et sujets privés des clans, organiser le pays en provinces (kuni) et districts (kōri), établir des registres de population et de terres avec redistribution des rizières, et instaurer un système d'impôts unifié. Ce programme s'inspire clairement de la Chine des Tang.",
+"La portée réelle de cet édit est discutée : le texte du Nihon shoki a été retouché au début du VIIIe siècle et reprend des termes de l'époque de Taihō. Des planches de bois (mokkan) montrent que l'administration en districts (kōri) existait avant 700 mais que la généralisation fut progressive. Le terme « réformes de Taika » reste commode, mais il faut y voir une longue transformation du VIIe siècle plutôt qu'un acte unique."
+]
+},
+{
+"t": "5. La guerre de Jinshin (672) et Tenmu",
+"p": [
+"Naka no Ōe devient l'empereur Tenji (668-671). Il établit la capitale à Ōtsu (667) et fait établir le premier registre national de la population (Kōgo nenjaku, 670). À sa mort, la succession oppose son fils, le prince Ōtomo, à son frère cadet, le prince Ōama. Ce dernier, réfugié à Yoshino, mobilise des troupes de l'Est (Mino, Owari), remporte la bataille et Ōtomo se suicide. Ōama monte sur le trône en 673 sous le nom de Tenmu.",
+"Tenmu gouverne en souverain fort. Il renforce le prestige impérial (titre de « tennō », attesté par un fragment de planche retrouvé à Asuka), met en place une nouvelle hiérarchie des familles (les huit titres, yakusa no kabane, 684), fait frapper les premières pièces de monnaie (Fuhonsen) et prépare la compilation de l'histoire officielle. Il commence la construction de la capitale de Fujiwara.",
+"Sa veuve Jitō lui succède (690-697), promulgue en 689 le code d'Asuka-Kiyomihara, inaugure Fujiwara-kyō en 694 et passe le pouvoir à son petit-fils Monmu en 697. Cette lignée de Tenmu domine la cour jusqu'en 770."
+]
+},
+{
+"t": "6. Le code de Taihō (701) : l'État de lois",
+"p": [
+"Promulgué en 701 sous Monmu par une équipe où se distingue Fujiwara no Fuhito, le code de Taihō comprend un code pénal (ritsu) et un code administratif (ryō). Il est révisé en 718 (code de Yōrō, appliqué en 757). Cet ensemble, appelé système ritsuryō (律令制), est le premier système légal complet du Japon.",
+"L'organisation centrale repose sur deux grands organes : le Conseil des Divinités (Jingikan), chargé des rites, et le Grand Conseil d'État (Dajōkan), qui dirige huit ministères. Le pays est divisé en provinces dirigées par des gouverneurs envoyés par la capitale (kokushi), subdivisées en districts dont l'administration revient aux notables locaux (gunji).",
+"Sur le plan social, le système de répartition des rizières (班田収授法) attribue à chaque sujet un lopin en échange d'un impôt en riz (租), de produits locaux (調) et de corvées ou de service militaire. Un recensement est organisé tous les six ans. Ce modèle, peu adapté au contexte japonais, devient vite difficile à tenir, mais il reste le cadre juridique de l'État pour plusieurs siècles."
+]
+},
+{
+"t": "7. Culture : de l'art d'Asuka à celui de Hakuhō",
+"p": [
+"La culture d'Asuka (VIIe siècle, avant 645) est dominée par l'art bouddhique issu de la Corée et de la Chine : statues en bronze, temples en bois, objets comme le sanctuaire de Tamamushi du Hōryū-ji. La culture de Hakuhō (seconde moitié du VIIe siècle, sous Tenmu et Jitō) est plus proche du modèle des premiers Tang : le Yakushi-ji (fondé en 680), la peinture murale du tumulus de Takamatsuzuka et les triades de bronze en sont des exemples.",
+"La poésie se développe dans la cour : princesse Nukata, poète majeur de l'ère de Tenji, puis Kakinomoto no Hitomaro, dont les poèmes de cérémonie et d'élégie figurent dans le Man'yōshū. La poésie chinoise est aussi cultivée : le Kaifūsō (751) conserve des poèmes composés par la noblesse."
+]
+},
+{
+"t": "8. Débats et lectures",
+"p": [
+"Les historiens discutent du rôle de Shōtoku, de l'ampleur réelle de la réforme de Taika, et de l'origine du titre de tennō et du nom « Nihon ». Ces points illustrent un problème de fond : les sources écrites principales (Nihon shoki) sont des constructions du VIIIe siècle, que l'archéologie et les planches de bois (mokkan) permettent de corriger.",
+"Lectures : Joan R. Piggott, The Emergence of Japanese Kingship (1997) ; The Cambridge History of Japan, vol. 1, Ancient Japan (dir. Delmer Brown, 1993) ; en français : Pierre-François Souyri, Nouvelle histoire du Japon (2010) et Francine Hérail, Histoire du Japon des origines à la fin de Meiji (1986)."
+]
+}
 ]
 },
 {
@@ -480,6 +543,67 @@
 "万葉仮名",
 "kanji employés pour leur valeur phonétique"
 ]
+],
+"chapitres": [
+{
+"t": "1. Heijō-kyō : une capitale à la chinoise",
+"p": [
+"En 710, sous l'impératrice Genmei, la cour quitte Fujiwara-kyō pour Heijō-kyō (Nara). Le plan en damier, inspiré de Chang'an, est coupé en son milieu par la grande avenue Suzaku, du portail Rajōmon au portail Suzaku, au nord duquel s'étend le palais. La ville abrite entre 50 000 et 100 000 habitants selon les estimations, avec des quartiers pour les nobles, deux marchés et de grands temples.",
+"Le palais a fait l'objet de fouilles importantes : une grande porte (Suzakumon) a été reconstruite en 1998 et le hall des audiences (Daigokuden) en 2010. Les « Monuments historiques de l'ancienne Nara » sont inscrits à l'UNESCO depuis 1998. En 708, la cour avait fait frapper la pièce Wadō kaichin, souvent présentée comme la première monnaie officielle (les Fuhonsen étaient antérieures), mais le troc en riz et en tissu resta dominant.",
+"Les règnes : Genmei (707-715), Genshō (715-724), Shōmu (724-749), Kōken (749-758, puis rétablie sous le nom de Shōtoku, 764-770), Junnin (758-764), Kōnin (770-781), puis Kanmu."
+]
+},
+{
+"t": "2. L'État, les terres et les impôts",
+"p": [
+"Le système ritsuryō repose sur la répartition périodique des rizières. Mais la population fuit les charges (corvées, service militaire) et falsifie les registres. Pour compenser le manque de terres et favoriser la mise en valeur, deux lois sont adoptées : celle de 723 (sanze isshin no hō) accorde la jouissance d'une terre nouvellement défrichée pour trois générations ; celle de 743 (konden eisei shizai hō) accorde la propriété perpétuelle.",
+"Ce dernier texte est la clé de l'histoire agraire : les grands temples et les nobles, qui disposent de main-d'œuvre et de capitaux, accumulent des terres exemptées d'impôt, qui deviendront les domaines privés (shōen) de l'époque suivante.",
+"Les épidémies aggravent la situation. En 735-737, une épidémie de variole frappe le pays : selon certaines estimations (Wayne Farris), le quart ou le tiers de la population aurait péri, dont les quatre fils de Fujiwara no Fuhito. Cette catastrophe pousse Shōmu à chercher la protection du bouddhisme."
+]
+},
+{
+"t": "3. Luttes de pouvoir à la cour",
+"p": [
+"Fujiwara no Fuhito (659-720) consolide la famille en mariant ses filles aux souverains. Après sa mort, le prince Nagaya domine la cour, jusqu'à sa chute en 729 (accusé de sorcellerie, il se suicide) ; on a retrouvé sa résidence à Nara avec des dizaines de milliers de planches de bois (mokkan). Après l'épidémie de 737, qui élimine les quatre fils de Fuhito, Tachibana no Moroe gouverne, puis Fujiwara no Nakamaro (Emi no Oshikatsu) s'impose sous l'impératrice Kōken. Il est tué lors de sa révolte de 764.",
+"Le moine Dōkyō, favori de l'impératrice Shōtoku (Kōken rétablie), obtient des titres inouïs pour un moine. En 769, un oracle du sanctuaire d'Usa Hachiman est invoqué pour lui offrir le trône, mais le vérificateur Wake no Kiyomaro rapporte un message contraire. À la mort de Shōtoku en 770, Dōkyō est exilé. La lignée de Tenmu, éteinte, cède la place à celle de Tenji (empereur Kōnin), à laquelle appartient Kanmu."
+]
+},
+{
+"t": "4. Le bouddhisme d'État",
+"p": [
+"Shōmu veut faire du bouddhisme le pilier de la protection du pays. En 741, il ordonne la création d'un monastère et d'un couvent dans chaque province (kokubunji, kokubunniji). En 743, il décide de faire couler un Bouddha colossal : le Grand Bouddha (Vairocana, Rushana) du Tōdai-ji, fondu entre 747 et 749 et consacré en 752 lors d'une cérémonie d'ouverture des yeux conduite par le moine indien Bodhisena, devant des milliers de moines.",
+"Le moine Gyōki (668-749), d'abord inquiété pour ses prêches en dehors des temples, est nommé grand supérieur et participe à la collecte pour le Bouddha. En 754, Ganjin (Jianzhen), moine chinois ayant échoué cinq fois à traverser la mer avant d'arriver, devenu aveugle, fonde la discipline monastique (ritsu) et le Tōshōdai-ji (759).",
+"Six écoles dites « de Nara » (Nanto rokushū) étudient la doctrine : Sanron, Jōjitsu, Hossō, Kusha, Kegon, Ritsu. Elles sont peu liées à la population. Le trésor de la Shōsōin conserve plus de 9 000 objets de Shōmu offerts au Tōdai-ji en 756 par l'impératrice Kōmyō : instruments de musique, miroirs, soieries, objets venus de la route de la soie."
+]
+},
+{
+"t": "5. Écrire l'histoire et la poésie",
+"p": [
+"L'État commande de grands textes. Le Kojiki (712), consigné par Ō no Yasumaro à partir de récits mémorisés par Hieda no Are d'après la préface, et le Nihon shoki (720), supervisé par le prince Toneri, fixent l'histoire des origines. Les Fudoki (713) sont des rapports sur la géographie, les produits et les légendes de chaque province : seul celui de l'Izumo est conservé en entier.",
+"Le Man'yōshū, compilé vers 759-780 avec la participation d'Ōtomo no Yakamochi, regroupe environ 4 500 poèmes en 20 livres. Il contient des poèmes de toutes classes, dont des chansons de soldats (sakimori) et des poèmes de paysans. Il est écrit en man'yōgana, la notation phonétique par caractères chinois, d'où le nom des kana plus tard."
+]
+},
+{
+"t": "6. Relations extérieures et frontières",
+"p": [
+"Le Japon envoie périodiquement des ambassades aux Tang (kentōshi) : en 702, 717, 733, 752… Des étudiants, comme Kibi no Makibi et le moine Genbō (717), rapportent des livres, des instruments et des techniques. Abe no Nakamaro, parti en 717, resta en Chine, où il fit carrière et mourut en 770. Les relations avec Bohai (Parhae) sont régulières à partir de 727, tandis que celles avec Silla sont ambivalentes.",
+"Au nord-est, l'État essaie de soumettre les Emishi, peuples qui ne sont pas intégrés à l'État : forteresse de Taga (724) dans l'actuel Miyagi. Au sud de Kyūshū, les Hayato sont soumis au début du VIIIe siècle, après plusieurs rébellions."
+]
+},
+{
+"t": "7. Vie sociale et conditions de vie",
+"p": [
+"La société est divisée en nobles (rangs de cour), en gens ordinaires (ryōmin) et en catégories serviles (senmin). Les paysans supportent l'impôt, la corvée et le service militaire. Le poème de dialogue sur la pauvreté (Hinkyū mondōka) de Yamanoue no Okura, dans le Man'yōshū, décrit leur misère.",
+"Les planches de bois (mokkan), découvertes par dizaines de milliers à Heijō-kyō, sont la source majeure : étiquettes de transport de riz ou de poisson, ordres administratifs, listes de présence, exercices d'écriture. Elles montrent un État très bureaucratique, qui fait circuler les produits d'une province à la capitale."
+]
+},
+{
+"t": "8. De Nara à Nagaoka puis Heian",
+"p": [
+"En 784, Kanmu abandonne Nara pour Nagaoka-kyō, puis en 794 Heian-kyō. Les motifs sont discutés : se libérer de l'influence des grands temples et des vieux clans, marquer l'avènement d'une nouvelle lignée (la lignée de Tenji), trouver un site mieux placé pour les transports par eau. L'assassinat en 785 de Fujiwara no Tanetsugu, qui supervisait la construction de Nagaoka, entraîne la disgrâce et la mort du prince héritier Sawara, dont les esprits furent apaisés ensuite.",
+"Lectures : Wayne Farris, Population, Disease, and Land in Early Japan, 645-900 (1985) ; Herman Ooms, Imperial Politics and Symbolics in Ancient Japan: The Tenmu Dynasty, 650-800 (2009) ; Torquil Duthie, Man'yōshū and the Imperial Imagination in Early Japan (2014)."
+]
+}
 ]
 },
 {
@@ -557,6 +681,77 @@
 "荘園",
 "domaine privé exempté d'impôt"
 ]
+],
+"chapitres": [
+{
+"t": "1. Cadre : la capitale de la paix et de la tranquillité",
+"p": [
+"En 794, Kanmu s'installe à Heian-kyō (Kyōto), la « capitale de la paix et de la tranquillité ». La ville est un rectangle d'environ 4,5 km sur 5, avec la grande avenue Suzaku de 84 m de large. À l'origine, seuls deux temples y sont autorisés, Tō-ji et Sai-ji, pour éviter que le clergé de Nara ne s'y installe. Elle restera la capitale impériale jusqu'en 1868.",
+"On distingue plusieurs temps : une phase de gouvernement impérial actif (jusqu'au milieu du IXe siècle), puis l'ère de la régence des Fujiwara (à partir de 858 et surtout aux Xe-XIe siècles), le gouvernement des empereurs retirés (insei, à partir de 1086), puis la montée des guerriers, qui conduit à la guerre entre Taira et Minamoto (1180-1185).",
+"Kanmu mène une politique volontariste : campagnes contre les Emishi (Sakanoue no Tamuramaro, forteresses d'Isawa en 802 et de Shiwa en 803), suppression de la conscription généralisée (792) au profit d'un petit corps de soldats (kondei), création d'un inspecteur des gouverneurs (kageyushi, 797)."
+]
+},
+{
+"t": "2. Des réformes dans le cadre chinois",
+"p": [
+"Les empereurs du début de Heian adaptent le système ritsuryō. Ils créent des charges non prévues par les codes : le bureau des archivistes (kurōdo-dokoro, 810), qui devient le secrétariat de l'empereur, et la police de la capitale (kebiishi). Des règlements complémentaires (kyaku et shiki) précisent la loi : kōnin-kyaku (820), Jōgan-shiki (871), Engi-shiki (927).",
+"La culture lettrée reste chinoise : l'empereur Saga fait compiler des anthologies de poésie en chinois (Ryōunshū, 814 ; Bunka shūreishū, 818). Les « trois pinceaux » (Sampitsu) sont Saga, Kūkai et Tachibana no Hayanari, grands calligraphes."
+]
+},
+{
+"t": "3. Les Fujiwara et la régence",
+"p": [
+"Les Fujiwara dominent la cour en plaçant leurs filles comme épouses d'empereurs, puis en gouvernant au nom d'un empereur enfant. En 858, Fujiwara no Yoshifusa devient régent (sesshō) de son petit-fils Seiwa, âgé de neuf ans : c'est le premier régent non impérial. En 866, il écarte le clan Ōtomo (Ban) lors de l'incident de la porte Ōtenmon. Son successeur Mototsune devient le premier chancelier (kanpaku, 887).",
+"Des empereurs reprennent parfois la main : Daigo (897-930) et Murakami (946-967), dont les règnes sont idéalisés comme « âge d'or » (Engi-Tenryaku). Le ministre Sugawara no Michizane, disgracié en 901, devient un esprit vengeur apaisé en dieu Tenjin. L'incident d'Anna (969), qui exile le ministre Minamoto no Takaakira, confirme la domination des Fujiwara.",
+"Le sommet est atteint avec Fujiwara no Michinaga (966-1028) : régent en 1016, il marie ses filles à trois empereurs et devient le grand-père des suivants. Son fils Yorimichi fait construire le Byōdō-in à Uji (1053). La régence décline à la fin du XIe siècle quand un empereur sans lien maternel avec les Fujiwara, Go-Sanjō (1068), reprend le gouvernement."
+]
+},
+{
+"t": "4. Domaines privés, gouverneurs et premiers guerriers",
+"p": [
+"Les domaines privés (shōen) grandissent depuis la loi de 743. Les paysans les plus riches placent leurs terres sous la protection de nobles ou de temples en échange de redevances et d'une exemption d'impôt. Le gouvernement central, lui, confie la collecte aux gouverneurs de province (zuryō), qui s'enrichissent. La structure des terres passe du système de la distribution à celui des exploitations individuelles (tato, myō).",
+"Les bushi apparaissent comme gardes de provinces, chefs de bandes ou escortes de nobles. Les grandes révoltes, comme celle de Taira no Masakado dans le Kantō (935-940) ou de Fujiwara no Sumitomo dans la mer Intérieure (939-941), montrent la faiblesse des armées d'État. Des familles issues de la lignée impériale, les Taira (Kanmu Heishi) et les Minamoto (Seiwa Genji), s'imposent comme chefs militaires.",
+"Dans le nord, la guerre des Neuf Ans (1051-1062) et celle des Trois Ans (1083-1087) permettent à Minamoto no Yoriyoshi puis Yoshiie de renforcer leurs liens avec les guerriers de l'Est. Les Fujiwara du Nord fondent à Hiraizumi un centre brillant : le Chūson-ji et sa salle dorée (1124)."
+]
+},
+{
+"t": "5. Les empereurs retirés et la guerre de Genpei",
+"p": [
+"En 1086, Shirakawa abdique mais continue de gouverner depuis son palais (insei, « gouvernement du cloître »). Il évite les Fujiwara, s'entoure de favoris, de ses propres gardes et constitue un vaste patrimoine de domaines. Toba puis Go-Shirakawa prolongent ce régime.",
+"Les troubles de Hōgen (1156), où s'affrontent l'empereur retiré Sutoku et son frère Go-Shirakawa, et de Heiji (1159-1160) font intervenir les guerriers. Taira no Kiyomori en sort vainqueur ; Minamoto no Yoshitomo est tué, et son fils Yoritomo exilé à Izu. Kiyomori devient grand ministre en 1167, marie sa fille à un empereur et place son petit-fils Antoku sur le trône.",
+"En 1180, un prince appelle à la révolte. Yoritomo se soulève dans le Kantō. La guerre de Genpei (1180-1185) voit les victoires de Minamoto no Yoshinaka (entrée à Kyōto en 1183), puis de Yoshitsune, frère de Yoritomo, à Ichinotani (1184), Yashima, et enfin Dan-no-ura (1185), où les Taira sont anéantis et l'empereur-enfant Antoku périt."
+]
+},
+{
+"t": "6. Bouddhisme et croyances",
+"p": [
+"Deux écoles, apportées de Chine en 805 et 806, dominent : le Tendai, fondé par Saichō sur le mont Hiei (Enryaku-ji), et le Shingon, établi par Kūkai au mont Kōya. Leur enseignement ésotérique, fait de rites, de mandalas et de mantras, séduit la noblesse. Les grands temples possèdent des domaines et des moines-soldats (sōhei) qui descendent parfois à Kyōto pour faire pression sur la cour.",
+"Le culte d'Amida et de la Terre pure se répand à partir du Xe siècle. Genshin écrit l'Ōjōyōshū (985), qui décrit les enfers et le paradis. La croyance au « déclin de la Loi » (mappō), censé commencer en 1052 selon un calcul, nourrit l'inquiétude et l'attrait de la Terre pure. Le Byōdō-in (1053) est une représentation du paradis d'Amida.",
+"Les croyances populaires intègrent des esprits vengeurs (goryō) et des pratiques de divination (onmyōdō, dont le célèbre Abe no Seimei). Les cultes des kami et du bouddhisme se mêlent (shinbutsu shūgō). La fête de Gion naît en 869 pour apaiser les épidémies."
+]
+},
+{
+"t": "7. Culture de cour et naissance de la littérature en japonais",
+"p": [
+"Les kana (hiragana et katakana) permettent d'écrire le japonais. La poésie waka est reconnue avec le Kokin wakashū (905), première anthologie impériale dont la préface en kana est signée Ki no Tsurayuki. Les femmes de la cour, qui n'écrivent pas en chinois, développent la prose : Tosa nikki (935, Tsurayuki sous une identité féminine), Kagerō nikki, Makura no sōshi de Sei Shōnagon (vers 1000), Genji monogatari de Murasaki Shikibu (vers 1008), Sarashina nikki.",
+"L'architecture de la noblesse suit le style shinden. Des rouleaux illustrés (emaki) apparaissent au XIIe siècle, comme le Genji monogatari emaki, le Chōjū-giga ou le rouleau du grand conseiller Ban. Les valeurs de cour sont le raffinement (miyabi), la sensibilité à l'éphémère (mono no aware), les belles tenues (jūnihitoe), l'étiquette.",
+"Cette « culture nationale » (kokufū bunka) est souvent présentée comme une réaction à l'abandon des ambassades en Chine. Les historiens modernes la nuancent : l'influence chinoise reste très présente."
+]
+},
+{
+"t": "8. Relations extérieures",
+"p": [
+"La dernière ambassade partie en Chine date de 838. Elle compte le moine Ennin, dont le journal décrit la persécution du bouddhisme en Chine. En 894, Sugawara no Michizane, nommé ambassadeur, propose de suspendre l'envoi, notamment à cause de la situation instable des Tang, qui disparaissent en 907. Cette suspension n'empêche pas les échanges privés : les marchands chinois, coréens et les moines circulent.",
+"En 1019, des pirates venus du nord de la péninsule (les Jurchen, incident Toi) attaquent Tsushima, Iki et la côte de Kyūshū avant d'être repoussés. À la fin de Heian, Taira no Kiyomori s'intéresse au commerce avec la Chine des Song : il fait aménager le port d'Ōwada (Hyōgo) et développe le sanctuaire d'Itsukushima."
+]
+},
+{
+"t": "9. Débats historiographiques et lectures",
+"p": [
+"L'époque est parfois décrite comme celle d'un « déclin » du système ritsuryō. Les historiens parlent plutôt de transformation vers un « État de cour » (ōchō kokka). Kuroda Toshio a proposé la théorie des « élites de pouvoir » (kenmon taisei) : cour, guerriers et grands temples partagent le pouvoir. D'autres, comme Satō Shin'ichi, insistent sur l'autonomie de l'Est. La date du début du Moyen Âge japonais (1185, 1192, ou plus tôt, vers la fin du XIe siècle) fait aussi débat.",
+"Lectures : The Cambridge History of Japan, vol. 2, Heian Japan (dir. Donald Shively et William McCullough, 1999) ; Karl Friday, Hired Swords (1992) ; Ivan Morris, La Vie de cour dans le Japon classique (The World of the Shining Prince, 1964) ; en français : Francine Hérail, La Cour du Japon à l'époque de Heian aux Xe et XIe siècles (1995), et le Dit du Genji dans la traduction de René Sieffert."
+]
+}
 ]
 },
 {
