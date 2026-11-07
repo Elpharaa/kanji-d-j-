@@ -1,0 +1,538 @@
+[
+{
+"id": "religions",
+"nom": "Religions et pensée",
+"kanji": "宗",
+"accroche": "Shintō, bouddhisme, confucianisme, christianisme et nouvelles religions.",
+"resume": "Le Japon n'a jamais eu une religion unique : les traditions se superposent et se mêlent. Ce cours suit leurs rapports, de l'Antiquité aux religions contemporaines.",
+"chapitres": [
+{
+"t": "1. Le shintō : kami, rites et sanctuaires",
+"p": [
+"Le shintō n'a ni fondateur ni texte sacré unique. Il repose sur le culte des kami, forces ou êtres sacrés liés à un lieu (montagne, arbre, rocher), à un clan ou à une personne. Les rites visent la pureté (harae, misogi) et la bonne relation avec les kami lors des fêtes (matsuri).",
+"Le sanctuaire (jinja) est marqué par un portique (torii) ; on y trouve le honden, où réside le kami. Le Grand sanctuaire d'Ise (Amaterasu) est reconstruit tous les vingt ans. Le mot « shintō » n'apparaît qu'en opposition au bouddhisme."
+]
+},
+{
+"t": "2. L'arrivée du bouddhisme et le syncrétisme",
+"p": [
+"Le bouddhisme arrive de Corée (538 ou 552) et s'impose grâce aux Soga et au prince Shōtoku. L'État de Nara le protège (Tōdaiji, kokubunji). Dès l'époque de Heian, kami et bouddhas sont associés : on dit que les kami sont des manifestations (suijaku) des bouddhas (honji suijaku).",
+"Ce syncrétisme (shinbutsu shūgō) dure jusqu'en 1868, quand le gouvernement de Meiji sépare de force les deux cultes (shinbutsu bunri), ce qui entraîne des destructions de temples (haibutsu kishaku)."
+]
+},
+{
+"t": "3. Les écoles bouddhiques",
+"p": [
+"Nara : six écoles savantes (Sanron, Hossō, Kegon, Ritsu...). Heian : Tendai de Saichō (mont Hiei) et Shingon de Kūkai (mont Kōya), qui est ésotérique. Les cultes de la Terre pure (Amida) montent avec la peur du mappō. À Kamakura : Jōdo de Hōnen, Jōdo Shinshū de Shinran, Nichiren, et zen (Rinzai d'Eisai, Sōtō de Dōgen).",
+"Les grands monastères ont aussi une puissance politique et militaire (sōhei, Hiei, Honganji). Oda Nobunaga détruit le Hiei en 1571."
+]
+},
+{
+"t": "4. Confucianisme et pensée de l'époque d'Edo",
+"p": [
+"Le néo-confucianisme de Zhu Xi devient doctrine officielle sous les Tokugawa (Hayashi Razan, académie de Yushima). D'autres courants s'en écartent : Itō Jinsai et Ogyū Sorai (étude des textes anciens, kogaku). Les kokugaku (études nationales) de Motoori Norinaga revalorisent le Kojiki et le Genji et l'idée de mono no aware.",
+"Les rangaku (sciences hollandaises) apportent un autre regard. À la fin d'Edo, le mito-gaku et le sonnō jōi fournissent des arguments au mouvement antishogunal."
+]
+},
+{
+"t": "5. Christianisme et interdiction",
+"p": [
+"La mission jésuite commence avec François Xavier (1549). Les seigneurs convertis de Kyūshū (Ōmura Sumitada) donnent Nagasaki à l'Église. Interdit par Hideyoshi (1587), puis par Tokugawa, le christianisme est écrasé après Shimabara (1637-1638). Les rites d'« écrasement d'image » (fumi-e) et l'enregistrement dans des temples (terauke) servent à le contrôler.",
+"Des communautés clandestines (kakure kirishitan) subsistent. À Nagasaki, en 1865, ils se révèlent à un prêtre français. Les persécutions se poursuivent jusqu'en 1873."
+]
+},
+{
+"t": "6. Shintō d'État et religions modernes",
+"p": [
+"Sous Meiji, le shintō d'État place l'empereur au centre : sanctuaires hiérarchisés, Yasukuni, rescrit sur l'éducation (1890). La Constitution garantit la liberté religieuse « dans les limites de l'ordre », mais le shintō des sanctuaires est présenté comme un rite national et non comme une religion.",
+"Avec l'occupation, la directive de décembre 1945 abolit le shintō d'État. Les « nouvelles religions » (Tenrikyō, Ōmoto, Sōka Gakkai, Risshō Kōsei-kai) prospèrent. Aum Shinrikyō (1995) provoque un débat sur le contrôle des mouvements religieux. Aujourd'hui, beaucoup de Japonais pratiquent à la fois des rites shintō (naissance, nouvel an) et bouddhiques (funérailles)."
+]
+}
+],
+"retenir": [
+"Le Japon vit un syncrétisme : shintō pour la vie, bouddhisme pour la mort (en gros).",
+"1868 : séparation forcée des kami et des bouddhas.",
+"Les écoles de Kamakura rendent le salut accessible au grand nombre.",
+"Néo-confucianisme = idéologie officielle d'Edo.",
+"Le christianisme est interdit de 1587/1614 à 1873."
+],
+"mots": [
+[
+"kami",
+"神",
+"force ou divinité du shintō"
+],
+[
+"torii",
+"鳥居",
+"portique d'entrée d'un sanctuaire"
+],
+[
+"matsuri",
+"祭",
+"fête de sanctuaire"
+],
+[
+"honji suijaku",
+"本地垂迹",
+"théorie : les kami sont des manifestations des bouddhas"
+],
+[
+"mappō",
+"末法",
+"âge de la fin de la Loi bouddhique"
+],
+[
+"fumi-e",
+"踏絵",
+"image sacrée foulée aux pieds pour prouver qu'on n'est pas chrétien"
+],
+[
+"kokugaku",
+"国学",
+"étude nationale"
+]
+]
+},
+{
+"id": "litterature",
+"nom": "Littérature",
+"kanji": "文",
+"accroche": "De la poésie des chroniques anciennes au roman moderne.",
+"resume": "Un parcours de la littérature japonaise, des mythes du VIIIe siècle aux auteurs contemporains, en passant par la poésie de cour, les récits de guerre, le théâtre et le roman.",
+"chapitres": [
+{
+"t": "1. Les origines : chroniques et poésie ancienne",
+"p": [
+"Le Kojiki (712) et le Nihon shoki (720) sont les premières chroniques : mythes, généalogies impériales et histoire. Le Man'yōshū (vers 759), l'anthologie de 4 500 poèmes, mêle poètes de cour, soldats et paysans. Il est écrit en caractères chinois utilisés pour leur son (man'yōgana).",
+"Les poètes importants sont Kakinomoto no Hitomaro, Yamabe no Akahito, Ōtomo no Yakamochi et Yamanoue no Okura."
+]
+},
+{
+"t": "2. L'âge d'or de Heian",
+"p": [
+"L'invention des kana (hiragana, katakana) donne naissance à une littérature en japonais, souvent féminine. Le Kokinshū (905) ouvre l'ère des anthologies impériales de waka. Le Taketori monogatari et l'Ise monogatari sont des récits anciens ; les journaux (Tosa nikki, Kagerō nikki) et les essais (Makura no sōshi de Sei Shōnagon) s'y ajoutent.",
+"Le Dit du Genji de Murasaki Shikibu (vers 1008) est le grand roman de l'époque : la vie du prince Genji et de ses descendants. Il illustre le mono no aware, sensibilité aux choses qui passent."
+]
+},
+{
+"t": "3. Récits guerriers et pensée médiévale",
+"p": [
+"Le Heike monogatari est un récit épique de la guerre des Genpei, récité par des moines à la biwa ; il exprime la vanité des choses (mujō). Le Hōjōki de Kamo no Chōmei et le Tsurezuregusa de Kenkō sont des essais de recluses. Le Shin kokinshū (1205) exprime l'idéal du yūgen.",
+"Le Taiheiki raconte les guerres du XIVe siècle. Les renga (poèmes enchaînés) de Sōgi font de la poésie un art collectif. Le nō de Zeami est à la fois littérature et spectacle."
+]
+},
+{
+"t": "4. L'époque d'Edo : haïku, roman et théâtre",
+"p": [
+"Bashō (1644-1694) élève le haikai en art (Oku no hosomichi), suivi de Buson et Issa. Saikaku écrit les premiers romans sur les chōnin. Chikamatsu donne des pièces pour le bunraku et le kabuki.",
+"Aux XVIIIe et XIXe siècles, les gesaku (littérature de divertissement), les yomihon (Ueda Akinari, Contes de pluie et de lune) et Takizawa Bakin (Nansō Satomi hakkenden) touchent un public populaire. Les kokugaku de Motoori Norinaga redécouvrent le Genji."
+]
+},
+{
+"t": "5. La littérature moderne : Meiji à Shōwa",
+"p": [
+"Meiji apporte le roman moderne : Futabatei Shimei (Ukigumo, 1887) écrit en langage parlé (genbun itchi). Mori Ōgai et Natsume Sōseki explorent l'individu face à la modernisation. Higuchi Ichiyō, Masaoka Shiki (rénovateur du haïku), Ishikawa Takuboku. Le naturalisme (Shimazaki Tōson, Tayama Katai) donne le « roman du moi » (shishōsetsu).",
+"Taishō : Akutagawa, Shiga Naoya, Tanizaki Jun'ichirō (Les Quatre sœurs, Éloge de l'ombre), Kawabata. Dans les années 1930, la littérature prolétarienne (Kobayashi Takiji, Le Bateau-usine) est réprimée ; la guerre impose la propagande."
+]
+},
+{
+"t": "6. Après 1945 : de Dazai à Murakami",
+"p": [
+"Après-guerre, Dazai Osamu (La Déchéance d'un homme), Mishima Yukio, Kawabata (Nobel 1968), Abe Kōbō (La Femme des sables), Ōe Kenzaburō (Nobel 1994) et Endō Shūsaku (Silence) donnent une littérature de premier plan.",
+"Depuis les années 1980 : Murakami Haruki (La Course au mouton sauvage, Kafka sur le rivage), Yoshimoto Banana, Ogawa Yōko, Murakami Ryū, Kawakami Mieko. Le prix Akutagawa (1935) et le prix Naoki sont parmi les grands prix. Le manga et le light novel sont aussi une forme de littérature de masse."
+]
+}
+],
+"retenir": [
+"Les kana ont permis la littérature féminine de Heian.",
+"Genji (vers 1008) : mono no aware.",
+"Heike : mujō, impermanence.",
+"Bashō porte le haïku à son sommet.",
+"Le « roman du moi » (shishōsetsu) caractérise la littérature moderne.",
+"Deux Nobel : Kawabata (1968), Ōe (1994)."
+],
+"mots": [
+[
+"waka",
+"和歌",
+"poème japonais de 31 syllabes (5-7-5-7-7)"
+],
+[
+"haïku",
+"俳句",
+"poème de 17 syllabes (5-7-5)"
+],
+[
+"monogatari",
+"物語",
+"récit"
+],
+[
+"nikki",
+"日記",
+"journal"
+],
+[
+"mono no aware",
+"物の哀れ",
+"sensibilité à l'émotion des choses éphémères"
+],
+[
+"yūgen",
+"幽玄",
+"profondeur mystérieuse"
+],
+[
+"shishōsetsu",
+"私小説",
+"roman à la première personne, proche de l'autobiographie"
+]
+]
+},
+{
+"id": "theatre",
+"nom": "Théâtre et spectacles",
+"kanji": "劇",
+"accroche": "Nō, kyōgen, bunraku, kabuki, shingeki et spectacles modernes.",
+"resume": "Les arts du spectacle japonais sont des genres anciens qui continuent d'être joués : nō, kyōgen, bunraku, kabuki. Ce cours en donne l'histoire, les codes et les grands noms.",
+"chapitres": [
+{
+"t": "1. Les origines : gagaku, bugaku, sarugaku",
+"p": [
+"Le gagaku est la musique de cour importée d'Asie et conservée à la cour depuis l'époque de Nara. Le bugaku est sa danse. Dans le peuple, des spectacles (sarugaku, dengaku) mêlent mime, acrobatie et danse lors des fêtes."
+]
+},
+{
+"t": "2. Le nō",
+"p": [
+"Au XIVe siècle, Kan'ami et son fils Zeami donnent au sarugaku sa forme de nō grâce au soutien du shogun Yoshimitsu. Zeami écrit des traités (Fūshikaden) : yūgen, « la fleur » (hana), le secret.",
+"Une pièce typique : un voyageur (waki) rencontre l'esprit (shite) d'un mort qui raconte son histoire et danse. Masques, scène en bois de cyprès avec pont (hashigakari), chœur (jiutai), flûte et tambours. Cinq catégories (dieux, guerriers, femmes, folles/spectres, démons). Le nō est inscrit à l'UNESCO (2008)."
+]
+},
+{
+"t": "3. Le kyōgen",
+"p": [
+"Les kyōgen, comédies courtes jouées entre les nō, utilisent la langue parlée du Moyen Âge. Les personnages types : le maître, le serviteur Tarōkaja, le moine, le voleur. Elles se moquent doucement du pouvoir."
+]
+},
+{
+"t": "4. Le bunraku",
+"p": [
+"Né à Ōsaka au XVIIe siècle, le bunraku (ningyō jōruri) associe un récitant (tayū) et un joueur de shamisen à des marionnettes de grande taille manipulées par trois personnes à vue. Chikamatsu Monzaemon écrit des drames sur les conflits entre devoir (giri) et sentiment (ninjō). Le nom vient du théâtre Bunraku-za d'Ōsaka (XIXe siècle)."
+]
+},
+{
+"t": "5. Le kabuki",
+"p": [
+"Okuni d'Izumo, une prêtresse, aurait initié le kabuki vers 1603 à Kyōto. Interdit aux femmes (1629) puis aux jeunes garçons (1652), il devient un théâtre d'hommes (yarō kabuki), avec des onnagata, acteurs de rôles féminins. Les acteurs de Edo (Ichikawa Danjūrō) inventent le style aragoto, brutal, avec maquillage kumadori ; ceux d'Ōsaka, le wagoto, tendre.",
+"Techniques : scène tournante, trappes, passerelle hanamichi, rideau tricolore. Pièces célèbres : Chūshingura (Les 47 rōnin), Kanjinchō, Sugawara denju tenarai kagami. Inscrit à l'UNESCO (2008)."
+]
+},
+{
+"t": "6. Époque moderne",
+"p": [
+"Le shingeki (« nouveau théâtre ») naît au début du XXe siècle sous l'influence d'Ibsen, avec Osanai Kaoru. Le Takarazuka (1914), troupe féminine, est célèbre. Après 1960, le théâtre underground (Terayama Shūji, Suzuki Tadashi, Kara Jūrō) rompt avec le réalisme. Dans les années 1980, le butō (Hijikata Tatsumi, Ōno Kazuo) est une danse d'avant-garde. Le rakugo et le manzai sont des formes de comique parlé."
+]
+}
+],
+"retenir": [
+"Nō = yūgen, masque, esprits (Zeami).",
+"Kyōgen = comique entre les nō.",
+"Bunraku = marionnettes + récitant + shamisen.",
+"Kabuki = spectacle populaire d'Edo, onnagata.",
+"Nō et kabuki sont à l'UNESCO (2008)."
+],
+"mots": [
+[
+"nō",
+"能",
+"théâtre masqué à thème de revenants, issu du sarugaku"
+],
+[
+"shite",
+"シテ",
+"rôle principal du nō"
+],
+[
+"onnagata",
+"女形",
+"acteur de rôles féminins du kabuki"
+],
+[
+"hanamichi",
+"花道",
+"passerelle à travers le public"
+],
+[
+"giri / ninjō",
+"義理・人情",
+"devoir / sentiment"
+],
+[
+"butō",
+"舞踏",
+"danse d'avant-garde née en 1959"
+]
+]
+},
+{
+"id": "arts",
+"nom": "Arts, architecture et jardins",
+"kanji": "芸",
+"accroche": "Sculpture, peinture, estampe, architecture, jardins, céramique et chanoyu.",
+"resume": "Un panorama des arts visuels du Japon, de la poterie Jōmon à l'architecture contemporaine.",
+"chapitres": [
+{
+"t": "1. Aux origines : Jōmon, Yayoi, Kofun",
+"p": [
+"Les poteries Jōmon, les figurines dogū, les cloches dōtaku de Yayoi et les haniwa des tumulus sont les premières grandes expressions artistiques. Les tumulus en forme de trou de serrure (zenpō kōen fun) sont d'immenses réalisations."
+]
+},
+{
+"t": "2. Asuka et Nara : les arts du bouddhisme",
+"p": [
+"Le Hōryūji, avec la triade de Shaka de Tori Busshi, résume l'art d'Asuka d'influence continentale. À Nara, les grandes statues en bronze (le Daibutsu du Tōdaiji, 752), en laque sec (kanshitsu) et en argile, ainsi que les trésors du Shōsōin, montrent l'internationalisme de l'époque.",
+"Les temples sont organisés autour de pagodes et de halls (kondō). Les peintures de Takamatsuzuka (vers 700) sont parmi les plus anciennes."
+]
+},
+{
+"t": "3. Heian : esthétique de cour et art ésotérique",
+"p": [
+"Le style Wayō remplace peu à peu les modèles chinois. Le Byōdōin (1053) incarne l'art de la Terre pure, avec l'Amida de Jōchō, qui perfectionne la technique de la sculpture à pièces assemblées (yosegi-zukuri). Les mandala ésotériques de Shingon sont des œuvres majeures.",
+"Peinture : yamato-e et rouleaux (emakimono), comme le Genji monogatari emaki (XIIe siècle) ou le Chōjū giga. L'architecture de palais est le shinden-zukuri."
+]
+},
+{
+"t": "4. Kamakura et Muromachi : réalisme et zen",
+"p": [
+"Unkei et Kaikei sculptent des figures réalistes. Les portraits (chinsō) de moines zen et les rouleaux de guerres se développent. À Muromachi, la peinture à l'encre (suibokuga) de Sesshū s'inspire des Song et des Yuan. Les pavillons Kinkaku et Ginkaku, le salon shoin, le tokonoma et les jardins secs (karesansui) du Ryōan-ji définissent le goût japonais.",
+"Le chanoyu, l'ikebana et le nō s'épanouissent avec Higashiyama."
+]
+},
+{
+"t": "5. Momoyama et Edo : l'éclat, puis la ville",
+"p": [
+"Momoyama : grands châteaux (Azuchi, Ōsaka, Himeji) et paravents dorés de l'école Kanō (Eitoku). Au début d'Edo : Villa impériale de Katsura, mausolée de Nikkō (Tōshōgū), école Rinpa (Sōtatsu, Kōrin).",
+"L'ukiyo-e, estampe sur bois (Moronobu, Harunobu, Utamaro, Sharaku, Hokusai, Hiroshige), est le grand art des chōnin. Hokusai crée la Grande vague (vers 1831). Ces estampes inspirent le japonisme en Europe : Van Gogh, Monet, Degas. La céramique (Kakiemon, Imari, Raku) et les laques sont aussi prisées."
+]
+},
+{
+"t": "6. Modernité",
+"p": [
+"Meiji : Fenollosa et Okakura Tenshin défendent l'art traditionnel (nihonga) face à la peinture à l'huile (yōga). Kuroda Seiki introduit la peinture de plein air. L'architecture occidentale (Josiah Conder). Au XXe siècle, Le Corbusier influence Maekawa Kunio ; Tange Kenzō construit à Hiroshima et à Tōkyō (1964). Aujourd'hui, Andō Tadao, Kuma Kengo, Ban Shigeru, Murakami Takashi, Kusama Yayoi, Nara Yoshitomo : l'art contemporain japonais a un rôle mondial. Le mouvement mingei (Yanagi Sōetsu) célèbre l'objet de tous les jours."
+]
+}
+],
+"retenir": [
+"Le bouddhisme guide l'art de l'Antiquité à Kamakura.",
+"Emakimono et yamato-e = peinture de Heian.",
+"Jardin sec, thé, shoin = Muromachi.",
+"L'ukiyo-e a transformé l'art européen (japonisme).",
+"Hokusai : la Grande vague (≈ 1831)."
+],
+"mots": [
+[
+"emakimono",
+"絵巻物",
+"rouleau peint horizontal"
+],
+[
+"yamato-e",
+"大和絵",
+"peinture de style japonais"
+],
+[
+"karesansui",
+"枯山水",
+"jardin sec"
+],
+[
+"ukiyo-e",
+"浮世絵",
+"estampe du monde flottant"
+],
+[
+"nihonga",
+"日本画",
+"peinture à la japonaise (Meiji)"
+],
+[
+"mingei",
+"民藝",
+"art populaire"
+]
+]
+},
+{
+"id": "cuisine",
+"nom": "Cuisine et vie quotidienne",
+"kanji": "食",
+"accroche": "Riz, poisson, soja, thé, saké et évolution de l'alimentation.",
+"resume": "L'histoire de ce que les Japonais mangent et boivent, de la préhistoire à l'inscription du washoku au patrimoine immatériel de l'UNESCO.",
+"chapitres": [
+{
+"t": "1. La préhistoire : poisson, noix et riz",
+"p": [
+"Les Jōmon vivent de chasse, de pêche, de noix, de châtaignes et de coquillages. À Yayoi, la riziculture irriguée s'impose, et le riz devient la nourriture de base et une valeur sacrée (offrandes shintō, impôt). La cuisson du riz bouilli remplace les céréales à la vapeur."
+]
+},
+{
+"t": "2. L'influence continentale",
+"p": [
+"Le soja (miso, shōyu), le thé, les nouilles et les pickles arrivent de Chine et de Corée. Le bouddhisme limite la viande (édits impériaux dès 675) : on mange poisson, légumes, soja. La cuisine des temples (shōjin ryōri) est végétarienne.",
+"Le saké de riz apparaît très tôt dans les rites. Le sel, les algues (kombu) et les poissons séchés (katsuobushi) donnent le dashi."
+]
+},
+{
+"t": "3. Cuisine de cour et cérémonie du thé",
+"p": [
+"Les banquets aristocratiques de Heian sont codifiés (ōban). À Muromachi, le service de table des guerriers (honzen ryōri) et le repas de cérémonie du thé (kaiseki) prennent forme, sous l'influence zen. Rikyū fixe l'esprit du kaiseki : simplicité et saison."
+]
+},
+{
+"t": "4. Edo : la ville, les restaurants, les nouvelles saveurs",
+"p": [
+"Les stands de rue vendent sushi (nigiri apparu vers 1820 à Edo), soba, tempura, anguille grillée. Le shōyu et le mirin se généralisent. Les auberges et les restaurants (ryōtei) sont des lieux de sociabilité. Les Portugais, arrivés au XVIe siècle, laissent la tempura et le castella ; le sucre, devenu plus courant, nourrit les confiseries traditionnelles (wagashi)."
+]
+},
+{
+"t": "5. Modernité : viande, pain et cuisine de guerre",
+"p": [
+"Sous Meiji, l'empereur mange de la viande de bœuf en 1872 : ce geste lève le tabou. Le pain, le curry (d'origine britannique), le tonkatsu et l'omurice naissent de la « cuisine occidentale » (yōshoku). Pendant la guerre et l'après-guerre, les pénuries marquent le pays. L'aide alimentaire américaine fait entrer le pain et le lait dans les cantines (1950)."
+]
+},
+{
+"t": "6. Aujourd'hui : washoku et cuisine du monde",
+"p": [
+"Le washoku est inscrit à l'UNESCO en 2013 : un repas structuré en riz, soupe et plats d'accompagnement (ichijū sansai), selon les saisons. Ramen, curry, gyōza et konbini sont devenus des symboles. Les restaurants japonais se multiplient dans le monde, et le sushi devient un plat mondial. La consommation de riz baisse depuis les années 1960, ce qui inquiète l'agriculture."
+]
+}
+],
+"retenir": [
+"Riz + poisson + soja : la base du régime traditionnel.",
+"Bouddhisme : limitation de la viande (VIIe siècle).",
+"Sushi nigiri : invention d'Edo (≈ 1820).",
+"1872 : l'empereur mange du bœuf (fin du tabou).",
+"Washoku à l'UNESCO (2013)."
+],
+"mots": [
+[
+"washoku",
+"和食",
+"cuisine japonaise traditionnelle"
+],
+[
+"dashi",
+"出汁",
+"bouillon (kombu, katsuobushi)"
+],
+[
+"kaiseki",
+"懐石",
+"repas léger de la cérémonie du thé"
+],
+[
+"shōjin ryōri",
+"精進料理",
+"cuisine végétarienne bouddhiste"
+],
+[
+"yōshoku",
+"洋食",
+"cuisine occidentale adaptée"
+],
+[
+"konbini",
+"コンビニ",
+"supérette ouverte en continu"
+]
+]
+},
+{
+"id": "mythologie",
+"nom": "Mythologie et croyances populaires",
+"kanji": "神",
+"accroche": "Les dieux du Kojiki, les créatures du folklore et les légendes.",
+"resume": "Les récits fondateurs du Japon (Kojiki, Nihon shoki) et le monde des esprits, démons et fantômes qui peuple le folklore.",
+"chapitres": [
+{
+"t": "1. La création du monde dans le Kojiki",
+"p": [
+"Au début, le ciel (Takamagahara) et la terre apparaissent avec des dieux solitaires. Izanagi et Izanami, le couple divin, créent l'archipel avec une lance ornée de joyaux. Izanami meurt en donnant naissance au dieu du feu ; Izanagi descend aux enfers (Yomi) pour la retrouver, la voit pourrie, et s'enfuit. Il se purifie dans l'eau : de son œil gauche naît Amaterasu (soleil), du droit Tsukuyomi (lune), de son nez Susanoo (tempête)."
+]
+},
+{
+"t": "2. Amaterasu et Susanoo",
+"p": [
+"Susanoo, turbulent, effraie Amaterasu, qui se cache dans la grotte céleste. Le monde est plongé dans l'obscurité ; les dieux, dont Ame no Uzume qui danse, la font sortir par le rire. Susanoo, banni sur terre, tue le serpent à huit têtes Yamata no Orochi et trouve l'épée Kusanagi.",
+"L'épée, le miroir (Yata no kagami) et le joyau (Yasakani no magatama) sont les trois regalia de la lignée impériale."
+]
+},
+{
+"t": "3. Ōkuninushi et la cession du pays",
+"p": [
+"Ōkuninushi, descendant de Susanoo, gouverne Izumo (histoire du lièvre d'Inaba). Les dieux célestes lui demandent de céder la terre à leurs descendants (kuni-yuzuri) et il se retire en échange d'un grand sanctuaire (Izumo Taisha). Le petit-fils d'Amaterasu, Ninigi, descend sur le mont Takachiho."
+]
+},
+{
+"t": "4. De Ninigi à Jinmu : la généalogie impériale",
+"p": [
+"L'arrière-petit-fils de Ninigi, Kamu-yamato Iwarebiko, est l'empereur légendaire Jinmu, qui part de Hyūga vers l'est pour fonder Yamato. Les chroniques de 712 et de 720 reflètent la volonté de la cour de Tenmu de donner à la lignée une origine divine. Ces récits ont été utilisés au XIXe siècle par le shintō d'État."
+]
+},
+{
+"t": "5. Yōkai, oni et fantômes",
+"p": [
+"Le folklore (yōkai) comprend démons (oni), renards (kitsune), blaireaux (tanuki), kappa des rivières, tengu des montagnes, yuki-onna, fantômes (yūrei). Le Konjaku monogatari (XIIe siècle) et le Hyakki yagyō emaki (Muromachi) les décrivent. À Edo, Toriyama Sekien en fait un catalogue illustré. Mizuki Shigeru les popularise dans le manga (GeGeGe no Kitarō).",
+"Dans les croyances, les esprits des morts vengeurs (goryō) comme Sugawara no Michizane, Taira no Masakado, sont apaisés par des sanctuaires."
+]
+},
+{
+"t": "6. Fêtes, saisons et croyances actuelles",
+"p": [
+"Le calendrier est rythmé de fêtes : nouvel an (shōgatsu, hatsumōde), setsubun (lancer de haricots contre les oni), hina matsuri (3 mars), tanabata (7 juillet), obon (août, retour des âmes). Les talismans (omamori), les ex-voto (ema), les tirages (omikuji) et le feng shui local (kimon) font partie de la vie quotidienne, même pour les non-croyants. Les mythes inspirent aussi le manga et l'animation (Princesse Mononoké, Noragami, Natsume Yūjinchō)."
+]
+}
+],
+"retenir": [
+"Kojiki (712) et Nihon shoki (720) = sources des mythes.",
+"Izanagi et Izanami créent le Japon ; Amaterasu, Tsukuyomi, Susanoo naissent de la purification.",
+"Trois regalia : miroir, épée, joyau.",
+"Yōkai : esprits et créatures de tous types.",
+"Setsubun, obon, tanabata : fêtes saisonnières."
+],
+"mots": [
+[
+"kami",
+"神",
+"dieu / esprit"
+],
+[
+"yōkai",
+"妖怪",
+"créature surnaturelle"
+],
+[
+"oni",
+"鬼",
+"démon à cornes"
+],
+[
+"kitsune",
+"狐",
+"renard magique"
+],
+[
+"goryō",
+"御霊",
+"esprit vengeur apaisé par un culte"
+],
+[
+"obon",
+"お盆",
+"fête des morts d'août"
+]
+]
+}
+]

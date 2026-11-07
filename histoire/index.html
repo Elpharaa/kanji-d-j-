@@ -68,7 +68,7 @@ button.hchip{font-family:inherit}
 </nav>
 <script>
 (function(){
-var D=[],FI=[],FM={},m=document.getElementById('m'),RX=null,TY={personnage:'Personnage',concept:'Concept','événement':'Événement'};
+var D=[],TH=[],FI=[],FM={},m=document.getElementById('m'),RX=null,TY={personnage:'Personnage',concept:'Concept','événement':'Événement'};
 function e(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 /* ---- mots cliquables : chaque alias de fiche, repéré dans les textes ---- */
 function buildRx(){var lat=[],cjk=[],map={};FI.forEach(function(f){f.alias.forEach(function(a){if(!a||map[a])return;map[a]=f.id;(/^[\x00-ɏ’Ā-ſḀ-ỿ]/.test(a)&&/[A-Za-zÀ-ÿĀ-ſ]$/.test(a)?lat:cjk).push(a)})});
@@ -85,7 +85,7 @@ function setDock(k){[].forEach.call(document.querySelectorAll('#kdDock .kdd'),fu
 function homeV(q){setDock('#');q=(q||'').toLowerCase();var h='<input id="q" class="hsearch" type="search" placeholder="Rechercher…" value="'+e(q)+'" aria-label="Recherche"><div class="hlist">';var n=0;
  D.forEach(function(p){if(q&&JSON.stringify(p).toLowerCase().indexOf(q)<0)return;n++;h+='<button class="hcard" data-e="'+p.id+'"><span class="hk">'+e(p.kanji.split('・')[0])+'</span><b>'+e(p.nom)+'</b><small>'+e(p.periode)+'</small><span class="hd">'+e(p.accroche)+'</span></button>'});
  if(q){FI.forEach(function(f){if((f.nom+' '+f.alias.join(' ')+' '+f.resume).toLowerCase().indexOf(q)>=0){n++;h+='<button class="hcard" data-f="'+f.id+'"><span class="hk">'+e(f.kanji.slice(0,2))+'</span><b>'+e(f.nom)+'</b><small>'+e(TY[f.type])+' · '+e(f.dates)+'</small><span class="hd">'+e(f.resume.slice(0,110))+'…</span></button>'}})}
- h+='</div>'+(n?'':'<div class="hpanel">Aucun résultat.</div>')+'<p class="hnote">Touche un mot en pointillé dans un texte pour ouvrir sa fiche. Contenu en cours d\'enrichissement.</p>';m.innerHTML=h;
+ h+='</div>';if(!q&&TH.length)h+='<div class="hgrp" style="margin:14px 2px 6px">Cours thématiques</div><div class="hlist">'+TH.map(function(t){return'<button class="hcard" data-t="'+t.id+'"><span class="hk">'+e(t.kanji)+'</span><b>'+e(t.nom)+'</b><small>Cours transversal</small><span class="hd">'+e(t.accroche)+'</span></button>'}).join('')+'</div>';h+=(n?'':'<div class="hpanel">Aucun résultat.</div>')+'<p class="hnote">Touche un mot en pointillé dans un texte pour ouvrir sa fiche. Contenu en cours d\'enrichissement.</p>';m.innerHTML=h;
  var qi=document.getElementById('q');qi.addEventListener('input',function(){var v=qi.value;homeV(v);var x=document.getElementById('q');x.focus();x.setSelectionRange(v.length,v.length)})}
 function sec(t,b){return b?'<h3 class="hh">'+t+'</h3>'+b:''}
 function epV(id){var i=D.findIndex(function(x){return x.id===id}),p=D[i];if(!p)return homeV();setDock('#');var s={};
@@ -98,6 +98,12 @@ function epV(id){var i=D.findIndex(function(x){return x.id===id}),p=D[i];if(!p)r
  h+=sec('Vocabulaire',p.mots.length?'<ul>'+p.mots.map(function(x){return'<li><b>'+lk(x[0],null,s)+'</b> <span class="hmeta">'+e(x[1])+'</span> : '+e(x[2])+'</li>'}).join('')+'</ul>':'');
  var rel=FI.filter(function(f){return f.epoque===p.id});if(rel.length)h+=sec('Fiches de cette époque','<div>'+rel.map(function(f){return'<button class="hchip" data-f="'+f.id+'">'+e(f.nom)+'</button> '}).join('')+'</div>');
  h+='</div><div class="hnav">'+(i>0?'<button class="hbtn" data-e="'+D[i-1].id+'">‹ '+e(D[i-1].nom)+'</button>':'')+(i<D.length-1?'<button class="hbtn" data-e="'+D[i+1].id+'">'+e(D[i+1].nom)+' ›</button>':'')+'</div>';m.innerHTML=h;scrollTo(0,0)}
+function themeV(id){var i=TH.findIndex(function(x){return x.id===id}),p=TH[i];if(!p)return homeV();setDock('#');var s={};
+ var h='<button class="hbtn hback" data-back="1">‹ Retour</button><div class="hpanel"><div class="hhero"><div class="hseal">'+e(p.kanji)+'</div><div><h2 class="htitle">'+e(p.nom)+'</h2><div class="hmeta">Cours thématique</div></div></div><p>'+lk(p.resume,null,s)+'</p>';
+ h+=sec('Cours détaillé',p.chapitres.map(function(c,k){return'<details class="hdet"'+(k===0?' open':'')+'><summary>'+e(c.t)+'</summary>'+c.p.map(function(x){return'<p>'+lk(x,null,s)+'</p>'}).join('')+'</details>'}).join(''));
+ h+=sec('À retenir','<div class="hbox"><ul>'+p.retenir.map(function(x){return'<li>'+lk(x,null,s)+'</li>'}).join('')+'</ul></div>');
+ h+=sec('Vocabulaire','<ul>'+p.mots.map(function(x){return'<li><b>'+e(x[0])+'</b> <span class="hmeta">'+e(x[1])+'</span> : '+e(x[2])+'</li>'}).join('')+'</ul>');
+ h+='</div><div class="hnav">'+(i>0?'<button class="hbtn" data-t="'+TH[i-1].id+'">‹ '+e(TH[i-1].nom)+'</button>':'')+(i<TH.length-1?'<button class="hbtn" data-t="'+TH[i+1].id+'">'+e(TH[i+1].nom)+' ›</button>':'')+'</div>';m.innerHTML=h;scrollTo(0,0)}
 function fV(id){var f=FM[id];if(!f)return homeV();setDock(f.type==='personnage'?'#p':'#c');var s={};s[id]=1;var ep=D.filter(function(x){return x.id===f.epoque})[0];
  var blob=JSON.stringify(D.map(function(x){return[x.id,x.nom,JSON.stringify(x)]})),ment=D.filter(function(x){var t=JSON.stringify(x);return f.alias.some(function(a){return t.indexOf(a)>=0})&&x.id!==f.epoque});
  var h='<button class="hbtn hback" data-back="1">‹ Retour</button><div class="hpanel"><div class="hhero"><div class="hseal'+(f.kanji.split('・')[0].length>3?' long':'')+'">'+e(f.kanji.split('・')[0].slice(0,4))+'</div><div><h2 class="htitle">'+e(f.nom)+'</h2><div class="hmeta">'+e(f.lecture)+'</div><div style="margin-top:6px"><span class="hchip" style="cursor:default">'+e(TY[f.type])+'</span> <span class="hchip" style="cursor:default">'+e(f.dates)+'</span></div></div></div>';
@@ -152,15 +158,15 @@ m.addEventListener('click',function(ev){var t=ev.target,b;
  else if(t.closest('[data-flip]')){QS.flip=!QS.flip;showC()}
  else if(b=t.closest('[data-cn]')){var S2=QS;S2.i=Math.max(0,S2.i+ +b.dataset.cn);S2.flip=false;showC()}});
 function route(){var h=decodeURIComponent(location.hash.slice(1)),a=h.split('/');
- if(!h)return homeV();if(a[0]==='e')return epV(a[1]);if(a[0]==='f')return fV(a[1]);if(a[0]==='p')return listV('personnage');if(a[0]==='c')return listV('concept');if(a[0]==='r')return revV();
+ if(!h)return homeV();if(a[0]==='e')return epV(a[1]);if(a[0]==='t')return themeV(a[1]);if(a[0]==='f')return fV(a[1]);if(a[0]==='p')return listV('personnage');if(a[0]==='c')return listV('concept');if(a[0]==='r')return revV();
  var i=D.findIndex(function(x){return x.id===h});return i>=0?epV(h):homeV()}
 var first=true;
 function go(h){location.hash=h}
-m.addEventListener('click',function(ev){var b=ev.target.closest('[data-f],[data-e],[data-back]');if(!b)return;
- if(b.dataset.back){if(history.length>1&&!first)history.back();else go('')}else if(b.dataset.f)go('f/'+b.dataset.f);else if(b.dataset.e)go('e/'+b.dataset.e)});
+m.addEventListener('click',function(ev){var b=ev.target.closest('[data-f],[data-e],[data-t],[data-back]');if(!b)return;
+ if(b.dataset.back){if(history.length>1&&!first)history.back();else go('')}else if(b.dataset.f)go('f/'+b.dataset.f);else if(b.dataset.e)go('e/'+b.dataset.e);else if(b.dataset.t)go('t/'+b.dataset.t)});
 document.getElementById('kdDock').addEventListener('click',function(ev){var b=ev.target.closest('[data-nav]');if(!b)return;var n=b.getAttribute('data-nav');if(n==='out'){location.href='../';return}if(!n||n==='#'){history.pushState(null,'',location.pathname);route()}else go(n.slice(1))});
 window.addEventListener('hashchange',function(){first=false;route()});
-Promise.all([fetch('data/epoques.json').then(function(r){return r.json()}),fetch('data/fiches.json').then(function(r){return r.json()}),fetch('animebg.html').then(function(r){return r.text()}).catch(function(){return''})]).then(function(r){
- D=r[0];FI=r[1];FI.forEach(function(f){FM[f.id]=f});buildRx();if(r[2]){var d=document.createElement('div');d.innerHTML=r[2];document.body.insertBefore(d.firstChild,document.body.firstChild)}route()}).catch(function(){m.innerHTML='<div class="hpanel">Impossible de charger les données.</div>'});
+Promise.all([fetch('data/epoques.json').then(function(r){return r.json()}),fetch('data/fiches.json').then(function(r){return r.json()}),fetch('data/themes.json').then(function(r){return r.json()}).catch(function(){return[]}),fetch('animebg.html').then(function(r){return r.text()}).catch(function(){return''})]).then(function(r){
+ D=r[0];FI=r[1];TH=r[2]||[];FI.forEach(function(f){FM[f.id]=f});buildRx();if(r[3]){var d=document.createElement('div');d.innerHTML=r[3];document.body.insertBefore(d.firstChild,document.body.firstChild)}route()}).catch(function(){m.innerHTML='<div class="hpanel">Impossible de charger les données.</div>'});
 })();
 </script></body></html>
