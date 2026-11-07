@@ -5407,5 +5407,969 @@
 "saigo",
 "restauration_meiji"
 ]
+},
+{
+"id": "okubo",
+"type": "personnage",
+"nom": "Ōkubo Toshimichi",
+"kanji": "大久保利通",
+"lecture": "おおくぼとしみち",
+"dates": "1830-1878",
+"epoque": "meiji",
+"alias": [
+"Ōkubo Toshimichi",
+"大久保利通",
+"Ōkubo"
+],
+"resume": "Samouraï de Satsuma et principal dirigeant civil des premières années de Meiji. Il pilote l'industrialisation (ministère de l'Intérieur) et la centralisation.",
+"points": [
+"Membre de la mission Iwakura (1871-1873).",
+"Écrase la révolte de Saga (1874) et la révolte de Satsuma (1877).",
+"Assassiné en 1878 par des samouraïs mécontents."
+],
+"voir": [
+"saigo",
+"iwakura",
+"restauration_meiji"
+]
+},
+{
+"id": "kido",
+"type": "personnage",
+"nom": "Kido Takayoshi",
+"kanji": "木戸孝允",
+"lecture": "きどたかよし",
+"dates": "1833-1877",
+"epoque": "meiji",
+"alias": [
+"Kido Takayoshi",
+"木戸孝允",
+"Katsura Kogorō",
+"Kido"
+],
+"resume": "Dirigeant de Chōshū (connu d'abord sous le nom de Katsura Kogorō), un des « trois grands » de la Restauration avec Saigō et Ōkubo.",
+"points": [
+"Initiateur de la fin des domaines (1871).",
+"Partisan d'une constitution."
+],
+"voir": [
+"satcho",
+"okubo",
+"haihan"
+]
+},
+{
+"id": "iwakura",
+"type": "événement",
+"nom": "Mission Iwakura",
+"kanji": "岩倉使節団",
+"lecture": "いわくらしせつだん",
+"dates": "1871-1873",
+"epoque": "meiji",
+"alias": [
+"Mission Iwakura",
+"岩倉使節団",
+"mission Iwakura",
+"Iwakura Tomomi"
+],
+"resume": "Grande ambassade conduite par le ministre Iwakura Tomomi aux États-Unis et en Europe, afin de renégocier les traités inégaux et d'étudier les institutions occidentales.",
+"points": [
+"Plus de 100 membres dont Ōkubo, Kido, Itō, Tsuda Umeko (enfant).",
+"Échoue sur les traités mais en revient convaincue de la priorité de la modernisation, ce qui contribue au refus de la guerre contre la Corée (1873)."
+],
+"voir": [
+"okubo",
+"ito",
+"fukoku_kyohei"
+]
+},
+{
+"id": "haihan",
+"type": "événement",
+"nom": "Abolition des domaines",
+"kanji": "廃藩置県",
+"lecture": "はいはんちけん",
+"dates": "1871",
+"epoque": "meiji",
+"alias": [
+"Abolition des domaines",
+"廃藩置県",
+"haihan chiken",
+"abolition des domaines"
+],
+"resume": "Remplacement des domaines (han) par des préfectures (ken) dirigées par des gouverneurs nommés. Les daimyō deviennent des nobles (kazoku).",
+"points": [
+"Suppression de la dette et des privilèges des samouraïs.",
+"Étape décisive de la centralisation."
+],
+"voir": [
+"bakuhan",
+"kido",
+"conscription"
+]
+},
+{
+"id": "conscription",
+"type": "événement",
+"nom": "Conscription",
+"kanji": "徴兵令",
+"lecture": "ちょうへいれい",
+"dates": "1873",
+"epoque": "meiji",
+"alias": [
+"Conscription",
+"徴兵令",
+"conscription",
+"Yamagata Aritomo"
+],
+"resume": "Loi qui établit un service militaire obligatoire de trois ans pour les hommes de 20 ans, sans distinction de classe, comme le promeut Yamagata Aritomo.",
+"points": [
+"Les révoltes paysannes contre la conscription (« impôt de sang »).",
+"Fin du monopole militaire des samouraïs."
+],
+"voir": [
+"yamagata",
+"haihan",
+"satsuma_rebellion"
+]
+},
+{
+"id": "yamagata",
+"type": "personnage",
+"nom": "Yamagata Aritomo",
+"kanji": "山縣有朋",
+"lecture": "やまがたありとも",
+"dates": "1838-1922",
+"epoque": "meiji",
+"alias": [
+"Yamagata Aritomo",
+"山縣有朋",
+"Yamagata"
+],
+"resume": "Fondateur de l'armée moderne et Premier ministre (1889-1891, 1898-1900), figure des genrō. Il impose la règle que les ministres de la Guerre et de la Marine doivent être des militaires en activité.",
+"points": [
+"Rescrit aux soldats (1882).",
+"Lutte contre les partis."
+],
+"voir": [
+"conscription",
+"genro",
+"ito"
+]
+},
+{
+"id": "genro",
+"type": "concept",
+"nom": "Genrō",
+"kanji": "元老",
+"lecture": "げんろう",
+"dates": "fin du XIXe – 1940",
+"epoque": "meiji",
+"alias": [
+"Genrō",
+"元老",
+"genrō"
+],
+"resume": "Cercle informel des fondateurs de l'État de Meiji (Itō, Yamagata, Matsukata, Saionji...) qui recommandent le Premier ministre à l'empereur.",
+"points": [
+"Le dernier, Saionji Kinmochi, meurt en 1940.",
+"Après lui, la désignation passe aux « hauts dignitaires » (jūshin)."
+],
+"voir": [
+"ito",
+"yamagata",
+"taisho_democratie"
+]
+},
+{
+"id": "chiso",
+"type": "événement",
+"nom": "Réforme foncière de Meiji",
+"kanji": "地租改正",
+"lecture": "ちそかいせい",
+"dates": "1873",
+"epoque": "meiji",
+"alias": [
+"Réforme foncière de Meiji",
+"地租改正",
+"réforme foncière",
+"chiso kaisei"
+],
+"resume": "Impôt foncier fixe en argent, payé par le propriétaire, selon la valeur de la terre. Stabilise les recettes de l'État.",
+"points": [
+"Provoque des soulèvements paysans (1876).",
+"Ramené de 3 % à 2,5 % en 1877."
+],
+"voir": [
+"fukoku_kyohei",
+"conscription"
+]
+},
+{
+"id": "jiyu_minken",
+"type": "concept",
+"nom": "Mouvement pour la liberté et les droits du peuple",
+"kanji": "自由民権運動",
+"lecture": "じゆうみんけんうんどう",
+"dates": "1874-1890",
+"epoque": "meiji",
+"alias": [
+"Mouvement pour la liberté et les droits du peuple",
+"自由民権運動",
+"jiyū minken",
+"liberté et droits du peuple",
+"Itagaki Taisuke"
+],
+"resume": "Mouvement pour une assemblée élue et une constitution, lancé par Itagaki Taisuke et d'anciens dirigeants écartés.",
+"points": [
+"Pétition pour une assemblée (1874).",
+"Partis : Jiyūtō (1881, Itagaki) et Rikken Kaishintō (1882, Ōkuma).",
+"Réprimé par les lois sur la presse et les réunions."
+],
+"voir": [
+"constitution_meiji",
+"ito",
+"okuma"
+]
+},
+{
+"id": "okuma",
+"type": "personnage",
+"nom": "Ōkuma Shigenobu",
+"kanji": "大隈重信",
+"lecture": "おおくましげのぶ",
+"dates": "1838-1922",
+"epoque": "meiji",
+"alias": [
+"Ōkuma Shigenobu",
+"大隈重信",
+"Ōkuma"
+],
+"resume": "Homme d'État du domaine de Saga, fondateur du parti Rikken Kaishintō et de l'université Waseda (1882). Premier ministre en 1898 et 1914-1916.",
+"points": [
+"Chassé du gouvernement en 1881 (affaire des biens de Hokkaidō).",
+"Cabinet de 1914 : entrée dans la Première Guerre mondiale, Vingt et une demandes."
+],
+"voir": [
+"jiyu_minken",
+"ito"
+]
+},
+{
+"id": "diete",
+"type": "événement",
+"nom": "Première Diète impériale",
+"kanji": "帝国議会",
+"lecture": "ていこくぎかい",
+"dates": "1890",
+"epoque": "meiji",
+"alias": [
+"Première Diète impériale",
+"帝国議会",
+"Diète impériale"
+],
+"resume": "Parlement bicaméral prévu par la Constitution de 1889 : Chambre des pairs et Chambre des représentants (élue par environ 1 % de la population, via l'impôt).",
+"points": [
+"Les partis y contestent le budget des gouvernements oligarchiques."
+],
+"voir": [
+"constitution_meiji",
+"jiyu_minken"
+]
+},
+{
+"id": "rescrit_education",
+"type": "concept",
+"nom": "Rescrit sur l'éducation",
+"kanji": "教育勅語",
+"lecture": "きょういくちょくご",
+"dates": "1890",
+"epoque": "meiji",
+"alias": [
+"Rescrit sur l'éducation",
+"教育勅語",
+"Kyōiku chokugo"
+],
+"resume": "Texte de l'empereur qui fixe la morale de l'école : loyauté, piété filiale, sacrifice pour l'État. Lu rituellement dans les écoles, avec le portrait impérial (goshin'ei).",
+"points": [
+"Aboli officiellement en 1948 par la Diète.",
+"Inspire des controverses sur la morale à l'école."
+],
+"voir": [
+"meiji_tenno",
+"kokutai"
+]
+},
+{
+"id": "shibusawa",
+"type": "personnage",
+"nom": "Shibusawa Eiichi",
+"kanji": "渋沢栄一",
+"lecture": "しぶさわえいいち",
+"dates": "1840-1931",
+"epoque": "meiji",
+"alias": [
+"Shibusawa Eiichi",
+"渋沢栄一",
+"Shibusawa"
+],
+"resume": "Entrepreneur surnommé « père du capitalisme japonais » : environ 500 entreprises (banque, chemin de fer, textile, Imperial Hotel). Il prône l'union de la morale (Analectes) et de l'économie.",
+"points": [
+"Figure sur le billet de 10 000 yens à partir de 2024."
+],
+"voir": [
+"zaibatsu",
+"fukoku_kyohei"
+]
+},
+{
+"id": "tomioka",
+"type": "concept",
+"nom": "Filature de Tomioka",
+"kanji": "富岡製糸場",
+"lecture": "とみおかせいしじょう",
+"dates": "1872",
+"epoque": "meiji",
+"alias": [
+"Filature de Tomioka",
+"富岡製糸場",
+"Tomioka",
+"filature de Tomioka"
+],
+"resume": "Filature de soie modèle de l'État fondée avec l'aide technique française (Paul Brunat). Inscrite au patrimoine mondial en 2014.",
+"points": [
+"La soie est le premier produit d'exportation de Meiji.",
+"Les ouvrières (jokō) étaient souvent des filles de samouraïs."
+],
+"voir": [
+"fukoku_kyohei"
+]
+},
+{
+"id": "traites_inegaux",
+"type": "concept",
+"nom": "Traités inégaux",
+"kanji": "不平等条約",
+"lecture": "ふびょうどうじょうやく",
+"dates": "1858-1911",
+"epoque": "meiji",
+"alias": [
+"Traités inégaux",
+"不平等条約",
+"traités inégaux",
+"traités de Harris",
+"extraterritorialité"
+],
+"resume": "Traités imposés dans les années 1850-1860 : extraterritorialité consulaire, tarifs fixés par les étrangers.",
+"points": [
+"Abolition de l'extraterritorialité en 1894 (accord avec le Royaume-Uni) et de l'autonomie douanière en 1911.",
+"Raison d'être de l'occidentalisation (Rokumeikan)."
+],
+"voir": [
+"perry",
+"iwakura",
+"ito"
+]
+},
+{
+"id": "rokumeikan",
+"type": "concept",
+"nom": "Rokumeikan",
+"kanji": "鹿鳴館",
+"lecture": "ろくめいかん",
+"dates": "1883",
+"epoque": "meiji",
+"alias": [
+"Rokumeikan",
+"鹿鳴館"
+],
+"resume": "Pavillon de bal de Tōkyō où l'élite japonaise reçoit des diplomates en habits occidentaux, pour prouver la « civilisation » du Japon.",
+"points": [
+"Symbole de l'occidentalisation, critiqué et moqué."
+],
+"voir": [
+"traites_inegaux",
+"meiji_tenno"
+]
+},
+{
+"id": "hokkaido",
+"type": "concept",
+"nom": "Colonisation de Hokkaidō",
+"kanji": "北海道開拓使",
+"lecture": "ほっかいどうかいたくし",
+"dates": "1869-1882",
+"epoque": "meiji",
+"alias": [
+"Colonisation de Hokkaidō",
+"北海道開拓使",
+"Kaitakushi",
+"Ainu"
+],
+"resume": "Le Japon intègre Ezo, rebaptisé Hokkaidō (1869), et y fait venir des colons. Les Ainu, peuple autochtone, sont assimilés de force.",
+"points": [
+"Loi de protection des anciens aborigènes de Hokkaidō (1899).",
+"Reconnus comme peuple autochtone par une résolution de la Diète en 2008 et une loi en 2019."
+],
+"voir": [
+"meiji_tenno",
+"ryukyu"
+]
+},
+{
+"id": "ryukyu",
+"type": "concept",
+"nom": "Royaume des Ryūkyū",
+"kanji": "琉球王国",
+"lecture": "りゅうきゅうおうこく",
+"dates": "1429-1879",
+"epoque": "edo",
+"alias": [
+"Royaume des Ryūkyū",
+"琉球王国",
+"Ryūkyū",
+"royaume de Ryūkyū"
+],
+"resume": "Royaume indépendant uni au XVe siècle, vassal de la Chine et soumis à Satsuma depuis 1609. Annexé par le Japon en 1879 (préfecture d'Okinawa).",
+"points": [
+"Commerce de relais entre la Chine, le Japon et l'Asie du Sud-Est.",
+"Bataille d'Okinawa (1945), administration américaine (1945-1972)."
+],
+"voir": [
+"hokkaido",
+"satsuma_rebellion"
+]
+},
+{
+"id": "kita_ikki",
+"type": "personnage",
+"nom": "Kita Ikki",
+"kanji": "北一輝",
+"lecture": "きたいっき",
+"dates": "1883-1937",
+"epoque": "showa",
+"alias": [
+"Kita Ikki",
+"北一輝"
+],
+"resume": "Penseur nationaliste d'extrême gauche (Plan de réorganisation du Japon, 1923) qui inspire les jeunes officiers. Exécuté après l'incident du 26 février.",
+"points": [
+"Prône un coup d'État, la nationalisation des grandes entreprises et l'empire panasiatique."
+],
+"voir": [
+"incident_226",
+"kokutai"
+]
+},
+{
+"id": "incident_226",
+"type": "événement",
+"nom": "Incident du 26 février",
+"kanji": "二・二六事件",
+"lecture": "にいにろくじけん",
+"dates": "26-29 février 1936",
+"epoque": "showa",
+"alias": [
+"Incident du 26 février",
+"二・二六事件",
+"incident du 26 février",
+"26 février 1936"
+],
+"resume": "Tentative de coup d'État de jeunes officiers qui occupent le centre de Tōkyō et tuent plusieurs dignitaires (Takahashi Korekiyo, Saitō Makoto).",
+"points": [
+"L'empereur exige la répression.",
+"L'armée sort renforcée : le pouvoir civil recule."
+],
+"voir": [
+"kita_ikki",
+"hirohito",
+"mandchourie"
+]
+},
+{
+"id": "konoe",
+"type": "personnage",
+"nom": "Konoe Fumimaro",
+"kanji": "近衛文麿",
+"lecture": "このえふみまろ",
+"dates": "1891-1945",
+"epoque": "showa",
+"alias": [
+"Konoe Fumimaro",
+"近衛文麿",
+"Konoe"
+],
+"resume": "Prince issu de l'ancienne noblesse Fujiwara, Premier ministre (1937-1939, 1940-1941). Fonde l'Association d'aide à l'autorité impériale et signe le pacte tripartite.",
+"points": [
+"Se suicide en décembre 1945 avant d'être arrêté pour crimes de guerre."
+],
+"voir": [
+"mandchourie",
+"tojo",
+"nanjing"
+]
+},
+{
+"id": "midway",
+"type": "événement",
+"nom": "Bataille de Midway",
+"kanji": "ミッドウェー海戦",
+"lecture": "みっどうぇーかいせん",
+"dates": "4-7 juin 1942",
+"epoque": "showa",
+"alias": [
+"Bataille de Midway",
+"ミッドウェー海戦",
+"Midway"
+],
+"resume": "Bataille aéronavale où quatre porte-avions japonais sont coulés. Tournant de la guerre du Pacifique.",
+"points": [
+"Le renseignement américain avait déchiffré les codes japonais."
+],
+"voir": [
+"pearl_harbor",
+"tojo"
+]
+},
+{
+"id": "okinawa_bataille",
+"type": "événement",
+"nom": "Bataille d'Okinawa",
+"kanji": "沖縄戦",
+"lecture": "おきなわせん",
+"dates": "avril-juin 1945",
+"epoque": "showa",
+"alias": [
+"Bataille d'Okinawa",
+"沖縄戦",
+"bataille d'Okinawa",
+"Okinawa 1945"
+],
+"resume": "Seule grande bataille terrestre sur le sol japonais. Environ 200 000 morts, dont près de la moitié de civils.",
+"points": [
+"Épisode des suicides collectifs et des étudiantes infirmières (Himeyuri).",
+"Mémoire encore vive à Okinawa."
+],
+"voir": [
+"ryukyu",
+"hiroshima"
+]
+},
+{
+"id": "unite_731",
+"type": "concept",
+"nom": "Unité 731",
+"kanji": "731部隊",
+"lecture": "ななさんいちぶたい",
+"dates": "1936-1945",
+"epoque": "showa",
+"alias": [
+"Unité 731",
+"731部隊"
+],
+"resume": "Unité de guerre biologique de l'armée du Guandong, à Harbin, qui mène des expériences sur des prisonniers et des civils, majoritairement chinois.",
+"points": [
+"Plusieurs de ses chefs n'ont pas été poursuivis après la guerre en échange des données (accord avec les États-Unis)."
+],
+"voir": [
+"mandchourie",
+"tokyo_trial"
+]
+},
+{
+"id": "ianfu",
+"type": "concept",
+"nom": "« Femmes de réconfort »",
+"kanji": "慰安婦",
+"lecture": "いあんふ",
+"dates": "1932-1945",
+"epoque": "showa",
+"alias": [
+"« Femmes de réconfort »",
+"慰安婦",
+"femmes de réconfort",
+"ianfu"
+],
+"resume": "Femmes, surtout coréennes et chinoises, mais aussi japonaises, philippines, indonésiennes, soumises à l'esclavage sexuel dans des maisons de l'armée.",
+"points": [
+"Déclaration Kōno (1993) reconnaît la contrainte.",
+"Accord nippo-coréen de 2015 contesté.",
+"Sujet toujours conflictuel."
+],
+"voir": [
+"kono",
+"nanjing"
+]
+},
+{
+"id": "kono",
+"type": "personnage",
+"nom": "Déclaration Kōno",
+"kanji": "河野談話",
+"lecture": "こうのだんわ",
+"dates": "1993",
+"epoque": "heisei",
+"alias": [
+"Déclaration Kōno",
+"河野談話",
+"déclaration Kōno",
+"Kōno Yōhei"
+],
+"resume": "Déclaration du secrétaire général du cabinet Kōno Yōhei reconnaissant la responsabilité de l'armée dans le système des « femmes de réconfort » et exprimant des excuses.",
+"points": [
+"Contestée par des nationalistes."
+],
+"voir": [
+"ianfu",
+"murayama"
+]
+},
+{
+"id": "murayama",
+"type": "personnage",
+"nom": "Murayama Tomiichi",
+"kanji": "村山富市",
+"lecture": "むらやまとみいち",
+"dates": "né en 1924",
+"epoque": "heisei",
+"alias": [
+"Murayama Tomiichi",
+"村山富市",
+"déclaration Murayama"
+],
+"resume": "Premier ministre socialiste (1994-1996) à la tête d'une coalition avec le LDP. Sa déclaration du 15 août 1995 présente des excuses pour l'agression coloniale.",
+"points": [
+"Il gère le séisme de Kōbe et l'attentat au sarin."
+],
+"voir": [
+"hosokawa",
+"hanshin",
+"aum"
+]
+},
+{
+"id": "potsdam",
+"type": "événement",
+"nom": "Déclaration de Potsdam",
+"kanji": "ポツダム宣言",
+"lecture": "ぽつだむせんげん",
+"dates": "26 juillet 1945",
+"epoque": "showa",
+"alias": [
+"Déclaration de Potsdam",
+"ポツダム宣言",
+"déclaration de Potsdam",
+"Potsdam"
+],
+"resume": "Ultimatum des Alliés demandant la reddition sans condition, la démocratisation et la limitation de la souveraineté japonaise.",
+"points": [
+"Le gouvernement répond par mokusatsu (« ignorer »), mal interprété.",
+"Acceptée le 14 août 1945."
+],
+"voir": [
+"hiroshima",
+"hirohito",
+"macarthur"
+]
+},
+{
+"id": "gyokuon",
+"type": "événement",
+"nom": "Discours de l'empereur",
+"kanji": "玉音放送",
+"lecture": "ぎょくおんほうそう",
+"dates": "15 août 1945",
+"epoque": "showa",
+"alias": [
+"Discours de l'empereur",
+"玉音放送",
+"gyokuon hōsō",
+"discours du 15 août",
+"Gyokuon"
+],
+"resume": "Première fois que le peuple entend la voix de l'empereur : annonce de la fin de la guerre, en langue de cour, sans le mot « capitulation ».",
+"points": [
+"Un coup d'État raté (incident Kyūjō) a failli empêcher sa diffusion."
+],
+"voir": [
+"hirohito",
+"potsdam"
+]
+},
+{
+"id": "reforme_agraire",
+"type": "événement",
+"nom": "Réforme agraire d'après-guerre",
+"kanji": "農地改革",
+"lecture": "のうちかいかく",
+"dates": "1946-1950",
+"epoque": "showa",
+"alias": [
+"Réforme agraire d'après-guerre",
+"農地改革",
+"réforme agraire"
+],
+"resume": "Rachat des terres aux propriétaires absents par l'État et revente aux métayers à bas prix.",
+"points": [
+"Les petits propriétaires deviennent environ 90 % des paysans.",
+"Base sociale du LDP rural."
+],
+"voir": [
+"macarthur",
+"zaibatsu"
+]
+},
+{
+"id": "dodge",
+"type": "événement",
+"nom": "Plan Dodge",
+"kanji": "ドッジ・ライン",
+"lecture": "どっじ・らいん",
+"dates": "1949",
+"epoque": "showa",
+"alias": [
+"Plan Dodge",
+"ドッジ・ライン",
+"plan Dodge",
+"Dodge"
+],
+"resume": "Plan d'austérité de Joseph Dodge : budget équilibré, taux de change fixe (360 yens pour 1 dollar).",
+"points": [
+"Provoque un chômage, vite compensé par la guerre de Corée."
+],
+"voir": [
+"macarthur",
+"yoshida"
+]
+},
+{
+"id": "guerre_coree",
+"type": "événement",
+"nom": "Guerre de Corée et Japon",
+"kanji": "朝鮮戦争",
+"lecture": "ちょうせんせんそう",
+"dates": "1950-1953",
+"epoque": "showa",
+"alias": [
+"Guerre de Corée et Japon",
+"朝鮮戦争",
+"guerre de Corée",
+"tokuju"
+],
+"resume": "Le Japon est une base arrière américaine. Les commandes spéciales (tokuju) relancent l'industrie.",
+"points": [
+"Naissance des Forces d'autodéfense (1954)."
+],
+"voir": [
+"dodge",
+"san_francisco",
+"miracle_eco"
+]
+},
+{
+"id": "jieitai",
+"type": "concept",
+"nom": "Forces d'autodéfense",
+"kanji": "自衛隊",
+"lecture": "じえいたい",
+"dates": "1954",
+"epoque": "showa",
+"alias": [
+"Forces d'autodéfense",
+"自衛隊",
+"jieitai",
+"JSDF"
+],
+"resume": "Force armée japonaise créée en 1954, dont la légitimité est débattue au regard de l'article 9.",
+"points": [
+"Mission internationale depuis 1992 (Cambodge).",
+"Débat de révision constitutionnelle."
+],
+"voir": [
+"article9",
+"guerre_coree",
+"abe"
+]
+},
+{
+"id": "olympiques_1964",
+"type": "événement",
+"nom": "Jeux olympiques de Tōkyō 1964",
+"kanji": "東京オリンピック",
+"lecture": "とうきょうおりんぴっく",
+"dates": "octobre 1964",
+"epoque": "showa",
+"alias": [
+"Jeux olympiques de Tōkyō 1964",
+"東京オリンピック",
+"Jeux olympiques de 1964",
+"Jeux de Tōkyō",
+"Shinkansen"
+],
+"resume": "Premiers Jeux d'Asie, symboles du retour du Japon dans la communauté internationale. Le Shinkansen Tōkaidō ouvre 9 jours avant.",
+"points": [
+"Aménagement de la capitale (autoroutes, métro).",
+"Expo d'Ōsaka 1970."
+],
+"voir": [
+"miracle_eco",
+"ikeda"
+]
+},
+{
+"id": "kishi",
+"type": "personnage",
+"nom": "Kishi Nobusuke",
+"kanji": "岸信介",
+"lecture": "きしのぶすけ",
+"dates": "1896-1987",
+"epoque": "showa",
+"alias": [
+"Kishi Nobusuke",
+"岸信介",
+"Kishi"
+],
+"resume": "Haut fonctionnaire de Mandchourie, ministre de Tōjō, arrêté comme suspect de classe A puis libéré. Premier ministre (1957-1960) et grand-père d'Abe Shinzō.",
+"points": [
+"Révise le traité de sécurité (1960)."
+],
+"voir": [
+"anpo",
+"ldp",
+"abe"
+]
+},
+{
+"id": "tanaka_kakuei",
+"type": "personnage",
+"nom": "Tanaka Kakuei",
+"kanji": "田中角栄",
+"lecture": "たなかかくえい",
+"dates": "1918-1993",
+"epoque": "showa",
+"alias": [
+"Tanaka Kakuei",
+"田中角栄"
+],
+"resume": "Premier ministre (1972-1974), fils de paysan, bâtisseur (Remodelage de l'archipel). Normalise les relations avec la Chine (1972).",
+"points": [
+"Scandale Lockheed (1976) : condamné en première instance en 1983."
+],
+"voir": [
+"ldp",
+"satc_okinawa"
+]
+},
+{
+"id": "satc_okinawa",
+"type": "événement",
+"nom": "Rétrocession d'Okinawa",
+"kanji": "沖縄返還",
+"lecture": "おきなわへんかん",
+"dates": "15 mai 1972",
+"epoque": "showa",
+"alias": [
+"Rétrocession d'Okinawa",
+"沖縄返還",
+"rétrocession d'Okinawa"
+],
+"resume": "Okinawa revient au Japon après 27 ans d'administration américaine, mais les bases restent (environ 70 % des installations américaines au Japon).",
+"points": [
+"Satō Eisaku reçoit le prix Nobel de la paix en 1974 notamment pour les trois principes non nucléaires."
+],
+"voir": [
+"ryukyu",
+"san_francisco",
+"okinawa_bataille"
+]
+},
+{
+"id": "plaza",
+"type": "événement",
+"nom": "Accord du Plaza",
+"kanji": "プラザ合意",
+"lecture": "ぷらざごうい",
+"dates": "septembre 1985",
+"epoque": "showa",
+"alias": [
+"Accord du Plaza",
+"プラザ合意",
+"accord du Plaza",
+"Plaza"
+],
+"resume": "Accord du G5 pour faire baisser le dollar. Le yen passe de ≈ 240 à ≈ 150 pour 1 dollar en deux ans.",
+"points": [
+"Facteur de la bulle : taux bas pour contrer la récession due au yen fort."
+],
+"voir": [
+"bulle",
+"miracle_eco"
+]
+},
+{
+"id": "miyazaki",
+"type": "personnage",
+"nom": "Miyazaki Hayao",
+"kanji": "宮崎駿",
+"lecture": "みやざきはやお",
+"dates": "né en 1941",
+"epoque": "heisei",
+"alias": [
+"Miyazaki Hayao",
+"宮崎駿",
+"Miyazaki",
+"Studio Ghibli"
+],
+"resume": "Réalisateur d'animation, cofondateur du Studio Ghibli (1985) avec Takahata Isao. Mon voisin Totoro, Princesse Mononoké, Le Voyage de Chihiro (Oscar 2003), Le Vent se lève, Le Garçon et le Héron (Oscar 2024).",
+"points": [
+"Thèmes : nature, enfance, guerre, techniques."
+],
+"voir": [
+"culture_pop",
+"tezuka"
+]
+},
+{
+"id": "murakami",
+"type": "personnage",
+"nom": "Murakami Haruki",
+"kanji": "村上春樹",
+"lecture": "むらかみはるき",
+"dates": "né en 1949",
+"epoque": "heisei",
+"alias": [
+"Murakami Haruki",
+"村上春樹"
+],
+"resume": "Romancier mondialement lu : La Course au mouton sauvage, La Ballade de l'impossible (Norwegian Wood, 1987), Kafka sur le rivage, 1Q84.",
+"points": [
+"Souvent cité pour le Nobel, jamais obtenu."
+],
+"voir": [
+"kawabata",
+"mishima"
+]
+},
+{
+"id": "reiwa",
+"type": "concept",
+"nom": "Abdication d'Akihito et ère Reiwa",
+"kanji": "令和",
+"lecture": "れいわ",
+"dates": "1er mai 2019",
+"epoque": "heisei",
+"alias": [
+"Abdication d'Akihito et ère Reiwa",
+"令和",
+"Reiwa"
+],
+"resume": "Akihito abdique le 30 avril 2019 grâce à une loi spéciale ; Naruhito monte sur le trône. Le nom Reiwa est tiré du Man'yōshū.",
+"points": [
+"Première abdication depuis Kōkaku (1817)."
+],
+"voir": [
+"akihito",
+"manyoshu"
+]
 }
 ]
