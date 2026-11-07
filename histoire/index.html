@@ -260,12 +260,17 @@ function cardsFor(scope){if(scope==='geo'){var G=[];(CT&&CT.prefs||[]).forEach(f
 var eps=scope==='all'?D.concat(TH):D.filter(function(x){return x.id===scope}).concat(TH.filter(function(x){return x.id===scope})),C=[];
  eps.forEach(function(p){(p.mots||[]).forEach(function(w){C.push({t:'mot',ep:p.id,q:'Que signifie « '+w[0]+' »'+(w[1]?' ('+w[1]+')':'')+' ?',a:w[2],k:w[1]||w[0]})});
   (p.retenir||[]).forEach(function(r){C.push({t:'ret',ep:p.id,q:'À retenir · '+p.nom,a:r,k:p.kanji})});
-  (p.evenements||[]).forEach(function(v){C.push({t:'date',ep:p.id,q:v[1],a:v[0],k:p.kanji})})});
+  (p.evenements||[]).forEach(function(v){C.push({t:'date',ep:p.id,q:v[1],a:v[0],k:p.kanji})});
+  (p.tableaux||[]).forEach(function(tb){var c0=/date|ann/i.test(tb.cols[0]),c1=/p.riode|r.gne|dates/i.test(tb.cols[1]||'');if(!c0&&!c1)return;tb.rows.forEach(function(r){if(!r[0]||!r[1])return;if(c0)C.push({t:'date',ep:p.id,q:r[1]+(r[2]?' ('+r[2]+')':''),a:r[0],k:p.kanji});else C.push({t:'date',ep:p.id,q:r[0]+' · '+tb.t,a:r[1],k:p.kanji})})});
+  (p.documents||[]).forEach(function(d){C.push({t:'doc',ep:p.id,q:d.texte,a:d.t,k:p.kanji})})});
+ DO.filter(function(x){return scope==='all'||x.epoque===scope}).forEach(function(x){var t=x.resume;t=t.split(x.nom).join('…');C.push({t:'dos',ep:x.epoque,q:t+' ('+x.date+')',a:x.nom,k:x.kanji.slice(0,4)});(x.retenir||[]).forEach(function(r){C.push({t:'ret',ep:x.epoque,q:'À retenir · '+x.nom,a:r,k:x.kanji.slice(0,4)})})});
  FI.filter(function(f){return scope==='all'||f.epoque===scope}).forEach(function(f){C.push({t:'fic',ep:f.epoque,f:f,q:mask(f),a:f.nom,k:f.kanji.split('・')[0].slice(0,4)})});
  return C}
 function mkQ(c,all){var pool=all.filter(function(x){return x.t===c.t&&x!==c}).map(function(x){return x.a});
  if(c.t==='mot'||c.t==='cap'||c.t==='reg'||c.t==='lec')return{q:c.q,a:c.a,o:pick(pool,c.a,3)};
  if(c.t==='date')return{q:'Quand ? '+c.q,a:c.a,o:pick(pool.filter(function(d){return d.length<40}),c.a,3)};
+ if(c.t==='doc')return{q:'De quel texte s\'agit-il ? « '+c.q+' »',a:c.a,o:pick(pool,c.a,3)};
+ if(c.t==='dos')return{q:'De quel dossier s\'agit-il ? '+c.q,a:c.a,o:pick(pool,c.a,3)};
  if(c.t==='fic')return{q:'De qui ou de quoi s\'agit-il ? '+c.q,a:c.a,o:pick(all.filter(function(x){return x.t==='fic'&&x.f.type===c.f.type&&x!==c}).map(function(x){return x.a}),c.a,3)};
  return null}
 function revV(){setDock('#r');var h='<div class="hpanel"><h3 class="hh" style="margin-top:0">Réviser</h3><p>Choisis une époque (ou tout), puis un mode.</p><select id="rs" class="hsearch" aria-label="Époque"><option value="all">Tout</option><optgroup label="Époques">'+D.map(function(p){return'<option value="'+p.id+'">'+e(p.nom)+' · '+e(p.periode)+'</option>'}).join('')+'</optgroup><optgroup label="Géographie"><option value="geo">Préfectures : capitales, régions, lectures</option></optgroup><optgroup label="Cours thématiques">'+TH.map(function(p){return'<option value="'+p.id+'">'+e(p.nom)+'</option>'}).join('')+'</optgroup>'+'</select>';
