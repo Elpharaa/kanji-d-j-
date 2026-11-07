@@ -6735,6 +6735,8 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
 .dcrc,.dckb{min-height:36px}
 .dcpage .d2wrap{margin:0}.dcpage .d2wrap>.slx{margin:0}
 .dcck{text-wrap:balance}
+.orx .orp{margin-top:0;margin-bottom:6px;font-size:.9rem;line-height:1.5;color:#3d3558}
+.orx .orsrc{margin-top:0;margin-bottom:0;font-size:.74rem;color:#6f629a}
 
 </style>
 
@@ -18262,7 +18264,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
       '<button type="button" role="tab" data-view="mots" aria-selected="' + (kv.view === 'mots') + '" id="kCntW">Mots (' + it.w.length + ')</button></div>' +
       '<input type="text" id="kSearch" class="search" placeholder="Chercher dans toutes les listes : kanji, lecture, romaji, sens" value="' + esc(kv.q) + '" autocapitalize="none" spellcheck="false">' +
       '<div class="stack" id="kList"></div>' +
-      '<p class="muted small" style="margin:0">Ordre des traits : KanjiVG (© Ulrich Apel, licence CC BY-SA 3.0). Lectures des kanjis JLPT : KANJIDIC (EDRDG, CC BY-SA 4.0), sens en français. Définitions françaises de milliers de mots : Wiktionnaire (CC BY-SA 4.0). Clés : noms officiels des dictionnaires. Source du cours : tes polycopiés. Règle d\'écriture : les on\'yomi sont toujours en katakana, les kun\'yomi toujours en hiragana. Les sens en français, les compositions et les astuces sont rédigés pour cet outil.</p>';
+      '<p class="muted small" style="margin:0">Ordre des traits : KanjiVG (© Ulrich Apel, licence CC BY-SA 3.0). Lectures des kanjis JLPT : KANJIDIC (EDRDG, CC BY-SA 4.0), sens en français. Définitions et origines des mots : Wiktionnaire (CC BY-SA 4.0) ; origine des emprunts : JMdict (EDRDG). Clés : noms officiels des dictionnaires. Source du cours : tes polycopiés. Règle d\'écriture : les on\'yomi sont toujours en katakana, les kun\'yomi toujours en hiragana. Les sens en français, les compositions et les astuces sont rédigés pour cet outil.</p>';
     renderKList();
     if (focus && focus.open) {
       var d = $('kList').querySelector('.ktile[data-' + (focus.view === 'kanji' ? 'k' : 'w') + '="' + focus.open + '"]');
@@ -32395,7 +32397,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v510', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v511', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35954,6 +35956,37 @@ var PAR="１|いち|2\n１０００円|せんえん|0\n１０月|じゅうがつ
     if (rk) o += '<button type="button" class="dcch tlb" data-rk="clr">↺ Retirer les composants choisis</button>';
     return o + '<small>Essaie un kanji, une lecture (kana ou rōmaji) ou un sens en français. Les petites fautes de frappe sont tolérées.</small></div>';
   };
+
+  /* ORIGINE : étymologie dans la fiche mot (Wiktionnaire fr, CC BY-SA ; origines des emprunts : JMdict/EDRDG), chargée à la demande */
+  var OR = null, ORSt = 0, ORI = null;
+  function orLoad(cb) {
+    if (OR) { cb(); return; } if (ORSt === 1 || ORSt === 3) return; ORSt = 1;
+    try { if (typeof DecompressionStream === 'undefined') { ORSt = 3; return; } } catch (e) { ORSt = 3; return; }
+    fetch('data/lz_or.gz').then(function (r) { if (!r.ok) throw 0; return r.blob(); }).then(function (b) { return new Response(b.stream().pipeThrough(new DecompressionStream('gzip'))).text(); })
+      .then(function (t) { OR = JSON.parse(t); ORSt = 2; cb(); }).catch(function () { ORSt = 3; });
+  }
+  function orGet(e) {
+    if (!OR || !e) return null;
+    var ks = [e.jp + '|' + (e.kana || e.jp), e.jp + '|' + e.jp];
+    for (var i = 0; i < ks.length; i++) if (OR[ks[i]]) return OR[ks[i]];
+    return null;
+  }
+  function orShow() {
+    var pg = document.querySelector('.dcpage'); if (!pg || pg.classList.contains('kxf') || ORI === null) return;
+    if (pg.querySelector(':scope > details[data-sl="orig"]')) return;
+    var fr = pg.querySelector(':scope > .dcfr-frame'); if (!fr) return;
+    var e; try { e = dcBuild().all[ORI]; } catch (x) { return; }
+    var t = orGet(e); if (!t) return;
+    var jm = t.charAt(0) === '§'; if (jm) t = t.slice(1);
+    var d = document.createElement('details'); d.className = 'slx orx'; d.setAttribute('data-sl', 'orig');
+    var s = document.createElement('summary'); s.innerHTML = 'Origine du mot <small>語源</small>'; d.appendChild(s);
+    var p = document.createElement('p'); p.className = 'orp'; p.textContent = t; d.appendChild(p);
+    var c = document.createElement('p'); c.className = 'orsrc'; c.textContent = jm ? 'Source : JMdict (EDRDG)' : 'Source : Wiktionnaire (CC BY-SA)'; d.appendChild(c);
+    fr.after(d);
+  }
+  var orO0 = dcOpen;
+  dcOpen = function (i) { orO0(i); ORI = i; try { orLoad(orShow); orShow(); } catch (e) {} };
+  (function () { var t = 0; try { new MutationObserver(function () { clearTimeout(t); t = setTimeout(function () { try { if (OR) orShow(); } catch (e) {} }, 120); }).observe(document.body, { childList: true, subtree: true }); } catch (e) {} })();
 
   backend.init().then(function (u) {
     if (u) return enterApp(u, false);
