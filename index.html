@@ -29659,7 +29659,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     var rd = e.kana && e.kana !== e.jp ? '<small class="dcrd">' + esc(e.kana) + '</small>' : '';
     return '<button type="button" class="dcr" data-dc="open:' + e.i + '"><span class="dcjp jp">' + esc(e.jp) + rd + '</span><span class="dcfr">' + esc(e.fr) + (e.via ? ' <em class="dcvia">· ' + esc(e.via) + '</em>' : '') + '</span><span class="dcbs">' + dcBadges(e) + '</span></button>';
   }
-  function dcListHTML() {
+  function dcListHTML0() {
     var m = dcMatches(), n = Math.min(m.length, dc.n);
     var h = '<p class="dccount small muted">' + m.length.toLocaleString('fr-FR') + ' mot' + (m.length > 1 ? 's' : '') + (dc.q ? ' pour « ' + esc(dc.q) + ' »' : '') + '</p>';
     if (!m.length) return h + '<p class="dcempty">Aucun mot ne correspond. Essaie le kana, le romaji ou le français, ou retire un filtre.</p>';
@@ -29678,13 +29678,46 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
   function dcInner() {
     dcBuild();
     function chip(k, v, t, on) { return '<button type="button" class="cs-chip' + (on ? ' on' : '') + '" data-dc="' + k + ':' + v + '" aria-pressed="' + on + '">' + t + '</button>'; }
-    var h = '<div class="dcbar"><input id="dcQ" class="dcq" type="search" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Chercher : 食べる, たべる, taberu, manger…" value="' + esc(dc.q) + '" aria-label="Rechercher un mot"></div>';
-    h += '<p class="as2l klsub">Type</p><div class="cs-chips">' + [['all', 'Tous'], ['v', 'Verbes'], ['a', 'Adjectifs'], ['e', 'Expressions'], ['o', 'Autres mots']].map(function (x) { return chip('t', x[0], x[1], dc.t === x[0]); }).join('') + '</div>';
+    var h = '<div class="dcbar"><input id="dcQ" class="dcq" type="search" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Chercher : 食べる, taberu, manger, avoir le seum…" value="' + esc(dc.q) + '" aria-label="Rechercher un mot"></div>';
+    h += '<p class="as2l klsub">Type</p><div class="cs-chips">' + [['all', 'Tous'], ['v', 'Verbes'], ['a', 'Adjectifs'], ['e', 'Expressions'], ['o', 'Autres mots'], ['fx', 'Expr. françaises']].map(function (x) { return chip('t', x[0], x[1], dc.t === x[0]); }).join('') + '</div>';
     h += '<p class="as2l klsub">Niveau</p><div class="cs-chips">' + [['all', 'Tous'], ['n5', 'N5'], ['n4', 'N4'], ['n3', 'N3'], ['n2', 'N2'], ['n1', 'N1'], ['q', 'Hors JLPT'], ['c', 'Cours'], ['b', 'Bonus']].map(function (x) { return chip('lv', x[0], x[1], dc.lv === x[0]); }).join('') + '</div>';
     h += '<div class="dcrow"><label class="small muted" for="dcTh">Thème</label><select id="dcTh" class="dcsel">' + dcThemeOpts() + '</select>' + (dc.q ? '' : '<label class="small muted" for="dcSort">Tri</label><select id="dcSort" class="dcsel dcss"><option value="lv"' + (dc.sort === 'lv' ? ' selected' : '') + '>Niveau</option><option value="kana"' + (dc.sort === 'kana' ? ' selected' : '') + '>あいうえお</option></select>') + '</div>';
     return h + '<div id="dcList">' + dcListHTML() + '</div>';
   }
   function dcRefreshList() { var l = document.getElementById('dcList'); if (l) l.innerHTML = dcListHTML(); }
+  var FX = null, FXP = null, FXREG = { argot: 'Argot', familier: 'Familier', courant: 'Courant', soutenu: 'Soutenu', proverbe: 'Proverbe' };
+  function fxLoad() {
+    if (FX || FXP) return;
+    FXP = fetch('data/exfr.json').then(function (r) { return r.json(); }).then(function (j) { FX = j.map(function (x, i) { x.i = i; x.s = dcNorm([x.f].concat(x.a || []).join(' ') + ' ' + x.j + ' ' + x.k); return x; }); dcRefreshList(); }).catch(function () { FX = []; });
+  }
+  function fxMatches() {
+    if (!FX || (dc.t !== 'all' && dc.t !== 'fx')) return [];
+    if (dc.lv !== 'all' || dc.th) return [];
+    var q = dcNorm(dc.q.trim());
+    if (!q) return dc.t === 'fx' ? FX : [];
+    var hits = FX.filter(function (x) { return x.s.indexOf(q) >= 0; });
+    hits.sort(function (a, b) { var fa = dcNorm(a.f), fb = dcNorm(b.f); var x = fa === q ? 0 : fa.indexOf(q) === 0 ? 1 : 2, y = fb === q ? 0 : fb.indexOf(q) === 0 ? 1 : 2; return x - y; });
+    return dc.t === 'fx' ? hits : hits.slice(0, 8);
+  }
+  function fxRow(x) {
+    return '<button type="button" class="dcr" data-dc="fx:' + x.i + '"><span class="dcjp jp">' + esc(x.j) + '<small class="dcrd">' + esc(x.k) + '</small></span><span class="dcfr">' + esc(x.f) + '</span><span class="dcbs"><span class="dcb dct">Expr. FR</span><span class="dcb">' + esc(FXREG[x.r] || x.r) + '</span></span></button>';
+  }
+  function dcListHTML() {
+    fxLoad();
+    var fx = fxMatches(), hx = fx.length ? '<p class="as2l klsub">Expressions françaises · フランス語の表現</p><div class="dclist">' + fx.map(fxRow).join('') + '</div>' : '';
+    if (dc.t === 'fx') return FX ? (fx.length ? '<p class="dccount small muted">' + fx.length + ' expression' + (fx.length > 1 ? 's' : '') + (dc.q ? ' pour « ' + esc(dc.q) + ' »' : '') + '</p>' + hx : '<p class="dcempty">Aucune expression ne correspond. Essaie un autre mot du français ou du japonais.</p>') : '<p class="dcempty">Chargement…</p>';
+    return hx + dcListHTML0();
+  }
+  function dcFx(i) {
+    var x = FX && FX[i]; if (!x) return;
+    var h = '<div class="kbody inmodal dcd"><div class="dcdh"><span class="dcbig">' + esc(x.f) + '</span></div>';
+    h += '<p class="dcdfr jp"><b>' + esc(x.j) + '</b></p><p class="dcrom small muted jp">' + esc(x.k) + (x.k ? ' · ' + esc(toRomaji(x.k)) : '') + '</p>';
+    h += '<div class="dcbs"><span class="dcb dct">Expression française</span><span class="dcb">' + esc(FXREG[x.r] || x.r) + '</span></div>';
+    h += '<p class="small" style="margin-top:10px">' + esc(x.n) + '</p>';
+    h += '<div class="dcex"><p class="small muted">Exemple · 例文</p><p class="dcexj">' + esc(x.e) + '</p><p class="small jp">' + esc(x.ej) + '</p></div>';
+    h += '<div class="knact"><button type="button" class="btn" data-dc="fxsay:' + x.i + '">🔊 Écouter la phrase japonaise</button></div></div>';
+    openModal(x.f, h, 'kmodal');
+  }
   function dcRefreshAll() { var host = document.getElementById('dcHost'); if (host) { var had = document.activeElement && document.activeElement.id === 'dcQ'; host.innerHTML = dcInner(); } }
   function dcOpen(i) {
     var e = dcBuild().all[i]; if (!e) return;
@@ -29709,6 +29742,8 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     var b = ev.target.closest ? ev.target.closest('[data-dc]') : null; if (!b) return;
     var p = b.getAttribute('data-dc'), k = p.split(':')[0], v = p.slice(k.length + 1);
     if (k === 'open') dcOpen(+v);
+    else if (k === 'fx') dcFx(+v);
+    else if (k === 'fxsay') { var fq = FX && FX[+v]; if (fq && typeof aidSpeak === 'function') aidSpeak(fq.ej, 0.85); }
     else if (k === 'say') { var e = dcBuild().all[+v]; if (e && typeof aidSpeak === 'function') aidSpeak(e.kana || e.jp, 0.85); }
     else if (k === 'kanji') { closeModal(); openKanji(v); }
     else if (k === 'more') { dc.n += 60; dcRefreshList(); }
@@ -32705,7 +32740,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v518', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v519', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
