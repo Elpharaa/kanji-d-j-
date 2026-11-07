@@ -29778,6 +29778,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     else if (k === 'fxfx') { var f2 = FX && FX[+v]; if (f2) fxSpeakFr(f2.e); }
     else if (k === 'lang') { DCL = v === 'ja' ? 'ja' : 'fr'; try { localStorage.setItem('dcLang', DCL); } catch (e) {} if (DCL === 'ja') dc.fxOnly = true; dc.n = 60; dcRefreshAll(); }
     else if (k === 'fxth') { var _t = v; dc.fxTh = dc.fxTh === _t ? '' : _t; dc.fxOnly = true; dc.n = 60; dcRefreshAll(); }
+    else if (k === 'langtoggle') { DCL = DCL === 'ja' ? 'fr' : 'ja'; try { localStorage.setItem('dcLang', DCL); } catch (e) {} if (DCL === 'ja') dc.fxOnly = true; dc.n = 60; dcRefreshAll(); toast(DCL === 'ja' ? '🇯🇵 Dictionnaire pour les Japonais (フランス語を学ぶ人向け)' : '🇫🇷 Dictionnaire pour les Français'); }
     else if (k === 'fxtab') { dc.mode = 'w'; dc.fxTh = ''; dc.fxOnly = true; dc.q = ''; dc.n = 60; dcRefreshAll(); }
     else if (k === 'fxfav') { var _fx = FX && FX[+v]; if (_fx) { var _on = fxFavToggle(_fx.f), _b = document.querySelector('[data-dc="fxfav:' + v + '"]'); if (_b) _b.textContent = fxFavLabel(_on); } }
     else if (k === 'fxonly') { dc.fxTh = ''; dc.fxOnly = !dc.fxOnly; dc.n = 60; dcRefreshAll(); }
@@ -32797,7 +32798,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v534', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v535', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -36411,6 +36412,14 @@ var PAR="";
     }
     return h;
   };
+  var fxI3 = dcInner;
+  dcInner = function () {
+    var h = fxI3(), ja = DCL === 'ja';
+    h = h.replace(/<div class="kxtrow fxrow">[\s\S]*?<\/div>/, '');
+    h = h.replace('<header class="dchead">', '<header class="dchead dcflaghd"><button type="button" class="dcflag" data-dc="langtoggle" aria-label="' + (ja ? '日本語版。タップでフランス語版に切り替え' : 'Version pour les Français. Touche pour la version japonaise') + '"><span class="dcfl">' + (ja ? '🇯🇵' : '🇫🇷') + '</span><small>' + (ja ? '日本語' : 'Français') + '</small></button>');
+    return h;
+  };
+  if (!document.getElementById('fxcss2')) { var fxs2 = document.createElement('style'); fxs2.id = 'fxcss2'; fxs2.textContent = '.dcflaghd{position:relative;padding-right:70px}.dcflag{position:absolute;top:0;right:0;display:grid;justify-items:center;gap:1px;padding:5px 9px 4px;border-radius:12px;border:2px solid #d9c18a;background:#fffaf0;color:#3a2d62;font:inherit;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.1)}.dcflag:active{transform:translateY(1px)}.dcfl{font-size:1.5rem;line-height:1}.dcflag small{font-size:.62rem;font-weight:700}'; document.head.appendChild(fxs2); }
   dcFx = function (i) {
     var x = FX && FX[i]; if (!x) return; var ja = DCL === 'ja';
     fxRecAdd(x.f);
