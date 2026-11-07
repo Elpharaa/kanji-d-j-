@@ -32777,7 +32777,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v526', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v527', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -36382,7 +36382,8 @@ var PAR="";
     var h = fxI2(), ja = DCL === 'ja', on = dc.fxOnly && dc.mode !== 'k' && dc.mode !== 'n';
     h = h.replace(/<button[^>]*data-dc="fxonly"[^>]*>[\s\S]*?<\/button>/, '').replace(/<div class="kxtrow fxrow fxths">[\s\S]*?<\/div>/, '');
     if (on) h = h.replace(/class="on"( data-kx="mode:w")/, 'class=""$1');
-    h = h.replace('data-kx="mode:n">名 Noms</button>', 'data-kx="mode:n">名 Noms</button><button type="button" role="tab" class="' + (on ? 'on' : '') + '" data-dc="fxtab">' + (ja ? '仏 フランス語' : '仏 Français') + '</button>');
+    h = h.replace('data-kx="mode:n">名 Noms</button>', 'data-kx="mode:n">名 Noms</button><button type="button" role="tab" class="' + (on ? 'on' : '') + '" data-dc="fxtab">' + (ja ? '仏 仏語' : '仏 FR') + '</button>');
+    if (on) h += '<style>#dcHost .slbar,#dcHost .dcfil,#dcHost .dcwod,#dcHost .jxbtn,#dcHost .jxbar{display:none!important}</style>';
     if (on && (dc.fxTh || (dc.q || '').trim())) {
       var ch = '<div class="kxtrow fxrow fxths"><button type="button" class="dcch" data-dc="fxth:">⬅ ' + (ja ? '全テーマ' : 'Tous les thèmes') + '</button>' + FXTH.map(function (t) { return '<button type="button" class="dcch' + (dc.fxTh === t[0] ? ' on' : '') + '" data-dc="fxth:' + t[0] + '">' + t[1] + ' ' + (ja ? t[3] : t[2]) + '</button>'; }).join('') + '</div>';
       h = h.replace('<div class="slbar">', ch + '<div class="slbar">');
@@ -36406,7 +36407,7 @@ var PAR="";
     var b = ev.target && ev.target.closest && ev.target.closest('[data-kx^="mode:"]');
     if (b && dc.fxOnly) { var m = b.getAttribute('data-kx').slice(5); dc.fxOnly = false; dc.fxTh = ''; if (m === 'w' && dc.mode === 'w') { dc.n = 60; dcRefreshAll(); } }
   }, true);
-  if (!document.getElementById('fxcss')) { var fxs = document.createElement('style'); fxs.id = 'fxcss'; fxs.textContent = '.fxw{position:relative}.fxsp{position:absolute;top:8px;right:8px;width:34px;height:34px;border-radius:50%;border:1.5px solid #d9c18a;background:#fffdf7;font-size:15px;line-height:1;cursor:pointer;padding:0}.fxtiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:6px 2px 14px}.fxt{display:flex;flex-direction:column;align-items:center;gap:3px;padding:14px 8px;border-radius:16px;border:2px solid #d9c18a;background:#fffaf0;color:inherit;font:inherit;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.08)}.fxt:active{transform:translateY(1px)}.fxti{font-size:28px;line-height:1.1}.fxt b{font-size:14px;text-align:center}.fxt small{opacity:.65;font-size:12px}.fxdet{margin-top:12px}.fxdet summary{cursor:pointer;font-weight:600;padding:6px 0}'; document.head.appendChild(fxs); }
+  if (!document.getElementById('fxcss')) { var fxs = document.createElement('style'); fxs.id = 'fxcss'; fxs.textContent = '.fxw{position:relative}.fxw .dccg{display:none}.fxsp{position:absolute;top:8px;right:8px;width:34px;height:34px;border-radius:50%;border:1.5px solid #d9c18a;background:#fffdf7;font-size:15px;line-height:1;cursor:pointer;padding:0}.fxtiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:6px 2px 14px}.fxt{display:flex;flex-direction:column;align-items:center;gap:3px;padding:14px 8px;border-radius:16px;border:2px solid #d9c18a;background:#fffaf0;color:inherit;font:inherit;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.08)}.fxt:active{transform:translateY(1px)}.fxti{font-size:28px;line-height:1.1}.fxt b{font-size:14px;text-align:center}.fxt small{opacity:.65;font-size:12px}.fxdet{margin-top:12px}.fxdet summary{cursor:pointer;font-weight:600;padding:6px 0}'; document.head.appendChild(fxs); }
   /* retour d'une fiche : même position dans la liste */
   function tlRemember() { try { if ($('appModal').hidden && document.getElementById('dcHost')) dc._sy = window.pageYOffset; } catch (e) {} }
   var tlO0 = dcOpen; dcOpen = function (i) { tlRemember(); return tlO0(i); };
