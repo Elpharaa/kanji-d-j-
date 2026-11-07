@@ -32307,6 +32307,24 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
     };
     inp.click();
   }
+  var rpgAdmOpen = {};
+  function rpgAdmGroup(rows) {
+    var ids = Object.keys(RPG_CH), G = [], idx = {};
+    function grp(k, lab) { if (!(k in idx)) { idx[k] = G.length; G.push({ k: k, lab: lab, r: [] }); } return G[idx[k]]; }
+    ids.forEach(function (id, i) {
+      var m = /^m(\d)/.exec(id), reg = m ? RPG_M[+m[1] - 1] : null, g;
+      if (m) g = grp('m' + m[1], '👹 Méchants · ' + (reg ? reg.n : 'région ' + m[1]));
+      else if (/^boss/.test(id)) g = grp('boss', '👑 Boss de région');
+      else if (/^gm/.test(id)) g = grp('gm', '🎮 Maîtres du jeu');
+      else if (/^vl/.test(id)) g = grp('vl', '🏡 Habitants et énigmes');
+      else g = grp('pnj', '🧑‍🏫 Guide, amis et marchands');
+      g.r.push(rows[i]);
+    });
+    var ord = ['pnj', 'boss', 'm1', 'm2', 'm3', 'm4', 'm5', 'gm', 'vl'];
+    G.sort(function (a, b) { return ord.indexOf(a.k) - ord.indexOf(b.k); });
+    return G.map(function (g) { var n = g.r.length; return '<details class="admcat rpgcat" data-rpgk="' + g.k + '"' + (rpgAdmOpen[g.k] ? ' open' : '') + '><summary>' + g.lab + ' (' + n + ')</summary>' + g.r.join('') + '</details>'; }).join('');
+  }
+  document.addEventListener('toggle', function (e) { var d = e.target; if (d && d.getAttribute && d.getAttribute('data-rpgk')) rpgAdmOpen[d.getAttribute('data-rpgk')] = d.open; }, true);
   function rpgAdmin() {
     var det = document.getElementById('rpgAcc'), body = document.getElementById('rpgAdminBody'); if (!det || !body) return;
     if (!isAdmin()) { det.hidden = true; return; }
@@ -32314,13 +32332,13 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
     var ae = document.activeElement; if (body.contains(ae) && (ae.tagName === 'INPUT' || ae.tagName === 'SELECT')) return;
     var tones = Object.keys(RPG_TONES);
     var h = '<p class="small muted">Chaque personnage du mode Histoire peut recevoir une image, un nom et un <b>caractère</b> : ses répliques de combat et de dialogue s\'adaptent au ton choisi (par défaut, le ton est deviné d\'après le nom). Les réglages sont enregistrés pour tous les joueurs. Tu peux aussi écrire sa <b>réplique d\'entrée</b> et sa <b>réplique de défaite</b> (utilise {h} pour insérer le pseudo du joueur).</p><input type="search" class="rpgadq" id="rpgAdQ" placeholder="🔍 Chercher un personnage (nom, région…)" aria-label="Chercher un personnage">';
-    h += Object.keys(RPG_CH).map(function (id) {
+    h += rpgAdmGroup(Object.keys(RPG_CH).map(function (id) {
       var hasI = !!ASSETS['pi_' + id], nm = chNameRaw(id), tn = chToneSet(id), auto = chTone(id);
       return '<div class="admrow rpgadm" data-rpgq="' + esc((chName(id) + ' ' + RPG_CH[id].n + ' ' + RPG_CH[id].role + ' ' + id).toLowerCase()) + '"><span class="admth"><img src="' + esc(chSrc(id)) + '" alt=""></span><span class="rpgadn"><b>' + esc(chName(id)) + '</b><small>' + esc(RPG_CH[id].role) + '</small>' +
         '<span class="rpgadi"><input type="text" maxlength="24" value="' + esc(nm) + '" placeholder="' + esc(RPG_CH[id].n) + '" data-rpgnm="' + id + '" aria-label="Nom du personnage"><button type="button" class="btn" data-rpgsave="' + id + '">OK</button></span>' +
         '<span class="rpgadi"><input type="text" maxlength="90" value="' + esc(chLine(id, 'pl')) + '" placeholder="Réplique d\'entrée…" data-rpgln="pl:' + id + '" aria-label="Réplique d\'entrée"><button type="button" class="btn" data-rpglsave="pl:' + id + '">OK</button></span><span class="rpgadi"><input type="text" maxlength="90" value="' + esc(chLine(id, 'pd')) + '" placeholder="Réplique de défaite…" data-rpgln="pd:' + id + '" aria-label="Réplique de défaite"><button type="button" class="btn" data-rpglsave="pd:' + id + '">OK</button></span><span class="rpgadi"><select data-rpgtone="' + id + '" aria-label="Caractère"><option value="">Auto (' + esc(RPG_TONE_NAMES[auto]) + ')</option>' + tones.map(function (t) { return '<option value="' + t + '"' + (tn === t ? ' selected' : '') + '>' + esc(RPG_TONE_NAMES[t]) + '</option>'; }).join('') + '</select></span></span>' +
         '<span class="rpgadb"><button type="button" class="btn" data-adminimg="pi_' + id + '" aria-label="Image">📷</button>' + (hasI ? '<button type="button" class="btn" data-admindel="pi_' + id + '" aria-label="Retirer l\'image">✕</button>' : '') + '</span></div>';
-    }).join('');
+    }));
     h += '<h4 class="admh">Décors de combat (fond d\'arène)</h4><p class="small muted">Chaque décor de carte a un fond de combat dessiné automatiquement. Tu peux le remplacer par ta propre image (format large conseillé).</p>';
     h += Object.keys(RPG_B).map(function (bid) {
       var has = !!ASSETS['bg_' + bid];
@@ -32345,6 +32363,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   document.addEventListener('input', function (e) {
     var q = e.target && e.target.id === 'rpgAdQ' ? e.target : null; if (!q) return; var t = q.value.trim().toLowerCase();
     document.querySelectorAll('#rpgAdminBody [data-rpgq]').forEach(function (r) { r.hidden = !!t && r.getAttribute('data-rpgq').indexOf(t) < 0; });
+    document.querySelectorAll('#rpgAdminBody details.rpgcat').forEach(function (d) { if (t) d.open = !!d.querySelector('[data-rpgq]:not([hidden])'); });
   });
   document.addEventListener('change', function (e) {
     var s = e.target.closest ? e.target.closest('[data-rpgtone]') : null; if (!s || !isAdmin()) return;
@@ -32777,7 +32796,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v530', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v531', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
