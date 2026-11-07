@@ -29776,7 +29776,8 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     else if (k === 'fxfr') { var f1 = FX && FX[+v]; if (f1) fxSpeakFr(f1.f); }
     else if (k === 'fxfx') { var f2 = FX && FX[+v]; if (f2) fxSpeakFr(f2.e); }
     else if (k === 'lang') { DCL = v === 'ja' ? 'ja' : 'fr'; try { localStorage.setItem('dcLang', DCL); } catch (e) {} dc.fxOnly = DCL === 'ja'; dc.n = 60; dcRefreshAll(); }
-    else if (k === 'fxonly') { dc.fxOnly = !dc.fxOnly; dc.n = 60; dcRefreshAll(); }
+    else if (k.indexOf('fxth:') === 0) { var _t = k.slice(5); dc.fxTh = dc.fxTh === _t ? '' : _t; dc.fxOnly = true; dc.n = 60; dcRefreshAll(); }
+    else if (k === 'fxonly') { dc.fxTh = ''; dc.fxOnly = !dc.fxOnly; dc.n = 60; dcRefreshAll(); }
     else if (k === 'fxsay') { var fq = FX && FX[+v]; if (fq && typeof aidSpeak === 'function') aidSpeak(fq.ej, 0.85); }
     else if (k === 'say') { var e = dcBuild().all[+v]; if (e && typeof aidSpeak === 'function') aidSpeak(e.kana || e.jp, 0.85); }
     else if (k === 'kanji') { closeModal(); openKanji(v); }
@@ -32774,7 +32775,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v522', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v523', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -36293,8 +36294,9 @@ var PAR="";
   function fxList2() {
     if (!FX) return [];
     var q = dcNorm((dc.q || '').trim());
-    if (!q) return dc.fxOnly ? FX : [];
-    var hits = FX.filter(function (x) { return x.s.indexOf(q) >= 0; });
+    var T = dc.fxOnly && dc.fxTh ? function (x) { return x.th === dc.fxTh; } : function () { return true; };
+    if (!q) return dc.fxOnly ? FX.filter(T) : [];
+    var hits = FX.filter(function (x) { return T(x) && x.s.indexOf(q) >= 0; });
     hits.sort(function (a, b) { var fa = dcNorm(a.f), fb = dcNorm(b.f), x = fa === q ? 0 : fa.indexOf(q) === 0 ? 1 : 2, y = fb === q ? 0 : fb.indexOf(q) === 0 ? 1 : 2; return x - y; });
     return dc.fxOnly ? hits : hits.slice(0, 8);
   }
@@ -36325,6 +36327,10 @@ var PAR="";
     var h = fxI1(); if (dc.mode === 'k' || dc.mode === 'n') return h;
     var ja = DCL === 'ja';
     var row = '<div class="kxtrow fxrow"><button type="button" class="dcch kxtr' + (dc.fxOnly ? ' on' : '') + '" data-dc="fxonly" aria-pressed="' + !!dc.fxOnly + '">🇫🇷 ' + (ja ? 'フランス語の表現' : 'Expressions françaises') + '</button><button type="button" class="dcch' + (ja ? '' : ' on') + '" data-dc="lang:fr">Français</button><button type="button" class="dcch' + (ja ? ' on' : '') + '" data-dc="lang:ja">日本語</button></div>';
+    if (dc.fxOnly) {
+      var TH = [['expr', '💬', 'Expressions', '表現'], ['argot', '🔥', 'Argot', 'スラング'], ['proverbe', '📜', 'Proverbes', 'ことわざ'], ['transport', '🚆', 'Transport & billetterie', '交通・チケット'], ['machine', '🏧', 'Machines & paiement', '機械・支払い'], ['banque', '🏦', 'Banque', '銀行'], ['poste', '📮', 'Poste', '郵便'], ['sante', '💊', 'Santé', '健康・薬局'], ['hotel', '🏨', 'Hôtel & logement', 'ホテル・宿'], ['courses', '🛒', 'Courses & restaurant', '買い物・外食'], ['admin', '📱', 'Admin & téléphone', '手続き・通信'], ['orient', '🧭', 'Orientation & secours', '道案内・緊急'], ['japon', '🇯🇵', 'Machines au Japon', '日本の機械'], ['spectacle', '🎭', 'Spectacle', '催し物'], ['sport', '⚽', 'Sport', 'スポーツ']];
+      row += '<div class="kxtrow fxrow fxths">' + TH.map(function (t) { return '<button type="button" class="dcch' + (dc.fxTh === t[0] ? ' on' : '') + '" data-dc="fxth:' + t[0] + '">' + t[1] + ' ' + (ja ? t[3] : t[2]) + '</button>'; }).join('') + '</div>';
+    }
     h = h.replace('<div class="slbar">', row + '<div class="slbar">');
     if (ja) h = dcJaUI2(h);
     return h;
