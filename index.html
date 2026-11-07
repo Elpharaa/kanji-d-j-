@@ -29776,7 +29776,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     else if (k === 'fxfr') { var f1 = FX && FX[+v]; if (f1) fxSpeakFr(f1.f); }
     else if (k === 'fxfx') { var f2 = FX && FX[+v]; if (f2) fxSpeakFr(f2.e); }
     else if (k === 'lang') { DCL = v === 'ja' ? 'ja' : 'fr'; try { localStorage.setItem('dcLang', DCL); } catch (e) {} dc.fxOnly = DCL === 'ja'; dc.n = 60; dcRefreshAll(); }
-    else if (k.indexOf('fxth:') === 0) { var _t = k.slice(5); dc.fxTh = dc.fxTh === _t ? '' : _t; dc.fxOnly = true; dc.n = 60; dcRefreshAll(); }
+    else if (k === 'fxth') { var _t = v; dc.fxTh = dc.fxTh === _t ? '' : _t; dc.fxOnly = true; dc.n = 60; dcRefreshAll(); }
     else if (k === 'fxonly') { dc.fxTh = ''; dc.fxOnly = !dc.fxOnly; dc.n = 60; dcRefreshAll(); }
     else if (k === 'fxsay') { var fq = FX && FX[+v]; if (fq && typeof aidSpeak === 'function') aidSpeak(fq.ej, 0.85); }
     else if (k === 'say') { var e = dcBuild().all[+v]; if (e && typeof aidSpeak === 'function') aidSpeak(e.kana || e.jp, 0.85); }
@@ -32775,7 +32775,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v523', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v524', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
