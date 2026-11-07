@@ -1,0 +1,860 @@
+{
+"terre": {
+"honshu": [
+[
+140.8,
+41.4
+],
+[
+141.4,
+41.4
+],
+[
+141.55,
+40.5
+],
+[
+142.0,
+39.65
+],
+[
+141.6,
+38.9
+],
+[
+141.5,
+38.3
+],
+[
+141.0,
+37.8
+],
+[
+140.9,
+37.0
+],
+[
+140.6,
+36.4
+],
+[
+140.85,
+35.7
+],
+[
+140.4,
+35.4
+],
+[
+139.85,
+34.9
+],
+[
+139.8,
+35.3
+],
+[
+139.65,
+35.2
+],
+[
+139.15,
+35.25
+],
+[
+138.85,
+34.6
+],
+[
+138.5,
+34.95
+],
+[
+138.2,
+34.6
+],
+[
+137.7,
+34.65
+],
+[
+137.2,
+34.6
+],
+[
+136.9,
+35.0
+],
+[
+136.9,
+34.3
+],
+[
+136.3,
+34.1
+],
+[
+135.75,
+33.45
+],
+[
+135.1,
+34.2
+],
+[
+135.4,
+34.65
+],
+[
+134.65,
+34.75
+],
+[
+133.95,
+34.55
+],
+[
+132.45,
+34.35
+],
+[
+132.2,
+33.95
+],
+[
+130.9,
+33.95
+],
+[
+131.4,
+34.4
+],
+[
+131.85,
+34.7
+],
+[
+132.7,
+35.45
+],
+[
+133.2,
+35.55
+],
+[
+134.2,
+35.55
+],
+[
+135.3,
+35.65
+],
+[
+136.0,
+35.65
+],
+[
+136.1,
+36.1
+],
+[
+136.6,
+36.6
+],
+[
+137.3,
+37.5
+],
+[
+137.2,
+36.75
+],
+[
+138.25,
+37.2
+],
+[
+139.05,
+37.9
+],
+[
+139.5,
+38.4
+],
+[
+139.8,
+38.9
+],
+[
+139.7,
+39.9
+],
+[
+140.0,
+40.2
+],
+[
+140.3,
+40.8
+],
+[
+140.35,
+41.25
+]
+],
+"kyushu": [
+[
+130.95,
+33.95
+],
+[
+131.5,
+33.3
+],
+[
+131.95,
+32.95
+],
+[
+131.65,
+32.4
+],
+[
+131.45,
+31.9
+],
+[
+131.35,
+31.4
+],
+[
+131.0,
+31.0
+],
+[
+130.65,
+31.0
+],
+[
+130.8,
+31.2
+],
+[
+130.2,
+31.2
+],
+[
+130.2,
+32.0
+],
+[
+130.2,
+32.5
+],
+[
+129.8,
+32.7
+],
+[
+129.7,
+33.2
+],
+[
+129.9,
+33.5
+],
+[
+130.4,
+33.65
+]
+],
+"shikoku": [
+[
+134.6,
+34.25
+],
+[
+134.0,
+34.35
+],
+[
+132.75,
+33.85
+],
+[
+132.0,
+33.35
+],
+[
+132.5,
+33.2
+],
+[
+133.0,
+32.72
+],
+[
+134.2,
+33.25
+],
+[
+134.6,
+34.0
+]
+],
+"hokkaido": [
+[
+140.1,
+41.4
+],
+[
+141.2,
+41.8
+],
+[
+141.6,
+42.6
+],
+[
+143.2,
+42.0
+],
+[
+144.4,
+42.95
+],
+[
+145.8,
+43.35
+],
+[
+145.3,
+44.35
+],
+[
+144.3,
+44.0
+],
+[
+143.35,
+44.4
+],
+[
+141.95,
+45.5
+],
+[
+141.65,
+43.95
+],
+[
+141.0,
+43.2
+],
+[
+140.4,
+43.3
+],
+[
+140.1,
+42.2
+]
+],
+"okinawa": [
+[
+127.65,
+26.75
+],
+[
+128.0,
+26.45
+],
+[
+127.9,
+26.1
+],
+[
+127.65,
+26.15
+],
+[
+127.7,
+26.5
+]
+],
+"sado": [
+[
+138.2,
+37.8
+],
+[
+138.45,
+38.3
+],
+[
+138.55,
+37.9
+],
+[
+138.4,
+37.8
+]
+],
+"tsushima": [
+[
+129.3,
+34.7
+],
+[
+129.45,
+34.7
+],
+[
+129.35,
+34.15
+],
+[
+129.2,
+34.3
+]
+],
+"awaji": [
+[
+134.9,
+34.6
+],
+[
+135.05,
+34.6
+],
+[
+134.85,
+34.25
+],
+[
+134.75,
+34.35
+]
+],
+"tanegashima": [
+[
+131.0,
+30.85
+],
+[
+131.1,
+30.85
+],
+[
+130.95,
+30.4
+],
+[
+130.85,
+30.5
+]
+]
+},
+"lieux": [
+{
+"id": "sannai",
+"nom": "Sannai Maruyama",
+"lat": 40.81,
+"lon": 140.7,
+"ep": "jomon",
+"txt": "Grand village sédentaire des Jōmon (≈ 3900-2200 av. J.-C.).",
+"type": "f",
+"ref": "sannai_maruyama"
+},
+{
+"id": "yoshinogari",
+"nom": "Yoshinogari",
+"lat": 33.32,
+"lon": 130.38,
+"ep": "yayoi",
+"txt": "Village fortifié de l'époque Yayoi.",
+"type": "f",
+"ref": "yoshinogari"
+},
+{
+"id": "shikanoshima",
+"nom": "Shikanoshima",
+"lat": 33.67,
+"lon": 130.3,
+"ep": "yayoi",
+"txt": "Où l'on a trouvé en 1784 le sceau d'or donné au roi de Na (57).",
+"type": "f",
+"ref": "sceau_na"
+},
+{
+"id": "sakai",
+"nom": "Tumulus de Daisen (Sakai)",
+"lat": 34.56,
+"lon": 135.49,
+"ep": "kofun",
+"txt": "Le plus grand tumulus du Japon, attribué à Nintoku.",
+"type": "f",
+"ref": "nintoku"
+},
+{
+"id": "izumo",
+"nom": "Izumo Taisha",
+"lat": 35.4,
+"lon": 132.69,
+"ep": "kofun",
+"txt": "Grand sanctuaire d'Ōkuninushi, lié à la cession du pays.",
+"type": "e",
+"ref": "kofun"
+},
+{
+"id": "ise",
+"nom": "Grand sanctuaire d'Ise",
+"lat": 34.46,
+"lon": 136.72,
+"ep": "kofun",
+"txt": "Sanctuaire d'Amaterasu, reconstruit tous les vingt ans.",
+"type": "f",
+"ref": "amaterasu"
+},
+{
+"id": "asuka",
+"nom": "Asuka et Fujiwara-kyō",
+"lat": 34.48,
+"lon": 135.82,
+"ep": "asuka",
+"txt": "Premières capitales fixes de l'État de Yamato (VIIe siècle).",
+"type": "f",
+"ref": "fujiwara_kyo"
+},
+{
+"id": "horyuji",
+"nom": "Hōryūji",
+"lat": 34.61,
+"lon": 135.73,
+"ep": "asuka",
+"txt": "Temple lié au prince Shōtoku, bâtiments en bois très anciens.",
+"type": "f",
+"ref": "horyuji"
+},
+{
+"id": "nara",
+"nom": "Nara (Heijō-kyō)",
+"lat": 34.69,
+"lon": 135.8,
+"ep": "nara",
+"txt": "Capitale de 710 à 784, avec le Tōdaiji et son Grand Bouddha.",
+"type": "f",
+"ref": "heijo"
+},
+{
+"id": "nagaoka",
+"nom": "Nagaoka-kyō",
+"lat": 34.93,
+"lon": 135.69,
+"ep": "nara",
+"txt": "Capitale éphémère de Kanmu (784-794).",
+"type": "f",
+"ref": "kammu"
+},
+{
+"id": "kyoto",
+"nom": "Kyōto (Heian-kyō)",
+"lat": 35.01,
+"lon": 135.77,
+"ep": "heian",
+"txt": "Capitale impériale de 794 à 1868.",
+"type": "f",
+"ref": "heian_kyo"
+},
+{
+"id": "hiei",
+"nom": "Mont Hiei",
+"lat": 35.07,
+"lon": 135.84,
+"ep": "heian",
+"txt": "Centre de l'école Tendai, détruit par Nobunaga en 1571.",
+"type": "f",
+"ref": "tendai"
+},
+{
+"id": "koya",
+"nom": "Mont Kōya",
+"lat": 34.21,
+"lon": 135.59,
+"ep": "heian",
+"txt": "Centre de l'école Shingon fondée par Kūkai.",
+"type": "f",
+"ref": "shingon"
+},
+{
+"id": "uji",
+"nom": "Byōdōin (Uji)",
+"lat": 34.89,
+"lon": 135.81,
+"ep": "heian",
+"txt": "Temple de la Terre pure, fondé par Yorimichi en 1053.",
+"type": "f",
+"ref": "byodoin"
+},
+{
+"id": "hiraizumi",
+"nom": "Hiraizumi",
+"lat": 38.99,
+"lon": 141.11,
+"ep": "heian",
+"txt": "Capitale des Fujiwara du nord, issue des guerres de Zenkunen et Gosannen.",
+"type": "f",
+"ref": "zenkunen"
+},
+{
+"id": "danoura",
+"nom": "Dan-no-ura",
+"lat": 33.96,
+"lon": 130.92,
+"ep": "heian",
+"txt": "Bataille navale de 1185 qui fait disparaître les Taira.",
+"type": "f",
+"ref": "dan_no_ura"
+},
+{
+"id": "kamakura",
+"nom": "Kamakura",
+"lat": 35.32,
+"lon": 139.55,
+"ep": "kamakura",
+"txt": "Siège du premier shogunat (1185-1333).",
+"type": "f",
+"ref": "bakufu"
+},
+{
+"id": "hakata",
+"nom": "Baie de Hakata",
+"lat": 33.6,
+"lon": 130.4,
+"ep": "kamakura",
+"txt": "Lieu des invasions mongoles de 1274 et de 1281.",
+"type": "f",
+"ref": "mongols"
+},
+{
+"id": "kinkaku",
+"nom": "Kinkaku-ji (Kyōto)",
+"lat": 35.04,
+"lon": 135.73,
+"ep": "muromachi",
+"txt": "Pavillon d'or de Yoshimitsu.",
+"type": "f",
+"ref": "shogun_ashikaga_kinkaku"
+},
+{
+"id": "azuchi",
+"nom": "Château d'Azuchi",
+"lat": 35.15,
+"lon": 136.14,
+"ep": "sengoku",
+"txt": "Forteresse de Nobunaga (1576).",
+"type": "f",
+"ref": "nobunaga"
+},
+{
+"id": "nagashino",
+"nom": "Nagashino",
+"lat": 34.92,
+"lon": 137.57,
+"ep": "sengoku",
+"txt": "Victoire de Nobunaga et Ieyasu en 1575.",
+"type": "f",
+"ref": "nagashino"
+},
+{
+"id": "kawanakajima",
+"nom": "Kawanakajima",
+"lat": 36.58,
+"lon": 138.19,
+"ep": "sengoku",
+"txt": "Affrontements de Takeda Shingen et d'Uesugi Kenshin.",
+"type": "f",
+"ref": "uesugi"
+},
+{
+"id": "sekigahara",
+"nom": "Sekigahara",
+"lat": 35.37,
+"lon": 136.46,
+"ep": "sengoku",
+"txt": "Victoire d'Ieyasu en 1600.",
+"type": "f",
+"ref": "sekigahara"
+},
+{
+"id": "kagoshima",
+"nom": "Kagoshima",
+"lat": 31.6,
+"lon": 130.56,
+"ep": "sengoku",
+"txt": "Arrivée de François Xavier en 1549.",
+"type": "f",
+"ref": "xavier"
+},
+{
+"id": "tanegashima",
+"nom": "Tanegashima",
+"lat": 30.6,
+"lon": 131.0,
+"ep": "sengoku",
+"txt": "Arrivée des armes à feu portugaises en 1543.",
+"type": "f",
+"ref": "teppo"
+},
+{
+"id": "osaka",
+"nom": "Château d'Ōsaka",
+"lat": 34.69,
+"lon": 135.53,
+"ep": "edo",
+"txt": "Forteresse de Hideyoshi, détruite en 1615.",
+"type": "f",
+"ref": "osaka"
+},
+{
+"id": "edo",
+"nom": "Edo / Tōkyō",
+"lat": 35.69,
+"lon": 139.77,
+"ep": "edo",
+"txt": "Capitale du shogunat dès 1603, puis capitale impériale.",
+"type": "f",
+"ref": "sankin_kotai"
+},
+{
+"id": "nikko",
+"nom": "Nikkō",
+"lat": 36.75,
+"lon": 139.6,
+"ep": "edo",
+"txt": "Mausolée d'Ieyasu (Tōshōgū).",
+"type": "f",
+"ref": "ieyasu"
+},
+{
+"id": "dejima",
+"nom": "Dejima (Nagasaki)",
+"lat": 32.74,
+"lon": 129.87,
+"ep": "edo",
+"txt": "Comptoir néerlandais, seule ouverture sur l'Occident.",
+"type": "f",
+"ref": "dejima"
+},
+{
+"id": "shimabara",
+"nom": "Shimabara",
+"lat": 32.79,
+"lon": 130.37,
+"ep": "edo",
+"txt": "Révolte de 1637-1638.",
+"type": "f",
+"ref": "shimabara"
+},
+{
+"id": "shuri",
+"nom": "Shuri (Okinawa)",
+"lat": 26.22,
+"lon": 127.72,
+"ep": "edo",
+"txt": "Capitale du royaume des Ryūkyū, puis lieu de la bataille de 1945.",
+"type": "f",
+"ref": "ryukyu"
+},
+{
+"id": "kurihama",
+"nom": "Kurihama",
+"lat": 35.22,
+"lon": 139.7,
+"ep": "edo",
+"txt": "Débarquement de Perry en 1853.",
+"type": "f",
+"ref": "perry"
+},
+{
+"id": "hagi",
+"nom": "Hagi",
+"lat": 34.4,
+"lon": 131.4,
+"ep": "meiji",
+"txt": "Ville de Chōshū, berceau de dirigeants de Meiji.",
+"type": "f",
+"ref": "kido"
+},
+{
+"id": "hakodate",
+"nom": "Hakodate",
+"lat": 41.77,
+"lon": 140.73,
+"ep": "meiji",
+"txt": "Dernière bataille de la guerre de Boshin (1869).",
+"type": "f",
+"ref": "boshin"
+},
+{
+"id": "tomioka",
+"nom": "Tomioka",
+"lat": 36.25,
+"lon": 138.89,
+"ep": "meiji",
+"txt": "Filature de soie modèle de 1872.",
+"type": "f",
+"ref": "tomioka"
+},
+{
+"id": "tokyo_kanto",
+"nom": "Tōkyō / Yokohama",
+"lat": 35.55,
+"lon": 139.65,
+"ep": "taisho",
+"txt": "Épicentre du séisme du Kantō (1923) à proximité.",
+"type": "f",
+"ref": "kanto_shinsai"
+},
+{
+"id": "hiroshima",
+"nom": "Hiroshima",
+"lat": 34.39,
+"lon": 132.46,
+"ep": "showa",
+"txt": "Bombe atomique du 6 août 1945.",
+"type": "f",
+"ref": "hiroshima"
+},
+{
+"id": "minamata",
+"nom": "Minamata",
+"lat": 32.2,
+"lon": 130.4,
+"ep": "showa",
+"txt": "Maladie de Minamata.",
+"type": "f",
+"ref": "minamata"
+},
+{
+"id": "kobe",
+"nom": "Kōbe",
+"lat": 34.69,
+"lon": 135.2,
+"ep": "heisei",
+"txt": "Séisme de Hanshin-Awaji, 17 janvier 1995.",
+"type": "f",
+"ref": "hanshin"
+},
+{
+"id": "fukushima",
+"nom": "Fukushima Daiichi",
+"lat": 37.42,
+"lon": 141.03,
+"ep": "heisei",
+"txt": "Accident nucléaire du 11 mars 2011.",
+"type": "f",
+"ref": "fukushima"
+}
+]
+}
