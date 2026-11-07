@@ -37,6 +37,7 @@ button.hchip{font-family:inherit}
 .hbox ul,.hpanel ul{margin:.3em 0;padding-left:1.15em}.hbox li,.hpanel li{margin:.25em 0}
 .kw{display:inline;padding:0;margin:0;border:0;border-bottom:2px dotted #b2285b;background:none;color:inherit;font:inherit;cursor:pointer;border-radius:2px}
 .kw:hover,.kw:focus-visible{background:rgba(178,40,91,.12);outline:none}
+.hdet{border:1.5px solid #c49a3a;border-radius:12px;background:linear-gradient(#fffaf0,#f3e6c8);margin:8px 0;padding:0 14px}.hdet summary{cursor:pointer;padding:11px 0;font:400 1.02rem "Yuji Syuku","Shippori Mincho",serif;color:#7b1024;list-style:none}.hdet summary::-webkit-details-marker{display:none}.hdet summary::after{content:"＋";float:right;color:#b2285b}.hdet[open] summary::after{content:"－"}.hdet[open]{padding-bottom:6px}.hdet p{margin:.5em 0}
 .hnav{display:flex;gap:10px;margin-top:6px}.hnav button{flex:1}
 .hbtn{padding:10px 14px;border:2px solid #130f1e;border-radius:12px;background:linear-gradient(#fffaf0,#edddbd);color:#130f1e;font:700 .95rem "Zen Kaku Gothic New",sans-serif;cursor:pointer}
 .hback{justify-self:start}
@@ -83,6 +84,7 @@ function sec(t,b){return b?'<h3 class="hh">'+t+'</h3>'+b:''}
 function epV(id){var i=D.findIndex(function(x){return x.id===id}),p=D[i];if(!p)return homeV();setDock('#');var s={};
  var h='<button class="hbtn hback" data-back="1">‹ Toutes les époques</button><div class="hpanel"><div class="hhero"><div class="hseal'+(p.kanji.length>3?' long':'')+'">'+e(p.kanji.split('・')[0])+'</div><div><h2 class="htitle">'+e(p.nom)+'</h2><div class="hmeta">'+e(p.periode)+'</div></div></div><p>'+lk(p.resume,null,s)+'</p>';
  h+=sec('Événements clés','<div>'+p.evenements.map(function(x){return'<div class="hev"><b>'+e(x[0])+'</b><span>'+lk(x[1],null,s)+'</span></div>'}).join('')+'</div>');
+ if(p.chapitres)h+=sec('Cours détaillé',p.chapitres.map(function(c,k){return'<details class="hdet"'+(k===0?' open':'')+'><summary>'+e(c.t)+'</summary>'+c.p.map(function(x){return'<p>'+lk(x,null,s)+'</p>'}).join('')+'</details>'}).join(''));
  h+=sec('Société',p.societe?'<p>'+lk(p.societe,null,s)+'</p>':'')+sec('Culture',p.culture?'<p>'+lk(p.culture,null,s)+'</p>':'');
  h+=sec('Personnages',p.personnages.length?'<ul>'+p.personnages.map(function(x){return'<li><b>'+lk(x[0],null,s)+'</b> : '+lk(x[1],null,s)+'</li>'}).join('')+'</ul>':'');
  h+=sec('À retenir','<div class="hbox"><ul>'+p.retenir.map(function(x){return'<li>'+lk(x,null,s)+'</li>'}).join('')+'</ul></div>');
