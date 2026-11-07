@@ -32845,7 +32845,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v541', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v542', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -36365,7 +36365,7 @@ var PAR="";
   function fxList2() {
     if (!FX) return [];
     var q = dcNorm((dc.q || '').trim());
-    var T = dc.fxOnly && dc.fxTh ? function (x) { return x.th === dc.fxTh; } : function () { return true; };
+    var T = dc.fxOnly && dc.fxTh ? function (x) { return x.th === dc.fxTh || x.th2 === dc.fxTh; } : function () { return true; };
     if (!q) return dc.fxOnly ? FX.filter(T) : [];
     var hits = FX.filter(function (x) { return T(x) && x.s.indexOf(q) >= 0; });
     hits.sort(function (a, b) { var fa = dcNorm(a.f), fb = dcNorm(b.f), x = fa === q ? 0 : fa.indexOf(q) === 0 ? 1 : 2, y = fb === q ? 0 : fb.indexOf(q) === 0 ? 1 : 2; return x - y; });
@@ -36417,7 +36417,7 @@ var PAR="";
   fxList2 = function () {
     if (!FX) return [];
     var q = dcNorm((dc.q || '').trim()), th = dc.fxOnly ? dc.fxTh : '', fav = fxLS('fxFav'), rec = fxLS('fxRec');
-    var T = !th ? function () { return true; } : th === 'fav' ? function (x) { return fav.indexOf(x.f) >= 0; } : th === 'rec' ? function (x) { return rec.indexOf(x.f) >= 0; } : function (x) { return x.th === th; };
+    var T = !th ? function () { return true; } : th === 'fav' ? function (x) { return fav.indexOf(x.f) >= 0; } : th === 'rec' ? function (x) { return rec.indexOf(x.f) >= 0; } : function (x) { return x.th === th || x.th2 === th; };
     if (!q) { if (!dc.fxOnly) return []; var all = FX.filter(T); if (th === 'rec') all.sort(function (a, b) { return rec.indexOf(a.f) - rec.indexOf(b.f); }); return all; }
     var terms = [q]; if (FXCJK.test(q) && q.length >= 3 && /[いうくすつぬむるぶぐ]$/.test(q)) terms.push(q.slice(0, -1));
     var jq = FXCJK.test(q) && q.length >= 2;
@@ -36434,7 +36434,7 @@ var PAR="";
   };
   function fxTiles() {
     var ja = DCL === 'ja', cnt = {}, fav = fxLS('fxFav'), rec = fxLS('fxRec');
-    FX.forEach(function (x) { cnt[x.th] = (cnt[x.th] || 0) + 1; });
+    FX.forEach(function (x) { cnt[x.th] = (cnt[x.th] || 0) + 1; if (x.th2) cnt[x.th2] = (cnt[x.th2] || 0) + 1; });
     var L = [], nf = FX.filter(function (x) { return fav.indexOf(x.f) >= 0; }).length, nr = FX.filter(function (x) { return rec.indexOf(x.f) >= 0; }).length;
     if (nf) L.push(['fav', '⭐', 'Favoris', 'お気に入り', nf]);
     if (nr) L.push(['rec', '🕘', 'Récents', '最近見た', nr]);
