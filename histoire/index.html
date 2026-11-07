@@ -66,6 +66,8 @@ button.hchip{font-family:inherit}
 <button type="button" class="kdd" data-k="rev" data-nav="#r" aria-label="Réviser"><span class="kdm" aria-hidden="true">試</span><span class="kdl">Réviser</span></button>
 <button type="button" class="kdd" data-k="cards" data-nav="#c" aria-label="Concepts"><span class="kdm" aria-hidden="true">語</span><span class="kdl">Concepts</span></button>
 </nav>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.104.0/dist/umd/supabase.js"></script>
+<script src="../config.js"></script>
 <script>
 (function(){
 var D=[],TH=[],FI=[],FM={},m=document.getElementById('m'),RX=null,TY={personnage:'Personnage',concept:'Concept','événement':'Événement'};
@@ -120,11 +122,22 @@ function listV(type,q){var isP=type==='personnage';setDock(isP?'#p':'#c');q=(q||
  h+='</div>'+(arr.length?'':'<div class="hpanel">Aucun résultat.</div>');m.innerHTML=h;
  var qi=document.getElementById('q');qi.addEventListener('input',function(){var v=qi.value;listV(type,v);var x=document.getElementById('q');x.focus();x.setSelectionRange(v.length,v.length)})}
 
+
+var SB=null,PR={best:{},games:0,ok:0,tot:0},UID=null;
+try{var C0=window.KANJI_CONFIG;if(window.supabase&&C0&&C0.SUPABASE_URL)SB=window.supabase.createClient(C0.SUPABASE_URL,C0.SUPABASE_KEY)}catch(x){}
+function prLoadLocal(){try{var j=JSON.parse(localStorage.getItem('hist_pr')||'null');if(j&&j.best)PR=j}catch(x){}}
+function prMerge(a,b){var r={best:{},games:Math.max(a.games||0,b.games||0),ok:Math.max(a.ok||0,b.ok||0),tot:Math.max(a.tot||0,b.tot||0)};[a.best||{},b.best||{}].forEach(function(o){Object.keys(o).forEach(function(k){r.best[k]=Math.max(r.best[k]||0,o[k])})});return r}
+function prSaveLocal(){try{localStorage.setItem('hist_pr',JSON.stringify(PR))}catch(x){}}
+function prSync(cb){if(!SB){cb&&cb();return}
+ SB.auth.getSession().then(function(r){var u=r.data&&r.data.session&&r.data.session.user;if(!u){UID=null;cb&&cb();return}UID=u.id;
+  return SB.from('histoire_progress').select('data').eq('user_id',u.id).maybeSingle().then(function(q){var d=q.data&&q.data.data;if(d&&d.best)PR=prMerge(PR,d);prSaveLocal();
+   return SB.from('histoire_progress').upsert({user_id:u.id,data:PR,updated_at:new Date().toISOString()}).then(function(){cb&&cb()})})}).catch(function(){cb&&cb()})}
+prLoadLocal();
 var QS=null;
 function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
 function pick(pool,ans,n){var o=shuf(pool.filter(function(x,i,ar){return x!==ans&&ar.indexOf(x)===i})).slice(0,n);return shuf(o.concat([ans]))}
 function mask(f){var t=f.resume;[f.nom].concat(f.alias||[]).filter(function(a){return a&&a.length>2}).sort(function(a,b){return b.length-a.length}).forEach(function(a){t=t.split(a).join('…')});return t}
-function cardsFor(scope){var eps=scope==='all'?D:D.filter(function(x){return x.id===scope}),C=[];
+function cardsFor(scope){var eps=scope==='all'?D.concat(TH):D.filter(function(x){return x.id===scope}).concat(TH.filter(function(x){return x.id===scope})),C=[];
  eps.forEach(function(p){(p.mots||[]).forEach(function(w){C.push({t:'mot',ep:p.id,q:'Que signifie « '+w[0]+' »'+(w[1]?' ('+w[1]+')':'')+' ?',a:w[2],k:w[1]||w[0]})});
   (p.retenir||[]).forEach(function(r){C.push({t:'ret',ep:p.id,q:'À retenir · '+p.nom,a:r,k:p.kanji})});
   (p.evenements||[]).forEach(function(v){C.push({t:'date',ep:p.id,q:v[1],a:v[0],k:p.kanji})})});
@@ -135,17 +148,17 @@ function mkQ(c,all){var pool=all.filter(function(x){return x.t===c.t&&x!==c}).ma
  if(c.t==='date')return{q:'Quand ? '+c.q,a:c.a,o:pick(pool.filter(function(d){return d.length<40}),c.a,3)};
  if(c.t==='fic')return{q:'De qui ou de quoi s\'agit-il ? '+c.q,a:c.a,o:pick(all.filter(function(x){return x.t==='fic'&&x.f.type===c.f.type&&x!==c}).map(function(x){return x.a}),c.a,3)};
  return null}
-function revV(){setDock('#r');var h='<div class="hpanel"><h3 class="hh" style="margin-top:0">Réviser</h3><p>Choisis une époque (ou tout), puis un mode.</p><select id="rs" class="hsearch" aria-label="Époque"><option value="all">Toutes les époques</option>'+D.map(function(p){return'<option value="'+p.id+'">'+e(p.nom)+' · '+e(p.periode)+'</option>'}).join('')+'</select>';
- h+='<button class="hbtn" style="width:100%;margin-top:10px" data-rv="qcm">QCM · 10 questions</button><button class="hbtn" style="width:100%;margin-top:8px" data-rv="cartes">Cartes de révision</button>';
- var b='';try{b=localStorage.getItem('hist_best')||''}catch(x){}
- if(b)h+='<p class="hnote" style="color:#513d7c;text-shadow:none">Meilleur score QCM : '+e(b)+'/10</p>';
- m.innerHTML=h+'</div>';scrollTo(0,0)}
+function revV(){setDock('#r');var h='<div class="hpanel"><h3 class="hh" style="margin-top:0">Réviser</h3><p>Choisis une époque (ou tout), puis un mode.</p><select id="rs" class="hsearch" aria-label="Époque"><option value="all">Tout</option><optgroup label="Époques">'+D.map(function(p){return'<option value="'+p.id+'">'+e(p.nom)+' · '+e(p.periode)+'</option>'}).join('')+'</optgroup><optgroup label="Cours thématiques">'+TH.map(function(p){return'<option value="'+p.id+'">'+e(p.nom)+'</option>'}).join('')+'</optgroup>'+'</select>';
+ h+='<button class="hbtn" style="width:100%;margin-top:10px" data-rv="qcm">QCM · jusqu'à 10 questions</button><button class="hbtn" style="width:100%;margin-top:8px" data-rv="cartes">Cartes de révision</button>';
+ var st=PR.games?'<p class="hnote" style="color:#513d7c;text-shadow:none">'+PR.games+' QCM joués · '+Math.round(PR.ok/Math.max(1,PR.tot)*100)+' % de réussite · meilleur score (tout) : '+(PR.best.all||0)+'/10</p>':'';
+ h+=st+'<p class="hnote" id="rsy" style="color:#513d7c;text-shadow:none">'+(UID?'Progression liée à ton compte.':'Connecte-toi sur le Dojo pour lier ta progression à ton compte.')+'</p>';
+ m.innerHTML=h+'</div>';scrollTo(0,0);prSync(function(){var el=document.getElementById('rsy');if(el)el.textContent=UID?'Progression liée à ton compte.':'Connecte-toi sur le Dojo pour lier ta progression à ton compte.'})}
 function startQ(scope){var all=cardsFor(scope),qs=shuf(all).map(function(c){return mkQ(c,all)}).filter(function(x){return x&&x.o.length>=3}).slice(0,10);
  if(qs.length<3){m.innerHTML='<div class="hpanel">Pas assez de contenu pour cette époque. <button class="hbtn" data-rv="menu">Retour</button></div>';return}
  QS={qs:qs,i:0,s:0,scope:scope};showQ()}
 function showQ(){var S=QS,q=S.qs[S.i];if(!q)return endQ();
  m.innerHTML='<div class="hpanel"><div class="qbar"><i style="width:'+(S.i/S.qs.length*100)+'%"></i></div><small>Question '+(S.i+1)+'/'+S.qs.length+'</small><div class="qq">'+e(q.q)+'</div>'+q.o.map(function(o,k){return'<button class="qopt" data-o="'+k+'">'+e(o)+'</button>'}).join('')+'</div>'}
-function endQ(){var S=QS;try{var b=+localStorage.getItem('hist_best')||0;if(S.scope==='all'&&S.s>b)localStorage.setItem('hist_best',S.s)}catch(x){}
+function endQ(){var S=QS;PR.best[S.scope]=Math.max(PR.best[S.scope]||0,S.s);PR.games++;PR.ok+=S.s;PR.tot+=S.qs.length;prSaveLocal();prSync();
  m.innerHTML='<div class="hpanel"><h3 class="hh" style="margin-top:0">Score : '+S.s+'/'+S.qs.length+'</h3><p>'+(S.s>=S.qs.length*.8?'Excellent !':S.s>=S.qs.length*.5?'Bien, continue.':'À retravailler : repasse par les cours.')+'</p><button class="hbtn" style="width:100%" data-rv="qcm" data-sc="'+S.scope+'">Rejouer</button><button class="hbtn" style="width:100%;margin-top:8px" data-rv="menu">Menu</button></div>'}
 function startC(scope){var all=shuf(cardsFor(scope));QS={cs:all,i:0,flip:false};showC()}
 function showC(){var S=QS,c=S.cs[S.i];if(!c){revV();return}
