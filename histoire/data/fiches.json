@@ -4297,5 +4297,1115 @@
 "byodoin",
 "insei"
 ]
+},
+{
+"id": "shikken",
+"type": "concept",
+"nom": "Shikken",
+"kanji": "執権",
+"lecture": "しっけん",
+"dates": "1203-1333",
+"epoque": "kamakura",
+"alias": [
+"Shikken",
+"執権",
+"shikken",
+"régence Hōjō"
+],
+"resume": "Titre de régent du shogun porté par les chefs de la famille Hōjō, qui détiennent le vrai pouvoir à Kamakura après la mort de Yoritomo.",
+"points": [
+"Le premier est Hōjō Tokimasa (1203).",
+"Les shoguns sont ensuite des enfants d'une famille Fujiwara, puis de princes impériaux.",
+"Le conseil des conseillers (hyōjōshū) partage les décisions."
+],
+"voir": [
+"yoritomo",
+"masako",
+"jokyu"
+]
+},
+{
+"id": "hojo_yoshitoki",
+"type": "personnage",
+"nom": "Hōjō Yoshitoki",
+"kanji": "北条義時",
+"lecture": "ほうじょうよしとき",
+"dates": "1163-1224",
+"epoque": "kamakura",
+"alias": [
+"Hōjō Yoshitoki",
+"北条義時",
+"Yoshitoki"
+],
+"resume": "Frère de Masako et régent de 1205 à 1224, qui écrase la révolte de la cour en 1221.",
+"points": [
+"Élimine ses rivaux au sein des vassaux (Hatakeyama, Wada).",
+"Vainqueur de la guerre de Jōkyū."
+],
+"voir": [
+"shikken",
+"jokyu",
+"masako"
+]
+},
+{
+"id": "jokyu",
+"type": "événement",
+"nom": "Guerre de Jōkyū",
+"kanji": "承久の乱",
+"lecture": "じょうきゅうのらん",
+"dates": "1221",
+"epoque": "kamakura",
+"alias": [
+"Guerre de Jōkyū",
+"承久の乱",
+"guerre de Jōkyū",
+"Jōkyū"
+],
+"resume": "Tentative de l'empereur retiré Go-Toba de renverser le shogunat. Les troupes de Kamakura prennent Kyōto.",
+"points": [
+"Go-Toba, Juntoku et Tsuchimikado sont exilés.",
+"Le bakufu place des représentants (rokuhara tandai) à Kyōto et confisque des terres en faveur de ses vassaux (jitō)."
+],
+"voir": [
+"hojo_yoshitoki",
+"bakufu",
+"gokenin"
+]
+},
+{
+"id": "goseibai",
+"type": "événement",
+"nom": "Goseibai shikimoku",
+"kanji": "御成敗式目",
+"lecture": "ごせいばいしきもく",
+"dates": "1232",
+"epoque": "kamakura",
+"alias": [
+"Goseibai shikimoku",
+"御成敗式目",
+"Jōei shikimoku"
+],
+"resume": "Premier code de lois des guerriers, en 51 articles, rédigé sous Hōjō Yasutoki. Il codifie les coutumes et sert de base aux lois suivantes.",
+"points": [
+"Il s'applique aux guerriers et non à la cour ; la loi de la cour (ritsuryō) continue d'exister.",
+"Il reste influent jusqu'à l'ère d'Edo."
+],
+"voir": [
+"shikken",
+"bakufu",
+"gokenin"
+]
+},
+{
+"id": "tokimune",
+"type": "personnage",
+"nom": "Hōjō Tokimune",
+"kanji": "北条時宗",
+"lecture": "ほうじょうときむね",
+"dates": "1251-1284",
+"epoque": "kamakura",
+"alias": [
+"Hōjō Tokimune",
+"北条時宗",
+"Tokimune"
+],
+"resume": "Régent à la tête du bakufu pendant les invasions mongoles de 1274 et de 1281.",
+"points": [
+"Rejette les demandes de soumission de Khubilai.",
+"Protège Kyūshū (mur de Hakata).",
+"Soutient les moines zen chinois (Mugaku Sogen, Engaku-ji)."
+],
+"voir": [
+"mongols",
+"zen",
+"kamikaze"
+]
+},
+{
+"id": "kamikaze",
+"type": "concept",
+"nom": "Kamikaze",
+"kanji": "神風",
+"lecture": "かみかぜ",
+"dates": "1274 et 1281",
+"epoque": "kamakura",
+"alias": [
+"Kamikaze",
+"神風",
+"kamikaze",
+"vent divin"
+],
+"resume": "« Vent divin » : les typhons qui, selon la tradition, détruisent la flotte mongole en 1281. Les historiens relativisent leur rôle (défense à Hakata, tempête précoce).",
+"points": [
+"La notion sera réutilisée au XXe siècle (unités d'attaque spéciale, 1944-1945).",
+"Les épaves du Takashima ont été fouillées par des archéologues."
+],
+"voir": [
+"mongols",
+"tokimune"
+]
+},
+{
+"id": "honen",
+"type": "personnage",
+"nom": "Hōnen",
+"kanji": "法然",
+"lecture": "ほうねん",
+"dates": "1133-1212",
+"epoque": "kamakura",
+"alias": [
+"Hōnen",
+"法然"
+],
+"resume": "Moine fondateur de l'école de la Terre pure (Jōdo-shū) qui prêche l'invocation exclusive du nom d'Amida (nenbutsu).",
+"points": [
+"Son Senchaku hongan nenbutsu shū (1198) provoque l'opposition des écoles anciennes.",
+"Exilé en 1207."
+],
+"voir": [
+"shinran",
+"jodo_heian"
+]
+},
+{
+"id": "shinran",
+"type": "personnage",
+"nom": "Shinran",
+"kanji": "親鸞",
+"lecture": "しんらん",
+"dates": "1173-1262",
+"epoque": "kamakura",
+"alias": [
+"Shinran",
+"親鸞"
+],
+"resume": "Disciple de Hōnen, fondateur de la Jōdo Shinshū (vraie Terre pure). Il enseigne que la foi seule suffit à sauver, et se marie.",
+"points": [
+"Son disciple Yuien consigne ses paroles (Tannishō).",
+"Sa lignée est l'une des plus grandes écoles du bouddhisme au Japon."
+],
+"voir": [
+"honen",
+"ikko_ikki"
+]
+},
+{
+"id": "nichiren",
+"type": "personnage",
+"nom": "Nichiren",
+"kanji": "日蓮",
+"lecture": "にちれん",
+"dates": "1222-1282",
+"epoque": "kamakura",
+"alias": [
+"Nichiren",
+"日蓮"
+],
+"resume": "Moine qui fait du Sûtra du Lotus l'unique voie et enseigne l'invocation « Namu myōhō renge kyō ».",
+"points": [
+"Dans son Risshō ankoku ron (1260), il prédit des désastres si l'on ne revient pas au Lotus.",
+"Prévoit l'invasion mongole ; exilé à Izu et Sado."
+],
+"voir": [
+"honen",
+"mongols"
+]
+},
+{
+"id": "eisai",
+"type": "personnage",
+"nom": "Eisai",
+"kanji": "栄西",
+"lecture": "えいさい",
+"dates": "1141-1215",
+"epoque": "kamakura",
+"alias": [
+"Eisai",
+"栄西",
+"Myōan Eisai"
+],
+"resume": "Moine qui introduit l'école zen Rinzai au Japon après deux voyages en Chine, et le thé en tant que remède.",
+"points": [
+"Auteur de Kissa yōjōki (Boire du thé pour la santé).",
+"Fonde le Kenninji de Kyōto (1202), soutenu par le shogun Yoriie."
+],
+"voir": [
+"zen",
+"dogen",
+"cha_no_yu"
+]
+},
+{
+"id": "ippen",
+"type": "personnage",
+"nom": "Ippen",
+"kanji": "一遍",
+"lecture": "いっぺん",
+"dates": "1239-1289",
+"epoque": "kamakura",
+"alias": [
+"Ippen",
+"一遍",
+"Jishū"
+],
+"resume": "Moine itinérant de l'école de la Terre pure, qui diffuse le nenbutsu par la danse (odori nenbutsu) et des talismans.",
+"points": [
+"Fonde la Jishū.",
+"Le rouleau Ippen hijiri-e raconte sa vie."
+],
+"voir": [
+"honen",
+"shinran"
+]
+},
+{
+"id": "kamakura_bouddhisme",
+"type": "concept",
+"nom": "Bouddhisme de Kamakura",
+"kanji": "鎌倉仏教",
+"lecture": "かまくらぶっきょう",
+"dates": "XIIe – XIIIe siècle",
+"epoque": "kamakura",
+"alias": [
+"Bouddhisme de Kamakura",
+"鎌倉仏教",
+"bouddhisme de Kamakura",
+"nouveau bouddhisme"
+],
+"resume": "Mouvements religieux qui rendent le salut plus accessible : Terre pure, zen, Nichiren, par rapport au bouddhisme ésotérique des nobles.",
+"points": [
+"Les écoles anciennes (Tendai, Shingon, Nara) restent très puissantes : la thèse d'un « bouddhisme nouveau » opposé à l'ancien est nuancée par Kuroda Toshio.",
+"Les fondateurs sont souvent passés par le mont Hiei."
+],
+"voir": [
+"honen",
+"nichiren",
+"dogen",
+"eisai"
+]
+},
+{
+"id": "unkei",
+"type": "personnage",
+"nom": "Unkei",
+"kanji": "運慶",
+"lecture": "うんけい",
+"dates": "mort en 1223",
+"epoque": "kamakura",
+"alias": [
+"Unkei",
+"運慶"
+],
+"resume": "Sculpteur de l'école Kei qui réalise les gardiens Niō du Tōdaiji (1203) avec Kaikei.",
+"points": [
+"Réalisme musculaire typique de la sculpture de Kamakura.",
+"Fils de Kōkei."
+],
+"voir": [
+"todaiji",
+"bouddhisme"
+]
+},
+{
+"id": "daibutsu_kamakura",
+"type": "concept",
+"nom": "Grand Bouddha de Kamakura",
+"kanji": "鎌倉大仏",
+"lecture": "かまくらだいぶつ",
+"dates": "1252",
+"epoque": "kamakura",
+"alias": [
+"Grand Bouddha de Kamakura",
+"鎌倉大仏",
+"Kōtoku-in"
+],
+"resume": "Statue de bronze d'Amida d'environ 11 m, commencée en 1252 au Kōtoku-in. Le bâtiment d'origine a été emporté par un raz-de-marée en 1495.",
+"points": [
+"Symbole de la ville de Kamakura.",
+"Moins grand que celui du Tōdaiji."
+],
+"voir": [
+"todaiji",
+"kamakura_bouddhisme"
+]
+},
+{
+"id": "hojoki",
+"type": "concept",
+"nom": "Hōjōki",
+"kanji": "方丈記",
+"lecture": "ほうじょうき",
+"dates": "1212",
+"epoque": "kamakura",
+"alias": [
+"Hōjōki",
+"方丈記",
+"Kamo no Chōmei"
+],
+"resume": "Essai de Kamo no Chōmei qui décrit catastrophes (incendie, séisme) et le choix de vivre dans une hutte d'un « hōjō » (3 m carrés).",
+"points": [
+"Début célèbre : « l'eau de la rivière coule sans cesse, et pourtant l'eau n'est jamais la même »."
+],
+"voir": [
+"heike",
+"zen"
+]
+},
+{
+"id": "tsurezuregusa",
+"type": "concept",
+"nom": "Tsurezuregusa",
+"kanji": "徒然草",
+"lecture": "つれづれぐさ",
+"dates": "≈ 1330",
+"epoque": "kamakura",
+"alias": [
+"Tsurezuregusa",
+"徒然草",
+"Kenkō"
+],
+"resume": "Recueil d'essais (zuihitsu) du moine Yoshida Kenkō sur la beauté, l'impermanence et les usages.",
+"points": [
+"Prône l'esthétique de l'imperfection (wabi) : la lune ou les fleurs dans leur déclin."
+],
+"voir": [
+"sei_shonagon",
+"hojoki"
+]
+},
+{
+"id": "teika",
+"type": "personnage",
+"nom": "Fujiwara no Teika",
+"kanji": "藤原定家",
+"lecture": "ふじわらのていか",
+"dates": "1162-1241",
+"epoque": "kamakura",
+"alias": [
+"Fujiwara no Teika",
+"藤原定家",
+"Teika",
+"Shin kokinshū"
+],
+"resume": "Poète et critique, principal compilateur du Shin kokinshū (1205). Il établit des textes anciens (Genji, Kokinshū).",
+"points": [
+"Idéal poétique du yūgen (profondeur mystérieuse).",
+"Compile l'anthologie Hyakunin isshu (version traditionnelle)."
+],
+"voir": [
+"ki_tsurayuki",
+"genji"
+]
+},
+{
+"id": "kenmu",
+"type": "événement",
+"nom": "Restauration de Kenmu",
+"kanji": "建武の新政",
+"lecture": "けんむのしんせい",
+"dates": "1333-1336",
+"epoque": "kamakura",
+"alias": [
+"Restauration de Kenmu",
+"建武の新政",
+"restauration de Kenmu",
+"Kenmu"
+],
+"resume": "Régime de l'empereur Go-Daigo après la chute de Kamakura : tentative de gouverner sans shogun ni régent.",
+"points": [
+"Mécontentement des guerriers qui n'obtiennent pas de récompenses.",
+"Takauji se révolte en 1335 : début de la guerre des cours du Nord et du Sud."
+],
+"voir": [
+"godaigo",
+"takauji",
+"nanbokucho"
+]
+},
+{
+"id": "kusunoki",
+"type": "personnage",
+"nom": "Kusunoki Masashige",
+"kanji": "楠木正成",
+"lecture": "くすのきまさしげ",
+"dates": "1294-1336",
+"epoque": "kamakura",
+"alias": [
+"Kusunoki Masashige",
+"楠木正成",
+"Masashige"
+],
+"resume": "Guerrier loyal à Go-Daigo, héros de la résistance à Chihaya contre Kamakura. Il meurt à Minatogawa (1336) face à Takauji.",
+"points": [
+"Devient au XIXe siècle un modèle de loyauté envers l'empereur.",
+"Sa statue est devant le palais impérial de Tōkyō."
+],
+"voir": [
+"godaigo",
+"takauji",
+"kenmu"
+]
+},
+{
+"id": "nitta",
+"type": "personnage",
+"nom": "Nitta Yoshisada",
+"kanji": "新田義貞",
+"lecture": "にったよしさだ",
+"dates": "1301-1338",
+"epoque": "kamakura",
+"alias": [
+"Nitta Yoshisada",
+"新田義貞"
+],
+"resume": "Chef guerrier du Kantō qui attaque Kamakura en 1333 et met fin au régime des Hōjō.",
+"points": [
+"Rival d'Ashikaga Takauji ; meurt en 1338."
+],
+"voir": [
+"kenmu",
+"takauji"
+]
+},
+{
+"id": "yoshimasa",
+"type": "personnage",
+"nom": "Ashikaga Yoshimasa",
+"kanji": "足利義政",
+"lecture": "あしかがよしまさ",
+"dates": "1436-1490",
+"epoque": "muromachi",
+"alias": [
+"Ashikaga Yoshimasa",
+"足利義政",
+"Yoshimasa"
+],
+"resume": "Shogun (1449-1473), faible en politique, mais grand mécène. Il fait construire le Ginkaku (pavillon d'argent).",
+"points": [
+"Sa succession est un enjeu de la guerre d'Ōnin.",
+"Il est lié à la culture de Higashiyama."
+],
+"voir": [
+"onin",
+"higashiyama"
+]
+},
+{
+"id": "higashiyama",
+"type": "concept",
+"nom": "Culture de Higashiyama",
+"kanji": "東山文化",
+"lecture": "ひがしやまぶんか",
+"dates": "2e moitié du XVe siècle",
+"epoque": "muromachi",
+"alias": [
+"Culture de Higashiyama",
+"東山文化",
+"Higashiyama",
+"Ginkaku",
+"Pavillon d'argent"
+],
+"resume": "Culture raffinée de la fin de Muromachi, centrée sur le Ginkaku : chanoyu, ikebana, jardins secs, salon shoin.",
+"points": [
+"Sōami, Noami; peinture à l'encre de Sesshū.",
+"Esthétique wabi-sabi."
+],
+"voir": [
+"yoshimasa",
+"cha_no_yu",
+"zen"
+]
+},
+{
+"id": "sesshu",
+"type": "personnage",
+"nom": "Sesshū",
+"kanji": "雪舟",
+"lecture": "せっしゅう",
+"dates": "1420-1506",
+"epoque": "muromachi",
+"alias": [
+"Sesshū",
+"雪舟"
+],
+"resume": "Moine-peintre zen, le plus célèbre peintre à l'encre du Japon. Il voyage en Chine en 1467-1469.",
+"points": [
+"Paysage d'Amanohashidate, Paysage long (Sansui chōkan)."
+],
+"voir": [
+"zen",
+"higashiyama"
+]
+},
+{
+"id": "kangobouekei",
+"type": "concept",
+"nom": "Commerce des sceaux",
+"kanji": "勘合貿易",
+"lecture": "かんごうぼうえき",
+"dates": "1404-1547",
+"epoque": "muromachi",
+"alias": [
+"Commerce des sceaux",
+"勘合貿易",
+"commerce des sceaux",
+"kangō bōeki",
+"commerce Ming"
+],
+"resume": "Commerce officiel avec la Chine des Ming sous le contrôle du shogunat, avec des tallies (kangō) pour distinguer les navires officiels des pirates.",
+"points": [
+"Yoshimitsu reçoit le titre de « roi du Japon » des Ming.",
+"Les Ōuchi et les Hosokawa se disputent ensuite le commerce."
+],
+"voir": [
+"yoshimitsu",
+"wako"
+]
+},
+{
+"id": "wako",
+"type": "concept",
+"nom": "Wakō",
+"kanji": "倭寇",
+"lecture": "わこう",
+"dates": "XIIIe – XVIe siècle",
+"epoque": "muromachi",
+"alias": [
+"Wakō",
+"倭寇",
+"wakō"
+],
+"resume": "Pirates venus du Japon et de Corée qui attaquent les côtes de Chine et de Corée. Une partie était chinoise.",
+"points": [
+"La Corée et la Chine demandent au shogunat de les réprimer.",
+"Hideyoshi interdit la piraterie en 1588."
+],
+"voir": [
+"kangobouekei",
+"hideyoshi"
+]
+},
+{
+"id": "ikko_ikki",
+"type": "événement",
+"nom": "Ikkō ikki",
+"kanji": "一向一揆",
+"lecture": "いっこういっき",
+"dates": "XVe – XVIe siècle",
+"epoque": "sengoku",
+"alias": [
+"Ikkō ikki",
+"一向一揆",
+"ikkō ikki",
+"Ikkō-shū"
+],
+"resume": "Soulèvements de paysans, de guerriers locaux et de fidèles de la Jōdo Shinshū, qui contrôlent la province de Kaga pendant près d'un siècle (1488-1580).",
+"points": [
+"Le temple Honganji d'Ishiyama est assiégé par Nobunaga (1570-1580).",
+"Rennyo (1415-1499) a organisé la communauté."
+],
+"voir": [
+"shinran",
+"nobunaga"
+]
+},
+{
+"id": "teppo",
+"type": "concept",
+"nom": "Arquebuse",
+"kanji": "鉄砲",
+"lecture": "てっぽう",
+"dates": "à partir de 1543",
+"epoque": "sengoku",
+"alias": [
+"Arquebuse",
+"鉄砲",
+"teppō",
+"arquebuse",
+"Tanegashima"
+],
+"resume": "Armes à feu introduites par des Portugais à Tanegashima (1543) et copiées en masse à Sakai et Kunitomo.",
+"points": [
+"Nagashino (1575) est un cas célèbre.",
+"Elles contribuent à la construction de grands châteaux."
+],
+"voir": [
+"nobunaga",
+"nagashino"
+]
+},
+{
+"id": "nagashino",
+"type": "événement",
+"nom": "Bataille de Nagashino",
+"kanji": "長篠の戦い",
+"lecture": "ながしののたたかい",
+"dates": "1575",
+"epoque": "sengoku",
+"alias": [
+"Bataille de Nagashino",
+"長篠の戦い",
+"Nagashino"
+],
+"resume": "Victoire de Nobunaga et Ieyasu sur le clan Takeda de Katsuyori, où les arquebusiers jouent un rôle important.",
+"points": [
+"La légende des « trois rangs successifs » est contestée par les historiens."
+],
+"voir": [
+"teppo",
+"nobunaga",
+"takeda"
+]
+},
+{
+"id": "takeda",
+"type": "personnage",
+"nom": "Takeda Shingen",
+"kanji": "武田信玄",
+"lecture": "たけだしんげん",
+"dates": "1521-1573",
+"epoque": "sengoku",
+"alias": [
+"Takeda Shingen",
+"武田信玄",
+"Shingen"
+],
+"resume": "Daimyō de Kai, grand chef de guerre. Il affronte Uesugi Kenshin à Kawanakajima et meurt en marche contre Ieyasu.",
+"points": [
+"Code du clan et grands travaux d'irrigation (digue de Shingen).",
+"Son fils Katsuyori est battu à Nagashino."
+],
+"voir": [
+"uesugi",
+"nagashino"
+]
+},
+{
+"id": "uesugi",
+"type": "personnage",
+"nom": "Uesugi Kenshin",
+"kanji": "上杉謙信",
+"lecture": "うえすぎけんしん",
+"dates": "1530-1578",
+"epoque": "sengoku",
+"alias": [
+"Uesugi Kenshin",
+"上杉謙信",
+"Kenshin"
+],
+"resume": "Daimyō d'Echigo, rival de Takeda Shingen (batailles de Kawanakajima). Il est célèbre pour son sens de l'honneur et sa dévotion à Bishamonten.",
+"points": [
+"Il porte le nom de Uesugi par adoption.",
+"Il meurt en 1578 (accident vasculaire ?)."
+],
+"voir": [
+"takeda"
+]
+},
+{
+"id": "xavier",
+"type": "personnage",
+"nom": "François Xavier",
+"kanji": "フランシスコ・ザビエル",
+"lecture": "ふらんしすこ・ざびえる",
+"dates": "1506-1552",
+"epoque": "sengoku",
+"alias": [
+"François Xavier",
+"フランシスコ・ザビエル",
+"Xavier",
+"Francisco Xavier"
+],
+"resume": "Missionnaire jésuite basque, arrivé à Kagoshima en 1549. Il prêche au Japon pendant plus de deux ans.",
+"points": [
+"Le christianisme (kirishitan) se répand dans le Kyūshū.",
+"Alessandro Valignano organise la mission."
+],
+"voir": [
+"kirishitan",
+"teppo"
+]
+},
+{
+"id": "kirishitan",
+"type": "concept",
+"nom": "Kirishitan",
+"kanji": "キリシタン",
+"lecture": "きりしたん",
+"dates": "1549 – XIXe siècle",
+"epoque": "sengoku",
+"alias": [
+"Kirishitan",
+"キリシタン",
+"kirishitan"
+],
+"resume": "Chrétiens japonais (catholiques) de l'époque moderne. Ils sont environ 300 000 vers 1600.",
+"points": [
+"Hideyoshi décrète l'expulsion des missionnaires (1587) ; 26 martyrs à Nagasaki (1597).",
+"Interdit par Tokugawa (1612-1614), persécuté puis clandestin (kakure kirishitan).",
+"L'édit de 1873 supprime les tableaux d'interdiction."
+],
+"voir": [
+"xavier",
+"shimabara",
+"sakoku"
+]
+},
+{
+"id": "imjin",
+"type": "événement",
+"nom": "Invasions de Corée",
+"kanji": "文禄・慶長の役",
+"lecture": "ぶんろく・けいちょうのえき",
+"dates": "1592-1598",
+"epoque": "sengoku",
+"alias": [
+"Invasions de Corée",
+"文禄・慶長の役",
+"invasions de Corée",
+"Imjin",
+"Bunroku"
+],
+"resume": "Deux campagnes de Hideyoshi contre la Corée des Joseon, en vue de conquérir la Chine des Ming.",
+"points": [
+"Amiral Yi Sun-sin, flottes coréennes et armées Ming.",
+"Retrait à la mort de Hideyoshi (1598).",
+"Conséquences : déportations de potiers coréens (porcelaine d'Arita)."
+],
+"voir": [
+"hideyoshi",
+"sekigahara"
+]
+},
+{
+"id": "momoyama",
+"type": "concept",
+"nom": "Culture de Momoyama",
+"kanji": "桃山文化",
+"lecture": "ももやまぶんか",
+"dates": "1573-1600",
+"epoque": "sengoku",
+"alias": [
+"Culture de Momoyama",
+"桃山文化",
+"culture de Momoyama",
+"Azuchi-Momoyama"
+],
+"resume": "Culture fastueuse des grands seigneurs et marchands : châteaux, paravents dorés (Kanō Eitoku), théâtre, chanoyu.",
+"points": [
+"Château d'Azuchi, d'Osaka, de Himeji.",
+"Salon de thé d'or de Hideyoshi."
+],
+"voir": [
+"rikyu",
+"nobunaga",
+"hideyoshi"
+]
+},
+{
+"id": "osaka",
+"type": "événement",
+"nom": "Siège d'Ōsaka",
+"kanji": "大坂の陣",
+"lecture": "おおさかのじん",
+"dates": "1614-1615",
+"epoque": "edo",
+"alias": [
+"Siège d'Ōsaka",
+"大坂の陣",
+"siège d'Ōsaka",
+"Ōsaka no jin"
+],
+"resume": "Deux campagnes d'Ieyasu qui détruisent le clan Toyotomi, retranché dans le château d'Ōsaka.",
+"points": [
+"Hideyori et sa mère Yodo-dono meurent en 1615.",
+"Peu après, le code des maisons guerrières (buke shohatto) est publié."
+],
+"voir": [
+"ieyasu",
+"hideyoshi"
+]
+},
+{
+"id": "buke_shohatto",
+"type": "concept",
+"nom": "Buke shohatto",
+"kanji": "武家諸法度",
+"lecture": "ぶけしょはっと",
+"dates": "1615",
+"epoque": "edo",
+"alias": [
+"Buke shohatto",
+"武家諸法度",
+"buke shohatto",
+"règlement des maisons guerrières"
+],
+"resume": "Règlements aux daimyō : limitation des châteaux, contrôle des mariages, etc.",
+"points": [
+"Révisé en 1635 par Iemitsu pour imposer le sankin kōtai."
+],
+"voir": [
+"sankin_kotai",
+"daimyo"
+]
+},
+{
+"id": "bakuhan",
+"type": "concept",
+"nom": "Système bakuhan",
+"kanji": "幕藩体制",
+"lecture": "ばくはんたいせい",
+"dates": "XVIIe – XIXe siècle",
+"epoque": "edo",
+"alias": [
+"Système bakuhan",
+"幕藩体制",
+"bakuhan"
+],
+"resume": "Combinaison du shogunat (bakufu) et des domaines (han) dirigés par les daimyō, qui forme le cadre politique d'Edo.",
+"points": [
+"Environ 260 domaines.",
+"Le shogunat contrôle les mines, les villes principales et la politique étrangère."
+],
+"voir": [
+"daimyo",
+"bakufu",
+"sankin_kotai"
+]
+},
+{
+"id": "iemitsu",
+"type": "personnage",
+"nom": "Tokugawa Iemitsu",
+"kanji": "徳川家光",
+"lecture": "とくがわいえみつ",
+"dates": "1604-1651",
+"epoque": "edo",
+"alias": [
+"Tokugawa Iemitsu",
+"徳川家光",
+"Iemitsu"
+],
+"resume": "Troisième shogun, qui consolide le système : sankin kōtai, restrictions maritimes et interdiction du christianisme.",
+"points": [
+"Écrase la révolte de Shimabara.",
+"Fait construire le mausolée de Nikkō."
+],
+"voir": [
+"sankin_kotai",
+"sakoku",
+"shimabara"
+]
+},
+{
+"id": "shimabara",
+"type": "événement",
+"nom": "Révolte de Shimabara",
+"kanji": "島原の乱",
+"lecture": "しまばらのらん",
+"dates": "1637-1638",
+"epoque": "edo",
+"alias": [
+"Révolte de Shimabara",
+"島原の乱",
+"révolte de Shimabara",
+"Shimabara"
+],
+"resume": "Soulèvement de paysans et de chrétiens écrasés par la pression fiscale et la persécution. Vaincus à Hara, près de 37 000 rebelles sont tués.",
+"points": [
+"Le shogunat expulse les Portugais (1639) et renforce l'interdiction.",
+"Les Hollandais, qui ont aidé, restent à Dejima."
+],
+"voir": [
+"kirishitan",
+"sakoku",
+"iemitsu"
+]
+},
+{
+"id": "dejima",
+"type": "concept",
+"nom": "Dejima",
+"kanji": "出島",
+"lecture": "でじま",
+"dates": "1641-1859",
+"epoque": "edo",
+"alias": [
+"Dejima",
+"出島"
+],
+"resume": "Petite île artificielle de Nagasaki où la Compagnie des Indes orientales néerlandaises (VOC) a son comptoir. Seule fenêtre officielle sur l'Occident.",
+"points": [
+"Les Chinois ont leur quartier (Tōjin yashiki).",
+"Voie d'entrée du rangaku."
+],
+"voir": [
+"rangaku",
+"sakoku"
+]
+},
+{
+"id": "genroku",
+"type": "concept",
+"nom": "Culture de Genroku",
+"kanji": "元禄文化",
+"lecture": "げんろくぶんか",
+"dates": "vers 1688-1704",
+"epoque": "edo",
+"alias": [
+"Culture de Genroku",
+"元禄文化",
+"Genroku"
+],
+"resume": "Floraison de la culture des chōnin d'Ōsaka et de Kyōto : Bashō, Chikamatsu, Saikaku, Ogata Kōrin.",
+"points": [
+"Saikaku : romans de la vie flottante (ukiyo-zōshi).",
+"Sous le shogun Tsunayoshi."
+],
+"voir": [
+"basho",
+"chikamatsu",
+"chonin"
+]
+},
+{
+"id": "saikaku",
+"type": "personnage",
+"nom": "Ihara Saikaku",
+"kanji": "井原西鶴",
+"lecture": "いはらさいかく",
+"dates": "1642-1693",
+"epoque": "edo",
+"alias": [
+"Ihara Saikaku",
+"井原西鶴",
+"Saikaku"
+],
+"resume": "Poète et romancier d'Ōsaka, créateur du roman de mœurs (ukiyo-zōshi) : La Vie d'un libertin, Le Grand Miroir de l'amour.",
+"points": [
+"Il décrit l'argent et le désir des chōnin."
+],
+"voir": [
+"genroku",
+"chonin"
+]
+},
+{
+"id": "yoshimune",
+"type": "personnage",
+"nom": "Tokugawa Yoshimune",
+"kanji": "徳川吉宗",
+"lecture": "とくがわよしむね",
+"dates": "1684-1751",
+"epoque": "edo",
+"alias": [
+"Tokugawa Yoshimune",
+"徳川吉宗",
+"Yoshimune",
+"réformes de Kyōhō"
+],
+"resume": "Huitième shogun (1716-1745) : réformes de Kyōhō pour redresser les finances par l'impôt, la promotion du riz et des économies.",
+"points": [
+"Il autorise l'importation de livres occidentaux non religieux (1720).",
+"Crée une boîte à pétitions (meyasubako)."
+],
+"voir": [
+"rangaku",
+"tanuma"
+]
+},
+{
+"id": "tanuma",
+"type": "personnage",
+"nom": "Tanuma Okitsugu",
+"kanji": "田沼意次",
+"lecture": "たぬまおきつぐ",
+"dates": "1719-1788",
+"epoque": "edo",
+"alias": [
+"Tanuma Okitsugu",
+"田沼意次",
+"Tanuma"
+],
+"resume": "Conseiller du shogun (1767-1786) qui encourage le commerce et les corporations marchandes (kabunakama). Sa chute suit la famine de Tenmei.",
+"points": [
+"Critiqué pour la corruption.",
+"Succédé par Matsudaira Sadanobu."
+],
+"voir": [
+"yoshimune",
+"tenpo"
+]
+},
+{
+"id": "tenpo",
+"type": "événement",
+"nom": "Réformes de l'ère Tenpō",
+"kanji": "天保の改革",
+"lecture": "てんぽうのかいかく",
+"dates": "1841-1843",
+"epoque": "edo",
+"alias": [
+"Réformes de l'ère Tenpō",
+"天保の改革",
+"réformes de Tenpō",
+"Tenpō",
+"Mizuno Tadakuni"
+],
+"resume": "Réformes de Mizuno Tadakuni après les famines de Tenpō (1833-1837) : austérité, dissolution des corporations, contrôle des mœurs.",
+"points": [
+"Échouent en deux ans.",
+"Précédées des réformes de Kansei (1787-1793) par Matsudaira Sadanobu."
+],
+"voir": [
+"tanuma",
+"yoshimune"
+]
+},
+{
+"id": "ii_naosuke",
+"type": "personnage",
+"nom": "Ii Naosuke",
+"kanji": "井伊直弼",
+"lecture": "いいなおすけ",
+"dates": "1815-1860",
+"epoque": "edo",
+"alias": [
+"Ii Naosuke",
+"井伊直弼"
+],
+"resume": "Chef du gouvernement shogunal (tairō), qui signe des traités inégaux avec les puissances (1858) sans l'accord de l'empereur et réprime les opposants (purge d'Ansei).",
+"points": [
+"Assassiné à Sakuradamon (1860)."
+],
+"voir": [
+"perry",
+"restauration_meiji"
+]
+},
+{
+"id": "satcho",
+"type": "événement",
+"nom": "Alliance Satchō",
+"kanji": "薩長同盟",
+"lecture": "さっちょうどうめい",
+"dates": "1866",
+"epoque": "edo",
+"alias": [
+"Alliance Satchō",
+"薩長同盟",
+"alliance Satchō",
+"Satchō"
+],
+"resume": "Alliance secrète entre les domaines de Satsuma et de Chōshū, négociée par Sakamoto Ryōma, qui prépare la chute du shogunat.",
+"points": [
+"Saigō Takamori, Ōkubo Toshimichi, Katsura Kogorō.",
+"Ryōma est assassiné en 1867."
+],
+"voir": [
+"saigo",
+"restauration_meiji"
+]
 }
 ]
