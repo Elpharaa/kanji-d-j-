@@ -32845,7 +32845,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v542', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v543', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35913,7 +35913,12 @@ var PAR="";
     function exFetch(key) {
       return fetch('data/jmdict_' + key + '.gz').then(function (r) { if (!r.ok) throw 0; return r.blob(); }).then(function (bl) {
         return new Response(bl.stream().pipeThrough(new DecompressionStream('gzip'))).text();
-      }).then(function (t) { return JSON.parse(t); });
+      }).then(function (t) { return JSON.parse(t); }).then(function (rows) {
+        if (key !== 'rest') return rows;
+        return fetch('data/jmfr.json').then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; }).then(function (fr) {
+          rows.forEach(function (r) { var g = fr[r[0]]; if (g) r[4] = g; }); return rows;
+        });
+      });
     }
     function exApply(rows) {
       var have = {}; JMD.forEach(function (r) { have[r[0]] = 1; });
