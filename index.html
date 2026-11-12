@@ -16362,13 +16362,15 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
   function flDeck(newMax) {
     var now = Date.now(), pool = playPool(true); S.srs = S.srs || {};
     var due = pool.filter(function (w) { var e = S.srs[w.key]; return e && e.due <= now; }).sort(function (a, b) { return S.srs[a.key].due - S.srs[b.key].due; });
+    // cartes en cours d'apprentissage (« revoir dans 2 / 8 / 30 min ») pas encore échues : elles passent avant les nouvelles cartes
+    var soon = pool.filter(function (w) { var e = S.srs[w.key]; return e && e.due > now && e.due - now <= 3600000; }).sort(function (a, b) { return S.srs[a.key].due - S.srs[b.key].due; });
     var fresh = shuffle(pool.filter(function (w) { return !S.srs[w.key]; }));
-    return { due: due, fresh: fresh.slice(0, newMax), freshLeft: Math.max(0, fresh.length - newMax) };
+    return { due: due, soon: soon, fresh: fresh.slice(0, newMax), freshLeft: Math.max(0, fresh.length - newMax) };
   }
   function startFlash(mode) {
     cleanupSession();
     var d = flDeck(FL_NEW);
-    sess = { kind: 'flash', mode: FLASH[mode] ? mode : 'flashfr', back: 'home', deck: d.due.concat(d.fresh), later: [], cur: null, flipped: false, done: 0, freshLeft: d.freshLeft, combo: 0, answered: false, nextT: null };
+    sess = { kind: 'flash', mode: FLASH[mode] ? mode : 'flashfr', back: 'home', deck: d.due.concat(d.soon, d.fresh), later: [], cur: null, flipped: false, done: 0, freshLeft: d.freshLeft, combo: 0, answered: false, nextT: null };
     setHud('flash'); $('stageInfo').hidden = true; show('vSession'); flTouch(); clearInterval(flTimer); flTimer = setInterval(flTick, 1000); flNext();
   }
   function flNext() {
@@ -32845,7 +32847,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v790', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v791', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
