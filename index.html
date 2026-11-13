@@ -2570,7 +2570,7 @@ button.cdbinder .cdbtx{align-items:stretch}
 .stleg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
 
 /* ---- v97 : visite guidée interactive + guide illustré ---- */
-#coach{position:fixed;inset:0;z-index:9000;touch-action:none}
+#coach{position:fixed;inset:0;z-index:9000}
 #coach[hidden]{display:none}
 #coach .cspot{position:fixed;box-shadow:0 0 0 9999px rgba(17,13,27,.78);outline:3px solid #e8c46a;transition:all .28s ease;pointer-events:none;animation:coPulse 1.6s ease-in-out infinite}
 #coach.center .cspot{box-shadow:0 0 0 9999px rgba(17,13,27,.82);outline:0;animation:none}
@@ -16928,7 +16928,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
       var bt = bestText(id);
       return '<button class="mode gamecard djt" type="button" data-game="' + id + '" aria-label="' + esc(c.name) + '"><span class="tk" aria-hidden="true">' + c.g + '</span><span class="gtx"><b>' + esc(c.name) + '</b>' + (bt ? '<small>' + esc(bt) + '</small>' : '') + '</span></button>';
     }
-    $('games').innerHTML = djGamesHTML(FLASH_ORDER.map(card).join(''), card('kread') + card('ksens') + card('kstudy') + djTile('comp'), '<h4 class="mjh"><span aria-hidden="true">✍️</span> Écrit</h4>' + GAME_ORDER.map(card).join('') + djTile('nb'));
+    $('games').innerHTML = djGamesHTML(FLASH_ORDER.map(card).join(''), card('kread') + card('ksens') + card('kstudy') + djTile('comp'), '<h4 class="mjh"><span aria-hidden="true">✍️</span> Écrit</h4>' + GAME_ORDER.filter(function (g) { return g !== 'write'; }).map(card).join('') + djTile('nb'));
     $('badges').innerHTML = BADGES.map(badgeCardHTML).join('');
     var empty = false;
     $('homeNote').hidden = !empty;
@@ -19668,7 +19668,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
   document.addEventListener('change', function (e) { var t = e.target; if (t && t.id === 'geoKana' && !$('vGeo').hidden) { geo.kana = t.checked; if (geo.screen === 'ppick' || geo.screen === 'cpick') return; } });
   /* ===== ECRITURE : tracer les kanji au doigt, trait par trait (tracés : KanjiVG, CC BY-SA 3.0) ===== */
   var TZREF = null;
-  var tz = { screen: 'menu', lv: 'n5', mode: 'guide', n: 10, list: [], i: 0, st: 0, err: 0, fails: 0, tot: 0, bad: [], cur: null, hint: false, pen: null, msg: '' };
+  var tz = { focus: '', back: '', screen: 'menu', lv: 'n5', mode: 'guide', n: 10, list: [], i: 0, st: 0, err: 0, fails: 0, tot: 0, bad: [], cur: null, hint: false, pen: null, msg: '' };
   function tzS() { S.tz = S.tz || {}; return S.tz; }
   function tzXp(n) {
     var g = tzS(), d = dayKey(), x = g.xp && g.xp.d === d ? g.xp : (g.xp = { d: d, n: 0 }), add = Math.max(0, Math.min(n, 40 - x.n));
@@ -19684,21 +19684,30 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
   function renderTz() {
     var b = $('tzBody'); if (!b) return;
     if (LZ.st !== 2 && Object.keys(STROKES).length < 1500) { b.innerHTML = '<div class="panel"><p class="muted">Chargement des tracés…</p></div>'; tzLoad(renderTz); return; }
-    if (tz.screen === 'menu') b.innerHTML = tzMenu(); else if (tz.screen === 'play') { b.innerHTML = tzPlay(); tzDraw(); tzBind(); } else b.innerHTML = tzEnd();
+    if (tz.screen === 'menu') b.innerHTML = tzMenu(); else if (tz.screen === 'one') { b.innerHTML = tzOne(); try { swBuild($('tzView'), tz.focus); } catch (e) {} } else if (tz.screen === 'play') { b.innerHTML = tzPlay(); tzDraw(); tzBind(); } else b.innerHTML = tzEnd();
   }
   function tzMenu() {
-    var g = tzS(), n = tzPool().length;
-    return '<div class="panel"><h3>Écriture des kanji ✍️</h3><p class="small muted">On te donne le sens et la lecture : trace le kanji au doigt, <b>trait par trait</b>, dans le bon ordre et le bon sens. Le trait juste se lisse et devient vert.</p>' +
+    var g = tzS(), n = tzPool().length, due = 0; try { due = wrDueCount(); } catch (e) {}
+    return '<div class="panel"><h3>Écriture ✍️</h3><p class="small muted">Tout pour apprendre à écrire : regarder l’ordre des traits, tracer au doigt, écrire de mémoire.</p>' +
+      '<p class="geolab">Un kanji précis</p><div class="row"><input class="field" id="tzSearch" maxlength="2" inputmode="text" placeholder="日" aria-label="Un kanji à travailler" style="max-width:6em;font-size:1.3rem"><button type="button" class="btn" data-tz="search">Voir et tracer</button></div></div>' +
+      '<div class="panel"><h3>Tracer en séries</h3><p class="small muted">On te donne le sens et la lecture : trace le kanji <b>trait par trait</b>, dans le bon ordre et le bon sens.</p>' +
       '<p class="geolab">Niveau</p><div class="geochips">' + ['n5', 'n4', 'n3', 'n2', 'n1'].map(function (k) { return '<button type="button" class="geochip" data-tz="lv:' + k + '" aria-pressed="' + (k === tz.lv) + '">' + k.toUpperCase() + '</button>'; }).join('') + '</div>' +
       '<p class="geolab">Mode</p><div class="seg geoseg" role="tablist"><button type="button" role="tab" data-tz="mode:guide" aria-selected="' + (tz.mode === 'guide') + '">Guidé <small>le kanji est en filigrane</small></button><button type="button" role="tab" data-tz="mode:memo" aria-selected="' + (tz.mode === 'memo') + '">De mémoire <small>sans modèle</small></button></div>' +
       '<p class="geolab">Combien de kanji ?</p><div class="geochips">' + [5, 10, 20].map(function (k) { return '<button type="button" class="geochip" data-tz="n:' + k + '" aria-pressed="' + (k === tz.n) + '">' + k + '</button>'; }).join('') + '</div>' +
       '<button type="button" class="btn primary geogo" data-tz="start"' + (n ? '' : ' disabled') + '>Commencer</button>' +
-      '<p class="small muted">' + n + ' kanji disponibles en ' + tz.lv.toUpperCase() + ' · déjà écrits sans faute : <b>' + (g.perfect || 0) + '</b></p><p class="small muted">Tracés : KanjiVG (CC BY-SA 3.0)</p></div>';
+      '<p class="small muted">' + n + ' kanji en ' + tz.lv.toUpperCase() + ' · écrits sans faute : <b>' + (g.perfect || 0) + '</b></p></div>' +
+      '<div class="panel"><h3>Écriture libre</h3><p class="small muted">Écris des mots entiers à la main : l’appli compare ton dessin au modèle.</p><div class="row"><button type="button" class="btn primary" data-tz="free">Écrire des mots</button>' + (due ? '<button type="button" class="btn" data-tz="freerev">' + due + ' à revoir</button>' : '') + '</div>' +
+      '<p class="small muted">Tracés : KanjiVG (CC BY-SA 3.0)</p></div>';
+  }
+  function tzOne() {
+    var c = tz.focus, i = kxInfo(c) || { on: [], kun: [], sens: '' }, rd = (i.kun || []).slice(0, 3).concat(i.on || []).slice(0, 4).join('、');
+    return '<button type="button" class="btn ghost geoback" data-tz="menu">‹ Écriture</button><div class="panel"><h3><span class="geojp">' + esc(c) + '</span> ' + esc(tzSens(i.sens)) + '</h3><p class="small muted">' + esc(rd) + '</p>' +
+      '<div id="tzView"></div><div class="row" style="margin-top:10px"><button type="button" class="btn primary" data-tz="trace1:guide">Tracer (guidé)</button><button type="button" class="btn" data-tz="trace1:memo">De mémoire</button></div></div>';
   }
   function tzStart() {
     var pool = shuffle(tzPool().slice()).slice(0, tz.n);
     if (!pool.length) return;
-    tz.list = pool; tz.i = 0; tz.tot = 0; tz.bad = []; tz.screen = 'play'; tzNew(); renderTz();
+    tz.back = ''; tz.list = pool; tz.i = 0; tz.tot = 0; tz.bad = []; tz.screen = 'play'; tzNew(); renderTz();
   }
   function tzNew() { tz.st = 0; tz.err = 0; tz.fails = 0; tz.cur = tz.list[tz.i]; tz.hint = false; tz.done = false; tz.msg = ''; tz.pen = null; }
   function tzPlay() {
@@ -19777,17 +19786,30 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     var n = tz.list.length, pct = Math.round(tz.tot / n * 100);
     return '<div class="panel geoend"><h3>' + (pct >= 90 ? 'Superbe écriture !' : pct >= 60 ? 'Bien joué !' : 'Continue, ça vient !') + '</h3><p class="geobig">' + tz.tot + ' / ' + n + ' <small>sans faute</small></p>' +
       (tz.bad.length ? '<p class="geolab">À retravailler</p><div class="geochips">' + tz.bad.map(function (c) { var i = kxInfo(c) || {}; return '<span class="geochip"><b class="geojp">' + esc(c) + '</b> ' + esc(tzSens(i.sens).split(',')[0]) + '</span>'; }).join('') + '</div>' : '<p class="small">Aucune erreur, sans faute !</p>') +
-      '<div class="row"><button type="button" class="btn primary" data-tz="start">Rejouer</button><button type="button" class="btn" data-tz="menu">Menu</button></div></div>';
+      (tz.back === 'one' ? '<div class="row"><button type="button" class="btn primary" data-tz="trace1:' + tz.mode + '">Recommencer</button><button type="button" class="btn" data-tz="onev">Retour au kanji</button><button type="button" class="btn ghost" data-tz="menu">Menu</button></div></div>' : '<div class="row"><button type="button" class="btn primary" data-tz="start">Rejouer</button><button type="button" class="btn" data-tz="menu">Menu</button></div></div>');
   }
   document.addEventListener('click', function (e) {
     var b = e.target.closest ? e.target.closest('[data-tz]') : null; if (!b || !user || $('vTz').hidden) return;
     var a = b.getAttribute('data-tz'), v = a.indexOf(':') > 0 ? a.slice(a.indexOf(':') + 1) : '', k = a.split(':')[0];
     if (k === 'lv') { tz.lv = v; renderTz(); return; } if (k === 'mode') { tz.mode = v; renderTz(); return; } if (k === 'n') { tz.n = +v; renderTz(); return; }
     if (a === 'menu') { tz.screen = 'menu'; renderTz(); } else if (a === 'start') tzStart();
+    else if (a === 'onev') { tz.screen = 'one'; renderTz(); }
+    else if (a === 'search') { var q = String(($('tzSearch') || {}).value || '').trim(), ch = Array.from(q).filter(function (c) { return STROKES[c]; })[0]; if (!ch) { toast('Tape un kanji (par exemple 日) dont le tracé est disponible.'); return; } tz.focus = ch; tz.screen = 'one'; renderTz(); window.scrollTo(0, 0); }
+    else if (k === 'trace1') { tz.mode = v; tz.list = [tz.focus]; tz.i = 0; tz.tot = 0; tz.bad = []; tz.back = 'one'; tz.screen = 'play'; tzNew(); renderTz(); window.scrollTo(0, 0); }
+    else if (a === 'free') startWrite(false); else if (a === 'freerev') startWrite(true);
     else if (a === 'hint') { tz.hint = true; tzDraw(); }
     else if (a === 'skip') { tz.bad.push(tz.cur); tz.err = 99; tz.done = true; tz.st = STROKES[tz.cur].length; tzDraw(); var last = tz.i >= tz.list.length - 1; var f = $('tzFb'); if (f) f.innerHTML = '<p class="geoko">Le voici en entier : observe l\'ordre des traits.</p><button type="button" class="btn primary" data-tz="next">' + (last ? 'Voir le résultat' : 'Suivant') + '</button>'; }
     else if (a === 'next') { tz.i++; if (tz.i >= tz.list.length) { tz.screen = 'end'; } else tzNew(); renderTz(); window.scrollTo(0, 0); }
   });
+
+  /* un seul point d'entrée pour l'écriture : tous les anciens boutons « Tracé / Ordre des traits » ouvrent l'écran Écriture */
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-sw="open"]') : null; if (!b || !user) return;
+    var c = b.getAttribute('data-k'); if (!c || !STROKES[c]) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    try { var m = $('appModal'); if (m && !m.hidden && typeof closeModal === 'function') closeModal(); } catch (x) {}
+    go('tz'); tz.focus = c; tz.screen = 'one'; renderTz(); window.scrollTo(0, 0);
+  }, true);
 
   function renderHub() {
     assetsLoad();
@@ -23750,12 +23772,9 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
      VISITE GUIDÉE INTERACTIVE (projecteur + flèche + Asahi) et GUIDE illustré
      ===================================================================== */
   var COACH = [
-    { c: 1, go: 'hub', t: 'Bienvenue au Dōjō !', say: 'Moi c\'est Asahi ! Je te montre l\'essentiel, ça prend 30 secondes.' },
-    { go: 'hub', sel: '#userbox .slv', t: 'Ton niveau, ton XP et tes pièces', say: 'Chaque bonne réponse remplit ta barre d\'XP et te fait monter de niveau. Tu gagnes aussi des pièces (en haut à droite), à dépenser dans la Boutique.' },
-    { go: 'hub', sel: '#hubGrid [data-hub=home]', t: 'Réviser : le cœur de l\'appli', say: 'C\'est ici que tu révises : flashcards, mini-jeux, examen blanc. Un mot est maîtrisé après 3 bonnes réponses d\'affilée.' },
-    { go: 'hub', sel: '#hubGrid [data-hub=story]', t: 'L\'aventure', say: 'Une histoire en chapitres, avec des boss. Elle suit le niveau que tu as choisi ; tu peux le changer en haut de la page.' },
-    { go: 'hub', sel: '#nav', t: 'Le menu du bas', say: 'Accueil, Aventure, Dojo, Base et Profil. Dans « Plus » : classement, statistiques et guide. La Boutique, le classeur de cartes et les salons sont sur l\'accueil.' },
-    { c: 1, go: 'hub', t: 'À toi de jouer !', say: 'Pour commencer, touche le Dojo et lance une partie. Le guide, et le choix de ton niveau, se trouvent dans « Plus ».' }
+    { c: 1, go: 'hub', t: 'Bienvenue au Dōjō !', say: 'Moi c\'est Asahi ! Chaque bonne réponse te donne de l\'XP et des pièces, un mot est maîtrisé après 3 bonnes réponses d\'affilée. Visite express : 2 étapes.' },
+    { go: 'hub', sel: '#nav', t: 'Le menu du bas', say: 'Accueil, Aventure, Dojo, Base et Profil. Dans « Plus » : classement, statistiques, réglages et guide.' },
+    { c: 1, go: 'hub', t: 'À toi de jouer !', say: 'Touche le Dojo et lance une partie. Cette visite ne se relance pas toute seule : le « Guide » reste dans « Plus ».' }
   ];
   var coachI = 0, coachEl = null, coachTimer = 0;
   function coachBuild() {
@@ -23798,6 +23817,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     var cur = !$('vProfil').hidden ? 'profil' : !$('vHub').hidden ? 'hub' : '';
     if (s.go && cur !== s.go) { go(s.go); }
     window.scrollTo({ top: 0, behavior: 'instant' });
+    tourMark();
     d.hidden = false; document.body.classList.add('coaching');
     d.querySelector('.cbm').innerHTML = mascotHTML(); d.querySelector('.cbh').textContent = s.t; d.querySelector('.cbp').textContent = s.say;
     d.querySelector('.cprog').textContent = (i + 1) + ' / ' + COACH.length;
@@ -23870,6 +23890,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
   }
   function guideOpen() { openModal('Comment ça marche ?', guideHTML(), 'wide guidemodal'); }
   document.addEventListener('click', function (e) {
+    if (e.target && e.target.id === 'coach') { coachEnd(true); return; }
     var c = e.target.closest ? e.target.closest('[data-coach]') : null;
     if (c) {
       var a = c.getAttribute('data-coach');
@@ -33438,7 +33459,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v800', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v801', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35433,7 +35454,7 @@ var PAR="";
         { k: 'dico', kj: '辞', t: 'Dictionnaire', s: T(function () { return dcCount().toLocaleString('fr-FR'); }, '25 000') + ' mots · verbes conjugués', a: 'data-hubdico="1"', c1: '#fae8b2', c2: '#e0b24c' }
       ];
       arr.splice(3, 0, { k: 'hist', kj: '史', t: 'Histoire du Japon', s: '14 époques, du Jōmon à Reiwa', a: 'data-khist="1"', c1: '#e3d9f6', c2: '#8b6fc4' });
-      arr.splice(5, 0, { k: 'tz', kj: '書', t: 'Écriture des kanji', s: 'Trace-les au doigt, trait par trait', a: 'data-go="tz"', c1: '#f6dcc4', c2: '#d98f4e' });
+      arr.splice(5, 0, { k: 'tz', kj: '書', t: 'Écriture', s: 'Ordre des traits, tracé guidé, de mémoire', a: 'data-go="tz"', c1: '#f6dcc4', c2: '#d98f4e' });
       arr.splice(4, 0, { k: 'geo', kj: '地', t: 'Géographie du Japon', s: 'Préfectures, villes et métro de Tokyo', a: 'data-go="geo"', c1: '#cfe9ef', c2: '#4fa7a8' });
       if (errs) arr.splice(0, 0, { k: 'err', kj: '復', t: 'Mes erreurs', s: errs + ' à corriger : 3 bonnes réponses d\u2019affilée et elles disparaissent', a: 'data-errbook="1"', c1: '#f8c2c8', c2: '#c8405a' });
       if (T(function () { return unlOn('story'); }, false)) arr.push({ k: 'story', kj: '旅', t: 'Aventure', s: L.tag + (chs.length ? ' · ' + done + '/' + chs.length + ' chapitres' : ''), a: 'data-go="story"', c1: '#fbd3bc', c2: '#e58a5f' });
@@ -35843,7 +35864,7 @@ var PAR="";
       gram: ['Au<br>menu', [['', '章', 'Unités'], ['', '丁', 'Politesse'], ['', '助', 'Particules'], ['', '形', 'Formes en て'], ['', '問', 'Quiz'], ['', '読', 'Lecture']]],
       err: ['Pour<br>corriger', [['', '帳', 'Carnet'], ['', '三', '3 bonnes réponses'], ['', '炉', 'Fourneau'], ['', '復', 'Révision'], ['', '忘', 'Jamais oublié']]],
       story: ['Au<br>menu', [['', '章', 'Chapitres'], ['', '鬼', 'Boss'], ['', '話', 'Histoire'], ['', '試', 'Épreuves']]],
-      tz: ['Je trace<br>les kanji', [['n5', '五', 'N5'], ['n4', '四', 'N4'], ['n3', '三', 'N3'], ['n2', '二', 'N2'], ['n1', '一', 'N1']]],
+      tz: ['Je trace<br>les kanji', [['voir', '見', 'Ordre des traits'], ['guide', '筆', 'Tracé guidé'], ['memo', '記', 'De mémoire'], ['libre', '自', 'Écriture libre']]],
       geo: ['Dans la<br>géo', [['explore', '地', 'Explorer'], ['ppick', '県', 'Préfectures'], ['cpick', '都', 'Placer les villes'], ['metro', '駅', 'Métro de Tokyo'], ['mstart', '電', 'Quiz métro']]],
       hist: ['Dans<br>l\'histoire', [['', '時', 'Époques'], ['l', '年', 'Frise'], ['d', '史', 'Dossiers'], ['p', '人', 'Personnages'], ['c', '語', 'Concepts'], ['r', '試', 'Réviser']]]
     };
@@ -35863,7 +35884,7 @@ var PAR="";
     document.addEventListener('click', function (e) {
       var t = e.target.closest ? e.target.closest('.kdtk') : null; if (!t) return; var c = t.closest('.kdc'); if (!c || !c.classList.contains('sel')) return;
       if (c.getAttribute('data-k') === 'hist') { e.preventDefault(); e.stopPropagation(); var hs = t.getAttribute('data-kdsub'); location.href = 'histoire/' + (hs ? '#' + hs : ''); return; }
-      if (c.getAttribute('data-k') === 'tz') { if (!user) return; e.preventDefault(); e.stopPropagation(); tz.lv = t.getAttribute('data-kdsub'); go('tz'); return; }
+      if (c.getAttribute('data-k') === 'tz') { if (!user) return; e.preventDefault(); e.stopPropagation(); var tm = t.getAttribute('data-kdsub'); if (tm === 'libre') { startWrite(false); return; } if (tm === 'guide' || tm === 'memo') tz.mode = tm; go('tz'); return; }
       if (c.getAttribute('data-k') === 'geo') { if (!user) return; e.preventDefault(); e.stopPropagation(); var gs = t.getAttribute('data-kdsub'); go('geo'); setTimeout(function () { if (gs === 'mstart') { geo.m = { q: geoMQuizBuild(), i: 0, ok: 0, ans: false }; } geo.screen = gs === 'mstart' ? 'mquiz' : gs; geo.ov = null; renderGeo(); window.scrollTo(0, 0); }, 60); return; }
       if (!user) return;
       e.preventDefault(); e.stopPropagation(); var sub = t.getAttribute('data-kdsub');
@@ -36008,6 +36029,31 @@ var PAR="";
       var m = /[?&]u=([^&#]+)/.exec(location.search);
       if (m) { var nm = decodeURIComponent(m[1]).slice(0, 16), tries = 0, tm = setInterval(function () { tries++; if (backend && backend.pubProfile) { clearInterval(tm); openName(nm); } else if (tries > 40) clearInterval(tm); }, 300); }
     } catch (e) {}
+  })();
+
+  /* ---- v801 : Réglages en sections repliables ---- */
+  (function () {
+    var SEC = [['setInvite', '戸', 'Compte et amis'], ['pushBox', '通', 'Notifications'], ['pubBox', '公', 'Confidentialité']];
+    function org() {
+      try {
+        var vs = document.getElementById('vSettings'); if (!vs || vs.hidden) return;
+        var last = document.getElementById('codeHost');
+        SEC.forEach(function (x) {
+          var el = document.getElementById(x[0]); if (!el) return;
+          var w = el.closest('details.kdsec');
+          if (!w) {
+            w = document.createElement('details'); w.className = 'acc setacc kdsec'; w.id = 'sec_' + x[0];
+            w.innerHTML = '<summary><span class="aico" aria-hidden="true">' + x[1] + '</span>' + x[2] + '</summary><div class="accbody"></div>';
+            el.parentNode.insertBefore(w, el); w.querySelector('.accbody').appendChild(el);
+            var h = el.querySelector('h3.sgh'); if (h && x[0] === 'setInvite') h.style.display = 'none';
+          }
+          if (w.parentNode === vs && last && last.parentNode === vs) { vs.insertBefore(w, last.nextSibling); last = w; }
+        });
+        var sd = vs.querySelectorAll('details.setacc > summary');
+        for (var i = 0; i < sd.length; i++) if (/^\s*音?\s*Contenu et sons/.test(sd[i].textContent)) { var t = sd[i].lastChild; if (t && t.nodeType === 3) t.nodeValue = 'Apparence et sons'; }
+      } catch (e) {}
+    }
+    setInterval(org, 1000);
   })();
 
   /* ---- v470 : Salon du dojo (clic sur le bandeau Exploits / En ligne) ---- */

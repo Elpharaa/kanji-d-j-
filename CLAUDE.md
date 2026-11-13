@@ -10,3 +10,6 @@ Avant toute modification :
    - les champs `cc` et `jl` ajoutés à `publicStats` (lus par la commande `/profil` du bot).
 3. Ne pas modifier les tables et fonctions Supabase `discord_links`, `discord_rewards`,
    `link_discord`, `unlink_discord`, `claim_discord_rewards`, `bot_*` : le bot en dépend.
+
+Avant toute mise en ligne :
+4. Lancer `python3 tools/smoke.py` (vérifie la syntaxe, la version, les blocs `DISCORD-BOT`, les écrans principaux, l'Écriture, la Géographie, l'Histoire et les Réglages). Ne publier que si le résultat est « TOUT EST BON ».
