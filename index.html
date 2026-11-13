@@ -4219,6 +4219,12 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
 .gramlink .gtx { flex: 1; min-width: 0; display: grid; gap: 2px; }
 .gramlink .gtx b { font-family: var(--font-brush); font-weight: 400; font-size: 1.1rem; color: #fffaf0; text-shadow: 0 1px 3px rgba(44,36,82,.7); } .gramlink .gtx small { font-size: .76rem; color: #fff0d8; text-shadow: 0 1px 2px rgba(44,36,82,.7); } .gramlink .gtx small i { font-style: normal; color: #fffaf0; }
 .gramlink .gpet { font-size: 1.5rem; opacity: .85; }
+.kdfact{display:flex;align-items:flex-start;gap:12px;margin:12px 14px;padding:12px 14px;border-radius:18px;background:var(--surface);border:2px solid var(--accent-soft,#e8c46a);box-shadow:0 3px 0 rgba(0,0,0,.08);color:var(--fg)}
+.kdfk{flex:none;width:46px;height:46px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(165deg,#cc2340,#7b1024);color:#ffe9b8;font:400 1.6rem/1 var(--font-display,serif)}
+.kdfb{flex:1;min-width:0}.kdfh{display:flex;align-items:center;gap:8px;font-weight:700;font-size:.85rem;color:var(--accent)}
+.kdfc{font-style:normal;font-weight:600;font-size:.72rem;padding:1px 8px;border-radius:999px;background:var(--accent-soft,#f5dce6);color:var(--fg)}
+.kdfb p{margin:4px 0 0;font-size:.9rem;line-height:1.45;overflow-wrap:anywhere}
+.kdfn{flex:none;width:36px;height:36px;border-radius:50%;border:2px solid var(--line);background:var(--surface);color:var(--fg);font-size:1.2rem;cursor:pointer}
 /* ===== Géographie du Japon (préfectures, villes, métro) ===== */
 .geolist { display: grid; gap: 10px; }
 .geocard { display: flex; align-items: center; gap: 12px; text-align: left; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 16px; background: var(--surface); color: var(--fg); }
@@ -33254,7 +33260,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v795', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v796', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35682,6 +35688,34 @@ var PAR="";
       e.preventDefault(); e.stopPropagation(); var sub = t.getAttribute('data-kdsub');
       go('home'); setTimeout(function () { djSub = sub; renderHome(); window.scrollTo(0, 0); }, 60);
     }, true);
+  })();
+
+  /* ===== v795 : « Saviez-vous ? » sur l'accueil (un fait par jour, data/faits.json) ===== */
+  (function () {
+    var FACTS = null, TRY = false, idx = -1, CATS = { histoire: 'Histoire', culture: 'Culture', nature: 'Nature', 'langue': 'Langue', 'société': 'Société', cuisine: 'Cuisine', tech: 'Technologie', actu: 'Actualité' };
+    function dayNum() { var d = new Date(); return Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 864e5); }
+    function load(cb) {
+      if (FACTS) return cb();
+      if (TRY) return; TRY = true;
+      fetch('data/faits.json').then(function (r) { return r.json(); }).then(function (j) { FACTS = j; if (idx < 0) idx = (dayNum() * 7) % j.length; cb(); }).catch(function () { TRY = false; });
+    }
+    function draw() {
+      var host = document.getElementById('kdFact'), f = FACTS && FACTS[idx]; if (!host || !f) return;
+      host.innerHTML = '<div class="kdfact"><b class="kdfk" aria-hidden="true">' + esc(f.k) + '</b><div class="kdfb"><div class="kdfh"><span>Saviez-vous ?</span><em class="kdfc">' + esc(CATS[f.c] || f.c) + '</em></div><p>' + esc(f.t.replace(/^Actu · /, '')) + '</p></div><button type="button" class="kdfn" data-kdfact="1" aria-label="Un autre fait">↻</button></div>';
+    }
+    function ensure() {
+      try {
+        var hub = document.getElementById('vHub'); if (!hub || hub.hidden || !user) return;
+        var host = document.getElementById('kdFact');
+        if (!host) { host = document.createElement('div'); host.id = 'kdFact'; var gate = hub.querySelector('.gate'); if (gate && gate.parentNode) gate.parentNode.insertBefore(host, gate.nextSibling); else hub.appendChild(host); }
+        if (!host.firstChild) load(draw);
+      } catch (e) {}
+    }
+    setInterval(ensure, 1200);
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('[data-kdfact]') : null; if (!b || !FACTS) return;
+      e.preventDefault(); idx = (idx + 1 + Math.floor(Math.random() * 5)) % FACTS.length; draw(); try { sfx('coin'); } catch (x) {}
+    });
   })();
 
   /* ---- v470 : Salon du dojo (clic sur le bandeau Exploits / En ligne) ---- */
