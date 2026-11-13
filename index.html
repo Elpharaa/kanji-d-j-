@@ -13935,6 +13935,9 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
       assetDelete: function (id) { return sb.from('site_assets').delete().eq('id', id).then(function (r) { if (r.error) throw r.error; }); },
       pushSave: function (row) { return sb.from('push_subs').upsert(row).then(function (r) { if (r.error) throw r.error; }); },
       pushDelete: function (uid) { return sb.from('push_subs').delete().eq('user_id', uid).then(function (r) { if (r.error) throw r.error; }); },
+      pubGet: function (uid) { return sb.from('public_profiles').select('enabled').eq('user_id', uid).maybeSingle().then(function (r) { if (r.error) throw r.error; return r.data; }); },
+      pubSave: function (uid, on) { return sb.from('public_profiles').upsert({ user_id: uid, enabled: !!on, updated_at: new Date().toISOString() }).then(function (r) { if (r.error) throw r.error; }); },
+      pubProfile: function (name) { return sb.rpc('public_profile', { p_name: name }).then(function (r) { if (r.error) throw r.error; return r.data; }); },
       loadProgress: function (u) {
         var ck = 'kd.s.' + u.id, cc = load(ck);
         if (navigator.onLine === false && cc) { loadedFromCache = true; return Promise.resolve(cc); }
@@ -33435,7 +33438,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v799', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v800', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35954,6 +35957,57 @@ var PAR="";
     setTimeout(function () { push(true); }, 6000);
     document.addEventListener('click', function (e) { var b = e.target.closest ? e.target.closest('[data-pushtog]') : null; if (!b) return; e.preventDefault(); if (on() && Notification.permission === 'granted') disable(); else enable(); });
     document.addEventListener('change', function (e) { if (e.target && e.target.id === 'pushHour') { try { localStorage.setItem(HK, e.target.value); } catch (x) {} sig = ''; push(true); toast('Rappel à ' + e.target.value + ' h'); } });
+  })();
+
+  /* ===== v800 : profil public partageable (lien ?u=pseudo, activé par le joueur) ===== */
+  (function () {
+    var BASE = 'https://kanji-dojo.fr/', on = null, loading = false;
+    function link() { return BASE + '?u=' + encodeURIComponent(user.name); }
+    function showData(d) {
+      var modal = document.getElementById('profModal'), body = document.getElementById('profBody'); if (!modal || !body || !d) return;
+      var html = ''; try { html = profileBody({ id: d.id, name: d.name, avatar: d.avatar, xp: d.xp || 0, stats: d.stats || null }, 0); } catch (e) { html = '<p class="note">Profil indisponible.</p>'; }
+      body.innerHTML = html + '<p class="small muted" style="text-align:center;margin:12px 0 0">Profil public sur Kanji Dōjō · <b>kanji-dojo.fr</b></p><div class="row" style="justify-content:center;margin-top:8px"><button type="button" class="btn primary" data-close="1">' + (user ? 'Fermer' : 'Rejoindre le dōjō') + '</button></div>';
+      modal.hidden = false; document.body.classList.add('noscroll');
+    }
+    window.kdPublicShow = showData;
+    function openName(name) {
+      if (!backend || !backend.pubProfile) { toast('Profil public indisponible en mode démo.'); return; }
+      backend.pubProfile(name).then(function (d) { if (d) showData(d); else toast('Ce profil est introuvable ou privé.'); }).catch(function () { toast('Profil indisponible pour le moment.'); });
+    }
+    function paint() {
+      var b = document.getElementById('pubBox'); if (!b) return;
+      var can = !!(backend && backend.pubSave);
+      b.innerHTML = '<h3 class="sgh sm"><span>Profil public</span></h3><p class="small muted">Un lien à partager (réseaux, Discord…) : tes amis voient ton niveau, tes badges et ta vitrine de cartes sans avoir de compte. Désactivé par défaut.' + (can ? '' : ' Disponible quand tu es connecté à ton compte.') + '</p>' +
+        (can ? '<label class="geotog"><input type="checkbox" id="pubTog"' + (on ? ' checked' : '') + (on === null ? ' disabled' : '') + '> Rendre mon profil visible par lien</label>' +
+          (on ? '<div class="row"><input class="field" id="pubLink" readonly value="' + esc(link()) + '" aria-label="Lien de mon profil"><button type="button" class="btn" data-publink="copy">Copier</button><button type="button" class="btn" data-publink="share">Partager</button></div>' : '') : '');
+    }
+    function load() {
+      if (loading || on !== null || !user || !backend || !backend.pubGet) return; loading = true;
+      backend.pubGet(user.id).then(function (r) { on = !!(r && r.enabled); loading = false; paint(); }).catch(function () { loading = false; });
+    }
+    function ensure() {
+      try {
+        var vs = document.getElementById('vSettings'); if (!vs || vs.hidden || !user) return;
+        if (!document.getElementById('pubBox')) { var box = document.createElement('div'); box.className = 'panel'; box.id = 'pubBox'; var ref = document.getElementById('pushBox') || document.getElementById('setInvite'); if (ref && ref.parentNode === vs) vs.insertBefore(box, ref.nextSibling); else vs.insertBefore(box, vs.firstChild); paint(); load(); }
+      } catch (e) {}
+    }
+    setInterval(ensure, 1300);
+    document.addEventListener('change', function (e) {
+      if (!e.target || e.target.id !== 'pubTog' || !user) return;
+      var v = e.target.checked; e.target.disabled = true;
+      backend.pubSave(user.id, v).then(function () { on = v; toast(v ? 'Profil public activé' : 'Profil public désactivé'); paint(); }).catch(function () { toast('Impossible de changer ce réglage.'); on = !v; paint(); });
+    });
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('[data-publink]') : null; if (!b || !user) return;
+      var l = link();
+      if (b.getAttribute('data-publink') === 'share' && navigator.share) { navigator.share({ title: 'Mon profil Kanji Dōjō', text: 'Mon profil sur Kanji Dōjō', url: l }).catch(function () {}); return; }
+      try { navigator.clipboard.writeText(l).then(function () { toast('Lien copié'); }, function () { toast(l); }); } catch (x) { toast(l); }
+    });
+    // ouverture d'un lien ?u=pseudo (avec ou sans compte)
+    try {
+      var m = /[?&]u=([^&#]+)/.exec(location.search);
+      if (m) { var nm = decodeURIComponent(m[1]).slice(0, 16), tries = 0, tm = setInterval(function () { tries++; if (backend && backend.pubProfile) { clearInterval(tm); openName(nm); } else if (tries > 40) clearInterval(tm); }, 300); }
+    } catch (e) {}
   })();
 
   /* ---- v470 : Salon du dojo (clic sur le bandeau Exploits / En ligne) ---- */
