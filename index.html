@@ -13933,6 +13933,8 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
       assetsLoad: function () { return sb.from('site_assets').select('id,data').not('id', 'like', 'hist:%').then(function (r) { if (r.error) throw r.error; return r.data || []; }); },
       assetSave: function (id, data, uid) { return sb.from('site_assets').upsert({ id: id, data: data, updated_at: new Date().toISOString(), updated_by: uid || null }).then(function (r) { if (r.error) throw r.error; }); },
       assetDelete: function (id) { return sb.from('site_assets').delete().eq('id', id).then(function (r) { if (r.error) throw r.error; }); },
+      pushSave: function (row) { return sb.from('push_subs').upsert(row).then(function (r) { if (r.error) throw r.error; }); },
+      pushDelete: function (uid) { return sb.from('push_subs').delete().eq('user_id', uid).then(function (r) { if (r.error) throw r.error; }); },
       loadProgress: function (u) {
         var ck = 'kd.s.' + u.id, cc = load(ck);
         if (navigator.onLine === false && cc) { loadedFromCache = true; return Promise.resolve(cc); }
@@ -33433,7 +33435,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v798', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v799', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35892,6 +35894,66 @@ var PAR="";
       var b = e.target.closest ? e.target.closest('[data-kdfact]') : null; if (!b || !FACTS) return;
       e.preventDefault(); idx = (idx + 1 + Math.floor(Math.random() * 5)) % FACTS.length; draw(); try { sfx('coin'); } catch (x) {}
     });
+  })();
+
+  /* ===== v799 : rappel « ta série va s'arrêter » (notification push, envoyée par le serveur) ===== */
+  (function () {
+    var PUB = 'BBVVpA8Nkk73BAF3hrcTnMWx4Ab5krpOZIT_39nI7x0O76ygYvGBW5A581ShE6QpwRaa--WPBd7PjmUkpUpdnLI', LK = 'kd.push.on', HK = 'kd.push.h', sig = '';
+    function ok() { return !!(window.isSecureContext !== false && 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window); }
+    function on() { try { return localStorage.getItem(LK) === '1'; } catch (e) { return false; } }
+    function hour() { try { var h = +localStorage.getItem(HK); return h >= 0 && h <= 23 && localStorage.getItem(HK) !== null ? h : 19; } catch (e) { return 19; } }
+    function b64(s) { var p = '='.repeat((4 - s.length % 4) % 4), r = atob((s + p).replace(/-/g, '+').replace(/_/g, '/')), o = new Uint8Array(r.length), i; for (i = 0; i < r.length; i++) o[i] = r.charCodeAt(i); return o; }
+    function ab(b) { var u = new Uint8Array(b), s = '', i; for (i = 0; i < u.length; i++) s += String.fromCharCode(u[i]); return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); }
+    function sub() { return navigator.serviceWorker.ready.then(function (reg) { return reg.pushManager.getSubscription(); }); }
+    function row(sb) {
+      var st = strState(), k = sb.toJSON ? sb.toJSON() : {};
+      return { user_id: user.id, endpoint: sb.endpoint, p256dh: (k.keys && k.keys.p256dh) || ab(sb.getKey('p256dh')), auth: (k.keys && k.keys.auth) || ab(sb.getKey('auth')), tz: (Intl.DateTimeFormat().resolvedOptions().timeZone || 'Europe/Paris'), remind_hour: hour(), streak: st.n || 0, as_of: strDay(new Date()), done_today: !!st.done, updated_at: new Date().toISOString() };
+    }
+    function push(force) {
+      if (!on() || !user || !backend.pushSave || !ok() || Notification.permission !== 'granted') return;
+      sub().then(function (sb) {
+        if (!sb) return;
+        var r = row(sb), g = [r.streak, r.as_of, r.done_today, r.remind_hour, r.endpoint].join('|');
+        if (!force && g === sig) return; sig = g;
+        return backend.pushSave(r);
+      }).catch(function () { sig = ''; });
+    }
+    function enable() {
+      if (!ok()) { toast('Les notifications ne sont pas disponibles sur ce navigateur (sur iPhone : ajoute d’abord le site à l’écran d’accueil).'); return Promise.resolve(); }
+      if (!backend.pushSave) { toast('Connecte-toi avec ton compte pour activer le rappel.'); return Promise.resolve(); }
+      return Notification.requestPermission().then(function (p) {
+        if (p !== 'granted') { toast('Notifications refusées : autorise-les dans les réglages du navigateur.'); return; }
+        return navigator.serviceWorker.ready.then(function (reg) { return reg.pushManager.getSubscription().then(function (s) { return s || reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64(PUB) }); }); }).then(function () {
+          try { localStorage.setItem(LK, '1'); } catch (e) {}
+          sig = ''; push(true); toast('Rappel activé 🔔'); paint();
+        });
+      }).catch(function () { toast('Impossible d’activer le rappel pour le moment.'); });
+    }
+    function disable() {
+      try { localStorage.setItem(LK, '0'); } catch (e) {}
+      sub().then(function (s) { if (s) s.unsubscribe(); }).catch(function () {});
+      try { if (user && backend.pushDelete) backend.pushDelete(user.id).catch(function () {}); } catch (e) {}
+      sig = ''; toast('Rappel désactivé'); paint();
+    }
+    function paint() {
+      var b = document.getElementById('pushBox'); if (!b) return;
+      var okk = ok() && !!backend.pushSave, isOn = on() && ok() && Notification.permission === 'granted';
+      b.innerHTML = '<h3 class="sgh sm"><span>Rappel de série</span></h3><p class="small muted">Une notification le soir si ta flamme est sur le point de s’éteindre : « ta série va s’arrêter ! ».' + (okk ? '' : ' Disponible quand tu es connecté à ton compte, sur un navigateur compatible.') + '</p>' +
+        (okk ? '<div class="row"><button type="button" class="btn ' + (isOn ? '' : 'primary') + '" data-pushtog="1">' + (isOn ? 'Désactiver le rappel' : 'Activer le rappel') + '</button>' +
+          '<label class="small">à <select id="pushHour" aria-label="Heure du rappel">' + [17, 18, 19, 20, 21, 22].map(function (h) { return '<option value="' + h + '"' + (h === hour() ? ' selected' : '') + '>' + h + ' h</option>'; }).join('') + '</select></label></div>' : '');
+    }
+    function ensure() {
+      try {
+        var vs = document.getElementById('vSettings'); if (!vs || vs.hidden || !user) return;
+        if (!document.getElementById('pushBox')) { var box = document.createElement('div'); box.className = 'panel'; box.id = 'pushBox'; var ref = document.getElementById('setInvite'); if (ref && ref.parentNode === vs) vs.insertBefore(box, ref.nextSibling); else vs.insertBefore(box, vs.firstChild); paint(); }
+      } catch (e) {}
+    }
+    setInterval(ensure, 1200);
+    setInterval(function () { push(false); }, 60000);
+    document.addEventListener('visibilitychange', function () { push(false); });
+    setTimeout(function () { push(true); }, 6000);
+    document.addEventListener('click', function (e) { var b = e.target.closest ? e.target.closest('[data-pushtog]') : null; if (!b) return; e.preventDefault(); if (on() && Notification.permission === 'granted') disable(); else enable(); });
+    document.addEventListener('change', function (e) { if (e.target && e.target.id === 'pushHour') { try { localStorage.setItem(HK, e.target.value); } catch (x) {} sig = ''; push(true); toast('Rappel à ' + e.target.value + ' h'); } });
   })();
 
   /* ---- v470 : Salon du dojo (clic sur le bandeau Exploits / En ligne) ---- */
