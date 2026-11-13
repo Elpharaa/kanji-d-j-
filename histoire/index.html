@@ -114,6 +114,14 @@ button.hchip{font-family:inherit}
 .qgring{fill:none;stroke:#b2285b;transform-box:fill-box;transform-origin:center;animation:qgping 1.2s ease-out infinite}@keyframes qgping{from{transform:scale(1);opacity:1}to{transform:scale(3.4);opacity:0}}
 .qexp{margin-top:10px;padding:10px 12px;border-radius:12px;font-size:.92rem;line-height:1.45}.qexp.ok{background:#e3f4dc;border:1.5px solid #2d6a2a}.qexp.ko{background:#fbe3e3;border:1.5px solid #9b1c1c}
 .fcard{animation:fcin .25s ease-out}.fcard span{display:block}.fct{display:block;font:800 .68rem sans-serif;letter-spacing:.1em;color:#7a6a9a;margin-bottom:6px}.fcard.back{background:linear-gradient(#f1ffe9,#dff3d3);border-color:#2d6a2a}.fcsj{display:block;margin-top:6px;font-size:.88rem;color:#4a2f23}.fcq{display:block;margin-top:12px;padding-top:8px;border-top:1px dashed #b9a67a;font-size:.8rem;font-weight:400;color:#6d5d85}.fcbt{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.fcbt button{border:0;border-radius:12px;padding:13px;font:800 1rem sans-serif;cursor:pointer;color:#fff}.fcno{background:#c0455a}.fcok{background:#2d8a4e}@keyframes fcin{from{transform:rotateX(70deg);opacity:.2}to{transform:none;opacity:1}}
+.himg{max-height:none;max-width:560px;margin-left:auto;margin-right:auto}
+.hcrop{position:fixed;inset:0;z-index:9999;background:rgba(20,10,40,.7);display:grid;place-items:center;padding:12px}
+.hcbox{box-sizing:border-box;background:#fbf3e2;border:2px solid #c49a3a;border-radius:16px;padding:14px;max-width:500px;width:100%;max-height:96vh;overflow:auto;text-align:center}
+.hcbox h3{margin:0 0 4px}.hcn{font-size:.82rem;opacity:.75;margin:0 0 8px}
+.hcr,.hcf{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:8px 0}
+.hcbox canvas{border:2px solid #c49a3a;border-radius:10px;touch-action:none;max-width:100%;cursor:grab;background:#fff}
+.hcz{display:flex;gap:10px;align-items:center;justify-content:center;font-weight:700;margin:6px 0}.hcz input{flex:1;max-width:260px}
+.hchip.on{background:#b2285b;color:#fff}.hcok{background:#b2285b;color:#fff}
 </style></head>
 <body class="onhome inapp kddock hist">
 <div class="app">
@@ -356,12 +364,33 @@ function himg(key){return HA['hist:'+key]?'<img class="himg" src="'+e(HA['hist:'
 var IMGOK='haniwa dogu todaiji jomon_poterie sannai_maruyama yoshinogari dotaku sceau_na inariyama horyuji fujiwara_kyo heijo heian_kyo byodoin daibutsu_kamakura shogun_ashikaga_kinkaku teppo dejima tomioka rokumeikan yasukuni kaizuka mokkan kofun yamatai ryukyu kojiki nihon_shoki manyoshu genji hojoki tsurezuregusa heike taketori ise_monogatari'.split(' ');
 function imgOk(f){return f.type==='personnage'||f.type==='préfecture'||f.type==='région'||IMGOK.indexOf(f.id)>=0}
 function hadm(key){if(!ADM)return'';var has=!!HA['hist:'+key];if(!has){var ff=key.charAt(0)==='f'?FI.filter(function(x){return 'f:'+x.id===key})[0]:null;if(!ff||!imgOk(ff))return''}return'<div class="hadm">Image (admin) : <button class="hchip" data-himg="'+key+'">📷 '+(has?'Changer':'Importer')+'</button>'+(has?' <button class="hchip" data-hdel="'+key+'">✕ Retirer</button>':'')+'</div>'}
-function haPick(key){var inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.onchange=function(){var f=inp.files&&inp.files[0];if(!f)return;var img=new Image(),url=URL.createObjectURL(f);
- img.onload=function(){var sc=Math.min(1,520/img.width),cv=document.createElement('canvas');cv.width=Math.max(1,Math.round(img.width*sc));cv.height=Math.max(1,Math.round(img.height*sc));var cx=cv.getContext('2d');cx.fillStyle='#fff';cx.fillRect(0,0,cv.width,cv.height);cx.drawImage(img,0,0,cv.width,cv.height);URL.revokeObjectURL(url);
-  var q=.85,d=cv.toDataURL('image/jpeg',q);while(d.length>90000&&q>.3){q-=.1;d=cv.toDataURL('image/jpeg',q)}
-  if(d.length>=250000){alert('Image trop lourde, choisis-en une plus simple.');return}
-  SB.auth.getSession().then(function(r){var u=r.data.session.user;return SB.from('site_assets').upsert({id:'hist:'+key,data:d,updated_at:new Date().toISOString(),updated_by:u.id})}).then(function(r){if(r&&r.error)throw r.error;HA['hist:'+key]=d;haStore();var y=scrollY;route();scrollTo(0,y)}).catch(function(er){alert('Échec : '+((er&&er.message)||er))})};
- img.onerror=function(){alert('Image illisible.')};img.src=url};inp.click()}
+function haSave(key,d){return SB.auth.getSession().then(function(r){var u=r.data.session.user;return SB.from('site_assets').upsert({id:'hist:'+key,data:d,updated_at:new Date().toISOString(),updated_by:u.id})}).then(function(r){if(r&&r.error)throw r.error;HA['hist:'+key]=d;haStore();var y=scrollY;route();scrollTo(0,y)}).catch(function(er){alert('Échec : '+((er&&er.message)||er))})}
+var HRAT={car:[1,1,'Carré'],p43:[4,3,'4:3'],pay:[16,9,'16:9'],por:[3,4,'Portrait']};
+function haCrop(key,src){
+ var img=new Image();img.onerror=function(){alert('Image illisible.')};
+ img.onload=function(){
+  var iw=img.naturalWidth,ih=img.naturalHeight,rk='p43';try{rk=localStorage.getItem('kd.hr')||'p43'}catch(x){}if(!HRAT[rk])rk='p43';
+  var z=1,cx=iw/2,cy=ih/2,cw,ch,base,drag=null;
+  var ov=document.createElement('div');ov.className='hcrop';
+  ov.innerHTML='<div class="hcbox"><h3>Cadrer l’image</h3><p class="hcn">Fais glisser l’image et zoome. Ce que tu vois dans le cadre est exactement ce qui sera affiché sur la fiche.</p><div class="hcr">'+Object.keys(HRAT).map(function(k){return'<button type="button" class="hchip" data-r="'+k+'">'+HRAT[k][2]+'</button>'}).join('')+'</div><canvas id="hcCv"></canvas><label class="hcz">Zoom <input id="hcZ" type="range" min="100" max="400" value="100"></label><div class="hcf"><button type="button" class="hchip" id="hcRe">Recentrer</button><button type="button" class="hchip" id="hcNo">Annuler</button><button type="button" class="hchip hcok" id="hcOk">Valider</button></div></div>';
+  document.body.appendChild(ov);var cv=ov.querySelector('#hcCv'),g=cv.getContext('2d');
+  function size(){var r=HRAT[rk],rt=r[0]/r[1],mw=Math.min(440,innerWidth-70),mh=Math.round(innerHeight*.45);cw=mw;ch=Math.round(cw/rt);if(ch>mh){ch=mh;cw=Math.round(ch*rt)}cv.width=cw;cv.height=ch;cv.style.width=cw+'px';cv.style.height=ch+'px';base=Math.max(cw/iw,ch/ih);ov.querySelectorAll('[data-r]').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-r')===rk)});draw()}
+  function draw(){var s=base*z,hw=cw/(2*s),hh=ch/(2*s);cx=Math.min(iw-hw,Math.max(hw,cx));cy=Math.min(ih-hh,Math.max(hh,cy));g.fillStyle='#fff';g.fillRect(0,0,cw,ch);g.drawImage(img,cw/2-cx*s,ch/2-cy*s,iw*s,ih*s)}
+  cv.onpointerdown=function(ev){drag={x:ev.clientX,y:ev.clientY};try{cv.setPointerCapture(ev.pointerId)}catch(x){}ev.preventDefault()};
+  cv.onpointermove=function(ev){if(!drag)return;var s=base*z;cx-=(ev.clientX-drag.x)/s;cy-=(ev.clientY-drag.y)/s;drag={x:ev.clientX,y:ev.clientY};draw()};
+  cv.onpointerup=cv.onpointercancel=function(){drag=null};
+  cv.onwheel=function(ev){ev.preventDefault();z=Math.min(4,Math.max(1,z*(ev.deltaY<0?1.08:.93)));ov.querySelector('#hcZ').value=Math.round(z*100);draw()};
+  ov.querySelector('#hcZ').oninput=function(){z=this.value/100;draw()};
+  ov.querySelectorAll('[data-r]').forEach(function(b){b.onclick=function(){rk=b.getAttribute('data-r');try{localStorage.setItem('kd.hr',rk)}catch(x){}z=1;ov.querySelector('#hcZ').value=100;size()}});
+  ov.querySelector('#hcRe').onclick=function(){z=1;cx=iw/2;cy=ih/2;ov.querySelector('#hcZ').value=100;draw()};
+  function close(){URL.revokeObjectURL(src);ov.remove()}
+  ov.querySelector('#hcNo').onclick=close;
+  ov.querySelector('#hcOk').onclick=function(){var r=HRAT[rk],w=r[0]>=r[1]?720:540,h=Math.round(w*r[1]/r[0]),d,out,k=w/cw,s=base*z*k;
+   for(var t=0;t<6;t++){out=document.createElement('canvas');out.width=w;out.height=h;var oc=out.getContext('2d');oc.fillStyle='#fff';oc.fillRect(0,0,w,h);oc.imageSmoothingQuality='high';oc.drawImage(img,w/2-cx*s,h/2-cy*s,iw*s,ih*s);var q=.85;d=out.toDataURL('image/jpeg',q);while(d.length>120000&&q>.4){q-=.08;d=out.toDataURL('image/jpeg',q)}if(d.length<=120000)break;w=Math.round(w*.85);h=Math.round(h*.85);k=w/cw;s=base*z*k}
+   if(d.length>=245000){alert('Image trop détaillée, essaie un autre cadrage.');return}close();haSave(key,d)};
+  size()};
+ img.src=src}
+function haPick(key){var inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.onchange=function(){var f=inp.files&&inp.files[0];if(!f)return;if(!/^image\//.test(f.type)){alert('Choisis un fichier image.');return}haCrop(key,URL.createObjectURL(f))};inp.click()}
 function haDel(key){SB.from('site_assets').delete().eq('id','hist:'+key).then(function(r){if(r.error)throw r.error;delete HA['hist:'+key];haStore();var y=scrollY;route();scrollTo(0,y)}).catch(function(er){alert('Échec : '+((er&&er.message)||er))})}
 var QS=null;
 function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
