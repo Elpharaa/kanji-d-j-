@@ -27073,21 +27073,19 @@ body .cdslotm:focus-visible .cdcard{outline:3px solid #e0b94a;outline-offset:2px
       if (id.indexOf('hist:') === 0) HASS[id] = data; else { ASSETS[id] = data; assetsStore(); } assetsAt = 0; adminRefresh(); toast('Image enregistrée pour tous les joueurs.');
     }).catch(function (e) { toast('Échec de l\'enregistrement : ' + ((e && e.message) || e)); });
   }
-  function adminPick(id) {
+  function adminFmt(id) {
+    if (/^pi_/.test(id)) return { ow: 480, oh: 640, max: 120000, n: 'portrait 3:4' };
+    return { ow: 720, oh: 480, max: 120000, n: 'paysage 3:2' };
+  }
+  function adminPick(id, label) {
     var inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'image/*';
     inp.onchange = function () {
       var f = inp.files && inp.files[0]; if (!f) return;
-      var img = new Image(), url = URL.createObjectURL(f);
-      img.onload = function () {
-        var sc = Math.min(1, 420 / img.width), cv = document.createElement('canvas'); cv.width = Math.max(1, Math.round(img.width * sc)); cv.height = Math.max(1, Math.round(img.height * sc));
-        var cx = cv.getContext('2d'); cx.fillStyle = '#fff'; cx.fillRect(0, 0, cv.width, cv.height); cx.drawImage(img, 0, 0, cv.width, cv.height); URL.revokeObjectURL(url);
-        var q = 0.85, d = cv.toDataURL('image/jpeg', q);
-        while (d.length > 90000 && q > 0.3) { q -= 0.1; d = cv.toDataURL('image/jpeg', q); }
-        if (d.length >= 250000) { toast('Image trop lourde, choisis-en une plus simple.'); return; }
-        adminSave(id, d);
-      };
-      img.onerror = function () { toast('Image illisible.'); };
-      img.src = url;
+      var fm = adminFmt(id);
+      imgLoadFile(f).then(function (u) {
+        return imgEdit({ src: u, ow: fm.ow, oh: fm.oh, max: fm.max, q: 0.85, title: 'Cadrer l\'image' + (label ? ' : ' + label : ''), note: 'Format ' + fm.n + '. Fais glisser l\'image et zoome : ce que tu vois dans le cadre est ce qui sera enregistré.' });
+      }).then(function (d) { adminSave(id, d); })
+        .catch(function (er) { if (er && !/annul/i.test(er.message || '')) toast(er.message || 'Image illisible.'); });
     };
     inp.click();
   }
@@ -27095,7 +27093,7 @@ body .cdslotm:focus-visible .cdcard{outline:3px solid #e0b94a;outline-offset:2px
     var b = e.target.closest ? e.target.closest('[data-adminimg],[data-admindel]') : null; if (!b || !isAdmin()) return;
     e.stopPropagation(); e.preventDefault();
     var id = b.getAttribute('data-adminimg');
-    if (id) { adminPick(id); return; }
+    if (id) { var rw = b.closest ? b.closest('.admrow') : null, lb = rw && rw.querySelector('b'); adminPick(id, lb ? lb.textContent : ''); return; }
     id = b.getAttribute('data-admindel');
     backend.assetDelete(id).then(function () { delete ASSETS[id]; delete HASS[id]; assetsStore(); assetsAt = 0; adminRefresh(); toast('Image retirée : le dessin d\'origine revient.'); }).catch(function (er) { toast('Échec : ' + ((er && er.message) || er)); });
   }, true);
@@ -33056,17 +33054,10 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
     var inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'image/*';
     inp.onchange = function () {
       var f = inp.files && inp.files[0]; if (!f) return;
-      var img = new Image(), url = URL.createObjectURL(f);
-      img.onload = function () {
-        var sc = Math.min(1, 900 / img.width), cv = document.createElement('canvas'); cv.width = Math.max(1, Math.round(img.width * sc)); cv.height = Math.max(1, Math.round(img.height * sc));
-        var cx = cv.getContext('2d'); cx.fillStyle = '#fff'; cx.fillRect(0, 0, cv.width, cv.height); cx.drawImage(img, 0, 0, cv.width, cv.height); URL.revokeObjectURL(url);
-        var q = 0.86, d = cv.toDataURL('image/jpeg', q);
-        while (d.length > 200000 && q > 0.3) { q -= 0.08; d = cv.toDataURL('image/jpeg', q); }
-        if (d.length >= 245000) { toast('Image trop lourde, choisis-en une plus simple.'); return; }
-        adminSave(id, d);
-      };
-      img.onerror = function () { toast('Image illisible.'); };
-      img.src = url;
+      imgLoadFile(f).then(function (u) {
+        return imgEdit({ src: u, ow: 960, oh: 540, max: 200000, q: 0.86, title: 'Cadrer le décor', note: 'Format paysage 16:9. Fais glisser l\'image et zoome : ce que tu vois dans le cadre est ce qui sera enregistré.' });
+      }).then(function (d) { adminSave(id, d); })
+        .catch(function (er) { if (er && !/annul/i.test(er.message || '')) toast(er.message || 'Image illisible.'); });
     };
     inp.click();
   }
@@ -33559,7 +33550,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v806', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v807', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
