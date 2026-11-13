@@ -4219,6 +4219,13 @@ body.infight #arena .bossart { filter: drop-shadow(0 0 14px rgba(20,0,30,.95)) d
 .gramlink .gtx { flex: 1; min-width: 0; display: grid; gap: 2px; }
 .gramlink .gtx b { font-family: var(--font-brush); font-weight: 400; font-size: 1.1rem; color: #fffaf0; text-shadow: 0 1px 3px rgba(44,36,82,.7); } .gramlink .gtx small { font-size: .76rem; color: #fff0d8; text-shadow: 0 1px 2px rgba(44,36,82,.7); } .gramlink .gtx small i { font-style: normal; color: #fffaf0; }
 .gramlink .gpet { font-size: 1.5rem; opacity: .85; }
+.tzcv { display: block; width: 100%; max-width: 420px; aspect-ratio: 1; margin: 8px auto; border-radius: 16px; background: var(--surface); border: 2px solid var(--line); touch-action: none; user-select: none; -webkit-user-select: none; }
+.tzcv .tzframe { fill: none; stroke: var(--line); stroke-width: .8; } .tzcv .tzgrid { stroke: var(--line); stroke-width: .5; stroke-dasharray: 2 3; }
+.tzcv path { fill: none; stroke-linecap: round; stroke-linejoin: round; } .tzghost { stroke: color-mix(in srgb, var(--fg) 14%, transparent); stroke-width: 5; }
+.tzdone { stroke: var(--good); stroke-width: 4; } .tzpen { fill: none; stroke: var(--accent); stroke-width: 4.2; stroke-linecap: round; stroke-linejoin: round; }
+.tzhint { stroke: #e08a1d; stroke-width: 5; stroke-dasharray: .12 .06; animation: tzhint 1.1s linear infinite; } @keyframes tzhint { to { stroke-dashoffset: -.36; } }
+.tzshake { animation: tzshk .3s; } @keyframes tzshk { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+.tzsens { margin: 2px 0; font-size: 1.25rem; }
 .kdfact{display:flex;align-items:flex-start;gap:12px;margin:12px 14px;padding:12px 14px;border-radius:18px;background:var(--surface);border:2px solid var(--accent-soft,#e8c46a);box-shadow:0 3px 0 rgba(0,0,0,.08);color:var(--fg)}
 .kdfk{flex:none;width:46px;height:46px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(165deg,#cc2340,#7b1024);color:#ffe9b8;font:400 1.6rem/1 var(--font-display,serif)}
 .kdfb{flex:1;min-width:0}.kdfh{display:flex;align-items:center;gap:8px;font-weight:700;font-size:.85rem;color:var(--accent)}
@@ -7041,6 +7048,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
   <section id="vOnline" hidden><div class="gseg" data-seg="online"></div><div class="stack" id="onlineBody"></div></section>
   <section id="vKanji" hidden><div class="stack" id="kanjiBody"></div></section>
   <section id="vGeo" hidden><div class="stack" id="geoBody"></div></section>
+  <section id="vTz" hidden><div class="stack" id="tzBody"></div></section>
 
   <!-- ===== SÉANCE ===== -->
   <section id="vSession" hidden>
@@ -15470,7 +15478,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
   /* =====================================================================
      9. AFFICHAGE : NAVIGATION ET ACCUEIL
      ===================================================================== */
-  var TABS = { hub: 'vHub', home: 'vHome', story: 'vStory', kanji: 'vKanji', geo: 'vGeo', online: 'vOnline', clz: 'vClz', board: 'vBoard', settings: 'vSettings', multi: 'vMulti', profil: 'vProfil' };
+  var TABS = { hub: 'vHub', home: 'vHome', story: 'vStory', kanji: 'vKanji', geo: 'vGeo', tz: 'vTz', online: 'vOnline', clz: 'vClz', board: 'vBoard', settings: 'vSettings', multi: 'vMulti', profil: 'vProfil' };
   function setVox(on) { document.body.classList.remove('vox'); }
   // Chaque grande section a sa couleur et son titre, pour toujours savoir où l'on est
   var SECINFO = { hub: ['道', 'Accueil', 'Ta journée au dōjō'], story: ['旅', 'Aventure', 'Chapitres, mobs et boss'], home: ['場', 'Dojo', 'Révisions, mini-jeux et duels'], base: ['村', 'Base', 'Ton camp et le village'], profil: ['証', 'Profil', 'Ton carnet, la Voie du Dōjō et les réglages'] };
@@ -15490,7 +15498,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
   }
   function show(view) {
     if (view !== 'vMulti' && typeof mpLeaveOnNav === 'function') mpLeaveOnNav();
-    ['vAuth', 'vHub', 'vHome', 'vStory', 'vKanji', 'vGeo', 'vOnline', 'vSession', 'vSettings', 'vBoard', 'vMulti', 'vProfil', 'vClz', 'vFriends'].forEach(function (id) { $(id).hidden = (id !== view); });
+    ['vAuth', 'vHub', 'vHome', 'vStory', 'vKanji', 'vGeo', 'vTz', 'vOnline', 'vSession', 'vSettings', 'vBoard', 'vMulti', 'vProfil', 'vClz', 'vFriends'].forEach(function (id) { $(id).hidden = (id !== view); });
     var inApp = !!user && view !== 'vAuth';
     $('userbox').hidden = !inApp;
     $('nav').hidden = !inApp || view === 'vSession';
@@ -15504,7 +15512,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
       else if (key === 'home') cur = view === 'vHome' && djSub !== 'prog';
       else if (key === 'prog') cur = view === 'vHome' && djSub === 'prog';
       else if (key === 'profil') cur = view === 'vProfil' || view === 'vBoard' || view === 'vSettings';
-      else if (key === 'hub') cur = view === 'vHub' || view === 'vKanji' || view === 'vGeo' || view === 'vOnline' || view === 'vMulti';
+      else if (key === 'hub') cur = view === 'vHub' || view === 'vKanji' || view === 'vGeo' || view === 'vTz' || view === 'vOnline' || view === 'vMulti';
       else cur = TABS[key] === view;
       t.setAttribute('aria-current', cur ? 'page' : 'false');
     });
@@ -15555,6 +15563,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     else if (tab === 'base') { storyTab = 'base'; baseMode = netOn() ? 'village' : 'camp'; renderStory(); show('vStory'); }
     else if (tab === 'multi') { show('vMulti'); renderMulti(); }
     else if (tab === 'kanji') { renderKanji(); show('vKanji'); }
+    else if (tab === 'tz') { tz.screen = 'menu'; renderTz(); show('vTz'); }
     else if (tab === 'geo') { geo.screen = 'menu'; geo.ov = null; renderGeo(); show('vGeo'); }
     else if (tab === 'clz') { clz.view = 'setup'; renderClz(); show('vClz'); }
     else if (tab === 'online') { if (!olOpen()) return; show('vOnline'); renderOnlineView(); }
@@ -19652,6 +19661,129 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     }
   });
   document.addEventListener('change', function (e) { var t = e.target; if (t && t.id === 'geoKana' && !$('vGeo').hidden) { geo.kana = t.checked; if (geo.screen === 'ppick' || geo.screen === 'cpick') return; } });
+  /* ===== ECRITURE : tracer les kanji au doigt, trait par trait (tracés : KanjiVG, CC BY-SA 3.0) ===== */
+  var TZREF = null;
+  var tz = { screen: 'menu', lv: 'n5', mode: 'guide', n: 10, list: [], i: 0, st: 0, err: 0, fails: 0, tot: 0, bad: [], cur: null, hint: false, pen: null, msg: '' };
+  function tzS() { S.tz = S.tz || {}; return S.tz; }
+  function tzXp(n) {
+    var g = tzS(), d = dayKey(), x = g.xp && g.xp.d === d ? g.xp : (g.xp = { d: d, n: 0 }), add = Math.max(0, Math.min(n, 40 - x.n));
+    if (add > 0) { x.n += add; addXp(add); } else persist();
+    return add;
+  }
+  function tzLoad(cb) { if (LZ.st === 2 || Object.keys(STROKES).length > 1500) return cb && cb(); lzLoad(); setTimeout(function () { tzLoad(cb); }, 400); }
+  function tzSens(t) { return String(t || '').replace(/\([^)]*\)/g, '').split(/\s*[;,]\s*/).filter(Boolean).slice(0, 3).join(', '); }
+  function tzPool() {
+    var lv = jlBuild()[tz.lv] || [];
+    return lv.filter(function (c) { return STROKES[c] && STROKES[c].length <= 12; });
+  }
+  function renderTz() {
+    var b = $('tzBody'); if (!b) return;
+    if (LZ.st !== 2 && Object.keys(STROKES).length < 1500) { b.innerHTML = '<div class="panel"><p class="muted">Chargement des tracés…</p></div>'; tzLoad(renderTz); return; }
+    if (tz.screen === 'menu') b.innerHTML = tzMenu(); else if (tz.screen === 'play') { b.innerHTML = tzPlay(); tzDraw(); tzBind(); } else b.innerHTML = tzEnd();
+  }
+  function tzMenu() {
+    var g = tzS(), n = tzPool().length;
+    return '<div class="panel"><h3>Écriture des kanji ✍️</h3><p class="small muted">On te donne le sens et la lecture : trace le kanji au doigt, <b>trait par trait</b>, dans le bon ordre et le bon sens. Le trait juste se lisse et devient vert.</p>' +
+      '<p class="geolab">Niveau</p><div class="geochips">' + ['n5', 'n4', 'n3', 'n2', 'n1'].map(function (k) { return '<button type="button" class="geochip" data-tz="lv:' + k + '" aria-pressed="' + (k === tz.lv) + '">' + k.toUpperCase() + '</button>'; }).join('') + '</div>' +
+      '<p class="geolab">Mode</p><div class="seg geoseg" role="tablist"><button type="button" role="tab" data-tz="mode:guide" aria-selected="' + (tz.mode === 'guide') + '">Guidé <small>le kanji est en filigrane</small></button><button type="button" role="tab" data-tz="mode:memo" aria-selected="' + (tz.mode === 'memo') + '">De mémoire <small>sans modèle</small></button></div>' +
+      '<p class="geolab">Combien de kanji ?</p><div class="geochips">' + [5, 10, 20].map(function (k) { return '<button type="button" class="geochip" data-tz="n:' + k + '" aria-pressed="' + (k === tz.n) + '">' + k + '</button>'; }).join('') + '</div>' +
+      '<button type="button" class="btn primary geogo" data-tz="start"' + (n ? '' : ' disabled') + '>Commencer</button>' +
+      '<p class="small muted">' + n + ' kanji disponibles en ' + tz.lv.toUpperCase() + ' · déjà écrits sans faute : <b>' + (g.perfect || 0) + '</b></p><p class="small muted">Tracés : KanjiVG (CC BY-SA 3.0)</p></div>';
+  }
+  function tzStart() {
+    var pool = shuffle(tzPool().slice()).slice(0, tz.n);
+    if (!pool.length) return;
+    tz.list = pool; tz.i = 0; tz.tot = 0; tz.bad = []; tz.screen = 'play'; tzNew(); renderTz();
+  }
+  function tzNew() { tz.st = 0; tz.err = 0; tz.fails = 0; tz.cur = tz.list[tz.i]; tz.hint = false; tz.done = false; tz.msg = ''; tz.pen = null; }
+  function tzPlay() {
+    var c = tz.cur, i = kxInfo(c) || { on: [], kun: [], sens: '' }, st = STROKES[c];
+    var rd = (i.kun || []).slice(0, 3).concat(i.on || []).slice(0, 4).join('、');
+    return '<button type="button" class="btn ghost geoback" data-tz="menu">‹ Quitter</button><div class="panel tzq"><div class="geoq"><p class="small muted">Kanji ' + (tz.i + 1) + ' / ' + tz.list.length + ' · trait <span id="tzSt">' + Math.min(tz.st + 1, st.length) + '</span> / ' + st.length + '</p>' +
+      '<p class="tzsens"><b>' + esc(tzSens(i.sens)) + '</b></p><p class="small muted">' + esc(rd) + '</p></div>' +
+      '<svg id="tzSvg" class="tzcv" viewBox="0 0 109 109" role="img" aria-label="Zone de tracé du kanji"></svg>' +
+      '<div class="geofb" id="tzFb" aria-live="polite">' + (tz.done ? '' : '<div class="row"><button type="button" class="btn small" data-tz="hint">💡 Indice</button><button type="button" class="btn small ghost" data-tz="skip">Passer</button></div>') + '</div></div>';
+  }
+  var NS = 'http://www.w3.org/2000/svg';
+  function tzDraw() {
+    var sv = $('tzSvg'); if (!sv) return; var c = tz.cur, st = STROKES[c], h = '';
+    h += '<rect x="1" y="1" width="107" height="107" class="tzframe"/><path d="M54.5 1V108M1 54.5H108" class="tzgrid"/>';
+    for (var k = 0; k < st.length; k++) {
+      if (k < tz.st || tz.done) h += '<path d="' + st[k] + '" class="tzdone"/>';
+      else if (tz.mode === 'guide') h += '<path d="' + st[k] + '" class="tzghost"/>';
+    }
+    if (tz.hint && !tz.done && st[tz.st]) h += '<path d="' + st[tz.st] + '" class="tzhint" pathLength="1"/>';
+    h += '<polyline id="tzPen" class="tzpen" points=""/>';
+    sv.innerHTML = h;
+  }
+  function tzSample(d, n) {
+    if (!TZREF) { var s = document.createElementNS(NS, 'svg'); s.setAttribute('width', '0'); s.setAttribute('height', '0'); s.style.cssText = 'position:absolute;left:-9999px'; TZREF = document.createElementNS(NS, 'path'); s.appendChild(TZREF); document.body.appendChild(s); }
+    TZREF.setAttribute('d', d); var L = TZREF.getTotalLength(), o = [];
+    for (var i = 0; i < n; i++) { var p = TZREF.getPointAtLength(L * i / (n - 1)); o.push([p.x, p.y]); }
+    return o;
+  }
+  function tzRes(pts, n) {
+    var L = [0], i; for (i = 1; i < pts.length; i++) L.push(L[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
+    var T = L[L.length - 1], o = [], j = 0;
+    for (i = 0; i < n; i++) { var t = T * i / (n - 1); while (j < L.length - 2 && L[j + 1] < t) j++; var seg = L[j + 1] - L[j] || 1, f = Math.min(1, Math.max(0, (t - L[j]) / seg)); o.push([pts[j][0] + (pts[j + 1][0] - pts[j][0]) * f, pts[j][1] + (pts[j + 1][1] - pts[j][1]) * f]); }
+    return { p: o, len: T };
+  }
+  function tzDist(a, b) { var s = 0; for (var i = 0; i < a.length; i++) s += Math.hypot(a[i][0] - b[i][0], a[i][1] - b[i][1]); return s / a.length; }
+  function tzJudge(pts) {
+    var st = STROKES[tz.cur], e = tz.st, N = 20, u = tzRes(pts, N);
+    if (u.len < 5) return { r: 'tap' };
+    var ref = tzSample(st[e], N), rl = tzRes(ref, N).len, fwd = tzDist(u.p, ref), rev = tzDist(u.p, ref.slice().reverse());
+    var sd = Math.hypot(u.p[0][0] - ref[0][0], u.p[0][1] - ref[0][1]), ed = Math.hypot(u.p[N - 1][0] - ref[N - 1][0], u.p[N - 1][1] - ref[N - 1][1]);
+    var ratio = u.len / Math.max(1, rl), tol = rl < 25 ? 15 : 18;
+    if (fwd < tol && sd < 26 && ed < 26 && ratio > 0.55 && ratio < 1.8) return { r: 'ok' };
+    if (rev < tol && ratio > 0.55 && ratio < 1.8 && rl > 14) return { r: 'sens' };
+    for (var k = e + 1; k < st.length; k++) { var d = tzDist(u.p, tzSample(st[k], N)); if (d < 13) return { r: 'ordre' }; }
+    return { r: 'faux' };
+  }
+  function tzMsg(t, ok) { var f = $('tzFb'); if (!f) return; f.innerHTML = '<p class="' + (ok ? 'geook' : 'geoko') + '">' + t + '</p>' + (tz.done ? '' : '<div class="row"><button type="button" class="btn small" data-tz="hint">💡 Indice</button><button type="button" class="btn small ghost" data-tz="skip">Passer</button></div>'); }
+  function tzBind() {
+    var sv = $('tzSvg'); if (!sv) return; var pts = null, pid = null;
+    function xy(e) { var r = sv.getBoundingClientRect(); return [(e.clientX - r.left) / r.width * 109, (e.clientY - r.top) / r.height * 109]; }
+    sv.addEventListener('pointerdown', function (e) { if (tz.done) return; e.preventDefault(); try { sv.setPointerCapture(e.pointerId); } catch (x) {} pid = e.pointerId; pts = [xy(e)]; var p = $('tzPen'); if (p) p.setAttribute('points', pts.map(function (q) { return q[0].toFixed(1) + ',' + q[1].toFixed(1); }).join(' ')); });
+    sv.addEventListener('pointermove', function (e) { if (!pts || e.pointerId !== pid) return; e.preventDefault(); pts.push(xy(e)); var p = $('tzPen'); if (p) p.setAttribute('points', pts.map(function (q) { return q[0].toFixed(1) + ',' + q[1].toFixed(1); }).join(' ')); });
+    function end(e) {
+      if (!pts || e.pointerId !== pid) return; var got = pts; pts = null; pid = null;
+      var p = $('tzPen'); if (p) p.setAttribute('points', '');
+      if (got.length < 2) return;
+      var j = tzJudge(got); if (j.r === 'tap') return;
+      if (j.r === 'ok') { tz.st++; tz.fails = 0; tz.hint = false; try { sfx('ok'); } catch (x) {} if (tz.st >= STROKES[tz.cur].length) tzFinish(); else { tzDraw(); var s = $('tzSt'); if (s) s.textContent = tz.st + 1; tzMsg('', true); } return; }
+      tz.err++; tz.fails++; try { sfx('bad'); } catch (x) {}
+      sv.classList.remove('wrshake'); void sv.getBoundingClientRect(); sv.classList.add('wrshake');
+      var m = j.r === 'sens' ? 'Bon trait, mais <b>dans l\'autre sens</b> : regarde où il commence.' : j.r === 'ordre' ? 'Ce trait vient <b>plus tard</b> : respecte l\'ordre des traits.' : 'Pas tout à fait : réessaie ce trait.';
+      if (tz.fails >= 2 && !tz.hint) { tz.hint = true; tzDraw(); }
+      tzMsg(m, false);
+    }
+    sv.addEventListener('pointerup', end); sv.addEventListener('pointercancel', function (e) { pts = null; pid = null; var p = $('tzPen'); if (p) p.setAttribute('points', ''); });
+  }
+  function tzFinish() {
+    tz.done = true; var c = tz.cur, perfect = tz.err === 0; tz.tot += perfect ? 1 : 0; if (!perfect) tz.bad.push(c);
+    var g = tzS(); if (perfect) g.perfect = (g.perfect || 0) + 1;
+    var xp = tzXp(perfect ? 3 : 1); tzDraw();
+    var last = tz.i >= tz.list.length - 1, i = kxInfo(c) || {};
+    var f = $('tzFb'); if (f) f.innerHTML = '<p class="geook">' + (perfect ? '✔ Sans faute !' : '✔ Réussi (' + tz.err + ' erreur' + (tz.err > 1 ? 's' : '') + ')') + (xp ? ' +' + xp + ' XP' : '') + '</p><button type="button" class="btn primary" data-tz="next">' + (last ? 'Voir le résultat' : 'Suivant') + '</button>';
+    try { sfx(perfect ? 'coin' : 'ok'); } catch (x) {}
+  }
+  function tzEnd() {
+    var n = tz.list.length, pct = Math.round(tz.tot / n * 100);
+    return '<div class="panel geoend"><h3>' + (pct >= 90 ? 'Superbe écriture !' : pct >= 60 ? 'Bien joué !' : 'Continue, ça vient !') + '</h3><p class="geobig">' + tz.tot + ' / ' + n + ' <small>sans faute</small></p>' +
+      (tz.bad.length ? '<p class="geolab">À retravailler</p><div class="geochips">' + tz.bad.map(function (c) { var i = kxInfo(c) || {}; return '<span class="geochip"><b class="geojp">' + esc(c) + '</b> ' + esc(tzSens(i.sens).split(',')[0]) + '</span>'; }).join('') + '</div>' : '<p class="small">Aucune erreur, sans faute !</p>') +
+      '<div class="row"><button type="button" class="btn primary" data-tz="start">Rejouer</button><button type="button" class="btn" data-tz="menu">Menu</button></div></div>';
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-tz]') : null; if (!b || !user || $('vTz').hidden) return;
+    var a = b.getAttribute('data-tz'), v = a.indexOf(':') > 0 ? a.slice(a.indexOf(':') + 1) : '', k = a.split(':')[0];
+    if (k === 'lv') { tz.lv = v; renderTz(); return; } if (k === 'mode') { tz.mode = v; renderTz(); return; } if (k === 'n') { tz.n = +v; renderTz(); return; }
+    if (a === 'menu') { tz.screen = 'menu'; renderTz(); } else if (a === 'start') tzStart();
+    else if (a === 'hint') { tz.hint = true; tzDraw(); }
+    else if (a === 'skip') { tz.bad.push(tz.cur); tz.err = 99; tz.done = true; tz.st = STROKES[tz.cur].length; tzDraw(); var last = tz.i >= tz.list.length - 1; var f = $('tzFb'); if (f) f.innerHTML = '<p class="geoko">Le voici en entier : observe l\'ordre des traits.</p><button type="button" class="btn primary" data-tz="next">' + (last ? 'Voir le résultat' : 'Suivant') + '</button>'; }
+    else if (a === 'next') { tz.i++; if (tz.i >= tz.list.length) { tz.screen = 'end'; } else tzNew(); renderTz(); window.scrollTo(0, 0); }
+  });
+
   function renderHub() {
     assetsLoad();
     renderHome();
@@ -33260,7 +33392,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v796', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v797', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35255,6 +35387,7 @@ var PAR="";
         { k: 'dico', kj: '辞', t: 'Dictionnaire', s: T(function () { return dcCount().toLocaleString('fr-FR'); }, '25 000') + ' mots · verbes conjugués', a: 'data-hubdico="1"', c1: '#fae8b2', c2: '#e0b24c' }
       ];
       arr.splice(3, 0, { k: 'hist', kj: '史', t: 'Histoire du Japon', s: '14 époques, du Jōmon à Reiwa', a: 'data-khist="1"', c1: '#e3d9f6', c2: '#8b6fc4' });
+      arr.splice(5, 0, { k: 'tz', kj: '書', t: 'Écriture des kanji', s: 'Trace-les au doigt, trait par trait', a: 'data-go="tz"', c1: '#f6dcc4', c2: '#d98f4e' });
       arr.splice(4, 0, { k: 'geo', kj: '地', t: 'Géographie du Japon', s: 'Préfectures, villes et métro de Tokyo', a: 'data-go="geo"', c1: '#cfe9ef', c2: '#4fa7a8' });
       if (errs) arr.splice(0, 0, { k: 'err', kj: '復', t: 'Mes erreurs', s: errs + ' à corriger : 3 bonnes réponses d\u2019affilée et elles disparaissent', a: 'data-errbook="1"', c1: '#f8c2c8', c2: '#c8405a' });
       if (T(function () { return unlOn('story'); }, false)) arr.push({ k: 'story', kj: '旅', t: 'Aventure', s: L.tag + (chs.length ? ' · ' + done + '/' + chs.length + ' chapitres' : ''), a: 'data-go="story"', c1: '#fbd3bc', c2: '#e58a5f' });
@@ -35664,6 +35797,7 @@ var PAR="";
       gram: ['Au<br>menu', [['', '章', 'Unités'], ['', '丁', 'Politesse'], ['', '助', 'Particules'], ['', '形', 'Formes en て'], ['', '問', 'Quiz'], ['', '読', 'Lecture']]],
       err: ['Pour<br>corriger', [['', '帳', 'Carnet'], ['', '三', '3 bonnes réponses'], ['', '炉', 'Fourneau'], ['', '復', 'Révision'], ['', '忘', 'Jamais oublié']]],
       story: ['Au<br>menu', [['', '章', 'Chapitres'], ['', '鬼', 'Boss'], ['', '話', 'Histoire'], ['', '試', 'Épreuves']]],
+      tz: ['Je trace<br>les kanji', [['n5', '五', 'N5'], ['n4', '四', 'N4'], ['n3', '三', 'N3'], ['n2', '二', 'N2'], ['n1', '一', 'N1']]],
       geo: ['Dans la<br>géo', [['explore', '地', 'Explorer'], ['ppick', '県', 'Préfectures'], ['cpick', '都', 'Placer les villes'], ['metro', '駅', 'Métro de Tokyo'], ['mstart', '電', 'Quiz métro']]],
       hist: ['Dans<br>l\'histoire', [['', '時', 'Époques'], ['l', '年', 'Frise'], ['d', '史', 'Dossiers'], ['p', '人', 'Personnages'], ['c', '語', 'Concepts'], ['r', '試', 'Réviser']]]
     };
@@ -35683,6 +35817,7 @@ var PAR="";
     document.addEventListener('click', function (e) {
       var t = e.target.closest ? e.target.closest('.kdtk') : null; if (!t) return; var c = t.closest('.kdc'); if (!c || !c.classList.contains('sel')) return;
       if (c.getAttribute('data-k') === 'hist') { e.preventDefault(); e.stopPropagation(); var hs = t.getAttribute('data-kdsub'); location.href = 'histoire/' + (hs ? '#' + hs : ''); return; }
+      if (c.getAttribute('data-k') === 'tz') { if (!user) return; e.preventDefault(); e.stopPropagation(); tz.lv = t.getAttribute('data-kdsub'); go('tz'); return; }
       if (c.getAttribute('data-k') === 'geo') { if (!user) return; e.preventDefault(); e.stopPropagation(); var gs = t.getAttribute('data-kdsub'); go('geo'); setTimeout(function () { if (gs === 'mstart') { geo.m = { q: geoMQuizBuild(), i: 0, ok: 0, ans: false }; } geo.screen = gs === 'mstart' ? 'mquiz' : gs; geo.ov = null; renderGeo(); window.scrollTo(0, 0); }, 60); return; }
       if (!user) return;
       e.preventDefault(); e.stopPropagation(); var sub = t.getAttribute('data-kdsub');
