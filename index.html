@@ -20688,9 +20688,48 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     return { win: win, xp: xp, coins: coins, draw: !winners.length, bet: bet, kt: kt };
   }
 
+  /* ---- v798 : contenus « Géographie du Japon » et « Histoire du Japon » pour les salons (duel, tour, bombe…) ---- */
+  var HQ = null, HQTRY = false;
+  function histLoad() {
+    if (HQ || HQTRY) return; HQTRY = true;
+    fetch('histoire/data/epoques.json').then(function (r) { return r.json(); }).then(function (j) { HQ = j; }).catch(function () { HQTRY = false; });
+  }
+  function qOpts(good, pool, n) {
+    var o = [good], seen = {}; seen[good] = 1;
+    shuffle(pool.slice()).forEach(function (x) { if (!seen[x] && o.length < (n || 4)) { seen[x] = 1; o.push(x); } });
+    return o.length >= 3 ? shuffle(o) : null;
+  }
+  function geoQuestion() {
+    var P = GEO_PREF, p = P[Math.floor(Math.random() * P.length)], t = Math.floor(Math.random() * 4), o, q;
+    if (t === 0) { o = qOpts(p[3], P.map(function (x) { return x[3]; })); q = { prompt: 'Quelle est cette préfecture ?', big: p[1], sub: '', correct: p[3], options: o }; }
+    else if (t === 1) { o = qOpts(p[5], P.map(function (x) { return x[5]; })); q = { prompt: 'Quel est le chef-lieu de la préfecture de ' + p[3] + ' ?', big: p[1], sub: '', correct: p[5], options: o }; }
+    else if (t === 2) { o = qOpts(GEO_REGIONS[p[4]], GEO_REGIONS); q = { prompt: 'Dans quelle région se trouve la préfecture de ' + p[3] + ' ?', big: p[1], sub: '', correct: GEO_REGIONS[p[4]], options: o }; }
+    else { var cs = GEO_CITY.filter(function (x) { return String(x[2]).replace(/[ōŌ]/g, 'o').toLowerCase() !== String(x[5]).replace(/[ōŌ]/g, 'o').toLowerCase(); }), c = cs[Math.floor(Math.random() * cs.length)]; o = qOpts(c[5], P.map(function (x) { return x[3]; })); q = { prompt: 'Dans quelle préfecture se trouve cette ville ?', big: c[0], sub: c[2], correct: c[5], options: o }; }
+    if (!q.options) return geoQuestion();
+    q.fmt = 'mcq'; q.type = 'riddle'; q.bigCls = ''; q.tag = ''; return q;
+  }
+  function histQuestion() {
+    if (!HQ) { histLoad(); return geoQuestion(); }
+    var D = HQ, p = D[Math.floor(Math.random() * D.length)], t = Math.random() < 0.6 ? 0 : 1, q;
+    if (t === 0) {
+      var key = String(p.nom).split(' ')[0].toLowerCase(), ev = (p.evenements || []).filter(function (x) { return String(x[1]).toLowerCase().indexOf(key) < 0 && String(x[1]).length < 150; });
+      if (!ev.length) return histQuestion();
+      var e = ev[Math.floor(Math.random() * ev.length)], o = qOpts(p.nom, D.map(function (x) { return x.nom; }));
+      if (!o) return geoQuestion();
+      q = { prompt: 'À quelle période appartient cet événement ?', big: '？', sub: e[1], correct: p.nom, options: o };
+    } else {
+      var ms = (p.mots || []); if (!ms.length) return histQuestion();
+      var m = ms[Math.floor(Math.random() * ms.length)], all = []; D.forEach(function (x) { (x.mots || []).forEach(function (y) { all.push(y[2]); }); });
+      var o2 = qOpts(m[2], all); if (!o2) return geoQuestion();
+      q = { prompt: 'Que signifie ce terme de l\'histoire du Japon ?', big: m[1] || m[0], sub: m[1] ? m[0] : '', correct: m[2], options: o2 };
+    }
+    q.fmt = 'mcq'; q.type = 'riddle'; q.bigCls = ''; q.tag = ''; return q;
+  }
   /* ---- Moteur de l'hôte : questions à choix ---- */
   function mpMakeQ(g) {
     var pr = mpProg(), words = progWords(pr), ks = progKanjis(pr);
+    if (pr.kind === 'geo') return geoQuestion();
+    if (pr.kind === 'hist') return histQuestion();
     if (pr.kind !== 'vocab' && ks.length >= 6 && (pr.kind === 'kanji' || words.length < 8 || Math.random() < 0.4)) {
       var kq = kanjiQuestion(ks); if (kq) return kq;
     }
@@ -21172,14 +21211,14 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     if (keep) { var nw = $('mpCode'); nw.value = keep.v; if (keep.f) { nw.focus(); } }
   }
   /* ---- Programme de révision du salon : niveau, semaine, type de contenu ---- */
-  var MP_KINDS = [['all', 'Mélange'], ['vocab', 'Vocabulaire'], ['kanji', 'Kanjis']];
+  var MP_KINDS = [['all', 'Mélange'], ['vocab', 'Vocabulaire'], ['kanji', 'Kanjis'], ['geo', 'Géographie'], ['hist', 'Histoire']];
   var MP_WKNAME = { 1: 'Le Parchemin', 2: 'Le Temple', 3: 'Yōkai et enfers', 4: 'Contes et légendes', 5: 'Kami et tonnerre', 7: 'Enquête et climat', 8: 'Diplôme et limites', 9: 'Rues, pluie et Okinawa', 10: 'Ressources et cérémonies', 11: 'Progrès et trésors' };
   var mpMenuProg = null, mpProgOpen = false;
   document.addEventListener('toggle', function (e) { if (e.target && e.target.id === 'mpProgAcc') mpProgOpen = e.target.open; }, true);
   function progClean(p) {
     var lv = p && CURSUS[p.lv] ? p.lv : curLv();
     var wk = p && p.wk !== 'all' && lvWeeks(lv).indexOf(+p.wk) >= 0 ? +p.wk : 'all';
-    var kind = p && ['all', 'vocab', 'kanji'].indexOf(p.kind) >= 0 ? p.kind : 'all';
+    var kind = p && ['all', 'vocab', 'kanji', 'geo', 'hist'].indexOf(p.kind) >= 0 ? p.kind : 'all';
     var jl = p && p.jl && JL_LV.some(function (l) { return l[0] === p.jl; }) ? p.jl : '';
     if (jl) wk = 'all';
     return { lv: lv, wk: wk, kind: kind, jl: jl };
@@ -21199,8 +21238,9 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
   }
   function progShort(p) { if (p.jl) return jlLabel(p.jl); return CURSUS[p.lv].tag + (p.wk === 'all' ? ' · toutes les semaines' : ' · S' + wkNum(p.wk)); }
   function progLong(p) { if (p.jl) return jlLabel(p.jl) + ' · tout le niveau'; return CURSUS[p.lv].tag + ' · ' + (p.wk === 'all' ? 'Toutes les semaines' : progWkLabel(p.wk)); }
-  function progKindLabel(k) { return { all: 'Mélange complet', vocab: 'Vocabulaire uniquement', kanji: 'Kanjis uniquement' }[k]; }
+  function progKindLabel(k) { return { all: 'Mélange complet', vocab: 'Vocabulaire uniquement', kanji: 'Kanjis uniquement', geo: 'Géographie du Japon', hist: 'Histoire du Japon' }[k]; }
   function progProblem(p, mode) {
+    if (p.kind === 'geo' || p.kind === 'hist') return '';
     var w = progWords(p).length, k = progKanjis(p).length;
     if (p.kind === 'vocab' && w < 8) return 'Pas assez de vocabulaire dans ce programme : choisis une autre semaine.';
     if (p.kind === 'kanji' && k < 6) return 'Pas assez de kanjis dans ce programme : choisis une autre semaine ou un autre contenu.';
@@ -21221,6 +21261,7 @@ body .kdbar2 .kdtk { background: #8a1228 !important; border: 1.5px solid #e2b85a
     return '<div class="mpsum" aria-label="Réglages du salon"><span><small>Mode</small>' + esc(MPM[mp.v.mode].name + (mp.v.mode === 'team' ? (mp.v.opts.vs === 'boss' ? ' · Quiz Boss' : ' · 2v2') : '')) + '</span><span><small>Programme</small>' + esc(progLong(p)) + '</span><span><small>Contenu</small>' + esc(progKindLabel(p.kind)) + '</span></div>';
   }
   function progPicker(pfx, p) {
+    histLoad();
     var weeks = lvWeeks(p.lv);
     var seg = function (key, list, cur) {
       return '<div class="mpseg" role="group">' + list.map(function (x) { return '<button type="button" class="mpb" data-mpp="' + key + ':' + x[0] + '" data-mppfx="' + pfx + '" aria-pressed="' + (String(cur) === String(x[0])) + '">' + esc(x[1]) + '</button>'; }).join('') + '</div>';
@@ -33392,7 +33433,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v797', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v798', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
