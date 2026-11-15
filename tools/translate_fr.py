@@ -9,7 +9,7 @@ fr = json.load(open('data/jmfr.json', encoding='utf-8'))
 try: auto = json.load(open('data/jmfr_auto.json', encoding='utf-8'))
 except Exception: auto = {}
 rows = []
-for n in ('rest', 'common'):
+for n in ('rest',):   # seules les entrées « rest » reçoivent le français automatique
     rows += json.loads(gzip.open('data/jmdict_%s.gz' % n).read().decode('utf-8'))
 need = [r for r in rows if str(r[0]) not in fr and str(r[0]) not in auto and r[4]]
 if limit: need = need[:limit]
