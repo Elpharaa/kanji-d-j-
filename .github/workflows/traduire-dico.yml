@@ -28,7 +28,7 @@ jobs:
         run: |
           git config user.name "Claude"
           git config user.email "noreply@anthropic.com"
-          git add data/jmfr.json
+          git add data/jmfr_auto.json
           git commit -m "Traductions automatiques du dictionnaire (OPUS-MT en→fr)" || exit 0
           git pull --rebase
           git push
