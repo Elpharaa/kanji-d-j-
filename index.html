@@ -30448,7 +30448,7 @@ body .cdslotm:focus-visible .cdcard{outline:3px solid #e0b94a;outline-offset:2px
     return h + '<div id="dcList">' + dcListHTML() + '</div>';
   }
   function dcRefreshList() { var l = document.getElementById('dcList'); if (l) l.innerHTML = dcListHTML(); }
-  var DCL = 'fr'; try { DCL = localStorage.getItem('dcLang') || (/^ja/i.test(navigator.language || '') ? 'ja' : 'fr'); } catch (e) {}
+  var DCL = 'fr';   /* v842 : interface du dictionnaire en français seulement (la recherche marche déjà dans les deux sens) */
   var FXREGJ = { argot: 'スラング', vulgaire: '下品な表現', familier: 'くだけた表現', courant: '一般的', soutenu: '改まった表現', proverbe: 'ことわざ' };
   function dcJaUI(h) {
     [['Type', '種類'], ['Niveau', 'レベル'], ['Tous', 'すべて'], ['Verbes', '動詞'], ['Adjectifs', '形容詞'], ['Expressions', '日本語の表現'], ['Autres mots', 'その他'], ['Expr. françaises', 'フランス語の表現'], ['Hors JLPT', 'JLPT外'], ['Cours', '授業'], ['Bonus', 'ボーナス'], ['Thème', 'テーマ'], ['Tri', '並び順']].forEach(function (p) { h = h.split('>' + p[0] + '<').join('>' + p[1] + '<'); });
@@ -30457,7 +30457,7 @@ body .cdslotm:focus-visible .cdcard{outline:3px solid #e0b94a;outline-offset:2px
   function dcInner() {
     var h = dcInner0(); if (DCL === 'ja') h = dcJaUI(h);
     var bar = '<div class="dclang" role="group" aria-label="Langue / 言語" style="display:flex;gap:6px;align-items:center;margin-bottom:8px"><span class="small muted">' + (DCL === 'ja' ? '言語' : 'Langue') + '</span><button type="button" class="cs-chip' + (DCL === 'fr' ? ' on' : '') + '" data-dc="lang:fr" aria-pressed="' + (DCL === 'fr') + '">Français</button><button type="button" class="cs-chip' + (DCL === 'ja' ? ' on' : '') + '" data-dc="lang:ja" aria-pressed="' + (DCL === 'ja') + '">日本語</button></div>';
-    return bar + h;
+    return h;
   }
   function fxSpeakFr(t) {
     if (!t) return;
@@ -33553,7 +33553,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v841', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v842', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -37000,7 +37000,7 @@ var PAR="";
       var bar;
       if (EX.rest === 2) bar = '<p class="jxbar ok">📚 JMdict complet chargé · ' + dcCount().toLocaleString('fr-FR') + ' mots</p>';
       else if (EX.busy === 'rest') bar = '<p class="jxbar">⏳ Chargement du dictionnaire complet…</p>';
-      else bar = '<button type="button" class="jxbtn" data-jx="rest">📚 Ajouter tout JMdict <small>+187 000 mots rares (traduction française en cours) · environ 6 Mo · peut ralentir un téléphone</small></button>' + (EX.rest === 3 ? '<p class="jxbar">Téléchargement impossible, réessaie en ligne.</p>' : '');
+      else bar = '<button type="button" class="jxbtn" data-jx="rest">📚 Ajouter les mots rares <small>+187 000 mots, traduits automatiquement en français (≈) · environ 6 Mo</small></button>' + (EX.rest === 3 ? '<p class="jxbar">Téléchargement impossible, réessaie en ligne.</p>' : '');
       return h.replace('<div class="dcbody">', bar + '<div class="dcbody">');
     };
     document.addEventListener('click', function (ev) {
@@ -37526,7 +37526,6 @@ var PAR="";
   dcInner = function () {
     var h = fxI3(), ja = DCL === 'ja';
     h = h.replace(/<div class="kxtrow fxrow">[\s\S]*?<\/div>/, '');
-    h = h.replace('<header class="dchead">', '<header class="dchead dcflaghd"><button type="button" class="dcflag" data-dc="langtoggle" aria-label="' + (ja ? '日本語版。タップでフランス語版に切り替え' : 'Version pour les Français. Touche pour la version japonaise') + '"><span class="dcfl">' + (ja ? '🇯🇵' : '🇫🇷') + '</span><small>' + (ja ? '日本語' : 'Français') + '</small></button>');
     if (ja) h = h.replace('<b>Dictionnaire</b>', '<b>辞書</b>');
     return h;
   };
