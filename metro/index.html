@@ -44,6 +44,16 @@ button.rst{padding:7px 16px;border-radius:999px;border:2px solid #c49a3a;backgro
 .rec{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}.rec li{padding:9px 12px;border:1.5px solid #c49a3a;border-radius:12px;background:linear-gradient(#fbf5e6,#f2e6c9)}.rec b{display:block;font:400 1.05rem "Yuji Syuku",serif;color:#7b1024}.rec span{font-size:.9rem;color:#2c2452}
 .mnote{font-size:.8rem;color:#513d7c}
 #animebg{position:fixed;inset:0;z-index:0;pointer-events:none}
+.hchip{display:inline-block;padding:3px 11px;border-radius:999px;border:1.5px solid #c49a3a;background:linear-gradient(#fffaf0,#edddbd);color:#4a2f23;font:700 .78rem "Zen Kaku Gothic New",sans-serif;letter-spacing:.03em;cursor:pointer}
+.hchip{white-space:normal;max-width:100%;text-align:left;line-height:1.3;height:auto}
+.hcrop{position:fixed;inset:0;z-index:9999;background:rgba(20,10,40,.7);display:grid;place-items:center;padding:12px}
+.hcbox{box-sizing:border-box;background:#fbf3e2;border:2px solid #c49a3a;border-radius:16px;padding:14px;max-width:500px;width:100%;max-height:96vh;overflow:auto;text-align:center}
+.hcbox h3{margin:0 0 4px}.hcn{font-size:.82rem;opacity:.75;margin:0 0 8px}
+.hcr,.hcf{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:8px 0}
+.hcbox canvas{border:2px solid #c49a3a;border-radius:10px;touch-action:none;max-width:100%;cursor:grab;background:#fff}
+.hcz{display:flex;gap:10px;align-items:center;justify-content:center;font-weight:700;margin:6px 0}.hcz input{flex:1;max-width:260px}
+.hchip.on{background:#b2285b;color:#fff}.hcok{background:#b2285b;color:#fff}
+.mimg{display:block;width:100%;border-radius:10px;margin:0 0 8px;object-fit:cover}.madm{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;font-size:.8rem}
 </style></head><body class="onhome inapp hist">
 <div id="animebg" aria-hidden="true"></div>
 <div class="app"><main class="mwrap">
@@ -53,6 +63,8 @@ button.rst{padding:7px 16px;border-radius:999px;border:2px solid #c49a3a;backgro
 <div class="mpanel" id="p1"><input id="fa" list="dl" placeholder="Chercher une station…" style="width:100%;padding:10px 14px;border-radius:999px"><datalist id="dl"></datalist><h2 id="ttl" style="margin-top:12px">Touche une station</h2><div class="mu" id="sub">Découvre quoi voir et faire autour d'elle.</div><div id="res"></div></div>
 <div class="mpanel mnote">Carte schématique : stations principales des 9 lignes Tokyo Metro et des 4 lignes Toei, positions approximatives. Les idées de visite sont des repères généraux : vérifie les horaires et les réservations avant d'y aller. Les lignes JR ne sont pas incluses.</div>
 </main></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.104.0/dist/umd/supabase.js"></script>
+<script src="../config.js"></script>
 <script>
 var L={G:['Ginza','#f39700'],M:['Marunouchi','#e60012'],H:['Hibiya','#9caeb7'],T:['Tōzai','#00a7db'],C:['Chiyoda','#009944'],Y:['Yūrakuchō','#d7c447'],Z:['Hanzōmon','#9b7cb6'],N:['Namboku','#00ada9'],F:['Fukutoshin','#bb641d'],A:['Asakusa (Toei)','#e85298'],I:['Mita (Toei)','#0079c2'],S:['Shinjuku (Toei)','#6cbb5a'],E:['Ōedo (Toei)','#b6007a']};var OP={A:'T',I:'T',S:'T',E:'T',M2:'M'};
 var S={shibuya:['渋谷','Shibuya',35.659,139.702],omote:['表参道','Omotesandō',35.665,139.712],gaien:['外苑前','Gaienmae',35.670,139.717],aoyama:['青山一丁目','Aoyama-itchōme',35.673,139.724],akasaka_m:['赤坂見附','Akasaka-mitsuke',35.677,139.737],tameike:['溜池山王','Tameike-sannō',35.673,139.741],toranomon:['虎ノ門','Toranomon',35.670,139.750],shimbashi:['新橋','Shimbashi',35.666,139.758],ginza:['銀座','Ginza',35.671,139.764],kyobashi:['京橋','Kyōbashi',35.677,139.770],nihombashi:['日本橋','Nihombashi',35.682,139.774],mitsukoshi:['三越前','Mitsukoshimae',35.686,139.774],kanda:['神田','Kanda',35.692,139.771],uenohiro:['上野広小路','Ueno-hirokōji',35.708,139.773],ueno:['上野','Ueno',35.711,139.777],tawara:['田原町','Tawaramachi',35.710,139.791],asakusa:['浅草','Asakusa',35.711,139.797],
@@ -112,7 +124,47 @@ if(!cur){T.textContent='Touche une station';Sb.textContent="Découvre quoi voir 
 dots[cur].setAttribute('fill','#ff6b57');dots[cur].setAttribute('r',10);
 var ln=[];Object.keys(R).forEach(function(l){if(l!='M2'&&R[l].split(' ').indexOf(cur)>=0)ln.push('<span class="chip" style="border-color:'+L[l][1]+'">'+L[l][0]+'</span>')});
 T.textContent=S[cur][0]+' '+S[cur][1];Sb.innerHTML=ln.join(' ');
-var r=REC[cur];Rs.innerHTML=r?'<ul class="rec">'+r.map(function(x){return'<li><b>'+x[0]+'</b><span>'+x[1]+'</span></li>'}).join('')+'</ul>':''}
+var r=REC[cur];Rs.innerHTML=r?'<ul class="rec">'+r.map(function(x,n){var k=cur+':'+n,im=MA['metro:'+k];return'<li>'+(im?'<img class="mimg" src="'+im+'" alt="" decoding="async">':'')+'<b>'+x[0]+'</b><span>'+x[1]+'</span>'+(ADM?'<div class="madm"><button type="button" class="hchip" data-mi="'+k+'">📷 '+(im?'Changer':'Ajouter une image')+'</button>'+(im?'<button type="button" class="hchip" data-md="'+k+'">✕ Retirer</button>':'')+'</div>':'')+'</li>'}).join('')+'</ul>':'';mLoad(cur)}
+
+var SB=null,ADM=false,MA={},MIDS={};
+try{MA=JSON.parse(localStorage.getItem('metro_assets')||'{}')||{}}catch(x){}
+function mStore(){try{localStorage.setItem('metro_assets',JSON.stringify(MA))}catch(x){}}
+try{var C0=window.KANJI_CONFIG;if(window.supabase&&C0&&C0.SUPABASE_URL)SB=window.supabase.createClient(C0.SUPABASE_URL,C0.SUPABASE_KEY)}catch(x){}
+var MPEND={};
+function mLoad(st){if(!SB||!st||!REC[st])return;var need=[];REC[st].forEach(function(x,n){var id='metro:'+st+':'+n;if(!MA[id]&&MIDS[id]&&!MPEND[id])need.push(id)});if(!need.length)return;need.forEach(function(id){MPEND[id]=1});SB.from('site_assets').select('id,data').in('id',need).then(function(r){need.forEach(function(id){delete MPEND[id]});if(r.error||!r.data)return;r.data.forEach(function(x){if(x.data)MA[x.id]=x.data});mStore();if(cur===st)draw()}).catch(function(){need.forEach(function(id){delete MPEND[id]})})}
+function mInit(){if(!SB)return;SB.from('site_assets').select('id').like('id','metro:%').then(function(r){if(r.error||!r.data)return;r.data.forEach(function(x){MIDS[x.id]=1});if(cur)mLoad(cur)}).catch(function(){});
+ SB.auth.getSession().then(function(r){var u=r.data&&r.data.session&&r.data.session.user;if(!u)return;return SB.from('profiles').select('username').eq('id',u.id).single().then(function(q){var a=!!(q.data&&String(q.data.username||'').toLowerCase()==='elphara');if(a!==ADM){ADM=a;draw()}})}).catch(function(){})}
+function msave(key,d){return SB.auth.getSession().then(function(r){var u=r.data.session.user;return SB.from('site_assets').upsert({id:'metro:'+key,data:d,updated_at:new Date().toISOString(),updated_by:u.id})}).then(function(r){if(r&&r.error)throw r.error;MA['metro:'+key]=d;MIDS['metro:'+key]=1;mStore();draw()}).catch(function(er){alert('Échec : '+((er&&er.message)||er))})}
+function mdel(key){SB.from('site_assets').delete().eq('id','metro:'+key).then(function(r){if(r.error)throw r.error;delete MA['metro:'+key];delete MIDS['metro:'+key];mStore();draw()}).catch(function(er){alert('Échec : '+((er&&er.message)||er))})}
+var HRAT={car:[1,1,'Carré'],p43:[4,3,'4:3'],pay:[16,9,'16:9'],por:[3,4,'Portrait']};
+function mcrop(key,src){
+ var img=new Image();img.onerror=function(){alert('Image illisible.')};
+ img.onload=function(){
+  var iw=img.naturalWidth,ih=img.naturalHeight,rk='p43';try{rk=localStorage.getItem('kd.hr')||'p43'}catch(x){}if(!HRAT[rk])rk='p43';
+  var z=1,cx=iw/2,cy=ih/2,cw,ch,base,drag=null;
+  var ov=document.createElement('div');ov.className='hcrop';
+  ov.innerHTML='<div class="hcbox"><h3>Cadrer l’image</h3><p class="hcn">Fais glisser l’image et zoome. Ce que tu vois dans le cadre est exactement ce qui sera affiché sur la fiche.</p><div class="hcr">'+Object.keys(HRAT).map(function(k){return'<button type="button" class="hchip" data-r="'+k+'">'+HRAT[k][2]+'</button>'}).join('')+'</div><canvas id="hcCv"></canvas><label class="hcz">Zoom <input id="hcZ" type="range" min="100" max="400" value="100"></label><div class="hcf"><button type="button" class="hchip" id="hcRe">Recentrer</button><button type="button" class="hchip" id="hcNo">Annuler</button><button type="button" class="hchip hcok" id="hcOk">Valider</button></div></div>';
+  document.body.appendChild(ov);var cv=ov.querySelector('#hcCv'),g=cv.getContext('2d');
+  function size(){var r=HRAT[rk],rt=r[0]/r[1],mw=Math.min(440,innerWidth-70),mh=Math.round(innerHeight*.45);cw=mw;ch=Math.round(cw/rt);if(ch>mh){ch=mh;cw=Math.round(ch*rt)}cv.width=cw;cv.height=ch;cv.style.width=cw+'px';cv.style.height=ch+'px';base=Math.max(cw/iw,ch/ih);ov.querySelectorAll('[data-r]').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-r')===rk)});draw()}
+  function draw(){var s=base*z,hw=cw/(2*s),hh=ch/(2*s);cx=Math.min(iw-hw,Math.max(hw,cx));cy=Math.min(ih-hh,Math.max(hh,cy));g.fillStyle='#fff';g.fillRect(0,0,cw,ch);g.drawImage(img,cw/2-cx*s,ch/2-cy*s,iw*s,ih*s)}
+  cv.onpointerdown=function(ev){drag={x:ev.clientX,y:ev.clientY};try{cv.setPointerCapture(ev.pointerId)}catch(x){}ev.preventDefault()};
+  cv.onpointermove=function(ev){if(!drag)return;var s=base*z;cx-=(ev.clientX-drag.x)/s;cy-=(ev.clientY-drag.y)/s;drag={x:ev.clientX,y:ev.clientY};draw()};
+  cv.onpointerup=cv.onpointercancel=function(){drag=null};
+  cv.onwheel=function(ev){ev.preventDefault();z=Math.min(4,Math.max(1,z*(ev.deltaY<0?1.08:.93)));ov.querySelector('#hcZ').value=Math.round(z*100);draw()};
+  ov.querySelector('#hcZ').oninput=function(){z=this.value/100;draw()};
+  ov.querySelectorAll('[data-r]').forEach(function(b){b.onclick=function(){rk=b.getAttribute('data-r');try{localStorage.setItem('kd.hr',rk)}catch(x){}z=1;ov.querySelector('#hcZ').value=100;size()}});
+  ov.querySelector('#hcRe').onclick=function(){z=1;cx=iw/2;cy=ih/2;ov.querySelector('#hcZ').value=100;draw()};
+  function close(){URL.revokeObjectURL(src);ov.remove()}
+  ov.querySelector('#hcNo').onclick=close;
+  ov.querySelector('#hcOk').onclick=function(){var r=HRAT[rk],w=r[0]>=r[1]?720:540,h=Math.round(w*r[1]/r[0]),d,out,k=w/cw,s=base*z*k;
+   for(var t=0;t<6;t++){out=document.createElement('canvas');out.width=w;out.height=h;var oc=out.getContext('2d');oc.fillStyle='#fff';oc.fillRect(0,0,w,h);oc.imageSmoothingQuality='high';oc.drawImage(img,w/2-cx*s,h/2-cy*s,iw*s,ih*s);var q=.85;d=out.toDataURL('image/jpeg',q);while(d.length>120000&&q>.4){q-=.08;d=out.toDataURL('image/jpeg',q)}if(d.length<=120000)break;w=Math.round(w*.85);h=Math.round(h*.85);k=w/cw;s=base*z*k}
+   if(d.length>=245000){alert('Image trop détaillée, essaie un autre cadrage.');return}close();msave(key,d)};
+  size()};
+ img.src=src}
+
+function mpick(key){var inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.onchange=function(){var f=inp.files&&inp.files[0];if(!f)return;if(!/^image\//.test(f.type)){alert('Choisis un fichier image.');return}mcrop(key,URL.createObjectURL(f))};inp.click()}
+document.getElementById('res').addEventListener('click',function(ev){var b=ev.target.closest('[data-mi]');if(b){mpick(b.getAttribute('data-mi'));return}b=ev.target.closest('[data-md]');if(b&&confirm('Retirer cette image ?'))mdel(b.getAttribute('data-md'))});
+mInit();
 var dl=document.getElementById('dl'),byN={};ids.slice().sort(function(a,b){return S[a][1].localeCompare(S[b][1])}).forEach(function(i){var n=S[i][1]+' '+S[i][0];byN[n]=i;dl.innerHTML+='<option value="'+n+'">'});
 document.getElementById('fa').addEventListener('change',function(){var i=byN[this.value];if(!i)return;pick(i);var q=px(S[i]);vb.x=q[0]-vb.w/2;vb.y=q[1]-vb.h/2;sv()});
 window.addEventListener('resize',sv);sv();
