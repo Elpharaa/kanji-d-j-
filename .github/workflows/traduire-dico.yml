@@ -31,8 +31,13 @@ jobs:
           ct2-transformers-converter --model Helsinki-NLP/opus-mt-tc-big-en-fr --output_dir /tmp/ct2big --quantization int8
           python3 tools/retranslate_ctx.py /tmp/ct2big
           python3 tools/retranslate_fr.py /tmp/ct2
+      - name: Kanji rares (sens en français)
+        if: ${{ github.event.inputs.passe == 'kanji' }}
+        run: |
+          ct2-transformers-converter --model Helsinki-NLP/opus-mt-tc-big-en-fr --output_dir /tmp/ct2big --quantization int8
+          python3 tools/translate_kjx.py /tmp/ct2big
       - name: Traduire
-        if: ${{ github.event.inputs.passe != 'contexte' }}
+        if: ${{ github.event.inputs.passe == 'traduire' || github.event.inputs.passe == 'corriger' }}
         run: |
           if [ "${{ github.event.inputs.passe }}" = "corriger" ]; then python3 tools/retranslate_fr.py /tmp/ct2; else python3 tools/translate_fr.py /tmp/ct2 ${{ github.event.inputs.limite }}; fi
       - name: Publier le résultat
@@ -47,7 +52,7 @@ jobs:
           open('index.html', 'w', encoding='utf-8').write(h.replace(m.group(0), "APP_V = 'v%d'" % n, 1))
           open('version.json', 'w').write('{"v": "v%d"}' % n)
           PY
-          git add data/jmfr_auto.json index.html version.json
+          git add data/jmfr_auto.json data/kjx.gz index.html version.json
           git commit -m "Traductions automatiques du dictionnaire (OPUS-MT en→fr)" || exit 0
           git pull --rebase
           git push
