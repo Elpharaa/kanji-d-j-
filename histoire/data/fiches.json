@@ -124,7 +124,7 @@
 ],
 "voir": [
 "todaiji",
-"nara_epoque_note",
+"kokubunji",
 "bouddhisme"
 ]
 },
@@ -408,8 +408,7 @@
 "alias": [
 "Ashikaga Takauji",
 "Takauji",
-"足利尊氏",
-"Ashikaga"
+"足利尊氏"
 ],
 "resume": "Vassal des Hōjō qui retourne sa veste en 1333, puis fonde le shogunat Ashikaga après sa rupture avec Go-Daigo.",
 "points": [
@@ -540,8 +539,7 @@
 "alias": [
 "Toyotomi Hideyoshi",
 "Hideyoshi",
-"豊臣秀吉",
-"Toyotomi"
+"豊臣秀吉"
 ],
 "resume": "Fils de paysan devenu régent, second unificateur. Il achève la conquête du pays en 1590 et met de l'ordre dans la société.",
 "points": [
@@ -833,7 +831,7 @@
 ],
 "voir": [
 "article9",
-"kodo_seicho"
+"miracle_eco"
 ]
 },
 {
@@ -1804,9 +1802,7 @@
 "epoque": "meiji",
 "alias": [
 "Restauration de Meiji",
-"Restauration de Meiji",
-"明治維新",
-"Boshin"
+"明治維新"
 ],
 "resume": "Renversement du shogunat par des coalitions de han (Satsuma, Chōshū) au nom de l'empereur.",
 "points": [
@@ -1936,28 +1932,6 @@
 ]
 },
 {
-"id": "kodo_seicho",
-"type": "événement",
-"nom": "Haute croissance",
-"kanji": "高度経済成長",
-"lecture": "こうどけいざいせいちょう",
-"dates": "1955 – 1973",
-"epoque": "showa",
-"alias": [
-"haute croissance",
-"高度成長"
-],
-"resume": "Période de croissance de plus de 9 % par an en moyenne, qui fait du Japon la deuxième économie mondiale.",
-"points": [
-"1964 : Jeux olympiques et Shinkansen.",
-"Fin avec le choc pétrolier de 1973.",
-"1970 : l'Exposition universelle d'Ōsaka."
-],
-"voir": [
-"yoshida"
-]
-},
-{
 "id": "bulle",
 "type": "événement",
 "nom": "Bulle économique",
@@ -2002,28 +1976,6 @@
 "voir": [
 "shomu",
 "bouddhisme"
-]
-},
-{
-"id": "nara_epoque_note",
-"type": "concept",
-"nom": "Temples provinciaux",
-"kanji": "国分寺",
-"lecture": "こくぶんじ",
-"dates": "741",
-"epoque": "nara",
-"alias": [
-"kokubunji",
-"temples provinciaux"
-],
-"resume": "Réseau de temples et de couvents créés dans chaque province par ordre de Shōmu, pour protéger l'État par les rites bouddhiques.",
-"points": [
-"Un temple de moines et un de nonnes par province.",
-"Le Tōdai-ji est le temple principal."
-],
-"voir": [
-"shomu",
-"todaiji"
 ]
 },
 {
@@ -2517,7 +2469,9 @@
 "points": [
 "Rôle du MITI, des keiretsu, des banques principales et de l'emploi à vie.",
 "Revers : pollution (Minamata, Itai-itai) ; lois de 1967.",
-"Fin avec le choc pétrolier de 1973."
+"Fin avec le choc pétrolier de 1973.",
+"1964 : Jeux olympiques et Shinkansen.",
+"1970 : l'Exposition universelle d'Ōsaka."
 ],
 "voir": [
 "ikeda",
@@ -3823,7 +3777,8 @@
 "resume": "Réseau de temples provinciaux créés par l'empereur Shōmu pour protéger l'État par la prière.",
 "points": [
 "Le Tōdaiji en est le chef.",
-"Souligne le bouddhisme comme religion protectrice de l'État."
+"Souligne le bouddhisme comme religion protectrice de l'État.",
+"Un temple de moines et un de nonnes par province."
 ],
 "voir": [
 "shomu",
@@ -5671,8 +5626,7 @@
 "alias": [
 "Conscription",
 "徴兵令",
-"conscription",
-"Yamagata Aritomo"
+"conscription"
 ],
 "resume": "Loi qui établit un service militaire obligatoire de trois ans pour les hommes de 20 ans, sans distinction de classe, comme le promeut Yamagata Aritomo.",
 "points": [
