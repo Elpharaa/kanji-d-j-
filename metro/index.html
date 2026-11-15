@@ -1,38 +1,59 @@
 <!doctype html>
 <html lang="fr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Métro de Tōkyō — carte et prix · Kanji Dōjō</title>
+<title>Métro de Tōkyō · Kanji Dōjō</title>
+<meta name="theme-color" content="#2c2452">
+<link rel="icon" href="../histoire/logo.webp">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Yuji+Syuku&display=swap">
+<link rel="stylesheet" href="../histoire/da.css?v=1">
 <style>
-:root{--bg:#14110f;--pn:#1f1a17;--tx:#f3ece2;--mu:#a89c8c;--ac:#e0533d;--bd:#3a312b}
-*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.4 system-ui,-apple-system,"Noto Sans JP",sans-serif}
-header{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--bd)}
-header a{color:var(--tx);text-decoration:none;font-size:1.4rem}header h1{font-size:1.05rem;margin:0}header small{color:var(--mu)}
-#map{width:100%;height:56vh;min-height:300px;background:#0f0d0b;touch-action:none;display:block;cursor:grab}
-.tabs{display:flex;gap:6px;padding:8px 12px}.tabs button{flex:1;padding:8px;border-radius:10px;border:1px solid var(--bd);background:var(--pn);color:var(--tx);font:inherit}
-.tabs button.on{background:var(--ac);border-color:var(--ac)}
-.box{margin:0 12px 12px;padding:12px;border:1px solid var(--bd);border-radius:14px;background:var(--pn)}
-.box h2{margin:0 0 6px;font-size:1rem}.mu{color:var(--mu);font-size:.85rem}
+html{background:#b9a8dc}
+body.hist{padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}
+.mwrap{max-width:760px;margin:0 auto;display:grid;gap:14px;padding-top:6px;position:relative;z-index:1}
+.mtop{display:flex;align-items:center;gap:12px}
+.mback{flex:none;width:46px;height:46px;display:grid;place-items:center;border:3px solid #e2b85a;border-radius:14px;background:linear-gradient(165deg,#cc2340,#7b1024);color:#ffe9b8;text-decoration:none;font:400 1.5rem "Yuji Syuku",serif;box-shadow:0 4px 10px rgba(70,15,35,.35)}
+.mtop h1{margin:0;font:400 1.6rem/1.1 "Yuji Syuku","Shippori Mincho",serif;color:#4a2f23}
+.mtop small{display:block;color:#513d7c;font:500 .9rem "Zen Kaku Gothic New",sans-serif}
+.mpanel{background:rgba(255,250,240,.96);border:1px solid #a392c5;border-radius:16px;padding:14px;box-shadow:0 2px 8px rgba(35,26,54,.14);color:#181225;font-family:"Zen Kaku Gothic New",sans-serif}
+.mpanel h2{margin:0 0 6px;font:400 1.15rem "Yuji Syuku","Shippori Mincho",serif;color:#b2285b;letter-spacing:.04em;text-transform:none;display:flex;align-items:center;gap:8px}
+.mpanel h2::before{content:"";width:6px;height:1.1em;background:#b2285b;border-radius:2px}
+.mu{color:#513d7c;font-size:.88rem}
+#wrap{position:relative;border:3px solid #e2b85a;border-radius:18px;overflow:hidden;box-shadow:0 6px 14px rgba(70,15,35,.3);background:#f6ecd6}
+#map{width:100%;height:56vh;min-height:300px;display:block;touch-action:none;cursor:grab;background:radial-gradient(circle at 50% 40%,#fbf3df,#eedfbd)}
+.tabs{display:flex;gap:8px}
+.tabs button{flex:1;padding:10px;border-radius:999px;border:2px solid #c49a3a;background:linear-gradient(#fffaf0,#edddbd);color:#4a2f23;font:700 .95rem "Zen Kaku Gothic New",sans-serif;cursor:pointer}
+.tabs button.on{background:linear-gradient(165deg,#cc2340,#7b1024);color:#ffe9b8;border-color:#e2b85a}
 .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:6px 0}
-.chip{padding:6px 10px;border-radius:999px;border:1px solid var(--bd);background:#2a231e}
-.chip b{color:var(--ac)}
-.price{font-size:2.2rem;font-weight:800;color:#ffd27a;line-height:1}
-.price small{font-size:.9rem;color:var(--mu);font-weight:400}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
-.grid div{background:#2a231e;border-radius:10px;padding:8px;text-align:center}.grid b{display:block;font-size:1.15rem}
-input[type=range]{width:100%;accent-color:var(--ac)}
-button.rst{padding:7px 12px;border-radius:10px;border:1px solid var(--bd);background:#2a231e;color:var(--tx);font:inherit}
+.chip{display:inline-block;padding:3px 11px;border-radius:999px;border:1.5px solid #c49a3a;background:linear-gradient(#fffaf0,#edddbd);color:#4a2f23;font:700 .85rem "Zen Kaku Gothic New",sans-serif}
+.chip b{color:#b2285b}
+.price{display:inline-block;padding:8px 18px;border:3px solid #e2b85a;border-radius:16px;background:linear-gradient(165deg,#cc2340 0%,#a31832 52%,#7b1024 100%);color:#ffe9b8;font:400 2.2rem/1.1 "Yuji Syuku",serif;box-shadow:0 4px 10px rgba(70,15,35,.35)}
+.price small{font:500 .85rem "Zen Kaku Gothic New",sans-serif;color:#f6cf8e}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.grid div{background:linear-gradient(#fbf5e6,#f2e6c9);border:1.5px solid #c49a3a;border-radius:12px;padding:8px;text-align:center}
+.grid b{display:block;font:400 1.25rem "Yuji Syuku",serif;color:#7b1024}
+.grid .mu{font-size:.75rem}
+input[type=range]{width:100%;accent-color:#b2285b}
+input[type=text],input:not([type]){border:2px solid #c49a3a!important;background:linear-gradient(#fffaf2,#fbe7dd)!important;color:#181225!important;font:500 .95rem "Zen Kaku Gothic New",sans-serif}
+label{font-weight:700;color:#4a2f23}
+button.rst{padding:7px 16px;border-radius:999px;border:2px solid #c49a3a;background:linear-gradient(#fffaf0,#edddbd);color:#4a2f23;font:700 .9rem "Zen Kaku Gothic New",sans-serif;cursor:pointer}
 .zb{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:6px}
-.zb button{width:38px;height:38px;border-radius:10px;border:1px solid var(--bd);background:var(--pn);color:var(--tx);font-size:1.3rem}
-#wrap{position:relative}
-.lg{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 8px}.lg span{font-size:.75rem;display:flex;align-items:center;gap:4px}.lg i{width:12px;height:12px;border-radius:50%;display:inline-block}
-</style></head><body>
-<header><a href="../" aria-label="Retour">←</a><div><h1>地下鉄 Métro de Tōkyō</h1><small>Touche deux stations, ou simule une distance</small></div></header>
+.zb button{width:40px;height:40px;border-radius:12px;border:2px solid #e2b85a;background:linear-gradient(165deg,#cc2340,#7b1024);color:#ffe9b8;font-size:1.3rem;cursor:pointer}
+.lg{display:flex;flex-wrap:wrap;gap:6px 10px;padding:0 2px}
+.lg span{font:500 .78rem "Zen Kaku Gothic New",sans-serif;display:flex;align-items:center;gap:4px;color:#2c2452}
+.lg i{width:12px;height:12px;border-radius:50%;display:inline-block;border:1px solid rgba(0,0,0,.25)}
+.mnote{font-size:.8rem;color:#513d7c}
+#animebg{position:fixed;inset:0;z-index:0;pointer-events:none}
+</style></head><body class="onhome inapp hist">
+<div id="animebg" aria-hidden="true"></div>
+<div class="app"><main class="mwrap">
+<div class="mtop"><a class="mback" href="../" aria-label="Retour au dojo">道</a><div><h1>地下鉄 Métro de Tōkyō</h1><small>Touche deux stations, ou simule une distance</small></div></div>
 <div id="wrap"><svg id="map"></svg><div class="zb"><button id="zi" aria-label="Zoom +">+</button><button id="zo" aria-label="Zoom −">−</button></div></div>
-<div class="lg" id="lg"></div>
+<div class="lg mpanel" id="lg"></div>
 <div class="tabs"><button id="t1" class="on">Trajet sur la carte</button><button id="t2">Simuler une distance</button></div>
-<div class="box" id="p1"><div class="row"><input id="fa" list="dl" placeholder="Départ" style="flex:1;min-width:120px;padding:8px;border-radius:10px;border:1px solid var(--bd);background:#2a231e;color:var(--tx)"><input id="fb" list="dl" placeholder="Arrivée" style="flex:1;min-width:120px;padding:8px;border-radius:10px;border:1px solid var(--bd);background:#2a231e;color:var(--tx)"></div><datalist id="dl"></datalist><h2 id="ttl">Choisis une station de départ</h2><div class="mu" id="sub">Touche une station sur la carte.</div><div id="res"></div><div class="row"><button class="rst" id="rst">Effacer</button></div></div>
-<div class="box" id="p2" hidden><h2>Prix selon la distance</h2><div class="row"><span class="chip"><b id="kmv">8</b> km</span></div><div class="row"><label><input type="radio" name="op" id="opM" checked> Tokyo Metro</label> <label><input type="radio" name="op" id="opT"> Toei</label></div><input type="range" id="km" min="1" max="46" step="1" value="8"><div id="res2"></div></div>
-<div class="box mu">Tarifs adulte des sites officiels tokyometro.jp et kotsu.metro.tokyo.jp (Toei) : ticket en tranches de 10 yens, carte IC au yen près. Les distances de la carte sont des <b>estimations</b> à vol d'oiseau majoré de 20 %, et la carte est schématique (stations principales seulement) : le prix réel peut différer d'une tranche. Les lignes JR ne sont pas incluses.</div>
+<div class="mpanel" id="p1"><div class="row"><input id="fa" list="dl" placeholder="Départ" style="flex:1;min-width:120px;padding:8px;border-radius:10px;border:1px solid var(--bd);background:#2a231e;color:var(--tx)"><input id="fb" list="dl" placeholder="Arrivée" style="flex:1;min-width:120px;padding:8px;border-radius:10px;border:1px solid var(--bd);background:#2a231e;color:var(--tx)"></div><datalist id="dl"></datalist><h2 id="ttl">Choisis une station de départ</h2><div class="mu" id="sub">Touche une station sur la carte.</div><div id="res"></div><div class="row"><button class="rst" id="rst">Effacer</button></div></div>
+<div class="mpanel" id="p2" hidden><h2>Prix selon la distance</h2><div class="row"><span class="chip"><b id="kmv">8</b> km</span></div><div class="row"><label><input type="radio" name="op" id="opM" checked> Tokyo Metro</label> <label><input type="radio" name="op" id="opT"> Toei</label></div><input type="range" id="km" min="1" max="46" step="1" value="8"><div id="res2"></div></div>
+<div class="mpanel mnote">Tarifs adulte des sites officiels tokyometro.jp et kotsu.metro.tokyo.jp (Toei) : ticket en tranches de 10 yens, carte IC au yen près. Les distances de la carte sont des <b>estimations</b> à vol d'oiseau majoré de 20 %, et la carte est schématique (stations principales seulement) : le prix réel peut différer d'une tranche. Les lignes JR ne sont pas incluses.</div>
+</main></div>
 <script>
 var L={G:['Ginza','#f39700'],M:['Marunouchi','#e60012'],H:['Hibiya','#9caeb7'],T:['Tōzai','#00a7db'],C:['Chiyoda','#009944'],Y:['Yūrakuchō','#d7c447'],Z:['Hanzōmon','#9b7cb6'],N:['Namboku','#00ada9'],F:['Fukutoshin','#bb641d'],A:['Asakusa (Toei)','#e85298'],I:['Mita (Toei)','#0079c2'],S:['Shinjuku (Toei)','#6cbb5a'],E:['Ōedo (Toei)','#b6007a']};var OP={A:'T',I:'T',S:'T',E:'T',M2:'M'};
 var S={shibuya:['渋谷','Shibuya',35.659,139.702],omote:['表参道','Omotesandō',35.665,139.712],gaien:['外苑前','Gaienmae',35.670,139.717],aoyama:['青山一丁目','Aoyama-itchōme',35.673,139.724],akasaka_m:['赤坂見附','Akasaka-mitsuke',35.677,139.737],tameike:['溜池山王','Tameike-sannō',35.673,139.741],toranomon:['虎ノ門','Toranomon',35.670,139.750],shimbashi:['新橋','Shimbashi',35.666,139.758],ginza:['銀座','Ginza',35.671,139.764],kyobashi:['京橋','Kyōbashi',35.677,139.770],nihombashi:['日本橋','Nihombashi',35.682,139.774],mitsukoshi:['三越前','Mitsukoshimae',35.686,139.774],kanda:['神田','Kanda',35.692,139.771],uenohiro:['上野広小路','Ueno-hirokōji',35.708,139.773],ueno:['上野','Ueno',35.711,139.777],tawara:['田原町','Tawaramachi',35.710,139.791],asakusa:['浅草','Asakusa',35.711,139.797],
@@ -73,7 +94,7 @@ function el(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttr
 var segEl=[];segs.forEach(function(s){var a=px(S[s[1]]),b=px(S[s[2]]);var e=el('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:L[s[0]][1],'stroke-width':5,'stroke-linecap':'round',opacity:.9});segEl.push([e,s])});
 var hl=el('g',{});var st=el('g',{});var dots={};
 ids.forEach(function(i){var p=px(S[i]);var c=el('circle',{cx:p[0],cy:p[1],r:7,fill:'#fff',stroke:'#222','stroke-width':2.5,'data-id':i},st);dots[i]=c;
-var t=el('text',{x:p[0]+10,y:p[1]-8,fill:'#e8dfd3','font-size':15,'pointer-events':'none','paint-order':'stroke',stroke:'#0f0d0b','stroke-width':4,class:'lbl'},st);t.textContent=S[i][1];t.setAttribute('data-id',i);
+var t=el('text',{x:p[0]+10,y:p[1]-8,fill:'#2c2452','font-size':15,'pointer-events':'none','paint-order':'stroke',stroke:'#fbf3df','stroke-width':4,class:'lbl'},st);t.textContent=S[i][1];t.setAttribute('data-id',i);
 var h=el('circle',{cx:p[0],cy:p[1],r:22,fill:'transparent','data-id':i},st)});
 var lg=document.getElementById('lg');Object.keys(L).filter(function(k){return k!='M2'}).forEach(function(k){lg.innerHTML+='<span><i style="background:'+L[k][1]+'"></i>'+L[k][0]+'</span>'});
 var vb={x:130,y:60,w:560,h:420};function sv(){var r=svg.getBoundingClientRect(),asp=r.width/r.height;var h2=vb.w/asp;svg.setAttribute('viewBox',vb.x+' '+vb.y+' '+vb.w+' '+h2);vb.h=h2;var z=1000/vb.w;svg.querySelectorAll('.lbl').forEach(function(t){t.style.display=z>2.2?'':'none'})}
@@ -103,7 +124,7 @@ dots[A].setAttribute('fill','#5ad17a');dots[A].setAttribute('r',10);
 if(!B){T.textContent=S[A][0]+' '+S[A][1];Sb.textContent='Départ choisi. Touche maintenant la station d\'arrivée.';Rs.innerHTML='';return}
 dots[B].setAttribute('fill','#ff6b57');dots[B].setAttribute('r',10);
 var pts0=null,bestC=null;['M','T','X'].forEach(function(md){var rr=dij(A,B,md);if(rr.km>1e8)return;var c=calc(rr.path,md);if(!bestC||c.tk<bestC.tk||(c.tk==bestC.tk&&c.km<bestC.km))bestC=c});
-var p=bestC.path,pts=p.map(function(i){var q=px(S[i]);return q[0]+','+q[1]}).join(' ');el('polyline',{points:pts,fill:'none',stroke:'#fff','stroke-width':9,'stroke-linecap':'round','stroke-linejoin':'round',opacity:.55},hl);
+var p=bestC.path,pts=p.map(function(i){var q=px(S[i]);return q[0]+','+q[1]}).join(' ');el('polyline',{points:pts,fill:'none',stroke:'#2c2452','stroke-width':10,'stroke-linecap':'round','stroke-linejoin':'round',opacity:.5},hl);
 var kmr=bestC.km,tk=bestC.tk,ic=bestC.ic,ct=bestC.ct,ci=bestC.ci,note=bestC.note,used=bestC.used;
 T.textContent=S[A][1]+' → '+S[B][1];Sb.textContent=(p.length-1)+' station(s) · '+kmr+' km (estimation) · '+used.join(', ');
 Rs.innerHTML='<div class="row"><div class="price">'+tk+' <small>¥ ticket</small></div></div><div class="grid"><div><small class="mu">Carte IC</small><b>'+ic+' ¥</b></div><div><small class="mu">Enfant (ticket)</small><b>'+ct+' ¥</b></div><div><small class="mu">Enfant (IC)</small><b>'+ci+' ¥</b></div></div>'+note}
@@ -117,4 +138,6 @@ var dl=document.getElementById('dl'),byN={};ids.slice().sort(function(a,b){retur
 function sch(inp,w){inp.addEventListener('change',function(){var i=byN[inp.value];if(!i)return;if(w==0){A=i;B=null}else{if(!A){A=i}else B=i}draw();var q=px(S[i]);vb.x=q[0]-vb.w/2;vb.y=q[1]-vb.h/2;sv()})}
 sch(document.getElementById('fa'),0);sch(document.getElementById('fb'),1);
 window.addEventListener('resize',sv);sv();
+fetch('../histoire/animebg.html').then(function(r){return r.text()}).then(function(h){var el=document.getElementById('animebg');el.outerHTML=h;kdBg()}).catch(function(){});
+function kdBg(){try{var el=document.getElementById('animebg');if(!el)return;var d=null,c=localStorage.getItem('kd.wp.cur');if(c===null){for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&k.indexOf('kd.wp.')===0&&k!=='kd.wp.cur'){try{d=JSON.parse(localStorage.getItem(k))}catch(x){d=null}if(d&&d.w)break;d=null}}}else if(c){try{d=JSON.parse(localStorage.getItem('kd.wp.'+c)||'null')}catch(x){d=null}}var A={};try{A=JSON.parse(localStorage.getItem('kd.assets')||'{}')||{}}catch(x){}var w=(d&&d.w)||A.bg_wide||A.bg_tall,t=(d&&d.t)||A.bg_tall||A.bg_wide;if(!w&&!t)return;['W','T'].forEach(function(k){var im=el.querySelector('img.bg'+k);if(!im){im=document.createElement('img');im.className='bgimg bg'+k;im.alt='';im.decoding='async';el.insertBefore(im,el.firstChild)}var u=k==='W'?w:t;if(u&&im.getAttribute('src')!==u)im.src=u});el.classList.add('hasimg')}catch(e){}}
 </script></body></html>
