@@ -33553,7 +33553,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v844', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v845', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -37120,6 +37120,8 @@ var PAR="";
   function frsTier(e, qf) {
     var f = e._f0 !== undefined ? e._f0 : (e._f0 = dcNorm(e.fr).split(/[,;]/)[0].trim());
     if (f === qf || f === 'se ' + qf || f === 'etre ' + qf) return 0;
+    var gl = e._gl2 || (e._gl2 = dcNorm(e.fr).split(/[,;]/).map(function (x) { return x.trim(); }));
+    if (gl.indexOf(qf) >= 0 || gl.indexOf('se ' + qf) >= 0) return 0;   /* v845 : le mot exact compte même s'il n'est pas la première traduction */
     if (f.indexOf(qf) === 0) return 1;
     if (dcNorm(e.fr).indexOf(qf) >= 0) return 2;
     return -1;
