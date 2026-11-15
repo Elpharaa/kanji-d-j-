@@ -19386,7 +19386,7 @@ body .cdslotm:focus-visible .cdcard{outline:3px solid #e0b94a;outline-offset:2px
 
   /* ---- Déblocage progressif des sections selon le niveau ---- */
   var UNL = { story: [2, "L'Aventure"], cards: [3, 'Le Classeur de cartes'], bazar: [4, "La Boutique"] };
-  function unlOn(k) { if (k === 'story' && !isAdmin()) return false; return true; /* déblocage par niveau désactivé : tout est accessible */ var d = UNL[k]; if (!d || !S) return true; return level() >= d[0] || !!(S.unl && S.unl[k]); }
+  function unlOn(k) { if (k === 'story') return false; /* Aventure masquée pour tout le monde, y compris l'admin */ return true; /* déblocage par niveau désactivé : tout est accessible */ var d = UNL[k]; if (!d || !S) return true; return level() >= d[0] || !!(S.unl && S.unl[k]); }
   function unlSync() {
     if (!S) return;
     if (!S.unl) { S.unl = {}; Object.keys(UNL).forEach(function (k) { if (level() >= UNL[k][0]) S.unl[k] = 1; }); }
@@ -33552,7 +33552,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v838', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v839', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
