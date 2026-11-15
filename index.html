@@ -33551,7 +33551,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v811', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v812', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35991,7 +35991,7 @@ var PAR="";
     function load(cb) {
       if (FACTS) return cb();
       if (TRY) return; TRY = true;
-      fetch('data/faits.json').then(function (r) { return r.json(); }).then(function (j) { FACTS = j; if (idx < 0) idx = (dayNum() * 7) % j.length; cb(); }).catch(function () { TRY = false; });
+      fetch('data/faits.json').then(function (r) { return r.json(); }).then(function (j) { FACTS = j; if (idx < 0) { var last = -1; try { last = +sessionStorage.getItem('kd.fact.i'); if (isNaN(last)) last = -1; } catch (e) {} do { idx = Math.floor(Math.random() * j.length); } while (idx === last && j.length > 1); try { sessionStorage.setItem('kd.fact.i', idx); } catch (e) {} } cb(); }).catch(function () { TRY = false; });
     }
     function draw() {
       var host = document.getElementById('kdFact'), f = FACTS && FACTS[idx]; if (!host || !f) return;
