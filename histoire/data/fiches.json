@@ -3613,9 +3613,12 @@
 "Fujiwara-kyō",
 "藤原京"
 ],
-"resume": "Première capitale japonaise construite sur un plan quadrillé de type chinois, fondée sous Jitō.",
+"resume": "Première capitale japonaise construite sur un plan quadrillé de type chinois, fondée en 694 sous l'impératrice Jitō. Elle reste capitale pendant seize ans avant d'être remplacée par Heijō-kyō (Nara).",
 "points": [
-"Remplacée par Heijō-kyō en 710."
+"Remplacée par Heijō-kyō en 710.",
+"Capitale de 694 à 710, sous les empereurs Jitō, Monmu et Genmei.",
+"Son plan en damier s'inspire de celui des capitales chinoises.",
+"Les fouilles menées à Kashihara (préfecture de Nara) montrent un site plus vaste que ce que l'on pensait."
 ],
 "voir": [
 "jito",
@@ -4100,7 +4103,10 @@
 ],
 "resume": "Empereur (1072-1086) puis empereur retiré qui domine la politique jusqu'à sa mort. Il est connu pour sa piété et pour ses moines.",
 "points": [
-"Aurait déclaré que seuls l'eau de la Kamo, les dés et les moines du Hiei lui échappaient."
+"Aurait déclaré que seuls l'eau de la Kamo, les dés et les moines du Hiei lui échappaient.",
+"1086 : il abdique en faveur de son fils Horikawa mais garde le pouvoir, ce qui inaugure l'insei, le gouvernement des empereurs retirés.",
+"Il fait construire de grands temples, dont le Hosshōji à Kyōto.",
+"Ses successeurs Toba puis Go-Shirakawa continuent ce système."
 ],
 "voir": [
 "insei"
@@ -4123,7 +4129,10 @@
 ],
 "resume": "Guerres dans le Tōhoku où les Minamoto (Yoriyoshi, Yoshiie) battent les Abe puis les Kiyohara, ce qui renforce leur prestige.",
 "points": [
-"Fujiwara no Kiyohira fonde ensuite les Fujiwara du nord (Hiraizumi)."
+"Fujiwara no Kiyohira fonde ensuite les Fujiwara du nord (Hiraizumi).",
+"Zenkunen (1051-1062) : Minamoto no Yoriyoshi et son fils Yoshiie battent le clan Abe avec l'aide des Kiyohara.",
+"Gosannen (1083-1087) : Yoshiie intervient dans une querelle de succession chez les Kiyohara ; Fujiwara no Kiyohira en sort vainqueur.",
+"La cour ne récompense pas Yoshiie, qui paie ses guerriers de ses propres biens : ses liens avec eux se renforcent."
 ],
 "voir": [
 "bushi",
@@ -4277,16 +4286,18 @@
 "nom": "Fujiwara no Yorimichi",
 "kanji": "藤原頼通",
 "lecture": "ふじわらのよりみち",
-"dates": "990-1074",
+"dates": "992-1074",
 "epoque": "heian",
 "alias": [
 "Fujiwara no Yorimichi",
 "藤原頼通",
 "Yorimichi"
 ],
-"resume": "Fils de Michinaga, régent puis chancelier pendant près d'un demi-siècle. Il fait bâtir le Byōdōin.",
+"resume": "Fils de Michinaga, régent puis chancelier pendant près d'un demi-siècle. Il fait bâtir le Byōdōin à Uji, où se dresse le célèbre pavillon du Phénix, mais voit l'influence de sa famille décliner.",
 "points": [
-"Voit le déclin des Fujiwara avec l'accession de Go-Sanjō, non lié à eux (1068)."
+"Voit le déclin des Fujiwara avec l'accession de Go-Sanjō, non lié à eux (1068).",
+"Il est régent ou chancelier sous trois empereurs : Go-Ichijō, Go-Suzaku et Go-Reizei.",
+"1053 : il fait achever le pavillon du Phénix (Hōō-dō) du Byōdōin, à Uji."
 ],
 "voir": [
 "michinaga",
@@ -4641,7 +4652,9 @@
 ],
 "resume": "Essai de Kamo no Chōmei qui décrit catastrophes (incendie, séisme) et le choix de vivre dans une hutte d'un « hōjō » (3 m carrés).",
 "points": [
-"Début célèbre : « l'eau de la rivière coule sans cesse, et pourtant l'eau n'est jamais la même »."
+"Début célèbre : « l'eau de la rivière coule sans cesse, et pourtant l'eau n'est jamais la même ».",
+"Il est écrit en 1212, quand Kamo no Chōmei, ancien courtisan, vit en ermite dans les monts Hino, près de Kyōto.",
+"Chōmei raconte une série de catastrophes : le grand incendie de 1177, un tourbillon, le transfert de la capitale à Fukuhara (1180), la famine de 1181-1182 et un séisme en 1185."
 ],
 "voir": [
 "heike",
@@ -4661,9 +4674,11 @@
 "徒然草",
 "Kenkō"
 ],
-"resume": "Recueil d'essais (zuihitsu) du moine Yoshida Kenkō sur la beauté, l'impermanence et les usages.",
+"resume": "Recueil d'essais (zuihitsu) du moine Yoshida Kenkō vers 1330 sur la beauté, l'impermanence et les usages. Son titre signifie « Les heures oisives ».",
 "points": [
-"Prône l'esthétique de l'imperfection (wabi) : la lune ou les fleurs dans leur déclin."
+"Prône l'esthétique de l'imperfection (wabi) : la lune ou les fleurs dans leur déclin.",
+"Il compte 243 courts passages sur des sujets très variés : amitié, mode de vie, anecdotes, goûts.",
+"Kenkō a quitté la cour pour devenir moine."
 ],
 "voir": [
 "sei_shonagon",
@@ -4755,9 +4770,13 @@
 "Nitta Yoshisada",
 "新田義貞"
 ],
-"resume": "Chef guerrier du Kantō qui attaque Kamakura en 1333 et met fin au régime des Hōjō.",
+"resume": "Chef guerrier du Kantō qui attaque Kamakura en 1333 et met fin au régime des Hōjō, avant de devenir l'un des grands généraux de la cour de Go-Daigo.",
 "points": [
-"Rival d'Ashikaga Takauji ; meurt en 1338."
+"Rival d'Ashikaga Takauji ; meurt en 1338.",
+"1333 : il se rallie à l'empereur Go-Daigo et prend Kamakura, où le dernier régent Hōjō Takatoki se donne la mort.",
+"Il combat ensuite pour la cour du Sud contre Ashikaga Takauji.",
+"1338 : il est tué à Fujishima (province d'Echizen).",
+"Une légende raconte qu'il aurait jeté son sabre à la mer pour que les eaux se retirent devant Kamakura."
 ],
 "voir": [
 "kenmu",
@@ -4825,9 +4844,12 @@
 "Sesshū",
 "雪舟"
 ],
-"resume": "Moine-peintre zen, le plus célèbre peintre à l'encre du Japon. Il voyage en Chine en 1467-1469.",
+"resume": "Moine-peintre zen, le plus célèbre peintre à l'encre du Japon. Il voyage en Chine en 1467-1469 et en rapporte un style plus ferme et plus personnel.",
 "points": [
-"Paysage d'Amanohashidate, Paysage long (Sansui chōkan)."
+"Paysage d'Amanohashidate, Paysage long (Sansui chōkan).",
+"Il se forme à Kyōto, au monastère Shōkoku-ji, auprès du peintre Shūbun.",
+"Son Paysage long (Sansui chōkan, 1486) mesure près de 16 m, un rouleau devenu l'un de ses chefs-d'œuvre.",
+"Six de ses œuvres sont classées trésors nationaux."
 ],
 "voir": [
 "zen",
@@ -4946,7 +4968,9 @@
 ],
 "resume": "Victoire de Nobunaga et Ieyasu sur le clan Takeda de Katsuyori, où les arquebusiers jouent un rôle important.",
 "points": [
-"La légende des « trois rangs successifs » est contestée par les historiens."
+"La légende des « trois rangs successifs » est contestée par les historiens.",
+"Elle a lieu en 1575 près du château de Nagashino (province de Mikawa), que Takeda Katsuyori assiégeait.",
+"Les Takeda perdent de nombreux généraux ; le clan s'effondre en 1582."
 ],
 "voir": [
 "teppo",
@@ -5137,9 +5161,12 @@
 "buke shohatto",
 "règlement des maisons guerrières"
 ],
-"resume": "Règlements aux daimyō : limitation des châteaux, contrôle des mariages, etc.",
+"resume": "Règlements aux daimyō promulgués en 1615 : limitation des châteaux, contrôle des mariages, des alliances et du comportement des seigneurs.",
 "points": [
-"Révisé en 1635 par Iemitsu pour imposer le sankin kōtai."
+"Révisé en 1635 par Iemitsu pour imposer le sankin kōtai.",
+"Promulgués en 1615 sous le shōgun Tokugawa Hidetada, après la chute du château d'Ōsaka.",
+"Un daimyō ne peut pas réparer son château ni marier ses enfants sans l'accord du shogunat.",
+"Un seigneur qui désobéit risque la confiscation de son fief."
 ],
 "voir": [
 "sankin_kotai",
@@ -5280,7 +5307,10 @@
 ],
 "resume": "Poète et romancier d'Ōsaka, créateur du roman de mœurs (ukiyo-zōshi) : La Vie d'un libertin, Le Grand Miroir de l'amour.",
 "points": [
-"Il décrit l'argent et le désir des chōnin."
+"Il décrit l'argent et le désir des chōnin.",
+"Il commence comme poète de haïkai à Ōsaka, avant de passer à la prose avec La Vie d'un libertin (1682).",
+"Il décrit le monde des marchands dans des livres comme Le Magasin éternel du Japon (1688).",
+"Ses livres sont de grands succès d'édition à l'époque Genroku."
 ],
 "voir": [
 "genroku",
@@ -5373,7 +5403,11 @@
 ],
 "resume": "Chef du gouvernement shogunal (tairō), qui signe des traités inégaux avec les puissances (1858) sans l'accord de l'empereur et réprime les opposants (purge d'Ansei).",
 "points": [
-"Assassiné à Sakuradamon (1860)."
+"Assassiné à Sakuradamon (1860).",
+"Seigneur de Hikone, il est nommé tairō en 1858.",
+"1858 : il signe le traité Harris sans l'accord de l'empereur Kōmei.",
+"Purge d'Ansei (1858-1859) : plusieurs dizaines d'opposants sont punis, dont Yoshida Shōin, exécuté.",
+"Il est assassiné le 24 mars 1860 devant la porte Sakuradamon par des samouraïs de Mito."
 ],
 "voir": [
 "perry",
@@ -5666,7 +5700,10 @@
 ],
 "resume": "Parlement bicaméral prévu par la Constitution de 1889 : Chambre des pairs et Chambre des représentants (élue par environ 1 % de la population, via l'impôt).",
 "points": [
-"Les partis y contestent le budget des gouvernements oligarchiques."
+"Les partis y contestent le budget des gouvernements oligarchiques.",
+"Le Parlement est convoqué le 25 novembre 1890 et son ouverture solennelle a lieu le 29.",
+"La Chambre des pairs est composée de nobles et de membres nommés ; la Chambre des représentants est élue.",
+"Seuls les hommes de 25 ans et plus payant au moins 15 yens d'impôt direct national peuvent voter."
 ],
 "voir": [
 "constitution_meiji",
@@ -5711,7 +5748,10 @@
 ],
 "resume": "Entrepreneur surnommé « père du capitalisme japonais » : environ 500 entreprises (banque, chemin de fer, textile, Imperial Hotel). Il prône l'union de la morale (Analectes) et de l'économie.",
 "points": [
-"Figure sur le billet de 10 000 yens à partir de 2024."
+"Figure sur le billet de 10 000 yens à partir de 2024.",
+"Né dans une famille de paysans-marchands, il travaille d'abord pour le shogunat.",
+"1873 : il fonde la première banque moderne du Japon, la Daiichi Kokuritsu Ginkō.",
+"Parmi ses entreprises figurent Ōji Paper et Tōkyō Gas."
 ],
 "voir": [
 "zaibatsu",
@@ -5781,7 +5821,10 @@
 ],
 "resume": "Pavillon de bal de Tōkyō où l'élite japonaise reçoit des diplomates en habits occidentaux, pour prouver la « civilisation » du Japon.",
 "points": [
-"Symbole de l'occidentalisation, critiqué et moqué."
+"Symbole de l'occidentalisation, critiqué et moqué.",
+"Il est conçu par l'architecte britannique Josiah Conder et inauguré en 1883.",
+"Le ministre des Affaires étrangères Inoue Kaoru le veut pour obtenir la révision des traités inégaux.",
+"Le bâtiment est démoli en 1941."
 ],
 "voir": [
 "traites_inegaux",
@@ -5850,7 +5893,9 @@
 ],
 "resume": "Penseur nationaliste d'extrême gauche (Plan de réorganisation du Japon, 1923) qui inspire les jeunes officiers. Exécuté après l'incident du 26 février.",
 "points": [
-"Prône un coup d'État, la nationalisation des grandes entreprises et l'empire panasiatique."
+"Prône un coup d'État, la nationalisation des grandes entreprises et l'empire panasiatique.",
+"Né sur l'île de Sado en 1883, il publie en 1923 le Plan général de réorganisation du Japon.",
+"Il est arrêté après l'incident du 26 février 1936 et exécuté en 1937 comme inspirateur des officiers rebelles."
 ],
 "voir": [
 "incident_226",
@@ -5897,7 +5942,10 @@
 ],
 "resume": "Prince issu de l'ancienne noblesse Fujiwara, Premier ministre (1937-1939, 1940-1941). Fonde l'Association d'aide à l'autorité impériale et signe le pacte tripartite.",
 "points": [
-"Se suicide en décembre 1945 avant d'être arrêté pour crimes de guerre."
+"Se suicide en décembre 1945 avant d'être arrêté pour crimes de guerre.",
+"Premier ministre au début de la guerre contre la Chine (1937), il lance en 1940 un « ordre nouveau » politique.",
+"Septembre 1940 : il signe le pacte tripartite avec l'Allemagne et l'Italie.",
+"Octobre 1941 : il démissionne après l'échec des négociations avec les États-Unis ; Tōjō lui succède."
 ],
 "voir": [
 "mandchourie",
@@ -5918,9 +5966,12 @@
 "ミッドウェー海戦",
 "Midway"
 ],
-"resume": "Bataille aéronavale où quatre porte-avions japonais sont coulés. Tournant de la guerre du Pacifique.",
+"resume": "Bataille aéronavale (4-7 juin 1942) où quatre porte-avions japonais sont coulés. Tournant de la guerre du Pacifique.",
 "points": [
-"Le renseignement américain avait déchiffré les codes japonais."
+"Le renseignement américain avait déchiffré les codes japonais.",
+"Les porte-avions Akagi, Kaga, Sōryū et Hiryū sont coulés ; les États-Unis perdent le Yorktown.",
+"L'amiral Yamamoto Isoroku voulait détruire la flotte américaine du Pacifique.",
+"Après Midway, le Japon perd l'initiative dans le Pacifique."
 ],
 "voir": [
 "pearl_harbor",
@@ -5965,7 +6016,9 @@
 ],
 "resume": "Unité de guerre biologique de l'armée du Guandong, à Harbin, qui mène des expériences sur des prisonniers et des civils, majoritairement chinois.",
 "points": [
-"Plusieurs de ses chefs n'ont pas été poursuivis après la guerre en échange des données (accord avec les États-Unis)."
+"Plusieurs de ses chefs n'ont pas été poursuivis après la guerre en échange des données (accord avec les États-Unis).",
+"Fondée en 1936 près de Harbin (Pingfang) et dirigée par Ishii Shirō.",
+"Des prisonniers, appelés « maruta » (bûches), y servaient de cobayes pour tester des agents comme la peste ou le choléra."
 ],
 "voir": [
 "mandchourie",
@@ -6013,7 +6066,10 @@
 ],
 "resume": "Déclaration du secrétaire général du cabinet Kōno Yōhei reconnaissant la responsabilité de l'armée dans le système des « femmes de réconfort » et exprimant des excuses.",
 "points": [
-"Contestée par des nationalistes."
+"Contestée par des nationalistes.",
+"Elle est publiée le 4 août 1993, après une enquête sur le système des « femmes de réconfort ».",
+"Elle admet que des femmes ont été recrutées contre leur gré et que l'armée a participé à la gestion de ces lieux.",
+"Décembre 2015 : un accord entre le Japon et la Corée du Sud est conclu sur cette question, puis contesté."
 ],
 "voir": [
 "ianfu",
@@ -6035,7 +6091,9 @@
 ],
 "resume": "Premier ministre socialiste (1994-1996) à la tête d'une coalition avec le LDP. Sa déclaration du 15 août 1995 présente des excuses pour l'agression coloniale.",
 "points": [
-"Il gère le séisme de Kōbe et l'attentat au sarin."
+"Il gère le séisme de Kōbe et l'attentat au sarin.",
+"Il dirige une coalition entre le LDP, les socialistes et Sakigake de juin 1994 à janvier 1996.",
+"La déclaration du 15 août 1995 évoque une « agression coloniale » et présente des excuses sincères."
 ],
 "voir": [
 "hosokawa",
@@ -6085,7 +6143,10 @@
 ],
 "resume": "Première fois que le peuple entend la voix de l'empereur : annonce de la fin de la guerre, en langue de cour, sans le mot « capitulation ».",
 "points": [
-"Un coup d'État raté (incident Kyūjō) a failli empêcher sa diffusion."
+"Un coup d'État raté (incident Kyūjō) a failli empêcher sa diffusion.",
+"Il est enregistré le 14 août dans le palais impérial et diffusé le 15 août à midi par la radio NHK.",
+"L'empereur parle d'une situation qui « n'évolue pas à l'avantage du Japon » sans prononcer le mot défaite.",
+"Beaucoup d'auditeurs comprennent mal son langage de cour."
 ],
 "voir": [
 "hirohito",
@@ -6129,9 +6190,11 @@
 "plan Dodge",
 "Dodge"
 ],
-"resume": "Plan d'austérité de Joseph Dodge : budget équilibré, taux de change fixe (360 yens pour 1 dollar).",
+"resume": "Plan d'austérité du banquier américain Joseph Dodge (1949) : budget équilibré, fin des subventions, taux de change fixe (360 yens pour 1 dollar).",
 "points": [
-"Provoque un chômage, vite compensé par la guerre de Corée."
+"Provoque un chômage, vite compensé par la guerre de Corée.",
+"Il met fin à l'inflation d'après-guerre.",
+"Il provoque une récession passagère."
 ],
 "voir": [
 "macarthur",
@@ -6152,9 +6215,11 @@
 "guerre de Corée",
 "tokuju"
 ],
-"resume": "Le Japon est une base arrière américaine. Les commandes spéciales (tokuju) relancent l'industrie.",
+"resume": "Le Japon est une base arrière américaine. Les commandes spéciales (tokuju) relancent l'industrie et la guerre de Corée (1950-1953) marque le départ de la reprise économique.",
 "points": [
-"Naissance des Forces d'autodéfense (1954)."
+"Naissance des Forces d'autodéfense (1954).",
+"1950 : création d'une Réserve de police nationale de 75 000 hommes, ancêtre des Forces d'autodéfense.",
+"1952 : le traité de San Francisco entre en vigueur et le Japon retrouve sa souveraineté."
 ],
 "voir": [
 "dodge",
@@ -6227,7 +6292,10 @@
 ],
 "resume": "Haut fonctionnaire de Mandchourie, ministre de Tōjō, arrêté comme suspect de classe A puis libéré. Premier ministre (1957-1960) et grand-père d'Abe Shinzō.",
 "points": [
-"Révise le traité de sécurité (1960)."
+"Révise le traité de sécurité (1960).",
+"Il est arrêté en 1945 comme suspect de classe A et libéré en 1948 sans jugement.",
+"Il participe à la création du Parti libéral-démocrate en 1955.",
+"1960 : la révision du traité de sécurité provoque d'immenses manifestations, puis sa démission."
 ],
 "voir": [
 "anpo",
@@ -6249,7 +6317,11 @@
 ],
 "resume": "Premier ministre (1972-1974), fils de paysan, bâtisseur (Remodelage de l'archipel). Normalise les relations avec la Chine (1972).",
 "points": [
-"Scandale Lockheed (1976) : condamné en première instance en 1983."
+"Scandale Lockheed (1976) : condamné en première instance en 1983.",
+"Il naît dans une famille modeste de la préfecture de Niigata.",
+"Septembre 1972 : visite à Pékin et rétablissement des relations diplomatiques avec la Chine.",
+"Son plan « Remodelage de l'archipel japonais » (1972) vise à relier le pays par le train et les autoroutes.",
+"Il démissionne en 1974 après des affaires de financement."
 ],
 "voir": [
 "ldp",
@@ -6271,7 +6343,9 @@
 ],
 "resume": "Okinawa revient au Japon après 27 ans d'administration américaine, mais les bases restent (environ 70 % des installations américaines au Japon).",
 "points": [
-"Satō Eisaku reçoit le prix Nobel de la paix en 1974 notamment pour les trois principes non nucléaires."
+"Satō Eisaku reçoit le prix Nobel de la paix en 1974 notamment pour les trois principes non nucléaires.",
+"L'accord de rétrocession est signé en 1971 et entre en vigueur le 15 mai 1972.",
+"La base de Futenma reste un sujet de tension politique."
 ],
 "voir": [
 "ryukyu",
@@ -6293,9 +6367,11 @@
 "accord du Plaza",
 "Plaza"
 ],
-"resume": "Accord du G5 pour faire baisser le dollar. Le yen passe de ≈ 240 à ≈ 150 pour 1 dollar en deux ans.",
+"resume": "Accord du G5 pour faire baisser le dollar. Le yen passe de ≈ 240 à ≈ 150 pour 1 dollar en deux ans, ce qui change l'économie japonaise.",
 "points": [
-"Facteur de la bulle : taux bas pour contrer la récession due au yen fort."
+"Facteur de la bulle : taux bas pour contrer la récession due au yen fort.",
+"Il est signé le 22 septembre 1985 à l'hôtel Plaza de New York par les États-Unis, le Japon, l'Allemagne de l'Ouest, la France et le Royaume-Uni.",
+"Le yen fort pèse sur les exportateurs et pousse beaucoup d'entreprises à produire à l'étranger."
 ],
 "voir": [
 "bulle",
@@ -6318,7 +6394,10 @@
 ],
 "resume": "Réalisateur d'animation, cofondateur du Studio Ghibli (1985) avec Takahata Isao. Mon voisin Totoro, Princesse Mononoké, Le Voyage de Chihiro (Oscar 2003), Le Vent se lève, Le Garçon et le Héron (Oscar 2024).",
 "points": [
-"Thèmes : nature, enfance, guerre, techniques."
+"Thèmes : nature, enfance, guerre, techniques.",
+"Né en 1941 à Tōkyō, il débute comme animateur au studio Tōei.",
+"Il a annoncé plusieurs fois sa retraite avant de revenir.",
+"Le Voyage de Chihiro (2001) a longtemps été le plus grand succès du cinéma japonais."
 ],
 "voir": [
 "culture_pop",
@@ -6339,7 +6418,10 @@
 ],
 "resume": "Romancier mondialement lu : La Course au mouton sauvage, La Ballade de l'impossible (Norwegian Wood, 1987), Kafka sur le rivage, 1Q84.",
 "points": [
-"Souvent cité pour le Nobel, jamais obtenu."
+"Souvent cité pour le Nobel, jamais obtenu.",
+"Né à Kyōto en 1949, il tient un bar de jazz avant d'écrire.",
+"Il traduit aussi des auteurs américains, comme Fitzgerald et Salinger.",
+"Ses livres sont traduits dans de nombreuses langues."
 ],
 "voir": [
 "kawabata",
@@ -6361,7 +6443,10 @@
 ],
 "resume": "Akihito abdique le 30 avril 2019 grâce à une loi spéciale ; Naruhito monte sur le trône. Le nom Reiwa est tiré du Man'yōshū.",
 "points": [
-"Première abdication depuis Kōkaku (1817)."
+"Première abdication depuis Kōkaku (1817).",
+"L'ère Reiwa commence le 1er mai 2019.",
+"« Reiwa » est le premier nom d'ère tiré d'un texte japonais, le Man'yōshū, plutôt que d'un classique chinois.",
+"Akihito devient empereur émérite (jōkō)."
 ],
 "voir": [
 "akihito",
