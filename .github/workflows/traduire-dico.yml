@@ -28,7 +28,15 @@ jobs:
         run: |
           git config user.name "Claude"
           git config user.email "noreply@anthropic.com"
-          git add data/jmfr_auto.json
+          python3 - <<'PY'
+          import re
+          h = open('index.html', encoding='utf-8').read()
+          m = re.search(r"APP_V = 'v(\d+)'", h)
+          n = int(m.group(1)) + 1
+          open('index.html', 'w', encoding='utf-8').write(h.replace(m.group(0), "APP_V = 'v%d'" % n, 1))
+          open('version.json', 'w').write('{"v": "v%d"}' % n)
+          PY
+          git add data/jmfr_auto.json index.html version.json
           git commit -m "Traductions automatiques du dictionnaire (OPUS-MT en→fr)" || exit 0
           git pull --rebase
           git push

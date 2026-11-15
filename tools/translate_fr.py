@@ -31,7 +31,7 @@ else:
             t = tok.decode(tok.convert_tokens_to_ids(o.hypotheses[0]), skip_special_tokens=True).strip()
             if t[:1].isupper() and g[:1].islower() and not t[1:2].isupper(): t = t[0].lower() + t[1:]
             if t.isupper() and not g.isupper(): t = ''
-            if len(t) > 3 * len(g) + 12 or re.search(r"c'est pas|je ne sais pas|^[-–—]", t, re.I): t = ''
+            if len(t) > 3 * len(g) + 12 or re.search(r"c'est pas|c'est vrai|je ne sais pas|^[-–—]", t, re.I): t = ''
             tr[g] = t
         print(i + len(chunk), '/', len(glosses), round(time.time() - t0), 's', flush=True)
 added = 0
@@ -39,7 +39,7 @@ for r in need:
     senses = []
     for s in r[4].split('|'):
         gs = [tr.get(g.strip(), '') for g in s.split(';') if g.strip()]
-        gs = [re.sub(r'\s+', ' ', g) for g in gs if g and g.lower() != 'none']
+        gs = list(dict.fromkeys(re.sub(r'\s+', ' ', g) for g in gs if g and g.lower() != 'none'))
         if gs: senses.append(';'.join(gs))
     if senses:
         auto[str(r[0])] = '≈ ' + '|'.join(senses); added += 1
