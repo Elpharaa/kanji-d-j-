@@ -54,6 +54,7 @@ button.rst{padding:7px 16px;border-radius:999px;border:2px solid #c49a3a;backgro
 .hcz{display:flex;gap:10px;align-items:center;justify-content:center;font-weight:700;margin:6px 0}.hcz input{flex:1;max-width:260px}
 .hchip.on{background:#b2285b;color:#fff}.hcok{background:#b2285b;color:#fff}
 .mimg{display:block;width:100%;border-radius:10px;margin:0 0 8px;object-fit:cover}.madm{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;font-size:.8rem}
+.qq{font:700 1.05rem "Zen Kaku Gothic New",sans-serif;margin:8px 0}.qk{font:400 2rem "Yuji Syuku","Shippori Mincho",serif;color:#b2285b;text-align:center;margin:6px 0}.qo{display:block;width:100%;margin:6px 0;padding:11px 14px;border-radius:12px;border:2px solid #c49a3a;background:linear-gradient(#fffaf0,#edddbd);color:#4a2f23;font:700 .95rem "Zen Kaku Gothic New",sans-serif;text-align:left;cursor:pointer}.qo.ok{background:#2e9e5b;color:#fff;border-color:#1f7a43}.qo.ko{background:#c0392b;color:#fff;border-color:#8e2a20}.qp{font-size:.8rem;color:#513d7c}
 </style></head><body class="onhome inapp hist">
 <div id="animebg" aria-hidden="true"></div>
 <div class="app"><main class="mwrap">
@@ -61,6 +62,7 @@ button.rst{padding:7px 16px;border-radius:999px;border:2px solid #c49a3a;backgro
 <div id="wrap"><svg id="map"></svg><div class="zb"><button id="zi" aria-label="Zoom +">+</button><button id="zo" aria-label="Zoom −">−</button></div></div>
 <div class="lg mpanel" id="lg"></div>
 <div class="mpanel" id="p1"><input id="fa" list="dl" placeholder="Chercher une station…" style="width:100%;padding:10px 14px;border-radius:999px"><datalist id="dl"></datalist><h2 id="ttl" style="margin-top:12px">Touche une station</h2><div class="mu" id="sub">Découvre quoi voir et faire autour d'elle.</div><div id="res"></div></div>
+<div class="mpanel" id="qz"><h2>Quiz du métro</h2><div id="qb"><div class="mu">10 questions : lis les noms de stations en kanji, retrouve les lignes et les lieux à visiter.</div><button class="hchip" id="qgo" style="margin-top:10px;padding:9px 18px;font-size:.9rem">Lancer le quiz</button><div class="mu" id="qbest" style="margin-top:8px"></div></div></div>
 <div class="mpanel mnote">Carte schématique : stations principales des 9 lignes Tokyo Metro et des 4 lignes Toei, positions approximatives. Les idées de visite sont des repères généraux : vérifie les horaires et les réservations avant d'y aller. Les lignes JR ne sont pas incluses.</div>
 </main></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.104.0/dist/umd/supabase.js"></script>
@@ -177,4 +179,23 @@ document.getElementById('fa').addEventListener('change',function(){var i=byN[thi
 window.addEventListener('resize',sv);sv();
 fetch('../histoire/animebg.html').then(function(r){return r.text()}).then(function(h){var el=document.getElementById('animebg');el.outerHTML=h;kdBg()}).catch(function(){});
 function kdBg(){try{var el=document.getElementById('animebg');if(!el)return;var d=null,c=localStorage.getItem('kd.wp.cur');if(c===null){for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&k.indexOf('kd.wp.')===0&&k!=='kd.wp.cur'){try{d=JSON.parse(localStorage.getItem(k))}catch(x){d=null}if(d&&d.w)break;d=null}}}else if(c){try{d=JSON.parse(localStorage.getItem('kd.wp.'+c)||'null')}catch(x){d=null}}var A={};try{A=JSON.parse(localStorage.getItem('kd.assets')||'{}')||{}}catch(x){}var w=(d&&d.w)||A.bg_wide||A.bg_tall,t=(d&&d.t)||A.bg_tall||A.bg_wide;if(!w&&!t)return;['W','T'].forEach(function(k){var im=el.querySelector('img.bg'+k);if(!im){im=document.createElement('img');im.className='bgimg bg'+k;im.alt='';im.decoding='async';el.insertBefore(im,el.firstChild)}var u=k==='W'?w:t;if(u&&im.getAttribute('src')!==u)im.src=u});el.classList.add('hasimg')}catch(e){}}
+</script><script>
+(function(){
+var B=document.getElementById('qb'),go=document.getElementById('qgo'),bs=document.getElementById('qbest');
+function best(v){try{if(v!=null)localStorage.setItem('metro_qbest',String(v));return +localStorage.getItem('metro_qbest')||0}catch(e){return 0}}
+function showBest(){var b=best();bs.textContent=b?'Meilleur score : '+b+' / 10':''}showBest();
+function sh(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function lines(id){var o=[];for(var k in R){if(L[k]&&(' '+R[k]+' ').indexOf(' '+id+' ')>=0)o.push(k)}return o}
+var ids=Object.keys(S),rec=Object.keys(REC).filter(function(i){return REC[i]&&REC[i].length});
+function qKanji(){var id=ids[Math.floor(Math.random()*ids.length)],ok=S[id][1],o=[ok];sh(ids).forEach(function(i){if(o.length<4&&o.indexOf(S[i][1])<0)o.push(S[i][1])});return{t:'Comment se lit cette station ?',k:S[id][0],o:sh(o),a:ok}}
+function qLine(){var id,ls;do{id=ids[Math.floor(Math.random()*ids.length)];ls=lines(id)}while(!ls.length);var ok=L[ls[0]][0],o=[ok];sh(Object.keys(L)).forEach(function(k){if(o.length<4&&ls.indexOf(k)<0&&o.indexOf(L[k][0])<0)o.push(L[k][0])});return{t:'Quelle ligne passe à '+S[id][1]+' ?',o:sh(o),a:ok,ex:'À '+S[id][1]+' : '+ls.map(function(k){return L[k][0]}).join(', ')+'.'}}
+function qRec(){var id=rec[Math.floor(Math.random()*rec.length)],r=REC[id][0],ok=S[id][1],o=[ok];sh(rec).forEach(function(i){if(o.length<4&&o.indexOf(S[i][1])<0)o.push(S[i][1])});return{t:'Près de quelle station trouve-t-on « '+r[0]+' » ?',o:sh(o),a:ok,ex:r[1]}}
+var Q,n,sc,busy;
+function start(){Q=[];var f=[qKanji,qLine,qRec];for(var i=0;i<10;i++)Q.push(f[i%3]());Q=sh(Q);n=0;sc=0;ask()}
+function ask(){busy=false;var q=Q[n];B.innerHTML='<div class="qp">Question '+(n+1)+' / 10 · score '+sc+'</div><div class="qq">'+q.t+'</div>'+(q.k?'<div class="qk">'+q.k+'</div>':'')+q.o.map(function(x,i){return'<button class="qo" data-i="'+i+'">'+x+'</button>'}).join('')+'<div class="mu" id="qx"></div>'}
+B.addEventListener('click',function(e){var b=e.target.closest('.qo');if(!b||busy||!Q)return;busy=true;var q=Q[n],ok=q.o[+b.dataset.i]===q.a;if(ok)sc++;b.classList.add(ok?'ok':'ko');[].forEach.call(B.querySelectorAll('.qo'),function(x){if(q.o[+x.dataset.i]===q.a)x.classList.add('ok')});document.getElementById('qx').innerHTML=(ok?'Bravo ! ':'Raté. ')+(q.ex||'')+'<br><button class="hchip" id="qnx" style="margin-top:8px;padding:8px 16px">'+(n<9?'Suivant':'Voir le score')+'</button>'});
+B.addEventListener('click',function(e){if(e.target.id==='qnx'){n++;if(n<10)ask();else end()}});
+function end(){var b=best(),nb=sc>b;if(nb)best(sc);B.innerHTML='<div class="qq">Score : '+sc+' / 10</div><div class="mu">'+(nb?'Nouveau record !':'Meilleur score : '+best()+' / 10')+'</div><button class="hchip" id="qre" style="margin-top:10px;padding:9px 18px">Rejouer</button>'}
+B.addEventListener('click',function(e){if(e.target.id==='qre'||e.target.id==='qgo')start()});
+})();
 </script></body></html>
