@@ -478,10 +478,13 @@
 "Rikyū",
 "千利休"
 ],
-"resume": "Maître de thé de Nobunaga puis de Hideyoshi, qui fixe l'esthétique du wabi-cha, un thé de simplicité.",
+"resume": "Maître de thé de Nobunaga puis de Hideyoshi, qui fixe l'esthétique du wabi-cha, un thé de simplicité fondé sur le calme, la sobriété et l'hospitalité.",
 "points": [
 "Salles de thé minuscules, objets rustiques.",
-"Obligé de se suicider par Hideyoshi en 1591, pour des raisons discutées."
+"Obligé de se suicider par Hideyoshi en 1591, pour des raisons discutées.",
+"Il est né à Sakai, dans une famille de marchands.",
+"Ses descendants fondent les trois grandes écoles de thé Sen : Urasenke, Omotesenke et Mushanokōjisenke.",
+"La salle de thé Taian, près de Kyōto, lui est attribuée."
 ],
 "voir": [
 "cha_no_yu",
@@ -501,7 +504,7 @@
 "Nobunaga",
 "織田信長"
 ],
-"resume": "Seigneur de la région de Nagoya, premier des trois unificateurs. Il maîtrise le centre du pays en moins de vingt ans.",
+"resume": "Seigneur de la région de Nagoya (Owari), premier des trois unificateurs. Il maîtrise le centre du pays en moins de vingt ans grâce à une armée très organisée et à l'usage des armes à feu.",
 "points": [
 "1560 : bat Imagawa Yoshimoto à Okehazama.",
 "1568 : entre à Kyōto ; 1573 : met fin au shogunat Ashikaga.",
@@ -559,12 +562,15 @@
 "Ieyasu",
 "徳川家康"
 ],
-"resume": "Troisième unificateur, fondateur du shogunat Tokugawa. Patient, il attend la mort de Hideyoshi.",
+"resume": "Troisième unificateur, fondateur du shogunat Tokugawa en 1603. Patient, il attend la mort de Hideyoshi avant de s'imposer.",
 "points": [
 "1600 : vainc ses rivaux à Sekigahara.",
 "1603 : devient shōgun ; abdique en 1605 pour assurer la succession.",
 "1614-1615 : sièges d'Ōsaka, fin des Toyotomi.",
-"Code des maisons guerrières (1615), sanctuaire de Nikkō."
+"Code des maisons guerrières (1615), sanctuaire de Nikkō.",
+"Enfant, il passe des années comme otage, notamment chez les Imagawa.",
+"1590 : Hideyoshi lui confie le Kantō ; il s'installe à Edo.",
+"Après sa mort en 1616, il est vénéré à Nikkō comme dieu (Tōshō Daigongen)."
 ],
 "voir": [
 "sekigahara",
@@ -585,11 +591,14 @@
 "Bashō",
 "松尾芭蕉"
 ],
-"resume": "Poète qui élève le haïku (alors haikai) au rang d'art majeur.",
+"resume": "Poète qui élève le haïku (alors haikai) au rang d'art majeur, au XVIIe siècle, en le rapprochant de la nature et de la vie des voyageurs.",
 "points": [
 "Oku no hosomichi (« La Sente étroite du Bout-du-Monde », voyage de 1689).",
 "Esthétique du sabi, du wabi et de l'instant.",
-"Exemple : « Furuike ya / kawazu tobikomu / mizu no oto »."
+"Exemple : « Furuike ya / kawazu tobikomu / mizu no oto ».",
+"Né dans la province d'Iga en 1644, il s'installe à Edo.",
+"Son nom de plume vient d'un bananier (bashō) planté devant sa cabane.",
+"Son poème de la grenouille est l'un des plus célèbres : « Le vieil étang / une grenouille y plonge / bruit de l'eau »."
 ],
 "voir": [
 "haiku"
@@ -608,11 +617,13 @@
 "Hokusai",
 "葛飾北斎"
 ],
-"resume": "Peintre et graveur d'ukiyo-e, auteur de la Grande Vague au large de Kanagawa.",
+"resume": "Peintre et graveur d'ukiyo-e, auteur de la Grande Vague au large de Kanagawa, devenue l'image la plus célèbre de l'art japonais.",
 "points": [
 "Série des Trente-six vues du mont Fuji (vers 1830-1832).",
 "Ses Hokusai manga sont des recueils de croquis.",
-"A influencé les impressionnistes en Europe (japonisme)."
+"A influencé les impressionnistes en Europe (japonisme).",
+"Il a signé sous plus de trente noms au cours de sa vie.",
+"Ses estampes ont influencé des artistes européens, comme Van Gogh et Monet."
 ],
 "voir": [
 "ukiyoe"
@@ -636,7 +647,9 @@
 "points": [
 "1853 : « navires noirs » devant Uraga.",
 "1854 : traité de Kanagawa, ouverture de Shimoda et Hakodate.",
-"Suivent d'autres traités inégaux (1858)."
+"Suivent d'autres traités inégaux (1858).",
+"1854 : il revient avec une escadre plus nombreuse pour obtenir la signature du traité.",
+"Il apporte des cadeaux, dont une locomotive miniature et un télégraphe."
 ],
 "voir": [
 "sakoku",
@@ -1451,10 +1464,12 @@
 "茶の湯",
 "thé"
 ],
-"resume": "Art de préparer et de boire le thé matcha selon un rituel, mêlant esthétique zen, hospitalité et politique.",
+"resume": "Art de préparer et de boire le thé matcha selon un rituel, mêlant esthétique zen, hospitalité et politique, pratiqué dans une petite salle de thé.",
 "points": [
 "Murata Jukō, Takeno Jōō puis Rikyū : wabi-cha.",
-"Les seigneurs s'en servent comme outil de pouvoir."
+"Les seigneurs s'en servent comme outil de pouvoir.",
+"Le matcha est battu au fouet de bambou (chasen) dans un bol (chawan).",
+"Les quatre principes attribués à Rikyū : harmonie (wa), respect (kei), pureté (sei) et tranquillité (jaku)."
 ],
 "voir": [
 "rikyu",
@@ -1496,10 +1511,12 @@
 "Honnō-ji",
 "本能寺"
 ],
-"resume": "Nobunaga est attaqué dans un temple de Kyōto par son général Akechi Mitsuhide et se donne la mort.",
+"resume": "Nobunaga est attaqué en 1582 dans un temple de Kyōto par son général Akechi Mitsuhide et se donne la mort.",
 "points": [
 "Motifs d'Akechi discutés.",
-"Hideyoshi bat Akechi à Yamazaki, 11 jours plus tard."
+"Hideyoshi bat Akechi à Yamazaki, 11 jours plus tard.",
+"Akechi attaque avec une armée bien plus nombreuse que la garde de Nobunaga.",
+"Hideyoshi, qui combattait les Mōri, revient en hâte vers Kyōto."
 ],
 "voir": [
 "nobunaga",
@@ -1522,7 +1539,9 @@
 "resume": "Cadastre général lancé par Hideyoshi : chaque terre est mesurée et évaluée en production de riz (koku).",
 "points": [
 "Le paysan est inscrit comme cultivateur responsable de l'impôt.",
-"Unifie les unités de mesure."
+"Unifie les unités de mesure.",
+"Un koku de riz représente environ la ration annuelle d'un adulte.",
+"Les résultats sont notés dans des registres village par village."
 ],
 "voir": [
 "hideyoshi",
@@ -1542,10 +1561,11 @@
 "刀狩",
 "Katanagari"
 ],
-"resume": "Édit de Hideyoshi qui interdit aux paysans de posséder armes et armures.",
+"resume": "Édit de Hideyoshi (1588) qui interdit aux paysans de posséder armes et armures.",
 "points": [
 "Sépare nettement guerriers et paysans.",
-"Fixe les statuts sociaux."
+"Fixe les statuts sociaux.",
+"Les armes confisquées devaient, selon l'édit, servir à fondre un grand Bouddha au Hōkō-ji, à Kyōto."
 ],
 "voir": [
 "hideyoshi",
@@ -1564,10 +1584,13 @@
 "Sekigahara",
 "関ヶ原"
 ],
-"resume": "Bataille décisive entre l'armée de l'Est (Ieyasu) et la coalition de l'Ouest d'Ishida Mitsunari.",
+"resume": "Bataille décisive (21 octobre 1600) entre l'armée de l'Est de Tokugawa Ieyasu et la coalition de l'Ouest d'Ishida Mitsunari.",
 "points": [
 "Trahisons de dernière minute, dont celle de Kobayakawa Hideaki.",
-"Ouvre la voie à la fondation du shogunat en 1603."
+"Ouvre la voie à la fondation du shogunat en 1603.",
+"Chaque camp aligne plus de 70 000 hommes, selon les estimations.",
+"Ishida Mitsunari est capturé puis exécuté ; Ieyasu confisque ou réduit les domaines de ses ennemis.",
+"Shimazu Yoshihiro y réalise une retraite célèbre à travers l'armée ennemie."
 ],
 "voir": [
 "ieyasu"
@@ -1589,7 +1612,9 @@
 "resume": "Système d'alternance : les daimyō passent une année sur deux à Edo, et leur famille y reste en permanence.",
 "points": [
 "Contrôle les seigneurs et les ruine en voyages.",
-"Fait naître des routes, des relais et un réseau de commerce."
+"Fait naître des routes, des relais et un réseau de commerce.",
+"Il est imposé à tous les daimyō par Iemitsu en 1635.",
+"Le cortège d'un grand daimyō compte de plusieurs centaines à plusieurs milliers de personnes."
 ],
 "voir": [
 "ieyasu",
@@ -1613,7 +1638,9 @@
 "resume": "Seigneur régional, d'abord shugo-daimyō (Muromachi), puis sengoku-daimyō, puis seigneur d'un han sous les Tokugawa.",
 "points": [
 "Edo : plus de 250 han ; un daimyō a au moins 10 000 koku.",
-"Contrôlés par le bakufu."
+"Contrôlés par le bakufu.",
+"Les shugo-daimyō de l'époque Muromachi dirigeaient une ou plusieurs provinces.",
+"1871 : les domaines (han) sont abolis et remplacés par des préfectures."
 ],
 "voir": [
 "sankin_kotai",
@@ -1637,7 +1664,8 @@
 "points": [
 "1639 : interdiction des Portugais ; Hollandais cantonnés à Dejima.",
 "Quatre « portes » : Nagasaki, Tsushima (Corée), Satsuma (Ryūkyū), Matsumae (Ezo).",
-"1853-1854 : fin avec Perry."
+"1853-1854 : fin avec Perry.",
+"Le mot « sakoku » apparaît en 1801 dans une traduction de l'ouvrage du médecin allemand Engelbert Kaempfer, faite par Shizuki Tadao."
 ],
 "voir": [
 "perry",
@@ -1656,10 +1684,11 @@
 "shi-nō-kō-shō",
 "士農工商"
 ],
-"resume": "Hiérarchie traditionnelle d'Edo : guerriers, paysans, artisans, marchands.",
+"resume": "Hiérarchie traditionnelle d'Edo : guerriers, paysans, artisans, marchands. Elle décrit l'idéal confucéen de la société plus que la réalité.",
 "points": [
 "Les historiens modernes nuancent ce modèle : en pratique, les marchands étaient souvent riches.",
-"Autres groupes : nobles, religieux, hors-castes (eta, hinin)."
+"Autres groupes : nobles, religieux, hors-castes (eta, hinin).",
+"Les guerriers représentent moins de 10 % de la population."
 ],
 "voir": [
 "katanagari"
@@ -1678,10 +1707,12 @@
 "Ukiyo-e",
 "浮世絵"
 ],
-"resume": "« Images du monde flottant » : estampes sur bois montrant acteurs, courtisanes, paysages.",
+"resume": "« Images du monde flottant » : estampes sur bois montrant acteurs, courtisanes, paysages, très populaires dans les villes d'Edo.",
 "points": [
 "Moronobu, Harunobu, Utamaro, Hokusai, Hiroshige.",
-"Imprimé en plusieurs couleurs (nishiki-e) à partir de 1765."
+"Imprimé en plusieurs couleurs (nishiki-e) à partir de 1765.",
+"Une estampe est le travail de plusieurs spécialistes : dessinateur, graveur, imprimeur, et un éditeur (hanmoto).",
+"Au XIXe siècle, ces estampes arrivent en Europe et inspirent le japonisme."
 ],
 "voir": [
 "hokusai",
@@ -1704,7 +1735,9 @@
 "resume": "Théâtre populaire spectaculaire, né vers 1603 avec Izumo no Okuni, aujourd'hui joué uniquement par des hommes.",
 "points": [
 "Acteurs spécialisés dans les rôles féminins : onnagata.",
-"Genroku : âge d'or avec Chikamatsu pour le bunraku."
+"Genroku : âge d'or avec Chikamatsu pour le bunraku.",
+"Le mot vient d'un verbe qui signifie « être excentrique ».",
+"Les femmes sont interdites sur scène en 1629 et les jeunes garçons en 1652."
 ],
 "voir": [
 "ukiyoe",
@@ -1728,7 +1761,9 @@
 "resume": "Poème de 17 mores (5-7-5) avec un mot de saison (kigo) et un mot de coupe (kireji).",
 "points": [
 "Issu du hokku, strophe d'ouverture des chaînes de poèmes (renga).",
-"Nommé « haiku » par Masaoka Shiki à la fin du XIXe siècle."
+"Nommé « haiku » par Masaoka Shiki à la fin du XIXe siècle.",
+"Les grands noms : Bashō, Buson, Issa et Shiki.",
+"Le kigo (mot de saison) relie le poème à la nature et au moment de l'année."
 ],
 "voir": [
 "basho"
@@ -2803,7 +2838,9 @@
 "resume": "Théâtre de marionnettes à trois manipulateurs, accompagné d'un récitant (tayū) et d'un shamisen.",
 "points": [
 "Chikamatsu Monzaemon écrit ses grands drames (Les Amants suicidés de Sonezaki, 1703).",
-"Centre d'Ōsaka."
+"Centre d'Ōsaka.",
+"Chaque grande marionnette est manœuvrée par trois personnes : une pour la tête et la main droite, une pour la main gauche et une pour les pieds.",
+"Il est inscrit au patrimoine culturel immatériel de l'UNESCO (2008)."
 ],
 "voir": [
 "kabuki",
@@ -2895,10 +2932,13 @@
 "徳川慶喜",
 "Yoshinobu"
 ],
-"resume": "Dernier shogun (1866-1867). Il rend le pouvoir à l'empereur en novembre 1867.",
+"resume": "Dernier shogun (1866-1867), issu de la branche de Mito. Il rend le pouvoir à l'empereur en novembre 1867.",
 "points": [
 "Il perd la guerre de Boshin (1868-1869) malgré sa démission.",
-"Il se retire de la vie politique."
+"Il se retire de la vie politique.",
+"Il est le fils de Tokugawa Nariaki, seigneur de Mito.",
+"Il vit ensuite à Shizuoka puis à Tōkyō, et s'adonne à des loisirs comme la photographie.",
+"Il meurt en 1913."
 ],
 "voir": [
 "restauration_meiji",
@@ -4946,7 +4986,9 @@
 "resume": "Armes à feu introduites par des Portugais à Tanegashima (1543) et copiées en masse à Sakai et Kunitomo.",
 "points": [
 "Nagashino (1575) est un cas célèbre.",
-"Elles contribuent à la construction de grands châteaux."
+"Elles contribuent à la construction de grands châteaux.",
+"Le nom « tanegashima » est devenu un mot courant pour désigner les arquebuses.",
+"Les armes à feu changent la forme des châteaux : murs de pierre et meurtrières."
 ],
 "voir": [
 "nobunaga",
@@ -4994,7 +5036,9 @@
 "resume": "Daimyō de Kai, grand chef de guerre. Il affronte Uesugi Kenshin à Kawanakajima et meurt en marche contre Ieyasu.",
 "points": [
 "Code du clan et grands travaux d'irrigation (digue de Shingen).",
-"Son fils Katsuyori est battu à Nagashino."
+"Son fils Katsuyori est battu à Nagashino.",
+"Sa bannière « Fūrinkazan » (風林火山), tirée de L'Art de la guerre de Sun Tzu, est devenue très célèbre, même si certains historiens en discutent l'usage exact.",
+"Sa mort en 1573 reste entourée d'incertitudes."
 ],
 "voir": [
 "uesugi",
@@ -5040,7 +5084,10 @@
 "resume": "Missionnaire jésuite basque, arrivé à Kagoshima en 1549. Il prêche au Japon pendant plus de deux ans.",
 "points": [
 "Le christianisme (kirishitan) se répand dans le Kyūshū.",
-"Alessandro Valignano organise la mission."
+"Alessandro Valignano organise la mission.",
+"Il est né dans le royaume de Navarre et cofonde la Compagnie de Jésus.",
+"À Kagoshima, il est accueilli par le seigneur Shimazu Takahisa.",
+"Il quitte le Japon en 1551 et meurt en 1552 près de la Chine."
 ],
 "voir": [
 "kirishitan",
@@ -5064,7 +5111,9 @@
 "points": [
 "Hideyoshi décrète l'expulsion des missionnaires (1587) ; 26 martyrs à Nagasaki (1597).",
 "Interdit par Tokugawa (1612-1614), persécuté puis clandestin (kakure kirishitan).",
-"L'édit de 1873 supprime les tableaux d'interdiction."
+"L'édit de 1873 supprime les tableaux d'interdiction.",
+"1637-1638 : la révolte de Shimabara pèse sur la répression.",
+"1865 : des chrétiens cachés se font connaître à Nagasaki ; l'interdit est levé en 1873."
 ],
 "voir": [
 "xavier",
@@ -5091,7 +5140,9 @@
 "points": [
 "Amiral Yi Sun-sin, flottes coréennes et armées Ming.",
 "Retrait à la mort de Hideyoshi (1598).",
-"Conséquences : déportations de potiers coréens (porcelaine d'Arita)."
+"Conséquences : déportations de potiers coréens (porcelaine d'Arita).",
+"Première invasion en 1592 : les troupes japonaises prennent Séoul en quelques semaines.",
+"Des potiers coréens sont emmenés au Japon, ce qui fait naître de grandes céramiques, comme celles d'Arita."
 ],
 "voir": [
 "hideyoshi",
@@ -5115,7 +5166,8 @@
 "resume": "Culture fastueuse des grands seigneurs et marchands : châteaux, paravents dorés (Kanō Eitoku), théâtre, chanoyu.",
 "points": [
 "Château d'Azuchi, d'Osaka, de Himeji.",
-"Salon de thé d'or de Hideyoshi."
+"Salon de thé d'or de Hideyoshi.",
+"Kanō Eitoku et Hasegawa Tōhaku peignent des paravents dorés et des portes coulissantes."
 ],
 "voir": [
 "rikyu",
@@ -5140,7 +5192,9 @@
 "resume": "Deux campagnes d'Ieyasu qui détruisent le clan Toyotomi, retranché dans le château d'Ōsaka.",
 "points": [
 "Hideyori et sa mère Yodo-dono meurent en 1615.",
-"Peu après, le code des maisons guerrières (buke shohatto) est publié."
+"Peu après, le code des maisons guerrières (buke shohatto) est publié.",
+"Hiver 1614 : une trêve conduit à combler les douves du château.",
+"Été 1615 : privé de ses défenses, le château tombe."
 ],
 "voir": [
 "ieyasu",
@@ -5189,7 +5243,8 @@
 "resume": "Combinaison du shogunat (bakufu) et des domaines (han) dirigés par les daimyō, qui forme le cadre politique d'Edo.",
 "points": [
 "Environ 260 domaines.",
-"Le shogunat contrôle les mines, les villes principales et la politique étrangère."
+"Le shogunat contrôle les mines, les villes principales et la politique étrangère.",
+"Les daimyō sont classés selon leur lien avec les Tokugawa : shinpan (parents), fudai (vassaux héréditaires) et tozama (extérieurs)."
 ],
 "voir": [
 "daimyo",
@@ -5213,7 +5268,9 @@
 "resume": "Troisième shogun, qui consolide le système : sankin kōtai, restrictions maritimes et interdiction du christianisme.",
 "points": [
 "Écrase la révolte de Shimabara.",
-"Fait construire le mausolée de Nikkō."
+"Fait construire le mausolée de Nikkō.",
+"Il est le petit-fils de Ieyasu.",
+"1639 : il interdit l'entrée des Portugais."
 ],
 "voir": [
 "sankin_kotai",
@@ -5284,7 +5341,9 @@
 "resume": "Floraison de la culture des chōnin d'Ōsaka et de Kyōto : Bashō, Chikamatsu, Saikaku, Ogata Kōrin.",
 "points": [
 "Saikaku : romans de la vie flottante (ukiyo-zōshi).",
-"Sous le shogun Tsunayoshi."
+"Sous le shogun Tsunayoshi.",
+"Le dramaturge Chikamatsu Monzaemon écrit pour le bunraku et le kabuki.",
+"Ogata Kōrin, peintre de l'école Rinpa, produit paravents et laques raffinés."
 ],
 "voir": [
 "basho",
