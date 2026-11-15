@@ -1,0 +1,42 @@
+name: Phrases d'exemple Tatoeba
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  phrases:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Outils
+        run: pip install fugashi unidic-lite
+      - name: Télécharger Tatoeba
+        run: |
+          mkdir -p /tmp/tt && cd /tmp/tt
+          B=https://downloads.tatoeba.org/exports/per_language
+          curl -fsSL -o jpn_sentences.tsv.bz2 $B/jpn/jpn_sentences.tsv.bz2
+          curl -fsSL -o fra_sentences.tsv.bz2 $B/fra/fra_sentences.tsv.bz2
+          curl -fsSL -o jpn-fra_links.tsv.bz2 $B/jpn/jpn-fra_links.tsv.bz2 || { curl -fsSL https://downloads.tatoeba.org/exports/links.tar.bz2 | tar -xjO links.csv | grep -P '^\d+\t\d+$' | bzip2 > jpn-fra_links.tsv.bz2; }
+          ls -la
+      - name: Construire
+        run: python3 tools/build_tatoeba.py
+      - name: Publier
+        run: |
+          git config user.name "Claude"
+          git config user.email "noreply@anthropic.com"
+          python3 - <<'PY'
+          import re
+          h = open('index.html', encoding='utf-8').read()
+          m = re.search(r"APP_V = 'v(\d+)'", h)
+          n = int(m.group(1)) + 1
+          open('index.html', 'w', encoding='utf-8').write(h.replace(m.group(0), "APP_V = 'v%d'" % n, 1))
+          open('version.json', 'w').write('{"v": "v%d"}' % n)
+          PY
+          git add data/tatoeba_extra.gz index.html version.json
+          git commit -m "Phrases d'exemple Tatoeba supplémentaires" || exit 0
+          git pull --rebase
+          git push
