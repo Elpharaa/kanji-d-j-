@@ -30442,7 +30442,7 @@ body .cdslotm:focus-visible .cdcard{outline:3px solid #e0b94a;outline-offset:2px
     dcBuild();
     function chip(k, v, t, on) { return '<button type="button" class="cs-chip' + (on ? ' on' : '') + '" data-dc="' + k + ':' + v + '" aria-pressed="' + on + '">' + t + '</button>'; }
     var h = '<div class="dcbar"><input id="dcQ" class="dcq" type="search" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Chercher : 食べる, taberu, manger, avoir le seum…" value="' + esc(dc.q) + '" aria-label="Rechercher un mot"></div>';
-    h += '<p class="as2l klsub">Type</p><div class="cs-chips">' + [['all', 'Tous'], ['v', 'Verbes'], ['a', 'Adjectifs'], ['e', 'Expressions'], ['o', 'Autres mots']].map(function (x) { return chip('t', x[0], x[1], dc.t === x[0]); }).join('') + '</div>';
+    h += '<p class="as2l klsub">Type</p><div class="cs-chips">' + [['all', 'Tous'], ['v', 'Verbes'], ['a', 'Adjectifs'], ['e', 'Expressions'], ['o', 'Autres mots'], ['fx', 'Expr. françaises']].map(function (x) { return chip('t', x[0], x[1], dc.t === x[0]); }).join('') + '</div>';
     h += '<p class="as2l klsub">Niveau</p><div class="cs-chips">' + [['all', 'Tous'], ['n5', 'N5'], ['n4', 'N4'], ['n3', 'N3'], ['n2', 'N2'], ['n1', 'N1'], ['q', 'Hors JLPT'], ['c', 'Cours'], ['b', 'Bonus']].map(function (x) { return chip('lv', x[0], x[1], dc.lv === x[0]); }).join('') + '</div>';
     h += '<div class="dcrow"><label class="small muted" for="dcTh">Thème</label><select id="dcTh" class="dcsel">' + dcThemeOpts() + '</select>' + (dc.q ? '' : '<label class="small muted" for="dcSort">Tri</label><select id="dcSort" class="dcsel dcss"><option value="lv"' + (dc.sort === 'lv' ? ' selected' : '') + '>Niveau</option><option value="kana"' + (dc.sort === 'kana' ? ' selected' : '') + '>あいうえお</option></select>') + '</div>';
     return h + '<div id="dcList">' + dcListHTML() + '</div>';
@@ -33553,7 +33553,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v843', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v844', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
