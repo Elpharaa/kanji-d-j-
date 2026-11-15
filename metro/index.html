@@ -112,7 +112,7 @@ if(!cur){T.textContent='Touche une station';Sb.textContent="Découvre quoi voir 
 dots[cur].setAttribute('fill','#ff6b57');dots[cur].setAttribute('r',10);
 var ln=[];Object.keys(R).forEach(function(l){if(l!='M2'&&R[l].split(' ').indexOf(cur)>=0)ln.push('<span class="chip" style="border-color:'+L[l][1]+'">'+L[l][0]+'</span>')});
 T.textContent=S[cur][0]+' '+S[cur][1];Sb.innerHTML=ln.join(' ');
-var r=REC[cur];Rs.innerHTML=r?'<ul class="rec">'+r.map(function(x){return'<li><b>'+x[0]+'</b><span>'+x[1]+'</span></li>'}).join('')+'</ul>':'<p class="mu" style="margin-top:10px">Pas encore d\'idées de visite pour cette station. Elles seront ajoutées petit à petit.</p>'}
+var r=REC[cur];Rs.innerHTML=r?'<ul class="rec">'+r.map(function(x){return'<li><b>'+x[0]+'</b><span>'+x[1]+'</span></li>'}).join('')+'</ul>':''}
 var dl=document.getElementById('dl'),byN={};ids.slice().sort(function(a,b){return S[a][1].localeCompare(S[b][1])}).forEach(function(i){var n=S[i][1]+' '+S[i][0];byN[n]=i;dl.innerHTML+='<option value="'+n+'">'});
 document.getElementById('fa').addEventListener('change',function(){var i=byN[this.value];if(!i)return;pick(i);var q=px(S[i]);vb.x=q[0]-vb.w/2;vb.y=q[1]-vb.h/2;sv()});
 window.addEventListener('resize',sv);sv();
