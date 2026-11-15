@@ -19584,7 +19584,7 @@ body .cdslotm:focus-visible .cdcard{outline:3px solid #e0b94a;outline-offset:2px
       card('explore', '地', 'Explorer la carte', 'Touche une préfecture ou une ville pour voir son nom, sa lecture et son chef-lieu') +
       card('ppick', '県', 'Les préfectures', 'Retrouve-les sur la carte, ou devine laquelle est en surbrillance', bp ? 'record ' + bp + ' %' : '') +
       card('cpick', '市', 'Placer les villes', '10, 20, 30 ou 50 villes à placer sur la carte', bc ? 'record ' + bc + ' %' : '') +
-      card('mapnav', '駅', 'Le métro de Tokyo', 'Carte interactive : choisis deux stations ou simule une distance, et vois le prix en yens') +
+      card('mapnav', '駅', 'Le métro de Tokyo', 'Carte interactive : touche une station pour voir quoi visiter autour') +
       card('metro', '線', 'Lignes, quiz et vocabulaire', 'Les lignes, la Yamanote, les astuces et le quiz du métro', b.metro ? 'record ' + b.metro + ' %' : '') + '</div>' +
       '<p class="panel small muted geonote">Carte : données Chikyū Chizu Japan (GSI), simplifiées.</p>';
   }
@@ -33552,7 +33552,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v815', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v816', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
