@@ -5,6 +5,9 @@ on:
       limite:
         description: "Nombre d'entrées à traduire (0 = toutes)"
         default: "0"
+      passe:
+        description: "traduire = première passe ; corriger = seconde passe (retraduit ou retire les définitions douteuses)"
+        default: "traduire"
 permissions:
   contents: write
 jobs:
@@ -19,11 +22,12 @@ jobs:
       - name: Installer les outils (torch CPU)
         run: |
           pip install torch --index-url https://download.pytorch.org/whl/cpu
-          pip install ctranslate2 transformers sentencepiece sacremoses
+          pip install ctranslate2 transformers sentencepiece sacremoses wordfreq
       - name: Préparer le modèle OPUS-MT en→fr
         run: ct2-transformers-converter --model Helsinki-NLP/opus-mt-en-fr --output_dir /tmp/ct2 --quantization int8
       - name: Traduire
-        run: python3 tools/translate_fr.py /tmp/ct2 ${{ github.event.inputs.limite }}
+        run: |
+          if [ "${{ github.event.inputs.passe }}" = "corriger" ]; then python3 tools/retranslate_fr.py /tmp/ct2; else python3 tools/translate_fr.py /tmp/ct2 ${{ github.event.inputs.limite }}; fi
       - name: Publier le résultat
         run: |
           git config user.name "Claude"
