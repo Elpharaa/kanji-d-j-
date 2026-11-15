@@ -8074,5 +8074,127 @@
 "daimyo",
 "sekigahara"
 ]
+},
+{
+"id": "clan_takeda",
+"type": "concept",
+"nom": "Clan Takeda",
+"kanji": "武田氏",
+"lecture": "たけだし",
+"dates": "XIIe – XVIe siècle",
+"epoque": "sengoku",
+"alias": [
+"Clan Takeda",
+"Takeda",
+"les Takeda",
+"武田氏",
+"武田家"
+],
+"resume": "Famille de guerriers de la province de Kai (actuelle Yamanashi), issue des Minamoto. Sous Takeda Shingen, elle devient l'une des plus redoutables puissances du Japon des Provinces en guerre, réputée pour sa cavalerie, avant de s'éteindre en 1582.",
+"points": [
+"Takeda Shingen (1521-1573) combat Uesugi Kenshin à Kawanakajima, dans de longues batailles sans vainqueur net.",
+"Sa bannière portait la devise « Fūrinkazan » (風林火山) : rapide comme le vent, silencieux comme la forêt, féroce comme le feu, immobile comme la montagne.",
+"1575 : son fils Katsuyori est battu à Nagashino par les fusils d'Oda Nobunaga et de Tokugawa Ieyasu.",
+"1582 : après la défaite de Tenmokuzan, la branche principale du clan disparaît."
+],
+"voir": [
+"takeda",
+"uesugi",
+"nagashino",
+"clan_oda",
+"clan_tokugawa",
+"clan_minamoto"
+]
+},
+{
+"id": "clan_uesugi",
+"type": "concept",
+"nom": "Clan Uesugi",
+"kanji": "上杉氏",
+"lecture": "うえすぎし",
+"dates": "XIVe – XIXe siècle",
+"epoque": "sengoku",
+"alias": [
+"Clan Uesugi",
+"Uesugi",
+"les Uesugi",
+"上杉氏",
+"上杉家"
+],
+"resume": "Famille de guerriers qui occupa de hautes charges sous les Ashikaga, puis dirigea la province d'Echigo (actuelle Niigata) avec Uesugi Kenshin, surnommé le « dragon d'Echigo ». Le clan a survécu jusqu'à l'époque moderne à la tête du domaine de Yonezawa.",
+"points": [
+"Uesugi Kenshin (1530-1578) hérite du nom Uesugi et affronte Takeda Shingen à Kawanakajima.",
+"Après sa mort, le clan est confirmé par Toyotomi Hideyoshi, qui le déplace à Aizu en 1598.",
+"Après Sekigahara, le clan est réduit au domaine de Yonezawa, qu'il garde jusqu'à la fin de l'époque d'Edo."
+],
+"voir": [
+"uesugi",
+"takeda",
+"sekigahara",
+"clan_ashikaga",
+"clan_toyotomi"
+]
+},
+{
+"id": "clan_imagawa",
+"type": "concept",
+"nom": "Clan Imagawa",
+"kanji": "今川氏",
+"lecture": "いまがわし",
+"dates": "XIVe – XVIe siècle",
+"epoque": "sengoku",
+"alias": [
+"Clan Imagawa",
+"Imagawa",
+"les Imagawa",
+"今川氏",
+"今川家"
+],
+"resume": "Branche de la famille Ashikaga qui domina les provinces de Suruga et Tōtōmi (actuelle Shizuoka). Son chef Imagawa Yoshimoto fut l'un des plus puissants seigneurs du Tōkaidō avant d'être battu par Oda Nobunaga en 1560.",
+"points": [
+"Tokugawa Ieyasu a passé son enfance comme otage à la cour des Imagawa.",
+"Alliance à trois avec les Takeda et les Hōjō, scellée par des mariages.",
+"1560 : Yoshimoto est tué à la bataille d'Okehazama, ce qui lance la carrière de Nobunaga.",
+"Après cette défaite, le clan perd ses terres ; ses descendants servent ensuite les Tokugawa comme gardes de cour."
+],
+"voir": [
+"clan_oda",
+"clan_tokugawa",
+"clan_hojo",
+"clan_takeda",
+"clan_ashikaga"
+]
+},
+{
+"id": "clan_shimazu",
+"type": "concept",
+"nom": "Clan Shimazu",
+"kanji": "島津氏",
+"lecture": "しまづし",
+"dates": "XIIe – XIXe siècle",
+"epoque": "sengoku",
+"alias": [
+"Clan Shimazu",
+"Shimazu",
+"les Shimazu",
+"島津氏",
+"島津家"
+],
+"resume": "Famille qui domina le sud de Kyūshū (Satsuma, Ōsumi et Hyūga, autour de l'actuelle Kagoshima) pendant plus de 600 ans, ce qui est l'une des plus longues dominations d'un même clan. Son domaine de Satsuma a joué un rôle central dans la restauration de Meiji.",
+"points": [
+"Années 1580 : les Shimazu conquièrent presque tout Kyūshū avant de se soumettre à Toyotomi Hideyoshi en 1587.",
+"1600 : Shimazu Yoshihiro combat à Sekigahara dans le camp perdant, mais réussit une retraite célèbre au travers de l'armée ennemie, et le clan garde son domaine.",
+"1609 : le domaine de Satsuma envahit le royaume des Ryūkyū et le contrôle ensuite.",
+"XIXe siècle : Saigō Takamori et Ōkubo Toshimichi, originaires de Satsuma, comptent parmi les artisans de la restauration de Meiji."
+],
+"voir": [
+"sekigahara",
+"ryukyu",
+"saigo",
+"okubo",
+"satsuma_rebellion",
+"reg_kyushu",
+"clan_toyotomi"
+]
 }
 ]
