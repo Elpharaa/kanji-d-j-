@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Métro de Tōkyō — carte et prix · Kanji Dōjō</title>
+<style>
+:root{--bg:#14110f;--pn:#1f1a17;--tx:#f3ece2;--mu:#a89c8c;--ac:#e0533d;--bd:#3a312b}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.4 system-ui,-apple-system,"Noto Sans JP",sans-serif}
+header{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--bd)}
+header a{color:var(--tx);text-decoration:none;font-size:1.4rem}header h1{font-size:1.05rem;margin:0}header small{color:var(--mu)}
+#map{width:100%;height:56vh;min-height:300px;background:#0f0d0b;touch-action:none;display:block;cursor:grab}
+.tabs{display:flex;gap:6px;padding:8px 12px}.tabs button{flex:1;padding:8px;border-radius:10px;border:1px solid var(--bd);background:var(--pn);color:var(--tx);font:inherit}
+.tabs button.on{background:var(--ac);border-color:var(--ac)}
+.box{margin:0 12px 12px;padding:12px;border:1px solid var(--bd);border-radius:14px;background:var(--pn)}
+.box h2{margin:0 0 6px;font-size:1rem}.mu{color:var(--mu);font-size:.85rem}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:6px 0}
+.chip{padding:6px 10px;border-radius:999px;border:1px solid var(--bd);background:#2a231e}
+.chip b{color:var(--ac)}
+.price{font-size:2.2rem;font-weight:800;color:#ffd27a;line-height:1}
+.price small{font-size:.9rem;color:var(--mu);font-weight:400}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.grid div{background:#2a231e;border-radius:10px;padding:8px;text-align:center}.grid b{display:block;font-size:1.15rem}
+input[type=range]{width:100%;accent-color:var(--ac)}
+button.rst{padding:7px 12px;border-radius:10px;border:1px solid var(--bd);background:#2a231e;color:var(--tx);font:inherit}
+.zb{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:6px}
+.zb button{width:38px;height:38px;border-radius:10px;border:1px solid var(--bd);background:var(--pn);color:var(--tx);font-size:1.3rem}
+#wrap{position:relative}
+.lg{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 8px}.lg span{font-size:.75rem;display:flex;align-items:center;gap:4px}.lg i{width:12px;height:12px;border-radius:50%;display:inline-block}
+</style></head><body>
+<header><a href="../" aria-label="Retour">←</a><div><h1>地下鉄 Métro de Tōkyō</h1><small>Touche deux stations, ou simule une distance</small></div></header>
+<div id="wrap"><svg id="map"></svg><div class="zb"><button id="zi" aria-label="Zoom +">+</button><button id="zo" aria-label="Zoom −">−</button></div></div>
+<div class="lg" id="lg"></div>
+<div class="tabs"><button id="t1" class="on">Trajet sur la carte</button><button id="t2">Simuler une distance</button></div>
+<div class="box" id="p1"><h2 id="ttl">Choisis une station de départ</h2><div class="mu" id="sub">Touche une station sur la carte.</div><div id="res"></div><div class="row"><button class="rst" id="rst">Effacer</button></div></div>
+<div class="box" id="p2" hidden><h2>Prix selon la distance</h2><div class="row"><span class="chip"><b id="kmv">8</b> km</span></div><input type="range" id="km" min="1" max="40" step="1" value="8"><div id="res2"></div></div>
+<div class="box mu">Tarifs du réseau Tokyo Metro (adulte, tickets en tranches de 10 yens, carte IC au yen près), d'après le site officiel tokyometro.jp. Les distances de la carte sont des <b>estimations</b> à vol d'oiseau majoré de 20 %, et la carte est schématique (stations principales seulement) : le prix réel peut différer d'une tranche. Un trajet avec correspondance vers la ligne Toei ou JR ajoute un second tarif.</div>
+<script>
+var L={G:['Ginza','#f39700'],M:['Marunouchi','#e60012'],H:['Hibiya','#9caeb7'],T:['Tōzai','#00a7db'],C:['Chiyoda','#009944'],Y:['Yūrakuchō','#d7c447'],Z:['Hanzōmon','#9b7cb6'],N:['Namboku','#00ada9'],F:['Fukutoshin','#bb641d']};
+var S={shibuya:['渋谷','Shibuya',35.659,139.702],omote:['表参道','Omotesandō',35.665,139.712],gaien:['外苑前','Gaienmae',35.670,139.717],aoyama:['青山一丁目','Aoyama-itchōme',35.673,139.724],akasaka_m:['赤坂見附','Akasaka-mitsuke',35.677,139.737],tameike:['溜池山王','Tameike-sannō',35.673,139.741],toranomon:['虎ノ門','Toranomon',35.670,139.750],shimbashi:['新橋','Shimbashi',35.666,139.758],ginza:['銀座','Ginza',35.671,139.764],kyobashi:['京橋','Kyōbashi',35.677,139.770],nihombashi:['日本橋','Nihombashi',35.682,139.774],mitsukoshi:['三越前','Mitsukoshimae',35.686,139.774],kanda:['神田','Kanda',35.692,139.771],uenohiro:['上野広小路','Ueno-hirokōji',35.708,139.773],ueno:['上野','Ueno',35.711,139.777],tawara:['田原町','Tawaramachi',35.710,139.791],asakusa:['浅草','Asakusa',35.711,139.797],
+ogikubo:['荻窪','Ogikubo',35.705,139.620],shinkoenji:['新高円寺','Shin-kōenji',35.698,139.649],shinnakano:['新中野','Shin-nakano',35.697,139.668],nakano:['中野','Nakano',35.706,139.666],nishishinjuku:['西新宿','Nishi-shinjuku',35.694,139.692],shinjuku:['新宿','Shinjuku',35.690,139.700],shinjuku3:['新宿三丁目','Shinjuku-sanchōme',35.691,139.705],yotsuya3:['四谷三丁目','Yotsuya-sanchōme',35.686,139.720],yotsuya:['四ツ谷','Yotsuya',35.686,139.730],kokkai:['国会議事堂前','Kokkai-gijidōmae',35.675,139.745],kasumigaseki:['霞ケ関','Kasumigaseki',35.673,139.753],tokyo:['東京','Tōkyō',35.681,139.766],otemachi:['大手町','Ōtemachi',35.686,139.766],awajicho:['淡路町','Awajichō',35.695,139.766],ochanomizu:['御茶ノ水','Ochanomizu',35.700,139.765],korakuen:['後楽園','Kōrakuen',35.708,139.752],myogadani:['茗荷谷','Myōgadani',35.717,139.737],shinotsuka:['新大塚','Shin-ōtsuka',35.727,139.728],ikebukuro:['池袋','Ikebukuro',35.730,139.711],
+nakameguro:['中目黒','Naka-meguro',35.644,139.699],ebisu:['恵比寿','Ebisu',35.647,139.710],hiroo:['広尾','Hiroo',35.652,139.722],roppongi:['六本木','Roppongi',35.663,139.731],kamiyacho:['神谷町','Kamiyachō',35.667,139.745],hibiya:['日比谷','Hibiya',35.674,139.760],higashiginza:['東銀座','Higashi-ginza',35.669,139.768],tsukiji:['築地','Tsukiji',35.667,139.772],hatchobori:['八丁堀','Hatchōbori',35.675,139.777],ningyocho:['人形町','Ningyōchō',35.686,139.782],akihabara:['秋葉原','Akihabara',35.698,139.775],minowa:['三ノ輪','Minowa',35.730,139.791],kitasenju:['北千住','Kita-senju',35.749,139.805],
+takadanobaba:['高田馬場','Takadanobaba',35.713,139.704],waseda:['早稲田','Waseda',35.706,139.721],iidabashi:['飯田橋','Iidabashi',35.702,139.745],kudanshita:['九段下','Kudanshita',35.695,139.752],kayabacho:['茅場町','Kayabachō',35.680,139.782],monzen:['門前仲町','Monzen-nakachō',35.672,139.796],toyocho:['東陽町','Tōyōchō',35.670,139.817],nishikasai:['西葛西','Nishi-kasai',35.665,139.859],urayasu:['浦安','Urayasu',35.655,139.893],
+yoyogiuehara:['代々木上原','Yoyogi-uehara',35.669,139.679],meijijingu:['明治神宮前','Meiji-jingūmae',35.667,139.705],nogizaka:['乃木坂','Nogizaka',35.666,139.726],akasaka:['赤坂','Akasaka',35.673,139.737],shinochanomizu:['新御茶ノ水','Shin-ochanomizu',35.697,139.765],yushima:['湯島','Yushima',35.708,139.770],nezu:['根津','Nezu',35.717,139.766],nishinippori:['西日暮里','Nishi-nippori',35.732,139.767],machiya:['町屋','Machiya',35.743,139.780],ayase:['綾瀬','Ayase',35.762,139.825],
+gokokuji:['護国寺','Gokokuji',35.719,139.729],ichigaya:['市ケ谷','Ichigaya',35.691,139.736],nagatacho:['永田町','Nagatachō',35.679,139.740],sakuradamon:['桜田門','Sakuradamon',35.677,139.752],yurakucho:['有楽町','Yūrakuchō',35.675,139.763],ginza1:['銀座一丁目','Ginza-itchōme',35.674,139.768],shintomicho:['新富町','Shintomichō',35.670,139.775],toyosu:['豊洲','Toyosu',35.654,139.796],
+hanzomon:['半蔵門','Hanzōmon',35.685,139.741],jimbocho:['神保町','Jimbōchō',35.696,139.757],suitengu:['水天宮前','Suitengūmae',35.683,139.785],kiyosumi:['清澄白河','Kiyosumi-shirakawa',35.680,139.799],oshiage:['押上','Oshiage',35.710,139.813],
+meguro:['目黒','Meguro',35.633,139.716],shirokane:['白金高輪','Shirokane-takanawa',35.643,139.727],azabu:['麻布十番','Azabu-jūban',35.655,139.737],roppongi1:['六本木一丁目','Roppongi-itchōme',35.666,139.740],honkomagome:['本駒込','Hon-komagome',35.727,139.757],komagome:['駒込','Komagome',35.736,139.747],oji:['王子','Ōji',35.753,139.738],akabane:['赤羽岩淵','Akabane-iwabuchi',35.781,139.722],
+zoshigaya:['雑司が谷','Zōshigaya',35.719,139.714],nishiwaseda:['西早稲田','Nishi-waseda',35.706,139.709],higashishinjuku:['東新宿','Higashi-shinjuku',35.698,139.707],kitasando:['北参道','Kita-sandō',35.678,139.705]};
+var R={G:'shibuya omote gaien aoyama akasaka_m tameike toranomon shimbashi ginza kyobashi nihombashi mitsukoshi kanda uenohiro ueno tawara asakusa',
+M:'ogikubo shinkoenji shinnakano nakano nishishinjuku shinjuku shinjuku3 yotsuya3 yotsuya akasaka_m kokkai kasumigaseki ginza tokyo otemachi awajicho ochanomizu korakuen myogadani shinotsuka ikebukuro',
+H:'nakameguro ebisu hiroo roppongi kamiyacho kasumigaseki hibiya ginza higashiginza tsukiji hatchobori ningyocho akihabara ueno minowa kitasenju',
+T:'nakano takadanobaba waseda iidabashi kudanshita otemachi nihombashi kayabacho monzen toyocho nishikasai urayasu',
+C:'yoyogiuehara meijijingu omote nogizaka akasaka kokkai kasumigaseki hibiya otemachi shinochanomizu yushima nezu nishinippori machiya kitasenju ayase',
+Y:'ikebukuro gokokuji iidabashi ichigaya nagatacho sakuradamon yurakucho ginza1 shintomicho toyosu',
+Z:'shibuya omote aoyama nagatacho hanzomon kudanshita jimbocho otemachi mitsukoshi suitengu kiyosumi oshiage',
+N:'meguro shirokane azabu roppongi1 tameike nagatacho yotsuya ichigaya iidabashi korakuen honkomagome komagome oji akabane',
+F:'ikebukuro zoshigaya nishiwaseda higashishinjuku shinjuku3 kitasando meijijingu shibuya'};
+// quelques arrêts partagés mais nommés différemment : on les relie
+var ALIAS=[['yotsuya3','shinjuku3',0]];
+var BANDS=[[6,180,178,90,89],[11,210,209,110,104],[19,260,252,130,126],[27,300,293,150,146],[40,330,324,170,162]];
+function fare(km){for(var i=0;i<BANDS.length;i++)if(km<=BANDS[i][0]+0.0001)return BANDS[i];return BANDS[4]}
+function hav(a,b){var r=Math.PI/180,x=(b[3]-a[3])*r*Math.cos((a[2]+b[2])/2*r),y=(b[2]-a[2])*r;return Math.sqrt(x*x+y*y)*6371*1.2}
+var E={},ids=Object.keys(S);ids.forEach(function(i){E[i]=[]});var segs=[];
+Object.keys(R).forEach(function(l){var a=R[l].split(' ');for(var i=0;i<a.length-1;i++){var d=hav(S[a[i]],S[a[i+1]]);E[a[i]].push([a[i+1],d]);E[a[i+1]].push([a[i],d]);segs.push([l,a[i],a[i+1]])}});
+var minLat=35.62,maxLat=35.79,minLon=139.61,maxLon=139.90,W=1000,H=1000;
+function px(s){return[(s[3]-minLon)/(maxLon-minLon)*W,(maxLat-s[2])/(maxLat-minLat)*H]}
+var NS='http://www.w3.org/2000/svg',svg=document.getElementById('map'),g=document.createElementNS(NS,'g');svg.appendChild(g);
+function el(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);(p||g).appendChild(e);return e}
+var segEl=[];segs.forEach(function(s){var a=px(S[s[1]]),b=px(S[s[2]]);var e=el('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:L[s[0]][1],'stroke-width':5,'stroke-linecap':'round',opacity:.9});segEl.push([e,s])});
+var hl=el('g',{});var st=el('g',{});var dots={};
+ids.forEach(function(i){var p=px(S[i]);var c=el('circle',{cx:p[0],cy:p[1],r:7,fill:'#fff',stroke:'#222','stroke-width':2.5,'data-id':i},st);dots[i]=c;
+var t=el('text',{x:p[0]+10,y:p[1]-8,fill:'#e8dfd3','font-size':15,'pointer-events':'none','paint-order':'stroke',stroke:'#0f0d0b','stroke-width':4,class:'lbl'},st);t.textContent=S[i][1];t.setAttribute('data-id',i);
+var h=el('circle',{cx:p[0],cy:p[1],r:22,fill:'transparent','data-id':i},st)});
+var lg=document.getElementById('lg');Object.keys(L).forEach(function(k){lg.innerHTML+='<span><i style="background:'+L[k][1]+'"></i>'+L[k][0]+'</span>'});
+var vb={x:150,y:100,w:700,h:700};function sv(){var r=svg.getBoundingClientRect(),asp=r.width/r.height;var h2=vb.w/asp;svg.setAttribute('viewBox',vb.x+' '+vb.y+' '+vb.w+' '+h2);vb.h=h2;var z=1000/vb.w;svg.querySelectorAll('.lbl').forEach(function(t){t.style.display=z>1.6?'':'none'})}
+function zoom(f,cx,cy){var r=svg.getBoundingClientRect();if(cx==null){cx=.5;cy=.5}var mx=vb.x+vb.w*cx,my=vb.y+vb.h*cy;var nw=Math.min(1100,Math.max(120,vb.w*f));var k=nw/vb.w;vb.x=mx-(mx-vb.x)*k;vb.y=my-(my-vb.y)*k;vb.w=nw;sv()}
+document.getElementById('zi').onclick=function(){zoom(.7)};document.getElementById('zo').onclick=function(){zoom(1.4)};
+svg.addEventListener('wheel',function(e){e.preventDefault();var r=svg.getBoundingClientRect();zoom(e.deltaY>0?1.15:.87,(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height)},{passive:false});
+var ptr={},drag=null,moved=0,pd=0;
+svg.addEventListener('pointerdown',function(e){svg.setPointerCapture(e.pointerId);ptr[e.pointerId]=[e.clientX,e.clientY];moved=0;var k=Object.keys(ptr);if(k.length==2){var a=ptr[k[0]],b=ptr[k[1]];pd=Math.hypot(a[0]-b[0],a[1]-b[1])}});
+svg.addEventListener('pointermove',function(e){if(!ptr[e.pointerId])return;var o=ptr[e.pointerId],r=svg.getBoundingClientRect();var k=Object.keys(ptr);
+if(k.length==2){ptr[e.pointerId]=[e.clientX,e.clientY];var a=ptr[k[0]],b=ptr[k[1]],d=Math.hypot(a[0]-b[0],a[1]-b[1]);if(pd){zoom(pd/d,((a[0]+b[0])/2-r.left)/r.width,((a[1]+b[1])/2-r.top)/r.height)}pd=d;moved=9;return}
+var dx=e.clientX-o[0],dy=e.clientY-o[1];moved+=Math.abs(dx)+Math.abs(dy);if(moved>6){vb.x-=dx*vb.w/r.width;vb.y-=dy*vb.h/r.height;sv()}ptr[e.pointerId]=[e.clientX,e.clientY]});
+svg.addEventListener('pointerup',function(e){var wasTap=moved<=6&&Object.keys(ptr).length==1;delete ptr[e.pointerId];pd=0;if(wasTap){var t=document.elementFromPoint(e.clientX,e.clientY);var id=t&&t.getAttribute&&t.getAttribute('data-id');if(id)pick(id)}});
+svg.addEventListener('pointercancel',function(e){delete ptr[e.pointerId]});
+var A=null,B=null;
+function dij(a,b){var d={},pr={},q=[a];ids.forEach(function(i){d[i]=1e9});d[a]=0;var done={};while(q.length){q.sort(function(x,y){return d[x]-d[y]});var u=q.shift();if(done[u])continue;done[u]=1;if(u==b)break;E[u].forEach(function(e){var n=d[u]+e[1];if(n<d[e[0]]){d[e[0]]=n;pr[e[0]]=u;q.push(e[0])}})}
+var p=[b];while(p[0]!=a&&pr[p[0]])p.unshift(pr[p[0]]);return{km:d[b],path:p}}
+function y(n){return n+' ¥'}
+function pick(id){if(!A||(A&&B)){A=id;B=null}else if(id!=A){B=id}draw()}
+function draw(){hl.innerHTML='';ids.forEach(function(i){dots[i].setAttribute('fill','#fff');dots[i].setAttribute('r',7)});var T=document.getElementById('ttl'),Sb=document.getElementById('sub'),Rs=document.getElementById('res');
+if(!A){T.textContent='Choisis une station de départ';Sb.textContent='Touche une station sur la carte.';Rs.innerHTML='';return}
+dots[A].setAttribute('fill','#5ad17a');dots[A].setAttribute('r',10);
+if(!B){T.textContent=S[A][0]+' '+S[A][1];Sb.textContent='Départ choisi. Touche maintenant la station d\'arrivée.';Rs.innerHTML='';return}
+dots[B].setAttribute('fill','#ff6b57');dots[B].setAttribute('r',10);
+var r=dij(A,B),p=r.path,pts=p.map(function(i){var q=px(S[i]);return q[0]+','+q[1]}).join(' ');el('polyline',{points:pts,fill:'none',stroke:'#fff','stroke-width':9,'stroke-linecap':'round','stroke-linejoin':'round',opacity:.55},hl);
+var km=r.km,f=fare(Math.max(1,Math.round(km*10)/10)),kmr=Math.round(km*10)/10;
+T.textContent=S[A][1]+' → '+S[B][1];Sb.textContent=p.length-1+' station(s) · '+kmr+' km (estimation)';
+Rs.innerHTML='<div class="row"><div class="price">'+f[1]+' <small>¥ ticket</small></div></div><div class="grid"><div><small class="mu">Carte IC</small><b>'+f[2]+' ¥</b></div><div><small class="mu">Enfant (ticket)</small><b>'+f[3]+' ¥</b></div><div><small class="mu">Enfant (IC)</small><b>'+f[4]+' ¥</b></div></div>'}
+document.getElementById('rst').onclick=function(){A=B=null;draw()};
+function sim(){var k=+document.getElementById('km').value;document.getElementById('kmv').textContent=k;var f=fare(k);document.getElementById('res2').innerHTML='<div class="price">'+f[1]+' <small>¥ ticket (tranche '+(BANDS.indexOf(f)==0?'1–6':BANDS.indexOf(f)==1?'7–11':BANDS.indexOf(f)==2?'12–19':BANDS.indexOf(f)==3?'20–27':'28–40')+' km)</small></div><div class="grid"><div><small class="mu">Carte IC</small><b>'+f[2]+' ¥</b></div><div><small class="mu">Enfant (ticket)</small><b>'+f[3]+' ¥</b></div><div><small class="mu">Enfant (IC)</small><b>'+f[4]+' ¥</b></div></div>'}
+document.getElementById('km').oninput=sim;sim();
+function tab(n){document.getElementById('p1').hidden=n!=1;document.getElementById('p2').hidden=n!=2;document.getElementById('t1').className=n==1?'on':'';document.getElementById('t2').className=n==2?'on':''}
+document.getElementById('t1').onclick=function(){tab(1)};document.getElementById('t2').onclick=function(){tab(2)};
+window.addEventListener('resize',sv);sv();
+</script></body></html>
