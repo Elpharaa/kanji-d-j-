@@ -7221,7 +7221,6 @@ body .cdslotm:focus-visible .cdcard{outline:3px solid #e0b94a;outline-offset:2px
       <hr class="sethr">
       <p class="small muted"><b>Rythme des révisions</b> : À revoir 2 min · Difficile 8 min · Moyen 30 min · Facile 1 jour · Validé 1 semaine. Les réponses fausses dans les jeux, ou le bouton « Je ne sais pas », renvoient le mot à 2 min.</p>
     </div></details>
-    <a class="panel setlink2" id="metroLink" href="metro/" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit"><span class="aico" aria-hidden="true">電</span><span><b>Métro de Tōkyō</b><br><small class="muted">Carte interactive et simulateur de prix en yens</small></span></a>
     <a class="panel setlink2" id="pomponLink" href="https://elpharaa.github.io/whitead-site/" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit"><span class="aico" aria-hidden="true">兎</span><span><b>Les Mondes de Pompon</b><br><small class="muted">Le site de jeux pour les élèves de CP (s'ouvre dans un nouvel onglet)</small></span></a>
     <details class="acc setacc" hidden style="display:none !important"><summary><span class="aico" aria-hidden="true">戸</span>Compte et progression</summary><div class="accbody">
       <p>Connecté en tant que <b id="acctName"></b>.</p>
@@ -19580,12 +19579,13 @@ body .cdslotm:focus-visible .cdcard{outline:3px solid #e0b94a;outline-offset:2px
     var g = geoS(), b = g.best || {};
     function card(act, seal, ttl, sub, extra) { return '<button type="button" class="geocard" data-geo="' + act + '"><span class="geoseal" aria-hidden="true">' + seal + '</span><span class="geotx"><b>' + ttl + '</b><small>' + sub + '</small></span>' + (extra ? '<span class="geobest">' + extra + '</span>' : '') + '</button>'; }
     var bp = Math.max(b['find:all'] || 0, b['name:all'] || 0), bc = Math.max(b.c10 || 0, b.c20 || 0, b.c30 || 0, b.c50 || 0);
-    return '<div class="panel geohead"><h3>Géographie du Japon</h3><p class="small muted">Apprends où se trouvent les 47 préfectures et les villes célèbres, puis découvre le métro de Tokyo. Les kanjis des noms sont toujours affichés.</p></div>' +
+    return '<div class="panel geohead"><h3>Géographie du Japon</h3><p class="small muted">Apprends où se trouvent les 47 préfectures et les villes célèbres, puis découvre la carte du métro de Tokyo. Les kanjis des noms sont toujours affichés.</p></div>' +
       '<div class="geolist">' +
       card('explore', '地', 'Explorer la carte', 'Touche une préfecture ou une ville pour voir son nom, sa lecture et son chef-lieu') +
       card('ppick', '県', 'Les préfectures', 'Retrouve-les sur la carte, ou devine laquelle est en surbrillance', bp ? 'record ' + bp + ' %' : '') +
       card('cpick', '市', 'Placer les villes', '10, 20, 30 ou 50 villes à placer sur la carte', bc ? 'record ' + bc + ' %' : '') +
-      card('metro', '駅', 'Le métro de Tokyo', 'Les lignes, la Yamanote, les astuces et le vocabulaire', b.metro ? 'record ' + b.metro + ' %' : '') + '</div>' +
+      card('mapnav', '駅', 'Le métro de Tokyo', 'Carte interactive : choisis deux stations ou simule une distance, et vois le prix en yens') +
+      card('metro', '線', 'Lignes, quiz et vocabulaire', 'Les lignes, la Yamanote, les astuces et le quiz du métro', b.metro ? 'record ' + b.metro + ' %' : '') + '</div>' +
       '<p class="panel small muted geonote">Carte : données Chikyū Chizu Japan (GSI), simplifiées.</p>';
   }
   function geoKanaToggle() { return '<label class="geotog"><input type="checkbox" id="geoKana"' + (geo.kana ? ' checked' : '') + '> Afficher la lecture en hiragana</label>'; }
@@ -19747,6 +19747,7 @@ body .cdslotm:focus-visible .cdcard{outline:3px solid #e0b94a;outline-offset:2px
       return;
     }
     switch (a) {
+      case 'mapnav': location.href = 'metro/'; break;
       case 'menu': case 'explore': case 'ppick': case 'cpick': case 'metro': geo.screen = a; geo.ov = null; renderGeo(); break;
       case 'pstart': geoPStart(); break;
       case 'pnext': geo.p.i++; geo.p.ans = null; geo.p.opts = null; if (geo.p.i >= geo.p.q.length) geo.screen = 'pend'; renderGeo(); break;
@@ -33551,7 +33552,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v813', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v814', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
