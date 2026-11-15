@@ -6,7 +6,7 @@ on:
         description: "Nombre d'entrées à traduire (0 = toutes)"
         default: "0"
       passe:
-        description: "traduire = première passe ; corriger = seconde passe (retraduit ou retire les définitions douteuses)"
+        description: "contexte = modèle plus gros (tout, puis corriger) ; traduire = première passe ; corriger = seconde passe (retraduit ou retire les définitions douteuses)"
         default: "traduire"
 permissions:
   contents: write
@@ -25,7 +25,14 @@ jobs:
           pip install ctranslate2 transformers sentencepiece sacremoses wordfreq
       - name: Préparer le modèle OPUS-MT en→fr
         run: ct2-transformers-converter --model Helsinki-NLP/opus-mt-en-fr --output_dir /tmp/ct2 --quantization int8
+      - name: Modèle plus gros (passe contexte)
+        if: ${{ github.event.inputs.passe == 'contexte' }}
+        run: |
+          ct2-transformers-converter --model Helsinki-NLP/opus-mt-tc-big-en-fr --output_dir /tmp/ct2big --quantization int8
+          python3 tools/retranslate_ctx.py /tmp/ct2big
+          python3 tools/retranslate_fr.py /tmp/ct2
       - name: Traduire
+        if: ${{ github.event.inputs.passe != 'contexte' }}
         run: |
           if [ "${{ github.event.inputs.passe }}" = "corriger" ]; then python3 tools/retranslate_fr.py /tmp/ct2; else python3 tools/translate_fr.py /tmp/ct2 ${{ github.event.inputs.limite }}; fi
       - name: Publier le résultat
