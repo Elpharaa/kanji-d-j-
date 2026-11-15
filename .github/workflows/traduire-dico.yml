@@ -1,0 +1,34 @@
+name: Traduire le dictionnaire en français
+on:
+  workflow_dispatch:
+    inputs:
+      limite:
+        description: "Nombre d'entrées à traduire (0 = toutes)"
+        default: "0"
+permissions:
+  contents: write
+jobs:
+  traduire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Installer les outils (torch CPU)
+        run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install ctranslate2 transformers sentencepiece sacremoses
+      - name: Préparer le modèle OPUS-MT en→fr
+        run: ct2-transformers-converter --model Helsinki-NLP/opus-mt-en-fr --output_dir /tmp/ct2 --quantization int8
+      - name: Traduire
+        run: python3 tools/translate_fr.py /tmp/ct2 ${{ github.event.inputs.limite }}
+      - name: Publier le résultat
+        run: |
+          git config user.name "Claude"
+          git config user.email "noreply@anthropic.com"
+          git add data/jmfr.json
+          git commit -m "Traductions automatiques du dictionnaire (OPUS-MT en→fr)" || exit 0
+          git pull --rebase
+          git push
