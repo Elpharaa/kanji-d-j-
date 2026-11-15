@@ -33552,7 +33552,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v836', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v837', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -34891,6 +34891,16 @@ var KXE={};
     var s = kxSens(c);
     JK[c] = [s ? s.t : '', x[4].slice(), x[5].map(kxRd), x[0]];
   });
+  /* v837 : kanji rares (KANJIDIC2, hors Jōyō) chargés après le démarrage */
+  setTimeout(function () {
+    if (typeof DecompressionStream === 'undefined') return;
+    fetch('data/kjx.gz').then(function (r) { if (!r.ok) throw 0; return r.blob(); }).then(function (bl) {
+      return new Response(bl.stream().pipeThrough(new DecompressionStream('gzip'))).text();
+    }).then(function (t) {
+      var j = JSON.parse(t); Object.keys(j).forEach(function (c) { if (!KX[c]) KX[c] = j[c]; });
+      try { KALL = null; } catch (e) {}
+    }).catch(function () {});
+  }, 2500);
   jlBuild = function () {
     if (JLK) return JLK;
     JLK = { n5: [], n4: [], n3: [], n2: [], n1: [], q: [] }; var seen = {};
