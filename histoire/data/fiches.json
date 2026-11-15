@@ -279,8 +279,7 @@
 "alias": [
 "Taira no Kiyomori",
 "Kiyomori",
-"平清盛",
-"Taira"
+"平清盛"
 ],
 "resume": "Chef du clan Taira, premier guerrier à diriger la cour : il suit la voie des Fujiwara en mariant sa fille à un empereur.",
 "points": [
@@ -306,8 +305,7 @@
 "alias": [
 "Minamoto no Yoritomo",
 "Yoritomo",
-"源頼朝",
-"Minamoto"
+"源頼朝"
 ],
 "resume": "Chef du clan Minamoto, vainqueur des Taira et fondateur du premier shogunat. Il choisit de s'installer à Kamakura, loin de la cour.",
 "points": [
@@ -501,8 +499,7 @@
 "alias": [
 "Oda Nobunaga",
 "Nobunaga",
-"織田信長",
-"Oda"
+"織田信長"
 ],
 "resume": "Seigneur de la région de Nagoya, premier des trois unificateurs. Il maîtrise le centre du pays en moins de vingt ans.",
 "points": [
@@ -560,8 +557,7 @@
 "alias": [
 "Tokugawa Ieyasu",
 "Ieyasu",
-"徳川家康",
-"Tokugawa"
+"徳川家康"
 ],
 "resume": "Troisième unificateur, fondateur du shogunat Tokugawa. Patient, il attend la mort de Hideyoshi.",
 "points": [
@@ -7759,6 +7755,324 @@
 "reg_okinawa",
 "ryukyu",
 "okinawa_bataille"
+]
+},
+{
+"id": "clan_fujiwara",
+"type": "concept",
+"nom": "Clan Fujiwara",
+"kanji": "藤原",
+"lecture": "ふじわらし",
+"dates": "VIIe – XIIe siècle",
+"epoque": "heian",
+"alias": [
+"Clan Fujiwara",
+"Fujiwara",
+"les Fujiwara",
+"藤原氏"
+],
+"resume": "Famille de la haute noblesse issue de Nakatomi no Kamatari, qui reçoit le nom de Fujiwara à sa mort en 669. Pendant la période de Heian, elle domine la cour en mariant ses filles aux empereurs.",
+"points": [
+"Gouverne comme régent (sesshō) puis chancelier (kanpaku) au nom de l'empereur.",
+"Apogée avec Fujiwara no Michinaga, au début du XIe siècle.",
+"Son pouvoir recule à partir de 1086, quand les empereurs retirés (insei) reprennent la main.",
+"Les guerriers Taira puis Minamoto prennent ensuite la première place."
+],
+"voir": [
+"kamatari",
+"sessho_kanpaku",
+"michinaga",
+"fujiwara_yoshifusa",
+"yorimichi",
+"clan_taira"
+]
+},
+{
+"id": "clan_taira",
+"type": "concept",
+"nom": "Clan Taira",
+"kanji": "平氏",
+"lecture": "へいし",
+"dates": "Xe – XIIe siècle",
+"epoque": "heian",
+"alias": [
+"Clan Taira",
+"Taira",
+"les Taira",
+"Heike",
+"Heishi",
+"平氏",
+"平家"
+],
+"resume": "Grand clan de guerriers (bushi) issu de la famille impériale, aussi appelé Heike. Avec Taira no Kiyomori, il prend la tête de la cour au XIIe siècle avant d'être écrasé par les Minamoto.",
+"points": [
+"1160 : écrase les Minamoto à la guerre de Heiji.",
+"1167 : Kiyomori devient grand ministre (dajō-daijin).",
+"1185 : le clan est anéanti à la bataille de Dan-no-ura.",
+"Son destin est raconté dans le Dit des Heike (Heike monogatari)."
+],
+"voir": [
+"kiyomori",
+"masakado",
+"heiji",
+"dan_no_ura",
+"heike",
+"clan_minamoto"
+]
+},
+{
+"id": "clan_minamoto",
+"type": "concept",
+"nom": "Clan Minamoto",
+"kanji": "源氏",
+"lecture": "げんじ",
+"dates": "Xe – XIIIe siècle",
+"epoque": "heian",
+"alias": [
+"Clan Minamoto",
+"Minamoto",
+"les Minamoto",
+"源氏"
+],
+"resume": "Clan de guerriers issu de la famille impériale, rival des Taira. Minamoto no Yoritomo en sort vainqueur et fonde le premier shogunat, à Kamakura.",
+"points": [
+"Se illustre dans les guerres de Zenkunen et Gosannen, au XIe siècle.",
+"1185 : victoire sur les Taira à Dan-no-ura.",
+"1192 : Yoritomo reçoit le titre de shōgun.",
+"La lignée directe s'éteint en 1219, et les Hōjō gouvernent à leur place."
+],
+"voir": [
+"yoritomo",
+"zenkunen",
+"dan_no_ura",
+"shogun",
+"clan_hojo",
+"clan_taira"
+]
+},
+{
+"id": "clan_soga",
+"type": "concept",
+"nom": "Clan Soga",
+"kanji": "蘇我",
+"lecture": "そがし",
+"dates": "VIe – VIIe siècle",
+"epoque": "asuka",
+"alias": [
+"Clan Soga",
+"Soga",
+"les Soga",
+"蘇我氏"
+],
+"resume": "Puissant clan de la cour de Yamato, qui favorise l'adoption du bouddhisme. Ses chefs dominent le gouvernement avant d'être éliminés en 645.",
+"points": [
+"Soga no Umako l'emporte sur les Mononobe et soutient le bouddhisme.",
+"Ses chefs marient leurs filles aux souverains.",
+"645 : Soga no Iruka est assassiné, et c'est le coup d'État qui mène aux réformes de Taika."
+],
+"voir": [
+"soga_umako",
+"taika",
+"shotoku",
+"clan_mononobe",
+"clan_fujiwara"
+]
+},
+{
+"id": "clan_mononobe",
+"type": "concept",
+"nom": "Clan Mononobe",
+"kanji": "物部",
+"lecture": "もののべし",
+"dates": "Ve – VIe siècle",
+"epoque": "asuka",
+"alias": [
+"Clan Mononobe",
+"Mononobe",
+"les Mononobe",
+"物部氏"
+],
+"resume": "Ancien clan militaire de la cour de Yamato, chargé des armes et des rites. Il s'oppose aux Soga sur l'accueil du bouddhisme et perd la lutte en 587.",
+"points": [
+"Défend les cultes des kami contre la religion venue du continent.",
+"587 : Mononobe no Moriya est vaincu par les Soga.",
+"Sa chute laisse la voie libre aux Soga."
+],
+"voir": [
+"clan_soga",
+"soga_umako",
+"shotoku"
+]
+},
+{
+"id": "clan_otomo",
+"type": "concept",
+"nom": "Clan Ōtomo",
+"kanji": "大伴",
+"lecture": "おおともし",
+"dates": "Ve – IXe siècle",
+"epoque": "asuka",
+"alias": [
+"Clan Ōtomo",
+"Ōtomo",
+"les Ōtomo",
+"大伴氏"
+],
+"resume": "Ancien clan de guerriers au service de la cour de Yamato. Son déclin au IXe siècle laisse la place aux Fujiwara. Il est aussi lié à la poésie du Man'yōshū.",
+"points": [
+"Fournit des chefs militaires aux souverains de Yamato.",
+"Ōtomo no Yakamochi est un grand poète du Man'yōshū.",
+"866 : le clan est écarté de la cour lors de l'incident de la porte Ōtemmon."
+],
+"voir": [
+"manyoshu",
+"jinshin",
+"clan_fujiwara"
+]
+},
+{
+"id": "clan_hojo",
+"type": "concept",
+"nom": "Clan Hōjō",
+"kanji": "北条",
+"lecture": "ほうじょうし",
+"dates": "XIIIe – XIVe siècle",
+"epoque": "kamakura",
+"alias": [
+"Clan Hōjō",
+"Hōjō",
+"les Hōjō",
+"北条氏"
+],
+"resume": "Famille de la région du Kantō, beau-père de Minamoto no Yoritomo. Après sa mort, elle gouverne le shogunat de Kamakura comme régente (shikken).",
+"points": [
+"Les shikken Hōjō dirigent en réalité à la place des shōguns.",
+"Repoussent les invasions mongoles de 1274 et de 1281.",
+"1333 : le clan est détruit lors de la chute de Kamakura."
+],
+"voir": [
+"shikken",
+"masako",
+"hojo_yoshitoki",
+"goseibai",
+"godaigo",
+"clan_minamoto"
+]
+},
+{
+"id": "clan_ashikaga",
+"type": "concept",
+"nom": "Clan Ashikaga",
+"kanji": "足利",
+"lecture": "あしかがし",
+"dates": "XIVe – XVIe siècle",
+"epoque": "muromachi",
+"alias": [
+"Clan Ashikaga",
+"Ashikaga",
+"les Ashikaga",
+"足利氏"
+],
+"resume": "Famille de guerriers issue des Minamoto. Ashikaga Takauji fonde le shogunat de Muromachi, dont les shōguns règnent de 1338 à 1573.",
+"points": [
+"Takauji s'impose après la chute des Hōjō et reçoit le titre de shōgun en 1338.",
+"Yoshimitsu fait construire le Pavillon d'or (Kinkaku-ji).",
+"Leur autorité s'effondre pendant la période des Provinces en guerre.",
+"1573 : Oda Nobunaga chasse le dernier shōgun Ashikaga."
+],
+"voir": [
+"takauji",
+"yoshimitsu",
+"shogun_ashikaga_kinkaku",
+"godaigo",
+"nobunaga",
+"clan_oda"
+]
+},
+{
+"id": "clan_oda",
+"type": "concept",
+"nom": "Clan Oda",
+"kanji": "織田",
+"lecture": "おだし",
+"dates": "XVIe siècle",
+"epoque": "sengoku",
+"alias": [
+"Clan Oda",
+"Oda",
+"les Oda",
+"織田氏"
+],
+"resume": "Famille de la province d'Owari, élevée au premier rang par Oda Nobunaga, qui unifie une grande partie du pays au XVIe siècle.",
+"points": [
+"1560 : Nobunaga bat les Imagawa à Okehazama.",
+"1573 : il met fin au shogunat Ashikaga.",
+"1582 : il meurt lors de l'incident du Honnō-ji.",
+"Hideyoshi puis Ieyasu poursuivent son œuvre."
+],
+"voir": [
+"nobunaga",
+"hideyoshi",
+"ieyasu",
+"clan_toyotomi"
+]
+},
+{
+"id": "clan_toyotomi",
+"type": "concept",
+"nom": "Clan Toyotomi",
+"kanji": "豊臣",
+"lecture": "とよとみし",
+"dates": "1586 – 1615",
+"epoque": "sengoku",
+"alias": [
+"Clan Toyotomi",
+"Toyotomi",
+"les Toyotomi",
+"豊臣氏"
+],
+"resume": "Nom reçu en 1586 par Hideyoshi, qui achève l'unification du pays en 1590. Son fils Hideyori est vaincu par les Tokugawa au siège d'Ōsaka.",
+"points": [
+"Hideyoshi dirige le pays comme grand chancelier (kanpaku).",
+"1598 : mort de Hideyoshi, dont le fils Hideyori est encore enfant.",
+"1615 : le château d'Ōsaka tombe et le clan disparaît."
+],
+"voir": [
+"hideyoshi",
+"osaka",
+"sekigahara",
+"clan_tokugawa",
+"clan_oda"
+]
+},
+{
+"id": "clan_tokugawa",
+"type": "concept",
+"nom": "Clan Tokugawa",
+"kanji": "徳川",
+"lecture": "とくがわし",
+"dates": "1603 – 1868",
+"epoque": "edo",
+"alias": [
+"Clan Tokugawa",
+"Tokugawa",
+"les Tokugawa",
+"徳川氏"
+],
+"resume": "Famille de Tokugawa Ieyasu, qui obtient le titre de shōgun en 1603 et installe son gouvernement à Edo. Ses descendants dirigent le pays pendant plus de deux siècles et demi.",
+"points": [
+"Quinze shōguns se succèdent, d'Ieyasu à Yoshinobu.",
+"Le pays vit en paix, sous un contrôle strict des daimyō.",
+"1867 : Yoshinobu rend le pouvoir à l'empereur, ce qui ouvre l'ère Meiji."
+],
+"voir": [
+"ieyasu",
+"iemitsu",
+"yoshimune",
+"tokugawa_yoshinobu",
+"shogun",
+"daimyo",
+"sekigahara"
 ]
 }
 ]
