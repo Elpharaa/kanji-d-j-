@@ -14020,6 +14020,7 @@ body .cdslotm:focus-visible .cdcard{outline:3px solid #e0b94a;outline-offset:2px
       // DISCORD-BOT : NE PAS SUPPRIMER (liaison Discord + XP des quiz du bot)
       rpc: function (name, args) { return sb.rpc(name, args || {}).then(function (r) { if (r.error) throw r.error; return r.data; }); },
       discordLink: function () { return sb.from('discord_links').select('discord_name').maybeSingle().then(function (r) { if (r.error) throw r.error; return r.data; }); },
+      reportError: function (row) { return sb.from('error_reports').insert(row).then(function (r) { if (r.error) throw r.error; return true; }); },
       hassetsLoad: function () { return sb.from('site_assets').select('id,data').like('id', 'hist:%').then(function (r) { if (r.error) throw r.error; return r.data || []; }); },
       assetsLoad: function () { return sb.from('site_assets').select('id,data').not('id', 'like', 'hist:%').then(function (r) { if (r.error) throw r.error; return r.data || []; }); },
       assetSave: function (id, data, uid) { return sb.from('site_assets').upsert({ id: id, data: data, updated_at: new Date().toISOString(), updated_by: uid || null }).then(function (r) { if (r.error) throw r.error; }); },
@@ -33552,7 +33553,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v839', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v840', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -34891,6 +34892,44 @@ var KXE={};
     var s = kxSens(c);
     JK[c] = [s ? s.t : '', x[4].slice(), x[5].map(kxRd), x[0]];
   });
+  /* ===== v840 : bouton « Signaler une erreur » sur les fiches de mots et de kanji ===== */
+  (function () {
+    var st = document.createElement('style');
+    st.textContent = '.rpwrap{margin:14px 0 4px;text-align:center}.rpb{background:none;border:0;color:#6a5f94;font:600 .78rem "Zen Kaku Gothic New",sans-serif;text-decoration:underline;cursor:pointer;padding:6px 10px}.rpf{display:flex;flex-direction:column;gap:8px;text-align:left}.rpf textarea{width:100%;min-height:64px;box-sizing:border-box;border:2px solid #c49a3a;border-radius:10px;padding:8px;font:500 .85rem "Zen Kaku Gothic New",sans-serif;background:#fffaf0;color:#2d2140}.rpf .rpr{display:flex;gap:8px;justify-content:flex-end}.rpf .rpr button{padding:8px 14px;border-radius:10px;border:2px solid #7c1a3e;background:#b2285b;color:#fff;font:700 .82rem "Zen Kaku Gothic New",sans-serif;cursor:pointer}.rpf .rpr .rpx{background:#fffaf0;color:#4a2f23;border-color:#c49a3a}';
+    document.head.appendChild(st);
+    function lines(el) { return String(el.innerText || '').split('\n').map(function (x) { return x.trim(); }).filter(Boolean); }
+    function decorate() {
+      Array.prototype.forEach.call(document.querySelectorAll('.dcpage,.dcd,.kxf'), function (el) {
+        if (el.querySelector('.rpwrap') || (el.parentNode && el.parentNode.closest && el.parentNode.closest('[data-rp]'))) return;
+        el.setAttribute('data-rp', '1');
+        var w = document.createElement('div'); w.className = 'rpwrap';
+        w.innerHTML = '<button type="button" class="rpb">⚑ Signaler une erreur</button>';
+        w.setAttribute('data-kind', el.classList.contains('kxf') ? 'kanji' : 'mot');
+        el.appendChild(w);
+      });
+    }
+    var tm = 0;
+    new MutationObserver(function () { clearTimeout(tm); tm = setTimeout(decorate, 150); }).observe(document.body, { childList: true, subtree: true });
+    document.addEventListener('click', function (e) {
+      var t = e.target.closest ? e.target : null; if (!t) return;
+      var w = t.closest('.rpwrap'); if (!w) return;
+      var pg = w.closest('[data-rp]') || w.parentNode;
+      if (t.closest('.rpb')) {
+        w.innerHTML = '<div class="rpf"><b style="font-size:.85rem">Qu’est-ce qui est faux ?</b><textarea maxlength="300" placeholder="Par exemple : la traduction est incorrecte, il manque un sens…"></textarea><div class="rpr"><button type="button" class="rpx">Annuler</button><button type="button" class="rps">Envoyer</button></div></div>';
+        return;
+      }
+      if (t.closest('.rpx')) { w.innerHTML = '<button type="button" class="rpb">⚑ Signaler une erreur</button>'; return; }
+      if (t.closest('.rps')) {
+        var L = lines(pg).filter(function (x) { return !/Signaler une erreur|Annuler|Envoyer|Qu.est-ce qui est faux/.test(x); });
+        var com = (w.querySelector('textarea') || {}).value || '';
+        if (!user || !backend || !backend.reportError) { toast('Connecte-toi pour signaler une erreur.'); return; }
+        var row = { kind: w.getAttribute('data-kind') || 'autre', ref: String(L[0] || '?').slice(0, 80), shown: L.slice(1, 5).join(' | ').slice(0, 400), comment: com.trim().slice(0, 400), app_v: String(APP_V).slice(0, 12) };
+        w.innerHTML = '<span class="muted small">Envoi…</span>';
+        backend.reportError(row).then(function () { w.innerHTML = '<span class="small" style="color:#2f7a4a;font-weight:700">Merci ! Signalement envoyé ✔</span>'; }, function () { w.innerHTML = '<button type="button" class="rpb">⚑ Signaler une erreur</button>'; toast('Envoi impossible pour le moment.'); });
+      }
+    });
+  })();
+
   /* v837 : kanji rares (KANJIDIC2, hors Jōyō) chargés après le démarrage */
   setTimeout(function () {
     if (typeof DecompressionStream === 'undefined') return;
