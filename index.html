@@ -5669,10 +5669,10 @@ button.dclink{font:inherit;text-align:left;cursor:pointer}
 .dcwl{position:absolute;top:7px;right:14px;font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#f6d58e}
 .dcwk{flex:none;font-size:2.5rem;font-weight:800;line-height:1;color:#fff;text-shadow:0 0 18px rgba(246,213,142,.55)}
 .dcwm{display:flex;flex-direction:column;gap:2px;min-width:0}.dcwr{font-size:.95rem;color:#f6d58e}.dcwf{font-size:.95rem}
-.dcbody{display:grid;grid-template-columns:1fr 28px;gap:8px;margin-top:6px;align-items:start}
+.dcbody{display:grid;grid-template-columns:1fr;gap:8px;margin-top:6px;align-items:start}
 .dccount{margin:6px 2px 8px;font-size:.78rem;color:#6f629a;font-weight:700}
 .dclist{display:grid;grid-template-columns:1fr;gap:9px}
-@media (min-width:640px){.dclist{grid-template-columns:1fr 1fr}.dcbody{grid-template-columns:1fr 32px}}
+@media (min-width:640px){.dclist{grid-template-columns:1fr 1fr}.dcbody{grid-template-columns:1fr}}
 .dcard{position:relative;overflow:hidden;display:grid;grid-template-columns:76px 1fr 18px;align-items:center;gap:10px;width:100%;padding:9px 10px 9px 8px;text-align:left;border-radius:16px;border:1.8px solid rgba(75,61,132,.35);background:linear-gradient(#fffefb,#fbf4e6);color:#2c2452;font:inherit;cursor:pointer;box-shadow:0 3px 0 rgba(75,61,132,.2);transition:transform .14s,box-shadow .25s,border-color .25s}
 .dcard::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 38%,rgba(246,213,142,.5) 50%,transparent 62%);transform:translateX(-130%);transition:transform .65s ease}
 .dcard:hover,.dcard:focus-visible{border-color:#c9a24a;box-shadow:0 0 0 2px rgba(246,213,142,.7),0 8px 20px rgba(200,150,40,.28)}
@@ -33556,7 +33556,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v861', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v862', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -33912,7 +33912,8 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   };
   function dcChip(k, v, t, on) { return '<button type="button" class="dcch' + (on ? ' on' : '') + '" data-dc="' + k + ':' + v + '" aria-pressed="' + on + '">' + t + '</button>'; }
   function dcThemeName() { var t = QV.filter(function (x) { return x.id === dc.th; })[0]; return t ? t.name : ''; }
-  function dcIdxHTML() { return '<nav id="dcIdx" class="dcidx jp" aria-label="Index kana">' + DC_ROWS.map(function (r) { return '<button type="button" data-dc="jump:' + r[0] + '">' + r[0] + '</button>'; }).join('') + '</nav>'; }
+  function dcIdxHTML() { return ''; }   /* v862 : colonne de kana à droite retirée (demande de Raphael) */
+  function dcIdxHTMLold() { return '<nav id="dcIdx" class="dcidx jp" aria-label="Index kana">' + DC_ROWS.map(function (r) { return '<button type="button" data-dc="jump:' + r[0] + '">' + r[0] + '</button>'; }).join('') + '</nav>'; }
   dcInner = function () {
     dcBuild();
     var q = dc.q || '', cnt = dcCount();
