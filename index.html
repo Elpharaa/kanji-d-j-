@@ -23869,9 +23869,9 @@ body .cdslotm:focus-visible .cdcard{outline:3px solid #e0b94a;outline-offset:2px
      VISITE GUIDÉE INTERACTIVE (projecteur + flèche + Asahi) et GUIDE illustré
      ===================================================================== */
   var COACH = [
-    { c: 1, go: 'hub', t: 'Bienvenue au Dōjō !', say: 'Moi c\'est Asahi ! Chaque bonne réponse te donne de l\'XP et des pièces, un mot est maîtrisé après 3 bonnes réponses d\'affilée. Visite express : 2 étapes.' },
-    { go: 'hub', sel: '#nav', t: 'Le menu du bas', say: 'Accueil, Aventure, Dojo, Base et Profil. Dans « Plus » : classement, statistiques, réglages et guide.' },
-    { c: 1, go: 'hub', t: 'À toi de jouer !', say: 'Touche le Dojo et lance une partie. Cette visite ne se relance pas toute seule : le « Guide » reste dans « Plus ».' }
+    { c: 1, go: 'hub', t: 'Bienvenue au Dōjō !', say: 'Moi c\'est Asahi ! Chaque bonne réponse te donne de l\'XP et des pièces, un mot est maîtrisé après 3 bonnes réponses d\'affilée. Visite express : 3 étapes.' },
+    { go: 'hub', sel: '#nav', t: 'Le menu du bas', say: 'Accueil, Profil, Amis, En ligne, Cartes, Boutique et Réglages. Sur l\'accueil, la carte « Plus » ouvre le classement et les statistiques.' },
+    { c: 1, go: 'hub', t: 'À toi de jouer !', say: 'Touche le Dojo et lance une partie. Cette visite ne se relance pas toute seule : le « Guide » reste disponible dans l\'appli.' }
   ];
   var coachI = 0, coachEl = null, coachTimer = 0;
   function coachBuild() {
@@ -33556,7 +33556,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v855', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v856', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
