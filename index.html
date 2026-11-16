@@ -33556,7 +33556,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v858', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v859', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35572,6 +35572,7 @@ var PAR="";
     function known(jp) {   /* déjà dans le vocabulaire de l'appli (cours ou JLPT) ? */
       var ks = Object.keys(QVW);
       for (var i = 0; i < ks.length; i++) { var w = QVW[ks[i]]; if (w && w.jp === jp && w.th !== 'mes') return true; }
+      try { if (weekWords('all').some(function (c) { return c.mot === jp; })) return true; } catch (e) {}   /* déjà dans le cours : pas de doublon de révision */
       return false;
     }
     function info(el) {
@@ -35599,7 +35600,7 @@ var PAR="";
       var L = mesList(), i = -1; L.forEach(function (m, n) { if (m.jp === x.jp) i = n; });
       if (i >= 0) { L.splice(i, 1); b.className = 'mrb'; b.textContent = '＋ Ajouter à mes révisions'; toast('Retiré de tes révisions.'); }
       else {
-        if (known(x.jp)) { toast('Ce mot est déjà dans le vocabulaire de l\'appli (Flashcards et Quiz).'); b.className = 'mrb on'; b.textContent = '✔ Déjà dans le vocabulaire de l\'appli'; return; }
+        if (known(x.jp)) { toast('Ce mot est déjà dans ton cours ou le vocabulaire de l\'appli : il se révise déjà là-bas.'); b.className = 'mrb on'; b.textContent = '✔ Déjà dans le vocabulaire de l\'appli'; return; }
         if (L.length >= 500) { toast('Limite de 500 mots atteinte.'); return; }
         L.push({ jp: x.jp, kana: x.kana, fr: x.fr, t: Date.now() }); b.className = 'mrb on'; b.textContent = '✔ Dans mes révisions (retirer)';
         toast('Ajouté ! Retrouve-le dans Dojo → Hors JLPT → « Mes mots ».');
