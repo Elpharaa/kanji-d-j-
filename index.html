@@ -33556,7 +33556,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v854', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v855', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35550,6 +35550,65 @@ var PAR="";
   }
   var _imgAdm = adminPanel;
   adminPanel = function () { _imgAdm(); var det = $('adminAcc'); if (!det || !isAdmin() || !$('adminBody')) return; $('adminBody').insertAdjacentHTML('afterbegin', bgAdminHTML()); };
+  /* v855 : bouton « Ajouter à mes révisions » sur la fiche d'un mot du dictionnaire */
+  (function () {
+    var st = document.createElement('style');
+    st.textContent = '.mrwrap{margin:10px 0 4px;text-align:center}.mrb{font:inherit;font-weight:700;border:2px solid #c9a24a;background:#fff8e6;color:#6b4a00;border-radius:999px;padding:9px 16px;cursor:pointer;max-width:100%}.mrb.on{background:#e8f6ec;border-color:#2f7a4a;color:#1f5a35}.mrh{font-size:.8rem;color:#6f629a;margin:4px 0 0}';
+    document.head.appendChild(st);
+    function cjk(s) { return /[぀-ヿ一-鿿]/.test(s || ''); }
+    function mesList() { try { if (!S.mesMots || !Array.isArray(S.mesMots)) S.mesMots = []; } catch (e) { return []; } return S.mesMots; }
+    function mesSync() {   /* thème « Mes mots » (niveau Hors JLPT) : flashcards, quiz et révisions */
+      var L = mesList(), t = qvTheme('mes');
+      if (!L.length && !t) return;
+      if (!t) { t = { id: 'mes', k: '⭐', name: 'Mes mots', note: 'Les mots que tu as ajoutés depuis le dictionnaire.', w: [], lv: 'q' }; QV.push(t); }
+      if (t.w.length === L.length) return;
+      Object.keys(QVW).forEach(function (k) { if (QVW[k] && QVW[k].th === 'mes') delete QVW[k]; });
+      t.w = []; L.forEach(function (m) {
+        var key = 'q:' + m.jp, w = { jp: m.jp, kana: m.kana || m.jp, fr: m.fr, key: key, th: 'mes' };
+        t.w.push(w); QVW[key] = w;
+      });
+      try { JLFW.q = null; delete JLFW.q; } catch (e) {}
+    }
+    function known(jp) {   /* déjà dans le vocabulaire de l'appli (cours ou JLPT) ? */
+      var ks = Object.keys(QVW);
+      for (var i = 0; i < ks.length; i++) { var w = QVW[ks[i]]; if (w && w.jp === jp && w.th !== 'mes') return true; }
+      return false;
+    }
+    function info(el) {
+      var big = el.querySelector('.dcbig'), fr = el.querySelector('.dcdfr b'); if (!big || !fr) return null;
+      var jp = big.textContent.trim(); if (!cjk(jp) || el.classList.contains('kxf')) return null;
+      var rd = el.querySelector('.dcdrd'), kana = rd ? rd.textContent.trim() : jp;
+      return { jp: jp, kana: kana, fr: fr.textContent.trim().replace(/^≈\s*/, '') };
+    }
+    function decorate() {
+      mesSync();
+      Array.prototype.forEach.call(document.querySelectorAll('.dcpage,.dcd'), function (el) {
+        if (el.querySelector('.mrwrap')) return;
+        var x = info(el); if (!x) return;
+        var inList = mesList().some(function (m) { return m.jp === x.jp; });
+        var w = document.createElement('div'); w.className = 'mrwrap';
+        w.innerHTML = '<button type="button" class="mrb' + (inList ? ' on' : '') + '" data-mr="1">' + (inList ? '✔ Dans mes révisions (retirer)' : '＋ Ajouter à mes révisions') + '</button>';
+        var rp = el.querySelector('.rpwrap'); if (rp) el.insertBefore(w, rp); else el.appendChild(w);
+      });
+    }
+    var tm = 0;
+    new MutationObserver(function () { clearTimeout(tm); tm = setTimeout(decorate, 200); }).observe(document.body, { childList: true, subtree: true });
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('[data-mr]') : null; if (!b) return;
+      var el = b.closest('.dcpage,.dcd'), x = el && info(el); if (!x) return;
+      var L = mesList(), i = -1; L.forEach(function (m, n) { if (m.jp === x.jp) i = n; });
+      if (i >= 0) { L.splice(i, 1); b.className = 'mrb'; b.textContent = '＋ Ajouter à mes révisions'; toast('Retiré de tes révisions.'); }
+      else {
+        if (known(x.jp)) { toast('Ce mot est déjà dans le vocabulaire de l\'appli (Flashcards et Quiz).'); b.className = 'mrb on'; b.textContent = '✔ Déjà dans le vocabulaire de l\'appli'; return; }
+        if (L.length >= 500) { toast('Limite de 500 mots atteinte.'); return; }
+        L.push({ jp: x.jp, kana: x.kana, fr: x.fr, t: Date.now() }); b.className = 'mrb on'; b.textContent = '✔ Dans mes révisions (retirer)';
+        toast('Ajouté ! Retrouve-le dans Flashcards → Hors JLPT → « Mes mots ».');
+      }
+      try { persist(); } catch (er) {}
+      mesSync();
+    });
+    setInterval(mesSync, 2500);
+  })();
   /* v853 : liste des signalements d'erreur (admin) */
   var RPA = { rows: null, err: '' };
   function rpaHTML() {
