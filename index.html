@@ -14021,6 +14021,9 @@ body .cdslotm:focus-visible .cdcard{outline:3px solid #e0b94a;outline-offset:2px
       rpc: function (name, args) { return sb.rpc(name, args || {}).then(function (r) { if (r.error) throw r.error; return r.data; }); },
       discordLink: function () { return sb.from('discord_links').select('discord_name').maybeSingle().then(function (r) { if (r.error) throw r.error; return r.data; }); },
       reportError: function (row) { return sb.from('error_reports').insert(row).then(function (r) { if (r.error) throw r.error; return true; }); },
+      reportsList: function () { return sb.from('error_reports').select('id,kind,ref,shown,comment,app_v,done,created_at').order('done', { ascending: true }).order('created_at', { ascending: false }).limit(100).then(function (r) { if (r.error) throw r.error; return r.data || []; }); },
+      reportDone: function (id, v) { return sb.from('error_reports').update({ done: !!v }).eq('id', id).then(function (r) { if (r.error) throw r.error; return true; }); },
+      reportDel: function (id) { return sb.from('error_reports').delete().eq('id', id).then(function (r) { if (r.error) throw r.error; return true; }); },
       hassetsLoad: function () { return sb.from('site_assets').select('id,data').like('id', 'hist:%').then(function (r) { if (r.error) throw r.error; return r.data || []; }); },
       assetsLoad: function () { return sb.from('site_assets').select('id,data').not('id', 'like', 'hist:%').then(function (r) { if (r.error) throw r.error; return r.data || []; }); },
       assetSave: function (id, data, uid) { return sb.from('site_assets').upsert({ id: id, data: data, updated_at: new Date().toISOString(), updated_by: uid || null }).then(function (r) { if (r.error) throw r.error; }); },
@@ -33553,7 +33556,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v852', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v853', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -35547,6 +35550,33 @@ var PAR="";
   }
   var _imgAdm = adminPanel;
   adminPanel = function () { _imgAdm(); var det = $('adminAcc'); if (!det || !isAdmin() || !$('adminBody')) return; $('adminBody').insertAdjacentHTML('afterbegin', bgAdminHTML()); };
+  /* v853 : liste des signalements d'erreur (admin) */
+  var RPA = { rows: null, err: '' };
+  function rpaHTML() {
+    var rows = RPA.rows, n = rows ? rows.filter(function (r) { return !r.done; }).length : 0;
+    var h = '<div class="admrow" id="rpaBox"><b>⚑ Signalements' + (rows ? ' (' + n + ' à traiter)' : '') + '</b><button type="button" class="btn ghost lsm" data-rpa="load">Actualiser</button></div>';
+    if (RPA.err) h += '<p class="small">' + esc(RPA.err) + '</p>';
+    if (rows && !rows.length) h += '<p class="small">Aucun signalement.</p>';
+    (rows || []).forEach(function (r) {
+      h += '<div class="admrow" style="flex-direction:column;align-items:stretch;gap:4px;' + (r.done ? 'opacity:.5' : '') + '"><div class="small"><b>' + esc(r.kind || '') + '</b> · ' + esc(r.ref || '') + ' · ' + esc(String(r.created_at || '').slice(0, 10)) + ' · ' + esc(r.app_v || '') + '</div>' +
+        (r.shown ? '<div class="small">Affiché : ' + esc(r.shown) + '</div>' : '') + (r.comment ? '<div>' + esc(r.comment) + '</div>' : '') +
+        '<div><button type="button" class="btn lsm" data-rpa="done:' + r.id + ':' + (r.done ? 0 : 1) + '">' + (r.done ? 'Rouvrir' : '✓ Traité') + '</button> <button type="button" class="btn ghost lsm" data-rpa="del:' + r.id + '">Supprimer</button></div></div>';
+    });
+    return h;
+  }
+  function rpaLoad() {
+    if (!backend || !backend.reportsList) return;
+    backend.reportsList().then(function (r) { RPA.rows = r; RPA.err = ''; }, function () { RPA.err = 'Lecture impossible.'; }).then(function () { var b = $('rpaWrap'); if (b) b.innerHTML = rpaHTML(); });
+  }
+  var _rpAdm = adminPanel;
+  adminPanel = function () { _rpAdm(); var det = $('adminAcc'); if (!det || !isAdmin() || !$('adminBody')) return; if (!$('rpaWrap')) { $('adminBody').insertAdjacentHTML('afterbegin', '<div id="rpaWrap"></div>'); } $('rpaWrap').innerHTML = rpaHTML(); if (!RPA.rows) rpaLoad(); };
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-rpa]') : null; if (!b || !isAdmin()) return;
+    var a = b.getAttribute('data-rpa').split(':');
+    if (a[0] === 'load') rpaLoad();
+    else if (a[0] === 'done') backend.reportDone(+a[1], a[2] === '1').then(rpaLoad, function () { toast('Échec.'); });
+    else if (a[0] === 'del') { if (confirm('Supprimer ce signalement ?')) backend.reportDel(+a[1]).then(rpaLoad, function () { toast('Échec.'); }); }
+  });
   var _imgAdmR = adminRefresh;
   adminRefresh = function () { _imgAdmR(); bgApply(); };
   function bgSave(id, d) { return backend.assetSave(id, d, user.id).then(function () { ASSETS[id] = d; }); }
