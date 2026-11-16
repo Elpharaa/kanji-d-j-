@@ -30359,6 +30359,16 @@ body .cdslotm:focus-visible .cdcard{outline:3px solid #e0b94a;outline-offset:2px
       e.s = dcNorm(e.jp + ' ' + e.kana + ' ' + (e.kana ? toRomaji(e.kana) : '') + ' ' + (e.jm ? e.sn.join(' ') + ' ' + e.alt : e.fr) + ' ' + e.th);
       A.push(e);
     });
+    /* v863 : formules keigo / oral absentes du lexique (tournures en « ～ », phrases avec ponctuation) */
+    try {
+      var haveJ = {}; A.forEach(function (e) { haveJ[e.jp] = 1; });
+      KG.list.forEach(function (T) { (T.E || []).forEach(function (x) {
+        if (!x.jp || haveJ[x.jp]) return; haveJ[x.jp] = 1;
+        var kn = String(x.rd || '').replace(/[～〜]/g, ''), e2 = { jp: x.jp, kana: x.rd && x.rd !== x.jp ? x.rd : '', fr: x.fr, tag: '', srcs: ['Keigo'], i: i++, lv: '', th: kgGroupOfTheme(T.id), isC: false, isB: true, t: 'e' };
+        e2.s = dcNorm(e2.jp + ' ' + e2.jp.replace(/[～〜]/g, '') + ' ' + e2.kana + ' ' + (kn ? toRomaji(kn.replace(/[、。？！…\s／・]/g, '')) : '') + ' ' + e2.fr + ' ' + e2.th);
+        A.push(e2);
+      }); });
+    } catch (err) {}
     var rk = { n5: 0, n4: 1, n3: 2, n2: 3, n1: 4, q: 5 };
     A.sort(function (a, b) { var x = a.lv ? rk[a.lv] : 6, y = b.lv ? rk[b.lv] : 6; return x - y || a.i - b.i; });
     A.forEach(function (e, n) { e.i = n; });
@@ -33556,7 +33566,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v862', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v863', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
