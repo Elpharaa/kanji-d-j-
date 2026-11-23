@@ -6353,7 +6353,7 @@ body .status .scoin { order: 5 !important; } body .status .romtog { order: 6 !im
 .kdpgh { display: flex; justify-content: space-between; align-items: baseline; padding: 0 4px 6px; color: #5b3a2c; font-size: 13px; } .kdpgh b { font: 700 .95rem var(--font-brush, serif); }
 .kdpgrid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
 .kdcm, .kdcolp, .kdbind, .kdpg, .kdpgrid, .cdslotm, .cdslotm .cdcard, .kdbub, .kdcut, .kdoffs { min-width: 0; max-width: 100%; box-sizing: border-box; }
-.kdnav { display: flex; align-items: center; justify-content: center; gap: 12px; } .kdnav .btn { width: 44px; height: 40px; padding: 0; font-size: 1.4rem; } .kdnav .btn:disabled { opacity: .35; } .kddots { display: flex; gap: 5px; } .kddots i { width: 7px; height: 7px; border-radius: 50%; background: rgba(122, 75, 58, .25); } .kddots i.on { background: #d8527f; } .kdpn { font-size: 13px; color: #5b3a2c; }
+.kdnav { display: flex; align-items: center; justify-content: center; gap: 12px; max-width: 100%; min-width: 0; } .kdnav .kdpn { white-space: nowrap; } .kddots:empty { display: none; } .kdnav .btn { width: 44px; height: 40px; padding: 0; font-size: 1.4rem; } .kdnav .btn:disabled { opacity: .35; } .kddots { display: flex; gap: 5px; } .kddots i { width: 7px; height: 7px; border-radius: 50%; background: rgba(122, 75, 58, .25); } .kddots i.on { background: #d8527f; } .kdpn { font-size: 13px; color: #5b3a2c; }
 @media (min-width: 600px) { .kdbind { padding-left: 30px; } }
 /* holographique (Rare et au-dessus) */
 body .cdcard.rar-r::after, body .cdcard.rar-e::after, body .cdcard.rar-l::after, body .cdcard.rar-m::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 5; opacity: 0; transition: opacity .25s; mix-blend-mode: color-dodge; background: radial-gradient(circle at var(--hx, 50%) var(--hy, 30%), rgba(255, 255, 255, .8), transparent 45%), linear-gradient(115deg, rgba(255, 0, 150, .5), rgba(255, 220, 0, .5), rgba(0, 255, 200, .5), rgba(80, 120, 255, .5), rgba(255, 0, 150, .5)); background-size: 100% 100%, 300% 100%; background-position: 0 0, var(--hx, 50%) 0; }
@@ -33566,7 +33566,7 @@ AIによる自動翻訳の精度は、この数年で飛躍的に高まった。
   });
 
   /* ===== v353 : installer l'application + mises à jour automatiques ===== */
-  var APP_V = 'v1021', pwaEv = null, pwaChecked = 0;
+  var APP_V = 'v1022', pwaEv = null, pwaChecked = 0;
   function pwaStandalone() { try { return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) { return false; } }
   function pwaIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function pwaSync() { var b = document.querySelector('.pwalink'); if (b) b.hidden = pwaStandalone(); }
@@ -36038,7 +36038,7 @@ var PAR="";
       return '<div class="lootpanel cdpanel kdcolp"><button type="button" class="btn primary cdbuybig" data-card="main">🛒 Acheter des boosters</button><h3 class="lootttlh" style="margin-top:8px">Mon classeur · ' + cardCount() + '/' + CARDS.length + '</h3>' +
         '<select id="cdFilter" class="cdsel" aria-label="Filtrer par catégorie">' + kinds.map(function (k) { return '<option value="' + k + '"' + (k === cardFilter ? ' selected' : '') + '>' + names[k] + '</option>'; }).join('') + '</select>' +
         '<div class="kdbind"><i class="kdrings"></i><div class="kdpg" id="kdPg" data-t="' + t + '"><div class="kdpgh"><b>' + esc(names[cardFilter]) + '</b><span>' + own + ' / ' + list.length + '</span></div><div class="cdgrid kdpgrid">' + cells + '</div></div></div>' +
-        '<div class="kdnav"><button type="button" class="btn" data-card="pg:-1"' + (cardPage <= 0 ? ' disabled' : '') + ' aria-label="Page précédente">‹</button><span class="kddots">' + (pages > 1 ? dots : '') + '</span><b class="kdpn">Page ' + (cardPage + 1) + ' / ' + pages + '</b><button type="button" class="btn" data-card="pg:1"' + (cardPage >= pages - 1 ? ' disabled' : '') + ' aria-label="Page suivante">›</button></div></div>';
+        '<div class="kdnav"><button type="button" class="btn" data-card="pg:-1"' + (cardPage <= 0 ? ' disabled' : '') + ' aria-label="Page précédente">‹</button><span class="kddots">' + (pages > 1 && pages <= 9 ? dots : '') + '</span><b class="kdpn">Page ' + (cardPage + 1) + ' / ' + pages + '</b><button type="button" class="btn" data-card="pg:1"' + (cardPage >= pages - 1 ? ' disabled' : '') + ' aria-label="Page suivante">›</button></div></div>';
     }
     cardPanel = function () {
       if (cardView === 'cut' && cardRev) return cutHTML();
